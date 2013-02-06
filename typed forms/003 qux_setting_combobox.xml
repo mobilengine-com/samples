@@ -1,0 +1,17 @@
+<Form name="Qux setting on combobox"  description="Qux setting on combobox"  typed="true"  dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+   
+	<Control type="combobox" label="selecting by key" data_type="int,string"  name="cb1"
+		reference="{Query={Static {{42,'alma'}, {43,'körte'}, {44,'barack'}}}}"
+		value_reference="select 42, null" />
+
+	<Control type="combobox" label="selecting by key" data_type="int,string" name="cb2"
+		reference="{Query={Static {{42,'alma'}, {43,'körte'}, {44,'barack'}}}}"
+		value_reference="select 'körte'" />
+
+	<Control type="combobox" label="selecting by key" data_type="int,string" name="cb3"
+		reference="{Query={Static {{42,'alma'}, {43,'körte'}, {44,'barack'}}}}"
+		value_reference="select 44, 'barack'" />
+
+  </Control>
+</Form>

@@ -1,0 +1,8 @@
+<Form name="Qux setting on textbox"  description="Qux setting on textbox"  typed="true"  dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+   <Control type="textbox" size="large" label="without formatted_list" data_type="int,string" name="tb1" lines="4" 
+		reference="{Query={Static {{42,'a'}, {43,'b'}, {44,'c'}}}}" />
+   <Control type="textbox" size="large" label="with formatted_list" lines="4" data_type="int,string" formatted_list="true" name="tb2"
+		reference="{Query={Static {{42,'a'}, {43,'b'}, {44,'c'}}}}" />
+  </Control>
+</Form>

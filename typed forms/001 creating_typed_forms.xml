@@ -1,0 +1,5 @@
+<Form name="Creating typed forms"  description="Creating typed forms"  typed="true"  dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+    <Control label="select an int" size="large" type="textbox" data_type="int" reference="select 5" name="tb1"/>
+  </Control>
+</Form>

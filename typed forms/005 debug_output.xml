@@ -1,0 +1,10 @@
+<Form name="Debug output" description="Debug output"  typed="true"  ust_with_type_info="true"  dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+   
+	<Control type="textbox" label="float" data_type="float" text="5.0" name="tb1" size="large"/>
+	<Control type="textbox" label="int" data_type="int" text="5" name="tb2" size="large"/>
+	<Control type="textbox" label="bool" data_type="bool" text="true" name="tb3" size="large"/>
+	<Control type="textbox" label="datetime" data_type="datetime" text="2013-01-04 11:40:00" name="tb4" size="large"/>
+
+  </Control>
+</Form>

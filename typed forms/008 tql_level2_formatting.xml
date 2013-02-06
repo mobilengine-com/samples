@@ -1,0 +1,11 @@
+<Form name="TQL level2 formatting" description="TQL level2 formatting"  typed="true" dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+   
+   <Control type="textbox" name="example1" size="large"
+    reference="=Picture taken at @dtlNow" />
+
+   <Control type="textbox" name="example2" size="large"
+    reference="=Picture taken at @#yyyy.MM.dd.#dtlNow" />
+	
+  </Control>
+</Form>

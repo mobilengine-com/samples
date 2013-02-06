@@ -1,0 +1,17 @@
+<Form name="Date format"  description="Date format"  typed="true"  dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+   
+ <Control type="textbox" label="control with dateformat"  name="tb1" size="large"
+    data_type="datetime" dateformat="yyyy" reference="select @dtlNow " />
+
+  <Control type="textbox" label="dateformat inherited from form item" name="tb2" size="large"
+    data_type="datetime" reference="select @dtlNow " />
+
+  <Control type="textbox" label="datepicker with dateformat" name="tb3" size="large"
+    ptype="datetime" dateformat="yyyy" reference="select @dtlNow " />
+
+  <Control type="textbox" label="datepicker with default format" name="tb4" size="large"
+    ptype="datetime" reference="select @dtlNow " />
+
+  </Control>
+</Form>

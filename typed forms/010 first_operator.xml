@@ -1,0 +1,12 @@
+<Form name="first not null"  description="first not null"  typed="true"  dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+	<Control size="large" type="panel" name="gp" count="3" layout="standard" navigation="inline">
+		<Control label="enter an int here" size="large" type="textbox" data_type="int" name="tb"/>
+	</Control>
+
+	<Control  size="large" type="separator" name="sep1" />
+		
+	<Control label="value of first not empty textbox" size="large" type="textbox" data_type="int" name="tb6" 
+		reference="FIRST" ref_arg="../gp/gp.*/tb" />
+  </Control>
+</Form>

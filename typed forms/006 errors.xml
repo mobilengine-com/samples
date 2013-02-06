@@ -1,0 +1,17 @@
+<Form name="Errors" description="Errors"  typed="true"  dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+   
+   <Control label="Single error" name="panel1" type="panel" layout="standard" navigation="popup" >
+	 <Control type="textbox" data_type="datetime" reference="select 5" name="tb1" size="large" />
+   </Control>
+   
+   <Control label="Error bound forward" name="panel2" type="panel" layout="standard" navigation="popup" >
+	 <Control type="textbox" label="select 5 into datetime field:" name="tbError" size="large"
+		data_type="datetime" reference="select 5" />
+
+	<Control type="textbox" label="bind tbError to an other textbox" name="tb2" size="large"
+		reference="REF" ref_arg="../tbError" />
+   </Control>
+	
+  </Control>
+</Form>

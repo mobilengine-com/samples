@@ -1,0 +1,16 @@
+<Form name="REF operator" description="REF operator"  typed="true"   dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+   
+   
+	<Control label="datepicker with dateformat" type="textbox" size="large"
+	  name="dp1" data_type="datetime" reference="select @dtlNow" />
+
+	<Control label="reference=&quot;=@1&quot;" type="textbox" name="tb1" size="large"
+	  data_type="datetime" reference="=@1" ref_arg="../dp1" />
+
+	<Control label="reference=&quot;REF&quot;" type="textbox" name="tb2" size="large"
+	  data_type="datetime" reference="REF" ref_arg="../dp1" />
+
+	
+  </Control>
+</Form>

@@ -1,0 +1,21 @@
+<Form name="OHT" description="OHT"  typed="true" dateformat="yyyy MM dd#HH mm ss">
+  <Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+   
+	<Control type="textbox" name="tbQuant" data_type="float" label="quantity" />
+	<Control type="combobox" label="Result:" ref_arg="../tbQuant" name="cb1" choice="select"
+	  reference="{QueryId=62,Query={SELECT Reference_STORAGE_DATA.FRUIT FROM  Reference_STORAGE_DATA WHERE Quantity = @1},Remote=True}"/>
+				
+	<Control type="textbox" name="tbDate" ptype="date" label="date" readonly="true" />
+	<Control type="combobox" label="Result:" ref_arg="../tbDate" name="cb2" choice="select"
+	  reference="{QueryId=63,Query={SELECT Reference_STORAGE_DATA.FRUIT FROM Reference_STORAGE_DATA WHERE Date = @1},Remote=True}" />
+				
+	<Control  type="textbox" name="tbPrice" data_type="int" label="price" />
+	<Control type="combobox" label="Result:" ref_arg="../tbPrice" name="cb3" choice="select"
+	  reference="{QueryId=64,Query={SELECT Reference_STORAGE_DATA.FRUIT FROM Reference_STORAGE_DATA WHERE Price = @1},Remote=True}" />
+			
+	<Control type="textbox" name="tbFruitName" label="fruit name" />
+	<Control type="combobox" label="Result:" ref_arg="../tbFruitName" name="cb4" choice="select"
+	  reference="{QueryId=65,Query={SELECT Reference_STORAGE_DATA.FRUIT FROM Reference_STORAGE_DATA WHERE Fruit = @1},Remote=True}" />
+	
+  </Control>
+</Form>
