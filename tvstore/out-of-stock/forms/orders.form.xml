@@ -1,0 +1,14 @@
+<Form typed="true" name="Orders" description="Orders" dateformat="yyyy-MM-dd HH:mm:ss" numberformat='{decimalSeparator:"."}' >
+	<Control type="panel" name="root" color="RGB(240,240,240)">
+	
+		<Control type="panel" name="panel" layout="table" navigation="inline" data_type="string,string,string,string,datetime" 
+			generator="SELECT p.name,o.nameBuyer,o.status,o.guidOrder,o.dtlOrder FROM Reference_Order AS o JOIN  Reference_Product AS p  ON o.idProduct = p.id">
+			<Control type="label" name="name" label="product" reference="REF" ref_arg="PARENT.col0"/>
+			<Control type="label" name="buyer" label="buyer" reference="REF" ref_arg="PARENT.col1"/>
+			<Control type="label" name="status" label="status" reference="REF" ref_arg="PARENT.col2"/>
+			<Control type="label" name="id" label="id" reference="REF" ref_arg="PARENT.col3"/>
+			<Control type="label" name="at" label="at" data_type="datetime" reference="REF" ref_arg="PARENT.col4"/>
+		</Control>
+	
+	</Control>
+</Form>

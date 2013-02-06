@@ -1,0 +1,11 @@
+<Form typed="true" name="ViewStock" description="View stock" dateformat="yyyy-MM-dd HH:mm:ss" numberformat='{decimalSeparator:"."}' >
+	<Control type="panel" name="root" color="RGB(240,240,240)">
+	
+		<Control type="panel" name="panel" layout="table" navigation="inline" data_type="string,int" 
+			generator="SELECT product.name,stock.cAmount FROM Reference_Product AS product JOIN Reference_Stock AS stock ON stock.idProduct = product.id">
+			<Control type="label" name="name" label="product" reference="REF" ref_arg="PARENT.col0"/>
+			<Control type="label" name="inStock" label="available" reference="REF" data_type="int" ref_arg="PARENT.col1"/>
+		</Control>
+	
+	</Control>
+</Form>

@@ -1,0 +1,12 @@
+<Reftab Name="order">
+	<Columns>
+		<Column Name="guidOrder" Type="Text" />
+		<Column Name="status" Type="Text" />
+		<Column Name="dtlOrder" Type="Date" DateFormat='(dtf yyyy "-" MM "-" dd " " HH ":" mm ":" ss)' />
+		<Column Name="idProduct" Type="Integer" />
+		<Column Name="nameBuyer" Type="Text" />
+		<Column Name="addressBuyer" Type="Text" />
+		<Column Name="priceOrder" Type="Float" />
+		<Column Name="seller" Type="Text" AgentName="true" />
+	</Columns>
+</Reftab>

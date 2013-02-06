@@ -1,0 +1,40 @@
+server program LostIdentityServer for form 'NewOrder'
+using reftab 'order';
+using reftab 'product';
+using reftab 'stock';
+{
+	var guidOrder = guid.Generate();
+	var dtlOrder = dtl.Now();
+	var idProduct = int.Parse(form.root.idProduct.value);
+	var priceOrder = float.ParseNuf({decimalSeparator:",", postfix:" Ft", groupSize:3, groupSeparator:" ", maxFraction:2}, form.root.priceOrder.value);
+	
+	var stNameBuyer = form.root.nameBuyer.value;
+	var stSeller = form.root.seller.value;
+	var stAddressBuyer = form.root.addressBuyer.value;
+	
+	var cAmountInStock = db.stock.Read({idProduct: idProduct}).Single().cAmount;
+	
+	var stStatus = "";
+	if(cAmountInStock > 0)
+	{
+		db.stock.Update({idProduct: idProduct}, {cAmount: cAmountInStock - 1});
+		stStatus = "accepted";
+		
+	}
+	else
+	{
+		//out of stock	
+		stStatus = "rejected";
+	}
+	
+	db.order.Insert({
+		guidOrder: guidOrder.ToStringN(),
+		dtlOrder: dtlOrder.DtlToDtdb(),
+		idProduct: idProduct,
+		nameBuyer: stNameBuyer,
+		addressBuyer: stAddressBuyer,
+		priceOrder: priceOrder,
+		status: stStatus,
+		seller: stSeller
+	});
+}
