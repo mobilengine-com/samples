@@ -1,0 +1,8 @@
+<Form name='SelfReferencing' next_form_name='SelfReferencing'>
+	<Control name='root' type='panel' color="RGB(255,255,255)">
+		<Control type="panel" name="panel1"
+		   navigation="popup" 
+		   back_action="discard_form" 
+		   next_form_name="SelfReferencing" />
+	</Control>
+</Form>
