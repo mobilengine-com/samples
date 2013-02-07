@@ -1,0 +1,9 @@
+<Form name="Step3" hidden="true" send_label="Vége" next_form_name="SelectTask" ksubmit="always">
+	<Control type="panel" name="root">
+		<Control type="label" name="taskName" label="Task" reference="SELECT name FROM Reference_task WHERE isCurrent = 1" />
+		<Control type="label" name="label1" text="Harmadik lépés" />
+		<Control type="panel" name="panel1" text="Megszakítás" navigation="popup" submit_on_show="true" back_action="discard_form" next_form_name="SelectTask">
+			<Control type="label" name="label2" text="Megszakadt." />
+		</Control>
+	</Control>
+</Form>

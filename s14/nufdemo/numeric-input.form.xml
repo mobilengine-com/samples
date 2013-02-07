@@ -1,0 +1,6 @@
+<Form typed="true"  name="NumericInput" description="Numeric Input" dateformat="yyyy-MM-dd HH:mm:ss" numberformat='{decimalSeparator:"||", postfix:" Ft", groupSize:3, groupSeparator:"__", maxFraction:2}'>
+	<Control type="panel" name="root">
+	  <Control size="large" name="num1" label="num1" type="textbox" data_type="int" ptype="int" readonly="true" />
+	  <Control size="large" name="num2" label="num2" type="textbox" data_type="float" ptype="float" readonly="true" />
+  </Control>
+</Form>

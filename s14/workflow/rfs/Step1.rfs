@@ -1,0 +1,13 @@
+client server program Step1 for form Step1
+using reftab task;
+{
+	trace "ControlSubmit", form.controlSubmit;
+	if(form.controlSubmit == null) //submitted by submit button
+	{
+		var currentStep = db.task.Read({isCurrent: 1})[0].step;
+		if(currentStep == 0)
+			db.task.Update({isCurrent: 1}, {step: 1});
+	}
+	else 
+		db.task.Update({isCurrent: 1}, {isCurrent: 0});
+}

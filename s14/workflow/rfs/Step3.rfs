@@ -1,0 +1,8 @@
+client server program Step3 for form Step3
+using reftab task;
+{
+	if(form.controlSubmit == null) //submitted by submit button
+		db.task.Update({isCurrent: 1}, {isCurrent: 0, step: 3, isCompleted: 1});
+	else
+		db.task.Update({isCurrent: 1}, {isCurrent: 0});
+}

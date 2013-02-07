@@ -1,0 +1,9 @@
+<Reftab Name="task">
+	<Columns>
+		<Column Name="id" Type="Integer" />
+		<Column Name="name" Type="Text" />
+		<Column Name="step" Type="Integer" />
+		<Column Name="isCurrent" Type="Integer" />
+		<Column Name="isCompleted" Type="Integer" />
+	</Columns>
+</Reftab>

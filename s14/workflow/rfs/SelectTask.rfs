@@ -1,0 +1,6 @@
+client server program SelectTask for form SelectTask
+using reftab task;
+{
+	var taskId = int.Parse(form.controlSubmit.parent.id.value);	
+	db.task.Update({id: taskId}, {isCurrent: 1});
+}
