@@ -1,0 +1,13 @@
+<Form typed="true"  name="NufDemo" description="NufDemo" dateformat="yyyy-MM-dd HH:mm:ss" numberformat='{decimalSeparator:"||", postfix:" Ft", groupSize:3, groupSeparator:"__", maxFraction:2}'>
+	<Control type="panel" name="root">
+	  <Control size="large" name="num1" label="num1" type="textbox" data_type="int" text="1"  />
+	  <Control size="large" name="num2" label="num2"  type="textbox" data_type="float" text="1234.5"  />
+	  <Control size="large" name="num3" label="num3" type="textbox" data_type="float" 
+			   numberformat='{decimalSeparator:"#"}'
+			   text="1234.5678" />
+	  <Control size="large" name="num4" label="num4"  type="textbox" data_type="string" 
+			   numberformat='{decimalSeparator:"-"}'
+			   reference='=@1, @#{decimalSeparator:":"}#1'
+			   ref_arg="../num3" />
+  </Control>
+</Form>
