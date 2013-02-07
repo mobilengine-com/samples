@@ -1,0 +1,5 @@
+<Form name="theNextForm2" hidden="true">
+	<Control name="root" type="panel" color="RGB(255,255,255)">
+		<Control name="label" type="label" text="theNextForm2" />
+	</Control>
+</Form>

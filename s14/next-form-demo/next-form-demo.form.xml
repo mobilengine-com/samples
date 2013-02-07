@@ -1,0 +1,35 @@
+<Form name="nextFormDemo" next_form_name="theNextForm1">
+	<Control name="root" type="panel">
+		<Control type="panel"
+                     name="panel1"                      
+                     navigation="popup"
+                     next_form_name="theNextForm2"
+                     back_action="discard_form" 
+                     text="Next form 2 on back" />
+
+		<Control type="panel"
+                     name="panel2"                      
+                     navigation="popup"
+                     sec_auto_close="5"
+                     next_form_name="theNextForm3"
+                     back_action="discard_form" 
+                     text="Next form 3 after 5 sec" />
+
+		<Control type="panel"
+                     name="panel3"                      
+                     navigation="popup"
+                     next_form_name="theNextForm4"
+                     back_action="discard_form" 
+                     submit_on_show="true"
+                     text="Next form 4 on back w. submit" />
+
+		<Control type="panel"
+                     name="panel4"                      
+                     navigation="popup"
+                     sec_auto_close="5"
+                     next_form_name="theNextForm5"
+                     back_action="discard_form" 
+                     submit_on_show="true"
+                     text="Next form  5 after 5 sec w. submit" />
+	</Control>
+</Form>
