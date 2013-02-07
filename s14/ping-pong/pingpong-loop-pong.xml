@@ -1,0 +1,6 @@
+<Form name="pong" ksubmit="never" send_label="Exit">
+	<Control name="root" type="panel" color="RGB(255,255,255)">
+		<Control name="label" type="label" text="Pong" />
+		<Control name="ping" type="closebutton" action="discard_form" next_form_name="ping" text="Ping" />
+	</Control>
+</Form>

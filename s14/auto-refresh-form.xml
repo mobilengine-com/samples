@@ -1,0 +1,6 @@
+<Form name='auto-refresh' sec_auto_close='5' next_form_name='auto-refresh' ksubmit='nobutton'>
+	<Control name='root' type='panel' color="RGB(255,255,255)">
+		<Control name='now' type='label' reference='=@dtlNow' />
+		<Control name='exit' type='closebutton' text='Exit' action='discard_form' />
+	</Control>
+</Form>
