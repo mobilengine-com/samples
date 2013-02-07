@@ -1,4 +1,4 @@
-client server program Finished for form 'NewOrder'
+server program Finished for form 'NewOrder'
 using reftab 'order';
 using reftab 'product';
 using reftab 'stock';
