@@ -1,0 +1,7 @@
+<Form name="hidden-form-opener-2">
+	<Control name="root" type="panel" color="RGB(255,255,255)">
+		<Control name="panel" type="panel" navigation="popup" back_action="discard_form" next_form_name="hidden-form" text="Open this panel to go to hidden-form">
+			<Control name="label" type="label" text="When you exit this panel you will get to hidden-form" />
+		</Control>
+	</Control>
+</Form>

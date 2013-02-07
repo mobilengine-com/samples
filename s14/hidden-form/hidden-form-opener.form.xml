@@ -1,0 +1,5 @@
+<Form name="hidden-form-opener" next_form_name="hidden-form">
+	<Control name="root" type="panel" color="RGB(255,255,255)">
+		<Control name="label" type="label" label="The next form is hidden-form" />
+	</Control>
+</Form>
