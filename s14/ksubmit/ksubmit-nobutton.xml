@@ -1,0 +1,8 @@
+<Form name="ksubmit-nobutton" ksubmit="nobutton">
+	<Control type="panel" name="_panel2" color="RGB(255,255,255)">
+		<Control type="label" name="label" size="medium" text="Hello! I have no submit button!" />
+		<Control type="panel" name="panel" navigation="popup" text="Another hello in here!">
+			<Control type="label" name="label" size="medium" text="Hello again! The back button should still be down there." />
+		</Control>
+	</Control>
+</Form>

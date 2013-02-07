@@ -1,0 +1,5 @@
+<Form name="ksubmit-nodraft" ksubmit="nodraft">
+	<Control type="panel" name="root">
+		<Control type="label" name="label" text="ksubmit=`nodraft`" />
+	</Control>
+</Form>
