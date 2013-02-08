@@ -1,0 +1,17 @@
+<Form name="nid-npth-demo" typed="true" 
+   dateformat="yyyy.MM.dd HH:mm" 
+   numberformat='{decimalSeparator:"||", postfix:" Ft", groupSize:3, groupSeparator:"__", maxFraction:2}'>
+  <Control name="root" type="panel">
+
+    <Control name="lbl" label="X:" type="textbox" data_type="int"/>
+
+    <Control name="genpanel" type="panel" navigation="inline" 
+             data_type="int" 
+             generator="select 1 union all select 2 union all select 3">
+
+	<Control name="genlbl" label="X:" type="label" data_type="int"
+               reference="REF" ref_arg="PARENT.value" />
+
+    </Control>
+  </Control>
+</Form>
