@@ -1,0 +1,12 @@
+<Form name="removeButtonText">
+	<Control name="root" type="panel">
+		<Control name="panel1" type="panel" count="0">
+			<Control name="tb" type="label" text="alma" />
+		</Control>
+		<Control type="button" name="gbut" text="[New]" > 
+		 <Actions> 
+		  <Action type="generator" target="../panel1" removebuttontext="Tunj el!" />
+		 </Actions> 
+		</Control>
+	</Control>
+</Form>
