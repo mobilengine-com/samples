@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Storage_data">
+  <Columns>
+    <Column Name="Fruit" Type="Text" />
+    <Column Name="Type" Type="Text" />
+    <Column Name="Price" Type="Integer" />
+    <Column Name="Quantity" Type="Float" />
+    <Column Name="Date" Type="Date" />
+    <Column Name="Unit" Type="Text" />
+    <Column Name="Storage" Type="Text" />
+  </Columns>
+</Table>

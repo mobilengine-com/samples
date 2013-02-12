@@ -1,0 +1,11 @@
+<Reftab Name="Fruit10">
+  <Columns>
+    <Column Name="Fruit" Type="Text" />
+    <Column Name="Type" Type="Text" />
+    <Column Name="Price" Type="Float" />
+    <Column Name="Quantity" Type="Integer" />
+    <Column Name="Date1" Type="Date" />
+    <Column Name="Date2" Type="Date" DateFormat='(dtf MM "/" dd "/" yyyy)'/>
+    <Column Name="UserName" Type="Text" AgentName="true" />
+  </Columns>
+</Reftab>
