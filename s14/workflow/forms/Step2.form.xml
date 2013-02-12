@@ -1,5 +1,5 @@
 <Form name="Step2" next_form_name="Step3" hidden="true" send_label="Tovább" ksubmit="always">
-	<Control type="panel" name="root">
+	<Control type="panel" name="root" color="RGB(255,255,255)">
 		<Control type="label" name="taskName" label="Task" reference="SELECT name FROM Reference_task WHERE isCurrent = 1" />
 		<Control type="label" name="label1" text="Második lépés" />
 		<Control type="panel" name="content" navigation="inline" generator="SELECT 1 FROM Reference_task WHERE isCurrent = 1 AND step = 1 ">

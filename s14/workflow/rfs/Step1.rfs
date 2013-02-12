@@ -8,6 +8,12 @@ using reftab task;
 		if(currentStep == 0)
 			db.task.Update({isCurrent: 1}, {step: 1});
 	}
-	else 
+	else if (form.controlSubmit == form.root.content.panel_skip)
+	{
+		var currentStep = db.task.Read({isCurrent: 1})[0].step;
+		if(currentStep == 0)
+			db.task.Update({isCurrent: 1}, {step: 2});
+	}
+	else
 		db.task.Update({isCurrent: 1}, {isCurrent: 0});
 }

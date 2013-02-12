@@ -1,5 +1,6 @@
 <Form name="SelectTask" ksubmit="nobutton" next_form_name="SelectTask" sec_auto_close="30">
-	<Control type="panel" name="root">
+	<Control type="panel" name="root" color="RGB(255,255,255)">
+		<Control name='label3' type='label' text="Válassz egy feladatot!" />
 		<Control type="panel" name="tasklist" navigation="inline" layout="table" generator="SELECT id, name FROM Reference_task WHERE isCompleted = 0 ORDER BY id">
 			<Control type="label" name="id" visible="true" reference="=@1" ref_arg="PARENT.col0" />
 			<Control type="label" name="task" reference="=@1" ref_arg="PARENT.col1" />

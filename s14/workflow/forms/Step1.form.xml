@@ -1,10 +1,14 @@
 <Form name="Step1" next_form_name="Step2" hidden="true" send_label="Tovább" ksubmit="always">
-	<Control type="panel" name="root">
+	<Control type="panel" name="root" color="RGB(255,255,255)">
 		<Control type="label" name="taskName" label="Task" reference="SELECT name FROM Reference_task WHERE isCurrent = 1" />
 		<Control type="label" name="label1" text="Első lépés" />
 		<Control type="panel" name="content" navigation="inline" generator="SELECT 1 FROM Reference_task WHERE isCurrent = 1 AND step = 0 ">
 			<Control type="panel" name="panel1" text="Megszakítás" navigation="popup" submit_on_show="true" back_action="discard_form" next_form_name="SelectTask">
 				<Control type="label" name="label2" text="Megszakadt." />
+			</Control>
+			<Control type="panel" name="panel_skip" text="Második lépés kihagyása" navigation="popup" sec_auto_close="30" submit_on_show="true" back_action="discard_form" next_form_name="Step3">
+				<Control type="label" name="label2" text="30 másodperc múlva átugrunk a harmadik lépésre." />
+				<Control type="label" name="label3" text="Ha gyorsabban szeretnél menni, nyomd meg a back gombot." />
 			</Control>
 		</Control>
 		<Control type="panel" name="goToNextStep" navigation="inline" generator="SELECT 1 FROM Reference_task WHERE isCurrent = 1 AND step > 0">
