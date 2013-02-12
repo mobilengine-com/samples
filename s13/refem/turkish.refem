@@ -1,0 +1,7 @@
+<Reftab Name="turkish" Access="Editable">
+	<Columns>
+		<Column Name="tarih" Type="Date" DateFormat='(dtf dd"."MM"."yyyy)'/>
+		<Column Name="sayı" Type="Float" />
+		<Column Name="tekst" Type="Text" />
+	</Columns>
+</Reftab>
