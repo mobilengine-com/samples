@@ -1,5 +1,0 @@
-<Form name="ksubmit-always" ksubmit="always">
-	<Control type="panel" name="root">
-		<Control type="label" name="label" text="ksubmit=`always`" />
-	</Control>
-</Form>

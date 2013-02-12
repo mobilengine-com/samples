@@ -1,0 +1,8 @@
+<Form name="ksubmit-default" ksubmit="default">
+	<Control type="panel" name="root">
+		<Control type="panel" name="panel" navigation="popup" text="Just a popup">
+			<Control type="label" name="label" size="medium" text="This popup is here so you can check out the menu options inside one." />
+		</Control>
+		<Control type="label" name="label" text="ksubmit=`default`" />
+	</Control>
+</Form>

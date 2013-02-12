@@ -1,5 +1,0 @@
-<Form name="ksubmit-default" ksubmit="default">
-	<Control type="panel" name="root">
-		<Control type="label" name="label" text="ksubmit=`default`" />
-	</Control>
-</Form>

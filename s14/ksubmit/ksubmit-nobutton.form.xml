@@ -1,0 +1,10 @@
+<Form name="ksubmit-nobutton" ksubmit="nobutton">
+	<Control type="panel" name="_panel2" color="RGB(255,255,255)">
+		<Control type="label" name="label" size="medium" text="Hello! I have no submit button!" />
+		<Control type="panel" name="panel" navigation="popup" text="Another hello in here!">
+			<Control name='label6' type='label' text="(This is a closebutton so you can exit the form. It's not the default submit button.)" />
+			<Control name='cb1' type='closebutton' action='discard_form' text='(Exit)' size='large' />
+			<Control type="label" name="label" size="medium" text="Hello again! The back button should still be down here." />
+		</Control>
+	</Control>
+</Form>
