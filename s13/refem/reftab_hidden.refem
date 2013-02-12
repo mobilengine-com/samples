@@ -1,0 +1,5 @@
+<Reftab Name="reftab_hidden" Access="Hidden">
+  <Columns>
+    <Column Name="col_name_1" Type="Text"/>
+  </Columns>
+</Reftab>

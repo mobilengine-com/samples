@@ -1,0 +1,5 @@
+<Reftab Name="reftab_editable" Access="Editable">
+  <Columns>
+    <Column Name="col_name_1" Type="Text"/>
+  </Columns>
+</Reftab>

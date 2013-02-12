@@ -1,0 +1,5 @@
+<Reftab Name="reftab_readonly" Access="Readonly">
+  <Columns>
+    <Column Name="col_name_1" Type="Text"/>
+  </Columns>
+</Reftab>
