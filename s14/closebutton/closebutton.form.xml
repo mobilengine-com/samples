@@ -2,22 +2,21 @@
 	<Control name='root' type='panel'>
 
 		<Control name='lbl1' type='label' text='Close button appearance' color='RGB(20,20,20)' />
-		<Control name='cbtn2' type='closebutton' action='discard_form' size='small' label='Small' text='Small button' />
-		<Control name='cbtn3' type='closebutton' action='discard_form' size='medium' label='Medium' text='Medium button' />
-		<Control name='cbtn4' type='closebutton' action='discard_form' size='large' label='Large' text='Large button' />
+		<Control name='cbtn2' type='closebutton' action='discard_form' text="I'm a close button" />
 
 		<Control name='lbl3' type='label' text='Close button function' color='RGB(20,20,20)' />
-		<Control name='cbtn10' type='closebutton' action='discard_form' label='Discard' text='No next form'  />
-		<Control name='cbtn15' type='closebutton' action='discard_form' label='Discard' next_form_name='MyForm' text='Next form' />
-		<Control name='cbtn20' type='closebutton' action='submit_form' label='Submit' text='No next form'  />
-		<Control name='cbtn25' type='closebutton' action='submit_form' label='Submit' next_form_name='MyForm' text='Next form' />
+		<Control name='cbtn10' type='closebutton' action='discard_form' text='Discard, No next form'  />
+		<Control name='cbtn15' type='closebutton' action='discard_form' next_form_name='closebutton' text='Discard, Next form' />
+		<Control name='cbtn20' type='closebutton' action='submit_form' text='Submit, No next form'  />
+		<Control name='cbtn25' type='closebutton' action='submit_form' next_form_name='closebutton' text='Submit, Next form' />
 
 		<Control name='lbl4' type='label' text='Close buttons in table' color='RGB(20,20,20)' />
 		<Control name='tbl1' type='panel' text='Close buttons in table' color='RGB(255,255,255)' navigation='popup' layout='table' generator='SELECT * FROM sqlite_master'>
 			<Control name='cbtn50' type='closebutton' action='discard_form' label='Discard, no next form' text='Discard' />
-			<Control name='cbtn55' type='closebutton' action='discard_form' label='Discard, next: MyForm' next_form_name='MyForm' text='Discard &amp; To MyForm' />
+			<Control name='cbtn55' type='closebutton' action='discard_form' label='Discard, next: closebutton' next_form_name='closebutton' text='Discard &amp; To Closebutton' />
 			<Control name='cbtn60' type='closebutton' action='submit_form' label='Submit, no next form' text='Submit' />
-			<Control name='cbtn65' type='closebutton' action='submit_form' label='Submit, next: MyForm' next_form_name='MyForm' text='Submit &amp; To MyForm' />
+			<Control name='cbtn65' type='closebutton' action='submit_form' label='Submit, next: closebutton' next_form_name='closebutton' text='Submit &amp; To Closebutton' />
+			<Control name='cbtn75' type='closebutton' action='submit_form' label='Wide button that submits and opens this form' next_form_name='closebutton' width="50em" text='Submit &amp; To Closebutton' />
 		</Control>
 
 	</Control>
