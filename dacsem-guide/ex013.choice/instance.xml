@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Foo>
+  <Bar>42</Bar>
+  <Baz>something</Baz>
+  <Baz>some other thing</Baz>
+  <Bar>43</Bar>
+</Foo>

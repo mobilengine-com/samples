@@ -1,0 +1,6 @@
+//example-6
+schema 'attribute-and-scalar' meta 'attribute-and-scalar'
+Foo: element {
+  Bar: optional attribute of type string;
+  Baz: content of type int;
+}

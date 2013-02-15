@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Foo>
+  <Baz>42</Baz>
+  <Qux Quux="something" />
+  <Baz>43</Baz>
+  <Qux Quux="some other thing" />
+</Foo>

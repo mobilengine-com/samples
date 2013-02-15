@@ -1,0 +1,5 @@
+//example-5
+schema 'element-with-attribute' meta 'element-with-attribute'
+Foo: element {
+  Bar: optional attribute of type string;
+}

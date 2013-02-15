@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Foo>
+  <Bar Qux="42" />
+  <Baz Quux="something" />
+  <Baz Quux="some other thing" />
+  <Bar Qux="43" />
+</Foo>

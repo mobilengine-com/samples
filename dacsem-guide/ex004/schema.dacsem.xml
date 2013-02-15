@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="element-with-scalar" name="element-with-scalar" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <TypeDef startLine="3" type="int"/>
+    </Xel>
+    <Source>//example-4&#13;
+schema 'element-with-scalar' meta 'element-with-scalar'&#13;
+Foo: element of type int;</Source>
+</Dacsem>

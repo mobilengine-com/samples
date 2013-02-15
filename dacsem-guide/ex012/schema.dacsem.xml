@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="list-of-sequence" name="list-of-sequence" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <List complex="seq" rfsname="Bars" startLine="4">
+            <Xel rfsname="Baz" startLine="5">
+                <TypeDef startLine="5" type="int"/>
+            </Xel>
+            <Xel rfsname="Qux" startLine="6">
+                <Xat rfsname="Quux" startLine="7">
+                    <TypeDef startLine="7" type="string"/>
+                </Xat>
+            </Xel>
+        </List>
+    </Xel>
+    <Source>//example-12&#13;
+schema 'list-of-sequence' meta 'list-of-sequence'&#13;
+Foo: element {&#13;
+  Bars: list of seq {&#13;
+    Baz: element of type int;&#13;
+    Qux: element {&#13;
+      Quux: attribute of type string;&#13;
+    } &#13;
+  }&#13;
+}</Source>
+</Dacsem>

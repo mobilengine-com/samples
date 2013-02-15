@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="renames" name="renames" startLine="2">
+    <Xel rfsname="Foo" startLine="3" xmlname="QQQ">
+        <Xat rfsname="Bar" startLine="4" xmlname="YYY">
+            <TypeDef startLine="4" type="string"/>
+        </Xat>
+        <Xel rfsname="Baz" startLine="5" xmlname="ZZZ">
+            <TypeDef startLine="5" type="int"/>
+        </Xel>
+        <List rfsname="Qux" startLine="6">
+            <Xel startLine="6" xmlname="YYY">
+                <TypeDef startLine="6" type="int"/>
+            </Xel>
+        </List>
+        <List rfsname="Buz" startLine="7" wrapped="true" xmlname="WWW">
+            <Xel startLine="7" xmlname="XXX">
+                <TypeDef startLine="7" type="int"/>
+            </Xel>
+        </List>
+    </Xel>
+    <Source>//example-15&#13;
+schema renames meta renames&#13;
+Foo: element QQQ {&#13;
+	 Bar: attribute YYY of type string;&#13;
+	 Baz: element ZZZ of type int;&#13;
+	 Qux: list of element YYY of type int;&#13;
+	 Buz: wrapped list WWW of element XXX of type int; &#13;
+}&#13;
+</Source>
+</Dacsem>

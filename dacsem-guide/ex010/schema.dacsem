@@ -1,0 +1,7 @@
+//example-10
+schema 'wrapped-lists' meta 'wrapped-lists'
+Foo: element {
+  Baz: element of type string without whitespace;
+  Bars: wrapped list of element Bar of type int;
+  Qux: element of type string without whitespace;
+}

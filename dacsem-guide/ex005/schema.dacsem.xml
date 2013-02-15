@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="element-with-attribute" name="element-with-attribute" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <Xat optional="true" rfsname="Bar" startLine="4">
+            <TypeDef startLine="4" type="string"/>
+        </Xat>
+    </Xel>
+    <Source>//example-5&#13;
+schema 'element-with-attribute' meta 'element-with-attribute'&#13;
+Foo: element {&#13;
+  Bar: optional attribute of type string;&#13;
+}</Source>
+</Dacsem>

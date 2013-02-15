@@ -1,0 +1,12 @@
+//example-14
+schema 'choice-with-complex' meta 'choice-with-complex'
+Foo: element {
+  BarBaz: list of choice {
+    Bar: element {
+      Qux: attribute of type int;
+    }
+    Baz: element {
+      Quux: attribute of type string;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+﻿{
+    Dacsid: "42dacsid", 
+    Dtu: 2012.01.02. 3:04:05 (Dtu), 
+    Meta: "meta42", 
+    Foo: {Bar: "alma", Baz: 42, Qux: [1, 2, 3], Buz: [1, 2, 3]}
+}

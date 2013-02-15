@@ -1,0 +1,3 @@
+//example-4
+schema 'element-with-scalar' meta 'element-with-scalar'
+Foo: element of type int;

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="purchase-order" name="purchase-order" startLine="2">
+    <Xel rfsname="purchaseOrder" startLine="4">
+        <Xat rfsname="orderDate" startLine="5">
+            <TypeDef startLine="5" type="dtu">
+                <Value startLine="5">yyyy</Value>
+                <Value startLine="5">"-"</Value>
+                <Value startLine="5">MM</Value>
+                <Value startLine="5">"-"</Value>
+                <Value startLine="5">dd</Value>
+            </TypeDef>
+        </Xat>
+        <Xel rfsname="shipTo" startLine="6">
+            <Xel rfsname="name" startLine="7">
+                <TypeDef startLine="7" trim="true" type="string"/>
+            </Xel>
+            <Xel rfsname="street" startLine="8">
+                <TypeDef startLine="8" trim="true" type="string"/>
+            </Xel>
+            <Xel rfsname="city" startLine="9">
+                <TypeDef startLine="9" trim="true" type="string"/>
+            </Xel>
+            <Xel rfsname="state" startLine="10">
+                <TypeDef startLine="10" trim="true" type="string"/>
+            </Xel>
+            <Xel rfsname="zip" startLine="11">
+                <TypeDef startLine="11" type="int"/>
+            </Xel>
+            <Xat rfsname="country" startLine="12">
+                <TypeDef startLine="12" type="string">
+                    <Value startLine="12">US</Value>
+                    <Value startLine="12">HU</Value>
+                    <Value startLine="12">RO</Value>
+                    <Value startLine="12">SK</Value>
+                </TypeDef>
+            </Xat>
+        </Xel>
+        <Xel rfsname="billTo" startLine="15">
+            <Xel rfsname="name" startLine="16">
+                <TypeDef startLine="16" trim="true" type="string"/>
+            </Xel>
+            <Xel rfsname="street" startLine="17">
+                <TypeDef startLine="17" trim="true" type="string"/>
+            </Xel>
+            <Xel rfsname="city" startLine="18">
+                <TypeDef startLine="18" trim="true" type="string"/>
+            </Xel>
+            <Xel rfsname="state" startLine="19">
+                <TypeDef startLine="19" trim="true" type="string"/>
+            </Xel>
+            <Xel rfsname="zip" startLine="20">
+                <TypeDef startLine="20" type="int"/>
+            </Xel>
+            <Xat rfsname="country" startLine="21">
+                <TypeDef startLine="21" type="string">
+                    <Value startLine="21">US</Value>
+                    <Value startLine="21">HU</Value>
+                    <Value startLine="21">RO</Value>
+                    <Value startLine="21">SK</Value>
+                </TypeDef>
+            </Xat>
+        </Xel>
+        <Xel optional="true" rfsname="comment" startLine="24">
+            <TypeDef startLine="24" trim="false" type="string"/>
+        </Xel>
+        <List rfsname="items" startLine="25" wrapped="true">
+            <Xel startLine="25" xmlname="item">
+                <Xel rfsname="productName" startLine="26">
+                    <TypeDef startLine="26" trim="true" type="string"/>
+                </Xel>
+                <Xel rfsname="quantity" startLine="27">
+                    <TypeDef startLine="27" type="int"/>
+                </Xel>
+                <Xel rfsname="USPrice" startLine="28">
+                    <TypeDef startLine="28" type="float"/>
+                </Xel>
+                <Xel optional="true" rfsname="comment" startLine="29">
+                    <TypeDef startLine="29" trim="false" type="string"/>
+                </Xel>
+                <Xel optional="true" rfsname="shipDate" startLine="30">
+                    <TypeDef startLine="30" type="dtu">
+                        <Value startLine="30">yyyy</Value>
+                        <Value startLine="30">"-"</Value>
+                        <Value startLine="30">MM</Value>
+                        <Value startLine="30">"-"</Value>
+                        <Value startLine="30">dd</Value>
+                    </TypeDef>
+                </Xel>
+                <Xat rfsname="partNum" startLine="31">
+                    <TypeDef startLine="31" type="string"/>
+                </Xat>
+            </Xel>
+        </List>
+    </Xel>
+    <Source>//example-16&#13;
+schema 'purchase-order' meta 'purchase-order'&#13;
+&#13;
+purchaseOrder: element {&#13;
+	orderDate: attribute of type dtu(dtf yyyy "-" MM "-" dd);&#13;
+	shipTo: element{&#13;
+		name: element of type string without whitespace;&#13;
+		street: element of type string without whitespace;&#13;
+		city: element of type string without whitespace;&#13;
+		state: element of type string without whitespace;&#13;
+		zip: element of type int;&#13;
+		country: attribute of type string values "US" "HU" "RO" "SK";&#13;
+	}	&#13;
+	&#13;
+	billTo: element{&#13;
+		name: element of type string without whitespace;&#13;
+		street: element of type string without whitespace;&#13;
+		city: element of type string without whitespace;&#13;
+		state: element of type string without whitespace;&#13;
+		zip: element of type int;&#13;
+		country: attribute of type string values "US" "HU" "RO" "SK";&#13;
+	}	&#13;
+	&#13;
+	comment: optional element of type string with whitespace;&#13;
+	items: wrapped list of element item {&#13;
+		productName: element of type string without whitespace;&#13;
+		quantity: element of type int;&#13;
+		USPrice: element of type float;&#13;
+		comment: optional element of type string with whitespace;&#13;
+		shipDate: optional element of type dtu(dtf yyyy "-" MM "-" dd);&#13;
+		partNum : attribute of type string;&#13;
+	}&#13;
+	&#13;
+}&#13;
+</Source>
+</Dacsem>

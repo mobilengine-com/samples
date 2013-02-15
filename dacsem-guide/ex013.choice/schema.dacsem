@@ -1,0 +1,8 @@
+//example-13
+schema 'choice-example' meta 'choice-example'
+Foo: element {
+  BarBaz: list of choice {
+    Bar: element of type int;
+    Baz: element of type string without whitespace;
+  }
+}

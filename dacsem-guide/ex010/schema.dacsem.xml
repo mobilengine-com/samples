@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="wrapped-lists" name="wrapped-lists" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <Xel rfsname="Baz" startLine="4">
+            <TypeDef startLine="4" trim="true" type="string"/>
+        </Xel>
+        <List rfsname="Bars" startLine="5" wrapped="true">
+            <Xel startLine="5" xmlname="Bar">
+                <TypeDef startLine="5" type="int"/>
+            </Xel>
+        </List>
+        <Xel rfsname="Qux" startLine="6">
+            <TypeDef startLine="6" trim="true" type="string"/>
+        </Xel>
+    </Xel>
+    <Source>//example-10&#13;
+schema 'wrapped-lists' meta 'wrapped-lists'&#13;
+Foo: element {&#13;
+  Baz: element of type string without whitespace;&#13;
+  Bars: wrapped list of element Bar of type int;&#13;
+  Qux: element of type string without whitespace;&#13;
+}</Source>
+</Dacsem>

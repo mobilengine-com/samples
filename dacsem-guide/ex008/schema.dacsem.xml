@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="complex-children" name="complex-children" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <Xel optional="true" rfsname="Bar" startLine="4">
+            <Xat rfsname="Baz" startLine="5">
+                <TypeDef startLine="5" type="string"/>
+            </Xat>
+        </Xel>
+    </Xel>
+    <Source>//example-8&#13;
+schema 'complex-children' meta 'complex-children'&#13;
+Foo: element {&#13;
+  Bar: optional element {&#13;
+    Baz: attribute of type string;&#13;
+  }&#13;
+}</Source>
+</Dacsem>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="scalars-with-constraints" name="scalars-with-constraints" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <Xat rfsname="a" startLine="4">
+            <TypeDef startLine="4" type="int">
+                <Value startLine="4">1</Value>
+                <Value startLine="4">2</Value>
+            </TypeDef>
+        </Xat>
+        <Xat rfsname="b" startLine="5">
+            <TypeDef startLine="5" type="float">
+                <Value startLine="5">1.0</Value>
+                <Value startLine="5">2.0</Value>
+                <Value startLine="5">3.0</Value>
+            </TypeDef>
+        </Xat>
+        <Xat rfsname="c" startLine="6">
+            <TypeDef startLine="6" type="string">
+                <Value startLine="6">alma</Value>
+                <Value startLine="6">körte</Value>
+                <Value startLine="6">barack</Value>
+            </TypeDef>
+        </Xat>
+        <Xel rfsname="d" startLine="8">
+            <TypeDef startLine="8" type="int">
+                <Value startLine="8">1</Value>
+            </TypeDef>
+        </Xel>
+        <Xel rfsname="e" startLine="9">
+            <TypeDef startLine="9" type="float">
+                <Value startLine="9">1.0</Value>
+                <Value startLine="9">2.0</Value>
+                <Value startLine="9">3.0</Value>
+            </TypeDef>
+        </Xel>
+        <Xel rfsname="f" startLine="10">
+            <TypeDef startLine="10" trim="false" type="string">
+                <Value startLine="10">alma</Value>
+                <Value startLine="10">körte</Value>
+                <Value startLine="10">barack</Value>
+            </TypeDef>
+        </Xel>
+        <Xel rfsname="g" startLine="11">
+            <TypeDef startLine="11" trim="true" type="string">
+                <Value startLine="11">alma</Value>
+                <Value startLine="11">körte</Value>
+            </TypeDef>
+        </Xel>
+    </Xel>
+    <Source>//example-3&#13;
+schema 'scalars-with-constraints' meta 'scalars-with-constraints'&#13;
+Foo: element {&#13;
+    a:attribute of type int values 1 2;&#13;
+    b:attribute of type float values 1.0 2.0 3.0;&#13;
+    c:attribute of type string values "alma" "körte" "barack";&#13;
+    &#13;
+    d:element of type int values 1;&#13;
+    e:element of type float values 1.0 2.0 3.0;&#13;
+    f:element of type string with whitespace values "alma" "körte" "barack";&#13;
+    g:element of type string without whitespace values "alma" "körte";&#13;
+}</Source>
+</Dacsem>

@@ -1,0 +1,13 @@
+{
+    var msg = messages.meta42.New();
+	var foo = msg.Foo;
+    foo.Bar="alma";
+	foo.Baz = 42;
+	foo.Qux.Add(1);
+	foo.Qux.Add(2);
+	foo.Qux.Add(3);
+	foo.Buz.Add(1);
+	foo.Buz.Add(2);
+	foo.Buz.Add(3);
+    msg.Send();
+}

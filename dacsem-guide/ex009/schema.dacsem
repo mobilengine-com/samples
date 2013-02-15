@@ -1,0 +1,7 @@
+//example-9
+schema 'lists' meta 'lists'
+Foo: element {
+  Baz: element of type string without whitespace;
+  Bars: list of element Bar of type int;
+  Qux: element of type string without whitespace;
+}

@@ -1,0 +1,6 @@
+{
+    var msg = messages.meta42.New();
+	msg.Foo.Bars.AddNew().Baz = "something";
+	msg.Foo.Bars.AddNew().Baz = "some other thing";
+    msg.Send();
+}

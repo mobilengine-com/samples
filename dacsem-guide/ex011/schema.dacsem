@@ -1,0 +1,7 @@
+//example-11
+schema 'list-of-complex' meta 'list-of-complex'
+Foo: element {
+  Bars: list of element Bar {
+    Baz: attribute of type string;
+  }
+}

@@ -1,0 +1,10 @@
+//example-12
+schema 'list-of-sequence' meta 'list-of-sequence'
+Foo: element {
+  Bars: list of seq {
+    Baz: element of type int;
+    Qux: element {
+      Quux: attribute of type string;
+    } 
+  }
+}

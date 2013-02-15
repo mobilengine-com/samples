@@ -1,0 +1,6 @@
+//example-7
+schema 'sub-elements' meta 'sub-elements'
+Foo: unordered element {
+  Bar: optional element of type string with whitespace;
+  Baz: optional element of type int;
+}

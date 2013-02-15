@@ -1,0 +1,12 @@
+//example-3
+schema 'scalars-with-constraints' meta 'scalars-with-constraints'
+Foo: element {
+    a:attribute of type int values 1 2;
+    b:attribute of type float values 1.0 2.0 3.0;
+    c:attribute of type string values "alma" "körte" "barack";
+    
+    d:element of type int values 1;
+    e:element of type float values 1.0 2.0 3.0;
+    f:element of type string with whitespace values "alma" "körte" "barack";
+    g:element of type string without whitespace values "alma" "körte";
+}

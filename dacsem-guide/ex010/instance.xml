@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Foo>
+  <Baz>something</Baz>
+  <Bars>
+    <Bar>42</Bar>
+    <Bar>43</Bar>
+  </Bars>
+  <Qux>some other thing</Qux>
+</Foo>

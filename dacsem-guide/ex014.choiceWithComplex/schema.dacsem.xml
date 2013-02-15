@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="choice-with-complex" name="choice-with-complex" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <List complex="choice" rfsname="BarBaz" startLine="4">
+            <Xel rfsname="Bar" startLine="5">
+                <Xat rfsname="Qux" startLine="6">
+                    <TypeDef startLine="6" type="int"/>
+                </Xat>
+            </Xel>
+            <Xel rfsname="Baz" startLine="8">
+                <Xat rfsname="Quux" startLine="9">
+                    <TypeDef startLine="9" type="string"/>
+                </Xat>
+            </Xel>
+        </List>
+    </Xel>
+    <Source>//example-14&#13;
+schema 'choice-with-complex' meta 'choice-with-complex'&#13;
+Foo: element {&#13;
+  BarBaz: list of choice {&#13;
+    Bar: element {&#13;
+      Qux: attribute of type int;&#13;
+    }&#13;
+    Baz: element {&#13;
+      Quux: attribute of type string;&#13;
+    }&#13;
+  }&#13;
+}</Source>
+</Dacsem>
