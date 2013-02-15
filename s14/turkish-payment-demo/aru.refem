@@ -1,0 +1,6 @@
+<Reftab Name="aru">
+  <Columns>
+    <Column Name="nev" Type="Text" />
+    <Column Name="ar" Type="Float" />
+  </Columns>
+</Reftab>

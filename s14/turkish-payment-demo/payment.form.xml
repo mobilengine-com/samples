@@ -1,0 +1,37 @@
+<Form name="payment" description="Satın alma" version="1" typed="true"
+	dateformat="dd.MM.yyyy HH:mm:ss"
+	numberformat='{decimalSeparator:",", postfix:" TL", groupSize:3, groupSeparator:".", maxFraction:2}'>
+	<Control type="panel" name="root" color="RGB(255,255,255)">
+		<Control type="label" name="now" label="Satın alma tarihi"
+			data_type="datetime" reference="select @dtlNow" ref_arg="" />
+		<Control type="label" name="l1" label="Sepet" />
+		<Control type="panel" name="gp" layout="table" navigation="inline"
+			count="0">
+			<Control type="combobox" name="nev" width="15em" label="Emtia"
+				data_type="string" reference="select nev from reference_aru order by nev"></Control>
+			<Control type="textbox" name="db" width="6em" label="Parça"
+				data_type="int" ptype="int" readonly="true" text="1"
+				numberformat='{decimalSeparator:",", groupSize:3, groupSeparator:"."}'></Control>
+			<Control type="label" name="x" text="x"></Control>
+			<Control type="label" name="ar" width="6em" label="Fiyat"
+				data_type="float" reference="select ar from reference_aru where nev = @1"
+				ref_arg="../nev"></Control>
+			<Control type="label" name="eq" text="="></Control>
+			<Control type="label" name="sum" width="10em" data_type="float"
+				reference="MUL" ref_arg="../ar,../db"></Control>
+		</Control>
+
+		<Control type="button" name="button" text="Yeni ürün" size="large">
+			<Actions>
+				<Action type="generator" target="//root/gp" />
+			</Actions>
+		</Control>
+
+		<Control type="textbox" name="extra" label="Uç" data_type="float"
+			readonly="true" ptype="float" text="0"></Control>
+		<Control type="label" name="sum" label="Tüm" data_type="float"
+			reference="SUM" ref_arg="../gp/gp.*/sum,../extra"></Control>
+		<Control type="textbox" name="shipping" label="Teslim süresi"
+			data_type="datetime" readonly="true" ptype="datetime" dateformat="dd.MM.yyyy HH:mm:ss"></Control>
+	</Control>
+</Form>
