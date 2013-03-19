@@ -1,4 +1,4 @@
-server program Finished for form 'NewOrder'
+server program FinishedServer for form 'NewOrder'
 using reftab 'order';
 using reftab 'product';
 using reftab 'stock';
