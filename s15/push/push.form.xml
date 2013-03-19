@@ -1,0 +1,5 @@
+<Form name='Push'>
+	<Control name='root' type='panel' color='RGB(255,255,255)'>
+		<Control name='label3' type='label' reference="SELECT * FROM Reference_Push"  />
+	</Control>
+</Form>
