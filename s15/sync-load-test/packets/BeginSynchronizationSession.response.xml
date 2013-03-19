@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <BeginSynchronizationSessionResponse xmlns="http://www.MobileEngine.hu/2008/MobileService.soap">
+      <BeginSynchronizationSessionResult Id="3abb223389764b79811b4a38834b2945" Cchsp="0" DtCreated="2013-03-19T09:33:05.4295055Z">
+        <Chsp>
+          <Tabog Tabn="assignmentdatalist">
+            <Opgcr>
+              <R>
+                <V>2415</V>
+                <V>61</V>
+                <V />
+                <V />
+                <V>Simple Form</V>
+              </R>
+            </Opgcr>
+            <Opgde>
+              <V>414</V>
+              <V>1414</V>
+            </Opgde>
+          </Tabog>
+          <Tabog Tabn="formlist">
+            <Opgcr>
+              <R>
+                <V>61</V>
+                <V>Simple Form</V>
+              </R>
+            </Opgcr>
+          </Tabog>
+          <Tabog Tabn="metadatalist">
+            <Opgcr>
+              <R>
+                <V>286</V>
+                <V>61</V>
+                <V>&lt;Form name="SimpleForm"&gt;
+  &lt;Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0"&gt;
+  	&lt;Control type="label" name="label1" reference="select count(*) from Reference_product" /&gt;
+  &lt;/Control&gt;
+&lt;/Form&gt;</V>
+              </R>
+            </Opgcr>
+          </Tabog>
+          <Tabog Tabn="Reference_nemleteyik">
+            <Opgsde />
+          </Tabog>
+          <Tabog Tabn="Reference_product">
+            <Opgscr>
+              <Rgcolsch>
+                <Colsch Coln="RowId" Typn="UInt32" />
+                <Colsch Coln="id" Typn="Int32" />
+                <Colsch Coln="name" Typn="String" />
+                <Colsch Coln="price" Typn="Double" />
+              </Rgcolsch>
+            </Opgscr>
+            <Opgcr>
+              <R>
+                <V>1</V>
+                <V>1</V>
+                <V>overpriced</V>
+                <V>900000</V>
+              </R>
+              <R>
+                <V>2</V>
+                <V>2</V>
+                <V>full featured</V>
+                <V>500000</V>
+              </R>
+              <R>
+                <V>3</V>
+                <V>3</V>
+                <V>best buy</V>
+                <V>200000</V>
+              </R>
+              <R>
+                <V>4</V>
+                <V>4</V>
+                <V>crappy</V>
+                <V>30000</V>
+              </R>
+              <R>
+                <V>5</V>
+                <V>5</V>
+                <V>fofo</V>
+                <V>4545</V>
+              </R>
+              <R>
+                <V>6</V>
+                <V>6</V>
+                <V>sad</V>
+                <V>5435</V>
+              </R>
+              <R>
+                <V>7</V>
+                <V>7</V>
+                <V>asf</V>
+                <V>64356</V>
+              </R>
+              <R>
+                <V>8</V>
+                <V>8</V>
+                <V>gfdas</V>
+                <V>43543</V>
+              </R>
+              <R>
+                <V>9</V>
+                <V>9</V>
+                <V>fs</V>
+                <V>64363</V>
+              </R>
+              <R>
+                <V>10</V>
+                <V>10</V>
+                <V>gfdgfd</V>
+                <V>334</V>
+              </R>
+              <R>
+                <V>11</V>
+                <V>11</V>
+                <V>gfd</V>
+                <V>6436346</V>
+              </R>
+              <R>
+                <V>12</V>
+                <V>12</V>
+                <V>ggdf</V>
+                <V>343643</V>
+              </R>
+              <R>
+                <V>13</V>
+                <V>13</V>
+                <V>fdg</V>
+                <V>643</V>
+              </R>
+              <R>
+                <V>14</V>
+                <V>14</V>
+                <V>fdgfgfd</V>
+                <V>6436663</V>
+              </R>
+              <R>
+                <V>15</V>
+                <V>15</V>
+                <V>gfd</V>
+                <V>643634</V>
+              </R>
+            </Opgcr>
+          </Tabog>
+        </Chsp>
+        <Rgccitm>
+          <Ccitm StKey="MainScreenModule.CompanyName">Gringotts</Ccitm>
+          <Ccitm StKey="SynchModule.AutoSynchResultInterval">120</Ccitm>
+          <Ccitm StKey="SynchModule.AutoSynchCompleteInterval">86400</Ccitm>
+          <Ccitm StKey="SynchModule.OldResultLifeTime">86400</Ccitm>
+          <Ccitm StKey="FormFillScreenForm.autoScroll">True</Ccitm>
+          <Ccitm StKey="SynchModule.AutoSynchApplicationInterval">25</Ccitm>
+          <Ccitm StKey="SynchModule.AutoSynchApplicationEnabled">True</Ccitm>
+          <Ccitm StKey="Security.SecureTimeStampNeeded">False</Ccitm>
+          <Ccitm StKey="LocationModule.WorkInEconomicMode">True</Ccitm>
+          <Ccitm StKey="LocationModule.AcquiringInterval">100</Ccitm>
+          <Ccitm StKey="LocationModule.WaitForGpsDataDuration">10</Ccitm>
+          <Ccitm StKey="LocationModule.LocationDataValidityDuration">10</Ccitm>
+          <Ccitm StKey="LocationModule.GpsTrackIntervalSec">-60</Ccitm>
+          <Ccitm StKey="LocationModule.LocationThreshold">500</Ccitm>
+          <Ccitm StKey="MainScreenModule.ReturnToFormsDelay">-1</Ccitm>
+          <Ccitm StKey="LoginModule.PasswordRemembered">False</Ccitm>
+          <Ccitm StKey="LoginModule.MandatoryServerLogin">604800</Ccitm>
+          <Ccitm StKey="LoginModule.LocalLoginInterval">86400</Ccitm>
+          <Ccitm StKey="SyncModule.SecRetryTimeout">60</Ccitm>
+          <Ccitm StKey="SyncModule.SecRetryFrequency">5</Ccitm>
+          <Ccitm StKey="SyncModule.MinLevel2RetryTimeout">240</Ccitm>
+          <Ccitm StKey="SyncModule.MinLevel2RetryFrequency">15</Ccitm>
+          <Ccitm StKey="CommunicationLayer.RestrictMobileData">False</Ccitm>
+          <Ccitm StKey="Rfs.TimeOutSeconds">30</Ccitm>
+          <Ccitm StKey="SynchModule.RfsPendingPollSec">30</Ccitm>
+        </Rgccitm>
+        <Rgtabver>
+          <Tabver Tabn="mobileclientconfigurations" Ver="1" />
+          <Tabver Tabn="StabnRtablist" Ver="32" />
+          <Tabver Tabn="assignmentdatalist" Ver="4018" />
+          <Tabver Tabn="formlist" Ver="28" />
+          <Tabver Tabn="metadatalist" Ver="24" />
+          <Tabver Tabn="Reference_product" Ver="276" />
+        </Rgtabver>
+      </BeginSynchronizationSessionResult>
+    </BeginSynchronizationSessionResponse>
+  </soap:Body>
+</soap:Envelope>

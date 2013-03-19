@@ -1,0 +1,20 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://www.MobileEngine.hu/2009/MobileService-Extension.soap" xmlns:mob1="http://www.MobileEngine.hu/2008/MobileService.soap">
+  <soapenv:Header>
+    <n0:SoapHeaderME xmlns:n0="http://www.MobileEngine.hu/2009/MobileService-Extension.soap">
+      <HardwareId>0000000000000000</HardwareId>
+      <Username>ouser</Username>
+      <PasswordToken>cc89a2a82fa3c448cce512cc4584c796f4e35def</PasswordToken>
+    </n0:SoapHeaderME>
+    <n1:ClientVersion xmlns:n1="http://www.MobileEngine.hu/2009/MobileService-Extension.soap">
+      <CommunicationProtocolVersion>3.4.0.0</CommunicationProtocolVersion>
+      <ApplicationRuntimeVersion>0.0.0.0</ApplicationRuntimeVersion>
+      <ClientPlatform>Android</ClientPlatform>
+      <ClientPlatformVersion>2.1-update1</ClientPlatformVersion>
+    </n1:ClientVersion>
+  </soapenv:Header>
+  <soapenv:Body>
+     <mob1:EndSynchronizationSession>
+        <mob1:idChs>${SessionId}</mob1:idChs>
+     </mob1:EndSynchronizationSession>
+  </soapenv:Body>
+</soapenv:Envelope>

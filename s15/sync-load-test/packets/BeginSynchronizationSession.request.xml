@@ -1,0 +1,27 @@
+<v:Envelope xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:d="http://www.w3.org/2001/XMLSchema" xmlns:c="http://schemas.xmlsoap.org/soap/encoding/" xmlns:v="http://schemas.xmlsoap.org/soap/envelope/">
+  <v:Header>
+    <n0:SoapHeaderME xmlns:n0="http://www.MobileEngine.hu/2009/MobileService-Extension.soap">
+      <HardwareId>0000000000000000</HardwareId>
+      <Username>ouser</Username>
+      <PasswordToken>cc89a2a82fa3c448cce512cc4584c796f4e35def</PasswordToken>
+    </n0:SoapHeaderME>
+    <n1:ClientVersion xmlns:n1="http://www.MobileEngine.hu/2009/MobileService-Extension.soap">
+      <CommunicationProtocolVersion>9.0.0.0</CommunicationProtocolVersion>
+      <ApplicationRuntimeVersion>0.0.0.0</ApplicationRuntimeVersion>
+      <ClientPlatform>Android</ClientPlatform>
+      <ClientPlatformVersion>2.1-update1</ClientPlatformVersion>
+    </n1:ClientVersion>
+  </v:Header>
+  <v:Body>
+    <BeginSynchronizationSession  xmlns="http://www.MobileEngine.hu/2008/MobileService.soap" id="o0" c:root="1">
+      <rgtabverClient>
+        <Tabver Tabn="FormList" Ver="-1" />
+        <Tabver Tabn="MetaDataList" Ver="-1" />
+        <Tabver Tabn="AssignmentDataList" Ver="-1" />
+        <Tabver Tabn="MobileClientConfigurations" Ver="-1" />
+        <Tabver Tabn="MobileClientConfigurationAttachment" Ver="-1" />
+        <Tabver Tabn="Reference_nemleteyik" Ver="28" />
+      </rgtabverClient>
+    </BeginSynchronizationSession>
+  </v:Body>
+</v:Envelope>
