@@ -1,0 +1,35 @@
+<Form name="Dateformat changes" typed="true" dateformat='(dtf yyyy MM dd"#"HH mm ss)' numberformat='{decimalSeparator:"."}'>
+	<Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+
+		<Control type="textbox" label="yyyy-MM-dd still works"  name="tb1" size="large"
+			data_type="datetime" dateformat="yyyy-MM-dd" reference="select @dtlNow" />
+
+		<Control type="textbox" label='(dtf yyyy"%"MM) also works'  name="tb2" size="large"
+			data_type="datetime" dateformat='(dtf yyyy"%"MM)' reference="select @dtlNow" />
+
+		<Control type="textbox" label="inherited format"  name="tb3" size="large"
+			data_type="datetime"  reference="select @dtlNow" />
+
+		<Control type="textbox" label="datepicker default format" name="tb4" size="large" readonly="true" reference="select @dtlNow" ptype="date" >
+			<Validators>
+				<Validator type="DateValidator" from="2013-01-01" to="2020-01-01"/>
+			</Validators>
+		</Control>
+
+		<Control type="textbox" label="datepicker yyyy-MM-dd" name="tb5" size="large" readonly="true" reference="select @dtlNow"
+			ptype="datetime" dateformat="yyyy-MM-dd">
+			<Validators>
+				<Validator type="DateValidator" from="2013-01-01" to="2020-01-01"/>
+			</Validators>
+		</Control>
+
+		<Control type="textbox" label='datepicker (dtf yyyy"%"MM)' name="tb6" size="large" readonly="true" reference="select @dtlNow"
+			ptype="datetime" dateformat='(dtf yyyy"%"MM)' >
+			<Validators>
+				<Validator type="DateValidator" from="2013%01" to="2020%10"/>
+			</Validators>
+		</Control>
+
+		
+	</Control>
+</Form>
