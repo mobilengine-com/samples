@@ -1,0 +1,22 @@
+<Form name="PopExample" version="1" 
+      typed="true"
+      dateformat="yyyy.MM.dd HH:mm:ss"
+      numberformat='{decimalSeparator:","}'
+      parameters="msg:string, pint:int, pfloat: float, pdatetime:datetime">
+
+  <Control type="panel" name="root" color="RGB(255,255,255)">
+
+    <Control size="large" type="textbox" label="Message" name="msg"
+             reference="REF" ref_arg="@parameter.msg" />
+    <Control size="large" type="textbox" label="Int" name="lint"
+             data_type="int" ptype="int" readonly="true"
+             reference="REF" ref_arg="@parameter.pint"/>
+    <Control size="large" type="textbox" label="Float" name="lfloat"
+             data_type="float" ptype="float" readonly="true"
+             reference="REF" ref_arg="@parameter.pfloat"/>
+    <Control size="large" type="textbox" label="Datetime" name="ldatetime"
+             data_type="datetime" ptype="datetime" dateformat="yyyy.MM.dd HH:mm:ss" readonly="true"
+             reference="REF" ref_arg="@parameter.pdatetime"/>
+
+  </Control>
+</Form>

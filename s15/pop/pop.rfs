@@ -1,0 +1,21 @@
+server program Poprfs for form PopExample
+using form PopExample;
+{
+  forms.PopExample.Pop(form.user.name, {
+    msg: form.root.msg.value + " back", 
+    pint: int.ParseNuf(
+        {decimalSeparator:","}, 
+        form.root.lint.value
+      ) + 1,
+    pfloat: float.ParseNuf(
+        {decimalSeparator: ","}, 
+        form.root.lfloat.value
+      ) / 2,
+    pdatetime: (
+        dtu.Parse(
+          (dtf yyyy "." MM "." dd " " HH ":" mm ":" ss), 
+          form.root.ldatetime.value
+        ) + timespan.New(1, 0, 0, 0, 0)
+      ).DtuToDtdb()
+  });
+}
