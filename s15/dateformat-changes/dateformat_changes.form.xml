@@ -31,5 +31,8 @@
 		</Control>
 
 		
+		<Control type="textbox" label="TQL level2 old format" name="tb7" size="large"  reference="=Picture taken at @#yyyy-MM-dd#dtlNow" />
+		<Control type="textbox" label='TQL level2 (dtf yyyy"."MM"."dd)' name="tb8" size="large"  reference='=Picture taken at @#(dtf yyyy"."MM"."dd)#dtlNow' />
+		
 	</Control>
 </Form>
