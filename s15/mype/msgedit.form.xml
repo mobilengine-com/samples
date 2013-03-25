@@ -6,14 +6,29 @@
 	ksubmit="never">
 	
 	<Control type="panel" name="root" color="RGB(255,255,255)" >
-		<Control type="panel" name="pnlMsgReceived" layout="standard" navigation="inline"
+	
+		<Control type="label" name="lblMsgPrevH" reference="=Conversation history with @1" ref_arg="../usernReplyTo"/>
+		<Control type="panel" name="pnlMsgPrev" layout="table" navigation="inline" headless="true"
+			table_width="1 swt" 
+			data_type="datetime,string,string,int,string"
+			generator="SELECT dtlSent, usernFrom, stMsg, fPending, idmsg FROM Reference_msg WHERE (usernFrom = @1 OR usernTo = @1) ORDER BY dtlSent ASC"
+			ref_arg="../usernReplyTo">
+			
+			<Control type="label" name="lblFrom" label="From" data_type="string" reference="REF" ref_arg="PARENT.col1" width="max"/>
+<!--  -->			<Control type="label" name="lblNew" data_type="string" reference="SELECT CASE @1 WHEN @parameter.idmsgReceived THEN '*' ELSE '' END" ref_arg="PARENT.col4"/> -->
+			<Control type="label" name="lblMsg" label="Message" data_type="string" reference="REF" ref_arg="PARENT.col2" width="remaining 1"/>
+			<Control visible="false" type="label" name="lblPending" label="Pending" data_type="string" reference="SELECT CASE @1 WHEN 1 THEN '...' ELSE '' END" ref_arg="PARENT.col3"/>
+			<Control type="label" name="lblDtlSent" label="At" data_type="string" reference='=@#(dtf HH ":" mm)#1@2' ref_arg="PARENT.col0,../lblPending" width="fix 5 em"/>
+		</Control> 
+		
+		<!--Control type="panel" name="pnlMsgReceived" layout="standard" navigation="inline" 
 			table_width="1 swt" 
 			data_type="datetime,string,string,int"
 			generator="SELECT dtlSent, usernFrom, stMsg, fPending FROM Reference_msg WHERE idmsg=@parameter.idmsgReceived ">
 			
 			<Control type="label" name="lblFrom" data_type="string" reference='=Message from @1 at @#(dtf HH ":" mm)#2' ref_arg="PARENT.col1,PARENT.col0" width="max"/>
 			<Control type="label" name="lblMsg" data_type="string" reference="REF" ref_arg="PARENT.col2" width="remaining 1" size="large"/>
-		</Control>
+		</Control-->
 		 
 		<Control type="label" visible="false" label="fPop" name="fPop" data_type="int" reference="COUNT2" ref_arg="@parameter.idmsgReceived"/> <!-- chewbacca for IS NULL -->
 		<Control type="label" visible="false" label="usernReplyTo" name="usernReplyTo" data_type="string" 
@@ -24,7 +39,7 @@
 			reference="SELECT CASE @1 WHEN 1 THEN (SELECT dtlSent from Reference_msg WHERE idmsg = @parameter.idmsgReceived LIMIT 1) ELSE @2 END"
 			ref_arg="../fPop,@dtlNow"
 		/>
-		<Control type="textbox" label="Message" name="stMsgReply" data_type="string" size="large">
+		<Control type="textbox" label="Message" name="stMsgReply" data_type="string" size="large" lines="6">
 			<Validators>
         		<Validator type="RequiredValidator" />
 			</Validators>
@@ -34,18 +49,6 @@
 		<Control type="label" visible="false" label="dtlReply" name="dtlReply" data_type="datetime" reference="REF" ref_arg="@dtlNow"/> 
 		<Control type="closebutton" name="cbSendMessage" action="submit_form" text="Send" next_form_name="msgedit"/>
 		
-		<Control type="label" name="lblMsgPrevH" reference="=Conversation history with @1" ref_arg="../usernReplyTo"/>
-		<Control type="panel" name="pnlMsgPrev" layout="table" navigation="inline" headless="true"
-			table_width="1 swt" 
-			data_type="datetime,string,string,int,string"
-			generator="SELECT dtlSent, usernFrom, stMsg, fPending, idmsg FROM Reference_msg WHERE (usernFrom = @1 OR usernTo = @1) ORDER BY dtlSent DESC"
-			ref_arg="../usernReplyTo">
-			
-			<Control type="label" name="lblFrom" label="From" data_type="string" reference="REF" ref_arg="PARENT.col1" width="max"/>
-<!--  -->			<Control type="label" name="lblNew" data_type="string" reference="SELECT CASE @1 WHEN @parameter.idmsgReceived THEN '*' ELSE '' END" ref_arg="PARENT.col4"/> -->
-			<Control type="label" name="lblMsg" label="Message" data_type="string" reference="REF" ref_arg="PARENT.col2" width="remaining 1"/>
-			<Control visible="false" type="label" name="lblPending" label="Pending" data_type="string" reference="SELECT CASE @1 WHEN 1 THEN '...' ELSE '' END" ref_arg="PARENT.col3"/>
-			<Control type="label" name="lblDtlSent" label="At" data_type="string" reference='=@#(dtf HH ":" mm)#1@2' ref_arg="PARENT.col0,../lblPending" width="fix 5 em"/>
-		</Control> 
+		
 	</Control>
 </Form>
