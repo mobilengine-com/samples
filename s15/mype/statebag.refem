@@ -1,0 +1,7 @@
+<Reftab Name="statebag" Push="false">
+	<Columns>
+		<!-- random local variables -->
+		<Column Name="usernTo" Type="Text" />
+		<Column Name="an" Type="Text" AgentName="true" />
+	</Columns>
+</Reftab>

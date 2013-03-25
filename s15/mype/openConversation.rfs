@@ -1,0 +1,5 @@
+client server program openConversation for form conversations
+using reftab statebag;
+{
+	db.statebag.InsertOrUpdate({an:form.user.name}, {an:form.user.name, usernTo:form.controlSubmit.parent.usernTo.value});
+}

@@ -1,0 +1,11 @@
+server program delivery for endsync devly
+using reftab msg;
+{
+	var rgrmsg = db.msg.Read({idmsg:endsync.event.idmsg});
+	
+	if (rgrmsg.Count() != 2)
+		error("unexpected rmsg count" + rgrmsg.Count().ToString());
+	
+	foreach(var rmsg in rgrmsg)
+		db.msg.Update({idmsg:rmsg.idmsg, an:rmsg.an}, {fPending:0});	
+}

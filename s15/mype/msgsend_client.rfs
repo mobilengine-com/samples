@@ -1,0 +1,20 @@
+client program msgsend_client for form msgedit
+using reftab statebag;
+using reftab msg;
+{
+	
+	var rmsg = {
+		idmsg: 		form.root.idmsgReply.value,
+		dtlSent:	dtl.Parse((dtf yyyy "/" MM "/" dd " " HH ":" mm ":" ss), form.root.dtlReply.value).DtlToDtdb(),
+		usernFrom: 	form.user.name,
+		usernTo:	form.root.usernReplyTo.value,
+		stMsg:		form.root.stMsgReply.value,
+		fPending:	1,
+		an:			null
+	};
+	
+	rmsg.an = rmsg.usernFrom;
+	db.msg.Insert(rmsg);
+	
+	db.statebag.InsertOrUpdate({an:form.user.name}, {an:form.user.name, usernTo:rmsg.usernTo});
+}
