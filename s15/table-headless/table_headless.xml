@@ -1,0 +1,28 @@
+﻿<Form name="table_headless" description="">
+	<Control type="panel" name="Root" color="RGB(255,255,255)" layout="standard" >
+	
+		<Control type="panel" name="panel2" text="Headless Table" layout="table" navigation="popup" headless="true"
+		generator="{Query={Static {{'Savoury', '123'}, {'Dressings', '10'}, {'Tea and Soy', '5'}}}}" >
+			<Control type="label" name="label" width="10 em" label="label" reference="REF" ref_arg="PARENT.col0"/>
+			<Control type="textbox" name="textbox" width="10 em" label="textbox" reference="REF" ref_arg="PARENT.col1">
+				<Validators>
+					<Validator type="RequiredValidator" verifyat="submit"/>
+				</Validators>
+			</Control>
+
+			<Control type="combobox" name="select_medium" label="select medium" choice="select" size="medium" reference="{Query={Static {'Igen', 'Nem'}}}" ref_arg="" width="8em" >
+				<Validators>
+					<Validator type="RequiredValidator" verifyat="submit"/>
+				</Validators>
+			</Control>
+			<Control type="checkbox" name="check" label="checkbox" size="medium" width="36pt" >
+				<Validators>
+					<Validator type="RequiredValidator" verifyat="submit"/>
+				</Validators>
+			</Control>
+
+		</Control>
+
+	
+	</Control>
+</Form>
