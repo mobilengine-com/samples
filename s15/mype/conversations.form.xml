@@ -5,7 +5,7 @@
 	parameters="idmsgReceived:string" 
 	ksubmit="never">
 	
-	<Control type="panel" name="root" color="RGB(255,255,255)" >
+	<Control type="panel" name="root" color="RGB(240,240,240)" >
 		<Control type="panel" name="pnlUser" layout="table" navigation="inline"
 			headless="true"
 			table_width="1 swt" 
