@@ -1,0 +1,9 @@
+schema 'TourplanForm' meta 'TourplanForm'
+
+AssignmentChangeForm: element{
+	AssigmentId : attribute of type string;
+	Status : attribute of type string;
+	Reason : attribute of type string;
+	Result : attribute of type string;
+	Barcode : attribute of type string;
+}

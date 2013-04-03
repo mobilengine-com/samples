@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TourPlanDemo.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="~/StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form" runat="server">
+    <asp:ScriptManager ID="ScriptManager" runat="server">
+    </asp:ScriptManager>
+    <div class="page">
+        <div class="companyLogo">
+            <asp:Image runat="server" ImageUrl="~/Pictures/company.bmp" BorderColor="#990000" BorderWidth="5" />
+        </div>
+        <div class="pageTitle">
+            <asp:Panel ID="Panel1" CssClass="titleText" runat="server">
+                Tour Planning Internal System
+            </asp:Panel>
+        </div>
+        <div class="companyLogo">
+            <asp:Image runat="server" ImageUrl="~/Pictures/company.bmp" ImageAlign="Right" BorderColor="#990000" BorderWidth="5" />
+        </div>
+        <div class="demoSiteImage">
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Pictures/demosite.bmp" 
+                BorderWidth="10" BorderColor="#D9D9D9" />
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+        </asp:ContentPlaceHolder>
+        <div class="demoSiteImage">
+            <asp:Image runat="server" ImageUrl="~/Pictures/company_large.bmp" 
+                BorderWidth="10" BorderColor="#D9D9D9" />
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<Form name="TourPlan" version="1" description="Tour plan">
+  <Control type="panel" name="Root" color="RGB(243,249,251)">
+    <Control type="separator" name="Header" color="RGB(204,51,0)" text="Tour plan" />
+    <Control type="separator" name="ReqSep" color="RGB(250,191,143)" text="Fields with * are required to fill in." />
+    <Control type="label" name="EmployeeName" text="" label="Employee's name:" size="1" color="neutral" operation="" depends="" reference="SELECT employee FROM Reference_employee WHERE usr = @user" ref_arg="" />
+    <Control type="label" name="EmployeeID" text="" label="Employee ID:" size="1" color="neutral" operation="" depends="" reference="SELECT @user" ref_arg="" />
+    <Control type="label" name="TaskOfUser" text="Tasks of " size="1" color="RGB(153,0,0)" operation="" depends="" reference="SELECT @user" ref_arg="" submit="False" />
+    <Control type="label" name="ThisIsTable" text="This is a table. Please scroll to the right to see the entire table." size="1" color="RGB(250,191,143)" operation="" depends="" reference="" ref_arg="" submit="False" />
+    <Control type="label" name="PleaseChoose" text="Please choose an assignment from the list below by clicking on checkbox." size="1" color="RGB(153,0,0)" operation="" depends="" reference="" ref_arg="" submit="False" />
+    <Control type="panel" name="AssignmentTable" color="neutral" layout="Table" navigation="Inline" lazy_table="True" generator="SELECT assignment_id, priority, company, city, assignment FROM Reference_assignment WHERE usr = @user">
+      <Control type="checkbox" name="SelectedAssignment" size="medium" label="" text="" reference="" ref_arg="" true_values="True" width="100 px" />
+      <Control type="label" name="AssigmentID" text="" label="Assignment Id" size="1" color="neutral" operation="" depends="" reference="SELECT @1" ref_arg="PARENT.col0" visible="False" width="10 em" />
+      <Control type="label" name="Priority" text="" label="Priority" size="1" color="neutral" operation="" depends="" reference="SELECT @1" ref_arg="PARENT.col1" width="8 em" />
+      <Control type="label" name="Company" text="" label="Company" size="1" color="neutral" operation="" depends="" reference="SELECT @1" ref_arg="PARENT.col2" width="7 em" />
+      <Control type="label" name="City" text="" label="City" size="1" color="neutral" operation="" depends="" reference="SELECT @1" ref_arg="PARENT.col3" width="9 em" />
+      <Control type="label" name="Assignment" text="" label="Assignment" size="1" color="neutral" operation="" depends="" reference="SELECT @1" ref_arg="PARENT.col4" width="15 em" />
+      <Control type="panel" name="AssignmentPanel" color="neutral" layout="Standard" navigation="Popup">
+        <Control type="panel" name="SelectedAssigmentPanel" color="neutral" layout="Standard" navigation="Inline" generator="SELECT 1 WHERE CAST( @1 AS integer) = 1 AND @2 = 'True'" ref_arg="//Root/SelectedAssignmentCount,../../SelectedAssignment">
+          <Control type="label" name="Task" text="" label="Task:" size="1" color="RGB(250,191,143)" operation="" depends="" reference="" ref_arg="" submit="False" />
+          <Control type="label" name="TaskDetail" text="" size="1" color="neutral" operation="" depends="" reference="SELECT @1" ref_arg="../../../../Assignment" submit="False" />
+          <Control type="label" name="Comment" text="" label="Comment:" size="1" color="neutral" operation="" depends="" reference="" ref_arg="" submit="False" />
+          <Control type="label" name="CommentDetail" text="" size="1" color="neutral" operation="" depends="" reference="SELECT comment FROM Reference_assignment WHERE assignment_id = @1" ref_arg="../../../../AssigmentID" submit="False" />
+          <Control type="combobox" name="Status" size="medium" label="* Status:" reference="{Query={Static {'Pending', 'Done', 'Not finished', 'Refused'}}}" ref_arg="" value_reference="SELECT status FROM Reference_assignment WHERE assignment_id = @1" value_ref_arg="../../../../AssigmentID">
+            <Validators>
+              <Validator type="RequiredValidator" verifyat="submit" />
+            </Validators>
+          </Control>
+          <Control type="panel" name="ReasonPanel" color="neutral" layout="Standard" navigation="Inline" generator="SELECT 1 WHERE @1 = 'Pending' OR @1 = 'Not finished' OR @1 = 'Refused'" ref_arg="../Status">
+            <Control type="textbox" name="Reason" size="large" label="* Reason:" text="" lines="1" reference="SELECT reason FROM Reference_assignment WHERE assignment_id = @1" ref_arg="../../../../../../AssigmentID">
+              <Validators>
+                <Validator type="RequiredValidator" verifyat="submit" />
+              </Validators>
+            </Control>
+          </Control>
+          <Control type="textbox" name="Result" size="large" label="* Result:" text="" lines="1" reference="SELECT result FROM Reference_assignment WHERE assignment_id = @1" ref_arg="../../../../AssigmentID">
+            <Validators>
+              <Validator type="RequiredValidator" verifyat="submit" />
+            </Validators>
+          </Control>
+          <Control type="label" name="PictureAttachmentLabel" text="Picture attachment:" size="1" color="neutral" operation="" depends="" reference="" ref_arg="" submit="False" />
+          <Control type="photo" name="PhotoControl" allowmultishoot="true" proposedresolution="1024x768" />
+          <Control type="checkbox" name="BarcodeReading" size="medium" label="Barcode reading?" text="" reference="" ref_arg="" true_values="True" />
+          <Control type="panel" name="BarcodeReadingPanel" color="neutral" layout="Standard" navigation="Inline" generator="SELECT 1 WHERE @1 = 'True'" ref_arg="../BarcodeReading">
+            <Control type="textbox" name="Barcode" size="medium" label="Barcode:" text="" lines="1" reference="" ref_arg="" ptype="barcode" />
+          </Control>
+        </Control>
+        <Control type="panel" name="MoreSelectedAssignment" color="neutral" layout="Standard" navigation="Inline" generator="SELECT 1 WHERE CAST( @1 AS integer) &lt; 1 OR CAST( @1 AS integer) &gt; 1" ref_arg="//Root/SelectedAssignmentCount">
+          <Control type="label" name="ErrorMsg" text="Only one assignment is allowed to be selected." size="1" color="RGB(255,0,0)" operation="" depends="" reference="" ref_arg="" submit="False" />
+          <Control type="checkbox" name="ErrorValidator" size="medium" label="" text="" reference="" ref_arg="" true_values="True" visible="False" submit="False">
+            <Validators>
+              <Validator type="RegExpValidator" verifyat="submit" regexp="^NEVER$" />
+            </Validators>
+          </Control>
+        </Control>
+      </Control>
+    </Control>
+    <Control type="label" name="SelectedAssignmentCount" text="" label="Selected assignment count:" size="1" color="neutral" operation="COUNT" depends="../AssignmentTable/.*/SelectedAssignment" reference="" ref_arg="" visible="False" submit="False" />
+  </Control>
+</Form>

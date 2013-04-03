@@ -1,0 +1,41 @@
+server program TourPlan_EV for form TourPlan
+using dacs 'TourplanForm';
+using reftab assignment;
+{
+	var msg = messages.'TourplanForm'.New();
+	var assignmentChangeForm = msg.AssignmentChangeForm;
+	var table = form.Root.AssignmentTable;
+	foreach(var row in table)
+	{
+		if(row.SelectedAssignment.value == "True")
+		{
+			assignmentChangeForm.AssigmentId = row.AssigmentID.value;
+			var changePanel = row.AssignmentPanel.SelectedAssigmentPanel[0];
+			assignmentChangeForm.Status = changePanel.Status.value;
+			assignmentChangeForm.Reason = "";
+			if(changePanel.Status.value == "Pending" || changePanel.Status.value == "Not finished" || changePanel.Status.value == "Refused")
+			{
+				assignmentChangeForm.Reason = changePanel.ReasonPanel[0].Reason.value;
+			}
+			assignmentChangeForm.Result = changePanel.Result.value;
+			assignmentChangeForm.Barcode = "";
+			if(changePanel.BarcodeReading.value == "True")
+			{
+				assignmentChangeForm.Barcode = changePanel.BarcodeReadingPanel[0].Barcode.value;
+			}
+			db.assignment.Update
+			(
+				{
+					assignment_id: assignmentChangeForm.AssigmentId
+				},
+				{
+					status: assignmentChangeForm.Status,
+					reason: assignmentChangeForm.Reason,
+					result: assignmentChangeForm.Result,
+					barcode: assignmentChangeForm.Barcode
+				}
+			);
+		}
+	}
+	msg.Send();
+}

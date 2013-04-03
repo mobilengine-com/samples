@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="TourplanForm" name="TourplanForm" startLine="1">
+    <Xel rfsname="AssignmentChangeForm" startLine="3">
+        <Xat rfsname="AssigmentId" startLine="4">
+            <TypeDef startLine="4" type="string"/>
+        </Xat>
+        <Xat rfsname="Status" startLine="5">
+            <TypeDef startLine="5" type="string"/>
+        </Xat>
+        <Xat rfsname="Reason" startLine="6">
+            <TypeDef startLine="6" type="string"/>
+        </Xat>
+        <Xat rfsname="Result" startLine="7">
+            <TypeDef startLine="7" type="string"/>
+        </Xat>
+        <Xat rfsname="Barcode" startLine="8">
+            <TypeDef startLine="8" type="string"/>
+        </Xat>
+    </Xel>
+    <Source>schema 'TourplanForm' meta 'TourplanForm'&#13;
+&#13;
+AssignmentChangeForm: element{&#13;
+	AssigmentId : attribute of type string;&#13;
+	Status : attribute of type string;&#13;
+	Reason : attribute of type string;&#13;
+	Result : attribute of type string;&#13;
+	Barcode : attribute of type string;&#13;
+}</Source>
+</Dacsem>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="AssignmentChange" name="AssignmentChange" startLine="1">
+    <Xel rfsname="AssignmentType" startLine="3">
+        <List rfsname="NewAssignmentList" startLine="5" wrapped="true">
+            <Xel startLine="5" xmlname="NewAssignment">
+                <Xat rfsname="AssignmentId" startLine="7">
+                    <TypeDef startLine="7" type="string"/>
+                </Xat>
+                <Xat rfsname="Usr" startLine="8">
+                    <TypeDef startLine="8" type="string"/>
+                </Xat>
+                <Xat rfsname="Date" startLine="9">
+                    <TypeDef startLine="9" type="string"/>
+                </Xat>
+                <Xat rfsname="Company" startLine="10">
+                    <TypeDef startLine="10" type="string"/>
+                </Xat>
+                <Xat rfsname="City" startLine="11">
+                    <TypeDef startLine="11" type="string"/>
+                </Xat>
+                <Xat rfsname="Assignment" startLine="12">
+                    <TypeDef startLine="12" type="string"/>
+                </Xat>
+                <Xat rfsname="Priority" startLine="13">
+                    <TypeDef startLine="13" type="string"/>
+                </Xat>
+                <Xat rfsname="Comment" startLine="14">
+                    <TypeDef startLine="14" type="string"/>
+                </Xat>
+            </Xel>
+        </List>
+        <List rfsname="DeletedAssignmentList" startLine="16" wrapped="true">
+            <Xel startLine="16" xmlname="DeletedAssignment">
+                <Xat rfsname="AssignmentId" startLine="18">
+                    <TypeDef startLine="18" type="string"/>
+                </Xat>
+            </Xel>
+        </List>
+    </Xel>
+    <Source>schema AssignmentChange meta AssignmentChange&#13;
+&#13;
+AssignmentType : element&#13;
+{&#13;
+	NewAssignmentList : wrapped list of element NewAssignment &#13;
+	{&#13;
+		AssignmentId : attribute of type string;&#13;
+		Usr : attribute of type string;&#13;
+		Date : attribute of type string;&#13;
+		Company : attribute of type string;&#13;
+		City : attribute of type string;&#13;
+		Assignment : attribute of type string;&#13;
+		Priority : attribute of type string;&#13;
+		Comment : attribute of type string;&#13;
+	}&#13;
+	DeletedAssignmentList : wrapped list of element DeletedAssignment&#13;
+	{&#13;
+		AssignmentId : attribute of type string;&#13;
+	} 	&#13;
+}&#13;
+</Source>
+</Dacsem>

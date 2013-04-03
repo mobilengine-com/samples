@@ -1,0 +1,191 @@
+﻿body 
+{
+
+}
+
+.clear
+{
+    clear: both;
+}
+
+.page
+{
+    width: 900px;
+    min-height: 600px;
+    margin: 20px auto 0px auto;
+    border: 2px solid #000000;
+    background-color: #D9D9D9;
+    font-family: Arial;
+}
+
+.companyLogo
+{
+    float: left;
+    width: 100px;
+    height: 70px;
+    background-color: #990000;
+}
+
+.pageTitle
+{
+    float: left;
+    width: 700px;
+    background-color: #990000;
+    height: 70px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: White;
+}
+
+.titleText
+{
+    margin-top: 15px;
+}
+
+.demoSiteImage
+{
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.welcome
+{
+    float: left;
+    width: 100%;
+    text-align: center;
+    background-color: #FABF8F;
+    font-weight: bold;
+}
+
+.createAssignmentButton
+{
+    margin-left: 30px;
+    margin-top: 10px;
+    float: left;
+    width: 40px;
+}
+
+.createAssignmentText
+{
+    float: left;
+    width: 770px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.createAssignmentPanel
+{
+    float: left;
+    width: 840px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.panelTitle
+{
+    float: left;
+    width: 840px;
+    background-color: #FABF8F;
+    font-weight: bold;
+}
+
+.row
+{
+    float: left;
+    width: 840px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.assignmentLeft
+{
+    float: left;
+    width: 190px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 0.8em;
+}
+
+.assignmentRight
+{
+    float: left;
+    width: 640px;
+    margin-bottom: 5px;
+    font-size: 0.8em;
+}
+
+.assignmentRightCombobox
+{
+    margin-bottom: 10px;
+}
+
+.saveAssignmentButton
+{
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.separatorNeutral
+{
+    width: 100%;
+    float: left;
+    height: 25px;
+}
+
+.currentAssignment
+{
+    width: 100%;
+    float: left;
+    background-color: #990000;
+    height: 25px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: White;
+}
+
+.table
+{
+    width: 100%;
+    float: left;
+    font-size: 0.8em;
+}
+
+.column
+{
+    text-align: center;
+    font-weight: bold;
+    background-color: #FABF8F;
+}
+
+.tableRow
+{
+    text-align: center;
+}
+
+.font_size
+{
+    font-size: 0.8em;
+}
+
+.validator
+{
+    color: Red;
+}
+
+.distribute
+{
+    margin-top: 15px;
+    font-size: 1.0em;
+}
+
+.distributeOk
+{
+    color: Green;
+}
+

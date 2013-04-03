@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AssignmentType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="NewAssignmentList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="NewAssignment">
+                <xs:complexType>
+                  <xs:attribute name="AssignmentId" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Usr" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Date" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Company" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="City" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Assignment" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Priority" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Comment" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="1" maxOccurs="1" name="DeletedAssignmentList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="DeletedAssignment">
+                <xs:complexType>
+                  <xs:attribute name="AssignmentId" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string" />
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

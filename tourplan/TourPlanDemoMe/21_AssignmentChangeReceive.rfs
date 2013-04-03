@@ -1,0 +1,34 @@
+server program AssignmentChangeReceive for dacs AssignmentChange
+using reftab assignment;
+{
+	var newAssignmentList = dacs.AssignmentType.NewAssignmentList;
+	foreach(var newAssignment in newAssignmentList)
+	{
+		if(db.assignment.Read({assignment_id: newAssignment.AssignmentId}).Count() == 0)
+		{
+			db.assignment.Insert
+			({
+				assignment_id: newAssignment.AssignmentId,
+				usr: newAssignment.Usr,
+				date: newAssignment.Date,
+				company: newAssignment.Company,
+				city: newAssignment.City,
+				assignment: newAssignment.Assignment,
+				priority: newAssignment.Priority,
+				comment: newAssignment.Comment,
+				status: "Pending",
+				reason: "",
+				result: "",
+				barcode: ""
+			});
+		}
+	}
+	var deletedAssignmentList = dacs.AssignmentType.DeletedAssignmentList;
+	foreach(var deletedAssignment in deletedAssignmentList)
+	{
+		if(db.assignment.Read({assignment_id: deletedAssignment.AssignmentId}).Count() == 1)
+		{
+			db.assignment.Delete({assignment_id: deletedAssignment.AssignmentId});
+		}
+	}
+}

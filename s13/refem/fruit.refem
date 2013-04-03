@@ -1,4 +1,4 @@
-<Reftab Name="Fruit10">
+<Reftab Name="Fruit">
   <Columns>
     <Column Name="Fruit" Type="Text" />
     <Column Name="Type" Type="Text" />

@@ -1,0 +1,20 @@
+schema AssignmentChange meta AssignmentChange
+
+AssignmentType : element
+{
+	NewAssignmentList : wrapped list of element NewAssignment 
+	{
+		AssignmentId : attribute of type string;
+		Usr : attribute of type string;
+		Date : attribute of type string;
+		Company : attribute of type string;
+		City : attribute of type string;
+		Assignment : attribute of type string;
+		Priority : attribute of type string;
+		Comment : attribute of type string;
+	}
+	DeletedAssignmentList : wrapped list of element DeletedAssignment
+	{
+		AssignmentId : attribute of type string;
+	} 	
+}
