@@ -1,0 +1,16 @@
+Dbfairy.exe -company gomoku -admin gomokuadmin
+Dbfairy.exe -company gomoku -agent lucky
+Dbfairy.exe -company gomoku -agent thunder
+Dbfairy.exe -company gomoku -agent rolly
+Dbfairy.exe -company gomoku -agent patch
+Dbfairy.exe -company gomoku -agent pepper
+Dbfairy.exe -company gomoku -agent penny
+Dbfairy.exe -company gomoku -agent cadpig
+Dbfairy.exe -company gomoku -agent freckles
+Dbfairy.exe -company gomoku -agent purdy
+Dbfairy.exe -company gomoku -agent wizzer
+Dbfairy.exe -company gomoku -agent jewel
+Dbfairy.exe -company gomoku -agent dipstick
+Dbfairy.exe -company gomoku -agent two-tone
+Dbfairy.exe -company gomoku -agent fidget
+Dbfairy.exe -company gomoku -agent spotty

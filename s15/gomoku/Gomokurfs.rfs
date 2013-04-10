@@ -1,0 +1,145 @@
+server program Gomokurfs for form Gomokuform
+using form Gomokuform;
+{
+	var size=10;
+	var mark=form.root.mark.value;
+	var table=list.New();
+	for(var i=0;i<size*size;i=i+1)
+	{
+		table.Add(form.root.table.value.SubString(i,1));
+	}
+	
+	var usern = form.user.name;
+	var usernOp = form.root.usernOp.value;
+	
+	var markNew;	
+	if(mark=="X")
+	{
+		markNew="O";
+	}
+	else
+	{
+		markNew="X";
+	}
+
+	var stFromTable = function()
+	{
+		var stTable="";
+		foreach(var ch in table)
+			stTable = stTable+ch;
+		return stTable;			
+	};
+	
+	var pop2 = function(var win, var winOp)
+	{
+		forms.Gomokuform.Pop(usern,{win:win,table:stFromTable(),usernOp:usernOp,mark:mark});
+		forms.Gomokuform.Pop(usernOp,{win:winOp,table:stFromTable(),usernOp:usern,mark:markNew});
+	};
+	
+	if(form.root.pgiveup.Count()!=0 && bool.Parse(form.root.pgiveup[0].fgiveup.value))
+	{
+		var win = "You gave up! Maybe next time!";
+		var winOp = "Congratulations! Your opponent gave up!";
+		pop2(win,winOp);			
+	}
+	else
+	{
+		var get = function(var x, var y)
+		{
+			return table[y*size+x];
+		};
+		
+		var set = function(var x, var y, var mark)
+		{
+			table[y*size+x]=mark;
+		};
+		
+		var col;
+		var row;
+		var step;
+		var cdiff = 0;
+		
+		for(var y=0;y<size;y=y+1)
+		{
+			for(var x=0;x<size;x=x+1)
+			{
+				var markT=form.root.ptable[y].lrow.value[x];
+				if(markT==get(x,y))
+					continue;
+				
+				cdiff=cdiff+1;
+				col=x;
+				row=y;				
+				step ="ABCDEFGHIJ"[x]+(y+1).ToString(); 
+	
+			}
+		}
+
+		if(cdiff==1)
+		{
+			set(col,row,mark);
+	
+			var dx=[1,1,0,-1];
+			var dy=[0,1,1,1];
+			
+			var lwin=5;
+			var l=0;
+			
+			for(var id=0;id<dx.Count() && l<lwin;id=id+1)
+			{
+				for(var i=-lwin+1;i<lwin && l<lwin;i=i+1)
+				{
+					var xT = col+dx[id]*i;
+					if(0<=xT&&xT<size)
+					{
+						var yT = row+dy[id]*i;
+						if(0<=yT&&yT<size)
+						{
+							var mT=get(xT,yT);
+							if(mT==mark)
+							{
+								l=l+1;
+								continue;
+							}
+						}
+						
+					}
+					l=0;
+				}
+			}
+			
+			var fTie = stFromTable().IndexOf(" ")==-1;
+			var fWin = l==lwin;
+			
+			if(fWin||fTie)
+			{
+				var win;
+				var winOp;
+				if(fWin)
+				{
+					win = "Congratulations! You won!";
+					winOp = "You lose! Maybe next time!";
+				}
+				else
+				{
+					win="It's a tie!";
+					winOp=win;
+				}
+	
+				pop2(win,winOp);			
+			}
+			else
+			{
+				forms.Gomokuform.Pop(usernOp,{mark:markNew,table:stFromTable(),usernOp:usern,msg:"Last move "+step});
+			}
+		}
+		else if(cdiff==0)
+		{
+			forms.Gomokuform.Pop(usern,{mark:mark,table:stFromTable(),usernOp:usernOp,err:"You should make a move!"});
+		}
+		else
+		{
+			forms.Gomokuform.Pop(usern,{mark:mark,table:stFromTable(),usernOp:usernOp,err:"Cheating is punishable by law!"});
+		}
+	}
+}

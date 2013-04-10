@@ -1,0 +1,138 @@
+<Form name="Gomokuform"
+      description="Play Gomoku"
+      version="1" 
+      typed="true" 
+      dateformat='(dtf yyyy"."MM"."dd" "HH":"mm":"ss)' 
+      numberformat='{decimalSeparator:","}' 
+      ksubmit="nobutton"
+      parameters="mark:string, table:string, usernOp:string, err:string, win:string, msg:string">
+
+  <Control type="panel" name="root" color="RGB(255,255,255)">
+
+    <Control type="label" name="fwin" visible="false" data_type="int" reference="COUNT2" ref_arg="@parameter.win" submit="false" />
+    <Control type="panel" name="pwin" navigation="inline" generator="select '' where @1" ref_arg="../fwin" color="RGB(0,255,0)">
+      <Control type="label" name="win" size="large" reference="REF" ref_arg="@parameter.win" submit="false" />
+    </Control>
+
+    <Control type="label" name="fmsg" visible="false" data_type="int" reference="COUNT2" ref_arg="@parameter.msg" submit="false" />
+    <Control type="panel" name="pmsg" navigation="inline" generator="select '' where @1" ref_arg="../fmsg" >
+      <Control type="label" name="msg" size="large" reference="REF" ref_arg="@parameter.msg" submit="false" />
+    </Control>
+
+    <Control type="label" name="ferr" visible="false" data_type="int" reference="COUNT2" ref_arg="@parameter.err" submit="false" />
+    <Control type="panel" name="perr" navigation="inline" generator="select '' where @1" ref_arg="../ferr" color="RGB(255,0,0)">
+      <Control type="label" name="err" size="large" reference="REF" ref_arg="@parameter.err" submit="false" />
+    </Control>
+
+    <Control type="label" name="markNew" visible="false" text="X" submit="false" />
+    <Control type="label" name="mark" visible="false" reference="FIRST" ref_arg="@parameter.mark,../markNew" />
+    <Control type="label" label="You are" name="lmark" reference="=@2 - @1" ref_arg="@user,../mark" submit="false"/>
+
+    <Control type="label" name="fusernOp" visible="false" data_type="int" reference="COUNT2" ref_arg="@parameter.usernOp" submit="false" />
+    <Control type="panel" name="pnew" navigation="inline" generator="select '' where not @1" ref_arg="../fusernOp">
+      <Control type="combobox" name="usernOp" label="Opponent" reference="select usern from (select 'lucky' as usern union select 'thunder' as usern union select 'rolly' as usern union select 'patch' as usern union select 'pepper' as usern union select 'penny' as usern union select 'cadpig' as usern union select 'freckles' as usern union select 'purdy' as usern union select 'wizzer' as usern union select 'jewel' as usern union select 'dipstick' as usern union select 'twotone' as usern union select 'fidget' as usern union select 'spotty') where 1 or usern != @1" ref_arg="@user" submit="false">
+		<Validators>
+          <Validator type="RequiredValidator" />
+        </Validators>
+      </Control>
+    </Control>
+    <Control type="panel" name="ptopr" navigation="inline" generator="select '' where @1" ref_arg="../fusernOp">
+      <Control type="label" name="markOp" visible="false" submit="false" reference="select 'O' where @1 = 'X' union select 'X' where @1 = 'O'" ref_arg="@parameter.mark"/>
+      <Control type="label" name="usernOp" label="Opponent" reference="=@2 - @1" ref_arg="@parameter.usernOp,../markOp" submit="false" />
+    </Control>
+
+    <Control type="panel" name="pgo" navigation="inline" generator="select '' where not @1" ref_arg="../fwin">
+      <Control size="large" name='go' type='closebutton' action='submit_form' text='Go'  />
+    </Control>
+
+    <Control type="label" name="fgame" visible="false" data_type="bool" reference="select not @1 and @2" ref_arg="../fwin,../fusernOp" submit="false" />
+
+    <Control type="label" name="tableNew" visible="false" text="                                                                                                    " submit="false" />
+    <Control type="label" name="table" visible="false" reference="FIRST" ref_arg="@parameter.table,../tableNew" />
+    <Control type="panel" name="ptable" layout="table" navigation="inline" data_type="int,string,string,string,string,string,string,string,string,string,string" generator="select rid+1, substr(@1,rid*10+1,1), substr(@1,rid*10+2,1), substr(@1,rid*10+3,1), substr(@1,rid*10+4,1), substr(@1,rid*10+5,1), substr(@1,rid*10+6,1), substr(@1,rid*10+7,1), substr(@1,rid*10+8,1), substr(@1,rid*10+9,1), substr(@1,rid*10+10,1) from (select 0 as rid union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9)" ref_arg="../table">
+      <Control submit="false" type="label" label="" name="lrid" data_type="int" reference="REF" ref_arg="PARENT.col0" />
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="A" name="l1" value_ref_arg="PARENT.col1" ref_arg="PARENT.col1,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="B" name="l2" value_ref_arg="PARENT.col2" ref_arg="PARENT.col2,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="C" name="l3" value_ref_arg="PARENT.col3" ref_arg="PARENT.col3,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="D" name="l4" value_ref_arg="PARENT.col4" ref_arg="PARENT.col4,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="E" name="l5" value_ref_arg="PARENT.col5" ref_arg="PARENT.col5,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="F" name="l6" value_ref_arg="PARENT.col6" ref_arg="PARENT.col6,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="G" name="l7" value_ref_arg="PARENT.col7" ref_arg="PARENT.col7,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="H" name="l8" value_ref_arg="PARENT.col8" ref_arg="PARENT.col8,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="I" name="l9" value_ref_arg="PARENT.col9" ref_arg="PARENT.col9,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control width="3em" type="combobox" choice="switch" submit="false" 
+        label="J" name="l10" value_ref_arg="PARENT.col10" ref_arg="PARENT.col10,../../../mark,../../../fwin"
+        value_reference="REF" 
+        reference="select @1 union all select @2 where @1 = ' ' and not @3">
+        <Validators><Validator type="RequiredValidator" /></Validators>
+      </Control>
+      
+      <Control type="label" name="lrow" visible="false" reference="select @1||@2||@3||@4||@5||@6||@7||@8||@9||@10" ref_arg="../l1,../l2,../l3,../l4,../l5,../l6,../l7,../l8,../l9,../l10" />
+    </Control>
+
+    <Control type="label" name="usernOp" visible="false" reference="FIRST" ref_arg="../pnew/pnew.*/usernOp,@parameter.usernOp" />
+
+    <Control type="panel" name="pgiveup" navigation="inline" generator="select '' where @1" ref_arg="../fgame">
+      <Control type="checkbox" name="fgiveup" label="Give up?"/>
+    </Control>
+
+    <Control type="panel" name="pclose" navigation="inline" generator="select '' where not @1" ref_arg="../fgame">
+      <Control size="large" name='close' type='closebutton' action='discard_form' text="Close"  />
+    </Control>
+  </Control>
+</Form>
