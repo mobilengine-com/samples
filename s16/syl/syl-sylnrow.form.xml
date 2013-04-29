@@ -1,0 +1,31 @@
+<Form name="syl-sylnrow" ksubmit="never" send_label="Exit">
+	<Rgsyl>
+		<Syl syln="title" fBold="true" halign="center" />
+		<Syl syln="red" clrBg="#FF3030" clrFont="#FFFFFF" />
+		<Syl syln="redPadding1" clrBg="#FF3030" clrFont="#FFFFFF" duPaddingTop="5pt" duPaddingBottom="5pt" />
+		<Syl syln="redPadding2" clrBg="#FF9090" clrFont="#FFFFFF" duPaddingTop="5pt" duPaddingBottom="5pt" />
+		<Syl syln="green" clrBg="#30FF30" clrFont="#000000" />
+		<Syl syln="green1" clrBg="#00FF30" clrFont="#000000" />
+		<Syl syln="green2" clrBg="#50CC50" clrFont="#000000" />
+		<Syl syln="green3" clrBg="#A0FFA0" clrFont="#000000" />
+		<Syl syln="blue" clrBg="#3030FF" clrFont="#FFFFFF" />
+		<Syl syln="yellow" clrBg="#FFFF30" clrFont="#000000" />
+	</Rgsyl>
+	<Control name="root" type="panel" sylnChild="=blue">
+		<Control name="l70" type="label" text="SylnRow" sylnCrown="=title" />
+		<Control name="sylnrow-table" type="panel" navigation="inline" layout="table" text="SylnRow is evaluated separately for each row. SELF will be the generated row during the evaluation, so you can use SELF.igp to color the row based on its index." count="5"
+			sylnRow="SELECT CASE @1 % 3 WHEN 0 THEN 'red' WHEN 1 THEN 'green' ELSE 'yellow' END" sylnargRow="SELF.igp">
+			<Control type="label" name="lc10" width="1swt" label="The Label" operation="=I'm at index @1 in the table" depends="PARENT.igp" />
+		</Control>
+
+		<Control name="l80" type="label" text="Row padding" sylnCrown="=title" />
+		<Control name="synrow-padding-table" type="panel" navigation="inline" layout="table" text="Rows have padding of their own, which can be set with sylnChild or sylnRow." count="5"
+			sylnRow="SELECT CASE @1 % 2 WHEN 0 THEN 'redPadding1' ELSE 'redPadding2' END" sylnargRow="SELF.igp">
+			<Control type="label" name="lc10" width="0.3swt" label="Label 1" text="Text 1" sylnCrown="=green1" />
+			<Control type="label" name="lc20" width="0.3swt" label="Label 2" text="Text 2" sylnCrown="=green2" />
+			<Control type="label" name="lc30" width="0.4swt" label="Label 3" text="Text 3" sylnCrown="=green3" />
+		</Control>
+		<Control name="l85" type="label" text="The red area above is where the color of the row can be seen due to the padding of the rows, the green are set with the sylnCrowns of the cells." />
+		<Control name="l86" type="label" text="Every second row has a light-red/pinkish top and bottom padding." />
+	</Control>
+</Form>

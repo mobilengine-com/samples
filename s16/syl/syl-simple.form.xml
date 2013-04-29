@@ -1,0 +1,13 @@
+<Form name="syl-simple" ksubmit="never" send_label="Exit">
+	<Rgsyl>
+		<Syl syln="black" clrBg="#000000" clrFont="#FFFFFF" />
+		<Syl syln="pink" clrBg="#FFCBDB" clrFont="#000000" />
+		<Syl syln="invisible" clrFont="#AAAAAA" pctFontSize="50" />
+	</Rgsyl>
+	<Control name="root" type="panel">
+		<Control type="label" name="label1" text="I&apos;m black I&apos;m black" sylnCrown="=black" />
+		<Control type="label" name="label2" text="I&apos;m pink I&apos;m pink" sylnCrown="=pink" />
+		<Control type="label" name="label3" text="I&apos;m Rinso white" />
+		<Control type="label" name="label4" text="I&apos;m invisible" sylnCrown="=invisible" />
+	</Control>
+</Form>

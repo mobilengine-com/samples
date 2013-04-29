@@ -1,0 +1,41 @@
+<Form name="syl-sylnchild" ksubmit="never" send_label="Exit">
+	<Rgsyl>
+		<Syl syln="title" fBold="true" halign="center" />
+		<Syl syln="red" clrBg="#FF3030" clrFont="#FFFFFF" />
+		<Syl syln="green" clrBg="#30FF30" clrFont="#000000" />
+		<Syl syln="blue" clrBg="#3030FF" clrFont="#FFFFFF" />
+		<Syl syln="yellow" clrBg="#FFFF30" />
+	</Rgsyl>
+	<Control name="root" type="panel" sylnChild="=blue">
+		<Control name="l00" type="label" text="The basics" sylnCrown="=title" />
+		<Control name="l01" type="label" sylnCrown="=green" text="I'm green, because my sylnCrown is set to green" />
+		<Control name="l02" type="label" text="I'm blue, because I have no sylnCrown and my parent has sylnChild='=blue'" />
+
+		<Control name="l10" type="label" text="SylnChild inheritance" sylnCrown="=title" />
+		<Control name="sylnchild-inherit" type="panel" navigation="inline" layout="standard">
+			<Control type="label" name="lc10" text="My sylnCrown is not set explicitly, so it gets its value from my parents sylnChild. However my parents sylnChild is also undefined, so that gets its value from its parent, which is the root panel." />
+		</Control>
+
+		<Control name="l20" type="label" text="Overriding sylnChild" sylnCrown="=title" />
+		<Control name="sylnchild-override" type="panel" sylnChild="=red" navigation="inline" layout="standard">
+			<Control type="label" name="lc10" text="I'm red because I have no sylnCrown and my parent's sylnChild is red. It overrides the `blue` from the root panel." />
+		</Control>
+
+		<Control name="l40" type="label" text="SylnCrown of a table" sylnCrown="=title" />
+		<Control name="inline-table-gen" type="panel" sylnCrown="=green" navigation="inline" layout="table" count="3" text="This is green because the sylnCrown of the table is set to green">
+			<Control type="label" name="lc10" width="1swt" label="The label" operation="=I'm at index @1 in the table." depends="PARENT.igp" />
+		</Control>
+		<Control name="l45" type="label" text="The rows above are blue because the cells sylnCrown is set from the tables sylnChild, which is set from the root panels sylnChild, which is blue." />
+
+		<Control name="l60" type="label" text="SylnCrown of a popup" sylnCrown="=title" />
+		<Control name="popup-normal-nongen" type="panel" sylnCrown="=red" navigation="popup" layout="standard" text="Red, because of the sylnCrown">
+			<Control type="label" name="lc10" text="Blue, the sylnChild comes from the root panel" />
+		</Control>
+
+		<Control name="l70" type="label" text="The send and back buttons" sylnCrown="=title" />
+		<Control name="l75" type="label" text="Theese buttons get their colors from the sylnChild of the currently displayed panel" />
+		<Control name="popup-send" type="panel" sylnChild="=green" navigation="popup" layout="standard" text="It should be green in here">
+			<Control type="label" name="lc10" text="The send button and the area below should be green, which is the sylnChild of the popup." />
+		</Control>
+	</Control>
+</Form>

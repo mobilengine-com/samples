@@ -1,0 +1,14 @@
+<Form name="syl-databound" ksubmit="never" send_label="Exit">
+	<Rgsyl>
+		<Syl syln="red" clrBg="#FF0000" clrFont="#FFFFFF" duPaddingTop="16pt" duPaddingBottom="16pt" pctFontSize="200" fBold="true" halign="center" />
+		<Syl syln="yellow" clrBg="#FFFF00" clrFont="#000000" duPaddingTop="16pt" duPaddingBottom="16pt" pctFontSize="200" fBold="true" halign="center" />
+		<Syl syln="green" clrBg="#00FF00" clrFont="#000000" duPaddingTop="16pt" duPaddingBottom="16pt" pctFontSize="200" fBold="true" halign="center" />
+		<Syl syln="cyan" clrBg="#00FFFF" clrFont="#000000" duPaddingTop="16pt" duPaddingBottom="16pt" pctFontSize="200" fBold="true" halign="center" />
+		<Syl syln="blue" clrBg="#0000FF" clrFont="#FFFFFF" duPaddingTop="16pt" duPaddingBottom="16pt" pctFontSize="200" fBold="true" halign="center" />
+		<Syl syln="fuchsia" clrBg="#FF00FF" clrFont="#FFFFFF" duPaddingTop="16pt" duPaddingBottom="16pt" pctFontSize="200" fBold="true" halign="center" />
+	</Rgsyl>
+	<Control name="root" type="panel">
+		<Control type="combobox" name="selector" text="Select a color!" reference="{Query={Static {red, yellow, green, cyan, blue, fuchsia}}}" value_reference="=red" />
+		<Control type="label" name="coloredLabel" label="" text="" operation="=@1" depends="../selector" sylnCrown="REF" sylnargCrown="SELF.value" />
+	</Control>
+</Form>

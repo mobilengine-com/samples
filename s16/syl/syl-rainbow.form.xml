@@ -1,0 +1,18 @@
+<Form name="syl-rainbow" ksubmit="never" send_label="Exit">
+	<Rgsyl>
+		<Syl syln="c00" clrBg="#FF0000" pctFontSize="50" />
+		<Syl syln="c01" clrBg="#FF7F00" pctFontSize="50" />
+		<Syl syln="c02" clrBg="#FFFF00" pctFontSize="50" />
+		<Syl syln="c03" clrBg="#00FF00" pctFontSize="50" />
+		<Syl syln="c04" clrBg="#0000FF" pctFontSize="50" />
+		<Syl syln="c05" clrBg="#4B0082" pctFontSize="50" />
+		<Syl syln="c06" clrBg="#8B00FF" pctFontSize="50" />
+	</Rgsyl>
+	<Control name="root" type="panel">
+		<Control type="panel" name="table" headless="true" navigation="inline" layout="table" count="10" 
+				sylnRow="SELECT 'c0' || ((@1 + LENGTH(@2)) % 7)" sylnargRow="SELF.igp,//root/textbox">
+			<Control type="label" name="label" width="1swt" />
+		</Control>
+		<Control type="textbox" name="textbox" text="" label="" size="large" />
+	</Control>
+</Form>
