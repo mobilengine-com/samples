@@ -1,0 +1,15 @@
+<Form name="Theatres" typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' >
+	
+	<Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+	
+	<Control type="combobox" name="cb1" data_type="int,string" label="Select threatre" reference="SELECT id, name from Reference_theatre" />
+
+	<Control type="link" label="Phone" name="link1" size="medium" link_type="phone_number" 
+		link_target_reference="select phone from Reference_theatre where id=@1" 
+		link_target_ref_arg="../cb1.key"/>
+		
+	<Control type="link" label="Address" name="link2" size="medium" link_type="address" 
+		link_target_reference="select address from Reference_theatre where id=@1" 
+		link_target_ref_arg="../cb1.key"/>
+	</Control>
+</Form>

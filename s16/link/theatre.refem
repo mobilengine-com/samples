@@ -1,0 +1,10 @@
+<Reftab Name="theatre">
+	<Columns>
+		<Column Name="id" Type="Integer" />
+		<Column Name="name" Type="Text" />
+		<Column Name="address" Type="Text" />
+		<Column Name="phone" Type="Text" />
+		<Column Name="email" Type="Text" />
+		<Column Name="website" Type="Text" />
+	</Columns>
+</Reftab>
