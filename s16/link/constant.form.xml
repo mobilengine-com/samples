@@ -1,11 +1,11 @@
 <Form name="Constant links" typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' >
 	<Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
 
-	<Control type="link" label="Phone1" name="link1" link_type="phone_number"  size="small" link_target="+36 96 512-690" />
-	<Control type="link" label="Phone2" name="link2" link_type="phone_number"  size="medium" link_target="+3696512690" text="click to dial"/>
+	<Control type="link" label="Phone1" name="link1" link_type="phone_number"  link_target="+36 96 512-690" />
+	<Control type="link" label="Phone2" name="link2" link_type="phone_number"  link_target="+3696512690" text="click to dial"/>
 	
-	<Control type="link" label="Phone1" name="link3" link_type="address" link_target="9021 Gyõr, Aradi vértanúk útja 23." />
-	<Control type="link" label="Phone2" name="link4" link_type="address" link_target="9021 Gyõr, Aradi vértanúk útja 23." text="show map"/>
+	<Control type="link" label="Address1" name="link3" link_type="address" link_target="9021 GyÅ‘r, Aradi vÃ©rtanÃºk Ãºtja 23." />
+	<Control type="link" label="Address2" name="link4" link_type="address" link_target="9021 GyÅ‘r, Aradi vÃ©rtanÃºk Ãºtja 23." text="show map"/>
 	
 	</Control>
 </Form>
