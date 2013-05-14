@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Form name="Back button" ksubmit="never" typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}'>
+  <Control name="root" color="RGB(237,237,237)" type="panel">
+    <Control name="table" layout="standard" navigation="inline" type="panel">
+      <Control name="panel1" label="without back action" navigation="popup" type="panel">
+        <Control text="these panels don't have back_action attributes" name="id1" type="label" />
+        <Control label="default" name="id2" type="panel" navigation="popup">
+          <Control text="this is the simplest possible panel" name="id3" type="label" />
+        </Control>
+        <Control label="custom button" footer_button_label="csukjad be" name="id4" type="panel" navigation="popup">
+          <Control text="we have a custom button here" name="id5" type="label" />
+        </Control>
+        <Control label="explicit visible=true" footer_button_label="csukjad be" footer_button_visible="true" name="id6" type="panel" navigation="popup">
+          <Control text="we have a custom button here, it is explicitly set to visible" name="id7" type="label" />
+        </Control>
+        <Control label="no button" footer_button_label="csukjad be" footer_button_visible="false" name="id8" type="panel" navigation="popup">
+          <Control text="no button in this panel" name="id9" type="label" />
+        </Control>
+      </Control>
+      <Control label="back_action: discard" name="id10" type="panel" navigation="popup">
+        <Control text="you can discard the form in these panels" name="id11" type="label" />
+        <Control label="default" back_action="discard_form" name="id12" type="panel" navigation="popup">
+          <Control text="this will discard the form" name="id13" type="label" />
+        </Control>
+        <Control label="custom button" back_action="discard_form" footer_button_label="dobod el?!" name="id14" type="panel" navigation="popup">
+          <Control text="we have a custom button here" name="id15" type="label" />
+        </Control>
+        <Control label="explicit visible=true" back_action="discard_form" footer_button_label="dobod el?!" footer_button_visible="true" name="id16" type="panel" navigation="popup">
+          <Control text="we have a custom button here, it is explicitly set to visible" name="id17" type="label" />
+        </Control>
+        <Control label="no button" back_action="discard_form" footer_button_label="dobod el?!" footer_button_visible="false" name="id18" type="panel" navigation="popup">
+          <Control text="no button in this panel" name="id19" type="label" />
+        </Control>
+      </Control>
+      <Control label="back_action: close" name="id20" type="panel" navigation="popup">
+        <Control text="these panels have customized back buttons" name="id21" type="label" />
+        <Control label="default" back_action="close_panel" name="id22" type="panel" navigation="popup">
+          <Control text="this will close the panel and go back to the previous screen" name="id23" type="label" />
+        </Control>
+        <Control label="custom button" back_action="close_panel" footer_button_label="menjünk vissza" name="id24" type="panel" navigation="popup">
+          <Control text="we have a custom button here" name="id25" type="label" />
+        </Control>
+        <Control label="explicit visible=true" back_action="close_panel" footer_button_label="menjünk vissza" footer_button_visible="true" name="id26" type="panel" navigation="popup">
+          <Control text="we have a custom button here, it is explicitly set to visible" name="id27" type="label" />
+        </Control>
+        <Control label="no button" back_action="close_panel" footer_button_label="menjünk vissza" footer_button_visible="false" name="id28" type="panel" navigation="popup">
+          <Control text="no button in this panel" name="id29" type="label" />
+        </Control>
+      </Control>
+    </Control>
+  </Control>
+</Form>
