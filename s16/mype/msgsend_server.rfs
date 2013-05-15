@@ -1,0 +1,28 @@
+server program msgsend_server for form msgedit
+using reftab statebag;
+using reftab msg;
+using form msgedit;
+using eventtab devly;
+{
+	var rmsg = {
+		idmsg: 		form.root.idmsgReply.value,
+		dtlSent:	dtl.Parse((dtf yyyy "/" MM "/" dd " " HH ":" mm ":" ss), form.root.dtlReply.value).DtlToDtdb(),
+		usernFrom: 	form.user.name,
+		usernTo:	form.root.usernReplyTo.value,
+		stMsg:		form.root.stMsgReply.value,
+		fPending:	1,
+		an:			null
+	};
+	
+	rmsg.an = rmsg.usernFrom;
+	trace "from:", rmsg;
+	db.msg.Insert(rmsg);
+	
+	rmsg.an = rmsg.usernTo;
+	trace "to:", rmsg;
+	db.msg.Insert(rmsg);
+	
+	db.statebag.InsertOrUpdate({an:form.user.name}, {an:form.user.name, usernTo:rmsg.usernTo});
+	events.devly.Create({idmsg:rmsg.idmsg, an:rmsg.usernTo});
+	forms.msgedit.Pop(rmsg.usernTo, {idmsgReceived:rmsg.idmsg});
+}

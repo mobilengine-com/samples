@@ -1,0 +1,6 @@
+<Event Name="devly">
+	<Columns>
+		<Column Name="idmsg" Type="Text" /> <!-- guid -->
+		<Column Name="an" Type="Text" AgentName="true" />
+	</Columns>
+</Event>

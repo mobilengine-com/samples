@@ -1,0 +1,19 @@
+<Form typed="true" name="conversations" description="conversations" FNotifyOfAssign="true" hidden="false"
+	send_label="Close"
+	dateformat='(dtf yyyy "/" MM "/" dd " " HH ":" mm ":" ss)' 
+	numberformat='{decimalSeparator:","}'
+	parameters="idmsgReceived:string" 
+	ksubmit="never">
+	
+	<Control type="panel" name="root" color="RGB(240,240,240)" >
+		<Control type="panel" name="pnlUser" layout="table" navigation="inline"
+			headless="true"
+			table_width="1 swt" 
+			data_type="string"
+			generator="SELECT usern FROM Reference_usr WHERE usern != @user">
+			
+			<Control type="label" name="usernTo" label="Recipient" data_type="string" reference="REF" ref_arg="PARENT.col0" width="remaining 1"/>
+			<Control type="closebutton" name="cbSelectUser" action="submit_form" next_form_name="msgedit" text="View" width="max"/>
+		</Control> 
+	</Control>
+</Form>

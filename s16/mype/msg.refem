@@ -1,0 +1,11 @@
+<Reftab Name="msg" Push="true">
+	<Columns>
+		<Column Name="idmsg" Type="Text" /> <!-- guid -->
+		<Column Name="dtlSent" Type="Date" />
+		<Column Name="usernFrom" Type="Text" />
+		<Column Name="usernTo" Type="Text" />
+		<Column Name="stMsg" Type="Text" />
+		<Column Name="fPending" Type="Integer" />
+		<Column Name="an" Type="Text" AgentName="true" />
+	</Columns>
+</Reftab>

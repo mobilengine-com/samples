@@ -1,0 +1,5 @@
+<Reftab Name="usr" Push="false">
+	<Columns>
+		<Column Name="usern" Type="Text" />
+	</Columns>
+</Reftab>
