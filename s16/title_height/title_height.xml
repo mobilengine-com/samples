@@ -1,0 +1,11 @@
+<Form 
+	typed="true" 
+	name="tallform" description="Very Tall Form" 
+	title_height="4.5 cm" 
+	dateformat="(dtf yyyy &quot;/&quot; MM &quot;/&quot; dd &quot; &quot; HH &quot;:&quot; mm &quot;:&quot; ss)" 
+	numberformat="{decimalSeparator:&quot;,&quot;}"
+>
+  <Control type="panel" name="root">
+    <Control type="label" name="foo" text="This form is very tall on the forms tab"/>
+  </Control>
+</Form>
