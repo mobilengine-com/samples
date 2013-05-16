@@ -1,12 +1,21 @@
-<Form typed="true" name="conversations" description="conversations" FNotifyOfAssign="true" hidden="false"
-	send_label="Close"
+<Form 
+	typed="true" 
+	autoform="true" 
+	hidden="true"
+	ksubmit="nobutton"
+	name="conversations" 
+	description="conversations" 
+	FNotifyOfAssign="true"
 	dateformat='(dtf yyyy "/" MM "/" dd " " HH ":" mm ":" ss)' 
 	numberformat='{decimalSeparator:","}'
 	parameters="idmsgReceived:string" 
-	ksubmit="never">
-	
-	<Control type="panel" name="root" color="RGB(240,240,240)" >
-		<Control type="panel" name="pnlUser" layout="table" navigation="inline"
+>
+	<Rgsyl>
+		<Syl syln="default" duPaddingLeft="10pt" duPaddingRight="10pt"/>
+		<Syl syln="row" duPaddingTop="1pt" duPaddingBottom="1pt"/>
+	</Rgsyl>
+	<Control type="panel" name="root">
+		<Control type="panel" name="pnlUser" layout="table" navigation="inline" sylnCrown="=default" sylnRow="=row"
 			headless="true"
 			table_width="1 swt" 
 			data_type="string"
