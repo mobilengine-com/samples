@@ -1,0 +1,32 @@
+<Form name="beer-questionnaire">
+	<Rgsyl>
+		<Syl syln="default" />
+		<Syl syln="question" duPaddingLeft="5pt" duPaddingRight="5pt" />
+		<Syl syln="title" fBold="true" halign="center" pctFontSize="120" duPaddingTop="5pt" duPaddingBottom="10pt" />
+		<Syl syln="header" fBold="true" duPaddingTop="10pt" />
+	</Rgsyl>
+	<Control name="root" type="panel" sylnChild="=question">
+		<Control type="label" name="title" sylnCrown="=title" text="Beer Questionnaire"  />
+
+		<Control name="fHadBeer" type="combobox" choice="button" label="Have you ever had beer?" reference="{Query={Static {Yes,No,Don't know}}}" />
+
+		<Control type="panel" name="questions" navigation="inline" generator="SELECT 1 WHERE @1="Yes"" ref_arg="../c01">
+			<Control type="label" name="h10" sylnCrown="=header" text="Have you tried a ..."  />
+			<Control name="c11" type="combobox" choice="button" size="small" label="Pale lager" reference="{Query={Static {Yes,No}}}" />
+			<Control name="c12" type="combobox" choice="button" size="small" label="Blonde ale" reference="{Query={Static {Yes,No}}}" />
+			<Control name="c13" type="combobox" choice="button" size="small" label="Weissbier" reference="{Query={Static {Yes,No}}}" />
+			<Control name="c14" type="combobox" choice="button" size="small" label="Dark lager" reference="{Query={Static {Yes,No}}}" />
+			<Control name="c15" type="combobox" choice="button" size="small" label="Stout" reference="{Query={Static {Yes,No}}}" />
+
+			<Control type="label" name="h20" sylnCrown="=header" text="Select the darkest!"  />
+			<Control name="c21" type="combobox" choice="button" size="large" label="1." reference="{Query={Static {Witbier, Doppelbock, Saison}}}" />
+			<Control name="c22" type="combobox" choice="button" size="large" label="2." reference="{Query={Static {Maibock, Stout, English Bitter}}}" />
+			<Control name="c23" type="combobox" choice="button" size="large" label="3." reference="{Query={Static {Biere de garde, Weissbier, Porter}}}" />
+
+			<Control type="label" name="h30" sylnCrown="=header" text="Do you like beer?"  />
+			<Control name="c31" type="combobox" choice="button" size="medium" label="How much?" reference="{Query={Static {Very much}}}" />
+			<Control name="c33" type="combobox" choice="button" size="large" label="On a scale of 1 to 10" reference="{Query={Static {1,2,3,4,5,6,7,8,9,10}}}" />
+			<Control name="c32" type="combobox" choice="button" size="medium" label="What kind of beer don't you like?" reference="{Query={Static {}}}" />
+		</Control>
+	</Control>
+</Form>
