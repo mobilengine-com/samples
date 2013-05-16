@@ -5,40 +5,55 @@
 	parameters="idmsgReceived:string" 
 	ksubmit="never">
 	
-	<Control type="panel" name="root" color="RGB(240,240,240)" >
+	<Rgsyl>
+		<Syl syln="table" duPaddingLeft="10pt" duPaddingRight="10pt"/>
+		<Syl syln="rowMine" duPaddingTop="0pt" duPaddingBottom="0pt" clrBg="#C0F0F0"/>
+		<Syl syln="rowTheirs" duPaddingTop="0pt" duPaddingBottom="0pt" clrBg="#FFFFFF"/>
+		<Syl syln="msgMine" clrBg="#C0F0F0"/>
+		<Syl syln="msgTheirs" clrBg="#FFFFFF"/>
+		<Syl syln="msgReplyTo" clrBg="#FFFFFF" fBold="true"/>
+		<Syl syln="header1" duPaddingBottom="5pt" duPaddingTop="10pt" duPaddingLeft="10pt" duPaddingRight="10pt" fBold="true"/>
+		<Syl syln="header2" duPaddingBottom="0pt" duPaddingTop="10pt" duPaddingLeft="10pt" duPaddingRight="10pt" fBold="true"/>
+		<Syl syln="message" duPaddingBottom="5pt" duPaddingLeft="10pt" duPaddingRight="10pt"/>
+	</Rgsyl>
+	
+	<Control type="panel" name="root">
 
 		<!-- kludge set fPop to 1 if idmsgReceived is not null and 0 otherwise. -->
 		<Control type="label" visible="false" label="fPop" name="fPop" data_type="int" reference="COUNT2" ref_arg="@parameter.idmsgReceived"/> 		
-		
 		<!-- usernReplyTo is either the user who sent the message (if fPop is 1), or the user in the statebag -->
 		<Control type="label" visible="false" label="usernReplyTo" name="usernReplyTo" data_type="string" 
 			reference="SELECT CASE @1 WHEN 1 THEN (SELECT usernFrom FROM Reference_msg WHERE idmsg=@parameter.idmsgReceived ) ELSE (SELECT usernTo FROM Reference_statebag WHERE an=@user ) END"
 			ref_arg="../fPop"
 		/>
+		<Control type="label" visible="false" label="idmsgReply" name="idmsgReply" data_type="string" reference="GUID"/> 
+		<Control type="label" visible="false" label="dtlReply" name="dtlReply" data_type="datetime" reference="REF" ref_arg="@dtlNow"/> 
 			
-		<Control type="label" name="lblMsgPrevH" reference="=Conversation history with @1" ref_arg="../usernReplyTo"/>
+		<Control type="label" name="lblMsgPrevH" reference="=Conversation history with @1" ref_arg="../usernReplyTo" sylnCrown="=header1"/>
 
 		<Control type="panel" name="pnlMsgPrev" layout="table" navigation="inline" headless="true"
+			sylnCrown="=table" 
+			sylnRow="SELECT CASE @1 WHEN @2 THEN 'rowMine' ELSE 'rowTheirs' END" sylnargRow="SELF.col1,@user"
 			table_width="1 swt" 
 			data_type="datetime,string,string,int,string"
-			generator="SELECT dtlSent, usernFrom, stMsg, fPending, idmsg FROM Reference_msg WHERE (usernFrom = @1 OR usernTo = @1) ORDER BY dtlSent ASC"
+			generator="SELECT dtlSent, usernFrom, stMsg, fPending, idmsg FROM Reference_msg WHERE (usernFrom = @1 OR usernTo = @1) ORDER BY dtlSent ASC LIMIT 15"
 			ref_arg="../usernReplyTo">
 			
 			<Control type="label" name="lblFrom" label="From" data_type="string" reference="REF" ref_arg="PARENT.col1" width="max"/>
-			<Control type="label" name="lblNew" data_type="string" reference="SELECT CASE @1 WHEN @parameter.idmsgReceived THEN '*' ELSE '' END" ref_arg="PARENT.col4"/> 
-			<Control type="label" name="lblMsg" label="Message" data_type="string" reference="REF" ref_arg="PARENT.col2" width="remaining 1"/>
+			<Control type="label" name="lblMsg" label="Message" data_type="string" reference="REF" ref_arg="PARENT.col2" width="remaining 1"
+				sylnCrown="SELECT CASE @1 WHEN @parameter.idmsgReceived THEN 'msgReplyTo' ELSE (SELECT CASE @2 WHEN @3 THEN 'msgMine' ELSE 'msgTheirs' END) END" sylnargCrown="PARENT.col4,PARENT.col1,@user"
+			/>
 			<Control visible="false" type="label" name="lblPending" label="Pending" data_type="string" reference="SELECT CASE @1 WHEN 1 THEN '...' ELSE '' END" ref_arg="PARENT.col3"/>
 			<Control type="label" name="lblDtlSent" label="At" data_type="string" reference='=@#(dtf HH ":" mm)#1@2' ref_arg="PARENT.col0,../lblPending" width="fix 5 em"/>
 		</Control> 
 
-		<Control type="label" visible="false" label="idmsgReply" name="idmsgReply" data_type="string" reference="GUID"/> 
-		<Control type="label" visible="false" label="dtlReply" name="dtlReply" data_type="datetime" reference="REF" ref_arg="@dtlNow"/> 
-		<Control type="textbox" label="Message" name="stMsgReply" data_type="string" size="large" lines="6">
+		<Control type="label" name="lblMsgReply" text="Message" submit="false" sylnCrown="=header2"/>
+		<Control type="textbox" name="stMsgReply" data_type="string" size="large" lines="6" sylnCrown="=message">
 			<Validators>
         		<Validator type="RequiredValidator" />
 			</Validators>
 		</Control>
 		
-		<Control type="closebutton" name="cbSendMessage" action="submit_form" text="Send" next_form_name="msgedit"/>
+		<Control type="closebutton" name="cbSendMessage" action="submit_form" text="Send" next_form_name="msgedit" sylnCrown="=message"/>
 	</Control>
 </Form>
