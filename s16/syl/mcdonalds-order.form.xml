@@ -1,0 +1,47 @@
+<Form name="mcdonalds-order" ksubmit="nobutton">
+	<Rgsyl>
+		<Syl syln="base" clrBg="#D10019" clrFont="#FFFFFF" />
+		<Syl syln="moreButton" clrBg="#D10019" clrFont="#FFFFFF" duPaddingLeft="20pt" duPaddingRight="20pt" duPaddingBottom="20pt"/>
+		<Syl syln="mainTable" clrBg="#D10019" clrFont="#FFFFFF" duPaddingLeft="20pt" duPaddingRight="20pt" />
+		<Syl syln="row1" clrBg="#D10019" clrFont="#FFFFFF" duPaddingTop="5px" />
+		<Syl syln="row2" clrBg="#F12039" clrFont="#FFFFFF" duPaddingTop="5px" />
+		<Syl syln="row1right" clrBg="#D10019" clrFont="#FFFFFF" duPaddingTop="5px" halign="right" />
+		<Syl syln="row2right" clrBg="#F12039" clrFont="#FFFFFF" duPaddingTop="5px" halign="right" />
+		<Syl syln="header" clrFont="#FFE102" clrBg="#D10019" fBold="true" halign="left" pctFontSize="125" />
+		<Syl syln="tagline" clrFont="#FFE102" clrBg="#D10019" fItalic="true" halign="right" pctFontSize="75" />
+		<Syl syln="title" clrFont="#FFE102" clrBg="#D10019" fBold="true" halign="center" pctFontSize="125" duPaddingTop="12pt" />
+	</Rgsyl>
+	<Control name="root" type="panel" sylnChild="=base">
+		<Control type="panel" name="header_table" layout="table" navigation="inline" headless="true">
+			<Control name="header" type="label" sylnCrown="=header" text="McDonalds™" width="0.5swt"/>
+			<Control name="tagline" type="label" sylnCrown="=tagline" text="I'm lovin' it" width="0.5swt" />
+		</Control>
+
+		<Control type="label" name="title" text="Your order" sylnCrown="=title" />
+		
+		<Control type="panel" name="orderPanel" count="1" layout="table" navigation="inline" sylnRow="SELECT CASE @1 % 2 WHEN 0 THEN 'row1' ELSE 'row2' END" sylnargRow="SELF.igp" sylnCrown="=mainTable">
+			<Control type="combobox" name="product" label="What" width="0.6swt" reference="{Query={Static {Hamburger,Cheeseburger,Shake,Le Big Mac,Royale with Cheese}}}">
+				<Validators>
+					<Validator type="RequiredValidator" />
+				</Validators>
+			</Control>
+			<Control type="textbox" name="quantity" label="How Many" width="0.4swt" text="1" sylnCrown="SELECT CASE @1 % 2 WHEN 0 THEN 'row1right' ELSE 'row2right' END" sylnargCrown="PARENT.igp">
+				<Validators>
+					<Validator type="RequiredValidator" />
+					<Validator type="NumberValidator" wholenumber="true" min="1" max="99" />
+				</Validators>
+			</Control>
+		</Control>
+		<Control type="button" name="orderButton" text="More" sylnCrown="=moreButton">
+			<Actions>
+				<Action type="Generator" target="../orderPanel" removebuttontext="Cancel" />
+			</Actions>
+		</Control>
+
+		<Control type="panel" layout="table" navigation="inline" name="t2" headless="true">
+			<Control name='cancel' type='closebutton' action="discard_form" width="0.4swt" text="&lt; Cancel" />
+			<Control name='label43' type='label' width="0.2swt" />
+			<Control name='order' type='closebutton' action="submit_form" width="0.4swt" text="Order &gt;" />
+		</Control>
+	</Control>
+</Form>
