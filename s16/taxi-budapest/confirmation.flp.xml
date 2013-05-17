@@ -1,5 +1,5 @@
 <Form name="popConfirmation"
-	parameters="guid:string, response:string">
+	parameters="guid:string, response:string" hidden="true">
 	
 	<panel name="root">
 		<label reference="REF" ref_arg="@parameter.guid"/>

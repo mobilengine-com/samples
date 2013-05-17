@@ -5,6 +5,7 @@
     <Column Name="address" Type="Text" />
 	<Column Name="phone" Type="Text" />
 	<Column Name="date" Type="Date" />
+	<Column Name="cPassenger" Type="Integer" />
 	<Column Name="notes" Type="Text" />
 	<Column Name="driver" Type="Text" />
 	<Column Name="status" Type="Text" />

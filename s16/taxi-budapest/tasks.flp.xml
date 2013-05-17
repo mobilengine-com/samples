@@ -1,35 +1,59 @@
-<Form name="tasks" autoform="true" ksubmit="nobutton">
+<Form name="tasks" autoform="true" ksubmit="nobutton" hidden="true">
 	<Rgsyl>
-		<Syl syln="address" pctFontSize="120" />
-		<Syl syln="when" halign="center" />
-		<Syl syln="taskitem" duPaddingBottom="40px" />
+		<Syl syln="ride.address" pctFontSize="120" halign="right" />
+		<Syl syln="ride.address.showmap" halign="right" />
+		<Syl syln="ride.info" duPaddingTop="10px" />
+		<Syl syln="ride.info.head" halign="right" fItalic="true" />
+		<Syl syln="ride.info.value" clrBg="#F0F0F0" />
+		<Syl syln="tasklist.address" pctFontSize="120" />
+		<Syl syln="tasklist.when" halign="center" />
+		<Syl syln="tasklist.taskitem" duPaddingBottom="40px" />
 	</Rgsyl>
 	<panel name="root">
 		<panel data_type="string" navigation="inline"
 			generator="SELECT guid FROM REFERENCE_tasks WHERE driver=@1 AND status='Requested' LIMIT 1" ref_arg="@user" >
-			<label text="Waiting for confirmation" />
+			<label text="Waiting for confirmation..." />
 		</panel>
 		
-		<panel  data_type="string,string,string,string,string,string"
+		<panel  data_type="string,string,string,string,string,string,int"
 			navigation="inline"
-			generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes FROM REFERENCE_tasks WHERE driver=@1 AND status='Taken' LIMIT 1" ref_arg="@user">
+			generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes,cpassenger FROM REFERENCE_tasks WHERE driver=@1 AND status='Taken' LIMIT 1" ref_arg="@user">
 			
 			<panel>
-				<var name="notes" label="Notes" reference="REF" ref_arg="../PARENT.col5" lines="3" />
-
-				<table headless="true" table_width="1swt">
-					<label reference="REF" ref_arg="../../PARENT.col2" sylnCrown="=address" />
-					<address text="(show map)" link_target_reference="REF" link_target_ref_arg="../../PARENT.col2"/>
-				</table>
-	
-				<table headless="true" table_width="1swt" sylnCrown="=taskitem">
-					<label label="Name" reference="REF" ref_arg="../../PARENT.col1" width="remaining 1"  />
-					<phone_number link_target_reference="REF" link_target_ref_arg="../../PARENT.col3" size="large" width="remaining 1" />
-					<label label="When" reference="REF" ref_arg="../../PARENT.col4" width="remaining 1" sylnCrown="=when" />
+				
+				<label reference="REF" ref_arg="../PARENT.col2" sylnCrown="=ride.address" /> 
+				<address text="(show map)" link_target_reference="REF" link_target_ref_arg="../PARENT.col2" sylnCrown="=ride.address.showmap"/>
+				
+				<separator />
+				
+				<table headless="true" table_width="1swt" sylnCrown="=ride.info">
+					<label text="Name:" width="remaining 1" sylnCrown="=ride.info.head" />
+					<label reference="REF" ref_arg="../../PARENT.col1" width="remaining 4" sylnCrown="=ride.info.value"  />
 				</table>
 				
-				<label text="Drive safely" />
+				<table headless="true" table_width="1swt" sylnCrown="=ride.info">
+					<label text="Phone:" width="remaining 1" sylnCrown="=ride.info.head"  />
+					<phone_number link_target_reference="REF" link_target_ref_arg="../../PARENT.col3" width="remaining 4" sylnCrown="=ride.info.value" />
+				</table>
 				
+				<table headless="true" table_width="1swt" sylnCrown="=ride.info">
+					<label text="Notes:" width="remaining 1" sylnCrown="=ride.info.head"  />
+					<textbox readonly="false" reference="REF" ref_arg="../../PARENT.col5" lines="5" width="remaining 4" sylnCrown="=ride.info.value" />
+				</table>
+				
+				<table headless="true" table_width="1swt" sylnCrown="=ride.info">
+					<label text="Passenger:" width="remaining 1" sylnCrown="=ride.info.head"/>
+					<combobox data_type="int,string" width="remaining 4"
+					reference="SELECT 1,'    1    ' union 
+						SELECT 2,'    2    ' union 
+						SELECT 3,'    3    ' union
+						SELECT 4,'    4    ' union
+						SELECT 5,'    5    '" 
+					value_reference="select @1, null" value_ref_arg="../../PARENT.col6"
+					choice="button" />
+				</table>
+		
+				<separator />
 				<var name="action" text="done" />
 				<var name="guid" reference="REF" ref_arg="../PARENT.col0" />
 				<closebutton action="submit_form" text="Done" width="fix 30 pt" />
@@ -43,22 +67,21 @@
 				generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes FROM REFERENCE_tasks WHERE status ='Open' " layout="standard" navigation="inline">
 				
 				<panel>
-					<var name="notes" label="Notes" reference="REF" ref_arg="../PARENT.col5" lines="3" />
-	
+					
 					<table headless="true" table_width="1swt">
 						<var name="guid" reference="REF" ref_arg="../../PARENT.col0" />
 						<var name="action" text="request" />
 						<closebutton action="submit_form" text="Go" width="fix 30 pt" />
 						
-						<label reference="REF" ref_arg="../../PARENT.col2" sylnCrown="=address" />
+						<label reference="REF" ref_arg="../../PARENT.col2" sylnCrown="=tasklist.address" />
 						<address text="(show map)" link_target_reference="REF" link_target_ref_arg="../../PARENT.col2"/>
 					</table>
 		
-					<table headless="true" table_width="1swt" sylnCrown="=taskitem">
+					<table headless="true" table_width="1swt" sylnCrown="=tasklist.taskitem">
 						<label width="fix 30 pt" />
 						<label label="Name" reference="REF" ref_arg="../../PARENT.col1" width="remaining 1"  />
 						<phone_number link_target_reference="REF" link_target_ref_arg="../../PARENT.col3" size="large" width="remaining 1" />
-						<label label="When" reference="REF" ref_arg="../../PARENT.col4" width="remaining 1" sylnCrown="=when" />
+						<label label="When" reference="REF" ref_arg="../../PARENT.col4" width="remaining 1" sylnCrown="=tasklist.when" />
 					</table>
 				</panel>
 				

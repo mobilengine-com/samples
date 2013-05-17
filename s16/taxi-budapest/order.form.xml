@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Form name="order" typed="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" numberformat="{decimalSeparator:&quot;.&quot;}">
+<Form name="callTaxi" description="Call Taxi" typed="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" numberformat="{decimalSeparator:&quot;.&quot;}">
   <Control name="root" type="panel">
     <Control name="guid" reference="GUID" type="textbox" visible="false" />
     <Control name="name" label="Name" type="textbox" />
     <Control name="address" label="Address" type="textbox" />
     <Control name="phone" label="Phone" type="textbox" />
-    <Control name="date" label="When" ptype="datetime" type="textbox" readonly="true" />
+    <Control name="date" label="When" readonly="true" ptype="datetime" type="textbox" />
     <Control name="notes" label="Notes" lines="3" type="textbox" />
+    <Control name="cPassenger" label="Passenger" data_type="int,string" reference="SELECT 1,'    1    ' union        SELECT 2,'    2    ' union        SELECT 3,'    3    ' union       SELECT 4,'    4    ' union       SELECT 5,'    5    '" value_reference="select 1, null" choice="button" type="combobox" />
   </Control>
 </Form>

@@ -1,4 +1,4 @@
-<Form name="order">
+<Form name="callTaxi" description="Call Taxi">
 	<panel name="root">
 		<var name="guid" reference="GUID" />
 		
@@ -6,7 +6,17 @@
 		<textbox name="address" label="Address" />
 		<textbox name="phone" label="Phone" />
 		
-		<datetime name="date" label="When" />
+		<datetime name="date" label="When" readonly="true" />
 		<textbox name="notes" label="Notes" lines="3" />
+		
+		<combobox name="cPassenger" label="Passenger" data_type="int,string"
+					reference="SELECT 1,'    1    ' union 
+						SELECT 2,'    2    ' union 
+						SELECT 3,'    3    ' union
+						SELECT 4,'    4    ' union
+						SELECT 5,'    5    '" 
+					value_reference="select 1, null" 
+					choice="button" />
+					
 	</panel> 
 </Form>
