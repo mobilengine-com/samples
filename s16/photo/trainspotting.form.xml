@@ -1,0 +1,41 @@
+<Form name='trainspotting'>
+	<Rgsyl>
+		<Syl syln="sylnNormal" clrFont="#000000" clrBg="#F0F0F0" />
+		<Syl syln="sylnTitle" clrFont="#000000" clrBg="#F0F0F0" fBold="true" halign="center" pctFontSize="125" duPaddingTop="12pt" />
+		<Syl syln="sylnOther" clrFont="#000000" clrBg="#E0E0E0" />
+	</Rgsyl>
+
+	<Control name='root' type='panel' sylnChild="=sylnNormal">
+		<Control type="label" name="l1" text="Train spotting" sylnCrown="=sylnTitle"/>
+		<Control type="textbox" name="w" label="Where are you?">
+			<Validators>
+				<Validator type="RequiredValidator"/>
+			</Validators>
+		</Control>
+		<Control type="label" name="l2" text="Environment photos:"/>
+		<Control type="photo" name="photo" label="photo" allowmultishoot="true">
+			<Validators>
+				<Validator type="RequiredValidator"/>
+			</Validators>
+		</Control>
+		
+		<Control type="panel" name="p" layout="table" count="1" navigation="inline"  sylnRow="SELECT CASE @1 % 2 WHEN 0 THEN 'sylnNormal' ELSE 'sylnOther' END" sylnargRow="SELF.igp">
+			<Control type="combobox" name="type" label="Train type" reference="{Query={Static {M61-Nohab,M62-Szergej,V43-Szili,V63-Gigant}}}" width="0.5swt">
+				<Validators>
+					<Validator type="RequiredValidator"/>
+				</Validators>
+			</Control>
+			<Control type="photo" name="photo" label="Photo" allowmultishoot="true" width="1swt">
+				<Validators>
+					<Validator type="RequiredValidator"/>
+				</Validators>
+			</Control>
+		</Control>
+		<Control type="button" name="orderButton" text="Add">
+			<Actions>
+				<Action type="Generator" target="../p" />
+			</Actions>
+		</Control>
+		
+ 	</Control>
+</Form>

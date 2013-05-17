@@ -1,0 +1,22 @@
+﻿<Form name="chessboard" >
+	<Rgsyl>
+		<Syl syln="sylnNormal" clrFont="#000000" clrBg="#FFFFFF" pctFontSize="100" fBold="false" fItalic="false" fUnderline="false" fStrikethrough="false" duPaddingTop="2px" duPaddingBottom="2px" />
+		<Syl syln="sylnInverse" clrFont="#FFFFFF" clrBg="#000000" pctFontSize="100" fBold="false" fItalic="false" fUnderline="false" fStrikethrough="false" duPaddingTop="2px" duPaddingBottom="2px" />
+	</Rgsyl>
+
+	<Control type="panel" name="RootPanel" layout="standard" navigation="inline" sqlreferences="0">
+		<Control type="panel" name="tableChess" label="Inherited table syl" layout="table" navigation="inline" sylnCrown="=sylnNormal" sylnargCrown="" sylnChild="=sylnNormal" sylnargChild="//RootPanel/cobSyl" generator="{Query={Static { {B, H, F, K, V, F, H, B}, {G, G, G, G, G, G, G, G},{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},{G, G, G, G, G, G, G, G},{B, H, F, K, V, F, H, B} }}}">
+			<Control type="label" name="irow" label="#" text="" reference="=@1" ref_arg="PARENT.igp" />
+			<Control type="label" name="syln0" visible="false" label="#" text="" reference="SELECT CASE WHEN @1 %2= 1 THEN 'sylnNormal' ELSE 'sylnInverse' END" ref_arg="PARENT.igp" />
+			<Control type="label" name="syln1" visible="false" label="#" text="" reference="SELECT CASE WHEN @1 %2= 0 THEN 'sylnNormal' ELSE 'sylnInverse' END" ref_arg="PARENT.igp" />
+			<Control type="label" name="a" label="A" text="" width="2em" reference="=@1" ref_arg="PARENT.col0" sylnCrown="=@1" sylnargCrown="PARENT/syln0" />
+			<Control type="label" name="b" label="B" text="" width="2em" reference="=@1" ref_arg="PARENT.col1" sylnCrown="=@1" sylnargCrown="PARENT/syln1" />
+			<Control type="label" name="c" label="C" text="" width="2em" reference="=@1" ref_arg="PARENT.col2" sylnCrown="=@1" sylnargCrown="PARENT/syln0" />
+			<Control type="label" name="d" label="D" text="" width="2em" reference="=@1" ref_arg="PARENT.col3" sylnCrown="=@1" sylnargCrown="PARENT/syln1" />
+			<Control type="label" name="e" label="E" text="" width="2em" reference="=@1" ref_arg="PARENT.col4" sylnCrown="=@1" sylnargCrown="PARENT/syln0" />
+			<Control type="label" name="f" label="F" text="" width="2em" reference="=@1" ref_arg="PARENT.col5" sylnCrown="=@1" sylnargCrown="PARENT/syln1" />
+			<Control type="label" name="g" label="G" text="" width="2em" reference="=@1" ref_arg="PARENT.col6" sylnCrown="=@1" sylnargCrown="PARENT/syln0" />
+			<Control type="label" name="h" label="H" text="" width="2em" reference="=@1" ref_arg="PARENT.col7" sylnCrown="=@1" sylnargCrown="PARENT/syln1" />
+		</Control>	
+	</Control>
+</Form>
