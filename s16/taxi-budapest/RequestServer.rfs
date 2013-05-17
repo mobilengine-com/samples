@@ -1,0 +1,26 @@
+server program RequestServer for form 'tasks'
+using reftab 'tasks';
+using form 'popConfirmation';
+{
+	
+	var guidTask = form.controlSubmit.parent.guid.value;
+	var kaction = form.controlSubmit.parent.action.value;
+	
+	if(kaction == "request")
+	{
+		var task = db.tasks.Read({guid: guidTask}).Single();
+		if(task.status == "Open")
+			db.tasks.Update({guid: guidTask},{driver: form.user.name, status:"Taken"});
+		else
+		{
+			forms.popConfirmation.Pop(form.user.name, {
+				guid: guidTask,
+				response: "Denied" 
+			});
+		}
+	}
+	else if(kaction == "done")
+	{
+		db.tasks.Update({guid: guidTask},{status:"Done"});
+	}
+}

@@ -1,0 +1,15 @@
+client program RequestClient for form 'tasks'
+using reftab 'tasks';
+{
+	var guidTask = form.controlSubmit.parent.guid.value;
+	var kaction = form.controlSubmit.parent.action.value;
+	
+	if(kaction == "request")
+	{
+		db.tasks.Update({guid: guidTask},{driver: form.user.name, status:"Requested"});
+	}
+	/*else if(kaction == "done")	
+	{
+		db.tasks.Update({guid: guidTask},{status:"Done"});
+	}*/
+}

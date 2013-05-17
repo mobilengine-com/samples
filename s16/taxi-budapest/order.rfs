@@ -1,0 +1,15 @@
+server program Order for form order
+using reftab 'tasks';
+{
+
+	db.tasks.Insert(
+		{
+			guid: form.root.guid.value, 
+			status: "Open",
+			name: form.root.name.value, 
+			address: form.root.address.value, 
+			phone: form.root.phone.value, 
+			date: dtu.Parse((dtf yyyy "-" MM "-" dd " " HH ":" mm), form.root.date.value).DtuToDtdb(),
+			notes: form.root.notes.value
+		});
+}

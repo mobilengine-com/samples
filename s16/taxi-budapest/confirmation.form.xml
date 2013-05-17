@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Form name="popConfirmation" parameters="guid:string, response:string" typed="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" numberformat="{decimalSeparator:&quot;.&quot;}">
+  <Control name="root" type="panel">
+    <Control reference="REF" ref_arg="@parameter.guid" type="label" name="id2" />
+    <Control reference="REF" ref_arg="@parameter.response" type="label" name="id3" />
+  </Control>
+</Form>

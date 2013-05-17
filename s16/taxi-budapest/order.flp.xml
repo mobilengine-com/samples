@@ -1,0 +1,12 @@
+<Form name="order">
+	<panel name="root">
+		<var name="guid" reference="GUID" />
+		
+		<textbox name="name" label="Name" />
+		<textbox name="address" label="Address" />
+		<textbox name="phone" label="Phone" />
+		
+		<datetime name="date" label="When" />
+		<textbox name="notes" label="Notes" lines="3" />
+	</panel> 
+</Form>

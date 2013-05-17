@@ -1,0 +1,27 @@
+<Form name="ride">
+	
+	<panel name="root">
+		<!-- panel data_type="string,string,string,string,string,string" 
+			generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes FROM REFERENCE_tasks" layout="standard" navigation="inline">
+			
+			<panel>
+				<var name="guid" reference="REF" ref_arg="../PARENT.col0" />
+				<var name="notes" label="Notes" reference="REF" ref_arg="../PARENT.col5" lines="3" />
+
+				<table headless="true" table_width="1swt">
+					<closebutton action="submit_form" text="Go"  width="fix 30 pt" />
+					<label reference="REF" ref_arg="../../PARENT.col2" sylnCrown="=address" />
+					<address text="(show map)" link_target_reference="REF" link_target_ref_arg="../../PARENT.col2"/>
+				</table>
+	
+				<table headless="true" table_width="1swt" sylnCrown="=taskitem">
+					<label width="fix 30 pt" />
+					<label label="Name" reference="REF" ref_arg="../../PARENT.col1" width="remaining 1"  />
+					<phone_number link_target_reference="REF" link_target_ref_arg="../../PARENT.col3" size="large" width="remaining 1" />
+					<label label="When" reference="REF" ref_arg="../../PARENT.col4" width="remaining 1" sylnCrown="=when" />
+				</table>
+			</panel>
+			
+		</panel -->
+	</panel>
+</Form>

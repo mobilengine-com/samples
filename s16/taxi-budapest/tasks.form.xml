@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Form name="tasks" autoform="true" ksubmit="nobutton" typed="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" numberformat="{decimalSeparator:&quot;.&quot;}">
+  <Rgsyl>
+    <Syl syln="address" pctFontSize="120" />
+    <Syl syln="when" halign="center" />
+    <Syl syln="taskitem" duPaddingBottom="40px" />
+  </Rgsyl>
+  <Control name="root" type="panel">
+    <Control data_type="string" navigation="inline" generator="SELECT guid FROM REFERENCE_tasks WHERE driver=@1 AND status='Requested' LIMIT 1" ref_arg="@user" type="panel" name="id2">
+      <Control text="Waiting for confirmation" type="label" name="id3" />
+    </Control>
+    <Control data_type="string,string,string,string,string,string" navigation="inline" generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes FROM REFERENCE_tasks WHERE driver=@1 AND status='Taken' LIMIT 1" ref_arg="@user" type="panel" name="id4">
+      <Control type="panel" name="id5">
+        <Control name="notes" label="Notes" reference="REF" ref_arg="../PARENT.col5" lines="3" type="textbox" visible="false" />
+        <Control headless="true" table_width="1swt" type="panel" layout="table" navigation="inline" name="id7">
+          <Control reference="REF" ref_arg="../../PARENT.col2" sylnCrown="=address" type="label" name="id8" />
+          <Control text="(show map)" link_target_reference="REF" link_target_ref_arg="../../PARENT.col2" type="link" link_type="address" name="id9" />
+        </Control>
+        <Control headless="true" table_width="1swt" sylnCrown="=taskitem" type="panel" layout="table" navigation="inline" name="id10">
+          <Control label="Name" reference="REF" ref_arg="../../PARENT.col1" width="remaining 1" type="label" name="id11" />
+          <Control link_target_reference="REF" link_target_ref_arg="../../PARENT.col3" size="large" width="remaining 1" type="link" link_type="phone_number" name="id12" />
+          <Control label="When" reference="REF" ref_arg="../../PARENT.col4" width="remaining 1" sylnCrown="=when" type="label" name="id13" />
+        </Control>
+        <Control text="Drive safely" type="label" name="id14" />
+        <Control name="action" text="done" type="textbox" visible="false" />
+        <Control name="guid" reference="REF" ref_arg="../PARENT.col0" type="textbox" visible="false" />
+        <Control action="submit_form" text="Done" width="fix 30 pt" type="closebutton" name="id17" />
+      </Control>
+    </Control>
+    <Control data_type="string" navigation="inline" generator="SELECT '' WHERE 0 = (SELECT COUNT(*) FROM REFERENCE_tasks WHERE driver=@1 AND status IN('Requested', 'Taken') )" ref_arg="@user" type="panel" name="id18">
+      <Control data_type="string,string,string,string,string,string" generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes FROM REFERENCE_tasks WHERE status ='Open' " layout="standard" navigation="inline" type="panel" name="id19">
+        <Control type="panel" name="id20">
+          <Control name="notes" label="Notes" reference="REF" ref_arg="../PARENT.col5" lines="3" type="textbox" visible="false" />
+          <Control headless="true" table_width="1swt" type="panel" layout="table" navigation="inline" name="id22">
+            <Control name="guid" reference="REF" ref_arg="../../PARENT.col0" type="textbox" visible="false" />
+            <Control name="action" text="request" type="textbox" visible="false" />
+            <Control action="submit_form" text="Go" width="fix 30 pt" type="closebutton" name="id25" />
+            <Control reference="REF" ref_arg="../../PARENT.col2" sylnCrown="=address" type="label" name="id26" />
+            <Control text="(show map)" link_target_reference="REF" link_target_ref_arg="../../PARENT.col2" type="link" link_type="address" name="id27" />
+          </Control>
+          <Control headless="true" table_width="1swt" sylnCrown="=taskitem" type="panel" layout="table" navigation="inline" name="id28">
+            <Control width="fix 30 pt" type="label" name="id29" />
+            <Control label="Name" reference="REF" ref_arg="../../PARENT.col1" width="remaining 1" type="label" name="id30" />
+            <Control link_target_reference="REF" link_target_ref_arg="../../PARENT.col3" size="large" width="remaining 1" type="link" link_type="phone_number" name="id31" />
+            <Control label="When" reference="REF" ref_arg="../../PARENT.col4" width="remaining 1" sylnCrown="=when" type="label" name="id32" />
+          </Control>
+        </Control>
+      </Control>
+    </Control>
+  </Control>
+</Form>

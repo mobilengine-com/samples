@@ -1,0 +1,12 @@
+<Reftab Name="tasks" Notify="true" Push="true">
+  <Columns>
+    <Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true"/>
+    <Column Name="name" Type="Text" />
+    <Column Name="address" Type="Text" />
+	<Column Name="phone" Type="Text" />
+	<Column Name="date" Type="Date" />
+	<Column Name="notes" Type="Text" />
+	<Column Name="driver" Type="Text" />
+	<Column Name="status" Type="Text" />
+  </Columns>
+</Reftab>
