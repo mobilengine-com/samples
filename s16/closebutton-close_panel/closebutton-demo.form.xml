@@ -1,0 +1,16 @@
+<Form name="closebutton-demo">
+	<Rgsyl>
+		<Syl syln="bold" fBold="true" />
+		<Syl syln="black-center" clrBg="#000000" clrFont="#FFFFFF" duPaddingLeft="50pt" duPaddingRight="50pt" />
+		<Syl syln="italic-narrow-right" fItalic="true" duPaddingLeft="120pt" />
+	</Rgsyl>
+	<Control name="root" type="panel">
+		<Control type="panel" name="panel" text="popup" layout="standard" navigation="popup" footer_button_visible="false">
+			<Control name="closebutton_1" type="closebutton" text="Close this popup" action="close_panel" sylnCrown="=bold" />
+			<Control type="panel" name="panel" text="popup" layout="standard" navigation="inline" sylnChild="=italic-narrow-right">
+				<Control name="closebutton_2" type="closebutton" text="Bezárás" action="close_panel" />
+				<Control name="closebutton_3" type="closebutton" text="Close" action="close_panel" sylnCrown="=black-center" />
+			</Control>
+		</Control>
+	</Control>
+</Form>
