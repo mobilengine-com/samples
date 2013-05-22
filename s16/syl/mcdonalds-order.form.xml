@@ -2,8 +2,8 @@
 	<Rgsyl>
 		<Syl syln="base" clrBg="#D10019" clrFont="#FFFFFF" />
 
-		<Syl syln="header" clrFont="#FFE102" clrBg="#D10019" fBold="true" halign="left" pctFontSize="125" />
-		<Syl syln="tagline" clrFont="#FFE102" clrBg="#D10019" fItalic="true" halign="right" pctFontSize="75" />
+		<Syl syln="header" clrFont="#FFE102" clrBg="#D10019" fBoldLabel="true" halignLabel="left" pctFontSizeLabel="125" 
+							fItalicValue="true" halignValue="right" pctFontSizeValue="75" />
 
 		<Syl syln="title" clrFont="#FFE102" clrBg="#D10019" fBold="true" halign="center" pctFontSize="125" duPaddingTop="12pt" />
 		
@@ -16,10 +16,7 @@
 		<Syl syln="moreButton" clrBg="#D10019" clrFont="#FFFFFF" duPaddingLeft="20pt" duPaddingRight="20pt" duPaddingBottom="20pt"/>
 	</Rgsyl>
 	<Control name="root" type="panel" sylnChild="=base">
-		<Control type="panel" name="header_table" layout="table" navigation="inline" headless="true">
-			<Control name="header" type="label" sylnCrown="=header" text="McDonalds™" width="0.5swt"/>
-			<Control name="tagline" type="label" sylnCrown="=tagline" text="I'm lovin' it" width="0.5swt" />
-		</Control>
+		<Control name="header" type="label" sylnCrown="=header" label="McDonalds™" text="I'm lovin' it" />
 
 		<Control type="label" name="title" text="Your order" sylnCrown="=title" />
 		
