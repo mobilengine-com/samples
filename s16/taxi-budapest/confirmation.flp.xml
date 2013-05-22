@@ -1,4 +1,4 @@
-<Form name="popConfirmation"
+<Form name="popConfirmation" 
 	parameters="guid:string, response:string" hidden="true">
 	
 	<panel name="root">
