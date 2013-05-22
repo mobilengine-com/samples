@@ -3,10 +3,12 @@
 		<Syl syln="black" clrBg="#000000" clrFont="#FFFFFF" />
 		<Syl syln="pink" clrBg="#FFCBDB" clrFont="#000000" />
 		<Syl syln="almost-invisible" clrFont="#AAAAAA" pctFontSize="50" />
+		<Syl syln="override" pctFontSize="125" fItalicLabel="true" halignValue="center" />
 	</Rgsyl>
 	<Control name="root" type="panel">
-		<Control type="label" name="label1" text="I&apos;m black I&apos;m black" sylnCrown="=black" />
-		<Control type="label" name="label2" text="I&apos;m pink I&apos;m pink" sylnCrown="=pink" />
-		<Control type="label" name="label3" text="I&apos;m almost invisible" sylnCrown="=almost-invisible" />
+		<Control type="label" name="label1" label="label1" text="I&apos;m black I&apos;m black" sylnCrown="=black" />
+		<Control type="label" name="label2" label="label2" text="I&apos;m pink I&apos;m pink" sylnCrown="=pink" />
+		<Control type="label" name="label3" label="label3" text="I&apos;m almost invisible" sylnCrown="=almost-invisible" />
+		<Control type="label" name="label" label="This is italic and bigger" text="This is bigger, centered" sylnCrown="=override" />
 	</Control>
 </Form>
