@@ -29,7 +29,7 @@
         </Control>
         <Control headless="true" table_width="1swt" sylnCrown="=ride.info" type="panel" layout="table" navigation="inline" name="id15">
           <Control text="Notes:" width="remaining 1" sylnCrown="=ride.info.head" type="label" name="id16" />
-          <Control readonly="false" reference="REF" ref_arg="../../PARENT.col5" lines="5" width="remaining 4" sylnCrown="=ride.info.value" type="textbox" name="id17" />
+          <Control readonly="true" reference="REF" ref_arg="../../PARENT.col5" lines="5" width="remaining 4" sylnCrown="=ride.info.value" type="textbox" name="id17" />
         </Control>
         <Control headless="true" table_width="1swt" sylnCrown="=ride.info" type="panel" layout="table" navigation="inline" name="id18">
           <Control text="Passenger:" width="remaining 1" sylnCrown="=ride.info.head" type="label" name="id19" />
@@ -59,6 +59,7 @@
           </Control>
         </Control>
       </Control>
+      <Control next_form_name="vehicleAccident" action="discard_form" text="Report vehicle accident" type="closebutton" name="id39" />
     </Control>
   </Control>
 </Form>

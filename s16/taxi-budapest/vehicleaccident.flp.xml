@@ -1,0 +1,41 @@
+<Form name="vehicleAccident" ksubmit="nobutton" description="Vehicle Accident">
+	<Rgsyl>
+		<Syl syln="head" halign="right" fItalic="true" />
+		<Syl syln="input"  />
+		<Syl syln="tbl" duPaddingTop="10px" />
+	</Rgsyl>
+	<panel name="root">
+			
+		<table headless="true" table_width="1swt" sylnCrown="=tbl" >
+			<label text="Date:" width="remaining 1" sylnCrown="=head" />
+			<date sylnCrown="=input" width="remaining 3"/>
+			<separator width="remaining 2" />
+		</table>
+			
+		<table headless="true" table_width="1swt" sylnCrown="=tbl" >
+			<label text="Personal Injury:" width="remaining 1" sylnCrown="=head" />
+			<combobox reference="{Query={Static {'Yes','No'}}}" choice="button"
+				width="remaining 3"/>
+			<separator width="remaining 2" />
+		</table>
+
+		<table headless="true" table_width="1swt" sylnCrown="=tbl" >
+			<label text="Accident details: " width="remaining 1" sylnCrown="=head" />
+			<textbox sylnCrown="=input" lines="5" width="remaining 3" />
+			<separator width="remaining 2" />
+		</table>
+	
+		<table headless="true" table_width="1swt" sylnCrown="=tbl" >
+			<label text="Photo:" width="remaining 1" sylnCrown="=head" />
+			<photo name="Photo" proposedquality="10"  width="remaining 3" 
+				consistentquality="false" allowmultishoot="true" proposedresolution="2048x1536" />
+			<separator width="remaining 2" />
+		</table>
+		
+		<table headless="true" table_width="1swt" sylnCrown="=tbl" >
+			<separator width="remaining 1" />
+			<closebutton width="remaining 3" action="submit_form" text="Send"  />
+			<separator width="remaining 2" />
+		</table>
+	</panel>
+</Form>

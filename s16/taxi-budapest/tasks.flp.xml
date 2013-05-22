@@ -38,7 +38,7 @@
 				
 				<table headless="true" table_width="1swt" sylnCrown="=ride.info">
 					<label text="Notes:" width="remaining 1" sylnCrown="=ride.info.head"  />
-					<textbox readonly="false" reference="REF" ref_arg="../../PARENT.col5" lines="5" width="remaining 4" sylnCrown="=ride.info.value" />
+					<textbox readonly="true" reference="REF" ref_arg="../../PARENT.col5" lines="5" width="remaining 4" sylnCrown="=ride.info.value" />
 				</table>
 				
 				<table headless="true" table_width="1swt" sylnCrown="=ride.info">
@@ -83,9 +83,10 @@
 						<phone_number link_target_reference="REF" link_target_ref_arg="../../PARENT.col3" size="large" width="remaining 1" />
 						<label label="When" reference="REF" ref_arg="../../PARENT.col4" width="remaining 1" sylnCrown="=tasklist.when" />
 					</table>
+					
 				</panel>
-				
 			</panel>
+			<closebutton next_form_name="vehicleAccident" action="discard_form" text="Report vehicle accident"/>
 		</panel>
 	</panel>
 </Form>
