@@ -1,4 +1,4 @@
-<Form name="vehicleAccident" ksubmit="nobutton" description="Vehicle Accident">
+<Form name="vehicleAccident" ksubmit="nobutton" description="Vehicle Accident" hidden="true">
 	<Rgsyl>
 		<Syl syln="head" halign="right" fItalic="true" />
 		<Syl syln="input"  />

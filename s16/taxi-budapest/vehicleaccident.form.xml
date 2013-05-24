@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Form name="vehicleAccident" ksubmit="nobutton" description="Vehicle Accident" typed="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" numberformat="{decimalSeparator:&quot;.&quot;}">
+<Form name="vehicleAccident" ksubmit="nobutton" description="Vehicle Accident" hidden="true" typed="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" numberformat="{decimalSeparator:&quot;.&quot;}">
   <Rgsyl>
     <Syl syln="head" halign="right" fItalic="true" />
     <Syl syln="input" />
