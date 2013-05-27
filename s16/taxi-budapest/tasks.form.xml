@@ -11,11 +11,11 @@
     <Syl syln="tasklist.taskitem" duPaddingBottom="40px" />
   </Rgsyl>
   <Control name="root" type="panel">
-    <!-- we are waiting for confirmation -->
+    <!-- if we are waiting for confirmation -->
     <Control data_type="string" navigation="inline" generator="SELECT guid FROM REFERENCE_tasks WHERE driver=@1 AND status='Requested' LIMIT 1" ref_arg="@user" type="panel" name="id2">
       <Control text="Waiting for confirmation..." type="label" name="id3" />
     </Control>
-    <!-- we have taken a task -->
+    <!-- if we have taken a task -->
     <Control data_type="string,string,string,string,string,string,int" navigation="inline" generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes,cpassenger FROM REFERENCE_tasks WHERE driver=@1 AND status='Taken' LIMIT 1" ref_arg="@user" type="panel" name="id4">
       <Control type="panel" name="id5">
         <Control reference="REF" ref_arg="../PARENT.col2" sylnCrown="=ride.address" type="label" name="id6" />
@@ -43,7 +43,7 @@
         <Control action="submit_form" text="Done" width="fix 30 pt" type="closebutton" name="id24" />
       </Control>
     </Control>
-    <!-- we show the task list -->
+    <!-- else we show the task list -->
     <Control data_type="string" navigation="inline" generator="SELECT '' WHERE 0 = (SELECT COUNT(*) FROM REFERENCE_tasks WHERE driver=@1 AND status IN('Requested', 'Taken') )" ref_arg="@user" type="panel" name="id25">
       <Control data_type="string,string,string,string,string,string" generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes FROM REFERENCE_tasks WHERE status ='Open' " layout="standard" navigation="inline" type="panel" name="id26">
         <Control type="panel" name="id27">

@@ -5,7 +5,8 @@ using form 'popConfirmation';
 	
 	var guidTask = form.controlSubmit.parent.guid.value;
 	var kaction = form.controlSubmit.parent.action.value;
-	
+		
+    //Go button was clicked
 	if(kaction == "request")
 	{
 		var task = db.tasks.Read({guid: guidTask}).Single();
@@ -19,6 +20,7 @@ using form 'popConfirmation';
 			});
 		}
 	}
+    //Done button was clicked
 	else if(kaction == "done")
 	{
 		db.tasks.Update({guid: guidTask},{status:"Done"});

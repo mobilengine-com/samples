@@ -10,13 +10,13 @@
 		<Syl syln="tasklist.taskitem" duPaddingBottom="40px" />
 	</Rgsyl>
 	<panel name="root">
-	    <!-- we are waiting for confirmation -->
+	    <!-- if we are waiting for confirmation -->
 		<panel data_type="string" navigation="inline"
 			generator="SELECT guid FROM REFERENCE_tasks WHERE driver=@1 AND status='Requested' LIMIT 1" ref_arg="@user" >
 			<label text="Waiting for confirmation..." />
 		</panel>
 		 
-		<!-- we have taken a task -->
+		<!-- if we have taken a task -->
 		<panel  data_type="string,string,string,string,string,string,int"
 			navigation="inline"
 			generator="SELECT guid,name,address,phone,strftime('%H:%M',date),notes,cpassenger FROM REFERENCE_tasks WHERE driver=@1 AND status='Taken' LIMIT 1" ref_arg="@user">
@@ -62,7 +62,7 @@
 			</panel>
 		</panel>
 		
-		<!-- we show the task list -->
+		<!-- else we show the task list -->
 		<panel data_type="string" navigation="inline"
 			generator="SELECT '' WHERE 0 = (SELECT COUNT(*) FROM REFERENCE_tasks WHERE driver=@1 AND status IN('Requested', 'Taken') )" ref_arg="@user">
 			
