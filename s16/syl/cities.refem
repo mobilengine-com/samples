@@ -1,0 +1,5 @@
+<Reftab Name='cities'>
+	<Columns>
+		<Column Name='city' Type='Text' />
+	</Columns>
+</Reftab>

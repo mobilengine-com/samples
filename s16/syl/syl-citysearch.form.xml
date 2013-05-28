@@ -1,0 +1,20 @@
+<Form name="syl-citysearch" ksubmit="never" send_label="Exit">
+	<Rgsyl>
+		<Syl syln="title" fBold="true" halign="center" duPaddingBottom="5pt" duPaddingTop="5pt" />
+		<Syl syln="row0" clrFont="#000000"  />
+		<Syl syln="row1" clrFont="#000000" clrBg="#DDDDDD" />
+		<Syl syln="match0" fBold="true" clrFont="#FF0000" />
+		<Syl syln="match1" fBold="true" clrFont="#FF0000" clrBg="#DDDDDD" />
+	</Rgsyl>
+	<Control name="root" type="panel">
+		<Control name="l70" type="label" text="City Search" sylnCrown="=title" />
+		<Control type="textbox" name="search" label="Search" />
+		<Control type="panel" name="list" navigation="inline" layout="table" headless="true" lazy_table="true"
+			generator="SELECT city FROM Reference_cities ORDER BY city">
+			<Control type="label" name="city" width="1swt"
+				reference="=@1" ref_arg="PARENT"
+				sylnCrown="SELECT (CASE WHEN @1!='' AND @2 LIKE '%'||@1||'%' THEN 'match' ELSE 'row' END) || (CASE WHEN @3%2=0 THEN '0' ELSE '1' END)" sylnargCrown="//root/search,PARENT,PARENT.igp" />
+		</Control>
+	</Control>
+</Form>
+
