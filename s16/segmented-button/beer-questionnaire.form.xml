@@ -10,7 +10,7 @@
 
 		<Control name="fHadBeer" type="combobox" choice="button" label="Have you ever had beer?" reference="{Query={Static {Yes,No,Don't know}}}" />
 
-		<Control type="panel" name="questions" navigation="inline" generator="SELECT 1 WHERE @1="Yes"" ref_arg="../c01">
+		<Control type="panel" name="questions" navigation="inline" generator="SELECT 1 WHERE @1='Yes'" ref_arg="../fHadBeer">
 			<Control type="label" name="h10" sylnCrown="=header" text="Have you tried a ..."  />
 			<Control name="c11" type="combobox" choice="button" size="small" label="Pale lager" reference="{Query={Static {Yes,No}}}" />
 			<Control name="c12" type="combobox" choice="button" size="small" label="Blonde ale" reference="{Query={Static {Yes,No}}}" />
