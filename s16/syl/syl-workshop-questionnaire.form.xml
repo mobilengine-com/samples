@@ -1,0 +1,59 @@
+﻿<Form name="syl-workshop-questionnaire" typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}'>
+	<Rgsyl>
+		<Syl syln="sylnForm0" clrBg="#FFFFFF" clrFont="#101010" />
+		<Syl syln="sylnForm1" clrBg="#DFFFDF" clrFont="#101010" />
+		<Syl syln="sylnForm2" clrBg="#BFFFBF" clrFont="#101010" />
+		<Syl syln="sylnForm3" clrBg="#9FFF9F" clrFont="#101010" />
+		<Syl syln="sylnForm4" clrBg="#7FFF7F" clrFont="#101010" />
+		<Syl syln="sylnTitle0" clrBg="#FFFFFF" clrFont="#101010" duPaddingTop="6pt" fBold="true" />
+		<Syl syln="sylnTitle1" clrBg="#DFFFDF" clrFont="#101010" duPaddingTop="6pt" fBold="true"/>
+		<Syl syln="sylnTitle2" clrBg="#BFFFBF" clrFont="#101010" duPaddingTop="6pt" fBold="true"/>
+		<Syl syln="sylnTitle3" clrBg="#9FFF9F" clrFont="#101010" duPaddingTop="6pt" fBold="true"/>
+		<Syl syln="sylnTitle4" clrBg="#7FFF7F" clrFont="#101010" duPaddingTop="6pt" fBold="true"/>
+	</Rgsyl>
+	<Control name="root" type="panel" sylnChild="=@1" sylnargChild="./sylnForm">
+		
+		<Control name="l00" type="label" text="INSTRUCTIONS" sylnCrown="=@1" sylnargCrown="//root/sylnTitle"/>
+		<Control name="l01" type="label" text="Please circle your response to the items. Rate aspects of the workshop on a 1 to 5 scale:"/>
+		<Control name="l02" type="label" text="1 = 'Strongly disagree,' or the lowest, most negative impression"/>
+		<Control name="l03" type="label" text="3 = 'Neither agree nor disagree,' or an adequate impression"/>
+		<Control name="l04" type="label" text="5 = 'strongly agree,' or the highest, most positive impression"/>
+		<Control name="l05" type="label" text="Choose N/A if the item is not appropriate or not applicable to this workshop. Your feedback is sincerely appreciated. Thank you."/>
+		<Control name="l1" type="label" text="WORKSHOP CONTENT" sylnCrown="=@1" sylnargCrown="//root/sylnTitle"/>
+		<Control name="t1" type="panel" layout="table" navigation="inline" generator="{Query={Static {'I was well informed about the objectives of this workshop.','This workshop lived up to my expectations.','The content is relevant to my job.'}}}" headless="true" table_width="1 swt">
+			<Control name="l" type="label" label="Question" reference="=@1" ref_arg="PARENT.col0" width="remaining 1"/>
+			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'×1×','×2×','×3×','×4×','×5×',N/A}}}" data_type="string" width="example 1">
+				<Validators>
+					<Validator type="RequiredValidator"/>
+				</Validators>
+			</Control>
+		</Control>
+
+		<Control name="l2" type="label" text="WORKSHOP DESIGN" sylnCrown="=@1" sylnargCrown="//root/sylnTitle"/>
+		<Control name="t2" type="panel" layout="table" navigation="inline" generator="{Query={Static {'The workshop objectives were clear to me.','The workshop activities stimulated my learning. ','The activities in this workshop gave me sufficient practice and feedback.', 'The difficulty level of this workshop was appropriate.','The pace of this workshop was appropriate.'}}}" headless="true" table_width="1 swt">
+			<Control name="l" type="label" label="Question" reference="=@1" ref_arg="PARENT.col0" width="remaining 1"/>
+			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'×1×','×2×','×3×','×4×','×5×',N/A}}}" data_type="string" width="example 1">
+				<Validators>
+					<Validator type="RequiredValidator"/>
+				</Validators>
+			</Control>
+		</Control>
+		
+		<Control name="l3" type="label" text="WORKSHOP RESULTS" sylnCrown="=@1" sylnargCrown="//root/sylnTitle"/>
+		<Control name="t3" type="panel" layout="table" navigation="inline" generator="{Query={Static {'I accomplished the objectives of this workshop.','I will be able to use what I learned in this workshop.'}}}" headless="true" table_width="1 swt">
+			<Control name="l" type="label" label="Question" reference="=@1" ref_arg="PARENT.col0" width="remaining 1"/>
+			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'×1×','×2×','×3×','×4×','×5×',N/A}}}" data_type="string" width="example 1">
+				<Validators>
+					<Validator type="RequiredValidator"/>
+				</Validators>
+			</Control>
+		</Control>
+		
+		<Control name="sum0" type="label" visible="false" reference="COUNT2" data_type="int" ref_arg="../t1/t1.*/l,../t2/t2.*/l,../t3/t3.*/l"/>
+		<Control name="sum1" type="label" visible="false" reference="COUNT2" data_type="int" ref_arg="../t1/t1.*/q,../t2/t2.*/q,../t3/t3.*/q"/>
+		<Control name="progress" type="label" visible="false" reference="SELECT @1*100/@2" data_type="int" ref_arg="../sum1,../sum0" />
+		<Control name="prog5" type="label" visible="false" reference="SELECT CASE WHEN @1 BETWEEN 0 AND 19 THEN 0 WHEN @1 BETWEEN 20 AND 39 THEN 1 WHEN @1 BETWEEN 40 AND 59 THEN 2 WHEN @1 BETWEEN 60 AND 79 THEN 3 ELSE 4 END"  data_type="int" ref_arg="../progress"/>
+		<Control name="sylnForm" type="label" visible="false" reference="=sylnForm@1"  data_type="string" ref_arg="../prog5"/>
+		<Control name="sylnTitle" type="label" visible="false" reference="=sylnTitle@1"  data_type="string" ref_arg="../prog5"/>
+	</Control>
+</Form>

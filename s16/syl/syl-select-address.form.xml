@@ -1,0 +1,24 @@
+﻿<Form name="syl-select-address" typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' ksubmit="nobutton">
+	<Rgsyl>
+		<Syl syln="sylnForm" clrBg="#FFFFFF" clrFont="#101010" />
+		<Syl syln="sylnSelected" clrBg="#9F9F9F" clrFont="#101010" />
+		<Syl syln="sylnTitle" clrBg="#FFFFFF" clrFont="#101010" duPaddingTop="6pt" fBold="true" />
+	</Rgsyl>
+	
+	<Control name="root" type="panel" sylnChild="=sylnForm">
+		<Control name="l00" type="label" text="Select an adress:" sylnCrown="=sylnTitle" sylnargCrown=""/>
+		<Control name="t1" type="panel" layout="table" navigation="inline" generator="{Query={Static {{'1111','Budapest','Kassai Viktor utca 2',''},{'2222','Seholse','Nem létező utca π',''},{'3333','Terpes','Május 1. u. 1.',''},{'5555','Hunya','Óvoda u. 3',''},{'8888','Maróc','Sugár út 5',''}}}}" data_type="int,string,string,string" headless="true"
+			sylnRow="SELECT CASE WHEN @1 = 1 THEN 'sylnSelected' ELSE 'sylnForm' END" sylnargRow="SELF/check">
+			<Control name="check" label="" type="checkbox" width="example 1"/>
+			<Control name="addr1" label="" type="label" width="5em" reference="=@1" ref_arg="PARENT.col0"/>
+			<Control name="addr2" label="" type="label" width="10em" reference="=@1" ref_arg="PARENT.col1"/>
+			<Control name="addr3" label="" type="label" width="15em" reference="=@1" ref_arg="PARENT.col2"/>
+		</Control>
+		<Control type="validator"  name="validator" reference="COUNT" data_type="int" ref_arg="//root/t1/t1.*/check" >
+			<Validators>
+				<Validator type="NumberValidator" wholenumber="true" min="1" max="1" message="Please select one and only one address." />
+			</Validators>		
+		</Control>
+		<Control type="closebutton" name="cb" action="submit_form" next_form_name="" text="Select"/>
+	</Control>
+</Form>
