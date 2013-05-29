@@ -22,7 +22,7 @@
 		<Control name="l1" type="label" text="WORKSHOP CONTENT" sylnCrown="=@1" sylnargCrown="//root/sylnTitle"/>
 		<Control name="t1" type="panel" layout="table" navigation="inline" generator="{Query={Static {'I was well informed about the objectives of this workshop.','This workshop lived up to my expectations.','The content is relevant to my job.'}}}" headless="true" table_width="1 swt">
 			<Control name="l" type="label" label="Question" reference="=@1" ref_arg="PARENT.col0" width="remaining 1"/>
-			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'×1×','×2×','×3×','×4×','×5×',N/A}}}" data_type="string" width="example 1">
+			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'1','2','3','4','5',N/A}}}" data_type="string" width="example 1">
 				<Validators>
 					<Validator type="RequiredValidator"/>
 				</Validators>
@@ -32,7 +32,7 @@
 		<Control name="l2" type="label" text="WORKSHOP DESIGN" sylnCrown="=@1" sylnargCrown="//root/sylnTitle"/>
 		<Control name="t2" type="panel" layout="table" navigation="inline" generator="{Query={Static {'The workshop objectives were clear to me.','The workshop activities stimulated my learning. ','The activities in this workshop gave me sufficient practice and feedback.', 'The difficulty level of this workshop was appropriate.','The pace of this workshop was appropriate.'}}}" headless="true" table_width="1 swt">
 			<Control name="l" type="label" label="Question" reference="=@1" ref_arg="PARENT.col0" width="remaining 1"/>
-			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'×1×','×2×','×3×','×4×','×5×',N/A}}}" data_type="string" width="example 1">
+			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'1','2','3','4','5',N/A}}}" data_type="string" width="example 1">
 				<Validators>
 					<Validator type="RequiredValidator"/>
 				</Validators>
@@ -42,7 +42,7 @@
 		<Control name="l3" type="label" text="WORKSHOP RESULTS" sylnCrown="=@1" sylnargCrown="//root/sylnTitle"/>
 		<Control name="t3" type="panel" layout="table" navigation="inline" generator="{Query={Static {'I accomplished the objectives of this workshop.','I will be able to use what I learned in this workshop.'}}}" headless="true" table_width="1 swt">
 			<Control name="l" type="label" label="Question" reference="=@1" ref_arg="PARENT.col0" width="remaining 1"/>
-			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'×1×','×2×','×3×','×4×','×5×',N/A}}}" data_type="string" width="example 1">
+			<Control name="q" type="combobox" choice="button" size="large" label="Rating" reference="{Query={Static {'1','2','3','4','5',N/A}}}" data_type="string" width="example 1">
 				<Validators>
 					<Validator type="RequiredValidator"/>
 				</Validators>
