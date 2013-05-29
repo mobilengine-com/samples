@@ -1,11 +1,11 @@
-﻿<Form name="chessboard" >
+﻿<Form name="syl-chessboard" >
 	<Rgsyl>
 		<Syl syln="sylnNormal" clrFont="#000000" clrBg="#FFFFFF" pctFontSize="100" fBold="false" fItalic="false" fUnderline="false" fStrikethrough="false" duPaddingTop="2px" duPaddingBottom="2px" />
 		<Syl syln="sylnInverse" clrFont="#FFFFFF" clrBg="#000000" pctFontSize="100" fBold="false" fItalic="false" fUnderline="false" fStrikethrough="false" duPaddingTop="2px" duPaddingBottom="2px" />
 	</Rgsyl>
 
 	<Control type="panel" name="RootPanel" layout="standard" navigation="inline" sqlreferences="0">
-		<Control type="panel" name="tableChess" label="Inherited table syl" layout="table" navigation="inline" sylnCrown="=sylnNormal" sylnargCrown="" sylnChild="=sylnNormal" sylnargChild="//RootPanel/cobSyl" 
+		<Control type="panel" name="tableChess" label="Chess table" layout="table" navigation="inline" sylnCrown="=sylnNormal" sylnargCrown="" sylnChild="=sylnNormal" sylnargChild="//RootPanel/cobSyl" 
 			generator="{Query={Static { {B,H,F,K,V,F,H,B},{G,G,G,G,G,G,G,G},{' ',' ',' ',' ',' ',' ',' ',' '},{' ',' ',' ',' ',' ',' ',' ',' '},{' ',' ',' ',' ',' ',' ',' ',' '},{' ',' ',' ',' ',' ',' ',' ',' '},{G,G,G,G,G,G,G,G},{B,H,F,K,V,F,H,B} }}}">
 			<Control type="label" name="irow" label="#" text="" reference="=@1" ref_arg="PARENT.igp" />
 			<Control type="label" name="syln0" visible="false" label="#" text="" reference="SELECT CASE WHEN @1 %2= 1 THEN 'sylnNormal' ELSE 'sylnInverse' END" ref_arg="PARENT.igp" />
