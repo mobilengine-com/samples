@@ -1,0 +1,9 @@
+<Reftab Name="fruit">
+	<Columns>
+        <Column Name="Id" Type="Integer" PrimaryKey="true" NotNull="true"/>
+		<Column Name="Fruit" Type="Text" NotNull="true"/>
+		<Column Name="Type" Type="Text" NotNull="true"/>
+		<Column Name="Price" Type="Integer" />
+		<Column Name="Quantity" Type="Float" />
+	</Columns>
+</Reftab>

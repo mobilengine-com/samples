@@ -1,0 +1,8 @@
+<Reftab Name="fruit_legacy" SyncNullAsEmptyString="true">
+	<Columns>
+		<Column Name="Fruit" Type="Text" />
+		<Column Name="Type" Type="Text" />
+		<Column Name="Price" Type="Integer" />
+		<Column Name="Quantity" Type="Float" />
+	</Columns>
+</Reftab>
