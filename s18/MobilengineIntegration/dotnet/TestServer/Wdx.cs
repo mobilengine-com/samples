@@ -541,7 +541,7 @@ namespace TestServer
         
         private System.DateTime dtuField;
         
-        private Kmeta metaField;
+        private DacsMeta metaField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -587,7 +587,7 @@ namespace TestServer
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public Kmeta meta
+        public DacsMeta meta
         {
             get
             {
@@ -604,7 +604,7 @@ namespace TestServer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.1")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.mobilengine.com/Wdx")]
-    public enum Kmeta
+    public enum DacsMeta
     {
         
         /// <remarks/>
