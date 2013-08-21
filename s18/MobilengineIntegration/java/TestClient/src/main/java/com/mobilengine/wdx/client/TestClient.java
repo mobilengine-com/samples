@@ -21,8 +21,8 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 
 import com.mobilengine.schemas.wdx.Dacs;
+import com.mobilengine.schemas.wdx.DacsMeta;
 import com.mobilengine.schemas.wdx.IWdx;
-import com.mobilengine.schemas.wdx.Kmeta;
 import com.mobilengine.schemas.wdx.Wdx;
 
 // This project implements the client side of the purchase-order sample. It sends an integration message (dacs) with some 
@@ -66,7 +66,7 @@ public class TestClient {
 	private static Dacs createDacs() {	
 		Dacs dacs = new Dacs();
 		dacs.setDacsid(UUID.randomUUID().toString());
-		dacs.setMeta(Kmeta.PURCHASE_ORDER);
+		dacs.setMeta(DacsMeta.PURCHASE_ORDER);
 		DacsContent content = new DacsContent();
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
 		

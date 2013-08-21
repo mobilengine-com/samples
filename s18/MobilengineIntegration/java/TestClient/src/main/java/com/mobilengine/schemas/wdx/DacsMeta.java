@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Kmeta.
+ * <p>Java class for DacsMeta.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="Kmeta">
+ * &lt;simpleType name="DacsMeta">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="purchase-order"/>
  *   &lt;/restriction>
@@ -20,15 +20,15 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "Kmeta")
+@XmlType(name = "DacsMeta")
 @XmlEnum
-public enum Kmeta {
+public enum DacsMeta {
 
     @XmlEnumValue("purchase-order")
     PURCHASE_ORDER("purchase-order");
     private final String value;
 
-    Kmeta(String v) {
+    DacsMeta(String v) {
         value = v;
     }
 
@@ -36,8 +36,8 @@ public enum Kmeta {
         return value;
     }
 
-    public static Kmeta fromValue(String v) {
-        for (Kmeta c: Kmeta.values()) {
+    public static DacsMeta fromValue(String v) {
+        for (DacsMeta c: DacsMeta.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

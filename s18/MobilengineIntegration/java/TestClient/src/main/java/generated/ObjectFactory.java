@@ -30,11 +30,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DacsContent.PurchaseOrder }
+     * 
+     */
+    public DacsContent.PurchaseOrder createDacsContentPurchaseOrder() {
+        return new DacsContent.PurchaseOrder();
+    }
+
+    /**
      * Create an instance of {@link DacsContent.PurchaseOrder.ShipTo }
      * 
      */
     public DacsContent.PurchaseOrder.ShipTo createDacsContentPurchaseOrderShipTo() {
         return new DacsContent.PurchaseOrder.ShipTo();
+    }
+
+    /**
+     * Create an instance of {@link DacsContent }
+     * 
+     */
+    public DacsContent createDacsContent() {
+        return new DacsContent();
     }
 
     /**
@@ -51,22 +67,6 @@ public class ObjectFactory {
      */
     public DacsContent.PurchaseOrder.Items.Item createDacsContentPurchaseOrderItemsItem() {
         return new DacsContent.PurchaseOrder.Items.Item();
-    }
-
-    /**
-     * Create an instance of {@link DacsContent.PurchaseOrder }
-     * 
-     */
-    public DacsContent.PurchaseOrder createDacsContentPurchaseOrder() {
-        return new DacsContent.PurchaseOrder();
-    }
-
-    /**
-     * Create an instance of {@link DacsContent }
-     * 
-     */
-    public DacsContent createDacsContent() {
-        return new DacsContent();
     }
 
     /**
