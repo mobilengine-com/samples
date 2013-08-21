@@ -279,7 +279,6 @@ namespace TestServer
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.1")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public enum DacsContentPurchaseOrderShipToCountry
     {
         
@@ -405,7 +404,6 @@ namespace TestServer
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.1")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public enum DacsContentPurchaseOrderBillToCountry
     {
         
@@ -543,7 +541,7 @@ namespace TestServer
         
         private System.DateTime dtuField;
         
-        private DacsMeta metaField;
+        private Kmeta metaField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -589,7 +587,7 @@ namespace TestServer
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public DacsMeta meta
+        public Kmeta meta
         {
             get
             {
@@ -605,8 +603,8 @@ namespace TestServer
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.1")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.mobilengine.com/Wdx")]
-    public enum DacsMeta
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.mobilengine.com/Wdx")]
+    public enum Kmeta
     {
         
         /// <remarks/>
