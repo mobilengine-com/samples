@@ -30,14 +30,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DacsContent.PurchaseOrder.BillTo }
-     * 
-     */
-    public DacsContent.PurchaseOrder.BillTo createDacsContentPurchaseOrderBillTo() {
-        return new DacsContent.PurchaseOrder.BillTo();
-    }
-
-    /**
      * Create an instance of {@link DacsContent.PurchaseOrder.ShipTo }
      * 
      */
@@ -46,19 +38,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DacsContent }
+     * Create an instance of {@link DacsContent.PurchaseOrder.BillTo }
      * 
      */
-    public DacsContent createDacsContent() {
-        return new DacsContent();
-    }
-
-    /**
-     * Create an instance of {@link DacsContent.PurchaseOrder.Items }
-     * 
-     */
-    public DacsContent.PurchaseOrder.Items createDacsContentPurchaseOrderItems() {
-        return new DacsContent.PurchaseOrder.Items();
+    public DacsContent.PurchaseOrder.BillTo createDacsContentPurchaseOrderBillTo() {
+        return new DacsContent.PurchaseOrder.BillTo();
     }
 
     /**
@@ -75,6 +59,22 @@ public class ObjectFactory {
      */
     public DacsContent.PurchaseOrder createDacsContentPurchaseOrder() {
         return new DacsContent.PurchaseOrder();
+    }
+
+    /**
+     * Create an instance of {@link DacsContent }
+     * 
+     */
+    public DacsContent createDacsContent() {
+        return new DacsContent();
+    }
+
+    /**
+     * Create an instance of {@link DacsContent.PurchaseOrder.Items }
+     * 
+     */
+    public DacsContent.PurchaseOrder.Items createDacsContentPurchaseOrderItems() {
+        return new DacsContent.PurchaseOrder.Items();
     }
 
 }

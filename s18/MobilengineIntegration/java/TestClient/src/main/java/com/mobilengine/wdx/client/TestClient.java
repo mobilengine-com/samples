@@ -6,6 +6,8 @@ import generated.DacsContent.PurchaseOrder.BillTo;
 import generated.DacsContent.PurchaseOrder.Items;
 import generated.DacsContent.PurchaseOrder.Items.Item;
 import generated.DacsContent.PurchaseOrder.ShipTo;
+import generated.DacsContentPurchaseOrderBillToCountry;
+import generated.DacsContentPurchaseOrderShipToCountry;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -20,6 +22,7 @@ import javax.xml.ws.BindingProvider;
 
 import com.mobilengine.schemas.wdx.Dacs;
 import com.mobilengine.schemas.wdx.IWdx;
+import com.mobilengine.schemas.wdx.Kmeta;
 import com.mobilengine.schemas.wdx.Wdx;
 
 // This project implements the client side of the purchase-order sample. It sends an integration message (dacs) with some 
@@ -63,7 +66,7 @@ public class TestClient {
 	private static Dacs createDacs() {	
 		Dacs dacs = new Dacs();
 		dacs.setDacsid(UUID.randomUUID().toString());
-		dacs.setMeta("purchaseorder");
+		dacs.setMeta(Kmeta.PURCHASE_ORDER);
 		DacsContent content = new DacsContent();
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
 		
@@ -76,7 +79,7 @@ public class TestClient {
         shipTo.setCity("Mill Valley");
         shipTo.setState("CA");
         shipTo.setZip(90952);
-        shipTo.setCountry("US");
+        shipTo.setCountry(DacsContentPurchaseOrderShipToCountry.US);
         purchaseOrder.setShipTo(shipTo);
 		
 		BillTo billTo = new BillTo();
@@ -85,7 +88,7 @@ public class TestClient {
         billTo.setCity("Old Town");
         billTo.setState("PA");
         billTo.setZip(95819);
-        billTo.setCountry("US");
+        billTo.setCountry(DacsContentPurchaseOrderBillToCountry.US);
 		purchaseOrder.setBillTo(billTo);
 		
 		Items items = new Items();

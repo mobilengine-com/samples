@@ -62,16 +62,7 @@ import javax.xml.bind.annotation.XmlType;
  *                               &lt;/simpleType>
  *                             &lt;/element>
  *                           &lt;/sequence>
- *                           &lt;attribute name="country" use="required">
- *                             &lt;simpleType>
- *                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                 &lt;enumeration value="US"/>
- *                                 &lt;enumeration value="HU"/>
- *                                 &lt;enumeration value="RO"/>
- *                                 &lt;enumeration value="SK"/>
- *                               &lt;/restriction>
- *                             &lt;/simpleType>
- *                           &lt;/attribute>
+ *                           &lt;attribute name="country" use="required" type="{}DacsContentPurchaseOrderShipToCountry" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
@@ -112,16 +103,7 @@ import javax.xml.bind.annotation.XmlType;
  *                               &lt;/simpleType>
  *                             &lt;/element>
  *                           &lt;/sequence>
- *                           &lt;attribute name="country" use="required">
- *                             &lt;simpleType>
- *                               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *                                 &lt;enumeration value="US"/>
- *                                 &lt;enumeration value="HU"/>
- *                                 &lt;enumeration value="RO"/>
- *                                 &lt;enumeration value="SK"/>
- *                               &lt;/restriction>
- *                             &lt;/simpleType>
- *                           &lt;/attribute>
+ *                           &lt;attribute name="country" use="required" type="{}DacsContentPurchaseOrderBillToCountry" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
@@ -288,16 +270,7 @@ public class DacsContent {
      *                     &lt;/simpleType>
      *                   &lt;/element>
      *                 &lt;/sequence>
-     *                 &lt;attribute name="country" use="required">
-     *                   &lt;simpleType>
-     *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                       &lt;enumeration value="US"/>
-     *                       &lt;enumeration value="HU"/>
-     *                       &lt;enumeration value="RO"/>
-     *                       &lt;enumeration value="SK"/>
-     *                     &lt;/restriction>
-     *                   &lt;/simpleType>
-     *                 &lt;/attribute>
+     *                 &lt;attribute name="country" use="required" type="{}DacsContentPurchaseOrderShipToCountry" />
      *               &lt;/restriction>
      *             &lt;/complexContent>
      *           &lt;/complexType>
@@ -338,16 +311,7 @@ public class DacsContent {
      *                     &lt;/simpleType>
      *                   &lt;/element>
      *                 &lt;/sequence>
-     *                 &lt;attribute name="country" use="required">
-     *                   &lt;simpleType>
-     *                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-     *                       &lt;enumeration value="US"/>
-     *                       &lt;enumeration value="HU"/>
-     *                       &lt;enumeration value="RO"/>
-     *                       &lt;enumeration value="SK"/>
-     *                     &lt;/restriction>
-     *                   &lt;/simpleType>
-     *                 &lt;/attribute>
+     *                 &lt;attribute name="country" use="required" type="{}DacsContentPurchaseOrderBillToCountry" />
      *               &lt;/restriction>
      *             &lt;/complexContent>
      *           &lt;/complexType>
@@ -611,16 +575,7 @@ public class DacsContent {
          *           &lt;/simpleType>
          *         &lt;/element>
          *       &lt;/sequence>
-         *       &lt;attribute name="country" use="required">
-         *         &lt;simpleType>
-         *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *             &lt;enumeration value="US"/>
-         *             &lt;enumeration value="HU"/>
-         *             &lt;enumeration value="RO"/>
-         *             &lt;enumeration value="SK"/>
-         *           &lt;/restriction>
-         *         &lt;/simpleType>
-         *       &lt;/attribute>
+         *       &lt;attribute name="country" use="required" type="{}DacsContentPurchaseOrderBillToCountry" />
          *     &lt;/restriction>
          *   &lt;/complexContent>
          * &lt;/complexType>
@@ -648,7 +603,7 @@ public class DacsContent {
             protected String state;
             protected int zip;
             @XmlAttribute(required = true)
-            protected String country;
+            protected DacsContentPurchaseOrderBillToCountry country;
 
             /**
              * Gets the value of the name property.
@@ -767,10 +722,10 @@ public class DacsContent {
              * 
              * @return
              *     possible object is
-             *     {@link String }
+             *     {@link DacsContentPurchaseOrderBillToCountry }
              *     
              */
-            public String getCountry() {
+            public DacsContentPurchaseOrderBillToCountry getCountry() {
                 return country;
             }
 
@@ -779,10 +734,10 @@ public class DacsContent {
              * 
              * @param value
              *     allowed object is
-             *     {@link String }
+             *     {@link DacsContentPurchaseOrderBillToCountry }
              *     
              */
-            public void setCountry(String value) {
+            public void setCountry(DacsContentPurchaseOrderBillToCountry value) {
                 this.country = value;
             }
 
@@ -1149,16 +1104,7 @@ public class DacsContent {
          *           &lt;/simpleType>
          *         &lt;/element>
          *       &lt;/sequence>
-         *       &lt;attribute name="country" use="required">
-         *         &lt;simpleType>
-         *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
-         *             &lt;enumeration value="US"/>
-         *             &lt;enumeration value="HU"/>
-         *             &lt;enumeration value="RO"/>
-         *             &lt;enumeration value="SK"/>
-         *           &lt;/restriction>
-         *         &lt;/simpleType>
-         *       &lt;/attribute>
+         *       &lt;attribute name="country" use="required" type="{}DacsContentPurchaseOrderShipToCountry" />
          *     &lt;/restriction>
          *   &lt;/complexContent>
          * &lt;/complexType>
@@ -1186,7 +1132,7 @@ public class DacsContent {
             protected String state;
             protected int zip;
             @XmlAttribute(required = true)
-            protected String country;
+            protected DacsContentPurchaseOrderShipToCountry country;
 
             /**
              * Gets the value of the name property.
@@ -1305,10 +1251,10 @@ public class DacsContent {
              * 
              * @return
              *     possible object is
-             *     {@link String }
+             *     {@link DacsContentPurchaseOrderShipToCountry }
              *     
              */
-            public String getCountry() {
+            public DacsContentPurchaseOrderShipToCountry getCountry() {
                 return country;
             }
 
@@ -1317,10 +1263,10 @@ public class DacsContent {
              * 
              * @param value
              *     allowed object is
-             *     {@link String }
+             *     {@link DacsContentPurchaseOrderShipToCountry }
              *     
              */
-            public void setCountry(String value) {
+            public void setCountry(DacsContentPurchaseOrderShipToCountry value) {
                 this.country = value;
             }
 

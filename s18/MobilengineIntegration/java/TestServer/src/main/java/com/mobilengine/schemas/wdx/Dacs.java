@@ -25,13 +25,7 @@ import generated.DacsContent;
  *       &lt;/sequence>
  *       &lt;attribute name="dacsid" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="dtu" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
- *       &lt;attribute name="meta" use="required">
- *         &lt;simpleType>
- *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *             &lt;enumeration value="purchase-order"/>
- *           &lt;/restriction>
- *         &lt;/simpleType>
- *       &lt;/attribute>
+ *       &lt;attribute name="meta" use="required" type="{http://schemas.mobilengine.com/Wdx}Kmeta" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -53,7 +47,7 @@ public class Dacs {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar dtu;
     @XmlAttribute(required = true)
-    protected String meta;
+    protected Kmeta meta;
 
     /**
      * Gets the value of the content property.
@@ -132,10 +126,10 @@ public class Dacs {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Kmeta }
      *     
      */
-    public String getMeta() {
+    public Kmeta getMeta() {
         return meta;
     }
 
@@ -144,10 +138,10 @@ public class Dacs {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Kmeta }
      *     
      */
-    public void setMeta(String value) {
+    public void setMeta(Kmeta value) {
         this.meta = value;
     }
 
