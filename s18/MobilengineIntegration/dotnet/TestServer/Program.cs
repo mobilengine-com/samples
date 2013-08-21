@@ -21,7 +21,7 @@ namespace TestServer
     class Program
     {
         const int port = 4444;
-        static readonly Uri uriServer = new Uri(string.Format("https://localhost:{0}/", port));
+        static readonly Uri uriServer = new Uri(string.Format("https://localhost:{0}/Services/Wdx/Wdx.svc", port));
       
         static void Main()
         {
