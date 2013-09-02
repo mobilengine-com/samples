@@ -1,14 +1,5 @@
 package com.mobilengine.wdx.client;
 
-import generated.DacsContent;
-import generated.DacsContent.PurchaseOrder;
-import generated.DacsContent.PurchaseOrder.BillTo;
-import generated.DacsContent.PurchaseOrder.Items;
-import generated.DacsContent.PurchaseOrder.Items.Item;
-import generated.DacsContent.PurchaseOrder.ShipTo;
-import generated.DacsContentPurchaseOrderBillToCountry;
-import generated.DacsContentPurchaseOrderShipToCountry;
-
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,24 +11,33 @@ import java.util.UUID;
 import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 
+import com.acme.schemas.purchase_order.PurchaseOrder;
+import com.acme.schemas.purchase_order.PurchaseOrder.BillTo;
+import com.acme.schemas.purchase_order.PurchaseOrder.Items;
+import com.acme.schemas.purchase_order.PurchaseOrder.Items.Item;
+import com.acme.schemas.purchase_order.PurchaseOrder.ShipTo;
+import com.acme.schemas.purchase_order.PurchaseOrderBillToCountry;
+import com.acme.schemas.purchase_order.PurchaseOrderShipToCountry;
 import com.mobilengine.schemas.wdx.Dacs;
+import com.mobilengine.schemas.wdx.DacsContent;
 import com.mobilengine.schemas.wdx.DacsMeta;
 import com.mobilengine.schemas.wdx.IWdx;
 import com.mobilengine.schemas.wdx.Wdx;
 
 // This project implements the client side of the purchase-order sample. It sends an integration message (dacs) with some 
-// product ordering info to the 4444 port of localhost. You need to understand this sample if you want to send integration 
+// product ordering info to the 4443 port on localhost. You need to understand this sample if you want to send integration 
 // messages to Mobilengine. The Mobilengine Backoffice would play the role of the server side in that case, but to make the 
 // sample self contained, you can use the attached TestServer as a dummy Mobilengine Backoffice to receive the messages.
 //
-// The files for implementing the wsdl contract were generated using wsimport: 
+// The files for implementing the wsdl contract in com.acme.schemas.purchase_order and com.mobilengine.schemas.wdx 
+// were generated using wsimport: 
 // wsimport -Xnocompile  purchase-order.wsdl
 
 public class TestClient {
 		
 	public static void main(String[] args) {
 		
-		final int port = 4444;
+		final int port = 4443;
 		final String url = "https://localhost:" + port + "/Services/Wdx/Wdx.svc";
 		
 		try {
@@ -79,7 +79,7 @@ public class TestClient {
         shipTo.setCity("Mill Valley");
         shipTo.setState("CA");
         shipTo.setZip(90952);
-        shipTo.setCountry(DacsContentPurchaseOrderShipToCountry.US);
+        shipTo.setCountry(PurchaseOrderShipToCountry.US);
         purchaseOrder.setShipTo(shipTo);
 		
 		BillTo billTo = new BillTo();
@@ -88,7 +88,7 @@ public class TestClient {
         billTo.setCity("Old Town");
         billTo.setState("PA");
         billTo.setZip(95819);
-        billTo.setCountry(DacsContentPurchaseOrderBillToCountry.US);
+        billTo.setCountry(PurchaseOrderBillToCountry.US);
 		purchaseOrder.setBillTo(billTo);
 		
 		Items items = new Items();

@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
-import generated.DacsContent;
 
 
 /**
@@ -21,7 +20,7 @@ import generated.DacsContent;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Content" type="{}DacsContent" minOccurs="0"/>
+ *         &lt;element name="Content" type="{http://schemas.mobilengine.com/Wdx}DacsContent" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="dacsid" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="dtu" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />

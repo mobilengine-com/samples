@@ -34,6 +34,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link EnqueueDacsFail }
+     * 
+     */
+    public EnqueueDacsFail createEnqueueDacsFail() {
+        return new EnqueueDacsFail();
+    }
+
+    /**
+     * Create an instance of {@link DacsContent }
+     * 
+     */
+    public DacsContent createDacsContent() {
+        return new DacsContent();
+    }
+
+    /**
      * Create an instance of {@link Dacs }
      * 
      */
@@ -47,14 +63,6 @@ public class ObjectFactory {
      */
     public EnqueueDacs createEnqueueDacs() {
         return new EnqueueDacs();
-    }
-
-    /**
-     * Create an instance of {@link EnqueueDacsFail }
-     * 
-     */
-    public EnqueueDacsFail createEnqueueDacsFail() {
-        return new EnqueueDacsFail();
     }
 
     /**

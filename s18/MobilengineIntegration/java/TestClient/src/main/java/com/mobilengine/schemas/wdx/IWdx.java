@@ -17,8 +17,8 @@ import javax.xml.ws.ResponseWrapper;
  */
 @WebService(name = "IWdx", targetNamespace = "http://schemas.mobilengine.com/Wdx")
 @XmlSeeAlso({
-    com.mobilengine.schemas.wdx.ObjectFactory.class,
-    generated.ObjectFactory.class
+    com.acme.schemas.purchase_order.ObjectFactory.class,
+    com.mobilengine.schemas.wdx.ObjectFactory.class
 })
 public interface IWdx {
 

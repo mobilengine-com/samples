@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "Wdx", targetNamespace = "http://schemas.mobilengine.com/Wdx", wsdlLocation = "")
+@WebServiceClient(name = "Wdx", targetNamespace = "http://schemas.mobilengine.com/Wdx", wsdlLocation = "file:/C:/Work/MobileEngine/samples/s18/MobilengineIntegration/java/TestClient/src/main/resources/purchase-order.wsdl")
 public class Wdx
     extends Service
 {
@@ -30,9 +30,9 @@ public class Wdx
         try {
             URL baseUrl;
             baseUrl = com.mobilengine.schemas.wdx.Wdx.class.getResource(".");
-            url = new URL(baseUrl, "");
+            url = new URL(baseUrl, "file:/C:/Work/MobileEngine/samples/s18/MobilengineIntegration/java/TestClient/src/main/resources/purchase-order.wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: '', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'file:/C:/Work/MobileEngine/samples/s18/MobilengineIntegration/java/TestClient/src/main/resources/purchase-order.wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         WDX_WSDL_LOCATION = url;

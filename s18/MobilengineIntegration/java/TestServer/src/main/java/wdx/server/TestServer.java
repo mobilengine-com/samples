@@ -18,7 +18,7 @@ import com.sun.net.httpserver.HttpsServer;
 
 
 // This project implements the server side of the purchase-order sample. It receives an integration message (dacs) with some 
-// product ordering info in the 4444 port of localhost. You need to understand this sample if you are to receive integration 
+// product ordering info in the 4444 port on localhost. You need to understand this sample if you are to receive integration 
 // messages from Mobilengine. The Mobilengine Backoffice would play the role of the client side in that case, but to make the 
 // sample self contained, you can use the attached TestClient as a dummy Mobilengine Backoffice to send messages.
 //
