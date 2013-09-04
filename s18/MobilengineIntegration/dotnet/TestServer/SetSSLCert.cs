@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -113,6 +114,20 @@ namespace TestServer
 
         public static void BindCertificate(string ipAddress, int port, byte[] hash)
         {
+            //netsh http add sslcert ipport=0.0.0.0:4444 certhash=946ed521d0e11ac0dc79f64612e7b3f3718080c6 appid={B47469EC-6A1B-498B-8363-CE701CB4FEE6} clientcertnegotiation=enable
+
+            //var info = new ProcessStartInfo
+            //           {
+            //               FileName = "netsh.exe",
+            //               UseShellExecute = true,
+            //               Verb = "runas",
+            //               Arguments = string.Format("http add sslcert ipport={0}:{1} certhash={2} appid={{B47469EC-6A1B-498B-8363-CE701CB4FEE6}} clientcertnegotiation=enable",
+            //                                         ipAddress, port, BitConverter.ToString(hash).Replace("-", ""))};
+
+            //var proc = Process.Start(info);
+            //proc.WaitForExit();
+            //return;
+
             uint retVal = (uint)NOERROR; // NOERROR = 0
 
             HTTPAPI_VERSION httpApiVersion = new HTTPAPI_VERSION(1, 0);

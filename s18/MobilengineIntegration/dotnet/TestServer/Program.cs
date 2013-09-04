@@ -12,17 +12,18 @@ namespace TestServer
      /// sample self contained, you can use the attached TestClient as a dummy Mobilengine Backoffice to send messages.
      ///       
      /// We generated Wdx.cs with "svcutil ../data/purchase-order.wsdl /fault /namespace:*,TestServer" from a Visual Studio command prompt.
+     /// Check the App.config for the web service configuration.
      /// 
      /// Make sure that the me-test-server.pfx certificate is installed in the Local Computer/Personal store (the password is 1234)
      /// Additionally the me-indoor-ca.cer file should be imported to the Local Computer/Trusted Root store.
      /// 
-     /// You can change the server port (4444), but keep it synchronized with the port in the TestClient project
+     /// You can change the server port, but keep it synchronized with the port in the TestClient project
      /// </summary>
     class Program
     {
         const int port = 4444;
         static readonly Uri uriServer = new Uri(string.Format("https://localhost:{0}/Services/Wdx/Wdx.svc", port));
-      
+
         static void Main()
         {
             //Read our server certificate
@@ -45,9 +46,10 @@ namespace TestServer
                 Console.ReadLine();
                 svch.Close();
             }
+
         }
 
-        private static byte[] RgbyteFromHex(string hex)
+         private static byte[] RgbyteFromHex(string hex)
         {
             return Enumerable.Range(0, hex.Length)
                 .Where(x => x % 2 == 0)

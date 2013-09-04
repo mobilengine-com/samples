@@ -1,29 +1,29 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
+using TestClient.Mobilengine.Integration;
 
 namespace TestClient
 {
 
     /// <summary>
     /// This project implements the client side of the purchase-order sample. It sends an integration message (dacs) with some 
-    /// product ordering info to the 4444 port of localhost. You need to understand this sample if you want to send integration 
+    /// product ordering info to the 4443 port of localhost. You need to understand this sample if you want to send integration 
     /// messages to Mobilengine. The Mobilengine Backoffice would play the role of the server side in that case, but to make the 
     /// sample self contained, you can use the attached TestServer as a dummy Mobilengine Backoffice to receive the messages.
     /// 
-    /// We generated Wdx.cs with "svcutil ../data/purchase-order.wsdl /fault" from a Visual Studio command prompt.
+    /// Check out the Service References for the code generated from the WSDL file. Also check the App.config file for the web service client configuration.
     /// 
     /// Make sure that the me-test-client.pfx certificate is installed in the Local Computer/Personal store (the password is 1234)
     /// Additionally the me-indoor-ca.cer file should be imported to the Local Computer/Trusted Root store.
-    /// 
-    /// You can change the server port (4444), but keep it synchronized with the port in the TestClient project.
     /// 
     /// You can enable message logging in the App.config file.
     /// </summary>
     class Program
     {
-        const int port = 4444;
+        const int port = 4443;
         static readonly Uri uriServer = new Uri(string.Format("https://localhost:{0}/Services/Wdx/Wdx.svc", port));
 
         static void Main()
@@ -36,7 +36,7 @@ namespace TestClient
             certificateStore.Close();
 
             //Create a soap client and set certificate
-            var wdxClient = new WdxClient("WdxClientEndpoint", new EndpointAddress(uriServer));
+            var wdxClient = new WdxClient("BasicHttpBinding_IWdx", new EndpointAddress(uriServer));
             wdxClient.ClientCredentials.ClientCertificate.Certificate = cert;
 
             //Send dacs
@@ -50,31 +50,31 @@ namespace TestClient
                             meta = DacsMeta.purchaseorder,
                             Content = new DacsContent
                                 {
-                                    Item = new DacsContentPurchaseOrder
+                                    Item  = new purchaseOrder
                                         {
-                                            orderDate = DateTime.UtcNow.ToLongTimeString(),
-                                            shipTo = new DacsContentPurchaseOrderShipTo
+                                            orderDate = DateTime.UtcNow.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                                            shipTo = new purchaseOrderShipTo
                                                 {
                                                     name = "Alice Smith",
                                                     street = "123 Mapple Street",
                                                     city = "Mill Valley",
                                                     state = "CA",
                                                     zip = 90952,
-                                                    country = DacsContentPurchaseOrderShipToCountry.US,
+                                                    country = PurchaseOrderShipToCountry.US,
                                                 },
-                                            billTo = new DacsContentPurchaseOrderBillTo
+                                            billTo = new purchaseOrderBillTo
                                                 {
                                                     name = "Robert Smith",
                                                     street = "8 Oak Avenue",
                                                     city = "Old Town",
                                                     state = "PA",
                                                     zip = 95819,
-                                                    country = DacsContentPurchaseOrderBillToCountry.US,
+                                                    country = PurchaseOrderBillToCountry.US,
                                                 },
                                             comment = "Hurry, my lawn is going wild!",
                                             items = new []
                                                 {
-                                                    new DacsContentPurchaseOrderItem
+                                                    new purchaseOrderItem
                                                         {
                                                             productName = "Lawmower",
                                                             quantity = 1,
@@ -82,12 +82,13 @@ namespace TestClient
                                                             comment = "Confirm this is electric",
                                                             partNum = "872-AA"
                                                         },
-                                                    new DacsContentPurchaseOrderItem
+                                                    new purchaseOrderItem
                                                         {
                                                             productName = "Baby Monitor",
                                                             quantity = 1,
                                                             USPrice = (decimal)39.98,
-                                                            comment = DateTime.Now.AddDays(4).ToLongTimeString(),
+                                                            shipDate = DateTime.Now.AddDays(4).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                                                            comment = "I love those littel screens",
                                                             partNum = "926-AA"
                                                         }
                                                 }
