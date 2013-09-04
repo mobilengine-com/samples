@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TestServerIIS.WdxService" CodeBehind="WdxService.svc.cs" %>
