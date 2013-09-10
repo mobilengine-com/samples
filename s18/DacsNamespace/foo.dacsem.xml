@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="Foo" name="Foo" startLine="1" targetNamespace="http://schemas.mobilengine.com/samples/Foo">
+    <Xel rfsname="Foo" startLine="2">
+        <Xat rfsname="Bar" startLine="3">
+            <TypeDef startLine="3" type="string"/>
+        </Xat>
+    </Xel>
+    <Source>schema 'Foo' meta 'Foo' namespace "http://schemas.mobilengine.com/samples/Foo"&#13;
+Foo: element {&#13;
+  Bar: attribute of type string;&#13;
+}</Source>
+</Dacsem>

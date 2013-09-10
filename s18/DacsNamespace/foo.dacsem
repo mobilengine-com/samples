@@ -1,0 +1,4 @@
+schema 'Foo' meta 'Foo' namespace "http://schemas.mobilengine.com/samples/Foo"
+Foo: element {
+  Bar: attribute of type string;
+}
