@@ -10,7 +10,7 @@ import com.mobilengine.schemas.wdx.Dacs;
 import com.mobilengine.schemas.wdx.IWdx;
 import com.mobilengine.schemas.wdx.IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessage;
 
-@WebService
+@WebService(serviceName="Wdx", targetNamespace="http://schemas.mobilengine.com/Wdx")
 public class WdxService implements IWdx {
 
 	@Override

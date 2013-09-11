@@ -14,7 +14,8 @@ namespace TestClient
     /// messages to Mobilengine. The Mobilengine Backoffice would play the role of the server side in that case, but to make the 
     /// sample self contained, you can use the attached TestServer as a dummy Mobilengine Backoffice to receive the messages.
     /// 
-    /// Check out the Service References for the code generated from the WSDL file. Also check the App.config file for the web service client configuration.
+    /// Check out the Service References for the code generated from the WSDL file. Also check the App.config file for the
+    /// web service URL and client certificate configuration.
     /// 
     /// Make sure that the me-test-client.pfx certificate is installed in the Local Computer/Personal store (the password is 1234)
     /// Additionally the me-indoor-ca.cer file should be imported to the Local Computer/Trusted Root store.
@@ -23,22 +24,10 @@ namespace TestClient
     /// </summary>
     class Program
     {
-        const int port = 4443;
-        static readonly Uri uriServer = new Uri(string.Format("https://localhost:{0}/Services/Wdx/Wdx.svc", port));
-
         static void Main()
         {
-            //Read our client certificate
-            var certificateStore = new X509Store(StoreName.My, StoreLocation.LocalMachine);
-            certificateStore.Open(OpenFlags.ReadOnly);
-            var cert = certificateStore.Certificates.Cast<X509Certificate2>().
-                Single( certT => certT.Subject == "CN=me test client" && certT.IssuerName.Name == "CN=ME-INDOOR-CA");
-            certificateStore.Close();
-
-            //Create a soap client and set certificate
-            var wdxClient = new WdxClient("BasicHttpBinding_IWdx", new EndpointAddress(uriServer));
-            wdxClient.ClientCredentials.ClientCertificate.Certificate = cert;
-
+            var wdxClient = new WdxClient();
+            
             //Send dacs
             try
             {

@@ -93,7 +93,7 @@
         </List>
     </Xel>
     <Source>//example-16&#13;
-schema 'purchase-order' meta 'purchase-order'&#13;
+schema 'purchase-order' meta 'purchase-order' namespace "http://schemas.acme.com/purchase-order"&#13;
 &#13;
 purchaseOrder: element {&#13;
 	orderDate: attribute of type dtu(dtf yyyy "-" MM "-" dd);&#13;

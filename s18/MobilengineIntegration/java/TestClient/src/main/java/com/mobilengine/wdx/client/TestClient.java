@@ -31,7 +31,7 @@ import com.mobilengine.schemas.wdx.Wdx;
 //
 // The files for implementing the wsdl contract in com.acme.schemas.purchase_order and com.mobilengine.schemas.wdx 
 // were generated using wsimport: 
-// wsimport -Xnocompile  purchase-order.wsdl
+// wsimport -wsdllocation ../../../../purchase-order.wsdl -Xnocompile  purchase-order.wsdl
 
 public class TestClient {
 		
@@ -41,23 +41,20 @@ public class TestClient {
 		final String url = "https://localhost:" + port + "/Services/Wdx/Wdx.svc";
 		
 		try {
-			Wdx wdx = new Wdx(TestClient.class.getResource("/purchase-order.wsdl"),
-					new QName("http://schemas.mobilengine.com/Wdx", "Wdx"));
-
-			IWdx wdxClient = wdx.getBasicHttpBindingIWdx();
-
 			System.setProperty("javax.net.ssl.trustStore", TestClient.class.getResource("/truststore.jks").getPath());
 			System.setProperty("javax.net.ssl.trustStorePassword", "123456");
 			System.setProperty("javax.net.ssl.keyStore", TestClient.class.getResource("/me-test-client.pfx").getPath());
 			System.setProperty("javax.net.ssl.keyStorePassword", "1234");
 			System.setProperty("javax.net.ssl.keyStoreType", "pkcs12");
 			
+			Wdx wdx = new Wdx();
+			IWdx wdxClient = wdx.getBasicHttpBindingIWdx();
 			BindingProvider bp = (BindingProvider) wdxClient;
-			
 			bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, url);
 
 			Dacs dacs = createDacs();
 			wdxClient.enqueueDacs(dacs);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
