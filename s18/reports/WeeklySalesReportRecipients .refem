@@ -1,0 +1,8 @@
+<Reftab Name="WeeklySalesReportRecipients ">
+	<Columns>
+		<Column Name="id" Type="Integer" PrimaryKey="true" NotNull="true" />
+		<Column Name="name" Type="Text" />
+		<Column Name="email" Type="Text" />
+		<Column Name="region" Type="Text" />
+	</Columns>
+</Reftab>
