@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Form name="regional-sales"  description="Sell a product" 
+ typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}'>
+   <Control name="root" type="panel">
+	<Control name="region" label="Region" type="textbox"></Control>
+	<Control name="product" label="Product to sell" type="textbox"></Control>
+  </Control>
+</Form>

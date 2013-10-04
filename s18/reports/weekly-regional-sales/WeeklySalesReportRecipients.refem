@@ -1,4 +1,4 @@
-<Reftab Name="WeeklySalesReportRecipients ">
+<Reftab Name="WeeklySalesReportRecipients">
 	<Columns>
 		<Column Name="id" Type="Integer" PrimaryKey="true" NotNull="true" />
 		<Column Name="name" Type="Text" />

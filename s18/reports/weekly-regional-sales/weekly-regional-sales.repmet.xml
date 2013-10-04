@@ -7,6 +7,7 @@
   <ColumnNameFrom>ControlName</ColumnNameFrom>
   <ExcludeStaticLabels>true</ExcludeStaticLabels>
   <IncludeTrackData>false</IncludeTrackData>
+  
 
   <ParameterTable>WeeklySalesReportRecipients</ParameterTable>
   <Email>
@@ -18,7 +19,7 @@
     <Subject>Your weekly sales report</Subject>
   </Email>
   <Filter>
-    <Form>new-order</Form>
+    <Form>Sell a product</Form>
     <More>
       <Field Name="region" ParameterColumn="region" />
     </More>
