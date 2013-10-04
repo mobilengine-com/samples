@@ -1,0 +1,19 @@
+<ReportDefinition>
+  <Name>Email config sample</Name>
+  <Format>PDF</Format>
+  <Frequency>Daily</Frequency>
+  <FirstRunAt>2013-01-12T12:40:00</FirstRunAt>
+  <GenerateIfEmpty>true</GenerateIfEmpty>
+  <ColumnNameFrom>ControlName</ColumnNameFrom>
+  <ExcludeStaticLabels>true</ExcludeStaticLabels>
+  <IncludeTrackData>false</IncludeTrackData>
+  <Email>
+    <Recipients>
+      <To>foobar1@mobilengine.com</To>
+      <To>foobar2@mobilengine.com</To>
+    </Recipients>
+    <Attachment>attachment-prefix</Attachment>
+    <Body>Dear User, ...</Body>
+    <Subject>Your report2 has just arrived</Subject>
+  </Email>
+</ReportDefinition>

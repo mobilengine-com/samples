@@ -1,0 +1,20 @@
+<ReportDefinition>
+  <Name>Multireport sample</Name>
+  <Format>PDF</Format>
+  <Frequency>Weekly</Frequency>
+  <FirstRunAt>2013-01-12T12:40:00</FirstRunAt>
+  <GenerateIfEmpty>true</GenerateIfEmpty>
+  <ColumnNameFrom>ControlName</ColumnNameFrom>
+  <ExcludeStaticLabels>true</ExcludeStaticLabels>
+  <IncludeTrackData>false</IncludeTrackData>
+
+  <ParameterTable>WeeklySalesReportRecipients</ParameterTable>
+  <Email>
+    <Recipients>
+      <To>{@email}</To>
+    </Recipients>
+    <Attachment>weekly-sales</Attachment>
+    <Body>Dear {@name}, ...</Body>
+    <Subject>Your weekly sales report</Subject>
+  </Email>
+</ReportDefinition>
