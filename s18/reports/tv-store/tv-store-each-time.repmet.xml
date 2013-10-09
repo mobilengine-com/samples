@@ -1,0 +1,20 @@
+<ReportDefinition>
+  <Name>Tv Store each time report</Name>
+  <Format>PDF</Format>
+  <Frequency>EachTimeANewDataRowArrives</Frequency>
+  <GenerateIfEmpty>true</GenerateIfEmpty>
+  <ColumnNameFrom>ControlName</ColumnNameFrom>
+  <ExcludeStaticLabels>true</ExcludeStaticLabels>
+  <IncludeTrackData>false</IncludeTrackData>
+
+  <ParameterTable>vendor</ParameterTable>
+  <Email>
+	<Subject>{@id}</Subject>
+	<Recipients><To>{@email}</To></Recipients>
+  </Email>
+  <Filter>
+	  <More>
+		<Field Name="idVendor" ParameterColumn="id" />
+	  </More>
+  </Filter>
+</ReportDefinition>

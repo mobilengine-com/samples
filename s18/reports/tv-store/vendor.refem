@@ -1,0 +1,7 @@
+<Reftab Name="vendor">
+	<Columns>
+		<Column Name="id" Type="Integer" />
+		<Column Name="name" Type="Text" />
+		<Column Name="email" Type="Text" />
+	</Columns>
+</Reftab>

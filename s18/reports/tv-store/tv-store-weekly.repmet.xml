@@ -1,0 +1,21 @@
+<ReportDefinition>
+  <Name>Tv Store Weekly sales</Name>
+  <Format>PDF</Format>
+  <Frequency>Weekly</Frequency>
+  <FirstRunAt>2013-01-12T12:40:00</FirstRunAt>
+  <GenerateIfEmpty>true</GenerateIfEmpty>
+  <ColumnNameFrom>ControlName</ColumnNameFrom>
+  <ExcludeStaticLabels>true</ExcludeStaticLabels>
+  <IncludeTrackData>false</IncludeTrackData>
+
+  <ParameterTable>vendor</ParameterTable>
+  <Email>
+	<Subject>{@id}</Subject>
+	<Recipients><To>{@email}</To></Recipients>
+  </Email>
+  <Filter>
+	  <More>
+		<Field Name="idVendor" ParameterColumn="id" />
+	  </More>
+  </Filter>
+</ReportDefinition>

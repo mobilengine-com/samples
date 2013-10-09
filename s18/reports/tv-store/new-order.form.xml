@@ -1,0 +1,37 @@
+<Form typed="true" name="NewOrder" description="New order" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' >
+	<Control type="panel" name="root" color="RGB(240,240,240)">
+		<Control type="textbox" visible="false" name="guidOrder" reference="GUID"/>
+		<Control type="textbox" visible="false" name="dtlOrder" reference="=@dtlNowReal" />
+		
+		<Control type="panel" name="panel1"  layout="standard" navigation="inline" count="0">
+		
+			<Control type="combobox" name="cbProduct" size="large" label="Select product:" 
+				data_type="int,string" reference="SELECT id, name FROM Reference_product" />
+
+			<Control type="textbox" name="priceOrder" numberformat='{decimalSeparator:",", postfix:" Ft", groupSize:3, groupSeparator:" ", maxFraction:2}'  size="large" label="Price"
+				data_type="float" reference="select price from Reference_product where id=@1" ref_arg="../cbProduct.key"/>
+
+			<Control type="textbox" name="idProduct" visible="false" 
+				data_type="int" reference="REF" ref_arg="../cbProduct.key" />
+				
+			<Control type="textbox" name="idVendor" visible="false" 
+				data_type="int" reference="select idVendor from Reference_product where id=@1" ref_arg="../cbProduct.key" />
+				
+		</Control>
+		
+		
+		<Control type="panel" name="target_panel" label="target_panel" layout="standard" navigation="inline" >
+			<Control type="label" name="label" label="target_panel" color="RGB(206,32,42)" />
+			<Control type="button" name="button" text="Generate input_panel" >
+				<Actions>
+					<Action type="generator" target="//root/panel1" />
+				</Actions>
+			</Control>
+		</Control>
+		
+		<Control type="label" size="large"  name="lblX" label="Specify billing info:"  />
+		<Control type="textbox" size="large"  name="nameBuyer" label="Name"  />
+		<Control type="textbox" size="large"  name="addressBuyer" label="Address" lines="3" />
+	
+	</Control>
+</Form>
