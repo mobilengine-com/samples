@@ -1,0 +1,15 @@
+<Form  name="Termékfotók"  description="Termékfotók" >
+	<Control type="panel" name="root" >
+		<Control type="panel" name="generated_panel" label="generated panel" text="generated panel" layout="standard" navigation="inline" count="0">
+			<Control type="textbox" label="terméknév" name="product_name" />
+			<Control type="photo" name="product_picture"  allowmultishoot="false" allowcomments="true" proposedresolution="2240x2240" proposedquality="100" showthumbnails="true" />
+		</Control>
+		
+		<Control type="button" name="generator_button" text="generator button">
+			<Actions>
+				<Action type="generator" target="//root/generated_panel" />
+			</Actions>
+		</Control>
+
+	</Control>
+</Form>
