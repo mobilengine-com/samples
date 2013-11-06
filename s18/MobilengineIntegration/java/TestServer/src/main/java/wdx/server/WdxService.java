@@ -22,7 +22,7 @@ public class WdxService implements IWdx {
 			throws IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessage {
 		System.out.println("Dacs received: " + dacs.getDacsid());
 		System.out.println("This is an order from " + dacs.getContent().getPurchaseOrder().getBillTo().getName() +  
-				" for" + dacs.getContent().getPurchaseOrder().getItems().getItem().size() + " products");
+				" for " + dacs.getContent().getPurchaseOrder().getItems().getItem().size() + " products");
 	}
 
 }

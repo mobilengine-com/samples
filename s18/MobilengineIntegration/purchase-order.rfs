@@ -5,35 +5,32 @@ using dacs 'purchase-order';
     var msg = messages.'purchase-order'.New();
     var order = msg.purchaseOrder;
 
-    order.orderDate = dtu.Parse(dtfDate, "1999-10-20");
-    order.shipTo.name = "Alice Smith";
-    order.shipTo.country = "US";
-    order.shipTo.street = "123 Maple Street";
-    order.shipTo.city = "Mill Valley";
-    order.shipTo.state = "CA";
-    order.shipTo.zip = 90952;
+	order.orderDate = dacs.purchaseOrder.orderDate;
+    order.shipTo.name = dacs.purchaseOrder.shipTo.name;
+    order.shipTo.country = dacs.purchaseOrder.shipTo.country;
+    order.shipTo.street = dacs.purchaseOrder.shipTo.street;
+    order.shipTo.city = dacs.purchaseOrder.shipTo.city;
+    order.shipTo.state = dacs.purchaseOrder.shipTo.state;
+    order.shipTo.zip = dacs.purchaseOrder.shipTo.zip;
     
-    order.billTo.name = "Robert Smith";
-    order.billTo.country = "US";
-    order.billTo.street = "8 Oak Avenue";
-    order.billTo.city = "Old Town";
-    order.billTo.state = "PA";
-    order.billTo.zip = 95819;
+    order.billTo.name = dacs.purchaseOrder.billTo.name;
+    order.billTo.country = dacs.purchaseOrder.billTo.country;
+    order.billTo.street = dacs.purchaseOrder.billTo.street;
+    order.billTo.city = dacs.purchaseOrder.billTo.city;
+    order.billTo.state = dacs.purchaseOrder.billTo.state;
+    order.billTo.zip = dacs.purchaseOrder.billTo.zip;
     
-    order.comment = "Hurry, my lawn is going wild!";
-    var itemLawnower = order.items.AddNew();
-    itemLawnower.partNum = "872-AA";
-    itemLawnower.productName = "Lawnmower";
-    itemLawnower.quantity = 1;
-    itemLawnower.USPrice = 148.95;
-    itemLawnower.comment = "Confirm this is electric";
-    
-    var itemBabyMonitor = order.items.AddNew();
-    itemBabyMonitor.partNum = "926-AA";
-    itemBabyMonitor.productName = "Baby Monitor";
-    itemBabyMonitor.quantity = 1;
-    itemBabyMonitor.USPrice = 39.98;
-    itemBabyMonitor.shipDate = dtu.Parse(dtfDate, "1999-05-21");
+    order.comment = dacs.purchaseOrder.comment;
+	
+	foreach(var item in dacs.purchaseOrder.items){
+		
+		var itemNew = order.items.AddNew();
+		itemNew.partNum = item.partNum;
+		itemNew.productName = item.productName;
+		itemNew.quantity = item.quantity;
+		itemNew.USPrice = item.USPrice;
+		itemNew.comment = item.comment;
+	}
     
     msg.Send();
 }
