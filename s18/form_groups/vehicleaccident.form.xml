@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Form name="vehicleAccident" form_group="driver" ksubmit="nobutton" description="Vehicle Accident" hidden="true" typed="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" numberformat="{decimalSeparator:&quot;.&quot;}">
+  <Rgsyl>
+    <Syl syln="head" halign="right" fItalic="true" />
+    <Syl syln="input" />
+    <Syl syln="tbl" duPaddingTop="10px" />
+  </Rgsyl>
+  <Control name="root" type="panel">
+    <Control headless="true" table_width="1swt" sylnCrown="=tbl" type="panel" layout="table" navigation="inline" name="id2">
+      <Control text="Date:" width="remaining 1" sylnCrown="=head" type="label" name="id3" />
+      <Control sylnCrown="=input" width="remaining 3" ptype="date" type="textbox" readonly="true" name="id4" />
+      <Control width="remaining 2" type="separator" name="id5" />
+    </Control>
+    <Control headless="true" table_width="1swt" sylnCrown="=tbl" type="panel" layout="table" navigation="inline" name="id6">
+      <Control text="Personal Injury:" width="remaining 1" sylnCrown="=head" type="label" name="id7" />
+      <Control reference="{Query={Static {'Yes','No'}}}" choice="button" width="remaining 3" type="combobox" name="id8" />
+      <Control width="remaining 2" type="separator" name="id9" />
+    </Control>
+    <Control headless="true" table_width="1swt" sylnCrown="=tbl" type="panel" layout="table" navigation="inline" name="id10">
+      <Control text="Accident details: " width="remaining 1" sylnCrown="=head" type="label" name="id11" />
+      <Control sylnCrown="=input" lines="5" width="remaining 3" type="textbox" name="id12" />
+      <Control width="remaining 2" type="separator" name="id13" />
+    </Control>
+    <Control headless="true" table_width="1swt" sylnCrown="=tbl" type="panel" layout="table" navigation="inline" name="id14">
+      <Control text="Photo:" width="remaining 1" sylnCrown="=head" type="label" name="id15" />
+      <Control name="Photo" proposedquality="10" width="remaining 3" consistentquality="false" allowmultishoot="true" proposedresolution="2048x1536" type="photo" />
+      <Control width="remaining 2" type="separator" name="id17" />
+    </Control>
+    <Control headless="true" table_width="1swt" sylnCrown="=tbl" type="panel" layout="table" navigation="inline" name="id18">
+      <Control width="remaining 1" type="separator" name="id19" />
+      <Control width="remaining 3" action="submit_form" text="Send" type="closebutton" name="id20" />
+      <Control width="remaining 2" type="separator" name="id21" />
+    </Control>
+  </Control>
+</Form>

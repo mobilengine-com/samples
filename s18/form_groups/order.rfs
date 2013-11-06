@@ -1,0 +1,16 @@
+server program Order for form callTaxi
+using reftab 'tasks';
+{
+
+	db.tasks.Insert(
+		{
+			guid: form.root.guid.value, 
+			status: "Open",
+			name: form.root.name.value, 
+			address: form.root.address.value, 
+			phone: form.root.phone.value, 
+			date: dtu.Parse((dtf yyyy "-" MM "-" dd " " HH ":" mm), form.root.date.value).DtuToDtdb(),
+			cPassenger: int.Parse(form.root.cPassenger.value),
+			notes: form.root.notes.value
+		});
+}
