@@ -30,25 +30,6 @@
 					</cell>
 				</row>
 			</_:header>
-			<_:footer>
-				<row>
-					<cell>
-						<label text="" /> 
-					</cell>
-					<cell>
-						<label text="" /> 
-					</cell>
-					<cell>
-						<label text="" /> 
-					</cell>
-					<cell>
-						<label text="{TOSTRING((SELECT SUM(TOINT(city.terulet.text)) FROM kereses.rows city)) || ' km²'}" /> 
-					</cell>
-					<cell>
-						<label text="" /> 
-					</cell>
-				</row>
-			</_:footer>
 			<row>
 				<cell>
 					<label name="nev" text="{city.Nev}" /> 
@@ -82,7 +63,7 @@
     
     
     
-    <popup name="popup2" label="Custom header">
+    <popup name="popup2" label="Custom header and footer">
 		
 		
 		<table name="kereses" record="city" recordset="{
@@ -125,7 +106,7 @@
 						<label text="" /> 
 					</cell>
 					<cell>
-						<label text="{TOSTRING((SELECT SUM(TOINT(city.terulet.text)) FROM kereses.rows city)) || ' km²'}" /> 
+						<label text="{SELECT SUM(TOINT(row.terulet.text)) FROM kereses.rows row}" /> 
 					</cell>
 					<cell>
 						<label text="" /> 
