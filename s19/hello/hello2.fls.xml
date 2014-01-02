@@ -1,0 +1,4 @@
+<form name="hello">
+    <textbox name="yourName" label="Enter your name"/>
+    <label text="{'Hello ' || yourName.text || '!'}" label="Greeting"/>
+</form>

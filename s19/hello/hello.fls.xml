@@ -1,0 +1,3 @@
+<form name="hello">
+    <label label="Greeting" text="Hello World!"/>
+</form>
