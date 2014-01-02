@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Reftab xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Telepulesek">
+  <Columns>
+    <Column PrimaryKey="true" Name="Nev" Type="Text" AgentName="false" NotNull="true" />
+    <Column PrimaryKey="false" Name="Rang" Type="Text" AgentName="false" NotNull="false" />
+    <Column PrimaryKey="false" Name="Megye" Type="Text" AgentName="false" NotNull="false" />
+    <Column PrimaryKey="false" Name="Kisterseg" Type="Text" AgentName="false" NotNull="false" />
+    <Column PrimaryKey="false" Name="Nepesseg" Type="Text" AgentName="false" NotNull="false" />
+    <Column PrimaryKey="false" Name="Terulet" Type="Integer" AgentName="false" NotNull="false" />
+    <Column PrimaryKey="false" Name="Nepsuruseg" Type="Float" AgentName="false" NotNull="false" />
+  </Columns>
+</Reftab>
