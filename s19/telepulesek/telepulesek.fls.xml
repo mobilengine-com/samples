@@ -1,80 +1,165 @@
 <form name="telepulesek" xmlns:_="http://foo.bar">
-    <textbox name="search" label="Szűrés településnév alapján" />
+	<popup name="popup1" label="Filter by city">
+		<textbox name="search" label="Filter by city" />
+		
+		<table name="kereses" record="city" recordset="{
+													   SELECT t.Nev, t.Rang, t.Megye, t.Kisterseg, t.Nepesseg, t.Terulet, t.Nepsuruseg 
+													   FROM Telepulesek t
+													   WHERE UPPER(t.Nev) LIKE '%' || search.text || '%'
+													   ORDER BY Nev ASC
+													   }">
+			<_:header>
+				<row>
+					<cell>
+						<label text="Településnév" /> 
+					</cell>
+					<cell>
+						<label text="Rang" /> 
+					</cell>
+					<cell>
+						<label text="Megye" />
+					</cell>
+					<cell>
+						<label text="Terület" />
+					</cell>
+					<cell>
+						<label text="Népsűrűség" />
+					</cell>
+					<cell>
+						<label text="" />
+					</cell>
+				</row>
+			</_:header>
+			<_:footer>
+				<row>
+					<cell>
+						<label text="" /> 
+					</cell>
+					<cell>
+						<label text="" /> 
+					</cell>
+					<cell>
+						<label text="" /> 
+					</cell>
+					<cell>
+						<label text="{TOSTRING((SELECT SUM(TOINT(city.terulet.text)) FROM kereses.rows city)) || ' km²'}" /> 
+					</cell>
+					<cell>
+						<label text="" /> 
+					</cell>
+				</row>
+			</_:footer>
+			<row>
+				<cell>
+					<label name="nev" text="{city.Nev}" /> 
+				</cell>
+				<cell>
+					<label name="rang" text="{city.Rang}" /> 
+				</cell>
+				<cell>
+					<label name="megye" text="{city.Megye}" /> 
+				</cell>
+				<cell>
+					<label name="terulet" text="{TOSTRING(city.Terulet) || ' km²'}" /> 
+				</cell>
+				<cell>
+					<label name="nepsuruseg" text="{city.Nepsuruseg}" /> 
+				</cell>
+				<cell>
+					<popup label="Részletek">
+						<label label="Név" text="{city.Nev}" /> 
+						<label label="Rang" text="{city.Rang}" /> 
+						<label label="Megye" text="{city.Megye}" /> 
+						<label label="Kistérség" text="{city.Kisterseg}"></label>
+						<label label="Népesség" text="{city.Nepesseg}"></label>
+						<label label="Terület" text="{TOSTRING(city.Terulet) || ' km²'}" /> 
+						<label label="Népsűrűség" text="{city.Nepsuruseg}" /> 
+					</popup>
+				</cell>
+			</row>
+		</table>
+	</popup>
     
-    <table name="kereses" record="city" recordset="{
-                                                   SELECT t.Nev, t.Rang, t.Megye, t.Kisterseg, t.Nepesseg, t.Terulet, t.Nepsuruseg 
-                                                   FROM Telepulesek t
-                                                   WHERE UPPER(t.Nev) LIKE '%' || search.text || '%'
-                                                   ORDER BY Nev ASC
-                                                   }">
-        <_:header>
-            <row>
-                <cell>
-                    <label text="Településnév" /> 
-                </cell>
-                <cell>
-                    <label text="Rang" /> 
-                </cell>
-                <cell>
-                    <label text="Megye" />
-                </cell>
-                <cell>
-                    <label text="Terület" />
-                </cell>
-                <cell>
-                    <label text="Népsűrűség" />
-                </cell>
-                <cell>
-                    <label text="" />
-                </cell>
-            </row>
-        </_:header>
-        <_:footer>
-            <row>
-                <cell>
-                    <label text="" /> 
-                </cell>
-                <cell>
-                    <label text="" /> 
-                </cell>
-                <cell>
-                    <label text="" /> 
-                </cell>
-                <cell>
-                    <label text="{TOSTRING((SELECT SUM(TOINT(city.terulet.text)) FROM kereses.rows city)) || ' km²'}" /> 
-                </cell>
-                <cell>
-                    <label text="" /> 
-                </cell>
-            </row>
-        </_:footer>
-        <row>
-            <cell>
-                <label name="nev" text="{city.Nev}" /> 
-            </cell>
-            <cell>
-                <label name="rang" text="{city.Rang}" /> 
-            </cell>
-            <cell>
-                <label name="megye" text="{city.Megye}" /> 
-            </cell>
-            <cell>
-                <label name="terulet" text="{TOSTRING(city.Terulet) || ' km²'}" /> 
-            </cell>
-            <cell>
-                <label name="nepsuruseg" text="{city.Nepsuruseg}" /> 
-            </cell>
-            <cell>
-                <popup label="Részletek">
-                    <label label="Név" text="{city.Nev}" /> 
-                    <label label="Rang" text="{city.Rang}" /> 
-                    <label label="Megye" text="{city.Megye}" /> 
-            		<label label="Kistérség" text="{city.Kisterseg}"></label>
-                    <label label="Népesség" text="{city.Nepesseg}"></label>
-                    <label label="Terület" text="{TOSTRING(city.Terulet) || ' km²'}" /> 
-                    <label label="Népsűrűség" text="{city.Nepsuruseg}" /> 
-                </popup>
-            </cell>
-        </row>
-    </table>
+    
+    
+    <popup name="popup2" label="Custom header">
+		
+		
+		<table name="kereses" record="city" recordset="{
+													   SELECT t.Nev, t.Rang, t.Megye, t.Kisterseg, t.Nepesseg, t.Terulet, t.Nepsuruseg 
+													   FROM Telepulesek t
+													   WHERE UPPER(t.Nev) LIKE '%' || search.text || '%'
+													   ORDER BY Nev ASC
+													   }">
+			<_:header>
+				<row>
+					<cell>
+						<textbox name="search" />
+					</cell>
+					<cell>
+						<label text="Rang" /> 
+					</cell>
+					<cell>
+						<label text="Megye" />
+					</cell>
+					<cell>
+						<label text="Terület" />
+					</cell>
+					<cell>
+						<label text="Népsűrűség" />
+					</cell>
+					<cell>
+						<label text="" />
+					</cell>
+				</row>
+			</_:header>
+			<_:footer>
+				<row>
+					<cell>
+						<label text="" /> 
+					</cell>
+					<cell>
+						<label text="" /> 
+					</cell>
+					<cell>
+						<label text="" /> 
+					</cell>
+					<cell>
+						<label text="{TOSTRING((SELECT SUM(TOINT(city.terulet.text)) FROM kereses.rows city)) || ' km²'}" /> 
+					</cell>
+					<cell>
+						<label text="" /> 
+					</cell>
+				</row>
+			</_:footer>
+			<row>
+				<cell>
+					<label name="nev" text="{city.Nev}" /> 
+				</cell>
+				<cell>
+					<label name="rang" text="{city.Rang}" /> 
+				</cell>
+				<cell>
+					<label name="megye" text="{city.Megye}" /> 
+				</cell>
+				<cell>
+					<label name="terulet" text="{TOSTRING(city.Terulet) || ' km²'}" /> 
+				</cell>
+				<cell>
+					<label name="nepsuruseg" text="{city.Nepsuruseg}" /> 
+				</cell>
+				<cell>
+					<popup label="Részletek">
+						<label label="Név" text="{city.Nev}" /> 
+						<label label="Rang" text="{city.Rang}" /> 
+						<label label="Megye" text="{city.Megye}" /> 
+						<label label="Kistérség" text="{city.Kisterseg}"></label>
+						<label label="Népesség" text="{city.Nepesseg}"></label>
+						<label label="Terület" text="{TOSTRING(city.Terulet) || ' km²'}" /> 
+						<label label="Népsűrűség" text="{city.Nepsuruseg}" /> 
+					</popup>
+				</cell>
+			</row>
+		</table>
+	</popup>
  </form>
