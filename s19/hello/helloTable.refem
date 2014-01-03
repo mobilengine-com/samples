@@ -1,0 +1,5 @@
+<Reftab Name="helloTable">
+  <Columns>
+    <Column Name="text" Type="Text" />
+  </Columns>
+</Reftab>
