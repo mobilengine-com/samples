@@ -1,5 +1,4 @@
 <form name="sysparams" xmlns:_="http://foo.bar">
-	<label label="The following sys params are available" />
-    <label label="user" text="{select sysp.user}" />
-    <label label="dtlNow" text="{select sysp.dtlNow}" />
+    <label label="user" text="{sysp.user}" />
+    <label label="dtlNow" text="{sysp.dtlNow}" />
 </form>
