@@ -1,0 +1,3 @@
+<Form name="telepulesek" description="telepulesek">
+	<Control type="textbox" name="placeholder"/>
+</Form>

@@ -1,0 +1,3 @@
+<form id='hello' menuName='hello' platforms='web' xmlns='http://schemas.mobilengine.com/Webform'>
+    <textview label="Greeting" text="Hello World!"/>
+</form>

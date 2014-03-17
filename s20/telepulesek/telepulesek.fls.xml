@@ -1,0 +1,141 @@
+<form id='telepulesek' menuName='telepulesek' platforms='web' xmlns="http://schemas.mobilengine.com/Webform">
+	<popup id='popup1' title='Filter by city'>
+		<textbox id='search' label='Filter by city' />
+		
+		<table id='kereses' record='city' recordset='{
+													   SELECT t.Nev, t.Rang, t.Megye, t.Kisterseg, t.Nepesseg, t.Terulet, t.Nepsuruseg 
+													   FROM Telepulesek t
+													   WHERE UPPER(t.Nev) LIKE "%" || search.text || "%"
+													   ORDER BY Nev ASC
+													   }'>
+			<header>
+				<row>
+					<cell>
+						<textview text='Településnév' /> 
+					</cell>
+					<cell>
+						<textview text='Rang' /> 
+					</cell>
+					<cell>
+						<textview text='Megye' />
+					</cell>
+					<cell>
+						<textview text='Terület' />
+					</cell>
+					<cell>
+						<textview text='Népsűrűség' />
+					</cell>
+					<cell>
+						<textview text='' />
+					</cell>
+				</row>
+			</header>
+			<row>
+				<cell>
+					<textview id='nev' text='{city.Nev}' /> 
+				</cell>
+				<cell>
+					<textview id='rang' text='{city.Rang}' /> 
+				</cell>
+				<cell>
+					<textview id='megye' text='{city.Megye}' /> 
+				</cell>
+				<cell>
+					<textview id='terulet' text='{FORMATNUMBER(city.Terulet,  {maxFraction:2, decimalSeparator:",", groupSize:3, groupSeparator:" ", postfix:" km²"})}' /> 
+				</cell>
+				<cell>
+					<textview id='nepsuruseg' text='{TOSTRING(city.Nepsuruseg)}' /> 
+				</cell>
+				<cell>
+					<popup title='Részletek'>
+						<textview label='Név' text='{city.Nev}' /> 
+						<textview label='Rang' text='{city.Rang}' /> 
+						<textview label='Megye' text='{city.Megye}' /> 
+						<textview label='Kistérség' text='{city.Kisterseg}'></textview>
+						<textview label='Népesség' text='{FORMATNUMBER(city.Nepesseg,  {maxFraction:0, decimalSeparator:",", groupSize:3, groupSeparator:" "})}'></textview>
+						<textview label='Terület' text='{FORMATNUMBER(city.Terulet,  {maxFraction:2, decimalSeparator:",", groupSize:3, groupSeparator:" ", postfix:" km²"})}' /> 
+						<textview label='Népsűrűség' text='{FORMATNUMBER(city.Nepsuruseg,  {maxFraction:2, decimalSeparator:",", groupSize:3, groupSeparator:" "})}' /> 
+					</popup>
+				</cell>
+			</row>
+		</table>
+	</popup>
+    <popup id='popup2' title='Custom header and footer'>		
+		<table id='kereses' record='city' recordset='{
+													   SELECT t.Nev, t.Rang, t.Megye, t.Kisterseg, t.Nepesseg, t.Terulet, t.Nepsuruseg 
+													   FROM Telepulesek t
+													   WHERE UPPER(t.Nev) LIKE "%" || search.text || "%"
+													   ORDER BY Nev ASC
+													   }'>
+			<header>
+				<row>
+					<cell>
+						<textbox id='search' />
+					</cell>
+					<cell>
+						<textview text='Rang' /> 
+					</cell>
+					<cell>
+						<textview text='Megye' />
+					</cell>
+					<cell>
+						<textview text='Terület' />
+					</cell>
+					<cell>
+						<textview text='Népsűrűség' />
+					</cell>
+					<cell>
+						<textview text='' />
+					</cell>
+				</row>
+			</header>
+			<row>
+				<cell>
+					<textview id='nev' text='{city.Nev}' /> 
+				</cell>
+				<cell>
+					<textview id='rang' text='{city.Rang}' /> 
+				</cell>
+				<cell>
+					<textview id='megye' text='{city.Megye}' /> 
+				</cell>
+				<cell>
+					<textview id='terulet' text='{FORMATNUMBER(city.Terulet,  {maxFraction:2, decimalSeparator:",", groupSize:3, groupSeparator:" ", postfix:" km²"})}' /> 
+				</cell>
+				<cell>
+					<textview id='nepsuruseg' text='{FORMATNUMBER(city.Nepsuruseg, {maxFraction:2, decimalSeparator:",", groupSize:3, groupSeparator:" "})}' /> 
+				</cell>
+				<cell>
+					<popup title='Részletek'>
+						<textview label='Név' text='{city.Nev}' /> 
+						<textview label='Rang' text='{city.Rang}' /> 
+						<textview label='Megye' text='{city.Megye}' /> 
+						<textview label='Kistérség' text='{city.Kisterseg}'></textview>
+						<textview label='Népesség' text='{FORMATNUMBER(city.Nepesseg,  {maxFraction:0, decimalSeparator:",", groupSize:3, groupSeparator:" "})}'></textview>
+						<textview label='Terület' text='{FORMATNUMBER(city.Terulet,  {maxFraction:2, decimalSeparator:",", groupSize:3, groupSeparator:" ", postfix:" km²"})}' /> 
+						<textview label='Népsűrűség' text='{FORMATNUMBER(city.Nepsuruseg, {maxFraction:2, decimalSeparator:",", groupSize:3, groupSeparator:" "})}' /> 
+					</popup>
+				</cell>
+			</row>
+            <footer>
+				<row>
+					<cell>
+						<textview text='' /> 
+					</cell>
+					<cell>
+						<textview text='' /> 
+					</cell>
+					<cell>
+						<textview text='' /> 
+					</cell>
+					<cell>
+						<textview text='{SELECT FORMATNUMBER(SUM(TOFLOAT(row.terulet.text)), {maxFraction:2, decimalSeparator:",", groupSize:3, groupSeparator:" ", postfix:" km²"}) FROM kereses.rows row}' /> 
+					</cell>
+					<cell>
+						<textview text='' /> 
+					</cell>
+				</row>
+			</footer>
+		</table>
+	</popup>
+ </form>

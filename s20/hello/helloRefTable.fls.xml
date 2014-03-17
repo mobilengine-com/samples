@@ -1,0 +1,3 @@
+<form id='helloRefTable' menuName='helloRefTable'>
+    <textview label='Greeting' text='{SELECT hello.text FROM helloTable hello}'/>
+</form>

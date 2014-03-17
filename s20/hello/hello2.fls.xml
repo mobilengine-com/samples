@@ -1,0 +1,4 @@
+<form id='hello2' menuName='hello2' platforms='web' xmlns='http://schemas.mobilengine.com/Webform'>
+    <textbox id='yourName' label='Enter your name'/>
+    <textview label='Greeting' text='{"Hello " || yourName.text || "!"}' />
+</form>
