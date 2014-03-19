@@ -1,0 +1,9 @@
+<Reftab Name="orderitem">
+	<Columns>
+	    <Column Name="guidOrder" Type="Text" />
+		<Column Name="guidItem" Type="Text" />
+		<Column Name="idProduct" Type="Text" />
+		<Column Name="details" Type="Text" />
+		<Column Name="price" Type="Float" />
+	</Columns>
+</Reftab>

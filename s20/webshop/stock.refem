@@ -1,0 +1,6 @@
+<Reftab Name="stock">
+	<Columns>
+		<Column Name="idProduct" Type="Text" />
+		<Column Name="cAmount" Type="Integer" />
+	</Columns>
+</Reftab>

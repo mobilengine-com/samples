@@ -1,0 +1,7 @@
+<Reftab Name="product">
+	<Columns>
+		<Column Name="id" Type="Text" />
+		<Column Name="name" Type="Text" />
+		<Column Name="price" Type="Float" />
+	</Columns>
+</Reftab>

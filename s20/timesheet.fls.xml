@@ -1,0 +1,52 @@
+﻿<form id='timesheet' menuName='Timesheet' 
+      platforms='web' xmlns="http://schemas.mobilengine.com/Webform">
+
+    <table id="t" recordset="{true}" record="this">
+        <header>
+            <row>
+            <cell>
+                <textview text="from" />
+            </cell>
+            <cell>
+                <textview text="to" />
+            </cell>
+            <cell>
+                <textview text="job" />
+            </cell>
+        </row>
+        </header>
+        <row>
+            <cell>
+                <timepicker id="dtFrom" timeFormat='(dtf HH ":" mm)'> 
+                    <validation>
+                        <validator cond="{seconds IS NOT NULL}" message="required" />
+                    </validation>
+                </timepicker>
+            </cell>
+            <cell>
+                <timepicker id="dtTo" timeFormat='(dtf HH ":" mm)'>
+                    <declarations>
+                        <let id="conflicts" shape="table" value='{
+                             SELECT other.job.text
+                             FROM t.rows other
+                             WHERE dtTo.seconds > other.dtFrom.seconds AND other.dtTo.seconds > dtFrom.seconds}' />
+                    </declarations>
+                    <validation>
+                        <validator cond="{seconds IS NOT NULL}" message="required" />
+                        <validator cond="{dtTo.seconds > dtFrom.seconds}" message="invalid interval" />
+                        <validator cond="{1 >= (SELECT count(*) FROM conflicts c) }" 
+                           message='{"overlapping intervals: " || (select group_concat(c.text, ", ") from conflicts c)}' />
+                    </validation>
+                </timepicker>
+            </cell>
+            <cell>
+                <textbox id="job"/>
+            </cell>
+            <cell>
+                <removebutton text="remove" />
+            </cell>
+        </row>
+    </table> 
+    <addbutton table="t" records="{true}" text="Add"/>
+    
+</form>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/Webform" id="orders" menuName="Orders" platforms="web">
+   <chapter title="Store overview">
+       <table record="i" recordset="{select p.id, p.name, s.cAmount from stock s join product p on s.idProduct = p.id}">
+          <header>
+             <row>
+                <cell>
+                   <textview text="Product id" />
+                </cell>
+                <cell>
+                   <textview text="Model" />
+                </cell>
+                <cell>
+                   <textview text="In store" />
+                </cell>
+             </row>
+          </header>
+          <row>
+             <cell>
+                <textview text="{i.id}" />
+             </cell>
+             <cell>
+                <textview text="{i.name}" />
+             </cell>
+             <cell>
+                <textview text="{tostring(i.cAmount)}" />
+             </cell>
+              
+          </row>
+       </table>
+   </chapter>
+    
+   <chapter title="Recent orders">
+       <table record="i" recordset="{SELECT o.status, o.guidOrder, o.firstNameBuyer, o.lastNameBuyer,o.phoneBuyer, o.addressBuyer, o.priceOrder                        FROM 'order' o}">
+           <validation>
+           <validator cond="{false}" message="ashajsk"/>
+           </validation>
+          <header>
+             <row>
+                <cell>
+                   <textview text="Status" />
+                </cell>
+                <cell>
+                   <textview text="order id" />
+                </cell>
+                <cell>
+                   <textview text="First name" />
+                </cell>
+                <cell>
+                   <textview text="Last name" />
+                </cell>
+                <cell>
+                   <textview text="Details" />
+                </cell>
+                <cell>
+                   <textview text="Price" />
+                </cell>
+             </row>
+          </header>
+          <row>
+             <cell>
+                <textview text="{i.status}" />
+             </cell>
+             <cell>
+                <textview text="{i.guidOrder}" />
+             </cell>
+             <cell>
+                <textview text="{i.firstNameBuyer}" />
+             </cell>
+             <cell>
+                <textview text="{i.lastNameBuyer}" />
+             </cell>
+             <cell>
+                <table record="i" recordset="{                                  
+                                             SELECT p.name, oi.details, oi.price FROM orderitem oi                                   
+                                             JOIN product p ON oi.idProduct = p.id                                  
+                                             JOIN 'order' o ON o.guidOrder = oi.guidOrder       
+                                             }">
+                   <row>
+                      <cell>
+                         <textview text="{i.name}" />
+                      </cell>
+                      <cell>
+                         <textview text="{i.details}" />
+                      </cell>
+                      <cell>
+                         <textview text="{tostring(i.price)}" />
+                      </cell>
+                   </row>
+                   <footer>
+                      <row>
+                         <cell>
+                            <textview text="{tostring(i.priceOrder)}" />
+                         </cell>
+                      </row>
+                   </footer>
+                </table>
+             </cell>
+             <cell>
+                <textview text="{tostring(i.priceOrder)}" />
+             </cell>
+          </row>
+       </table>
+   </chapter>
+</form>
