@@ -1,0 +1,122 @@
+<form id='validation' menuName='Validation' 
+      platforms='web' xmlns="http://schemas.mobilengine.com/Webform">
+
+    <textbox label="Required text">
+        <validation>
+            <validator cond='{text != ""}' message="Required"/>
+        </validation>
+    </textbox>
+
+    <numberbox label="Number" numberFormat='{decimalSeparator:"."}'>
+        <validation>
+            <validator cond='{number BETWEEN 3 AND 5}' message="Number must be between 3 and 5"/>
+        </validation>
+    </numberbox>
+    
+    <textview text='{"Today is "|| FORMATDTL(sysp.dtlFormOpen, (dtf yyyy"/"MM"/"dd))}'/>
+    <datepicker label="From" id="dtFrom" dateFormat='(dtf yyyy"/"MM"/"dd)'>
+        <validation>
+        	<validator cond='{date >= sysp.dtlFormOpen}' message="Past date is invalid"/>
+        </validation>
+    </datepicker>
+    <datepicker label="To" dateFormat='(dtf yyyy"/"MM"/"dd)'>
+        <validation>
+        	<validator cond='{date >= dtFrom.date}' message="'To' must be greater than 'From'"/>
+        </validation>
+    </datepicker>
+    
+    <numberbox label="Multiple validators" numberFormat='{decimalSeparator:"."}'>
+        <validation>
+            <validator cond='{number > 0}' message="Should be > 0"/>
+            <validator cond='{number > 1}' message="Should be > 1"/>
+            <validator cond='{number > 2}' message="Should be > 2"/>
+            <validator cond='{number > 3}' message="Should be > 3"/>
+            <validator cond='{number > 4}' message="Should be > 4"/>
+        </validation>
+    </numberbox>
+    
+    <chapter title="Appearance on controls">
+        <popup title="This popup has validation errors in it">
+            <textview>
+                <validation>
+                    <validator cond="{false}" message="error"/>
+                </validation>
+            </textview>
+        </popup>
+    </chapter>
+
+    <chapter title="Type validation">
+        <datepicker dateFormat='(dtf yyyy"/"MM"/"dd)'/>
+        <datepicker dateFormat='(dtf yyyy"/"MM"/"dd)' invalidDateMessage="Should be yyyy/mm/dd"/>
+        <numberbox numberFormat='{decimalSeparator:"."}'/>
+        <numberbox numberFormat='{decimalSeparator:"."}' invalidNumberMessage="Should be #.###"/>
+    </chapter>
+    
+    <chapter title="Random edge cases">
+        <textview text='NULL is valid'>
+            <validation>
+                <validator id="v" cond="{NULL}" message="{text}"/>
+            </validation>
+        </textview>
+        <textview text="True is valid">
+            <validation>
+                <validator cond="{true}" message="{text}"/>
+            </validation>
+        </textview>
+        <textview text="False is invalid">
+            <validation>
+                <validator cond="{false}" message="{text}"/>
+            </validation>
+        </textview>
+    </chapter>
+    
+    <chapter title="Timesheet">
+        <table id="t" recordset="{true}" record="this">
+            <header>
+                <row>
+                <cell>
+                    <textview text="from" />
+                </cell>
+                <cell>
+                    <textview text="to" />
+                </cell>
+                <cell>
+                    <textview text="job" />
+                </cell>
+            </row>
+            </header>
+            <row>
+                <cell>
+                    <timepicker id="dtFrom" timeFormat='(dtf HH ":" mm)'> 
+                        <validation>
+                            <validator cond="{seconds IS NOT NULL}" message="required" />
+                        </validation>
+                    </timepicker>
+                </cell>
+                <cell>
+                    <timepicker id="dtTo" timeFormat='(dtf HH ":" mm)'>
+                        <declarations>
+                            <let id="conflicts" shape="table" value='{
+                                 SELECT other.job.text
+                                 FROM t.rows other
+                                 WHERE dtTo.seconds > other.dtFrom.seconds AND other.dtTo.seconds > dtFrom.seconds}' />
+                        </declarations>
+                        <validation>
+                            <validator cond="{seconds IS NOT NULL}" message="Required" />
+                            <validator cond="{dtTo.seconds IS NULL OR dtFrom.seconds IS NULL OR dtTo.seconds > dtFrom.seconds}" message="Invalid interval" />
+                            <validator cond="{1 >= (SELECT count(*) FROM conflicts c) }" 
+                               message='{"Overlapping intervals: " || (select group_concat(c.text, ", ") from conflicts c)}' />
+                        </validation>
+                    </timepicker>
+                </cell>
+                <cell>
+                    <textbox id="job"/>
+                </cell>
+                <cell>
+                    <removebutton text="remove" />
+                </cell>
+            </row>
+        </table> 
+        <addbutton table="t" records="{true}" text="Add"/>
+    </chapter>
+</form>

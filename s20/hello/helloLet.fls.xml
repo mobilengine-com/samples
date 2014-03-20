@@ -1,0 +1,32 @@
+<form xmlns="http://schemas.mobilengine.com/Webform"  
+      id='helloLet' platforms='web' menuName="Hello Let">  
+    <textview id="foo">
+        <declarations>
+            <let id="greeting1" shape="scalar" value='{"hello world"}'/>
+        </declarations>
+    </textview>
+    <textview text="{foo.greeting1}"/>
+    
+    <popup id="bar" title="bar">
+        <declarations>
+            <let id="greeting2" shape="scalar" value='{"hello world"}'/>
+        </declarations>
+    	<textview text="{greeting2}"/>
+    </popup>
+	<textview text="{bar.greeting2}"/>
+    
+    <popup title="baz">
+        <declarations>
+            <let id="greeting3" shape="scalar" value='{"hello world"}'/>
+        </declarations>
+        <textview text="{greeting3}"/>
+    </popup>
+    <textview text="{greeting3}"/>
+    
+    <textbox>
+        <declarations>
+            <let id="greeting4" shape="scalar" value='{"hello " || text || "!"}'/>
+        </declarations>
+    </textbox>
+    <textview text='{greeting4}'/>
+</form>
