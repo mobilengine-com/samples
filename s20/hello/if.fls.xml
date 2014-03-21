@@ -1,0 +1,73 @@
+<form id='if' menuName='if' 
+      platforms='web' xmlns="http://schemas.mobilengine.com/Webform">
+    
+    <checkbox id='check' text='toggle stuff below'/>
+    <if cond='{check.checked}'>
+        <textview text='hide me'/>
+    </if>
+
+	<chapter title='contents of if exist even when hidden'>
+        <if cond='{false}'>
+            <textview id='foo' text='secret text'/>
+        </if>
+        <textview text='{foo.text}'/>
+	</chapter>    
+    
+    
+    <chapter title='random corner cases'>
+        <if cond='{true}'>
+            <textview text='true is visible'/>
+        </if>
+        <if cond='{false}'>
+            <textview text='false is invisible'/>
+        </if>
+        <if cond='{NULL}'>
+            <textview text='NULL is invisible'/>
+        </if>
+	</chapter>        
+    
+    <chapter title='if can have multiple children'>
+        <if cond='{true}'>
+            <textview text='foo'/>
+            <textview text='bar'/>
+            <textview text='baz'/>
+            <textview text='more'/>
+            <textview text='even more'/>
+        </if>
+    </chapter>
+    
+    <chapter title='if in table'>
+        <table label='hidden' recordset='{table id (1)}' record='r'>
+            <row>
+                <cell>
+                    <textview text='before'/>
+                </cell>
+                <cell>
+                    <if cond='{false}'/>
+                </cell>
+                <cell>
+                    <textview text='after'/>
+                </cell>
+            </row>
+        </table>
+        <table label='multiline' recordset='{table id (1)}' record='r'>
+            <row>
+                <cell>
+                    <textview text='before'/>
+                </cell>
+                <cell>
+                    <if cond='{true}'>
+                        <textview text='line 1'/>
+                        <textview text='line 2'/>
+                        <textview text='line 3'/>
+                        <textview text='line 4'/>
+                        <textview text='line 5'/>
+                    </if>
+                </cell>
+                <cell>
+                    <textview text='after'/>
+                </cell>
+            </row>
+        </table>
+    </chapter>
+</form>
