@@ -1,0 +1,50 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v1' id='controls' menuName='controls' platforms='web'>
+    <textview id='textview1' label='label for textview' text='the text' />
+    <textbox id='textbox1' label='label for textbox' text='initial text' lines='1' />    
+    <numberbox id='numberbox1' numberFormat='{decimalSeparator: ",", maxFraction: 2, groupSeparator:".", groupSize: 3, prefix:"pre", postfix:" post"}' float="false" label='label for numberbox' number='{42}' invalidNumberMessage='Not a number'/>
+    <checkbox id='checkbox1' label='label for checkbox' text='text' checked='{false}' />
+    <datepicker id='datepicker1' label='label for datepicker' date='{(dtl 2014-03-19T00:00:00)}' invalidDateMessage='Not a date' dateFormat='(dtf yyyy"/"MM"/"dd)' />
+    <timepicker id='timepicker1' label='label for timepicker' seconds='{3600}' invalidTimeMessage='Not a time' timeFormat='(dtf HH":"mm)' />
+    <dropdown id='dropdown1' label='label for dropdown' choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' />
+    <radiogroup id='radiogroup1' label='label for radiogroup' choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' />
+    <mailto id='mailto1' label='label for mailto' text='developers' address='developers@mobilengine.com' />
+    <linkview id='linkview1' label='label for linkview' text='mobilengine' url='http://www.mobilengine.com' />
+    <chapter id='chapter1' title='First chapter'>
+        <textview text='chapter contents' />
+    </chapter>
+    <popup id='popup1' label='label for popup' title='the popup'>
+        <textview text='popup contents' />
+    </popup>
+    
+    <table id='table1' label='label for table' recordset='{table c1, c2 ("r1c1", "r1c2"; "r2c1", "r2c2")}' record='r'>
+        <header>
+            <row>
+                <cell>
+                    <textview text='c1 header' />
+                </cell>
+                <cell>
+                    <textview text='c2 header' />
+                </cell>
+            </row>
+        </header>
+        <row>
+            <cell>
+                <textbox text='{r.c1}' />
+            </cell>
+            <cell>
+                <textbox text='{r.c2}' />
+            </cell>
+        </row>
+        <footer>
+            <row>
+                <cell>
+                    <textview text='c1 footer' />
+                </cell>
+                <cell>
+                    <textview text='c2 footer' />
+                </cell>
+            </row>
+        </footer>
+    </table>  
+    <addbutton id='addbutton1' table='table1' records='{select "r3c1" c1, "r3c1" c2}' text='Add' />
+</form>
