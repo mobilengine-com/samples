@@ -1,0 +1,5 @@
+﻿server program SimpleRfs for form SimpleFormWithRfs
+using reftab 'order';
+{
+	trace form;
+}

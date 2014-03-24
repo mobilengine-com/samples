@@ -1,0 +1,7 @@
+<form id='DropdownWithRfs' menuName='Dropdown' platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
+	<dropdown  id='dropdown1' 
+		keyMap='{col1}' 
+		textMap='{col2}' 
+		choices='{TABLE col1, col2 (1, "foo"; 2, "bar")}'>
+	</dropdown>
+</form>

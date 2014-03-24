@@ -1,0 +1,13 @@
+<form id='ScopedFormWithRfs' menuName='Scoped Form' platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
+	<popup id="popup1" title="ide bele 1">
+	   <textbox id="textbox1" label="Text" />
+	   <numberbox id="numberbox1" label="Number" numberFormat="{decimalSeparator:'.'}" />
+	   <datepicker id="datepicker1" label="Date" dateFormat='(dtf yyyy"."MM"."dd)' />
+	</popup>
+	<popup title="ide bele 2">
+	   <textbox id="textbox1" label="Text" />
+	   <numberbox id="numberbox1" label="Number" numberFormat="{decimalSeparator:'.'}" />
+	   <datepicker id="datepicker1" label="Date" dateFormat='(dtf yyyy"."MM"."dd)' />
+	</popup>
+	
+</form>
