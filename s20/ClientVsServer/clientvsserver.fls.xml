@@ -1,0 +1,110 @@
+﻿<form id='ClientVsServer' menuName='ClientVsServer' platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
+
+    <textbox label='tb1' id='tb1'/>
+    <numberbox label='nb1' id='nb1' numberFormat='{decimalSeparator:","}' number='{1}'/>
+    <numberbox label='nb2' id='nb2' numberFormat='{decimalSeparator:","}' number='{2}'/>
+
+    <table id='gentable' recordset='{1}' record='r'>
+           <row>
+               <cell>
+                   <numberbox id='nb3' numberFormat='{decimalSeparator:","}' number='{r.v}'/>
+               </cell>
+           </row>
+    </table> 
+    
+    <chapter title='Examples'>
+        <textview id='e01' text='{tostring(val)}'>
+            <declarations>
+                <let shape='scalar' id='val' value='{1+2}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e02' text='{select group_concat(v.name||", "||tostring(v.price), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{table name, price ("foo", 5000; "bar", 1000)}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e03' text='{select group_concat(tostring(v.v), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{select 1 union all select 2}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e04' text='{tostring(val)}'>
+            <declarations>
+                <let shape='scalar' id='val' value='{(nb1.number + nb2.number) / 2}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e05' text='{tostring(val)}'>
+            <declarations>
+                <let shape='scalar' id='val' value='{select sum(t.nb3.number) from gentable.rows t where t.nb3.number > nb1.number}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e06' text='{select group_concat(tostring(v.v), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{select 1 union select 2}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e07' text='{select group_concat(v.name||", "||tostring(v.price), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{select t.name, t.price from reftable t}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e08' text='{select group_concat(v.name||", "||tostring(v.price), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{select t.name, t.price from reftable t union all select t.name, t.price from (table name, price ("foo", 5000; "bar", 1000)) t}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e09' text='{select group_concat(v.name||", "||tostring(v.price), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{select t.name, t.price from reftable t where t.name like "%" || tb1.text || "%"}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e10' text='{select group_concat(v.name||", "||tostring(v.price), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{select t.name, t.price from reftable t where t.price > (select max(t.nb3.number) from gentable.rows t)}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e11' text='{select group_concat(v.name||", "||tostring(v.price), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{select t.name, t.price from (select t.name, t.price from reftable t where t.price > nb1.number) t}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e12' text='{select group_concat(tostring(v.id)||", "||v.price, "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{select t.id, formatNumber(t.price, {decimalSeparator : ","}) price from (select t.id, t.price from reftable t) t}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e13' text='{tostring(val)}'>
+            <declarations>
+                <let shape='scalar' id='val' value='{formatNumber((select max(t.price) from reftable t), {decimalSeparator : ","})}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e14' text='{select group_concat(v.txt||", "||tostring(v.price), "; ") from val v}'>
+            <declarations>
+                <let shape='table' id='val' value='{table txt, price (
+				  "Max", formatNumber((select max(t.price) from reftable t), {decimalSeparator : ","});
+				  "Avg", formatNumber((select avg(t.price) from reftable t), {decimalSeparator : ","});
+				  "Min", formatNumber((select min(t.price) from reftable t), {decimalSeparator : ","});)}'/>
+            </declarations>
+        </textview>
+    
+        <textview id='e15' text='{tostring(val)}'>
+            <declarations>
+                <let shape='scalar' id='val' value='{formatNumber((select t.price from reftable t where t.id = nb1.number), {decimalSeparator : ","})}'/>
+            </declarations>
+        </textview>
+    
+    </chapter>
+</form>

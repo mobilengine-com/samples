@@ -1,0 +1,7 @@
+<Reftab Name="reftable">
+  <Columns>
+    <Column Name="id" Type="Integer" />
+    <Column Name="name" Type="Text" />
+    <Column Name="price" Type="Integer" />
+  </Columns>
+</Reftab>
