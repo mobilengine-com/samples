@@ -1,0 +1,24 @@
+<form id='TableFormWithRfs' menuName='TableFormWithRfs' platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
+  <table id="tbl" 
+    recordset='{TABLE col1, col2 ("alma", "foo"; "korte", "bar")}' 
+    record='row'>
+    <header>
+      <row>
+        <cell>
+          <textbox id="tbHead" text='Head1' />
+        </cell>
+        <cell>
+          <textview text='Col2'/>
+        </cell>
+      </row>
+    </header>
+    <row>
+      <cell>
+        <textbox id="textbox1" text="{row.col1}"/>
+      </cell>
+      <cell>
+        <textbox id="textbox2" text="{row.col2}"/>
+      </cell>
+    </row>
+  </table> 
+</form>
