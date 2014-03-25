@@ -1,4 +1,4 @@
-<Reftab Name="helloRefTable">
+<Reftab Name="tblHello">
   <Columns>
     <Column Name="text" Type="Text" />
   </Columns>

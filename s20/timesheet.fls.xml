@@ -1,5 +1,5 @@
 ﻿<form id='timesheet' menuName='Timesheet' 
-      platforms='web' xmlns="http://schemas.mobilengine.com/Webform">
+      platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
 
     <table id="t" recordset="{true}" record="this">
         <header>

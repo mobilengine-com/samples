@@ -1,5 +1,5 @@
 <form id='if' menuName='if' 
-      platforms='web' xmlns="http://schemas.mobilengine.com/Webform">
+      platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
     
     <checkbox id='check' text='toggle stuff below'/>
     <if cond='{check.checked}'>

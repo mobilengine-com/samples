@@ -1,5 +1,10 @@
-<form xmlns="http://schemas.mobilengine.com/Webform"  
+<form xmlns="http://schemas.mobilengine.com/fls/v1"  
       id='helloLet' platforms='web' menuName="Hello Let">  
+	<declarations>
+		<let id="greeting0" shape="scalar" value='{"hello world"}'/>
+	</declarations>
+	<textview text="{greeting0}"/>
+	  
     <textview id="foo">
         <declarations>
             <let id="greeting1" shape="scalar" value='{"hello world"}'/>

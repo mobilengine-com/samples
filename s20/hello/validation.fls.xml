@@ -1,5 +1,5 @@
 <form id='validation' menuName='Validation' 
-      platforms='web' xmlns="http://schemas.mobilengine.com/Webform">
+      platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
 
     <textbox label="Required text">
         <validation>
