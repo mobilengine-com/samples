@@ -1,0 +1,12 @@
+<form id='BigSubmit' menuName='BigSubmit' platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
+   <declarations>
+        <let id="crossproduct" 
+             value='{SELECT a.col1, b.col2, c.col3, d.col4  FROM 
+                    (table col1 (1;2;3;4;5;6)) a, 
+                    (table col2 (1;2;3;4;5;6)) b,
+                    (table col3 (1;2;3;4;5;6)) c,
+                    (table col4 (1;2;3;4;5;6)) d
+                    }' 
+             shape="table" />
+    </declarations>
+</form>
