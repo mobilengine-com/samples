@@ -34,5 +34,5 @@ using reftab 'stock';
 		status= "out of stock";
 	}
 	
-	db.order.Update({guidOrder: guidOrder}, {status: "accepted", price: priceOrder});
+	db.order.Update({guidOrder: guidOrder}, {status: "accepted", priceOrder: priceOrder});
 }
