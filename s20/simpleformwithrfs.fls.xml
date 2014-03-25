@@ -1,0 +1,55 @@
+<form id='SimpleFormWithRfs' menuName='Simple Form' platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
+    <declarations>
+        <let id="alma" value='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' shape="table" />
+    </declarations>
+    <textbox id="textbox1" label="Text" />
+       
+   <checkbox id="checkbox1" label="Check this" />
+
+   <numberbox id="numberbox1" label="Number" numberFormat="{decimalSeparator:'.'}" />
+   <datepicker id="datepicker1" label="Date" dateFormat='(dtf yyyy "-"MM"-"dd)' />
+     <dropdown id='dropdown1' label='label for dropdown' choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' />
+    
+    
+    <table id='table2' label='label for table' recordset='{select 1 as c1 where false}' record='r'>
+        <row>
+            <cell>
+                <textbox id="col1"  />
+            </cell>
+            
+        </row>
+        
+    </table>  
+    
+    
+    <table id='table1' label='label for table' recordset='{table c1, c2 ("r1c1", "r1c2"; "r2c1", "r2c2")}' record='r'>
+        <header>
+            <row>
+                <cell>
+                    <textview text='c1 header' />
+                </cell>
+                <cell>
+                    <textview text='c2 header' />
+                </cell>
+            </row>
+        </header>
+        <row>
+            <cell>
+                <textbox id="col1" text='{r.c1}' />
+            </cell>
+            <cell>
+                <textbox id="col2" text='{r.c2}' />
+            </cell>
+        </row>
+        <footer>
+            <row>
+                <cell>
+                    <textview text='c1 footer' />
+                </cell>
+                <cell>
+                    <textview text='c2 footer' />
+                </cell>
+            </row>
+        </footer>
+    </table>  
+</form>
