@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://schemas.mobilengine.com/fls/v1" id="orders" menuName="Orders" platforms="web">
    <chapter title="Store overview">
        <table record="i" recordset="{select p.id, p.name, s.cAmount from stock s join product p on s.idProduct = p.id}">
@@ -31,7 +31,8 @@
    </chapter>
     
    <chapter title="Recent orders">
-       <table record="i" recordset="{SELECT o.status, o.guidOrder, o.firstNameBuyer, o.lastNameBuyer,o.phoneBuyer, o.addressBuyer, o.priceOrder                        FROM 'order' o}">
+       <table record="o" recordset="{SELECT o.status, o.guidOrder, o.firstNameBuyer, o.lastNameBuyer,o.phoneBuyer, o.addressBuyer, o.priceOrder                        
+                                    FROM 'order' o}">
            <validation>
            <validator cond="{false}" message="ashajsk"/>
            </validation>
@@ -59,45 +60,39 @@
           </header>
           <row>
              <cell>
-                <textview text="{i.status}" />
+                <textview text="{o.status}" />
              </cell>
              <cell>
-                <textview text="{i.guidOrder}" />
+                <textview text="{o.guidOrder}" />
              </cell>
              <cell>
-                <textview text="{i.firstNameBuyer}" />
+                <textview text="{o.firstNameBuyer}" />
              </cell>
              <cell>
-                <textview text="{i.lastNameBuyer}" />
+                <textview text="{o.lastNameBuyer}" />
              </cell>
              <cell>
-                <table record="i" recordset="{                                  
+                <table id="x" record="oi" recordset="{                                  
                                              SELECT p.name, oi.details, oi.price FROM orderitem oi                                   
-                                             JOIN product p ON oi.idProduct = p.id                                  
-                                             JOIN 'order' o ON o.guidOrder = oi.guidOrder       
+                                             JOIN product p ON oi.idProduct = p.id  
+                                             WHERE o.guidOrder = oi.guidOrder       
+                                             
                                              }">
                    <row>
                       <cell>
-                         <textview text="{i.name}" />
+                         <textview text="{oi.name}" />
                       </cell>
                       <cell>
-                         <textview text="{i.details}" />
+                         <textview text="{oi.details}" />
                       </cell>
                       <cell>
-                         <textview text="{tostring(i.price)}" />
+                         <textview text="{tostring(oi.price)}" />
                       </cell>
                    </row>
-                   <footer>
-                      <row>
-                         <cell>
-                            <textview text="{tostring(i.priceOrder)}" />
-                         </cell>
-                      </row>
-                   </footer>
                 </table>
              </cell>
              <cell>
-                <textview text="{tostring(i.priceOrder)}" />
+                <textview text="{tostring( o.priceOrder) }" />
              </cell>
           </row>
        </table>
