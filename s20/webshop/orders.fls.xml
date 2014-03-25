@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/Webform" id="orders" menuName="Orders" platforms="web">
+<form xmlns="http://schemas.mobilengine.com/fls/v1" id="orders" menuName="Orders" platforms="web">
    <chapter title="Store overview">
        <table record="i" recordset="{select p.id, p.name, s.cAmount from stock s join product p on s.idProduct = p.id}">
           <header>
