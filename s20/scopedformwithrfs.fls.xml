@@ -1,0 +1,11 @@
+<form id='ScopedFormWithRfs' xmlns='http://schemas.mobilengine.com/fls/v1' menuName='ScopedFormWithRfs'  platforms='web'>
+  <popup id="popup1" title="ide bele1">
+     <textbox id="textbox1" label="Text" />
+  </popup>
+  <popup title="ide bele2">
+     <textbox id="textbox2" label="Text" />
+  </popup>
+  <popup title="ide bele3">
+     <textbox label="Text" />
+  </popup>
+</form>
