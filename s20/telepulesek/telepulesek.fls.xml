@@ -1,4 +1,4 @@
-<form id='telepulesek' menuName='telepulesek' platforms='web' xmlns="http://schemas.mobilengine.com/Webform">
+<form id='telepulesek' menuName='telepulesek' platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
 	<popup id='popup1' title='Filter by city'>
 		<textbox id='search' label='Filter by city' />
 		
