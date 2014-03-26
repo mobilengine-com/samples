@@ -120,6 +120,7 @@
     
             <textbox id="firstNameBuyer" label="First name"  width="40 em"/>
             <textbox id="lastNameBuyer" label="Last name"  width="40 em"/>
+            <textbox id="emailBuyer" label="Email" text="{sysp.user}" width="40 em"/>
             <textbox id="phoneBuyer" label="Phone"  width="40 em"/>
             <textbox id="addressBuyer" label="Address" lines="4" width="40 em"/>
             <checkbox label= " " text="I accept the Terms of use" />
