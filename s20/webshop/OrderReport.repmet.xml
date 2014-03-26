@@ -13,7 +13,7 @@
 		</Recipients>	
 		<Attachment>attachment</Attachment>
 		<Subject>order</Subject>
-		<Body>Dear Customer,
+		<Body>Dear {fancyshop/firstNameBuyer/fancyshop_firstNameBuyer_text} {fancyshop/lastNameBuyer/fancyshop_lastNameBuyer_text},
 You have received report of your order !
 
 Best regards,
