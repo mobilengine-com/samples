@@ -121,7 +121,6 @@
                 </footer>
             </table> 
     	</chapter>
-    </if>
         <chapter title="Billing information">
     
             <textbox id="firstNameBuyer" label="First name"  width="40 em">
@@ -160,4 +159,5 @@
                 </checkbox>
             </popup>
     	</chapter>
+    </if>
 </form>
