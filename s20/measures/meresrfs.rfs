@@ -1,0 +1,9 @@
+server program meresrfs for form meresform
+using reftab 'merestable1k';
+using reftab 'merestable10k';
+using reftab 'merestable100k';
+{
+	if(form.submissionTitle=="1")db.merestable1k.Update({num01:0},{num02:db.merestable1k.Read({num01:0}).Single().num02+1});
+	if(form.submissionTitle=="2")db.merestable10k.Update({num01:0},{num02:db.merestable10k.Read({num01:0}).Single().num02+1});
+	if(form.submissionTitle=="3")db.merestable100k.Update({num01:0},{num02:db.merestable100k.Read({num01:0}).Single().num02+1});
+}

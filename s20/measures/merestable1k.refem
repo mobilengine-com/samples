@@ -1,0 +1,14 @@
+<Reftab Name="merestable1k">
+  <Columns>
+    <Column Name="txt" Type="Text" />
+    <Column Name="num01" Type="Integer" />
+    <Column Name="num02" Type="Integer" />
+    <Column Name="num03" Type="Integer" />
+    <Column Name="num04" Type="Integer" />
+    <Column Name="num05" Type="Integer" />
+    <Column Name="num06" Type="Integer" />
+    <Column Name="num07" Type="Integer" />
+    <Column Name="num08" Type="Integer" />
+    <Column Name="num09" Type="Integer" />
+  </Columns>
+</Reftab>

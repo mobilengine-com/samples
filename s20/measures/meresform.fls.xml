@@ -1,0 +1,31 @@
+﻿<form id='meresform' menuName='meresform' platforms='web' xmlns="http://schemas.mobilengine.com/fls/v1">
+
+    <table recordset='{select t.txt, t.num01, t.num02, t.num03, t.num04, t.num05, t.num06, t.num07, t.num08, t.num09 from merestable1k t where t.txt like "%"||sysp.user||"%"}' record='r'>
+           <row>
+               <cell>
+					<textbox label='txt' text = '{r.txt}'/>
+               </cell>
+           </row>
+    </table> 
+    <table recordset='{select t.txt, t.num01, t.num02, t.num03, t.num04, t.num05, t.num06, t.num07, t.num08, t.num09 from merestable10k t where t.txt like "%"||sysp.user||"%"}' record='r'>
+           <row>
+               <cell>
+					<textbox label='txt' text = '{r.txt}'/>
+               </cell>
+           </row>
+    </table> 
+    <table recordset='{select t.txt, t.num01, t.num02, t.num03, t.num04, t.num05, t.num06, t.num07, t.num08, t.num09 from merestable100k t where t.txt like "%"||sysp.user||"%"}' record='r'>
+           <row>
+               <cell>
+					<textbox label='txt' text = '{r.txt}'/>
+               </cell>
+           </row>
+    </table> 
+    <table recordset='{select t.txt, t.num01, t.num02, t.num03, t.num04, t.num05, t.num06, t.num07, t.num08, t.num09 from merestable1000k t where t.txt like "%"||sysp.user||"%"}' record='r'>
+           <row>
+               <cell>
+					<textbox label='txt' text = '{r.txt}'/>
+               </cell>
+           </row>
+    </table> 
+</form>
