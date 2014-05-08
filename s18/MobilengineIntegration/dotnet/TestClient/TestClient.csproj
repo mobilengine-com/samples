@@ -51,7 +51,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\Mobilengine.Integration\Wdx.wsdl" />
   </ItemGroup>
   <ItemGroup>

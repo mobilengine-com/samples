@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
+using System.Threading;
 
 namespace TestServer
 {
@@ -66,6 +67,7 @@ namespace TestServer
             //put your message processing code here
 
             Console.WriteLine("Receiving dacs {0}", dacs.dacsid);
+            Console.WriteLine("Client certificate subject and thumbprint: {0}", Thread.CurrentPrincipal.Identity.Name);
             Console.WriteLine("This is an order from {0} for {1} products", dacs.Content.Item.billTo.name, dacs.Content.Item.items.Length);
         }
     }

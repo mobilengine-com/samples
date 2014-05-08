@@ -50,7 +50,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WdxService.svc" />
+    <Content Include="Wdx.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -62,8 +62,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WdxService.svc.cs">
-      <DependentUpon>WdxService.svc</DependentUpon>
+    <Compile Include="Wdx.svc.cs">
+      <DependentUpon>Wdx.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wdx.cs" />
@@ -79,7 +79,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>8409</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:4444/TestServer</IISUrl>
+          <IISUrl>https://localhost:4444/Services/Wdx</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
