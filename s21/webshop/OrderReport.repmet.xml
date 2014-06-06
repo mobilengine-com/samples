@@ -1,0 +1,25 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>order report</Name>
+	<Format>PDF</Format>
+	<Frequency>EachTimeANewDataRowArrives</Frequency>	
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>false</IncludeTrackData>
+
+	<Email>
+		<Recipients>
+			<To>{fancyshop/emailBuyer/fancyshop_emailBuyer_text}</To>
+		</Recipients>	
+		<Attachment>attachment</Attachment>
+		<Subject>order</Subject>
+		<Body>Dear {fancyshop/firstNameBuyer/fancyshop_firstNameBuyer_text} {fancyshop/lastNameBuyer/fancyshop_lastNameBuyer_text},
+You have received report of your order !
+
+Best regards,
+Webshop staff</Body>
+	</Email>
+	<Filter>
+		<Form>fancyshop</Form>
+	</Filter>
+</ReportDefinition>

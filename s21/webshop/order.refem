@@ -1,0 +1,12 @@
+<Reftab Name="order" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="guidOrder" Type="Text" />
+		<Column Name="status" Type="Text" />
+		<Column Name="dtlOrder" Type="Date" DateFormat='(dtf yyyy "-" MM "-" dd " " HH ":" mm ":" ss)' />
+		<Column Name="firstNameBuyer" Type="Text" />
+		<Column Name="lastNameBuyer" Type="Text" />
+		<Column Name="phoneBuyer" Type="Text" />
+		<Column Name="addressBuyer" Type="Text" />
+		<Column Name="priceOrder" Type="Float" />
+	</Columns>
+</Reftab>

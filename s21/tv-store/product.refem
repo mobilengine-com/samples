@@ -1,0 +1,8 @@
+<Reftab Name="product" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="id" Type="Integer" />
+		<Column Name="idVendor" Type="Integer" />
+		<Column Name="name" Type="Text" />
+		<Column Name="price" Type="Float" />
+	</Columns>
+</Reftab>

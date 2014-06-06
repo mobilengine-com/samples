@@ -1,0 +1,38 @@
+server program ProcessOrder for form 'fancyshop'
+using reftab 'order';
+using reftab 'orderitem';
+using reftab 'product';
+using reftab 'stock';
+{
+	var guidOrder = guid.Generate().ToStringN();
+	
+	db.order.Insert({
+		guidOrder: guidOrder, 
+		dtlOrder: form.info.dtlSubmit.DtlToDtdb(), 
+		firstNameBuyer: form.firstNameBuyer.text,
+		lastNameBuyer: form.lastNameBuyer.text,
+		phoneBuyer: form.phoneBuyer.text,
+		addressBuyer: form.addressBuyer.text
+	});
+
+	var fOk = true;
+	var stStatus = "";
+	var priceOrder = 0;
+	foreach(var row in form.basket.rows) {
+		db.orderitem.Insert({guidOrder: guidOrder, guidItem: guid.Generate().ToStringN(), idProduct: row.idProduct, details: row.details, price: row.price});
+		priceOrder = priceOrder + row.price;
+		var cAmountInStock = db.stock.Read({idProduct: row.idProduct}).Single().cAmount;
+		db.stock.Update({idProduct: row.idProduct}, {cAmount: cAmountInStock - 1});
+		fOk = fOk && cAmountInStock > 0;
+	}
+	
+	var status;
+	if(fOk){
+		status= "accepted";
+	}
+	else {
+		status= "out of stock";
+	}
+	
+	db.order.Update({guidOrder: guidOrder}, {status: "accepted", priceOrder: priceOrder});
+}
