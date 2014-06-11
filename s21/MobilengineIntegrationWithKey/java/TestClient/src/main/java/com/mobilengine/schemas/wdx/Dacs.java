@@ -20,6 +20,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="Key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Content" type="{http://schemas.mobilengine.com/Wdx}DacsContent" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="dacsid" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -34,10 +35,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Dacs", propOrder = {
+    "key",
     "content"
 })
 public class Dacs {
 
+    @XmlElement(name = "Key")
+    protected String key;
     @XmlElement(name = "Content")
     protected DacsContent content;
     @XmlAttribute
@@ -47,6 +51,30 @@ public class Dacs {
     protected XMLGregorianCalendar dtu;
     @XmlAttribute(required = true)
     protected DacsMeta meta;
+
+    /**
+     * Gets the value of the key property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * Sets the value of the key property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setKey(String value) {
+        this.key = value;
+    }
 
     /**
      * Gets the value of the content property.

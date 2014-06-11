@@ -7,7 +7,7 @@
           <wsp:Policy>
             <sp:TransportToken>
               <wsp:Policy>
-                <sp:HttpsToken RequireClientCertificate="true" />
+                <sp:HttpsToken RequireClientCertificate="false" />
               </wsp:Policy>
             </sp:TransportToken>
             <sp:AlgorithmSuite>
@@ -117,6 +117,7 @@
       </xs:element>
       <xs:complexType name="Dacs">
         <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Key" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="Content" type="tns:DacsContent" />
         </xs:sequence>
         <xs:attribute name="dacsid" type="xs:string" />

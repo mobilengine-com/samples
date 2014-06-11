@@ -35,6 +35,8 @@ import com.mobilengine.schemas.wdx.Wdx;
 
 public class TestClient {
 		
+	private static final String AUTH_KEY = "a6e5defe0b8643a2bfa24226be1fbaa4";
+
 	public static void main(String[] args) {
 		
 		final int port = 4443;
@@ -43,13 +45,12 @@ public class TestClient {
 		try {
 			System.setProperty("javax.net.ssl.trustStore", TestClient.class.getResource("/truststore.jks").getPath());
 			System.setProperty("javax.net.ssl.trustStorePassword", "123456");
-			System.setProperty("javax.net.ssl.keyStore", TestClient.class.getResource("/me-test-client.pfx").getPath());
-			System.setProperty("javax.net.ssl.keyStorePassword", "1234");
-			System.setProperty("javax.net.ssl.keyStoreType", "pkcs12");
+			System.setProperty("https.protocols", "SSLv3");
 			
 			Wdx wdx = new Wdx();
 			IWdx wdxClient = wdx.getBasicHttpBindingIWdx();
 			BindingProvider bp = (BindingProvider) wdxClient;
+			System.out.println(url);
 			bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, url);
 
 			Dacs dacs = createDacs();
@@ -64,6 +65,7 @@ public class TestClient {
 		Dacs dacs = new Dacs();
 		dacs.setDacsid(UUID.randomUUID().toString());
 		dacs.setMeta(DacsMeta.PURCHASE_ORDER);
+		dacs.setKey(AUTH_KEY);
 		DacsContent content = new DacsContent();
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
 		
