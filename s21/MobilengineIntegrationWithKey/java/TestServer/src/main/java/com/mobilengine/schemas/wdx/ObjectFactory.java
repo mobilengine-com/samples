@@ -50,14 +50,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Dacs }
-     * 
-     */
-    public Dacs createDacs() {
-        return new Dacs();
-    }
-
-    /**
      * Create an instance of {@link EnqueueDacs }
      * 
      */
@@ -71,6 +63,14 @@ public class ObjectFactory {
      */
     public EnqueueDacsResponse createEnqueueDacsResponse() {
         return new EnqueueDacsResponse();
+    }
+
+    /**
+     * Create an instance of {@link Dacs }
+     * 
+     */
+    public Dacs createDacs() {
+        return new Dacs();
     }
 
     /**

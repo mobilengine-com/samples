@@ -5,9 +5,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 
@@ -61,10 +65,14 @@ public class TestClient {
 		}
 	}
 	
-	private static Dacs createDacs() {	
+	private static Dacs createDacs() throws DatatypeConfigurationException {	
 		Dacs dacs = new Dacs();
 		dacs.setDacsid(UUID.randomUUID().toString());
 		dacs.setMeta(DacsMeta.PURCHASE_ORDER);
+		
+		GregorianCalendar c = new GregorianCalendar();
+		c.setTime(new Date());
+		dacs.setDtu(DatatypeFactory.newInstance().newXMLGregorianCalendar(c));
 		dacs.setKey(AUTH_KEY);
 		DacsContent content = new DacsContent();
 		PurchaseOrder purchaseOrder = new PurchaseOrder();

@@ -51,13 +51,13 @@ public class TestServer {
 				public void configure(HttpsParameters params) {
 					//require client authentication
 					SSLParameters sslparams = getSSLContext().getDefaultSSLParameters();
-					sslparams.setNeedClientAuth(true);
+					sslparams.setNeedClientAuth(false);
 					params.setSSLParameters(sslparams);
 				}
 			};
 			
 			SSLParameters params = sslctx.getDefaultSSLParameters();
-			params.setNeedClientAuth(true);
+			params.setNeedClientAuth(false);
 						
 			HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress("localhost", port), 0);			
 			httpsServer.setHttpsConfigurator(configurator);

@@ -13,6 +13,8 @@ import com.mobilengine.schemas.wdx.IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessa
 @WebService(serviceName="Wdx", targetNamespace="http://schemas.mobilengine.com/Wdx")
 public class WdxService implements IWdx {
 
+	private static final String AUTH_KEY = "d8e694d5dfeb462bbc64c2b24d6f9449";
+	
 	@Override
 	@WebMethod(operationName = "EnqueueDacs", action = "http://schemas.mobilengine.com/Wdx/IWdx/EnqueueDacs")
 	@RequestWrapper(localName = "EnqueueDacs", targetNamespace = "http://schemas.mobilengine.com/Wdx", className = "com.mobilengine.schemas.wdx.EnqueueDacs")
@@ -21,6 +23,10 @@ public class WdxService implements IWdx {
 			@WebParam(name = "dacs", targetNamespace = "http://schemas.mobilengine.com/Wdx") Dacs dacs)
 			throws IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessage {
 		System.out.println("Dacs received: " + dacs.getDacsid());
+		if (!dacs.getKey().equals(AUTH_KEY)) {
+			System.out.println("Dacs key authentication failed");
+			return;
+		}
 		System.out.println("This is an order from " + dacs.getContent().getPurchaseOrder().getBillTo().getName() +  
 				" for " + dacs.getContent().getPurchaseOrder().getItems().getItem().size() + " products");
 	}

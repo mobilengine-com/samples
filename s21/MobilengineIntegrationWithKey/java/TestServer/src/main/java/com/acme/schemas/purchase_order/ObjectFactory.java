@@ -38,11 +38,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PurchaseOrder.Items }
+     * Create an instance of {@link PurchaseOrder.ShipTo }
      * 
      */
-    public PurchaseOrder.Items createPurchaseOrderItems() {
-        return new PurchaseOrder.Items();
+    public PurchaseOrder.ShipTo createPurchaseOrderShipTo() {
+        return new PurchaseOrder.ShipTo();
     }
 
     /**
@@ -54,11 +54,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PurchaseOrder.ShipTo }
+     * Create an instance of {@link PurchaseOrder.Items }
      * 
      */
-    public PurchaseOrder.ShipTo createPurchaseOrderShipTo() {
-        return new PurchaseOrder.ShipTo();
+    public PurchaseOrder.Items createPurchaseOrderItems() {
+        return new PurchaseOrder.Items();
     }
 
     /**
