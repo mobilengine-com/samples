@@ -26,6 +26,7 @@ import com.mobilengine.schemas.wdx.Dacs;
 import com.mobilengine.schemas.wdx.DacsContent;
 import com.mobilengine.schemas.wdx.DacsMeta;
 import com.mobilengine.schemas.wdx.IWdx;
+import com.mobilengine.schemas.wdx.IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessage;
 import com.mobilengine.schemas.wdx.Wdx;
 
 // This project implements the client side of the purchase-order sample. It sends an integration message (dacs) with some 
@@ -39,7 +40,7 @@ import com.mobilengine.schemas.wdx.Wdx;
 
 public class TestClient {
 		
-	private static final String AUTH_KEY = "a6e5defe0b8643a2bfa24226be1fbaa4";
+	private static final String AUTH_KEY = "a6e5defe0b8643a2bfa24226be1fbaa4_xxxxx";
 
 	public static void main(String[] args) {
 		
@@ -58,7 +59,11 @@ public class TestClient {
 			bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, url);
 
 			Dacs dacs = createDacs();
-			wdxClient.enqueueDacs(dacs);
+			try {
+				wdxClient.enqueueDacs(dacs);
+			} catch (IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessage er) {
+				System.out.println("dacs enqueue failed: "+er.getFaultInfo().getMessage());
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

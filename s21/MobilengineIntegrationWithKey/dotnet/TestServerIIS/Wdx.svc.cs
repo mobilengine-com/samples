@@ -9,7 +9,7 @@ namespace TestServerIIS
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class WdxService : IWdx
     {
-        const string AUTH_KEY = "a6e5defe0b8643a2bfa24226be1fbaa4";
+        const string AUTH_KEY = "d8e694d5dfeb462bbc64c2b24d6f9449";
 
         public void EnqueueDacs(Dacs dacs)
         {
@@ -19,7 +19,7 @@ namespace TestServerIIS
             if (dacs.Key != AUTH_KEY)
             {
                 Trace.WriteLine(string.Format("Wrong key, authentication failed", dacs.dacsid));
-                return;
+                throw new FaultException<EnqueueDacsFail>(new EnqueueDacsFail { dacsid = dacs.dacsid, Message = "Dacs authentication failed" });
             }
 
             Trace.WriteLine(string.Format("Client certificate subject and thumbprint: {0}", Thread.CurrentPrincipal.Identity.Name));

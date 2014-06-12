@@ -59,7 +59,7 @@ namespace TestServer
             else
             {
                 Console.WriteLine("Authentication failed");
-//                throw new AuthenticationException("Wrong key in dacs");
+                throw new FaultException<EnqueueDacsFail>(new EnqueueDacsFail { dacsid = dacs.dacsid, Message = "Dacs authentication failed" });
             }
         }
     }
