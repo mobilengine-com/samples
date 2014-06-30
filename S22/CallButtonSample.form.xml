@@ -1,0 +1,25 @@
+<Form name="CallButtonSample" description="Call button sample"  typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' xmlns:print="http://schemas.mobilengine.com/client_plugins/printing" >
+  <Control type="panel" name="Root" color="RGB(255,255,255)">
+	<Control type="textbox" name="tbWhere" label="Where to go" size="large"/>
+	<Control type="label" name="tbWhereEncoded" label="encoded" size="large" reference="URLENCODE" ref_arg="../tbWhere" visible="false" />
+	<Control type="callbutton" label="Mapping App:" name="cbmap" text="Show on map" call_action="android.intent.action.VIEW" reference="SELECT 'geo:0,0?q='||@1" ref_arg="../tbWhereEncoded" />
+    <Control type="callbutton" label="Google Maps:" name="cbgmaps" text="Show on map" call_action="android.intent.action.VIEW" call_component="com.google.android.apps.maps, com.google.android.maps.MapsActivity" reference="SELECT 'geo:0,0?q='||@1" ref_arg="../lbWhereEncoded" />
+    
+	<Control type="textbox" name="tbTo" label="To" size="large" print:include="true"/>
+	<Control type="textbox" name="tbSubject" label="Subject" size="large"/>
+	<Control type="textbox" name="tbBody" lines="5" label="Body" size="large"/>
+	<Control type="callbutton" label="Email:" name="cbemail" text="Send email" call_action="android.intent.action.SEND" call_type="message/rfc822" 
+		reference="SELECT @1" ref_arg="../tbTo"
+		extras_reference="SELECT 'android.intent.extra.SUBJECT', @1 union all SELECT 'android.intent.extra.TEXT', @2"  extras_ref_arg="../tbSubject,../tbBody"/>
+	    
+    <Control type="textbox" name="tbPhone" label="Phone number" size="large" />
+    <Control type="callbutton" label="Tel: " name="cbtel" text="Call" call_action="android.intent.action.VIEW" reference="SELECT 'tel:'||@1" ref_arg="../tbPhone" />
+    
+    <Control type="callbutton" label="Test plugin (plcli):" name="cbplclicomponnent" text="Plcli" 
+		call_component="com.mobilengine.example.plcli, com.mobilengine.example.plcli.ActPlcli" plugin="true" />
+   
+    <Control type="photo" name="multiphoto" label="Multi Photo" allowmultishoot="true" />
+    <Control type="photo" name="singlephoto" label="Single Photo" allowmultishoot="false" />
+    <Control type="photo" name="signature" meta_type="signature" />
+  </Control>
+</Form>
