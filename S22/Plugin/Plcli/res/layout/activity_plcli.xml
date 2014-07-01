@@ -56,22 +56,22 @@
 				android:orientation="horizontal" >
 
 				<Button
+				    android:id="@+id/btnSet"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="Set" />
+
+				<Button
+				    android:id="@+id/btnAddRow"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="Add row" />
+
+				<Button
 					android:id="@+id/btnDelRow"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="Del row" />
-
-				<Button
-					android:id="@+id/btnUnbind"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Unbind" />
-
-				<Button
-					android:id="@+id/btnSet"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Set" />
 
 				<Button
 					android:id="@+id/btnPhoto"
@@ -86,12 +86,6 @@
 					android:text="Send Photo" />
 
 				<Button
-					android:id="@+id/btnAddRow"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Add row" />
-
-				<Button
 					android:id="@+id/btnCrash"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -102,6 +96,13 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="ANR" />
+
+				<Button
+				    android:id="@+id/btnUnbind"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="Unbind" />
+
 			</LinearLayout>
 		</HorizontalScrollView>
 
