@@ -1,0 +1,14 @@
+<Form typed="true" name="Orders2" description="TVStore - Orders" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' xmlns:test="urn:foo/bar">
+	<Control type="panel" name="root" color="RGB(240,240,240)">
+		<Control type="photo" name="photo" allowmultishoot="true" proposedresolution="10000x10000" proposedquality="100"/>
+		<Control type="panel" name="mgp" layout="table" navigation="inline" data_type="string,string" count="1"  >
+			<Control type="textbox" name="c1" label="c1" width="0.45 swt"/>
+			<Control type="textbox" name="c2" label="c2" width="0.45 swt"/>
+		</Control>
+		<Control type="textbox" name="textbox1" label="textbox1.label" text="textbox1.text" />
+
+		<Control type="callbutton" label="bind" name="bind" text="bind" call_action="com.mobilengine.example.plcli.bind" plugin="true" test:alma="korte" test:foo="bar"/>
+		<Control type="callbutton" label="nobind" name="nobind" text="nobind" call_action="com.mobilengine.example.plcli.bind" />
+
+	</Control>
+</Form>
