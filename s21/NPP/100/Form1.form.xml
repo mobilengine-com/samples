@@ -1,0 +1,6 @@
+<Form name="form1" description="Form1">
+  <Control type="panel" name="Root" color="RGB(255,255,255)" >
+	<Control type="label" name="n1" text="Photo control" color="RGB(245,130,32)" />
+	<Control type="photo" name="n2" allowmultishoot="true" allowcomments="true" operation="=Keszito: @user , datum: @dtlNow ." />
+  </Control>
+</Form>

@@ -1,0 +1,5 @@
+server program AfterForm1 for form 'form1'
+using reftab 'reftab';
+{
+	trace form;
+}
