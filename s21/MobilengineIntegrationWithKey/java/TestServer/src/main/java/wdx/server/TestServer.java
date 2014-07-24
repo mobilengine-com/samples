@@ -18,7 +18,7 @@ import com.sun.net.httpserver.HttpsServer;
 
 
 // This project implements the server side of the purchase-order sample. It receives an integration message (dacs) with some 
-// product ordering info in the 4444 port on localhost. You need to understand this sample if you are to receive integration 
+// product ordering info in the 4443 port on localhost. You need to understand this sample if you are to receive integration 
 // messages from Mobilengine. The Mobilengine Backoffice would play the role of the client side in that case, but to make the 
 // sample self contained, you can use the attached TestClient as a dummy Mobilengine Backoffice to send messages.
 //
@@ -27,10 +27,11 @@ import com.sun.net.httpserver.HttpsServer;
 public class TestServer {
 	public static void main(String[] args)
 	{
-		try {
-			
-			final int port = 4444;
-			
+		// authentication key that should be sent by the client to authenticate the request
+		final String authKey = "d8e694d5dfeb462bbc64c2b24d6f9449";
+		
+		final int port = 4444;
+		try {	
 			SSLContext sslctx = SSLContext.getInstance("SSLv3");
 			String certPasswd = "1234";
 			KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
@@ -64,7 +65,7 @@ public class TestServer {
 			HttpContext httpContext = httpsServer.createContext("/");
 			httpsServer.start();
 			
-			Endpoint endpoint = Endpoint.create(new WdxService());
+			Endpoint endpoint = Endpoint.create(new WdxService(authKey));
 			endpoint.publish(httpContext);
 			
 			System.out.println("The service is ready at https://localhost:" + port + ", press enter to exit.");

@@ -40,12 +40,18 @@ import com.mobilengine.schemas.wdx.Wdx;
 
 public class TestClient {
 		
-	private static final String AUTH_KEY = "a6e5defe0b8643a2bfa24226be1fbaa4_xxxxx";
-
 	public static void main(String[] args) {
 		
-		final int port = 4443;
-		final String url = "https://localhost:" + port + "/Services/Wdx/Wdx.svc";
+		// authentication key must be the same as the one configure on the service side
+		final String authKey = "d8e694d5dfeb462bbc64c2b24d6f9449";
+		
+        // service endpoint configuration to connect to the sample service implementation running on the local machine
+		final int port = 4444;
+		final String url = "https://localhost:" + port;
+        
+        // in a production environment you could use the following endpoint configuration to connect to the 
+        // Mobilengine server:
+		//final String url = "https://service.mobilengine.com" + "/Services/Wdx/Wdx.svc/apikey";
 		
 		try {
 			System.setProperty("javax.net.ssl.trustStore", TestClient.class.getResource("/truststore.jks").getPath());
@@ -58,11 +64,11 @@ public class TestClient {
 			System.out.println(url);
 			bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, url);
 
-			Dacs dacs = createDacs();
+			Dacs dacs = createDacs(authKey);
 			try {
 				wdxClient.enqueueDacs(dacs);
 			} catch (IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessage er) {
-				System.out.println("dacs enqueue failed: "+er.getFaultInfo().getMessage());
+				System.out.println("dacs enqueue failed: " + er.getFaultInfo().getMessage());
 			}
 			
 		} catch (Exception e) {
@@ -70,7 +76,7 @@ public class TestClient {
 		}
 	}
 	
-	private static Dacs createDacs() throws DatatypeConfigurationException {	
+	private static Dacs createDacs(String authKey) throws DatatypeConfigurationException {	
 		Dacs dacs = new Dacs();
 		dacs.setDacsid(UUID.randomUUID().toString());
 		dacs.setMeta(DacsMeta.PURCHASE_ORDER);
@@ -78,7 +84,7 @@ public class TestClient {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(new Date());
 		dacs.setDtu(DatatypeFactory.newInstance().newXMLGregorianCalendar(c));
-		dacs.setKey(AUTH_KEY);
+		dacs.setKey(authKey);
 		DacsContent content = new DacsContent();
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
 		

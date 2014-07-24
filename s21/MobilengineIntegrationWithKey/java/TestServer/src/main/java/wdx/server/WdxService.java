@@ -14,7 +14,11 @@ import com.mobilengine.schemas.wdx.IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessa
 @WebService(serviceName="Wdx", targetNamespace="http://schemas.mobilengine.com/Wdx")
 public class WdxService implements IWdx {
 
-	private static final String AUTH_KEY = "d8e694d5dfeb462bbc64c2b24d6f9449";
+	private final String authKey;
+	
+	public WdxService(String authKey) {
+		this.authKey = authKey;
+	}
 	
 	@Override
 	@WebMethod(operationName = "EnqueueDacs", action = "http://schemas.mobilengine.com/Wdx/IWdx/EnqueueDacs")
@@ -24,7 +28,7 @@ public class WdxService implements IWdx {
 			@WebParam(name = "dacs", targetNamespace = "http://schemas.mobilengine.com/Wdx") Dacs dacs)
 			throws IWdxEnqueueDacsEnqueueDacsFailFaultFaultMessage {
 		System.out.println("Dacs received: " + dacs.getDacsid());
-		if (!dacs.getKey().equals(AUTH_KEY)) {
+		if (!dacs.getKey().equals(authKey)) {
 			String message = "Dacs key authentication failed";
 			EnqueueDacsFail faultInfo = new EnqueueDacsFail();
 			faultInfo.setMessage(message);

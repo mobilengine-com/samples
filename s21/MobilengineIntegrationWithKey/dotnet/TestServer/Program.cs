@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Security.Authentication;
-using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
-using System.Threading;
 
 namespace TestServer
 {
