@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="tamas" menuName="tamas" platforms="web ios">
+  <textview label="User:" text="{sysp.user || tb.text}" />
+  <textview label="Open date:" text="{FORMATDTL(sysp.dtlFormOpen, (dtf yyyy MM dd HH mm ss)) || tb.text}" />
+  <textbox id="tb" label="Valid: 'a'" text="">
+    <validation>
+      <validator cond='{text == "a"}' message="Only 'a' is accepted" />
+      <validator cond='{LENGTH(text) &lt; 2}' message="Must be 1 character" />
+    </validation>
+  </textbox>
+  <dropdown choices='{table n ("alma";"korte";"barack";"narancs";"sör";)}' keyMap='{n}' textMap='{n}'>
+    <validation>
+      <validator cond='{tb.text == "a"}' message="Only 'a' is accepted" />
+      <validator cond='{LENGTH(tb.text) &lt; 2}' message="Must be 1 character" />
+    </validation>
+  </dropdown>
+  <datepicker dateFormat='(dtf yyyy"-"MM"-"dd)'>
+    <validation>
+      <validator cond='{tb.text == "a"}' message="Only 'a' is accepted" />
+      <validator cond='{LENGTH(tb.text) &lt; 2}' message="Must be 1 character" />
+    </validation>
+  </datepicker>
+</form>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="csaba" menuName="csaba" platforms="web ios">
+  <textview text="placeholder" />
+  <numberbox float="false" hint="write a number here" numberFormat='{decimalSeparator: "~", prefix: "előtte", postfix: "utána", groupSeparator: "#", groupSize: 4}' />
+  <textbox id="tb_url" hint="url" />
+  <table id="tbl0" record="g" recordset='{select t.id, t.name from product t limit 10}'>
+    <row>
+      <cell width='10 em'>
+        <textview text='{toString(g.id)}' />
+      </cell>
+      <cell width='10 em'>
+        <textbox text='g.name' />
+      </cell>
+      <cell>
+         <linkview label="linkview" text='{ "go to " || tb_url.text }' url="{tb_url.text}" />
+      </cell>
+    </row>
+  </table>
+
+  <!--
+  <table id="tbl1" record="g" recordset='{select t.id, t.name from product t limit 1}'>
+    <header>
+      <row>
+        <cell>
+          <textview text="simpleCellHeader" />
+        </cell>
+        <cell>
+          <textview text="multilineCellHeader" />
+        </cell>
+      </row>
+    </header>
+    <row>
+      <cell width='10 em'>
+        <textview text='{toString(g.id)}' />
+      </cell>
+      <cell width='20 em'>
+        <chapter title='A Cell'>
+          <checkbox id='cb' checked='{true}' />
+          <if cond='{cb.checked}'>
+            <table id="tbl2" record="g" recordset='{select t.id, t.name from product t limit 1}'>
+              <header>
+                <row>
+                  <cell>
+                    <textview text="simpleCellHeader" />
+                  </cell>
+                  <cell>
+                    <textview text="multilineCellHeader" />
+                  </cell>
+                </row>
+              </header>
+              <row>
+                <cell width='10 em'>
+                  <textview text='{toString(g.id)}' />
+                </cell>
+                <cell width='10 em'>
+                  <chapter title='A Cell'>
+                    <checkbox id='cb' />
+                    <if cond='{cb.checked}'>
+                      <textview text='{toString(g.id)}' />
+                      <textbox text='g.name' />
+                    </if>
+                  </chapter>
+                </cell>
+              </row>
+              <footer>
+                <row>
+                  <cell>
+                    <textview text="simpleCellFooter" />
+                  </cell>
+                  <cell>
+                    <textview text="multilineCellFooter" />
+                  </cell>
+                </row>
+              </footer>
+            </table>
+          </if>
+        </chapter>
+      </cell>
+    </row>
+    <footer>
+      <row>
+        <cell>
+          <textview text="simpleCellFooter" width='15 em'/>
+        </cell>
+        <cell>
+          <textview text="multilineCellFooter" width='15 em'/>
+        </cell>
+      </row>
+    </footer>
+  </table>
+  -->
+</form>

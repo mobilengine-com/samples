@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="avi3" menuName="avi3" platforms="web ios">
+  <textbox id="tb" />
+    <table record='r' recordset='{select t.id from product t limit 100}'>
+      <row>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+        <cell width='4 em'>
+          <textview text='{tb.text}' />
+        </cell>
+      </row>
+    </table>
+</form>

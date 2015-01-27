@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="zape" menuName="zape" platforms="web ios">
+<!--
+  <textbox id="A" hint="A"/>
+  <dropdown choices='{SELECT t.id, t.name, t.price FROM product t}' keyMap='{SELECT id}' textMap='{SELECT name || " " ||TOSTRING(price) || A.text}'/>
+  <dropdown id='E' choices='{SELECT t.id, t.name, t.price FROM product t}' keyMap='{SELECT id, name}' textMap='{SELECT name || " " ||TOSTRING(price) || A.text}'/>
+  <textview label='text' text='{SELECT E.selectedText}'/>
+  <textview label='key' text='{SELECT TOSTRING(E.selectedKey.id) || ", " || E.selectedKey.name}'/>
+  <textview label='value' text='{SELECT TOSTRING(E.selectedValue.id) || ", " || E.selectedValue.name || ", " || TOSTRING(E.selectedValue.price)}'/>
+
+  <popup title='{"popup " || A.text}'>
+    <textview text='{"textview " || A.text}'/>
+    <textview id='B' text='{UPPER(A.text)}'/>
+    <table record='city' recordset='{SELECT t.id, t.name, t.price FROM product t WHERE UPPER(t.name) LIKE UPPER(A.text) || "%"}'>
+      <row>
+        <cell>
+          <textbox text='{TOSTRING(city.id)}'/>
+        </cell>
+        <cell>
+          <textbox text='{city.name}'/>
+        </cell>
+        <cell>
+          <textbox text='{TOSTRING(city.price)}'/>
+        </cell>
+      </row>
+    </table>
+  </popup>
+
+  <photo id='photo1' photoData='{SELECT datetimeCreated, locationCreated, A.text alma }' jpegQuality="{10}" jpegResolution="{SELECT 800 width, 600 height}" singlePhoto="true" postEditable="true"/>
+  <photo id='photo2' photoData="{SELECT 100 valami}" jpegQuality="{10}" singlePhoto="true" postEditable="true"/>
+  <textview text='{B.text}'/>
+
+  <table recordset='{SELECT p.datetimeCreated, p.locationCreated, p.alma FROM photo1.photos p}' record='p'>
+    <row>
+      <cell>
+        <datepicker date='{p.datetimeCreated}' dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+      </cell>
+      <cell>
+        <textview text='{p.locationCreated}'/>
+      </cell>
+      <cell>
+        <textview text='{p.alma}'/>
+      </cell>
+    </row>
+  </table>
+ -->
+  
+  <textbox id='filter' hint='filter here'/>
+  <textview text='{UPPER(filter.text)}'/>
+  <table recordset='{SELECT x.s FROM (TABLE s ("foo";"bar";"baz")) x WHERE x.s LIKE filter.text || "%"}' record='x'>
+    <row>
+      <cell>
+        <textview text='{SELECT GROUP_CONCAT(x.s || " " || tbl.v, ", ") FROM tbl tbl}'>
+          <declarations>
+            <let id='tbl' shape='table' value='{TABLE v ("A"; "B"; "C")}'/>
+          </declarations>
+        </textview>
+      </cell>
+    </row>
+  </table>
+  
+
+<!--  <table recordset='{TABLE s ("foo"; "bar"; "baz")}' record='city'>
+    <row>
+      <cell>
+        <textview id='C' text='{A.text}'/>
+      </cell>
+      <cell>
+        <popup title='{"popup table " || city.s}'>
+          <textview text='{C.text || " in table " || city.s}' />
+          <table record='city' recordset='{SELECT t.id, t.name, t.price FROM product t WHERE UPPER(t.name) LIKE UPPER(A.text) || "%"}'>
+            <row>
+              <cell>
+                <textbox text='{TOSTRING(city.id)}'/>
+              </cell>
+              <cell>
+                <textbox text='{city.name}'/>
+              </cell>
+              <cell>
+                <textbox text='{TOSTRING(city.price)}'/>
+              </cell>
+            </row>
+          </table>
+        </popup>
+      </cell>
+    </row>
+  </table>
+-->
+</form>

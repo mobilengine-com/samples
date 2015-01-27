@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="avi" menuName="avi" platforms="web ios">
+
+	<textview id="theend" label="ez itten egy label" text='{select rec1.text||" "||rec1.c2}'>
+		<declarations>
+			<let id="rec1" shape="record" value=
+'{select t1.tvname.text, (select t2.name||" -> "||(select p.name from product p where p.id = t2.id) from t1.tbl2 t2 where t2.id = toInt(t1.tvid.text)) c2 from tbl1.rows t1 where t1.tvid.text = "1"}'/>
+		</declarations>
+	</textview>
+
+	<textview text='{select t1.tvname.text||": "||(select t2.name||" -> "||(select p.name from product p where p.id = t2.id) from t1.tbl2 t2 where t2.id = toInt(t1.tvid.text)) from tbl1.rows t1 where t1.tvid.text = "1"}'>
+		<declarations>
+			<let id="tbl3" shape="table" value=
+'{select t1.tvname.text, (select t2.name||" -> "||(select p.name from product p where p.id = t2.id) from t1.tbl2 t2 where t2.id = toInt(t1.tvid.text)) c2 from tbl1.rows t1}'/>
+		</declarations>
+	</textview>
+
+	<textbox id="tbFt" text='1000'/>
+  <checkbox id='chkShowIf' label='Show if' />
+  <if cond='{chkShowIf.checked}'>
+    <textview text="I'm in an if" />
+  </if>
+  
+	<addbutton id='btnAdd' table='tbl1' records='{select 5 id, "eper" name}' text='Add' />
+
+	<textbox id="tbLimit" text='30'/>
+  
+	<table id="tbl1" record="g" recordset='{select t.id, t.name||" "||tbFt.text||"Ft" name from (table id, name (1,"alma";2,"barack";3,"citrom";4,"dinnye";)) t where toInt(tbLimit.text) >= t.id }'>
+		<header>
+			<row>
+				<cell>
+					<textview text="id" />
+				</cell>
+				<cell>
+					<textview text="name" />
+				</cell>
+				<cell>
+					<textview text="tbl" />
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell>
+				<removebutton text='Remove'/>
+			</cell>
+			<cell>
+				<textview id="tvid" text='{toString(g.id)}' />
+			</cell>
+			<cell>
+				<textbox id="tvname" text='{g.name}' />
+			</cell>
+			<cell>
+				<textview id="tvconcat" text='{tvname.text||tbFt.text}' />
+			</cell>
+			<cell>
+				<textview text='{select group_concat(toString(t.id)||","||t.name, ": ") from tbl2 t}'>
+					<declarations>
+						<let id="tbl2" shape="table" value='{select t.id, t.name||" "||tvname.text name from (table id, name (1,"egy";2,"ketto";3,"harom";4,"negy";)) t}'/>
+					</declarations>
+				</textview>
+			</cell>
+		 </row>
+		<footer>
+			<row>
+				<cell>
+					<textview text="id" />
+				</cell>
+			</row>
+		</footer>  
+	</table>
+	
+  <!--
+	<textview text=''>
+		<declarations>
+			<let id="tbl3" shape="table" value='{
+				select t1.name.text c1, t2.name c2, p.name c3 
+				from tbl1.rows t1
+				, t1.tbl2 t2
+				, product p
+				where t1.id.text = "1"
+				and t2.id = toInt(t1.id.text)
+				and p.id = t2.id
+			}'/>
+		</declarations>
+	</textview>
+	-->
+
+	<table id="tblbig" record="p" recordset='{select t.id, t.name, t.price from product t}'>
+		<row>
+			<cell>
+				<textview text='{toString(p.id)}' />
+			</cell>
+			<cell>
+				<textview id="pname" text='{p.name}' />
+			</cell>
+			<cell>
+				<textview text='{toString(p.price) || pname.text || toString(mul)}' >
+					<declarations>
+						<let id="mul" shape="scalar" value='{p.price*p.id*toInt(tbFt.text)}'/>
+					</declarations>
+				</textview>
+			</cell>
+		</row>
+	</table>
+	<textview id="avg" text='{select toString(avg(t.mul)) from tblbig.rows t}' />
+	
+</form>

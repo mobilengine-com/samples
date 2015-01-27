@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="roger" menuName="roger" platforms="web ios">
+  <textbox id="test1" hint="alma12" label="test"/>
+  <textbox hint="{test1.text}" label="test"/>
+  <textarea hint='{"###" || test1.text || "###"}' lines="10" label="test"/>
+  <textbox id="A" hint="A"/>
+  <dropdown id="ddlRes" choices='{SELECT t.width, t.height, t.name FROM (table width, height, name (800, 600, "small"; 1280, 720, "720p"; 1920, 1080, "1080p")) t}' keyMap='{SELECT width, height}' textMap='{SELECT name}'/>
+  <photo id='photo1' label='Photo: ' photoData='{SELECT datetimeCreated, locationCreated, fileSizeCreated, heightCreated, widthCreated, A.text alma }' jpegQuality="{99}" jpegResolution="{SELECT ddlRes.selectedValue.width, ddlRes.selectedValue.height}" singlePhoto="false" postEditable="false"/>
+  <table id="tblPhoto" label="Photo data:" record="g" recordset='{select p.datetimeCreated, p.locationCreated, p.fileSizeCreated, p.heightCreated, p.widthCreated, p.alma from photo1.photos p}'>
+    <header>
+      <row>
+          <cell>
+            <textview text='alma'/>
+          </cell>
+          <cell>
+            <textview text='datetimeCreated'/>
+          </cell>
+          <cell>
+            <textview text='locationCreated'/>
+          </cell>
+          <cell>
+            <textview text='fileSizeCreated'/>
+          </cell>
+          <cell>
+            <textview text='heightCreated'/>
+          </cell>          
+          <cell>
+            <textview text='widthCreated'/>
+          </cell>
+        </row>
+    </header>
+    <row>
+      <cell width='15 em'>
+        <textview text='{g.alma}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{ getYear(g.datetimeCreated) || "-" || getMonth(g.datetimeCreated) || "-" || getDay(g.datetimeCreated) || " " || getHour(g.datetimeCreated) || ":" || getMinute(g.datetimeCreated) || ":" || getSecond(g.datetimeCreated) }' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{g.locationCreated}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(g.fileSizeCreated)}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(g.heightCreated)}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(g.widthCreated)}' />
+      </cell>
+    </row>
+  </table>
+
+  <photo photoData="{SELECT 100 valami}" jpegQuality="{10}" jpegResolution="{SELECT 800 width, 600 height}" singlePhoto="true" postEditable="true"/>
+  <textview text="All Default photo"/>
+  <photo />
+    
+  <table id="tbl1" record="g" recordset='{select t.id, t.name  name from (table id, name (1,"alma";)) t}'>
+    <row>
+      <cell width ='5 em'>
+        <removebutton text='Remove'/>
+      </cell>      
+      <cell>
+        <photo width="40 em"  photoData="{SELECT 100 valami}" jpegResolution="{SELECT 1000000 width, 10000000 height}"  />
+      </cell>
+      <cell>
+        <textview id="tvid" text='{toString(g.id)}' />
+      </cell>
+      <cell>
+        <textview id="tvname" text='{g.name}' />
+      </cell>
+    </row>
+  </table>
+  <addbutton id='btnAdd' table='tbl1' records='{select 5 id, "eper" name}' text='Add' />
+
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+  <textview text="spacing"/>
+
+</form>

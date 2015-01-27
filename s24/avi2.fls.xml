@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="test" menuName="test" platforms="web ios">
+	<declarations>
+		<let id="rec1" shape="record" value='{select 1 c1, tb1.text c2 where tb1.text = "a"}'/>
+	</declarations>
+	
+	<textbox id="tb1" text=''/>
+	<textbox id="tb2" text='{case when rec1 is null then "NULL" else "NOT NULL" end}'/>
+	<textbox id="tb3" text='{rec1.c2}'/>
+	<textbox id="tb4" text='{case when rec1.c2 is null then "NULL" else "NOT NULL" end}'/>
+	
+	<dropdown id='dd1' label='dropdown' 
+		choices='{table c1, c2 (1, "a";null, null)}' 
+		keyMap='{select c1, c2}' 
+		textMap='{c2}' />	
+
+	<textbox id="tb5" text='{case when dd1.selectedKey is null then "NULL" else "NOT NULL" end}'/>
+	<textbox id="tb6" text='{dd1.selectedKey.c2}'/>
+	<textbox id="tb7" text='{case when dd1.selectedKey.c2 is null then "NULL" else "NOT NULL" end}'/>
+
+	<dropdown id='dd2' label='dropdown' 
+		choices='{table c1, c2 (1, "a";null, null)}' 
+		keyMap='{select c2}' 
+		textMap='{c2}' />	
+
+	<textbox id="tb8" text='{case when dd2.selectedKey is null then "NULL" else "NOT NULL" end}'/>
+	<textbox id="tb9" text='{dd2.selectedKey}'/>
+</form>      

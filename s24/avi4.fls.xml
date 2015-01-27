@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="avi4" menuName="avi4" platforms="web ios">
+  <textview text="A table labelje zold marad az add gomb megnyomasa utan, mert a 'rows' pl dirty marad" />
+  <addbutton id='btnAdd' table='tbl1' records='{select 5 id, "eper" name}' text='Add' />
+  <table id="tbl1" label="Test table" record="g" recordset='{select t.id, t.name name from (table id, name (1,"alma";2,"barack";3,"citrom";4,"dinnye";)) t where 5 >= t.id }'>
+    <row>
+      <cell>
+        <removebutton text='Remove'/>
+      </cell>
+      <cell>
+        <textview id="tvid" text='{toString(g.id)}' />
+      </cell>
+      <cell>
+        <textbox id="tvname" text='{g.name}' />
+      </cell>
+    </row>
+  </table>
+</form>

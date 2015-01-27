@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="disapperaing_dn" menuName="disapperaing_dn" platforms="web ios">
+  <if id="if1" cond='{tb_cond.text != "a"}'>
+    <textbox hint="Write an a here to make this disappear" id="tb_cond" />
+  </if>
+
+  <if id="if2" cond='{tb_cond.text != "a"}'>
+    <popup title='Popup with textbox'>
+      <textbox hint="Write an a here to make the popup disappear" id="tb_cond" />
+    </popup>
+  </if>
+
+  <if id="if3" cond='{chk_cond.checked}'>
+    <popup title='Popup with checkbox'>
+      <popup title='One more popup'>
+        <checkbox id='chk_cond' checked='{true}' text='Uncheck to hide' />
+        <datepicker dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+        <timepicker timeFormat='(dtf HH "/" mm)'/>
+        <photo />
+      </popup>
+    </popup>
+  </if>
+
+  <table id="table1" record="r" recordset='{""}'>
+    <row>
+      <cell width='10 em'>
+          <popup title ='Popup with remove'>
+          <popup title='One more popup'>
+            <removebutton text='Remove' />
+              <datepicker dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+              <timepicker timeFormat='(dtf HH "/" mm)'/>
+              <dropdown choices='{SELECT "alma" a}' keyMap='{a}' textMap='{a}' />
+              <photo />
+          </popup>
+        </popup>
+      </cell>
+      <cell width='10 em'>
+        <textbox />
+      </cell>
+      <cell width='10 em'>
+        <photo />
+      </cell>
+      <cell width='10 em'>
+        <removebutton text='Remove' />
+      </cell>
+    </row>
+    <footer>
+      <row>
+        <cell>
+          <addbutton records='{"alma"}' table='table1' text='Add row' />        
+        </cell>
+      </row>
+    </footer>
+  </table>
+</form>
