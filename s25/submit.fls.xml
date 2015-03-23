@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="submit" menuName="submit" platforms="web ios">
+	<textbox label="this textbox has no id, will not be submitted"/>
+	<textbox id="textbox1" label="this textbox has id, will be submitted"/>
+	<textbox id="textbox2" access="public" label="this textbox has id and is public, will be submitted"/>
+	<textbox id="textbox3" access="private" label="this textbox has an id but is private, will not be submitted"/>
+	<chapter access="private" title="this chapter is marked as private">
+		<textbox id="textbox4" access="public" label="this textbox has an id and is public, will not be submitted"/>
+	</chapter>
+	<!--textbox access="public" label="compile error"/-->
+</form>
+  

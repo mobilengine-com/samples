@@ -1,5 +1,5 @@
 <Reftab Name="product" xmlns="http://schemas.mobilengine.com/reftab/v1">
-	<Columns>
+<Columns>
 		<Column Name="id" Type="Text" />
 		<Column Name="name" Type="Text" />
 		<Column Name="price" Type="Float" />
