@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="carrot" menuName="Carrot" menuOrder="hidden" platforms="web ios">
+	<textview text="Carrot form" />
+</form>
+  
