@@ -1,0 +1,27 @@
+server program 'update-rtab' for form 'guidForm'
+using reftab 'reftab';
+{
+	foreach(var row in form.tbl1.rows) {
+		var rowFilter = {guid: row.guid.ToStringN()};
+		var rowNew = {guid: row.guid.ToStringN(), text: row.text.text};
+		if(db.reftab.Read(rowFilter).Count() == 0) {
+			db.reftab.Insert(rowNew);
+		} else {
+			db.reftab.Update(rowFilter, rowNew);
+		}
+	}
+
+	var rgreftabRow = db.reftab.Read(map.New());
+	foreach(var rowRtab in rgreftabRow) {
+		var fInForm = false;
+		foreach(var rowForm in form.tbl1.rows) {
+			if (rowForm.guid == guid.Parse(rowRtab.guid)) {
+				fInForm = true;
+				break;
+			}
+		}
+		if (!fInForm) {
+			db.reftab.Delete(rowRtab);
+		}
+	}
+}

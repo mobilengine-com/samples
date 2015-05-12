@@ -1,0 +1,6 @@
+<Reftab Name="reftab" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="guid" Type="Text" />
+		<Column Name="text" Type="Text" />
+	</Columns>
+</Reftab>

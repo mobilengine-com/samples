@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="guidForm" menuName="guidForm" platforms="web ios">
+	<textbox id="uguid" label="enter guid: " />
+	<textview label="guid:" text="{SELECT TOSTRING(TOGUID(uguid.text))}" />
+	
+	<chapter title="newguid in tbl1">	
+	  <table id="tbl1" label="Test table" record="r" recordset='{SELECT TOGUID(t.guid) as guid, t.text FROM reftab t}'>
+		<row>
+			<cell width="10 em">
+				<declarations>
+					<let id="guid" shape="scalar" value="{r.guid}" />
+				</declarations>
+				<textview text="{TOSTRING(r.guid)}" />
+			</cell>
+			<cell width="10 em">
+				<textbox id="text" text="{r.text}" />
+			</cell>
+			<cell width="10 em">
+				<removebutton text='Remove'/>
+			</cell>
+		</row>
+	  </table>	
+	  <addbutton id='btnAdd1' table='tbl1' records='{select NEWGUID() as guid, "" as text}' text='Add' />
+	</chapter>
+</form>
+  
