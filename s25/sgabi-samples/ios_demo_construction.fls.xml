@@ -1,0 +1,109 @@
+<form id='IosDemoConstruction' menuName='Employee Allocation' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+       <let id="cities" shape="table" value='{table key, text (1, "New York"; 2, "Los Angeles"; 3, "Chicago"; 4,"Houston"; 5,"Philadelphia"; 6,"Phoenix"; 7,"San Antonio"; 8,"San Diego"; 9,"Dallas"; 10,"San Jose"; 11,"Austin"; 12,"Indianapolis")}'/>
+    </declarations>
+	<textbox id="sc" label="Search City:"/>
+	<dropdown label="Select City:"
+		choices='{SELECT c.text FROM cities c WHERE c.text LIKE sc.text || "%"}'
+		keyMap='{text}'
+		textMap='{text}'
+	/>
+	<dropdown label="Site Selection:"
+		choices='{table key, text (1, "Highway 1"; 2, "French Quarter"; 3, "National Mall"; 4,"High Strip"; 5,"First Avenue"; 6,"Main Boulevard")}'
+		keyMap='{key}'
+		textMap='{text}'
+	/>
+	<table id='employees' record='employee' recordset='{
+														table id, name, role
+														("12356","Greg Wilson","Site Manager";
+														"13235","Jack Cerrato","Plant Manager";
+														"15366","Pedro A. Prince","Builder";
+														"97857","Jeff McDonald","Painter";
+														"52978","Rebecca Grubbs","Site Admin")
+														}'>
+
+		<header>
+			<row>
+				<cell>
+					<textview text="Select employee"/>
+				</cell>
+				<cell>
+					<textview text="ID"/>
+				</cell>
+				<cell>
+					<textview text="Name"/>
+				</cell>
+				<cell>
+					<textview text="Role"/>
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell  width="14 em">
+				<checkbox/>
+			</cell>
+			<cell  width="14 em">
+				<textview text='{employee.id}'/>
+			</cell>
+			<cell  width="14 em">
+				<textview text='{employee.name}'/>
+			</cell>
+			<cell  width="14 em">
+				<textview text='{employee.role}'/>
+			</cell>
+		</row>
+	</table>
+	<chapter title="Details of Work">
+		<textbox label="Location on site:"/>
+		<datepicker label="Date of work:" date='{sysp.dtlFormOpen}' dateFormat='(dtf dd "-" MM "-" yyyy)'/>
+		<dropdown label="Working hours:"
+			choices='{table key, text (1, "6-14"; 2, "7-15"; 3, "8-16"; 4,"9-18"; 5,"10-19")}'
+			keyMap='{key}'
+			textMap='{text}'
+		/>
+		<textview/>
+		<textview label="Working Days:"/>
+		<checkbox label="Monday:"/>
+		<checkbox label="Tuesday:"/>
+		<checkbox label="Wednesday:"/>
+		<checkbox label="Thursday:"/>
+		<checkbox label="Friday:"/>
+		<checkbox label="Saturday:"/>
+	</chapter>
+	<chapter title="Job Allocation">
+		<table id='jobs' record='job' recordset='{
+													table check
+													("x")
+												}'>
+			<header>
+				<row>
+					<cell>
+						<textview text="Job type"/>
+					</cell>
+					<cell>
+						<textview text="Percentage"/>
+					</cell>
+				</row>
+			</header>
+			<row>
+				<cell width="14 em">
+					<dropdown id="jobtype" label="Job type:"
+						choices='{table key, text (1, "Wall building"; 2, "Painting"; 3, "Paving"; 4,"Cleaning"; 5,"Other")}'
+						keyMap='{key}'
+						textMap='{text}'
+					/>
+				</cell>
+				<cell width="14 em">
+					<numberbox id="percentage" label="Percentage:" numberFormat='{decimalSeparator: ".", maxFraction: 2}' float="false"/>
+				</cell>
+				<cell width="14 em">
+					<if cond='{jobtype.selectedText = "Other"}'>
+						<textbox id="other" label="Other"/>
+					</if>
+				</cell>
+			</row>
+		</table>
+		<addbutton id='orders_addbutton' table='jobs' records='{SELECT "" check}' text='Add more'/>
+	</chapter>
+	<photo label="Attached pictures:"/>
+</form>

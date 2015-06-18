@@ -1,0 +1,182 @@
+<form id='IosDemoLogistics' menuName='Freight Administration' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+       <let id="freights_base" shape="table" value='{SELECT
+														frs.client,
+														frs.delivery_note,
+														frs.unload_name,
+														frs.unload_city,
+														frs.unload_postcode,
+														frs.freight_id,
+														frs.reference_id,
+														frs.sector_type,
+														frs.cash,
+														frs.rlh,
+														frs.quantity,
+														frs.unit,
+														frs.comment,
+														frs.unload_date,
+														frs.unload_time,
+														frs.unload_address,
+														frs.load_date,
+														frs.load_time,
+														frs.load_address,
+														frs.status
+													FROM
+														(table
+														client,
+														delivery_note,
+														unload_name,
+														unload_city,
+														unload_postcode,
+														freight_id,
+														reference_id,
+														sector_type,
+														cash,
+														rlh,
+														quantity,
+														unit,
+														comment,
+														unload_date,
+														unload_time,
+														unload_address,
+														load_date,
+														load_time,
+														load_address,
+														status
+														(
+															"Great Grocery","deliv2387","Walmart","New York","10011","12356A","ref161352","D-A","0","0.3","300","Container","Special Cargo","01.07.2015","10:00-19:00","135 Mores Blvd.","19.06.2015","06:00-20:00","1010 West High Road","Loaded";
+															"Smart foods","deliv2388","ShopRite","Washington","11210","13235B","ref161353","D-B","0","0.5","10","Container","Dangerous","02.07.2015","11:00-20:00","136 Main St.","22.06.2015","10:00-19:00","136 Main St.","Waiting for Load";
+															"Green Technics","deliv2389","Kroger","Boston","12331","15366F","ref161355","D-A","10000","0.2","100","Container","Special Cargo","03.07.2015","10:00-19:00","1010 West High Road","20.06.2015","10:00-19:00","135 Mores Blvd.","Open";
+															"Best Fries","deliv2390","Aldi","Chicago","34534","97857F","ref161354","D-C","20000","0.1","2000","Container","Normal","04.07.2015","06:00-20:00","1010 West High Road","29.06.2015","11:00-20:00","1010 West High Road","Completed";
+														)) frs
+													WHERE
+														frs.freight_id = (SELECT fr.freight_id.text FROM freights.rows fr WHERE fr.select.checked = true)
+													}'/>
+    </declarations>
+	<table id='freights' record='freight' recordset='{	table
+														freight_id,
+														sector_type,
+														client,
+														unload_name,
+														unload_city,
+														status
+														(
+															"12356A","D-A","Great Grocery","Walmart","New York","Loaded";
+															"13235B","D-B","Smart foods","ShopRite","Washington","Waiting for Load";
+															"15366F","D-A","Green Technics","Kroger","Boston","Open";
+															"97857F","D-C","Best Fries","Aldi","Chicago","Completed";
+														)
+														}'>
+		<header>
+			<row>
+				<cell>
+					<textview text="Selection"/>
+				</cell>
+				<cell>
+					<textview text="Freight ID"/>
+				</cell>
+				<cell>
+					<textview text="Sector type"/>
+				</cell>
+				<cell>
+					<textview text="Client name"/>
+				</cell>
+				<cell>
+					<textview text="Unload name"/>
+				</cell>
+				<cell>
+					<textview text="Unload city"/>
+				</cell>
+				<cell>
+					<textview text="Status"/>
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell width="14 em">
+				<checkbox id="select"/>
+			</cell>
+			<cell width="14 em">
+				<textview id="freight_id" text='{freight.freight_id}'/>
+			</cell>
+			<cell width="14 em">
+				<textview text='{freight.sector_type}'/>
+			</cell>
+			<cell width="14 em">
+				<textview id="client" text='{freight.client}'/>
+			</cell>
+			<cell width="14 em">
+				<textview text='{freight.unload_name}'/>
+			</cell>
+			<cell width="14 em">
+				<textview text='{freight.unload_city}'/>
+			</cell>
+			<cell width="14 em">
+				<textview text='{freight.status}'/>
+			</cell>
+		</row>
+	</table>
+	<!-- Basic Information -->
+	<if cond='{(SELECT COUNT(fr.select.checked) FROM freights.rows fr WHERE fr.select.checked = true) = 1}'>
+		<chapter title="Basic Information">
+			<textview label="Client name:" text='{SELECT frb.client FROM freights_base frb}'/>
+			<textview label="Delivery note:" text='{SELECT frb.delivery_note FROM freights_base frb}'/>
+			<textview label="Unload name:" text='{SELECT frb.unload_name FROM freights_base frb}'/>
+			<textview label="Unload city:" text='{SELECT frb.unload_city FROM freights_base frb}'/>
+			<textview label="Unload postcode:" text='{SELECT frb.unload_postcode FROM freights_base frb}'/>
+			<textview label="Freight ID:" text='{SELECT frb.freight_id FROM freights_base frb}'/>
+			<checkbox id="finfo" label="Information about the selected freight"/>
+			<if cond='{finfo.checked = true}'>
+				<chapter title="Detailed Information:">
+					<textview label="Reference ID:" text='{SELECT frb.reference_id FROM freights_base frb}'/>
+					<textview label="Sector type:" text='{SELECT frb.sector_type FROM freights_base frb}'/>
+					<textview label="Cash on Delivery (COD):" text='{SELECT frb.cash FROM freights_base frb}'/>
+					<textview label="RLH:" text='{SELECT frb.rlh FROM freights_base frb}'/>
+					<textview label="Quantity:" text='{SELECT frb.quantity FROM freights_base frb}'/>
+					<textview label="Unit:" text='{SELECT frb.unit FROM freights_base frb}'/>
+					<textview label="Comment:" text='{SELECT frb.comment FROM freights_base frb}'/>
+					<textview label="Unload date:" text='{SELECT frb.unload_date FROM freights_base frb}'/>
+					<textview label="Unload time:" text='{SELECT frb.unload_time FROM freights_base frb}'/>
+					<textview label="Unload address:" text='{SELECT frb.unload_address FROM freights_base frb}'/>
+					<textview label="Load date:" text='{SELECT frb.load_date FROM freights_base frb}'/>
+					<textview label="Load time:" text='{SELECT frb.load_time FROM freights_base frb}'/>
+					<textview label="Load address:" text='{SELECT frb.load_address FROM freights_base frb}'/>
+				</chapter>
+			</if>
+		</chapter>
+	</if>
+	<textview/>
+	<checkbox id="return" label="Returns?"/>
+	<if cond='{return.checked = true}'>
+		<table id='products' record='productR' recordset='{
+														table
+														check ("x")
+														}'>
+			<row>
+				<cell width="14 em">
+					<textview text='{"Product"}'/>
+				</cell>
+				<cell width="14 em">
+					<textbox id="pallet"/>
+				</cell>
+				<cell width="14 em">
+					<if cond='{productR.check != "x"}'>
+						<removebutton text='Remove'/>
+					</if>
+				</cell>
+			</row>
+		</table>
+	<addbutton id='add_product' table='products' records='{SELECT "" check}' text='Add more'/>
+	</if>
+	<chapter title="Arrival">
+		<checkbox id="arrive" label="Tick when you arrive to spot"/>
+		<if cond='{arrive.checked = true}'>
+			<timepicker seconds='{3600}' invalidTimeMessage='Not a time' timeFormat='(dtf HH":"mm)' step="30"/>
+		</if>
+		<checkbox id="leave" label="Tick when you leave the spot"/>
+		<if cond='{leave.checked = true}'>
+			<timepicker seconds='{3600}' invalidTimeMessage='Not a time' timeFormat='(dtf HH":"mm)' step="30"/>
+			<photo label="Proof of delivery:"/>
+		</if>
+	</chapter>
+</form>

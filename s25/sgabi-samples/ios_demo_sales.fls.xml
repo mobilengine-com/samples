@@ -1,0 +1,95 @@
+<form id='IosDemoSales' menuName='Sales Visit' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+       <let id="cities" shape="table" value='{table key, text (1, "New York"; 2, "Los Angeles"; 3, "Chicago"; 4,"Houston"; 5,"Philadelphia"; 6,"Phoenix"; 7,"San Antonio"; 8,"San Diego"; 9,"Dallas"; 10,"San Jose"; 11,"Austin"; 12,"Indianapolis")}'/>
+    </declarations>
+	<textbox id="sc" label="Search City:"/>
+	<dropdown label="Select City:"
+		choices='{SELECT c.text FROM cities c WHERE c.text LIKE sc.text || "%"}'
+		keyMap='{text}'
+		textMap='{text}'
+	/>
+	<datepicker label="Date of Visit:" date='{sysp.dtlFormOpen}' dateFormat='(dtf dd "-" MM "-" yyyy)'/>
+	<dropdown label="Select Store:"
+		choices='{table key, text (1, "Albertsons LLC"; 2, "Walmart Supercenter"; 3, "ShopRite"; 4,"Kroger"; 5,"Aldi")}'
+		keyMap='{key}'
+		textMap='{text}'
+	/>
+	<dropdown id="activity" label="Activity:"
+		choices='{table key, text (1, "Store Check"; 2, "Sales Visit")}'
+		keyMap='{key}'
+		textMap='{text}'
+	/>
+	<!-- POS status -->
+	<if cond='{activity.selectedText = "Store Check"}'>
+		<chapter title="POS status">
+			<checkbox id="dp" label="Displays placed?"/>
+			<checkbox id="dm" label="Displays missing?"/>
+			<checkbox id="dpd" label="Displays placement done?"/>
+			<checkbox id="sf" label="Stock sufficient?"/>
+			<if cond='{dp.checked = true OR dm.checked = true OR dpd.checked = true OR sf.checked = true}'>
+				<textbox label="Comment:"/>
+			</if>
+			<textbox label="Describe competition:"/>
+			<checkbox id="is" label="Issues?"/>
+			<if cond='{is.checked = true}'>
+				<textbox label="Details:"/>
+			</if>
+		</chapter>
+	</if>
+	<!-- Orders -->
+	<if cond='{activity.selectedText = "Sales Visit"}'>
+		<chapter title="Orders">
+			<table id='orders' record='new_orders' recordset='{
+																table check
+																("x")
+																}'>
+		
+				<header>
+					<row>
+						<cell>
+							<textview text="Category"/>
+						</cell>
+						<cell>
+							<textview text="Pallet"/>
+						</cell>
+						<cell>
+							<textview text="Package"/>
+						</cell>
+						<cell>
+							<textview text="Type"/>
+						</cell>
+					</row>
+				</header>
+				<row>
+					<cell width="14 em">
+						<dropdown id="category" label="Category:"
+							choices='{table key, text (1, "Beverages"; 2, "Food"; 3,"Clothes"; 4,"Other")}'
+							keyMap='{key}'
+							textMap='{text}'
+						/>
+					</cell>
+					<cell width="14 em">
+						<textbox id="pallet"/>
+					</cell>
+					<cell width="14 em">
+						<textbox id="package"/>
+					</cell>
+					<cell width="14 em">
+						<dropdown id="type" label="Type:"
+							choices='{table key, text (1, "Small"; 2, "Medium"; 3,"Large"; 4,"Extra")}'
+							keyMap='{key}'
+							textMap='{text}'
+						/>
+					</cell>
+					<cell>
+						<if cond='{new_orders.check != "x"}'>
+							<removebutton text='Remove'/>
+						</if>
+					</cell>
+				</row>
+			</table>
+			<addbutton id='orders_addbutton' table='orders' records='{SELECT "" check}' text='Add more'/>
+		</chapter>
+	<photo label="Merchandising:"/>
+	</if>
+</form>

@@ -1,0 +1,78 @@
+<form id='IosDemoHelathcare' menuName='Patient Admission' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+       <let id="doctors" shape="table" value='{table key, text (1, "Dr. Greg Wilson"; 2, "Dr. Jack Cerrato"; 3, "Dr. Pedro A. Prince"; 4,"Dr. Stephen K. Sprague"; 5,"Dr. Jeff McDonald"; 6,"Dr. Rebecca Grubbs"; 7,"Dr. Rachael Ryder"; 8,"Dr. Joe Gonzalez"; 9,"Dr. Dean Simmons"; 10,"Dr. Susie Lopez"; 11,"Dr. Tim Morris")}'/>
+       <let id="states" shape="table" value='{table key, text (1, "Arizona"; 2, "Alaska"; 3, "Arkansas"; 4,"California"; 5,"Florida"; 6,"Iowa"; 7,"Delaware"; 8,"Colorado"; 9,"Florida"; 10,"Georgia"; 11,"Indiana"; 12,"Idaho"; 13,"Kansas"; 14,"Kentucky"; 15,"Texas"; 16,"Maryland"; 17,"Nevada"; 18,"Nebraska")}'/>
+	</declarations>
+	<dropdown label="Department:"
+		choices='{table key, text (1, "ITU"; 2, "TH"; 3, "WARD"; 4,"ED")}'
+		keyMap='{key}'
+		textMap='{text}'
+	/>
+	<textbox id="sd" label="Search Doctor:"/>
+	<dropdown label="Assign to:"
+		choices='{SELECT d.text FROM doctors d WHERE d.text LIKE "%" || sd.text || "%"}'
+		keyMap='{text}'
+		textMap='{text}'
+	/>
+	<dropdown id="location" label="Location in Hospital:"
+		choices='{table key, text (1, "Main building"; 2, "Left wing"; 3, "Right wing"; 4,"Centre"; 5,"Other")}'
+		keyMap='{key}'
+		textMap='{text}'
+	/>
+	<if cond='{location.selectedText = "Other"}'>
+		<textbox label="Other location:"/>
+	</if>
+	<numberbox label="Bed Number:" numberFormat='{decimalSeparator: ".", maxFraction: 2}' float="false"/>
+	<textview label="Patient ID:" text="AC12391236"/>
+	<!-- Patient details -->
+	<chapter title="Patient Details">
+		<textbox label="First Name:"/>
+		<textbox label="Last Name:"/>
+		<datepicker label="Date of birth:" date='{sysp.dtlFormOpen}' dateFormat='(dtf dd "-" MM "-" yyyy)'/>
+		<dropdown label="Gender:"
+			choices='{table key, text (1, "Male"; 2, "Female")}'
+			keyMap='{key}'
+			textMap='{text}'
+		/>
+		<textbox label="Email Address:"/>
+		<numberbox label="Mobile Number:" numberFormat='{decimalSeparator: ".", maxFraction: 2}' float="false"/>
+		<numberbox label="Landline Number:" numberFormat='{decimalSeparator: ".", maxFraction: 2}' float="false"/>
+		<dropdown label="Marital Status:"
+			choices='{table key, text (1, "Married"; 2, "Single")}'
+			keyMap='{key}'
+			textMap='{text}'
+		/>
+		<numberbox label="Height:" numberFormat='{decimalSeparator: ".", maxFraction: 2}' float="false"/>
+		<numberbox label="Weight:" numberFormat='{decimalSeparator: ".", maxFraction: 2}' float="false"/>
+	</chapter>
+	<!-- Address -->
+	<chapter title="Address">
+		<textbox label="Town:"/>
+		<textbox id="ss" label="Search State:"/>
+		<dropdown label="Select:"
+			choices='{SELECT s.text FROM states s WHERE s.text LIKE ss.text || "%"}'
+			keyMap='{text}'
+			textMap='{text}'
+		/>
+		<textbox label="ZIP Code:"/>
+		<textbox label="Address Line:"/>
+	</chapter>
+	<!-- Sympton details -->
+	<chapter title="Sympton details">
+		<dropdown label="Type:"
+			choices='{table key, text (1, "Chronic"; 2, "Relapsing"; 3,"Remitting")}'
+			keyMap='{key}'
+			textMap='{text}'
+		/>
+		<dropdown label="Location on body:"
+			choices='{table key, text (1, "Torso"; 2, "Legs"; 3,"Arms"; 4,"Back"; 5,"Feet"; 6,"Hands"; 7,"Head")}'
+			keyMap='{key}'
+			textMap='{text}'
+		/>
+		<checkbox id="pda" label="Primary diagnosis or advice:"/>
+		<if cond='{pda.checked = true}'>
+			<textbox label="Description:"/>
+		</if>
+		<photo label="Take a picture:"/>
+	</chapter>
+</form>
