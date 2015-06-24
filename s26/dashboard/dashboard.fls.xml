@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="dashboard" menuName="dashboard" platforms="web ios" dashboard="true">
+	<textview text="This is dashboard form" />
+
+	<chapter title="The form keeps its state if you navigate away, try it with this checkbox...">
+		<checkbox />
+	</chapter>
+
+	<chapter title="And you will return to the same place from where you left. You ">
+		<popup title="Popup 1">
+			<popup title="Popup 1/1">
+				<textview />
+			</popup>
+			<popup title="Popup 1/2">
+				<popup title="Popup 1/2/1">
+					<popup title="Popup 1/2/1/1">
+						<textview />
+					</popup>
+				</popup>
+			</popup>
+		</popup>
+	</chapter>
+</form>
+  
