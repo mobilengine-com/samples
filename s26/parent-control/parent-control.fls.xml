@@ -1,0 +1,88 @@
+<form id="parent_control" menuName="parent-control" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+  <chapter id='theChapter' title='This chapter contains everything'>
+    <table id='theTable' record='fruit' recordset='{table name, price ("Apple", "149 Ft/Kg"; "Pear", "249 Ft/Kg"; "Watermelon", "799 Ft/Kg")}'>
+      <row>
+        <cell width="7 em">
+          <textview id='name' text='{fruit.name}'/> 
+        </cell>
+        <cell width="7 em">
+          <textview id='price' text='{fruit.price}'/> 
+        </cell>
+      </row>
+    </table>
+  </chapter>
+</form>
+
+<!-- The rfs trace of this form is the following: -->
+<!--
+{
+    info:
+        {
+            dtlSubmit: 2015.06.24. 14:15:04 (Dtl),
+            dtuSubmit: 2015.06.24. 12:15:04 (Dtu),
+            user: {id: 2, name: "gandalf"}
+        },
+    parentControl: <<null>>,
+    submissionTitle: "parent-control",
+    submitButton: <<null>>,
+    theChapter:
+        {
+            parentControl: <<ref: parent_control>>,
+            theTable:
+                {
+                    parentControl: <<ref: parent_control.theChapter>>,
+                    rows:
+                        [
+                            {
+                                name:
+                                    {
+                                        parentControl:
+                                            <<ref: parent_control.theChapter.theTable.rows[0]>>,
+                                        text: "Apple"
+                                    },
+                                parentControl:
+                                    <<ref: parent_control.theChapter.theTable>>,
+                                price:
+                                    {
+                                        parentControl:
+                                            <<ref: parent_control.theChapter.theTable.rows[0]>>,
+                                        text: "149 Ft/Kg"
+                                    }
+                            },
+                            {
+                                name:
+                                    {
+                                        parentControl:
+                                            <<ref: parent_control.theChapter.theTable.rows[1]>>,
+                                        text: "Pear"
+                                    },
+                                parentControl:
+                                    <<ref: parent_control.theChapter.theTable>>,
+                                price:
+                                    {
+                                        parentControl:
+                                            <<ref: parent_control.theChapter.theTable.rows[1]>>,
+                                        text: "249 Ft/Kg"
+                                    }
+                            },
+                            {
+                                name:
+                                    {
+                                        parentControl:
+                                            <<ref: parent_control.theChapter.theTable.rows[2]>>,
+                                        text: "Watermelon"
+                                    },
+                                parentControl:
+                                    <<ref: parent_control.theChapter.theTable>>,
+                                price:
+                                    {
+                                        parentControl:
+                                            <<ref: parent_control.theChapter.theTable.rows[2]>>,
+                                        text: "799 Ft/Kg"
+                                    }
+                            }
+                        ]
+                }
+        }
+}
+-->

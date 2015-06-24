@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://schemas.mobilengine.com/fls/v2" id="submit" menuName="submit" platforms="web ios">
 	<textview text="Check the RFS trace to see which submit button was used..." />
+	<!-- the trace looks like this if you use the sb-confirm button: -->
+	<!--
+		{
+		    info:
+		        {
+		            dtlSubmit: 2015.06.24. 14:03:16 (Dtl),
+		            dtuSubmit: 2015.06.24. 12:03:16 (Dtu),
+		            user: {id: 2, name: "gandalf"}
+		        },
+		    parentControl: <<null>>,
+		    sb-confirm: {parentControl: <<ref: submit>>, submitter: true},
+		    sb-default: {parentControl: <<ref: submit>>, submitter: false},
+		    submissionTitle: "submit",
+		    submitButton: <<ref: submit.sb-confirm>>
+		}
+	-->
+
 	<submitbutton id="sb-default" text="Submit, as in the header" />
 	<submitbutton id="sb-confirm" text="Submit, with customized confirmation" confirm="{true}" confirmMessage="Really?" confirmPositive="For sure" confirmNegative="Oops, no..." />
 </form>

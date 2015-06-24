@@ -1,0 +1,5 @@
+﻿server program parent_control_trace for form parent_control
+using reftab 'dummy';
+{
+	trace form;
+}
