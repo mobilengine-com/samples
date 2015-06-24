@@ -6,7 +6,7 @@
 		<checkbox />
 	</chapter>
 
-	<chapter title="And you will return to the same place from where you left. You ">
+	<chapter title="And you will return to the same place from where you left. You can try that with the popups below.">
 		<popup title="Popup 1">
 			<popup title="Popup 1/1">
 				<textview />
