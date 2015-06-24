@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="next_choose" menuName="next-choose" platforms="web ios">
+	<dropdown id="ddNext"
+		      label="Select the next form:" 
+		      choices='{table name ("next_a"; "next_b"; "next_c")}'
+              keyMap='{name}'
+              textMap='{name}' />
+    <if cond="{ddNext.selectedKey IS NOT NULL}">
+		<submitbutton nextForm='{CASE ddNext.selectedKey WHEN "next_a" THEN forms.next_a WHEN "next_b" THEN forms.next_b ELSE forms.next_c END}' text="Submit and go there!" />
+		<discardbutton nextForm='{CASE ddNext.selectedKey WHEN "next_a" THEN forms.next_a WHEN "next_b" THEN forms.next_b ELSE forms.next_c END}' text="Discard and go there!" />
+	</if>
+</form>
+  
