@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="empty-header" menuName="empty-header" platforms="web ios">
+	<header />
+	<textview text="This form has neither Discard nor Submit buttons in the header." />
+	<textview text="You can't submit this form, you cannot discard it, and you cannot change to another form (on iOS)." />
+	<popup title="Look inside!">
+		<textview text="The empty header also removes the submit button from inside a popup." />
+	</popup>
+	<textview text="The validation errors will still appear, enter anything below to try it." />
+	<textbox>
+		<validation>
+			<validator cond="{false}" message="Only empty is valid here:" />
+		</validation>
+	</textbox>
+	<discardbutton text="(emergency discard button)" />
+</form>

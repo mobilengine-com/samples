@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="toggle-header-buttons" menuName="toggle-header-buttons" platforms="web ios">
+	<header>
+		<if cond="{fHeaderButtons.checked}">
+			<submitbutton text="Submit" />
+			<discardbutton text="Discard" />
+		</if>
+	</header>
+	<checkbox id="fHeaderButtons" label="Toggle header buttons" />
+</form>

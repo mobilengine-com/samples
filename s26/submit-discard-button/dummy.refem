@@ -1,0 +1,5 @@
+<Reftab Name="dummy" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="notused" Type="Integer" />
+	</Columns>
+</Reftab>

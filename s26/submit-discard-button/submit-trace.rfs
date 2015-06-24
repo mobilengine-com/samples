@@ -1,0 +1,5 @@
+﻿server program submit_trace for form submit
+using reftab 'dummy';
+{
+	trace form;
+}

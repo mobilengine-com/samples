@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="submit" menuName="submit" platforms="web ios">
+	<textview text="Check the RFS trace to see which submit button was used..." />
+	<submitbutton id="sb-default" text="Submit, as in the header" />
+	<submitbutton id="sb-confirm" text="Submit, with customized confirmation" confirm="{true}" confirmMessage="Really?" confirmPositive="For sure" confirmNegative="Oops, no..." />
+</form>
+  

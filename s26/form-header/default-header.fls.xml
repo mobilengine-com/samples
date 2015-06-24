@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="default-header" menuName="default-header" platforms="web ios">
+	<!-- the default header is the same as this here -->
+	<!-- 
+	<header>
+		<submitbutton text="Submit" />
+		<discardbutton text="Discard" />
+	</header>
+	-->
+	<textview text="This form has the default header, a Submit and a Discard button." />
+</form>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="discard" menuName="discard" platforms="web ios">
+	<submitbutton id="db-default" text="Discard, as in the header" />
+	<submitbutton id="db-confirm" text="Discard, with customized confirmation" confirm="{true}" confirmMessage="Really?" confirmPositive="For sure" confirmNegative="Oops, no..." />
+</form>
+  
