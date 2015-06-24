@@ -2,10 +2,10 @@
   <chapter id='theChapter' title='This chapter contains everything'>
     <table id='theTable' record='fruit' recordset='{table name, price ("Apple", "149 Ft/Kg"; "Pear", "249 Ft/Kg"; "Watermelon", "799 Ft/Kg")}'>
       <row>
-        <cell width="7 em">
+        <cell width="10 em">
           <textview id='name' text='{fruit.name}'/> 
         </cell>
-        <cell width="7 em">
+        <cell width="10 em">
           <textview id='price' text='{fruit.price}'/> 
         </cell>
       </row>
