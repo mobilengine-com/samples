@@ -3,7 +3,26 @@
 	<textbox id="uguid" label="enter guid: " />
 	<textview label="guid:" text="{SELECT TOSTRINGN(TOGUID(uguid.text))}" />
 	
-	<chapter title="newguid in tbl1">	
+	<chapter title="newguid in a let in row">	
+	  <table id="tbl0" label="Test table" record="g" recordset='{SELECT "" alma WHERE false}'>
+		<row>
+			<cell>
+				<textview text="{toStringN(guid)}">
+					<declarations>
+						<let id="guid" shape="scalar" value='{select newGuid()}'/>
+					</declarations>
+				</textview>
+			</cell>
+		  <cell>
+			<removebutton text='Remove'/>
+		  </cell>
+		</row>
+	  </table>	
+	  <addbutton id='btnAdd0' table='tbl0' records='{select "" alma}' text='Add' />
+	</chapter>
+
+	
+	<chapter title="newguid in add button">	
 	  <table id="tbl1" label="Test table" record="r" recordset='{SELECT TOGUID(t.guid) as guid, t.text FROM reftab t}'>
 		<row>
 			<cell width="10 em">
