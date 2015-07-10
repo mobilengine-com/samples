@@ -1,0 +1,5 @@
+﻿server program TraceLocationCoarse for form location_coarse
+using reftab 'product';
+{
+	trace form;
+}

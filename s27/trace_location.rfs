@@ -1,0 +1,5 @@
+﻿server program TraceLocation for form location
+using reftab 'product';
+{
+	trace form;
+}

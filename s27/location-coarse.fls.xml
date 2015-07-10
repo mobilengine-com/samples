@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="location_coarse" menuName="location coarse" menuOrder="10" platforms="ios web" location="coarse">
+	
+	<textview label="location" text='{toString(sysp.location.latitude)||", "||toString(sysp.location.longitude)||" ("||toString(sysp.location.accuracy)||")"}'/>
+	<linkview label="map" text="here" url='{"http://maps.apple.com/?ll="||toString(sysp.location.latitude)||","||toString(sysp.location.longitude)}'/>
+	
+</form>
+  
