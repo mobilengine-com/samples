@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="ColumnWidth" menuName="Column Width" platforms="ios">
+	<textview text="This table is as wide as the form. The cells display the columns weights." style="{styles.header}" />
+	<table record="r" recordset="{[1,2,3]}" style="{styles.table1234}">
+		<row>
+			<cell>
+				<textview text="weight 1" />
+			</cell>
+			<cell>
+				<textview text="weight 2" />
+			</cell>
+			<cell>
+				<textview text="weight 3" />
+			</cell>
+			<cell>
+				<textview text="weight 4" />
+			</cell>
+		</row>
+	</table>
+
+	<table record="r" recordset="{[1]}" style="{styles.rulerTable}"><row><cell><textview text="&lt; 0px" /></cell><cell><textview text="&lt; 50px" /></cell><cell><textview text="&lt; 100px" /></cell><cell><textview text="&lt; 150px" /></cell><cell><textview text="&lt; 200px" /></cell><cell><textview text="&lt; 250px" /></cell><cell><textview text="&lt; 300px" /></cell><cell><textview text="&lt; 350px" /></cell><cell><textview text="&lt; 400px" /></cell><cell><textview text="&lt; 450px" /></cell><cell><textview text="&lt; 500px" /></cell><cell><textview text="&lt; 550px" /></cell><cell><textview text="&lt; 600px" /></cell></row></table>
+
+	<textview text="This table is as wide as the form. The cells display the columns weights. All cells have a minimum width of 75px." style="{styles.header}" />
+	<table record="r" recordset="{[1,2,3]}" style="{styles.table1234Min75}">
+		<row>
+			<cell>
+				<textview text="weight 1" />
+			</cell>
+			<cell>
+				<textview text="weight 2" />
+			</cell>
+			<cell>
+				<textview text="weight 3" />
+			</cell>
+			<cell>
+				<textview text="weight 4" />
+			</cell>
+		</row>
+	</table>
+
+</form>
+  

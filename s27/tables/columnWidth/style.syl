@@ -1,0 +1,35 @@
+styles {
+	style header {
+		all {
+			backgroundColor = 666666
+			fontColor = f0f0f0
+			fontSize = 18px
+			bold = true
+		}
+	}
+	style table1234 {
+		table {
+			width = fill
+			columnWidth = 1, 2, 3, 4
+		}
+	}
+	style table1234Min75 {
+		table {
+			width = fill
+			columnWidth = 1>75px, 2 >75px, 3> 75px, 4 > 75px
+		}
+	}
+	style rulerTable {
+		all {
+			fontSize = 10px
+			fontColor = 7f7f7f
+			margin { top=0px right=0px bottom=0px left=0px }
+			padding { top=0px right=0px bottom=0px left=0px }
+		}
+		table {
+			width = content
+			columnWidth = 50px
+			body = rulerTable
+		}
+	}
+}

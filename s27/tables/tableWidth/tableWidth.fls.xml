@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="TableWidth" menuName="Table Width" platforms="ios">
+	<textview text="This table is as wide as the form itself" style="{styles.header}" />
+	<table record="r" recordset="{[1,2,3]}" style="{styles.tableFill}">
+		<row>
+			<cell>
+				<textview text="column 1" />
+			</cell>
+			<cell>
+				<textview text="column 2" />
+			</cell>
+			<cell>
+				<textview text="column 3" />
+			</cell>
+		</row>
+	</table>
+
+	<textview text="This table is as wide as the sum of its columns&apos; widths" style="{styles.header}" />
+	<table record="r" recordset="{[1,2,3]}" style="{styles.tableContent}">
+		<row>
+			<cell>
+				<textview text="column 1" />
+			</cell>
+			<cell>
+				<textview text="column 2" />
+			</cell>
+			<cell>
+				<textview text="column 3" />
+			</cell>
+			<cell>
+				<textview text="column 4" />
+			</cell>
+		</row>
+	</table>
+
+	<textview text="This table is half Swt wide" style="{styles.header}" />
+	<table record="r" recordset="{[1,2,3]}" style="{styles.tableDuHalfSwt}">
+		<row>
+			<cell>
+				<textview text="column 1" />
+			</cell>
+			<cell>
+				<textview text="column 2" />
+			</cell>
+			<cell>
+				<textview text="column 3" />
+			</cell>
+			<cell>
+				<textview text="column 4" />
+			</cell>
+		</row>
+	</table>
+
+	<textview text="Table in table: `fill` fills the cell width" style="{styles.header}" />
+	<table record="r" recordset="{[1]}">
+		<row>
+			<cell>
+				<textview text="The columns are 200px wide by default. The table on the right fills this 200px space, because its width is set to `fill`." />
+			</cell>
+			<cell>
+				<table record="r" recordset="{[1,2,3]}" style="{styles.tableFill}">
+					<row>
+						<cell>
+							<textview text="column 1" />
+						</cell>
+						<cell>
+							<textview text="column 2" />
+						</cell>
+					</row>
+				</table>
+			</cell>
+		</row>
+	</table>
+
+	<textview text="Table in table: Du width" style="{styles.header}" />
+	<table record="r" recordset="{[1]}">
+		<row>
+			<cell>
+				<textview text="The table on the right is only 150px wide, as specified in its width." />
+			</cell>
+			<cell>
+				<table record="r" recordset="{[1,2,3]}" style="{styles.tableDu150px}">
+					<row>
+						<cell>
+							<textview text="column 1" />
+						</cell>
+						<cell>
+							<textview text="column 2" />
+						</cell>
+					</row>
+				</table>
+			</cell>
+		</row>
+	</table>
+</form>
+  
