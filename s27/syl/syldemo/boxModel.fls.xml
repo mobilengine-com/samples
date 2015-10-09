@@ -1,0 +1,8 @@
+<form xmlns="http://schemas.mobilengine.com/fls/v2" 
+      id="boxModel" menuName="boxModel" 
+      platforms="ios" style="{ styles.boxModel }">
+      <textbox label="The textbox" text="The text" />
+      <chapter title="The chapter">
+        <textbox label="Textbox in chapter" text="The text" />
+      </chapter>
+</form>

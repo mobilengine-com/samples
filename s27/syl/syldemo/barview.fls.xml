@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="barview" menuName="barview" platforms="ios" style="{ styles.barview }">
+    <barview label='Such much:' maxValue='{100}' value='{num.number}' />
+    <numberbox id='num' label='How much?' float='true' numberFormat='{decimalSeparator:".", postfix:"%"}'/>
+</form>

@@ -1,0 +1,161 @@
+styles {
+    style boxModel {
+        all {
+            backgroundColor = 0000ff
+            padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        
+            label {
+                backgroundColor = ffff00
+            }
+            control {
+                backgroundColor = 00ffff
+            }
+        }
+        
+        canvas {
+            backgroundColor = ff0000
+            padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        }
+        
+        frame {
+            backgroundColor = 00ff00
+        }
+        
+        chapter {
+            content = chapterCanvas
+        }
+    }
+    
+    style chapterCanvas {
+        canvas {
+            backgroundColor = ff00ff
+             padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        }
+    }
+ 
+ /*--------------------------------------------------------------------------------------------------------------------------*/
+ 
+    style table { 
+        table {
+            header = tableHeader
+            body = tableBody
+            footer = tableFooter
+            width = fill
+            columnWidth = 0.5, 0.5
+            margin {
+                top = 0px
+                left = 0px
+                bottom = 0px
+                right = 0px
+            }
+        }
+    }
+    
+    style tableHeader {
+        all {
+            backgroundColor = ffffff
+        }
+        
+        row {
+          backgroundColor = ff0000
+            padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        }
+        
+        cell {
+          backgroundColor = ffff00
+            padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        }
+    }
+    
+    style tableBody {
+        all {
+            backgroundColor = ffffff
+        }
+        
+        row {
+            backgroundColor = 0000ff
+            padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        }
+        
+        cell {
+            backgroundColor = 00ffff
+            padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        }
+    }
+    
+    style tableFooter {
+        all {
+            backgroundColor = ffffff
+        }
+        
+        row {
+            backgroundColor = 00ff00
+            padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        }
+        
+        cell {
+            backgroundColor = ff00ff
+            padding {
+                top = 20px
+                left = 20px
+                bottom = 20px
+                right = 20px
+            }
+        }
+    }
+/*--------------------------------------------------------------------------------------------------------------------------*/  
+
+    style barview {
+        barview {
+            control {
+                backgroundColor = ff0000
+            }
+            bar {
+                height = 50px
+                color = 00ff00
+                borderColor = 00aa00
+                borderWidth = 3px
+            }
+        }
+    }
+}

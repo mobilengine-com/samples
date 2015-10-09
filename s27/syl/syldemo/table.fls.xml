@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="table" menuName="table" platforms="ios" style="{ styles.table }">
+    <table id="t1" recordset='{TABLE a, b (1, "foo";2, "bar")}' record='r'>
+		<header>
+            <row>
+                <cell>
+                    <textview text='header a' />
+                </cell>
+                <cell>
+                    <textview text='header b'/>
+                </cell>
+            </row>           
+        </header>
+        <row>
+			<cell>
+                <textview text="{TOSTRING(r.a)}" />
+			</cell>
+			<cell>
+				<textview text='{r.b}'/>
+			</cell>
+		</row>
+        <footer>
+            <row>
+                <cell>
+                    <textview text='footer a' />
+                </cell>
+                <cell>
+                    <textview text='footer b'/>
+                </cell>
+            </row>
+        </footer>
+    </table>
+</form>
