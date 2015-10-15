@@ -1,0 +1,18 @@
+server program order_server for form order
+using reftab orders;
+{
+	var isPie = function(var content) {
+		if (content.IndexOf("pie") == -1) 
+			return 2;
+		return 1;
+	};
+
+	trace form.id, form.date, form.content;
+	db.orders.Insert({
+		id: form.id.ToStringN(),
+		agent: form.info.user.name, 
+		date: form.date.DtlToDtdb(),
+		content: form.content.text,
+		result: isPie(form.content.text)
+	});
+}

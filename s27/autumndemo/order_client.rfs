@@ -1,0 +1,11 @@
+client program order_client for form order
+using reftab orders;
+{
+	trace form.id, form.content;
+	db.orders.Insert({
+		id: form.id.ToStringN(),
+		agent: form.info.user.name, 
+		date: form.date.DtlToDtdb(),
+		content: form.content.text,
+		result: null
+	});}

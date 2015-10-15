@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="xmasDemo" menuName="XMAS Demo" submissionTitle="XMAS Demo" platforms="web ios" style="{select t.v from rgsyl t}">
+
+  <chapter title="Welcome">
+    <textview style="{styles.deprecated}" text="This is the XMAS 2014 Techdemo of Mkios S25, the Mobilengine iOS client...."/>
+
+	<textview style="{styles.head}" text="Autumn 2015 Techdemo (S27)."/>
+	<textview text="We'll use this form created almost a year ago to show you what you can do with styles"/>
+    <textview text="Enjoy."/>
+  </chapter>
+
+  <chapter title="Styles">
+	<declarations>
+		<let id='rgsyl' shape='table' value='{[
+			ddBgcnv.selectedValue.syl,ddBgc.selectedValue.syl,ddBgl.selectedValue.syl,ddFcl.selectedValue.syl,ddFcc.selectedValue.syl,ddTs.selectedValue.syl,ddPd.selectedValue.syl,ddBw.selectedValue.syl,ddBc.selectedValue.syl,
+			case when chkItalic.checked then styles.italic else null end,
+			case when chkBold.checked then styles.bold else null end,
+			case when chkUnderline.checked then styles.underline else null end,
+			case when chkStrikethrough.checked then styles.strikethrough else null end
+		]}'/>
+	</declarations>
+	<dropdown label="Background color (canvas)" id="ddBgcnv" choices='{TABLE n, syl ("magenta", styles.bgcnvMagenta; "green", styles.bgcnvGreen;)}' keyMap='{n}' textMap='{n}'/>
+	<dropdown label="Background color (control)" id="ddBgc" choices='{TABLE n, syl ("magenta", styles.bgcMagenta; "orange", styles.bcgOrange; "blue (20% opacity)", styles.bcgBlue20)}' keyMap='{n}' textMap='{n}'/>
+	<dropdown label="Background color (label)" id="ddBgl" choices='{TABLE n, syl ("magenta", styles.bglMagenta; "blue", styles.bglBlue; "orange", styles.bglOrange;)}' keyMap='{n}' textMap='{n}'/>
+	<dropdown label="Text color (label)" id="ddFcl" choices='{TABLE n, syl ("magenta", styles.fclMagenta; "blue", styles.fclBlue;)}' keyMap='{n}' textMap='{n}'/>
+	<dropdown label="Text color (control)" id="ddFcc" choices='{TABLE n, syl ("magenta", styles.fccMagenta; "yellow", styles.fccYellow;)}' keyMap='{n}' textMap='{n}'/>
+	<checkbox label="Italic" id="chkItalic"/>
+	<checkbox label="Bold" id="chkBold"/>
+	<checkbox label="Underline" id="chkUnderline"/>
+	<checkbox label="Strikethrough" id="chkStrikethrough"/>
+	<dropdown label="Text size" id="ddTs" choices='{TABLE n, syl ("2 px", styles.ts2; "8 px", styles.ts8; "14 px", styles.ts14; "36 px", styles.ts36; "72 px", styles.ts72)}' keyMap='{n}' textMap='{n}'/>
+	<dropdown label="Padding" id="ddPd" choices='{TABLE n, syl ("none", styles.pd0; "2 px", styles.pd2; "20 px", styles.pd20; "20 px (top and bottom)", styles.pd20top; "30 px (left)", styles.pd30left; )}' keyMap='{n}' textMap='{n}'/>
+	<dropdown label="Border width" id="ddBw" choices='{TABLE n, syl ("none", styles.bw0; "1 px", styles.bw1; "5 px", styles.bw5; "5 px (top and bottom)", styles.bw5top; "30 px (left)", styles.bw30left; )}' keyMap='{n}' textMap='{n}'/>
+	<dropdown label="Border color" id="ddBc" choices='{TABLE n, syl ("magenta", styles.bcMagenta; "blue", styles.bcBlue; "orange", styles.bcOrange;)}' keyMap='{n}' textMap='{n}'/>
+  </chapter>
+  
+  <chapter title="Basic Controls">
+    <textview text="This area demonstrates the base controls we have"/>
+    <textbox label="This is a textbox" hint="Type here"/>
+    <textarea label="This is a textarea" hint="Type multiline text here"/>
+    <checkbox label="This is a checkbox"/>
+    <datepicker label="This is a datepicker (yes, the link is screwed up, but click it)" date="{(dtl 2014-12-24T19:00:00)}" dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+    <timepicker label='This is a timepicker' seconds='{68400}' timeFormat='(dtf HH ":" mm)' step='15'/>
+    <photo label='This is a photo control' photoData='{0}'/>
+    <dropdown label='This is a dropdown' choices='{TABLE s ("foo"; "bar"; "baz")}' keyMap='{s}' textMap='{s}'/>
+    <popup label='This is a popup' title='Click it'>
+      <popup title='Can you dig deeper?'>
+        <popup title='Deeper still?'>
+          <popup title='Are you lost already?'>
+    <textview text="This area demonstrates the base controls we have"/>
+    <textbox label="This is a textbox" hint="Type here"/>
+    <textarea label="This is a textarea" hint="Type multiline text here"/>
+    <checkbox label="This is a checkbox"/>
+    <datepicker label="This is a datepicker (yes, the link is screwed up, but click it)" date="{(dtl 2014-12-24T19:00:00)}" dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+    <timepicker label='This is a timepicker' seconds='{68400}' timeFormat='(dtf HH ":" mm)' step='15'/>
+    <photo label='This is a photo control' photoData='{0}'/>
+    <dropdown label='This is a dropdown' choices='{TABLE s ("foo"; "bar"; "baz")}' keyMap='{s}' textMap='{s}'/>
+            <textview text='Nothing to see here. Turn around'>
+				<validation>
+					<validator cond="{false}" message="You will never fix this error"/>
+					<validator cond="{false}" message="Another error that lets you wonder"/>
+					<validator cond="{false}" message="Unfixable"/>
+					<validator cond="{false}" message="Houston we have a problem"/>
+					<validator cond="{false}" message="You shall not submit"/>
+				</validation>
+			</textview>
+    <datepicker label="This is a datepicker (yes, the link is screwed up, but click it)" date="{(dtl 2014-12-24T19:00:00)}" dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+    <timepicker label='This is a timepicker' seconds='{68400}' timeFormat='(dtf HH ":" mm)' step='15'/>
+    <photo label='This is a photo control' photoData='{0}'/>
+    <dropdown label='This is a dropdown' choices='{TABLE s ("foo"; "bar"; "baz")}' keyMap='{s}' textMap='{s}'/>
+          </popup>
+        </popup>
+      </popup>
+    </popup>
+  </chapter>
+  
+  <chapter title='Basic controls without labels'>
+    <textview text="Same controls as above expect that this time they do not have labels and hence occupy the entire screen width"/>
+    <textbox hint="Type here"/>
+    <textarea hint="Type multiline text here"/>
+    <checkbox/>
+    <chapter title="These two below are the date picker and time picker">
+      <datepicker date="{(dtl 2014-12-24T19:00:00)}" dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+      <timepicker seconds='{68400}' timeFormat='(dtf HH ":" mm)' step='15'/>
+    </chapter>
+    <photo photoData='{0}'/>
+    <dropdown choices='{TABLE s ("foo"; "bar"; "baz")}' keyMap='{s}' textMap='{s}'/>
+    <popup title='Click it'>
+      <popup title='Can you dig deeper?'>
+        <popup title='Deeper still?'>
+          <popup title='Are you lost already?'>
+            <textview text='Nothing to see here. Turn around'/>
+          </popup>
+        </popup>
+      </popup>
+    </popup>
+  </chapter>
+
+  <chapter title='Databinding fun'>
+    <textview text="We'll show some databinding here"/>
+    <textbox id="A" hint="Type your name here"/>
+    <textview label="We can databind text of a textview..." text='{"Hello " || A.text || "!"}'/>
+    <textbox label='... or textbox ...' text='{"Hello " || A.text || "!"}'/>
+    <textbox label='{"Hello " || A.text || "!"}' hint='... labels as well...'/>
+    <textbox hint='{"Hello " || A.text || "!"}' label='... and even the hint text'/>
+    <dropdown label='Databound dropdown' choices='{TABLE s ("Good morning"; "Good afternoon"; "Good evening")}' keyMap='{s}' textMap='{s || " " || A.text || "!"}'/>
+    <popup label='Databound popup title' title='{"Hello " || A.text || "!"}'>
+      <textview text='This popup is left intentionally blank'/>
+    </popup>
+  </chapter>
+  
+  <chapter title='Fun with photo control'>
+    <textview text='Almost all properties of a photo control can be databound'/>
+    <dropdown label='Resolution' id='res' choices='{TABLE width, height (NULL, NULL; 800, 600; 1200, 1000)}' 
+              keyMap='{SELECT width, height}' 
+              textMap='{CASE WHEN width IS NULL THEN "Native resolution" ELSE TOSTRING(width) || "x" || TOSTRING(height) END}'/>
+    <dropdown label='Quality' id='qual' choices='{TABLE quality (20; 50; 80; 100)}' 
+              keyMap='{quality}' 
+              textMap='{CASE WHEN quality IS NULL THEN "Default quality" ELSE TOSTRING(quality) || " %" END}'/>
+    <textbox label='Description' id='desc' hint='Add description here'/>
+    <photo access='private' label='Take a photo' id='photo' photoData='{SELECT desc.text description, res.selectedText resolution, qual.selectedText quality}' jpegResolution='{SELECT res.selectedKey.width, res.selectedKey.height}' jpegQuality='{qual.selectedKey}'/>
+    <if cond='{(SELECT COUNT(*) FROM table.rows r) > 0}'>
+      <table id='table' recordset='{SELECT p.description, p.resolution, p.quality FROM photo.photos p}' record='p'>
+        <header>
+          <row>
+            <cell>
+              <textview text='Description' width='20 em'/>
+            </cell>
+            <cell>
+              <textview text='Resolution' width='10 em'/>
+            </cell>
+            <cell>
+              <textview text='Quality' width='5 em'/>
+            </cell>
+          </row>
+        </header>
+        <row>
+          <cell>
+            <textview text='{p.description}' width='20 em'/>
+          </cell>
+          <cell>
+            <textview text='{p.resolution}' width='10 em'/>
+          </cell>
+          <cell>
+            <textview text='{p.quality}' width='5 em'/>
+          </cell>
+        </row>
+        <footer>
+          <row>
+            <cell>
+              <textview text='{TOSTRING((SELECT COUNT(*) FROM table.rows r)) || " photos taken"}' width='20 em'/>
+            </cell>
+          </row>
+        </footer>
+      </table>
+    </if>
+  </chapter>
+
+  <chapter title='Dynamic controls (if)'>
+    <checkbox id='fShow' checked='{true}' text='{(CASE WHEN checked THEN "hide" ELSE "show" END) || " the controls below"}'/>
+    <if cond='{fShow.checked}'>
+      <textbox label="This is a textbox" hint="Type here"/>
+      <textarea label="This is a textarea" hint="Type multiline text here"/>
+      <checkbox label="This is a checkbox"/>
+      <datepicker label="This is a datepicker (yes, the link is screwed up, but click it)" date="{(dtl 2014-12-24T19:00:00)}" dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+      <timepicker label='This is a timepicker' seconds='{68400}' timeFormat='(dtf HH ":" mm)' step='15'/>
+      <photo label='This is a photo control' photoData='{0}'/>
+      <dropdown label='This is a dropdown' choices='{TABLE s ("foo"; "bar"; "baz")}' keyMap='{s}' textMap='{s}'/>
+      <popup label='This is a popup' title='Click it'>
+        <popup title='Can you dig deeper?'>
+          <popup title='Deeper still?'>
+            <popup title='Are you lost already?'>
+              <textview text='Nothing to see here. Turn around'/>
+            </popup>
+          </popup>
+        </popup>
+      </popup>
+    </if>
+  </chapter>
+
+  <chapter title='Dynamic controls (table)'>
+    <textbox id='filter' hint='Enter prefix here'/>
+    <table recordset='{SELECT t.s FROM (TABLE s ("foo"; "bar"; "baz")) t WHERE t.s LIKE filter.text || "%"}' record='t'>
+      <header>
+        <row>
+          <cell>
+            <textview text='Header'/>
+          </cell>
+        </row>
+      </header>
+      <row>
+        <cell>
+          <textbox text='{t.s}'/>
+        </cell>
+      </row>
+      <footer>
+        <row>
+          <cell>
+            <textview text="Footer"/>
+          </cell>
+        </row>
+      </footer>
+    </table>
+  </chapter>
+  
+  <chapter title="Goodbye">
+    <textview text="Hope you enjoyed this demo. Marry XMAS and Happy New Year!"/>
+  </chapter>
+</form>

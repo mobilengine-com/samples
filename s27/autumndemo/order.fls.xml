@@ -1,0 +1,21 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='order' menuName='Make an order' submissionTitle='{btnOrder.text}' menuOrder="hidden" platforms='ios web' style='{styles.lightDef}'>
+	<declarations>
+		<let id="id" access="public" shape="scalar" value="{newguid()}"/>
+		<let id="date" access="public" shape="scalar" value="{sysp.dtlFormOpen}"/>
+	</declarations>
+	
+	<header>
+		<discardbutton text="Cancel" confirm="{true}"/>
+		<submitbutton text='{"Order" || case when content.text is not "" then " \"" || content.text || "\" " else "" end}'/>
+	</header>
+	
+	<textview text="What do you want to order today? Don't be shy, it can be anything!"/>
+	<textarea id="content" hint="Your order">
+		<validation>
+			<validator cond='{text is not ""}' message='Please tell us what you need' />
+		</validation>
+	</textarea>
+	
+	<submitbutton id="btnOrder" text='{"Order" || case when content.text is not "" then " \"" || content.text || "\" " else "" end}'/>
+	<discardbutton text='Cancel' confirm='{true}'/>
+</form>

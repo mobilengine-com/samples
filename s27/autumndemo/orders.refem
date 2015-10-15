@@ -1,0 +1,9 @@
+<Reftab Name="orders" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="true">
+  <Columns>
+	<Column Name="agent" PrimaryKey="true" Type="Text" AgentName="true" NotNull="true" />
+	<Column Name="id" PrimaryKey="true" NotNull="true" Type="Text" />
+	<Column Name="date" Type="Date" />
+	<Column Name="content" Type="Text" />
+	<Column Name="result" Type="Integer" />
+  </Columns>
+</Reftab>

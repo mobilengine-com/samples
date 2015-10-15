@@ -1,0 +1,107 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='dashboard' menuName='Autumn Demo' dashboard='true' platforms='ios web' style='{[styles.tbl, sylDef]}'>
+	<declarations>
+		<let id="rgOrder" access="private" shape="table" value='{select t.date, t.content, t.result from orders t order by date desc}'/>
+		<let id="rgOrderPending" access="private" shape="table" value='{select t.date, t.content, t.result from rgOrder t where t.result is null}'/>
+		<let id="rgOrderProcessed" access="private" shape="table" value='{select t.date, t.content, t.result from rgOrder t where t.result is not null}'/>
+		<let id="cPending" access="private" shape="scalar" value='{select count(*) from rgOrderPending t}'/>
+		<let id="cProcessed" access="private" shape="scalar" value='{select count(*) from rgOrderProcessed t}'/>
+		<let id="cConfirmed" access="private" shape="scalar" value='{select count(*) from rgOrderProcessed t where t.result is 1}'/>
+		<let id="cRejected" access="private" shape="scalar" value='{select count(*) from rgOrderProcessed t where t.result is 2}'/>
+		
+		<let id="rgstyle" access="private" shape="table" value='{
+			TABLE theme, syln, syl (
+				"default", "def", null;
+				"default", "pending", null;
+				"default", "confirmed", null;
+				"default", "rejected", null;
+			
+				"light", "def", styles.lightDef;
+				"light", "pending", styles.pending;
+				"light", "confirmed", styles.confirmed;
+				"light", "rejected", styles.rejected;
+
+				"dark", "def", styles.darkDef;
+				"dark", "pending", styles.pending;
+				"dark", "confirmed", styles.confirmed;
+				"dark", "rejected", styles.rejected;
+				
+				"moonlight", "def", styles.moonlightDef;
+				"moonlight", "pending", styles.pending;
+				"moonlight", "confirmed", styles.confirmed;
+				"moonlight", "rejected", styles.rejected;
+			)
+		}'/>
+		<let id='theme' access='private' shape='scalar' value='{ddTheme.selectedKey}'/>
+		<let id='sylDef' access='private' shape='scalar' value='{select t.syl from rgstyle t where t.theme = theme and t.syln = "def"}'/>
+		<let id='sylPending' access='private' shape='scalar' value='{select t.syl from rgstyle t where t.theme = theme and t.syln = "pending"}'/>
+		<let id='sylConfirmed' access='private' shape='scalar' value='{select t.syl from rgstyle t where t.theme = theme and t.syln = "confirmed"}'/>
+		<let id='sylRejected' access='private' shape='scalar' value='{select t.syl from rgstyle t where t.theme = theme and t.syln = "rejected"}'/>
+	</declarations>
+	<header/>
+	
+	<chapter title='{"Pending orders" || case when 0 &lt; cPending then " (" || tostring(cPending) || ")" else "" end}'>
+		<if cond="{0 = cPending}">
+			<textview text="You have no pending orders"/>
+		</if>
+		<if cond='{not (0 = cPending)}'>
+			<table record="order" recordset="{select t.date, t.content, t.result from rgOrderPending t}">
+				<row style='{sylPending}'>
+					<cell>
+						<textview text='{FORMATDTL(order.date, (dtf d "/" M "/" yy " " H ":" m ":" s))}'/>
+					</cell>
+					<cell>
+						<textview text='{order.content}'/>
+					</cell>
+					<cell>
+						<textview text='Your order is being processed...'/>
+					</cell>
+				</row>
+			</table> 
+		</if>
+	</chapter>
+	
+	<chapter title='{"Processed orders" || case when 0 &lt; cProcessed then " (" || tostring(cProcessed) || ")" else "" end}'>
+		<if cond="{0 = cProcessed}">
+			<textview text="You have no processed orders"/>
+		</if>
+		<if cond='{not (0 = cProcessed)}'>
+				<table record="o" recordset="{select t.date, t.content, t.result from rgOrderProcessed t}">
+					<row style='{result.syl}'>
+						<declarations>
+							<let id='result' access='private' shape='record' value='{
+								SELECT t.st, t.syl FROM (TABLE ires, st, syl (
+									1, "Confirmed", sylConfirmed;
+									2, "Rejected - out of stock", sylRejected;
+								)) t WHERE t.ires = o.result
+							}'/>
+						</declarations>
+						<cell>
+							<textview text='{FORMATDTL(o.date, (dtf dd "/" MM "/" yy " " HH ":" mm ":" ss))}'/>
+						</cell>
+						<cell>
+							<textview text='{o.content}'/>
+						</cell>
+						<cell>
+							<textview text='{result.st}'/>
+						</cell>
+					</row>
+				</table> 
+		</if>
+	</chapter>
+	
+	<chapter title="Statistics">
+		<barview label="Pending orders" maxValue='{cPending + cProcessed}' value='{cPending}' style='{sylPending}' />
+		<barview label="Rejected orders" maxValue='{cPending + cProcessed}' value='{cRejected}' style='{sylRejected}'/>
+		<barview label="Confirmed orders" maxValue='{cPending + cProcessed}' value='{cConfirmed}' style='{sylConfirmed}'/>
+	</chapter>
+	
+	<discardbutton text='Make an order' nextForm="{forms.order}" confirm="{false}"/>
+	<submitbutton id="btnReset" text='Reset All' 
+		confirm='{0 &lt; cPending + cProcessed}'
+		confirmMessage='{"You have " || tostring(cPending) || " pending and " || tostring(cProcessed) || " processed orders. Do you really want to get rid of them all?"}'
+		confirmPositive="Absolutely"
+		confirmNegative='{tostring(cPending + cProcessed) || "? Really?! I think I have changed my mind..."}'
+	/>
+	
+	<dropdown id="ddTheme" label="Theme" selectedKey='{"default"}' choices='{["default", "light", "dark", "moonlight"]}' keyMap='{v}' textMap='{v}'/>
+</form>

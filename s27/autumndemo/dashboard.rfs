@@ -1,0 +1,7 @@
+client server program dashboard for form dashboard
+using reftab orders;
+{
+	if (form.submitButton == form.btnReset)
+		foreach(var orders in db.orders.Read({agent: form.info.user.name}))
+			db.orders.Delete({id: orders.id});
+}
