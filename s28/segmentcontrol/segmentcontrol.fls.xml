@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="segctrl" menuName="segmentcontrol" menuOrder="10" platforms="ios" location="fine">
+	<declarations>
+		<let id="data" shape="table" value='{table key, text (1,"alma";2,"korte")}' />
+	</declarations>
+	<dropdown id="dropdown" label="dropdown" choices='{select d.key, d.text from data d}' keyMap='{key}' textMap='{text}'/>
+	<segmentcontrol id="segmentcontrol" label="segmentcontrol" choices='{select d.key, d.text from data d}' keyMap='{key}' textMap='{text}' selectedKey='{dropdown.selectedKey}' />
+	<textview text='{segmentcontrol.selectedText}' />
+</form>
+  
