@@ -1,0 +1,571 @@
+styles {
+	style pending {
+		row {
+			backgroundColor = FFEA00
+		}
+		barview {
+			bar {
+				color = FFEA00
+			}
+		}
+	}
+
+	style rejected {
+		row {
+			backgroundColor = FF3C00
+		}
+		barview {
+			bar {
+				color = FF3C00
+			}
+		}
+	}
+	
+	style confirmed {
+		row {
+			backgroundColor = 43FF00
+		}
+		barview {
+			bar {
+				color = 43FF00
+			}
+		}
+	}
+	
+	style tbl {
+		all {
+			content = tbl
+			header = tbl
+			body = tbl
+			footer = tbl
+		}
+		
+		table {
+			margin {
+				left = 0.00001 px
+				right = 0.00001 px
+			}
+			width = fill
+			columnWidth = 130 px, 140px, 1.0
+		}
+	}
+
+	// light ----------------------------------------------------------------
+	style lightDef {
+		all {
+			content = lightDef
+			borderColor = 00000000
+			bar {
+				height = 15 px
+			}
+		}
+		chapter {
+			borderColor = 00000000
+			title {
+				fontSize = 24 px
+				italic = true
+				padding {
+					top = 10 px
+				}
+				borderWidth {
+					top = 0 px
+					bottom = 1 px
+				}
+				backgroundColor = 00000000
+			}
+			padding {
+				bottom = 15 px
+			}
+		}
+	}
+
+	// dark ----------------------------------------------------------------
+	style darkDef {
+		all {
+			content = darkDef
+			header = darkTbl
+			body = darkTbl
+			footer = darkTbl
+			navigation = darkDef
+			borderColor = 00000000
+			borderWidth {
+				top = 0 px
+				bottom = 0 px
+				left = 0 px
+				right = 0 px
+			}
+			bar {
+				height = 15 px
+			}
+
+			fontColor = CFCFCF
+		}
+		
+		frame {
+			backgroundColor = 474747
+		}
+		
+		canvas {
+			backgroundColor = 474747
+		}
+		
+		submitbutton {
+			control {
+				bold = true
+				fontColor = FFFFFF
+			}
+		}
+
+		discardbutton {
+			control {
+				bold = true
+				fontColor = FFFFFF
+			}
+		}
+		
+		dropdown {
+			control {
+				bold = true
+				fontColor = FFFFFF
+			}
+		}
+		
+		chapter {
+			title {
+				fontSize = 24 px
+				italic = true
+				padding {
+					top = 10 px
+				}
+				borderWidth {
+					top = 0 px
+					bottom = 1 px
+				}
+				backgroundColor = 00000000
+			}
+			padding {
+				bottom = 15 px
+			}
+		}
+	}
+	
+	style darkTbl {
+		all {
+			control {
+				fontColor = 474747
+			}
+		}
+	}
+	
+	// moonlight ----------------------------------------------------------------
+	style moonlightDef {
+		all {
+			content = moonlightDef
+			header = moonlightTbl
+			body = moonlightTbl
+			footer = moonlightTbl
+			navigation = moonlightDef
+			borderColor = 00000000
+			borderWidth {
+				top = 0 px
+				bottom = 0 px
+				left = 0 px
+				right = 0 px
+			}
+			bar {
+				height = 15 px
+			}
+
+			fontColor = B8CDFF
+		}
+		
+		frame {
+			backgroundColor = 04194A
+		}
+		
+		canvas {
+			backgroundColor = 04194A
+		}
+		
+		submitbutton {
+			control {
+				bold = true
+				fontColor = F0AF18
+			}
+		}
+
+		discardbutton {
+			control {
+				bold = true
+				fontColor = F0AF18
+			}
+		}
+		
+		dropdown {
+			control {
+				bold = true
+				fontColor = F0AF18
+			}
+		}
+		
+		chapter {
+			title {
+				fontSize = 24 px
+				italic = true
+				padding {
+					top = 10 px
+				}
+				borderWidth {
+					top = 0 px
+					bottom = 1 px
+				}
+				backgroundColor = 00000000
+			}
+			padding {
+				bottom = 15 px
+			}
+		}
+	}
+	
+	style moonlightTbl {
+		all {
+			control {
+				fontColor = 04194A
+			}
+		}
+	}
+	
+	// ------------------------------------- xmasdemo --------------------------------
+	style deprecated {
+		all {
+//			fontSize = 6 px
+			strikethrough = true
+		}
+	}
+	
+	style head {
+		all {
+			fontSize = 35 px
+		}
+	}
+	
+	style bgcnvMagenta { all { 
+		content = bgcnvMagenta
+		header = bgcnvMagenta
+		body = bgcnvMagenta
+		footer = bgcnvMagenta
+		
+		} 
+		canvas { backgroundColor = F013E8 }
+	}
+	style bgcnvGreen { all { 
+		content = bgcnvGreen
+		header = bgcnvGreen
+		body = bgcnvGreen
+		footer = bgcnvGreen
+		}
+		canvas { backgroundColor = 13F01B }
+	}
+
+	style bgcMagenta { all { 
+		content = bgcMagenta
+		header = bgcMagenta
+		body = bgcMagenta
+		footer = bgcMagenta
+		control { backgroundColor = F013E8 }
+		} 
+	}
+	style bcgBlue20 { all { 
+		content = bcgBlue20
+		header = bcgBlue20
+		body = bcgBlue20
+		footer = bcgBlue20
+		control { backgroundColor = 137AF040 }
+		} 
+	}
+	style bcgOrange { all { 
+		content = bcgOrange
+		header = bcgOrange
+		body = bcgOrange
+		footer = bcgOrange
+		control { backgroundColor = F08913 }
+		} 
+	}
+	style bglMagenta { all { 
+		content = bglMagenta
+		header = bglMagenta
+		body = bglMagenta
+		footer = bglMagenta
+		label { backgroundColor = F013E8 }
+		} 
+	}
+	style bglBlue { all { 
+		content = bglBlue
+		header = bglBlue
+		body = bglBlue
+		footer = bglBlue
+		label { backgroundColor = 137AF0 }
+		} 
+	}
+	style bglOrange { all { 
+		content = bglOrange
+		header = bglOrange
+		body = bglOrange
+		footer = bglOrange
+		label { backgroundColor = F08913 }
+		} 
+	}
+	style fclMagenta { all { 
+		content = fclMagenta
+		header = fclMagenta
+		body = fclMagenta
+		footer = fclMagenta
+		label { fontColor = F013E8 }
+		} 
+	}
+	style fclBlue { all { 
+		content = fclBlue
+		header = fclBlue
+		body = fclBlue
+		footer = fclBlue
+		label { fontColor = 137AF0 }
+		} 
+	}
+	style fccMagenta { all { 
+		content = fccMagenta
+		header = fccMagenta
+		body = fccMagenta
+		footer = fccMagenta
+		control { fontColor = F013E8 }
+		} 
+	}
+	style fccYellow { all { 
+		content = fccYellow
+		header = fccYellow
+		body = fccYellow
+		footer = fccYellow
+		control { fontColor = F0D613 }
+		} 
+	}
+	style italic { all { 
+		content = italic
+		header = italic
+		body = italic
+		footer = italic
+		italic = true
+		}
+	}
+	style bold { all { 
+		content = bold
+		header = bold
+		body = bold
+		footer = bold
+		bold = true
+		}
+	}
+
+	style underline { all { 
+		content = underline
+		header = underline
+		body = underline
+		footer = underline
+		underline = true
+		}
+	}
+	style strikethrough { all { 
+		content = strikethrough
+		header = strikethrough
+		body = strikethrough
+		footer = strikethrough
+		strikethrough = true
+		}
+	}
+
+	style ts2 { all { 
+		content = ts2
+		header = ts2
+		body = ts2
+		footer = ts2
+		fontSize = 2 px
+		}
+	}
+	style ts8 { all { 
+		content = ts8
+		header = ts8
+		body = ts8
+		footer = ts8
+		fontSize = 8 px
+		}
+	}
+	style ts14 { all { 
+		content = ts14
+		header = ts14
+		body = ts14
+		footer = ts14
+		fontSize = 14 px
+		}
+	}
+	style ts36 { all { 
+		content = ts36
+		header = ts36
+		body = ts36
+		footer = ts36
+		fontSize = 36 px
+		}
+	}
+	style ts72 { all { 
+		content = ts72
+		header = ts72
+		body = ts72
+		footer = ts72
+		fontSize = 72 px
+		}
+	}
+	style pd0 { all { 
+		content = pd0
+		header = pd0
+		body = pd0
+		footer = pd0
+		padding {
+			top = 0 px
+			bottom = 0 px
+			left = 0 px
+			right = 0 px
+		}
+	}}
+	style pd2 { all { 
+		content = pd2
+		header = pd2
+		body = pd2
+		footer = pd2
+		padding {
+			top = 2 px
+			bottom = 2 px
+			left = 2 px
+			right = 2 px
+		}
+	}}
+
+	style pd20 { all { 
+		content = pd20
+		header = pd20
+		body = pd20
+		footer = pd20
+		padding {
+			top = 20 px
+			bottom = 20 px
+			left = 20 px
+			right = 20 px
+		}
+	}}
+	style pd20top { all { 
+		content = pd20top
+		header = pd20top
+		body = pd20top
+		footer = pd20top
+		padding {
+			top = 20 px
+			bottom = 20 px
+			left = 0 px
+			right = 0 px
+		}
+	}}
+	style pd30left { all { 
+		content = pd30left
+		header = pd30left
+		body = pd30left
+		footer = pd30left
+		padding {
+			top = 0 px
+			bottom = 0 px
+			left = 30 px
+			right = 0 px
+		}
+	}}
+	
+	style bw0 { all { 
+		content = bw0
+		header = bw0
+		body = bw0
+		footer = bw0
+		borderWidth {
+			top = 0 px
+			bottom = 0 px
+			left = 0 px
+			right = 0 px
+		}
+	}}
+	style bw1 { all { 
+		content = bw1
+		header = bw1
+		body = bw1
+		footer = bw1
+		borderWidth {
+			top = 1 px
+			bottom = 1 px
+			left = 1 px
+			right = 1 px
+		}
+	}}
+
+	style bw5 { all { 
+		content = bw5
+		header = bw5
+		body = bw5
+		footer = bw5
+		borderWidth {
+			top = 5 px
+			bottom = 5 px
+			left = 5 px
+			right = 5 px
+		}
+	}}
+	style bw5top { all { 
+		content = bw5top
+		header = bw5top
+		body = bw5top
+		footer = bw5top
+		borderWidth {
+			top = 5 px
+			bottom = 5 px
+			left = 0 px
+			right = 0 px
+		}
+	}}
+	style bw30left { all { 
+		content = bw30left
+		header = bw30left
+		body = bw30left
+		footer = bw30left
+		borderWidth {
+			top = 0 px
+			bottom = 0 px
+			left = 30 px
+			right = 0 px
+		}
+	}}
+	style bcMagenta { all { 
+		content = bcMagenta
+		header = bcMagenta
+		body = bcMagenta
+		footer = bcMagenta
+		borderColor = F013E8
+		} 
+	}
+	style bcBlue { all { 
+		content = bcBlue
+		header = bcBlue
+		body = bcBlue
+		footer = bcBlue
+		borderColor = 137AF0
+		} 
+	}
+	style bcOrange { all { 
+		content = bcOrange
+		header = bcOrange
+		body = bcOrange
+		footer = bcOrange
+		borderColor = F08913
+		} 
+	}
+}

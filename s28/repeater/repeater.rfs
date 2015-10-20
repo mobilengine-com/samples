@@ -1,0 +1,4 @@
+server program foo for form repeater
+{
+	trace form;
+}
