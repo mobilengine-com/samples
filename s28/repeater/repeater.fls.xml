@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/fls/v3" id="repeater" menuName="repeater" platforms="ios">
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="repeater" menuName="repeater" platforms="web ios">
 	<declarations>
-		<let id='cities' shape='table' value='{
-			select t.v 
-			from ([
+		<let id='cities' shape='table' value='{[
 				"Budapest", 
 				"London", 
 				"Paris", 
@@ -14,12 +12,12 @@
 				"Miskolc", 
 				"Zalaegerszeg", 
 				"Brighton"
-			]) t 
-			where t.v like "%" || filter.text || "%" 
-			order by v asc}'/>
+			]}'/>
 	</declarations>
-	<checkbox id="valid"/>
-	<textbox id="filter"/>
+	<block id="bl">
+		<checkbox label="make everything valid" id="valid"/>
+		<textbox label="filter stuff" id="filter"/>
+	</block>
 	<chapter title="qq">
 		<textview label="A" text='"xxx"'/>
 		<textview label="B" text='"yyy"'/>
@@ -28,7 +26,7 @@
 		<textview id='a' label="A" text='{city.v}'/>
 		<textview id='b' label="B" text='{upper(city.v)}'>
 			<validation>
-				<validator cond='{text like "%SZ%" or valid.checked}' message='{text || " is not a valid city"}' />
+				<validator cond='{text like "%SZ%" or bl.valid.checked}' message='{text || " is not a valid city"}' />
 			</validation>
 		</textview>
 	</repeater>
@@ -37,34 +35,53 @@
 		<textview id='b' label="B" text='{upper(city.v)}'/>
 	</repeater>
 	<textview text='{select group_concat(t.a.text, ", ") from foo.rows t}'/>
-	<repeater record="city" recordset='{select t.v from cities t}'>
-		<textview label="A" text='{city.v}'/>
-		<textview label="B" text='{upper(city.v)}'/>
-		<popup title='{"in popup of " || city.v}'>
-			<repeater record="city2" recordset='{select t.v from cities t}'>
-				<textview id='a' label="A" text='{city2.v}'/>
-				<textview id='b' label="B" text='{upper(city2.v)}'>
-					<validation>
-						<validator cond='{text like "%SZ%" or valid.checked}' message='{city.v || "." || text || " is not a valid city"}' />
-					</validation>
-				</textview>
-			</repeater>
-		</popup>
-	</repeater>
-	<table record="city" recordset='{select t.v from cities t}'>
-		<row>
-			<cell><textview label="A" text='{city.v}'/></cell>
-			<cell><textview label="B" text='{upper(city.v)}'/></cell>
-			<cell><popup title='{"in popup of " || city.v}'>
-				<table record="city2" recordset='{select t.v from cities t}'><row>
-					<cell><textview id='a' label="A" text='{city2.v}'/></cell>
-					<cell><textview id='b' label="B" text='{upper(city2.v)}'>
+	
+	<chapter title="thing with add/remove buttons">
+		<repeater id="addrmr" access="private" record="city" recordset='{select t.v from cities t}'>
+			<textview label="A" text='{city.v}'/>
+			<textview label="B" text='{upper(city.v)}'/>
+			<popup title='{"in popup of " || city.v}'>
+				<repeater record="city2" recordset='{select t.v from cities t}'>
+					<textview id='a' label="A" text='{city2.v}'/>
+					<textview id='b' label="B" text='{upper(city2.v)}'>
 						<validation>
-							<validator cond='{text like "%SZ%" or valid.checked}' message='{city.v || "." || text || " is not a valid city"}' />
+							<validator cond='{text like "%SZ%" or bl.valid.checked}' message='{city.v || "." || text || " is not a valid city"}' />
 						</validation>
-					</textview></cell>
-				</row></table>
-			</popup></cell>
-		</row>
-	</table>
+					</textview>
+					<removebutton text='{"remove " || city.v || "." || b.text}'/>
+				</repeater>
+			</popup>
+		</repeater>
+		<textbox label="New city to add" id="newcity"/>
+		<addbutton text="Add new city" table="addrmr" records='{[newcity.text]}'/>
+	</chapter>
+
+	<chapter id="tbl" title="table">
+		<textbox label="New city to add" id="newcity"/>
+		<addbutton text="Add new city" table="foo" records='{[newcity.text]}'/>
+		<table id="foo" record="city" recordset='{select t.v from cities t}'>
+			<row>
+				<cell><textview label="A" text='{city.v}'/></cell>
+				<cell>	
+					<block id="bl">
+						<checkbox label="make everything valid" id="valid"/>
+						<textbox label="filter stuff" id="filter"/>
+					</block>
+				</cell>
+				<cell><popup title='{"in popup of " || city.v}'>
+					<table record="city2" recordset='{select t.v from cities t}'><row>
+						<cell><textview id='a' label="A" text='{city2.v}'/></cell>
+						<cell><textview id='b' label="B" text='{upper(city2.v)}'>
+							<validation>
+								<validator cond='{text like "%SZ%" or bl.valid.checked}' message='{city.v || "." || text || " is not a valid city"}' />
+							</validation>
+						</textview></cell>
+						<cell>
+							<removebutton text='{"remove " || city.v || "." || b.text}'/>
+						</cell>
+					</row></table>
+				</popup></cell>
+			</row>
+		</table>
+	</chapter>
 </form>
