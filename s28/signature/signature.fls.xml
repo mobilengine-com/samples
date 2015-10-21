@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="sig" menuName="signature" platforms="ios">
+	<signature id='signature' label="signature"/>
+</form>
+  
