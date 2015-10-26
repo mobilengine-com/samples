@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<Info xmlns="http://schemas.mobilengine.com/pkginfo/v1" Platform="Ios" SystemName="test" LocalizedName="test">
+	<Description>OCP Order Form</Description>
+	<!-- this image will not be available as an icon, it will 
+	     only be displayed on the package selection screen, during signup -->
+	<Image>ocp_logo.png</Image>
+</Info>
