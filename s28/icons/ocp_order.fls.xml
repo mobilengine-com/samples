@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="ocporder" menuName="OCP Order Form" platforms="web ios" style="{styles.icons}">
+	<header>
+		<discardbutton text="Cancel Order" />
+		<submitbutton text="To Checkout" />
+	</header>
+
+	<textview label="OCP Order Form" labelIcon="{icons.logo}" style="{styles.title}" />
+
+	<textview label="Product" labelIcon="{icons.cart}" />
+	<dropdown id="pt" label="Product Type" choices='{table key, text (1, "EM-208"; 2, "ED-209"; 3, "Auto 9")}' keyMap='{key}' textMap='{text}' />
+	<textview labelIcon='{CASE pt.selectedKey WHEN 1 THEN icons.em208 WHEN 2 THEN icons.ed209 WHEN 3 THEN icons.auto9 ELSE null END}' style='{styles.productImage}' />
+
+	<textview label="Shipping" labelIcon="{icons.shipping}" />
+	<textbox hint="Name" />
+	<textbox hint="Address" />
+	<textbox hint="City" />
+	<textbox hint="ZIP Code" />
+
+	<textview label="Terms and Conditions" labelIcon="{icons.document}" />
+	<checkbox text="I accept the terms and conditions" />
+</form>

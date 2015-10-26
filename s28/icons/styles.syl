@@ -1,0 +1,36 @@
+styles {
+	style icons {
+		all {
+			label {
+				iconWidth = 24px
+				iconHeight = 24px
+			}
+		}
+		textview {
+			label {
+				fontSize = 18px
+				bold = true
+			}
+		}
+	}
+	style title {
+		all {
+			label {
+				fontSize = 24px
+				iconWidth = 72px
+				iconHeight = 72px
+				textAlign = right
+			}
+		}
+	}
+	style productImage {
+		all {
+			label {
+				iconHeight = 128px
+				iconWidth = 128px
+				iconPosition = right
+				iconFit = inside
+			}
+		}
+	}
+}
