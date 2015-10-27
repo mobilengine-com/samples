@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="block2" menuName="Block 2" platforms="ios web">
+	<block id="a">
+		<declarations>
+			<let id='message' shape='scalar' value='{"hello"}'/>
+		</declarations>
+	</block>
+	<block id="b">
+		<declarations>
+			<let id='message' shape='scalar' value='{"bon jour"}'/>
+		</declarations>
+	</block>
+	<textview text='{a.message}'/>
+	<textview text='{b.message}'/>
+</form>
