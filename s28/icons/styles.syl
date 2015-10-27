@@ -1,13 +1,8 @@
 styles {
 	style icons {
-		all {
-			label {
-				iconWidth = 24px
-				iconHeight = 24px
-			}
-		}
 		textview {
 			label {
+				iconSpacing = 12px
 				fontSize = 18px
 				bold = true
 			}
