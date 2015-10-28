@@ -1,0 +1,12 @@
+styles {
+	style even {
+		all {
+			backgroundColor = cccccc
+		}
+	}
+	style odd {
+		all {
+			backgroundColor = eeeeee
+		}
+	}
+}

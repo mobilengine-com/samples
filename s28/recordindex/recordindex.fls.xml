@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="recordIndex" menuName="Record Index" platforms="web ios">
+	<declarations>
+		<let id='cities' shape='table' value='{[
+				"Budapest", 
+				"London", 
+				"Paris", 
+				"Rome", 
+				"Naples", 
+				"Szekesfehervar", 
+				"Szigetszentmiklos", 
+				"Miskolc", 
+				"Zalaegerszeg", 
+				"Brighton"
+			]}'/>
+	</declarations>
+	
+	<table id="t1" record="town" recordset='{select t.v from cities t}'>
+		<row style="{ case when townIndex%2 == 0 then styles.even else styles.odd end }">
+			<cell><textview id='a' label='{toString(townIndex)||". "}' text='{town.v}'/></cell>
+			<cell><removebutton text='Remove'/></cell>
+		</row>
+	</table>
+	<textbox label="New city to add" id="newcity" />
+	<addbutton text="Add new city" table="t1" records='{[newcity.text]}'/>
+	
+	<repeater id="r1" record="city" recordset='{select t.v from cities t}'>
+		<textview id='a' label='{toString(cityIndex)||". "}' text='{city.v}'/>
+		<removebutton text='Remove'/>
+	</repeater>
+	<textbox label="New city to add" id="newcity2"/>
+	<addbutton text="Add new city" table="r1" records='{[newcity2.text]}'/>
+</form>
