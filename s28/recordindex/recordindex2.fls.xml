@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="recordIndex2" menuName="Record Index 2" platforms="web ios">
+	<declarations>
+		<let id='cities' shape='table' value='{[
+				"Budapest", 
+				"London", 
+				"Paris", 
+				"Rome", 
+				"Naples", 
+				"Szekesfehervar", 
+				"Szigetszentmiklos", 
+				"Miskolc", 
+				"Zalaegerszeg", 
+				"Brighton"
+			]}'/>
+	</declarations>
+	
+	<table id="t1" record="town" recordset='{select t.v from cities t}'>
+		<row>
+			<cell>
+				<table id="t2" record="city" recordset='{select t.v from cities t}'>
+					<row>
+						<cell>
+							<textview id='a' text='{toString(townIndex)|| ". " || town.v || ", " || toString(cityIndex) || ". " || city.v }'/>
+						</cell>
+					</row>
+				</table>
+			</cell>
+		</row>
+	</table>
+</form>
