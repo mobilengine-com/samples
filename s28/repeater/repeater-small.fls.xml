@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="repeater-small" menuName="Small Repeater" platforms="web ios">
+	<declarations>
+		<let id='cities' shape='table' value='{[
+				"Budapest", 
+				"London", 
+				"Paris", 
+				"Rome", 
+				"Naples", 
+				"Szekesfehervar", 
+				"Szigetszentmiklos", 
+				"Miskolc", 
+				"Zalaegerszeg", 
+				"Brighton"
+			]}'/>
+	</declarations>
+	<repeater id="r1" record="city" recordset='{select t.v from cities t}'>
+		<textview id='a' label="City name:" text='{city.v}'/>
+		<removebutton text='{"remove " || city.v }'/>
+	</repeater>
+	<textbox label="New city to add" id="newcity"/>
+	<addbutton text="Add new city" table="r1" records='{[newcity.text]}'/>
+	<textview text="Table:"/>
+	<table id="t1" record="city" recordset='{select t.v from cities t}'>
+		<row><cell><block>
+			<textview id='a' label="City name:" text='{city.v}'/>
+			<removebutton text='{"remove " || city.v }'/>
+		</block></cell></row>
+	</table>
+	<textbox label="New city to add" id="newcity2"/>
+	<addbutton text="Add new city" table="t1" records='{[newcity2.text]}'/>
+</form>
