@@ -1,0 +1,47 @@
+﻿<form id='popup-openMode' menuName='popup-openMode'  platforms='web ios' xmlns="http://schemas.mobilengine.com/fls/v3" style="{styles.form}">
+    
+    <textview text="This opens another fullscreen popup, as before/" />
+    <popup title="fullscreen" openMode="fullscreen">
+        <textview text="You're in a fullscreen popup now." />
+        <textview text="Fullscreen popups work as they did before." />
+    </popup>
+
+    <textview text="This opens a dialog, which is similar to a system menu." />
+    <popup title="dialog" openMode="dialog">
+        <textview text="You're in a dialog now." />
+        <textview text="Try the controls below to see how different openMode-s work in a dialog." />
+        <popup title="fullscreen" openMode="fullscreen">
+            <textview text="You're in a fullscreen in a dialog." />
+            <textview text="A fullscreen popup always slides in from the right." />
+        </popup>
+        <popup title="dialog" openMode="dialog">
+            <textview text="You're in a dialog in a dialog." />
+            <textview text="Since a dialog was already open, this popup slides in from the right." />
+        </popup>
+        <popup title="bubble" openMode="bubble">
+            <textview text="You're in a bubble in a dialog." />
+            <textview text="A bubble opens from a fullscreen or a dialog, but slides in from the right if you already have a bubble open." />
+        </popup>
+    </popup>
+
+    <textview text="This opens a dialog, which is similar to a system menu." />
+    <popup title="bubble" openMode="bubble">
+        <textview text="You're in a bubble now." />
+        <textview text="Try the controls below to see how different openMode-s work in here." />
+        <popup title="fullscreen" openMode="fullscreen">
+            <textview text="You're in a fullscreen in a bubble." />
+            <textview text="A fullscreen popup always slides in from the right." />
+        </popup>
+        <popup title="dialog" openMode="dialog">
+            <textview text="You're in a dialog in a bubble." />
+            <textview text="Since a bubble was already open, this popup slides in from the right." />
+            <textview text="A dialog won't open in front of a bubble." />
+        </popup>
+        <popup title="bubble" openMode="bubble">
+            <textview text="You're in a bubble in a bubble." />
+            <textview text="This slides in from the right because you already have a bubble open." />
+        </popup>
+        <textview text="The dropdown opens inside the bubble, try it below." />
+        <dropdown label="dropdown" choices='{TABLE period, value ("Foo", 1; "Bar", 2; "Baz", 3;)}' keyMap='{value}' textMap='{period}' selectedKey='{SELECT 1}' />
+    </popup>
+</form>
