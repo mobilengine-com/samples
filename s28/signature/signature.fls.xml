@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://schemas.mobilengine.com/fls/v3" id="sig" menuName="signature" platforms="ios">
-	<signature id='signature' label="signature"/>
+	<signature id='signature' label="signature" hint="Hint" />
+	<popup id='popup' title='Sign within a popup, too'>
+		<signature id='signatureInPopup' label="signature" style='{styles.signature}'/>
+	</popup>
+	<photo id="photo" />
 </form>
   
