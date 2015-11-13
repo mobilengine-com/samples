@@ -1,7 +1,9 @@
 styles {
     style signature {
 		signature {
-			fontColor = ff0000
+			fontColor = 00ff00
+			thumbnailHeight = 128 px
+			thumbnailTint = ff0000
 		}
 	}
 }
