@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v3" id="nhsBarcodeForm" menuName="NHS code reader" platforms="ios">
+	<chapter title="nhs">
+		<declarations>
+
+			<let id="nhsRaw"  access="private" shape='scalar' value='{SELECT replace(nhs.barcode, char(29), "")}'/>
+		
+			<let id="appId" access="private" shape='scalar' value='{SELECT substr(nhsRaw, 1, 4)}'/>
+			<let id="orgPrefix" access="private" shape='scalar' value='{SELECT substr(nhsRaw, 5, 7)}'/>
+
+			<let id="startOf91" access="private" shape='scalar' value='{SELECT CASE WHEN substr(nhsRaw, 23, 2) == "91" THEN 25 ELSE null END }'/>
+			<let id="lengthOf91" access="private" shape='scalar' value='{SELECT CASE WHEN startOf91 IS NULL THEN NULL ELSE instr( substr(nhsRaw, startOf91), ",93" ) END }'/>
+			<let id="textOf91" access="private" shape='scalar' value='{SELECT CASE WHEN startOf91 IS NULL THEN NULL ELSE substr(nhsRaw, startOf91, lengthOf91) END }'/>
+			
+			<let id="startOf93" access="private" shape='scalar' value='{SELECT CASE WHEN lengthOf91=0 THEN startOf91 WHEN startOf91 IS null AND substr(nhsRaw, 23, 2) == "93" THEN 25 WHEN startOf91 IS null AND substr(nhsRaw, 23, 2) != "93" THEN null ELSE startOf91+lengthOf91+2 END }'/>
+			<let id="lengthOf93" access="private" shape='scalar' value='{SELECT CASE WHEN startOf93 IS NULL THEN NULL ELSE instr( substr(nhsRaw, startOf93), ",92" ) END }'/>
+			<let id="textOf93" access="private" shape='scalar' value='{SELECT CASE WHEN startOf93 IS NULL THEN NULL WHEN lengthOf93 != 0 THEN substr(nhsRaw, startOf93, lengthOf93) ELSE  substr(nhsRaw, startOf93) END }'/>
+
+			<let id="startOf92" access="private" shape='scalar' value='{SELECT CASE WHEN lengthOf93=0 THEN null ELSE startOf93+lengthOf93+2 END }'/>
+			<let id="textOf92" access="private" shape='scalar' value='{SELECT CASE WHEN startOf92 IS NULL THEN NULL ELSE substr(nhsRaw, startOf92) END }'/>
+			
+			<let id="comma1Of93" access="private" shape='scalar' value='{SELECT instr(textOf93, ",")}'/>
+			<let id="comma2Of93" access="private" shape='scalar' value='{SELECT comma1Of93+instr(substr(textOf93,comma1Of93+1), ",")}'/>
+			<let id="comma3Of93" access="private" shape='scalar' value='{SELECT comma2Of93+instr(substr(textOf93,comma2Of93+1), ",")}'/>
+			<let id="comma4Of93" access="private" shape='scalar' value='{SELECT comma3Of93+instr(substr(textOf93,comma3Of93+1), ",")}'/>
+
+		</declarations>
+	
+		<barcodeReader label="Healthcare" text='Tap to read NHS matrix barcode from wristband' acceptedTypes="DataMatrix" linkIcon="{icons.DataMatrix}" id="nhs" access="private"/>
+	
+
+		<textview label="NHS No" text='{SELECT case when substr(nhsRaw, 12, 10)="9999999999" then "&lt;unknown>" ELSE substr(nhsRaw, 12, 10) END}' id="NHSno"/>
+<!--
+		<textview label="app91" text="{textOf91}"/>
+		<textview label="app91 debug" text='{ToString(startOf91) ||":"|| ToString(lengthOf91)}'/>
+		<textview label="app93" text="{textOf93}"/>
+		<textview label="app93 debug" text='{ToString(startOf93) ||":"|| ToString(lengthOf93)}'/>
+		<textview label="app92" text="{textOf92}"/>
+		<textview label="app92 debug" text="{ToString(startOf92)}"/> -->
+		
+		<textview label="Last Name" text='{substr(textOf93, 1, comma1Of93-1)}'>
+			<validation>
+				<validator cond='{appId="8018"}' message="Not a GS1 Global Service Relationship Number"/>
+				<validator cond='{orgPrefix="5050898"}' message="Not a It is the NHS CFH GS1 Company Prefix."/>
+			</validation>
+		</textview>
+		<textview label="First Name" text="{substr(textOf93, comma1Of93+1, comma2Of93-comma1Of93-1)}"/>
+		<textview label="Date of Birth" text="{substr(textOf93, comma2Of93+1, comma3Of93-comma2Of93-1)}"/>
+		<textview label="Time of Birth" text="{substr(textOf93, comma3Of93+1, comma4Of93-comma3Of93-1)}"/>
+	</chapter>
+	
+</form>
+  
