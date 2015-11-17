@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/fls/v3" id="block1" menuName="Block 1" platforms="ios web">
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="block1" menuName="Block 1" platforms="ios web">
 	<table record="row" recordset='{[1,2,3]}'>
 		<row>
 			<cell>

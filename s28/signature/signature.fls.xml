@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/fls/v3" id="sig" menuName="signature" platforms="ios">
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="sig" menuName="signature" platforms="ios">
 	<signature id='signature' label="signature" hint="Hint" />
 	<signature id='largeSignature' label="large signature" maxResolution='{select 2048 width, 1536 height}' />
 	<signature id='styledSignature' label="styled signature" style='{styles.signature}' />

@@ -1,4 +1,4 @@
-﻿<form id='popup-openMode' menuName='popup-openMode'  platforms='web ios' xmlns="http://schemas.mobilengine.com/fls/v3" style="{styles.form}">
+﻿<form id='popup-openMode' menuName='popup-openMode'  platforms='web ios' xmlns="http://schemas.mobilengine.com/fls/v2" style="{styles.form}">
     
     <textview text="This opens another fullscreen popup, as before/" />
     <popup title="fullscreen" openMode="fullscreen">

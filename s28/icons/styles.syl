@@ -24,7 +24,7 @@ styles {
 				iconHeight = 128px
 				iconWidth = 128px
 				iconPosition = right
-				iconFit = inside
+				iconFit = fit
 			}
 		}
 	}

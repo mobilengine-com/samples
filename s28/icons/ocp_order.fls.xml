@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/fls/v3" id="ocporder" menuName="OCP Order Form" platforms="web ios" style="{styles.icons}">
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="ocporder" menuName="OCP Order Form" platforms="web ios" style="{styles.icons}">
 	<header>
 		<discardbutton text="Cancel Order" />
 		<submitbutton text="To Checkout" />

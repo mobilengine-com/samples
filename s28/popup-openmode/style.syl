@@ -7,11 +7,35 @@ styles {
             }
             fontSize = 16px
         }
+        frame {
+            backgroundColor = 255, 0, 0, 50%
+            margin {
+                top = 5px
+                bottom = 5px
+                right = 5px
+                left = 5px
+            }
+            padding {
+                top = 5px
+                bottom = 5px
+                right = 5px
+                left = 5px
+            }
+        }
         canvas {
-        	padding {
-        		top = 0px
-        		bottom = 0px
-        	}
+            backgroundColor = 0, 255, 0, 50%
+            margin {
+                top = 5px
+                bottom = 5px
+                right = 5px
+                left = 5px
+            }
+            padding {
+                top = 5px
+                bottom = 5px
+                right = 5px
+                left = 5px
+            }
         }
         popup {
         	content = form
