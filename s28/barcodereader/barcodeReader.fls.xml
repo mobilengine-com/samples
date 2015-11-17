@@ -1,9 +1,9 @@
 ﻿<?xml version='1.0' encoding='UTF-8'?>
 <form xmlns='http://schemas.mobilengine.com/fls/v3' id='barcodeReaderForm' menuName='barcodeReader' platforms='ios' >
-	<barcodeReader label='default barcode reader' id='defaultBarcodeReader' />
+	<barcodereader label='default barcode reader' id='defaultBarcodeReader' />
 	<textview label='{defaultBarcodeReader.type}' text='{defaultBarcodeReader.barcode}'/>
-	<barcodeReader id='twoDBarcodeReader' label='2D barcode reader' acceptedTypes='Aztec DataMatrix QR' linkIcon='{icons.QR_code}'/>
+	<barcodereader id='twoDBarcodeReader' label='2D barcode reader' acceptedTypes='Aztec DataMatrix QR' linkIcon='{icons.QR_code}'/>
 	<textview label='{twoDBarcodeReader.type}' text='{twoDBarcodeReader.barcode}'/>
-	<barcodeReader text='{barcode}' />
+	<barcodereader text='{barcode}' />
 </form>
   

@@ -1,0 +1,23 @@
+styles {
+    style proportional {
+		segmentcontrol {
+			segmentWidth = proportional
+		}
+	}
+	
+	style tintColor {
+		segmentcontrol {
+			tintColor = FF0000
+		}
+	}
+	
+	style selectedSegment {
+		segmentcontrol {
+			selectedSegment {
+				fontSize = 20px
+				bold = true
+				italic = true
+			}
+		}
+	}
+}
