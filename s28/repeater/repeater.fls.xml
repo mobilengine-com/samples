@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/fls/v3" id="repeater" menuName="repeater" platforms="web ios">
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="repeater" menuName="repeater" platforms="web ios">
 	<declarations>
-		<let id='cities' shape='table' value='{[
+		<let id='citiesX' shape='table' value='{[
 				"Budapest", 
 				"London", 
 				"Paris", 
@@ -13,6 +13,7 @@
 				"Zalaegerszeg", 
 				"Brighton"
 			]}'/>
+		<let id='cities' shape='table' value='{SELECT t.v FROM citiesX t WHERE t.v LIKE filter2.text || "%"}'/>
 	</declarations>
 	<block id="bl">
 		<checkbox label="make everything valid" id="valid"/>
@@ -40,7 +41,7 @@
 		<repeater id="addrmr" access="private" record="city" recordset='{select t.v from cities t}'>
 			<textview label="A" text='{city.v}'/>
 			<textview label="B" text='{upper(city.v)}'/>
-			<popup title='{"in popup of " || city.v}'>
+			<popup title='{"in popup of " || city.v}' openMode="dialog">
 				<repeater record="city2" recordset='{select t.v from cities t}'>
 					<textview id='a' label="A" text='{city2.v}'/>
 					<textview id='b' label="B" text='{upper(city2.v)}'>
@@ -84,4 +85,5 @@
 			</row>
 		</table>
 	</chapter>
+	<textbox label="filter" id="filter2"/>
 </form>

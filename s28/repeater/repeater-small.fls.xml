@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/fls/v3" id="repeater-small" menuName="Small Repeater" platforms="web ios">
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="repeater-small" menuName="Small Repeater" platforms="web ios">
 	<declarations>
 		<let id='cities' shape='table' value='{[
 				"Budapest", 
