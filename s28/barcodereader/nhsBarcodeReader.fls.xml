@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/fls/v3" id="nhsBarcodeForm" menuName="NHS code reader" platforms="ios">
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="nhsBarcodeForm" menuName="NHS code reader" platforms="ios">
 	<chapter title="nhs">
 		<declarations>
 
@@ -26,7 +26,7 @@
 
 		</declarations>
 	
-		<barcodeReader label="Healthcare" text='Tap to read NHS matrix barcode from wristband' acceptedTypes="DataMatrix" linkIcon="{icons.DataMatrix}" id="nhs" access="private"/>
+		<barcodereader label="Healthcare" text='Tap to read NHS matrix barcode from wristband' acceptedTypes="DataMatrix" linkIcon="{icons.DataMatrix}" id="nhs" access="private"/>
 	
 
 		<textview label="NHS No" text='{SELECT case when substr(nhsRaw, 12, 10)="9999999999" then "&lt;unknown>" ELSE substr(nhsRaw, 12, 10) END}' id="NHSno"/>
