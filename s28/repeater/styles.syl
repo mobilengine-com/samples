@@ -568,4 +568,13 @@ styles {
 		borderColor = F08913
 		} 
 	}
+	
+	// stripe
+	style bigPadding { all { control { padding {
+		left = 20px
+		right = 20px
+		top = 20px
+		bottom = 20px
+	} } } }
+	
 }

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="stripe" menuName="Stripe" platforms="web ios">
+	<declarations>
+		<let id='cities' shape='table' value='{SELECT t.v FROM ([
+				"Budapest", 
+				"London", 
+				"Paris", 
+				"Rome", 
+				"Naples", 
+				"Szekesfehervar", 
+				"Szigetszentmiklos", 
+				"Miskolc", 
+				"Zalaegerszeg", 
+				"Brighton"
+			]) t WHERE t.v LIKE filter.text || "%" AND t.v LIKE filterQ.text || "%" }'/>
+		<let id='cities3' shape='table' value='{SELECT t.v FROM cities t UNION ALL SELECT t.v FROM cities t UNION ALL SELECT t.v FROM cities t}'/>
+	</declarations>
+	<textview text='spacer'/>
+	<textview text='spacer'/>
+	<textview text='spacer'/>
+	<textview text='spacer'/>
+	<textview text='spacer'/>
+	<textbox id="filter" hint="filter"/>
+	<textbox id="prefix" hint="prefix"/>
+	<textbox label="New city to add" id="newcity"/>
+	<addbutton text="Add new city" table="t1" records='{[newcity.text]}'/>
+	<textview text="Table:"/>
+	<table id="t1" record="city" recordset='{select t.v from cities t}'>
+		<row>
+			<cell>
+				<textview  text='{prefix.text || city.v || "1"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<block>
+					<repeater record="city2" recordset='{select t.v from cities3 t}'>
+						<textview text='{prefix.text || city2.v}'/>
+					</repeater>
+					<textbox/>
+				</block>
+			</cell>
+			<cell>
+				<textview  text='{city.v || "2"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<textview  text='{city.v || "3"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<textview  text='{city.v || "4"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<textview  text='{city.v || "5"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<textview  text='{city.v || "6"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<textview  text='{city.v || "7"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<textview  text='{city.v || "8"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<textview  text='{city.v || "9"}'>
+					<validation>
+						<validator cond='{false}' message='{text}'/>
+					</validation>
+				</textview>
+			</cell>
+			<cell>
+				<removebutton text='{"remove " || city.v }' style='{styles.bigPadding}'/>
+			</cell>
+		</row>
+	</table>
+	<textbox id="filterQ"/>
+</form>
