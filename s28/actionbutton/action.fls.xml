@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="action" menuName="action" platforms="ios web">
+	<declarations>
+		<let id="r" shape="record" value='{SELECT "col1" as c1, "col2" as c2}'/>
+		<let id="page" shape="scalar" value='{0}'/>
+	</declarations>
+    
+	<textview id="first" label='elso' text="blabla" />
+    <textview id="second" label='masodik' text="blabla" />
+	
+    <textview label="r.col1" text='{r.c1}' />
+    <textview label="r.col2" text='{r.c2}' />
+
+    <textview label="page" text='{tostring(page)}' />
+
+	<actionbutton text="set">
+		<set target="first.text" value='{"1"}' />
+		<set target="second.text" value='{"2"}' />
+		<set target="r" value='{SELECT "tada1" as c1, "tada2" as c2}' />
+	</actionbutton>
+	<actionbutton text="setGuid">
+		<set target="first.text" value='{tostringn(newguid())}' />
+	</actionbutton>
+	<actionbutton text="lightshow">
+		<set target="first.text" value='{second.text}' />
+		<set target="second.text" value='{first.text}' />
+	</actionbutton>
+	<actionbutton text="Next Page">
+		<set target="page" value='{page+1}' />
+	</actionbutton>
+	<table id="rpt" record="r" recordset='{"1"}' >
+	<row><cell>
+		<textview label="r.v" text='{r.v}' />
+	</cell></row>
+	</table>
+	<addbutton text="add" table="rpt" records='{tostringn(newguid())}'></addbutton>
+</form>
