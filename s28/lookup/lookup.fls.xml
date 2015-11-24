@@ -1,0 +1,6 @@
+<form id='lookup' menuName='lookup' title='lookup' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <popup id="popup1" title="popup">
+        <textview id="title" text="text of title"/>     
+	</popup>
+	<textview text="{popup1.title.text}" />
+</form>
