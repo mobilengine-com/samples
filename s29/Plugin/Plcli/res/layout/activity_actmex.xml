@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mobilengine.example.plcli.ActMex" >
+
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		
+        <TextView
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="8pt"
+			android:background="#80000000" 
+            android:text="Plcli / Mex" 
+            android:textSize="14pt" />
+		
+		<Button
+			android:id="@+id/btnLaunch"
+			android:layout_marginTop="4pt"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Launch / Bring to front" />
+		
+		<Button
+			android:id="@+id/btnSync"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Sync" />
+		
+		<Button
+			android:id="@+id/btnOpenForm"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Open form..." />
+		
+		<CheckBox android:id="@+id/cbOpenActPlcli"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Open activity when form opens" />
+	</LinearLayout>
+	
+</RelativeLayout>

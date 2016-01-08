@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mobilengine.example.plcli"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.mobilengine.android.permission.BIND" />
+    <uses-permission android:name="com.mobilengine.android.permission.BROADCAST" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        
+        <activity
+            android:name=".ActPlcli"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Transparent"
+            android:windowSoftInputMode="stateHidden" >
+            <intent-filter>
+                <action android:name="com.mobilengine.example.plcli.bind" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ActMex"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <receiver
+            android:name=".Recvr"
+            android:permission="com.mobilengine.android.permission.BROADCAST" >
+            <intent-filter>
+                <action android:name="com.mobilengine.android.PAIRED" />
+                <action android:name="com.mobilengine.android.FORM_OPENED" />
+                <action android:name="com.mobilengine.android.SYNC_FINISHED" />
+                <action android:name="com.mobilengine.android.UNPAIRED" />
+                <action android:name="com.mobilengine.android.UPDATED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
