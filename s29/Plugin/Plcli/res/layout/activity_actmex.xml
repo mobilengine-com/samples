@@ -31,6 +31,12 @@
 			android:text="Sync" />
 		
 		<Button
+			android:id="@+id/btnGetAcraConfig"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Get ACRA form URL" />
+		
+		<Button
 			android:id="@+id/btnOpenForm"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -39,7 +45,7 @@
 		<CheckBox android:id="@+id/cbOpenActPlcli"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:text="Open activity when form opens" />
+			android:text="Open remote control activity when form opens" />
 	</LinearLayout>
 	
 </RelativeLayout>

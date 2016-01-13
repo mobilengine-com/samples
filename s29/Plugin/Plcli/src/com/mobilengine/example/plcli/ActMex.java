@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
+import com.mobilengine.android.fdx.client.MEAcraConfig;
 import com.mobilengine.android.fdx.client.Mex;
 import com.mobilengine.android.fdx.client.MexServiceConnection;
 import com.mobilengine.android.fdx.client.OpenFormResult;
@@ -47,6 +48,27 @@ public class ActMex extends Activity {
 						try {
 							Log.i("ActMex", "Service connected, syncing...");
 							mex.sync();
+						} catch (RemoteException e) {
+							throw new RuntimeException(e);
+						} finally {
+							unbindService(this);
+						}
+					}
+				});
+				return null;
+			}
+		});
+		
+		U.addOnClick(this, R.id.btnGetAcraConfig, new Callable<Void>() {
+			@Override
+			public Void call() throws Exception {
+				Plugins.bindToMobilengine(ActMex.this, false, new MexServiceConnection() {
+					@Override
+					public void onServiceConnected(ComponentName name, Mex mex) {
+						try {
+							Log.i("ActMex", "Service connected, getting acra config...");
+							MEAcraConfig acraConfig = mex.getAcraConfig();
+							Toast.makeText(ActMex.this, "ACRA URL:" + acraConfig.formUri, Toast.LENGTH_LONG).show();
 						} catch (RemoteException e) {
 							throw new RuntimeException(e);
 						} finally {
