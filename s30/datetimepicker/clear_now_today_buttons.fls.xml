@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<form id="clear_now_today_buttons" menuName="Clear, Now and Today Buttons" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+    <chapter title="Defaults" />
+    <datepicker id="datepicker1" dateFormat="(dtf yyyy&quot;/&quot;MM&quot;/&quot;dd)" />
+    <timepicker id="timepicker1" invalidTimeMessage="Not a time" timeFormat="(dtf HH&quot;:&quot;mm)" />
+
+    <chapter title="Custom Labels" />
+    <datepicker id="datepicker2" dateFormat="(dtf yyyy&quot;/&quot;MM&quot;/&quot;dd)" clearText="Erase" nowText="Current Date" />
+    <timepicker id="timepicker2" timeFormat="(dtf HH&quot;:&quot;mm)" clearText="Erase" nowText="Current Time" />
+
+    <chapter title="No Now/Today Button" />
+    <datepicker id="datepicker3" dateFormat="(dtf yyyy&quot;/&quot;MM&quot;/&quot;dd)" clearText="Clear" nowText="{null}" />
+    <timepicker id="timepicker3" timeFormat="(dtf HH&quot;:&quot;mm)" clearText="Clear" nowText="{null}" />
+
+    <chapter title="No Clear Button" />
+    <datepicker id="datepicker4" dateFormat="(dtf yyyy&quot;/&quot;MM&quot;/&quot;dd)" clearText="{null}" nowText="Now" />
+    <timepicker id="timepicker4" timeFormat="(dtf HH&quot;:&quot;mm)" clearText="{null}" nowText="Now" />
+
+    <chapter title="No Buttons" />
+    <datepicker id="datepicker5" dateFormat="(dtf yyyy&quot;/&quot;MM&quot;/&quot;dd)" clearText="{null}" nowText="{null}" />
+    <timepicker id="timepicker5" timeFormat="(dtf HH&quot;:&quot;mm)" clearText="{null}" nowText="{null}" />
+</form>
