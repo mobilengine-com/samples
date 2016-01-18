@@ -19,4 +19,8 @@
     <chapter title="No Buttons" />
     <datepicker id="datepicker5" dateFormat="(dtf yyyy&quot;/&quot;MM&quot;/&quot;dd)" clearText="{null}" nowText="{null}" />
     <timepicker id="timepicker5" timeFormat="(dtf HH&quot;:&quot;mm)" clearText="{null}" nowText="{null}" />
+
+    <chapter title="Long Button Text" />
+    <datepicker id="datepicker6" dateFormat="(dtf yyyy&quot;/&quot;MM&quot;/&quot;dd)" clearText="Erase the selected date" nowText="Set the date to today" />
+    <timepicker id="timepicker6" timeFormat="(dtf HH&quot;:&quot;mm)" clearText="Erase the selected time" nowText="Set the time to now" />
 </form>
