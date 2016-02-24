@@ -1,0 +1,37 @@
+form nestedJoin {
+  platforms = "ios"
+  menuName = "Nested Joins"
+	
+  repeater repOuter {
+    record = "rOuter"
+    recordset = ["1","2","3"]
+    textview tvOuter {
+      label = "outer"
+      text = rOuter.v
+    }
+    repeater repInner {
+      record = "rInner"
+      recordset = select t.v from (["a","b","c"]) t where rOuter.v <> "2"
+      textview tvInner {
+        label = "inner"
+        text = rOuter.v || " " || rInner.v
+      }
+    }
+  }
+
+  textview {
+    text = "The above flattened into a simple list"
+  }
+  repeater {
+    record = "rFlattened"
+    recordset = SELECT tOuter.tvOuter.text outer, tInner.tvInner.text inner FROM repOuter.rows tOuter, tOuter.repInner.rows tInner
+    textview {
+      label = "outer"
+      text = rFlattened.outer
+    }
+    textview {
+      label = "inner"
+      text = rFlattened.inner
+    }
+  }
+}
