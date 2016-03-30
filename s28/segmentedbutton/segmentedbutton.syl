@@ -1,18 +1,18 @@
 styles {
     style proportional {
-		segmentcontrol {
+		segmentedbutton {
 			segmentWidth = proportional
 		}
 	}
 	
 	style tintColor {
-		segmentcontrol {
+		segmentedbutton {
 			tintColor = FF0000
 		}
 	}
 	
 	style selectedSegment {
-		segmentcontrol {
+		segmentedbutton {
 			selectedSegment {
 				fontSize = 20px
 				bold = true
