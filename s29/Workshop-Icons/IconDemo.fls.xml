@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="IconDemo" menuName="IconDemo" platforms="ios" style="{styles.global}">
+  <chapter title="Icon">
+    <declarations>
+      <let id="pos" shape="scalar" value='{CASE kpos.selectedKey WHEN "left" THEN styles.IconPosLeft WHEN "top" THEN styles.IconPosTop WHEN "right" THEN styles.IconPosRight ELSE styles.IconPosBottom END}' />
+      <let id="align" shape="scalar" value='{CASE kalign.selectedKey WHEN "left" THEN styles.TextAlignLeft WHEN "center" THEN styles.TextAlignCenter ELSE styles.TextAlignRight END}' />
+      <let id="w" shape="scalar" value='{CASE kw.selectedKey WHEN "small" THEN styles.WidthSmall ELSE styles.WidthLarge END}' />
+      <let id="h" shape="scalar" value='{CASE kh.selectedKey WHEN "small" THEN styles.HeightSmall ELSE styles.HeightLarge END}' />
+      <let id="scale" shape="scalar" value='{CASE kscale.selectedKey WHEN "fit" THEN styles.ScalingFit WHEN "fill" THEN styles.ScalingFill ELSE styles.ScalingStretch END}' />
+      <let id="space" shape="scalar" value='{CASE kspace.selectedKey WHEN "small" THEN styles.SpacingSmall ELSE styles.SpacingLarge END}' />
+      <let id="stylesum" shape="scalar" value='{[pos, w, h, scale, space, align, styles.tvlabel]}' />
+    </declarations>
+    <textview labelIcon="{icons.spongebob}" label="Spongebob" style="{stylesum}" />
+  </chapter>
+  <chapter title="Customize">
+    <segmentedbutton id="kpos" label="Position" keyMap="{v}" textMap="{v}" choices='{["left", "right", "top", "bottom"]}' selectedKey='{"left"}' />
+    <segmentedbutton id="kalign" label="Text Alignment" keyMap="{v}" textMap="{v}" choices='{["left", "center", "right"]}' selectedKey='{"left"}' />
+    <segmentedbutton id="kw" label="Width" keyMap="{v}" textMap="{v}" choices='{["small", "large"]}' selectedKey='{"small"}' />
+    <segmentedbutton id="kh" label="Height" keyMap="{v}" textMap="{v}" choices='{["small", "large"]}' selectedKey='{"small"}' />
+    <segmentedbutton id="kscale" label="Scaling" keyMap="{v}" textMap="{v}" choices='{["fit", "fill", "stretch"]}' selectedKey='{"fit"}' />
+    <segmentedbutton id="kspace" label="Spacing" keyMap="{v}" textMap="{v}" choices='{["small", "large"]}' selectedKey='{"small"}' />
+  </chapter>
+</form>

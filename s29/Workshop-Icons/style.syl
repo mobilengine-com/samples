@@ -1,0 +1,141 @@
+styles {
+  style global {
+    all {
+      backgroundColor = dddddd
+    }
+  }
+
+  style tvlabel {
+    textview {
+      label {
+        fontSize = 16px
+        bold = true
+        borderWidth {
+          top = 1ppx
+          right = 1ppx
+          bottom = 1ppx
+          left = 1ppx
+        }
+        borderColor = 999999
+      }
+    }
+  }
+
+  style IconPosLeft {
+    all {
+      label {
+        iconPosition = left
+      }
+    }
+  }
+  style IconPosTop {
+    all {
+      label {
+        iconPosition = top
+      }
+    }
+  }
+  style IconPosRight {
+    all {
+      label {
+        iconPosition = right
+      }
+    }
+  }
+  style IconPosBottom {
+    all {
+      label {
+        iconPosition = bottom
+      }
+    }
+  }
+
+  style TextAlignLeft {
+    all {
+      label {
+        textAlign = left
+      }
+    }
+  }
+  style TextAlignCenter {
+    all {
+      label {
+        textAlign = center
+      }
+    }
+  }
+  style TextAlignRight {
+    all {
+      label {
+        textAlign = right
+      }
+    }
+  }
+
+  style WidthSmall {
+    all {
+      label {
+        iconWidth = 50px
+      }
+    }
+  }
+  style WidthLarge {
+    all {
+      label {
+        iconWidth = 200px
+      }
+    }
+  }
+
+  style HeightSmall {
+    all {
+      label {
+        iconHeight = 50px
+      }
+    }
+  }
+  style HeightLarge {
+    all {
+      label {
+        iconHeight = 200px
+      }
+    }
+  }
+
+  style SpacingSmall {
+    all {
+      label {
+        iconSpacing = 6px
+      }
+    }
+  }
+  style SpacingLarge {
+    all {
+      label {
+        iconSpacing = 60px
+      }
+    }
+  }
+
+  style ScalingFit {
+    all {
+      label {
+        iconFit = fit
+      }
+    }
+  }
+  style ScalingFill {
+    all {
+      label {
+        iconFit = fill
+      }
+    }
+  }
+  style ScalingStretch {
+    all {
+      label {
+        iconFit = stretch
+      }
+    }
+  }
+}
