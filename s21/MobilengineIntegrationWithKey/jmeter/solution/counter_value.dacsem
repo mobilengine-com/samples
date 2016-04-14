@@ -1,4 +1,4 @@
 schema 'counter_value' meta 'counter_value'
-increase_counter: element {
+counter_value: element {
 	value: attribute of type int;
 }
