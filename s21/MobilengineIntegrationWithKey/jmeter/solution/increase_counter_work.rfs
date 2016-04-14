@@ -1,0 +1,6 @@
+﻿server program increase_counter_work for dacs increase_counter
+using reftab 'counter_reftab';
+{
+	var row = db.counter.Read(map.New()).Single();
+	db.counter.Update(map.New(), {value: row.value + 1});
+}

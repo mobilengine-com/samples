@@ -1,0 +1,5 @@
+<Reftab Name="counter_reftab" SyncNullAsEmptyString="true" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="value" Type="Integer" NotNull="true" />
+  </Columns>
+</Reftab>

@@ -1,0 +1,11 @@
+﻿<integration
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://schemas.mobilengine.com/integration/v1">
+  <iep name="out" direction="out">
+    <dacsem name="counter_value" />
+  </iep>
+  <iep name="in" direction="in">
+    <dacsem name="increase_counter" />
+  </iep>
+</integration>

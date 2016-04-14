@@ -1,0 +1,4 @@
+schema 'increase_counter' meta 'increase_counter'
+increase_counter: element{
+	id: attribute of type string;
+}

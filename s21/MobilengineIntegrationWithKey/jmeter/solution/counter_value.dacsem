@@ -1,0 +1,4 @@
+schema 'counter_value' meta 'counter_value'
+increase_counter: element {
+	value: attribute of type int;
+}
