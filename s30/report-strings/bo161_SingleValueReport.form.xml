@@ -1,0 +1,7 @@
+<Form name="bo161_SingleValueReport" description="bo161_SingleValueReport">
+	<Control type="panel" name="root" color="RGB(237,237,237)" >
+		<Control type="panel" name="table" layout="standard" navigation="inline" >
+			<Control type="textbox" name="textbox1" label="ide" size="medium" />
+		</Control>
+	</Control>
+</Form>

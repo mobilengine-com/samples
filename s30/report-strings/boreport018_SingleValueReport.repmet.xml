@@ -1,0 +1,24 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>boreport018_SingleValueReport</Name>
+	<Format>PDF</Format>
+	<Frequency>EachTimeANewDataRowArrives</Frequency>	
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>true</IncludeTrackData>
+	<UseLongtextForStringInMdb>true</UseLongtextForStringInMdb>
+	<ParameterTable>SingleValueReport</ParameterTable>	 
+	<Email>
+		<Recipients>
+			<To>istvan.szarka@mobilengine.com</To>
+		</Recipients>
+		<Attachment>attachment_report</Attachment>
+		<Subject>subject_alma</Subject>
+	</Email>
+	<Filter>		
+		<Form>bo161_SingleValueReport</Form>
+		<More>
+			<Field ParameterColumn="textbox1" Name="ide" SingleValue="true"/>
+		</More>
+	</Filter>
+</ReportDefinition>

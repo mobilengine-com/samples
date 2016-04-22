@@ -1,0 +1,5 @@
+client server program RF99_SingleValueReport for form bo161_SingleValueReport
+using reftab SingleValueReport;
+{
+	db.SingleValueReport.Insert({textbox1: form.root.table.textbox1.value} );	
+}
