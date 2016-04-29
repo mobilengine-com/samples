@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="barview" menuName="barview" menuOrder="10" platforms="ios web">
+
+	<barview label='{"null/null"}' maxValue="{null}" value="{null}"/>
+	<barview label='{"1/null"}' maxValue="{1}" value="{null}"/>
+	<barview label='{"null/1"}' maxValue="{null}" value="{1}"/>
+	<barview label='{"0/0"}' maxValue="{0}" value="{0}"/>
+	<barview label='{"-10/100"}' maxValue="{100}" value="{-10}"/>
+	<barview label='{"0/100"}' maxValue="{100}" value="{0}"/>
+	<barview label='{"10/100"}' maxValue="{100}" value="{10}"/>
+	<barview label='{"20/100"}' maxValue="{100}" value="{20}"/>
+	<barview label='{"30/100"}' maxValue="{100}" value="{30}"/>
+	<barview label='{"40/100"}' maxValue="{100}" value="{40}"/>
+	<barview label='{"50/100"}' maxValue="{100}" value="{50}"/>
+	<barview label='{"60/100"}' maxValue="{100}" value="{60}"/>
+	<barview label='{"70/100"}' maxValue="{100}" value="{70}"/>
+	<barview label='{"80/100"}' maxValue="{100}" value="{80}"/>
+	<barview label='{"90/100"}' maxValue="{100}" value="{90}"/>
+	<barview label='{"100/100"}' maxValue="{100}" value="{100}"/>
+	<barview label='{"200/100"}' maxValue="{100}" value="{200}"/>
+
+	<chapter title="dynamic">
+		<barview maxValue="{100}" value="{percent.number}"/>
+		<numberbox id="percent" label="percent %" numberFormat='{decimalSeparator: "."}' float="true" number="{0}"/>
+	</chapter>
+
+	<dropdown id="ddlF" choices='{SELECT t.year, t.a, t.b FROM (table year, a, b ("2001", 1, 0; "2002", -1, 2000; "2003", 0.5, 200)) t}' keyMap='{SELECT a, b}' textMap='{SELECT year}' selectedKey="{select 1 a, 0 b}"/>
+
+	<table record="g" recordset='{table month, value ("01", 600; "02", 720; "03", 1920; "04", 1000; "05", 1500; "06", 500; "07", 600; "08", 1200; "09", 100; "10", 200; "11", 300; "12", 0)}'>
+		<header>
+			<row>
+				<cell>
+					<textview text="Month"/>
+				</cell>
+				<cell width="5 em">
+					<textview text="Value" width="5 em"/>
+				</cell>
+				<cell>
+					<textview text="Graph" />
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell width="5 em">
+				<textview text="{g.month}">
+					<declarations>
+						<let id="val" shape="scalar" value='{g.value*ddlF.selectedKey.a+ddlF.selectedKey.b}'/>
+					</declarations>
+				</textview>
+			</cell>
+			<cell width="5 em">
+				<textview text="{toString(val)}"/>
+			</cell>
+			<cell width="30 em">
+				<barview maxValue="{2000}" value="{val}"  width="30 em"/>
+			</cell>
+		</row>
+	</table>
+</form>
+  
