@@ -1,0 +1,9 @@
+<Reftab Name="orderitem" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+	    <Column Name="guidOrder" Type="Text" />
+		<Column Name="guidItem" Type="Text" />
+		<Column Name="guidProduct" Type="Text" />
+		<Column Name="details" Type="Text" />
+		<Column Name="price" Type="Float" />
+	</Columns>
+</Reftab>

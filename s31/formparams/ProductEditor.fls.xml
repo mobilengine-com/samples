@@ -1,0 +1,20 @@
+<form id='ProductEditor' menuName='ProductEditor' menuOrder="hidden" platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letVendor" shape="table" value="{SELECT v.guid, v.name FROM vendor v}"/>
+		<let id="guidProduct" shape="scalar" value="{params.guidProduct}"/>
+		<let id="p" shape="record" value="{SELECT p.name, p.guidVendor, p.price FROM product p WHERE p.guid=guidProduct }"/>
+	</declarations>
+	<header></header>
+	<params>
+		<param id="guidProduct"/>
+	</params>
+	<chapter title='{CASE WHEN guidProduct != null THEN "Edit" ELSE "Create" END}'>
+	<textview label="guid" text="{guidProduct}"/>
+	<textbox id="tbName" label="name" text="{p.name}"/>
+	<dropdown id="ddVendor" label="vendor" selectedKey="{p.guidVendor}" choices="{SELECT v.guid, v.name FROM letVendor v}" keyMap="{guid}" textMap="{name}"/>
+	<numberbox id="nbPrice" label="price" number="{p.price}" float="true" numberFormat='{decimalSeparator:".",maxFraction: 2}'/>
+	<checkbox id="fWait" checked="{true}" label="Wait on save until processed"/>
+	<submitbutton id="save" waitForRfs="{fWait.checked}" text="Save"/>
+	<discardbutton text="Discard"/>
+	</chapter>
+</form>

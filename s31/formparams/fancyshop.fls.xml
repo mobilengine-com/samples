@@ -1,0 +1,154 @@
+﻿<form id='fancyshop' title=""  menuName='Fancy shop'  platforms='web' xmlns="http://schemas.mobilengine.com/fls/v2">
+     
+	<declarations><let id='a6024' shape='scalar' value='{"alma"}'/></declarations>
+
+    <chapter title="Select model">
+        <dropdown id="ddProduct" choices='{SELECT p.guid, p.name, p.price FROM product p}' keyMap='{guid}' textMap='{name}' />
+
+        <if cond="{ddProduct.selectedKey is not null}">
+            <declarations>
+                <let id="model" shape="record" 
+                     value="{SELECT
+                            ddProduct.selectedValue.guid as guidProduct,
+                            ddProduct.selectedValue.name,
+                            ddProduct.selectedValue.price}" />
+                
+                <let id="chassis" shape="table"
+                     value='{table id, name,price (
+                            	1, "plastic",100; 
+                                2, "metal",  200; 
+                                3, "glass",  150
+                           )}' />
+
+                
+                <let id="options" shape="table"
+                     value='{table f, description, price (
+                       true, model.name, model.price;
+                       extra1.checked, extra1.text, 100;
+                       extra2.checked, extra2.text, 200;
+                       rbChassis.selectedValue IS NOT NULL, rbChassis.selectedText, rbChassis.selectedValue.price;
+                     )}' />
+                
+                <let id="priceWithOptions" shape="scalar" 
+                     value="{(select SUM(o.price) from options o where o.f)}" />
+                
+                            
+                <let id="details" shape="scalar"
+                     value='{select group_concat(o.description, ", ") from options o where o.f}' />
+                     
+            </declarations>
+			
+			<textview text='{TOSTRING(model.price)}'></textview>
+			<!--table recordset="{SELECT o.f, o.description, o.price FROM options o}" record="row"-->
+			<table recordset="{table f, description, price (
+                       true, model.name, model.price;
+                       extra1.checked, extra1.text, 100;
+                       extra2.checked, extra2.text, 200;
+                       rbChassis.selectedValue IS NOT NULL, rbChassis.selectedText, rbChassis.selectedValue.price;
+                     )}" record="row">
+				<row>
+					<cell><textview text='{CASE WHEN row.f THEN "1" ELSE "0" END}'></textview></cell>
+					<cell><textview text='{row.description}'></textview></cell>
+					<cell><textview text='{TOSTRING(row.price)}'></textview></cell>
+					
+				</row>
+			</table>
+            
+            
+            <radiogroup id="rbChassis" label="chassis" 
+                        choices='{select c.id, c.name, c.price from chassis c}' 
+                        keyMap='{id}' 
+                        textMap='{tostring(name)}' />
+            
+            
+            <textview text="select extras" />
+            <checkbox label=" " text="extra 1" id="extra1" />
+            <checkbox label=" " text="extra 2" id="extra2" />
+            
+            <textview label="price" text="{tostring(priceWithOptions)}" />
+            
+            <addbutton table="basket" 
+                       records='{select model.guidProduct, model.name, priceWithOptions as price, details}'
+                       text="add to basket"/>    
+        </if>
+        
+    </chapter>
+     
+    
+    <if cond="{(select count(*) from basket.rows b) > 0}">
+    	
+        <chapter title="Basket">
+            <table id="basket" record="item" 
+                   recordset='{SELECT "" as guidProduct, "" as name, 0.0 as price, "" as details WHERE false}'>
+                <header>
+                    <row>
+                        <cell>
+                            <textview text="Model type" />
+                        </cell>
+                        <cell>
+                            <textview text="Price" />
+                        </cell>
+                        <cell>
+                            <textview text="Details" />
+                        </cell>
+                        <cell>
+                            <textview text="" />
+                        </cell>
+                    </row>
+                </header>
+                <row>
+                    <declarations>
+                        <let id="price" shape="scalar" value="{item.price}" />
+                        <let id="idProduct" shape="scalar" value="{item.guidProduct}" />
+                        <let id="details" shape="scalar" value="{item.details}" />
+                    </declarations>
+                    <cell>
+                      	<textview text="{item.name}" />
+                    </cell>
+                    <cell>
+                        <textview text="{tostring(price)}" />
+                    </cell>
+               		<cell>
+                        <textview text="{item.details}" />
+                    </cell>
+                    <cell>
+                        <removebutton text="remove" />
+                    </cell>
+                </row>
+                <footer>
+                    <row>
+                        <cell>
+                            <textview text="Total:" />
+                        </cell>
+                        <cell>
+                            <textview text="{tostring((select sum(item.price) from basket.rows item))}" />
+                        </cell>
+                        <cell>
+                            <textview text="" />
+                        </cell>
+                         <cell>
+                            <textview text="" />
+                        </cell>
+                    </row>
+                </footer>
+            </table> 
+    	</chapter>
+        
+        <chapter title="Billing information yyy">
+    
+            <textbox id="firstNameBuyer" label="First name"  width="40 em"/>
+            <textbox id="lastNameBuyer" label="Last name"  width="40 em"/>
+            <textbox id="emailBuyer" label="Email" text="{sysp.user}" width="40 em"/>
+            <textbox id="phoneBuyer" label="Phone"  width="40 em"/>
+            <textbox id="addressBuyer" label="Address" width="40 em"/>
+            <checkbox label= " " text="I accept the Terms of use" />
+            <popup label= " " title="Terms of use">
+                <textview text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lobortis quis felis eu mattis. Cras pharetra rhoncus lobortis. Duis non aliquam libero. Mauris id velit in turpis cursus placerat. Vestibulum facilisis sagittis ipsum vitae rhoncus. In dictum nisl id dolor tincidunt, quis egestas nisl feugiat. Nullam facilisis massa ante, at lobortis sapien pharetra a. Aenean luctus arcu odio, in adipiscing lacus ultricies non." />
+                <textview text="Proin metus urna, tincidunt eu arcu at, pharetra facilisis justo. Sed ut mollis nunc. Nam a mi vitae urna egestas rhoncus sed eget diam. Fusce turpis metus, vestibulum in urna at, hendrerit egestas libero. Duis tincidunt, purus vel gravida faucibus, est dui euismod lorem, sit amet eleifend tortor nibh sed nisl. Fusce tellus tellus, commodo sit amet aliquet non, fermentum eget magna. Sed mollis, odio non dignissim mattis, ligula ipsum consequat nibh, et adipiscing orci nunc et purus." />
+                <textview text="Integer non tortor id nibh fermentum rhoncus. Phasellus feugiat diam sed tincidunt eleifend. Curabitur pellentesque leo nec augue dictum suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris elementum fringilla nisi, tristique commodo leo pretium in. Maecenas ullamcorper vel justo non cursus. Cras in tincidunt urna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec non blandit quam." />
+            </popup>
+    	</chapter>
+
+    </if>
+    
+</form>

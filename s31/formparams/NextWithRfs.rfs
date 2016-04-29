@@ -1,0 +1,5 @@
+﻿client server program NextWithRfs for form NextWithRfs
+using reftab 'product';
+{
+	trace form;
+}

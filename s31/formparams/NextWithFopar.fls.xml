@@ -1,0 +1,27 @@
+<form id='NextWithFopar' menuName='NextWithFopar' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<header></header>
+	<params>
+		<param id="p1"/>
+		<param id="p2"/>
+	</params>
+	<textbox id="tbP1" label="tbP1" text="{params.p1}"/>
+	<textbox id="tbP2" label="tbP2" text="{params.p2}"/>
+	<submitbutton id="submit12" text="Run rfs and go to here again" nextForm='{forms.NextWithFopar}'>
+		<params>
+			<param id="p1" value='{tbP1.text||"x"}'/>
+			<param id="p2" value='{tbP2.text||"y"}'/>
+		</params>
+	</submitbutton>
+	
+	<discardbutton id="discard" text="yDicard and go to here againx" nextForm='{forms.NextWithFopar}'>
+		<declarations>
+			<let id='alma' shape='scalar' value='{"a"}'/>
+		</declarations>
+		<params>
+			<param id="p1" value='{tbP1.text||"1"}'/>
+			<param id="p2" value='{tbP2.text||"2"}'/>
+		</params>
+	</discardbutton>
+	<textview text="{discard.alma}"/>
+	<textview text="{discard.p1}"/>
+</form>

@@ -1,0 +1,16 @@
+client server program 'ProductEditorSubmit' for form 'ProductEditor'
+using reftab 'product';
+{
+	trace form;
+	var rowFilter = {guid: form.guidProduct};
+	var guidT = form.guidProduct;
+	if (guidT == null) {
+		guidT = guid.Generate().ToStringD();
+	}
+	var rowNew = {guid: guidT, name: form.tbName.text, price: form.nbPrice.number, guidVendor: form.ddVendor.selectedKey};
+	if(db.product.Read(rowFilter).Count() == 0) {
+		db.product.Insert(rowNew);
+	} else {
+		db.product.Update(rowFilter, rowNew);
+	}
+}

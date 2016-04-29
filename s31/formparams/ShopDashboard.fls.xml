@@ -1,0 +1,42 @@
+<form id='ShopDashboard' menuName='shopDash' platforms='web'  dashboard="true" xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letVendor" shape="table" value="{SELECT v.guid, v.name FROM vendor v}"/>
+	</declarations>
+	<header>
+		<discardbutton id="discard" text="Refresh"/>
+	</header>
+	<table recordset='{SELECT p.guid, p.guidVendor, p.name, p.price FROM product p}' record='p'>
+		<header>
+			<row>
+				<cell>
+					<textview text="Name"/>
+				</cell>				
+				<cell>
+					<textview text="Vendor"/>
+				</cell>				
+				<cell>
+					<textview text="Price"/>
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell>
+				<textview text="{p.name}"/>
+			</cell>
+			<cell>
+				<textview text="{SELECT v.name FROM letVendor v WHERE v.guid=p.guidVendor}"/>
+			</cell>
+			<cell>
+				<textview text="{ToString(p.price)}"/>
+			</cell>
+			<cell>
+				<discardbutton text="Edit" nextForm='{forms.ProductEditor}'>
+					<params>
+						<param id="guidProduct" value='{ToString(p.guid)}'/>
+					</params>
+				</discardbutton>
+			</cell>
+		</row>
+	</table>
+	<discardbutton text="New" nextForm='{forms.ProductEditor}'/>
+</form>

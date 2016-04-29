@@ -1,0 +1,7 @@
+<Reftab Name="vendor" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="guid" Type="Text" />
+		<Column Name="name" Type="Text" />
+		<Column Name="email" Type="Text" />
+	</Columns>
+</Reftab>

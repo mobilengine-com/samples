@@ -1,0 +1,4 @@
+<form id='NextWithRfs' menuName='NextWithRfs' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<header></header>
+	<submitbutton id="submit" text="Run rfs and go to other" nextForm='{forms.NextWithoutRfs}'/>
+</form>

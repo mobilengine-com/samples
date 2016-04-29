@@ -1,0 +1,4857 @@
+styles {
+    style proportional {
+		segmentedbutton {
+			segmentWidth = proportional
+		}
+	}
+	
+	style tintColor {
+		segmentedbutton {
+			tintColor = FF0000
+		}
+	}
+	
+	style selectedSegment {
+		segmentedbutton {
+			selectedSegment {
+				fontSize = 20px
+				bold = true
+				italic = true
+			}
+		}
+	}
+	
+	style iProjectDashboard {
+		frame {
+			backgroundColor = 244062
+		}
+		submitbutton {
+			
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			control {
+				margin {
+					left = 100px
+					right = 100 px
+				}
+				backgroundColor = ffffff
+			}
+			textAlign = center
+		}
+		dropdown {
+			margin {
+				top = 5px
+			}
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			label {
+				fontColor = ffffff
+			}
+			control {
+				margin {
+					top = 5px
+				}
+				padding {
+					left = 5px
+				}
+				backgroundColor = ffffff
+			}
+		}
+		all {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			content = iPopup
+		}
+		textview {
+			fontColor = ffffff
+			label {
+				bold = true
+			}
+		}
+		popup {
+			content = iPopup
+			backgroundColor = 95B3D7
+			label {
+				backgroundColor = 95B3D7
+			}
+			control {
+				backgroundColor = 95B3D7
+				fontColor = ffffff
+			}
+		}
+	}
+	style listView {
+		textview {
+			backgroundColor = 366092
+			control {
+				fontColor = ffffff
+				backgroundColor = 366092
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 20px
+					right = 5px
+				}
+			}
+		}
+	}
+	style separator {
+		all {
+			control {
+				borderWidth {
+					top = 0.5px
+				}
+				borderColor = 244062
+			}
+			label {
+				borderWidth {
+					top = 0.5px
+				}
+				borderColor = 244062
+			}
+		}
+	}
+	style iSearchLesson {
+		popup {
+			content = iPopup
+			backgroundColor = 366092
+			label {
+				padding {
+					top = 5px
+				}
+				backgroundColor = 366092
+			}
+			control {
+				padding {
+					top = 5px
+				}
+				backgroundColor = 366092
+				fontColor = ffffff
+				textAlign = left
+				underline = true
+			}
+		}
+		all {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			label {
+				padding {
+					left = 5px
+					right = 5px
+				}
+				fontColor = ffffff
+				bold = true
+			}
+			control {
+				padding {
+					left = 5px
+					right = 5px
+				}
+				fontColor = ffffff
+			}
+		}
+		frame {
+			backgroundColor = 244062
+		}
+		textbox {
+			backgroundColor = 366092
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		submitbutton {
+			fontColor = 007AFFFF
+		}
+		dropdown {
+			backgroundColor = 366092
+			label {
+				backgroundColor = 366092
+			}
+			control {
+				fontColor = ffffff
+				backgroundColor = 366092
+				underline = true
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+				textAlign = left
+			}
+		}
+		checkbox {
+			backgroundColor = 366092
+			label {
+				backgroundColor = 366092
+			}
+			control {
+				fontColor = ffffff
+				backgroundColor = 366092
+				underline = true
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+				textAlign = right
+			}
+		}
+		numberbox {
+			backgroundColor = 366092
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		textarea {
+			backgroundColor = 366092
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		datepicker {
+			control {
+				fontColor = ffffff
+				underline = true
+				textAlign = center
+				backgroundColor = 366092
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		signature {
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		photo {
+			backgroundColor = 366092
+			control {
+				backgroundColor = 366092
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+	}
+	style iPopup {
+		popup {
+			content = iPopup
+			backgroundColor = 95B3D7
+			label {
+				backgroundColor = 95B3D7
+			}
+			control {
+				backgroundColor = 95B3D7
+				fontColor = ffffff
+			}
+		}
+		all {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			label {
+				fontColor = ffffff
+				bold = true
+			}
+			control {
+				fontColor = ffffff
+			}
+		}
+		frame {
+			backgroundColor = 244062
+		}
+		textbox {
+			backgroundColor = 366092
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		submitbutton {
+			fontColor = 007AFFFF
+		}
+		dropdown {
+			backgroundColor = 366092
+			label {
+				backgroundColor = 366092
+			}
+			control {
+				fontColor = ffffff
+				backgroundColor = 366092
+				underline = true
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+				textAlign = center
+			}
+		}
+		numberbox {
+			backgroundColor = 366092
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		textarea {
+			backgroundColor = 366092
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		datepicker {
+			control {
+				fontColor = ffffff
+				underline = true
+				textAlign = center
+				backgroundColor = 366092
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		signature {
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+	}
+	style secondaryQuestion {
+		all {
+			backgroundColor = 366092
+			label {
+				backgroundColor = 366092
+				textAlign = right
+				padding {
+					right = 10px
+				}			
+			}
+		}
+		dropdown {
+			margin {
+				top = 0px
+			}
+		}
+	}
+	style secondaryTableQ {
+		textview {
+			textAlign = right
+		}
+	}
+	style completedLabel {
+		popup {
+			label {
+				fontColor = 00ff00
+				fontSize = 10px
+			}
+			borderWidth {
+				left = 10px
+				bottom = 1px
+			}
+			borderColor = 00ff00
+		}
+		submitbutton {
+			backgroundColor = 366092
+			label {
+				fontColor = 00ff00
+				textAlign = left
+			}
+			borderWidth {
+				left = 10px
+				bottom = 1px
+			}
+			margin {
+				top = 0px
+			}
+			borderColor = 00ff00
+			control {
+				textAlign = right
+				backgroundColor = 366092
+				fontColor = ffffff
+				margin {
+					left = 0px
+					right = 0 px
+				}
+			}
+		}
+		textview {
+			backgroundColor = 366092
+			label {
+				fontColor = 00ff00
+				textAlign = left
+			}
+			borderWidth {
+				left = 10px
+				bottom = 1px
+			}
+			margin {
+				top = 0px
+			}
+			padding {
+				top = 15px
+				bottom = 15px
+			}
+			borderColor = 00ff00
+			control {
+				textAlign = right
+				backgroundColor = 366092
+				fontColor = ffffff
+				margin {
+					left = 0px
+					right = 0 px
+				}
+			}
+		}
+	}
+	style inCompleteLabel {
+		popup {
+			label {
+				backgroundColor = 366092
+				fontColor = ff0000
+			}
+			borderWidth {
+				left = 10px
+				bottom = 1px
+			}
+			borderColor = ff0000
+		}
+		submitbutton {
+			backgroundColor = 366092
+			label {
+				textAlign = left
+				fontColor = ff0000
+				bold = true
+			}
+			borderWidth {
+				left = 10px
+				bottom = 1px
+			}
+			margin {
+				top = 0px
+			}
+			borderColor = ff0000
+			control {
+				textAlign = right
+				backgroundColor = 366092
+				fontColor = ffffff
+				margin {
+					left = 0px
+					right = 0 px
+				}
+			}
+		}
+		textview {
+			backgroundColor = 366092
+			label {
+				textAlign = left
+				fontColor = ff0000
+			}
+			borderWidth {
+				left = 10px
+				bottom = 1px
+			}
+			margin {
+				top = 0px
+			}
+			padding {
+				top = 15px
+				bottom = 15px
+			}
+			borderColor = ff0000
+			control {
+				textAlign = right
+				backgroundColor = 366092
+				fontColor = ffffff
+				margin {
+					left = 0px
+					right = 0 px
+				}
+			}
+		}
+	}
+	style reviewTable {
+		table {
+			width = fill
+			columnWidth = 0.4, 0.6
+			body = reviewTable
+			control {
+				borderWidth {
+					top = 0px
+					bottom = 0px
+				}
+			}
+		}
+		row {
+			backgroundColor = 366092
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+		cell {
+			borderWidth {
+				left = 0px
+				right = 0px
+			}
+		}
+		all {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			label {
+				fontColor = ffffff
+				bold = true
+			}
+		}
+		textview {
+			control {
+				fontColor = ffffff
+				bold = true
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		textbox{
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		signature{
+			control {
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		dropdown{
+			control {
+				backgroundColor = 366092
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+				textAlign = center
+				underline = true
+				fontColor = ffffff
+			}
+		}
+		removebutton {
+			textAlign = right
+		}
+	}
+	style moreButton {
+		addbutton {
+			backgroundColor = 366092
+			textAlign = right
+			padding {
+				top = 5px
+				bottom = 5px
+				left = 5px
+				right = 5px
+			}
+		}
+	}
+	style underline {
+		all {
+			underline = true
+		}
+	}
+	style secondaryTitle {
+		textview {
+			fontColor = ffffff
+			bold = true
+			textAlign = center
+			fontSize = 20px
+		}
+	}
+	style topMargin {
+		all {
+			margin {
+				top = 30px
+			}
+		}
+	}
+	style tableMargin {
+		table {
+			control {
+				margin {
+					top = 30px
+				}
+			}
+		}
+	}
+	style topMargin2 {
+		all {
+			margin {
+				top = 5px
+			}
+		}
+	}
+	style rowMargin2 {
+		row {
+			margin {
+				top = 5px
+			}
+		}
+	}
+	style rowBorder {
+		row {
+			margin {
+				top = 5px
+			}
+		}
+	}
+	style bottomBorder {
+		all {
+			borderColor = ffffff
+			borderWidth {
+				bottom = 1px
+			}
+		}
+	}
+	style iProjectDashboardV2 {
+		frame {
+			backgroundColor = 244062
+		}
+		all {
+			content = iProjectDashboardV2
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+		textview {
+			control {
+				fontColor = ffffff
+				padding {
+					top = 10px
+					bottom = 10px
+					left = 10px
+					right = 10px
+				}
+			}
+		}
+		submitbutton {
+			
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			control {
+				margin {
+					left = 100px
+					right = 100 px
+				}
+			}
+			textAlign = center
+			underline = true
+		}
+		dropdown {
+			margin {
+				top = 5px
+			}
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			label {
+				fontColor = ffffff
+			}
+			control {
+				margin {
+					top = 5px
+				}
+				padding {
+					left = 5px
+				}
+				backgroundColor = ffffff
+			}
+		}
+	}
+	style projectTable {
+		table {
+			width = fill
+            columnWidth = 0.85, 0.15
+            body = projectTable
+            control {
+            	borderWidth {
+					top = 0px
+					bottom = 0px
+					left = 0px
+					right = 0px
+				}
+				borderColor = ffffff
+            }
+		}
+		row {
+			backgroundColor = 366092
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+			margin {
+				bottom = 5px
+			}
+			borderColor = ffffff
+		}
+		cell {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+		}
+		all {
+			content = projectTable
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+		
+	}
+	style openStatusChecked {
+		checkbox {
+			textAlign = right
+			fontColor = ffffff
+			margin {
+				bottom = 10 px
+			}
+		}
+	}
+	style projectName {
+		textview{
+			fontColor = ffffff
+			bold = true
+			textAlign = center
+		}
+	}
+	style openStatusText {
+		textview {
+			fontColor = ff0000
+			bold = true
+			textAlign = center
+		}
+	}
+	style readyStatusText {
+		textview {
+			fontColor = 00ff00
+			bold = true
+			textAlign = center
+		}
+	}
+	style startSubmit {
+		submitbutton {
+			fontColor = ffffff
+			bold = true
+			textAlign = center
+			backgroundColor = 95B3D7
+			control {
+				borderWidth {
+					top = 1px
+					bottom = 1px
+					left = 1px
+					right = 1px
+				}
+				borderColor = ffffff
+				margin {
+					top = 0.01px
+					bottom = 0.01px
+					left = 0.01px
+					right = 0.01px
+				}
+			}
+		}
+		textview {
+			fontColor = ffffff
+			backgroundColor = 95B3D7
+		}
+	}
+	style ouTaskTable {
+		all {
+			backgroundColor = 95B3D7
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			fontColor = ffffff
+		}
+		table {
+			width = fill
+            columnWidth = 0.4, 0.2, 0.4
+            backgroundColor = 95B3D7
+            control {
+            	backgroundColor = 95B3D7
+            	borderWidth {
+					top = 0px
+					bottom = 0px
+					left = 0px
+					right = 0px
+				}
+				borderColor = ffffff
+				padding {
+					bottom = 0px
+				}
+            }
+            padding {
+					bottom = 0px
+				}
+            body = ouTaskTable
+		}
+		row {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+			padding {
+				bottom = 0px
+			}
+			borderColor = ffffff
+		}
+		cell {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+		}
+		linkview {
+			underline = true
+			textAlign = center
+			fontColor = ffffff
+		}
+	}
+	style searchBox {
+		textbox {
+			textAlign = center
+			margin {
+				top = 10px
+				bottom = 20px
+				left = 5px
+				right = 5px
+			}
+			fontColor = 007AFFFF
+			borderColor = ffffff
+			borderWidth {
+				top = 1px
+				bottom = 1px
+				left = 1px
+				right = 1px
+			}
+			backgroundColor = ffffff
+		}
+	}
+	style knowledgeSearchBox {
+		textbox {
+			textAlign = center
+			fontColor = 007AFFFF
+			borderColor = ffffff
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+			control {
+				padding {
+						top = 10px
+						bottom = 10px
+						left = 5px
+						right = 5px
+					}
+				}
+			margin {
+				top = 10px		
+			}
+		}
+	}
+	
+	style dashboardHeader {
+		textview {
+			backgroundColor = 244062
+			margin {
+				top = 10px
+				left = 50px
+				right = 50px
+				bottom = 3px
+			}
+			control {
+				textAlign = center
+				bold = true
+				fontSize = 30px
+				fontColor = ffffff
+				backgroundColor = 990000
+				padding {
+					top = 3px
+					left = 3px
+					right = 3px
+					bottom = 3px
+				}
+			}
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+	}
+	style whiteHeader {
+		textview {
+			margin {
+				top = 10px
+				left = 50px
+				right = 50px
+				bottom = 3px
+			}
+			control {
+				textAlign = center
+				bold = true
+				fontSize = 30px
+				fontColor = ffffff
+				padding {
+					top = 3px
+					left = 3px
+					right = 3px
+					bottom = 3px
+				}
+			}
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+	}
+	style welcomeMessage {
+		textview {
+			margin {
+				top = 0px
+				left = 0px
+				right = 0px
+				bottom = 2px
+			}
+			control {
+				textAlign = center
+				italic = true
+				fontColor = ffffff
+			}
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+	}
+	style submitButtonFrame {
+		chapter {
+			margin {
+				top = 1px
+				left = 100px
+				right = 100 px
+			}
+			backgroundColor = 244062
+			content = submitButtonFrame
+			title {
+                backgroundColor = 244062
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 0px
+                    right = 0px
+                    top = 0ppx
+                    bottom = 0ppx
+                }
+        	}
+		}
+		submitbutton {
+			fontColor = 000000
+			margin {
+				left = 10px
+				right = 10 px
+			}
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+			control {
+				backgroundColor = ffffff
+			}
+			textAlign = center
+		}
+	}
+	style taskTable {
+		table {
+			width = fill
+            columnWidth = 0.4, 0.25, 0.35
+			margin {
+				top = 0.1px
+				left = 0.1px
+				right = 0.1px
+				bottom = 0.1px
+			}
+			control {
+				margin {
+					top = 3px
+					left = 10px
+					right = 10px
+					bottom = 1px
+				}
+				borderWidth {
+					top = 0px
+					bottom = 0px
+				}
+			}
+			body = taskTable
+			header = taskTableHeader
+		}
+		all {
+			content = taskTable
+		}
+		textview {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+		linkview {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+		row {
+			borderColor = ffffff
+			borderWidth {
+				top = 0px
+				bottom = 1px
+				left = 0px
+				right = 0px
+			}
+			margin {
+				top = 0.0001px
+				left = 0.01px
+				right = 0.01px
+				bottom = 0.0001px
+			}
+		}
+		cell {
+			borderColor = ffffff
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 1px
+				right = 0px
+			}
+			margin {
+				top = 0px
+				left = 0.0001px
+				right = 0.0001px
+				bottom = 0px
+			}
+		}
+	}
+	
+	style firstRowColor {
+		all {
+            backgroundColor = 95B3D7
+        }
+	}
+	style secondRowColor {
+		all {
+            backgroundColor = B8CCE4
+        }
+	}
+	
+	style taskTableHeader {
+		all {
+            backgroundColor = 366092
+        }
+		row {
+			borderColor = ffffff
+			borderWidth {
+				top = 1px
+				bottom = 1px
+				left = 0px
+				right = 0px
+			}
+			margin {
+				top = 0.0001px
+				left = 0.01px
+				right = 0.01px
+				bottom = 0.0001px
+			}
+		}
+		cell {
+			borderColor = ffffff
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 1px
+				right = 0px
+			}
+			margin {
+				top = 0px
+				left = 0.0001px
+				right = 0.0001px
+				bottom = 0px
+			}
+		}
+		textview {
+			textAlign = center
+			bold = true
+			fontColor = ffffff
+		}
+	}	
+	
+	style cellRightBorder {
+		cell {
+			borderColor = ffffff
+			borderWidth {
+				right = 1px
+			}
+		}
+	}
+	style defaultSubmit {
+		submitbutton {
+			backgroundColor = 244062
+			fontColor = ffffff
+			textAlign = center
+			underline = true
+			control {
+				backgroundColor = 244062
+			}
+		}
+	}
+	style impactTable {
+		table {
+			width = fill
+			columnWidth = 1
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+			control {
+				borderWidth {
+					top = 0px
+					bottom = 0px
+					left = 0px
+					right = 0px
+				}
+			}
+			body = impactTable
+			header = impactTable
+		}
+		all {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+			fontColor = ffffff
+		}
+		textview {
+			bold = true
+			borderColor = ffffff
+		}
+		row {
+			margin {
+				left = 20px
+				right = 20px
+				bottom = 10px
+			}
+			borderWidth {
+				bottom = 0.5px
+			}
+			borderColor = 366092
+		}
+		cell {
+			borderWidth {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+		}
+	}
+	style greenText {
+		checkbox {
+			fontColor = 00ff00
+			bold = true
+		}
+		textbox {
+			fontColor = 00ff00
+			bold = true
+		}
+	}
+	style csiTable {
+		table {
+			width = fill
+			columnWidth = 0.35, 0.4, 0.25
+		}
+	}
+	style tableTopMargin{
+		table {
+			margin {
+				top = 30px
+			}
+		}
+	}
+	
+	style resultTable {
+		table {
+			width = fill
+			columnWidth = 0.20, 0.35, 0.3, 0.15
+			padding {
+				left = 0px
+				right = 0px
+			}
+			control {
+				padding {
+					left = 0px
+					right = 0px
+				}
+				borderWidth {
+					left = 0px
+					right = 0px
+					top = 0px
+					bottom = 0px
+				}
+			}
+			
+			body = resultTableBody
+			header = resultTableHeader
+		}
+	}
+	
+	
+	style resultTableHeader {
+		textview {
+			fontColor = ffffff
+			bold = true
+			textAlign = center
+		}
+		all {
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+			backgroundColor = 366092
+		}
+		row {
+			backgroundColor = 366092
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0.5px
+			}
+			borderColor =  244062
+		}
+		cell {
+			borderWidth {
+				left = 0.5px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+			borderColor =  244062
+		}
+	}
+	style resultTableBody {
+		all {
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+		}
+		textview {
+			fontColor = ffffff
+		}
+		row {
+			content=resultTableBody
+			backgroundColor = 95B3D7
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+			borderColor =  244062
+		}
+		cell {
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+			borderColor =  244062
+		}
+		linkview {
+			underline = true
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	style submitT {
+		table {
+			width = fill
+			columnWidth = 55px, 1, 55px
+			padding {
+				left = 0px
+				right = 0px
+			}
+			control {
+				padding {
+					left = 0px
+					right = 0px
+				}
+				borderWidth {
+					left = 0px
+					right = 0px
+					top = 0px
+					bottom = 0px
+				}
+			}
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+			body = submitT
+		}
+		submitbutton {
+			borderColor = ffffff
+			borderWidth {
+				left = 1px
+				right = 1px
+				top = 1px
+				bottom = 1px
+			}
+			underline = false
+			textAlign = center
+			fontColor = ffffff
+			margin {
+				left = 0.01px
+				right = 0.01px
+				top = 0.01px
+				bottom = 0.01px
+			}
+		}
+		discardbutton {
+			borderColor = ffffff
+			borderWidth {
+				left = 1px
+				right = 1px
+				top = 1px
+				bottom = 1px
+			}
+			underline = false
+			textAlign = center
+			fontColor = ffffff
+			margin {
+				left = 0.01px
+				right = 0.01px
+				top = 0.01px
+				bottom = 0.01px
+			}
+		}
+		addbutton {
+			borderColor = ffffff
+			borderWidth {
+				left = 1px
+				right = 1px
+				top = 1px
+				bottom = 1px
+			}
+			underline = false
+			textAlign = center
+			fontColor = ffffff
+			margin {
+				left = 0.01px
+				right = 0.01px
+				top = 0.01px
+				bottom = 0.01px
+			}
+		}
+		row {
+			content = submitT
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+			margin {
+				bottom = 5px
+				top = 10px
+			}
+		}
+		textview {
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+		}
+		cell {
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+		}
+	}
+	style addNewImpactTable {
+		table {
+			width = fill
+			columnWidth = 60px, 0.5, 0.5
+			body = addNewImpactTable
+		}
+		textbox{
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+	}
+	style searchPopup {
+		chapter {
+			content = searchPopup
+			backgroundColor = 366092
+			title {
+				backgroundColor = 244062
+				borderWidth {
+					left = 0px
+					right = 0px
+					top = 0px
+					bottom = 0px
+				}
+			}
+		}
+		popup {
+			backgroundColor = 95B3D7
+			textAlign = center
+			fontColor = ffffff
+			underline = true
+			content = searchPopup
+		}
+		frame {
+			backgroundColor = 244062
+		}
+		textview {
+			borderColor = 244062
+			label {
+				fontColor = ffffff
+				bold = true
+			}
+			control {
+				fontColor = ffffff
+			}
+			margin {
+				left = 5px
+				right = 5px
+				bottom = 0.01px
+			}
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0.5px
+			}
+			padding {
+				top = 10px
+				bottom = 10px
+				left = 5px
+				right = 5px
+			}
+			backgroundColor = 366092
+		}
+		textarea {
+			label {
+				fontColor = ffffff
+				bold = true
+			}
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				padding {
+					left = 5px
+					right = 5px
+					top = 10px
+					bottom = 10px
+				}
+			}
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0px
+			}
+			padding {
+				left = 5px
+				right = 5px
+			}
+			backgroundColor = 366092
+		}
+		linkview {
+			margin {
+				left = 5px
+				right = 5px
+				bottom = 0.01px
+			}
+			borderColor = 244062
+			label {
+				fontColor = ffffff
+				bold = true
+			}
+			control {
+				fontColor = 007AFFFF
+				underline = true
+			}
+			backgroundColor = 366092
+			borderWidth {
+				left = 0px
+				right = 0px
+				top = 0px
+				bottom = 0.5px
+			}
+			padding {
+				top = 10px
+				bottom = 10px
+				left = 5px
+				right = 5px
+			}
+		}
+	}
+	style alertText {
+		textview{
+			textAlign = center
+			fontColor = ff0000
+		}
+	}
+	
+	style safetyInspection {
+		frame {
+			backgroundColor = 244062
+		}
+		all {
+			fontColor = ffffff
+			label {
+				fontColor = ffffff
+				borderWidth {
+					top = 0px
+					left = 0px
+					bottom = 0px
+					right = 0px
+				}
+			}
+			borderWidth {
+                top = 0px
+                left = 0px
+                bottom = 0px
+                right = 0px
+            }
+			margin {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+				}
+			padding {
+				top = 0px
+				bottom = 0px
+				left = 0px
+				right = 0px
+			}
+			control {
+				fontColor = ffffff
+				borderWidth {
+					top = 0px
+					left = 0px
+					bottom = 0px
+					right = 0px
+				}
+				margin {
+					top = 0px
+					bottom = 0px
+					left = 0px
+					right = 0px
+					}
+				padding {
+					top = 0px
+					bottom = 0px
+					left = 0px
+					right = 0px
+				}
+			}
+			content = safetyInspection
+		}
+		table {
+			header = safetyInspection
+			body = safetyInspection
+			footer = safetyInspection
+		}
+	}
+	
+	style safetyHeader {
+		textview {
+			backgroundColor = 244062
+			margin {
+				top = 10px
+				left = 10px
+				right = 10px
+				bottom = 3px
+			}
+			control {
+				textAlign = center
+				bold = true
+				fontSize = 20px
+				fontColor = ffffff
+				backgroundColor = 990000
+				padding {
+					top = 3px
+					left = 3px
+					right = 3px
+					bottom = 3px
+				}
+			}
+			borderWidth {
+				top = 0px
+				bottom = 0px
+			}
+		}
+	}
+	
+	style safetyDropdowm{
+		dropdown {
+			margin {
+				top = 5px
+				bottom = 5px
+				left = 10px
+				right = 10px
+			}
+			control {
+				margin {
+					top = 5px
+				}
+				padding {
+					left = 5px
+				}
+				fontColor = 000000
+				backgroundColor = ffffff
+			}
+		}
+	}
+	
+	style mediumTable{
+		table{
+			control {
+				margin {
+					top = 10 px
+					left = 10px
+					right = 10px
+					bottom = 10 px
+				}
+			}
+			columnWidth = 0.5,0.5
+			body = mediumTable
+		}
+		numberbox {
+			control {
+				fontColor = 000000
+				fontSize = 14px
+				backgroundColor = ffffff
+				padding {
+					top = 7px
+					bottom = 7px
+					left = 5 px
+					right = 5 px
+				}
+			}
+		}
+		dropdown {
+			control {
+				padding {
+					left = 5px
+				}
+				fontColor = 000000
+				backgroundColor = ffffff
+			}
+		}
+	}
+	
+	style categoryTable{
+		table{
+			columnWidth = 0.99
+		}
+	}
+	
+	style categoryNameTable{
+		table{
+			control {
+				margin {
+					left = 10px
+					right = 10px
+				}
+			}
+			columnWidth = 0.8,0.2
+			body = categoryNameTable
+		}
+		textview {
+			fontColor = ffffff
+			margin {
+				right = 2 px
+			}
+		}
+		checkbox {
+			margin {
+				top = 5 px
+				bottom = 5 px
+			}
+		}
+	}
+	
+	style questionTable{
+		table{
+			columnWidth = 0.4,0.3,0.15,0.15
+			body = questionTable
+			control {
+				backgroundColor = f9f9f9
+				margin {
+					top = 5 px
+					left = 10px
+					right = 10px
+				}
+			}
+			header = questionTable
+		}
+		cell {
+			borderWidth {
+				left = 0 px
+				right = 0 px
+				top = 0 px
+				bottom = 0 px
+			}
+			margin {
+				top = 5 px
+				bottom = 5 px
+			}
+		}
+		textview {
+			fontColor = 000000
+			backgroundColor = f9f9f9
+			padding {
+				left = 2 px
+				right = 2 px
+			}
+		}
+		numberbox {
+			control {
+				fontColor = 000000
+				fontSize = 14px
+				backgroundColor = ffffff
+				borderColor = aaaaaa
+				borderWidth {
+					top = 1 px
+					bottom = 1 px
+					left = 1 px
+					right = 1 px
+				}
+				padding {
+					top = 7px
+					bottom = 7px
+					left = 5 px
+					right = 5 px
+				}
+			}
+		}
+		row {
+			backgroundColor = f9f9f9
+		}
+	}
+	
+	style details {
+		textview {
+			backgroundColor = 244062
+			margin {
+				top = 5px
+				left = 10px
+				right = 10px
+			}
+			control {
+				textAlign = center
+				bold = true
+				fontSize = 20px
+				fontColor = 000000
+				backgroundColor = ffffff
+				padding {
+					top = 3px
+					left = 3px
+					right = 3px
+					bottom = 3px
+				}
+			}
+		}
+		textbox {
+			margin {
+				top = 5px
+				bottom = 5px
+				left = 10px
+				right = 10px
+			}
+			control {
+				margin {
+					top = 5px
+				}
+				padding {
+					left = 5px
+					right = 5 px
+					top = 5 px
+					bottom = 5 px
+				}
+				fontColor = 000000
+				backgroundColor = ffffff
+			}
+		}
+	}
+	
+	style detailsTable {
+		table{
+			control {
+				margin {
+					top = 10 px
+					left = 5 px
+					right = 5 px
+					bottom = 10 px
+				}
+			}
+			columnWidth = 0.5,0.5
+			body = detailsTable
+		}
+		dropdown {
+			control {
+				padding {
+					left = 5px
+					right = 5 px
+				}
+				fontColor = 000000
+				backgroundColor = ffffff
+			}
+		}
+		photo {
+			margin {
+				top = 5px
+				bottom = 5px
+				left = 10px
+				right = 10px
+			}
+		}
+	}
+	
+	style detailsTextbox{
+		table{
+			control {
+				margin {
+					top = 3 px
+					left = 5 px
+					right = 5 px
+					bottom = 3 px
+				}
+			}
+			columnWidth = 0.5,0.5
+			body = detailsTextbox
+		}
+		textbox {
+			control {
+				padding {
+					left = 5px
+					top = 5 px
+					bottom = 5 px
+					right = 5 px
+				}
+				fontColor = 000000
+				backgroundColor = ffffff
+			}
+		}
+		datepicker {
+			margin {
+				top = 5 px
+				bottom = 5 px
+			}
+			control {
+				fontColor = 000000
+				fontSize = 14px
+				backgroundColor = ffffff
+				padding {
+					left = 5 px
+					right = 5 px
+				}
+			}
+		}
+	}
+	
+	style mediumCheckbox{
+		table{
+			control {
+				margin {
+					left = 20 px
+					right = 20 px
+				}
+			}
+			columnWidth = 0.8,0.2
+			body = categoryNameTable
+		}
+		checkbox {
+			margin {
+				top = 5 px
+				bottom = 5 px
+			}
+		}
+	}
+	
+	style detailsCheckbox{
+		table{
+			control {
+				margin {
+					left = 5 px
+					right = 5 px
+				}
+			}
+			columnWidth = 0.8,0.2
+			body = categoryNameTable
+		}
+		checkbox {
+			margin {
+				top = 5 px
+				bottom = 5 px
+			}
+		}
+	}
+	
+	style redSeparator {
+		textview {
+			margin {
+				left = 20 px
+				right = 20 px
+				top = 10 px
+			}
+			borderColor = ff0000
+			borderWidth {
+				top = 1 px
+			}
+		}
+	}
+	
+	style redSeparator2 {
+		textview {
+			margin {
+				left = 5 px
+				right = 5 px
+				top = 25 px
+				bottom = 25 px
+			}
+			borderColor = ff0000
+			borderWidth {
+				top = 1 px
+			}
+		}
+	}
+	
+	style emptySeparator {
+		textview {
+			margin {
+				left = 20 px
+				right = 20 px
+				top = 50 px
+			}
+		}
+	}
+	
+	style emptySeparator2 {
+		textview {
+			margin {
+				left = 20 px
+				right = 20 px
+				top = 20 px
+			}
+		}
+	}
+	
+	style simpleText {
+		textview {
+			margin {
+				left = 20 px
+				right = 20 px
+				top = 15 px
+				bottom = 15 px
+			}
+		}
+	}
+	
+	style largeTextbox {
+		textarea {
+			margin {
+				top = 5px
+				bottom = 5px
+				left = 20px
+				right = 20px
+			}
+			control {
+				margin {
+					top = 5px
+				}
+				padding {
+					left = 5px
+					right = 5 px
+					top = 5 px
+					bottom = 5 px
+				}
+				fontColor = 000000
+				backgroundColor = ffffff
+			}
+		}
+		textbox {
+			margin {
+				top = 5px
+				bottom = 5px
+				left = 20px
+				right = 20px
+			}
+			control {
+				margin {
+					top = 5px
+				}
+				padding {
+					left = 5px
+					right = 5 px
+					top = 5 px
+					bottom = 5 px
+				}
+				fontColor = 000000
+				backgroundColor = ffffff
+			}
+		}
+	}
+	
+	style safetySignature{
+		signature {
+			margin {
+				left = 20px
+				right = 20px
+			}
+			control {
+				fontColor = 007AFFFF
+				backgroundColor = ffffff
+				margin {
+					top = 5 px
+				}
+				padding {
+					top = 5px
+					bottom = 5px
+					left = 5px
+					right = 5px
+				}
+			}
+		}
+		table{
+			control {
+				margin {
+					top = 30 px
+					left = 20px
+					right = 20px
+					bottom = 10 px
+				}
+			}
+			columnWidth = 0.5,0.5
+			body = mediumTable
+		}
+		datepicker {
+			margin {
+				top = 5 px
+				bottom = 5 px
+			}
+			control {
+				fontColor = 000000
+				fontSize = 14px
+				backgroundColor = ffffff
+				padding {
+					left = 5 px
+					right = 5 px
+				}
+			}
+		}
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    style S0 {
+		textbox {
+			fontColor = 00FF00
+		}
+		textarea {
+			fontColor = 00FF00
+		}
+        barview {
+			bar {
+				color = FF0000
+				height = 12px
+				borderColor = 020202
+				borderWidth = 5px
+			}
+			control {
+				backgroundColor = FFFFFF
+			}
+        }
+		all {
+			content = S0
+			body = S0
+		}
+	}
+    style S1 {
+		textbox {
+			fontColor = FF0000
+		}
+		textarea {
+			fontColor = FF0000
+		}
+        barview {
+			bar {
+				color = FF0000
+				height = 12px
+				borderColor = 020202
+				borderWidth = 5px
+			}
+			control {
+				backgroundColor = FFFFFF
+			}
+        }
+		all {
+			content = S1
+			body = S1
+		}
+	}
+	style default {
+		all {
+			backgroundColor = ffffff00
+			control {
+				backgroundColor = ffffff00
+			}
+			label {
+				backgroundColor = ffffff00
+			}
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}		
+			
+			margin {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}
+		}
+	}
+	style header {
+		textview {
+			backgroundColor = 007b3bff
+			fontColor = ffffffff
+			bold = true
+			fontSize = 30 em
+			textAlign = center
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+			}
+			label {
+				backgroundColor = 007b3bff
+			}
+			control {
+				backgroundColor = 007b3bff
+			}
+		}
+		textbox {
+			backgroundColor = 007b3bff
+			fontColor = fff00fff
+			bold = true
+			fontSize = 16 em
+			textAlign = center
+			borderColor = ff0000ff
+			label {
+				backgroundColor = 007b3bff
+			}
+			control {
+				backgroundColor = 007b3bff
+			}
+		}
+	}
+	
+	style userTitle {
+		textview {
+			backgroundColor = 636364ff
+			fontColor = ffffffff
+			bold = true
+			fontSize = 30 em
+			textAlign = center
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+			}
+			label {
+				backgroundColor = 636364ff
+			}
+			control {
+				backgroundColor = 636364ff
+			}
+		}
+	}
+	style barLeads {
+		barview{
+			bar {
+				color = 42B571ff
+				height = 16 em
+			}
+		}
+	}
+	style barAppsIn {
+		barview{
+			bar {
+				color = 5977F4ff
+				height = 16 em
+			}
+		}
+	}
+	style barApproved {
+		barview{
+			bar {
+				color = F5413Fff
+				height = 16 em
+			}
+		}
+	}
+	style barContractsOut {
+		barview{
+			bar {
+				color = F9BA1Aff
+				height = 16 em
+			}
+		}
+	}
+	style barContractsIn {
+		barview{
+			bar {
+				color = 9DCC00ff
+				height = 16 em
+			}
+		}
+	}
+	style barFunded {
+		barview{
+			bar {
+				color = A666CEff
+				height = 16 em
+			}
+		}
+	}
+	style barLost {
+		barview{
+			bar {
+				color = 4FB6E7ff
+				height = 16 em
+			}
+		}
+	}
+	
+	style dashboardTable {
+		table {
+			width = 375ppx
+			columnWidth = 0.4, 0.4, 0.2
+			body = dashboardTable
+		}
+		barview{
+			bar {
+				color = ff00ffff
+			}
+		}
+	}
+	
+	style filterTable {
+		table 
+		{
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+				}
+			body = filterTable
+			}
+		row {
+			borderWidth {
+			top = 0 em
+			bottom = 0 em
+			left = 0 em
+			right = 0 em
+			}
+		}
+		
+		cell {
+			borderWidth {
+			top = 0 em
+			bottom = 0 em
+			left = 0 em
+			right = 0 em
+			}
+		}
+		
+		textview {
+			borderWidth {
+			top = 0 em
+			bottom = 0 em
+			left = 0 em
+			right = 0 em
+			}
+		}
+		
+		textbox {
+			borderWidth {
+			top = 0 em
+			bottom = 1 em
+			left = 0 em
+			right = 0 em
+			}
+		}		
+		submitbutton {
+			borderWidth {
+			top = 0 em
+			bottom = 0 em
+			left = 0 em
+			right = 0 em
+			}
+		}
+		
+	}
+	
+	style statTable {
+		table {
+			width = 400ppx
+			columnWidth = 0.3, 0.4, 0.3
+			body = statTable
+		}
+		row {
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+			}
+		}
+		cell {
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+			}
+		}
+		textview {
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+			}
+		}
+		barview{
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+			}
+			padding {
+				left = 0 em 
+			}
+		}
+	}	
+	
+	style listHeader {
+		textview {
+			backgroundColor = E0E0E0
+			textAlign = center
+			control{
+			backgroundColor = E0E0E0
+			}
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+				}
+		}
+	}	
+	style listTableHeader {
+		textview {
+			backgroundColor = E0E0E0
+			textAlign = center
+			control{
+				backgroundColor = E0E0E0
+			}
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+				}
+		}
+		cell{
+			backgroundColor = E0E0E0
+		}
+	}
+	
+	style listTable {
+		table {
+			header = listTableHeader
+			body = listTable
+			borderWidth {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+			}
+			margin {
+				top = 0 em
+				bottom = 0 em
+				left = 0 em
+				right = 0 em
+				}
+			padding {
+				left = 0 em
+				right = 0 em
+			}
+		}
+		
+		
+		
+	}
+	style hidden {
+		textview {
+			fontColor = ffffffff
+		}
+	}
+	style alignedRight {
+		textview {
+			textAlign = right
+		}
+	}
+	style marginTop {
+		textview {
+			margin {
+				top = 10 em
+			}
+		}
+	}
+	
+	style barWithLeftBorder {
+		barview {
+			borderWidth {
+				left = 2 em
+			}
+		}
+	}
+	
+	style barWithBottomBorder {
+		barview {
+			borderWidth {
+				bottom = 2 em
+			}
+			padding {
+				bottom = 0 em 
+			}
+		}
+	}
+
+	// light ----------------------------------------------------------------
+	style lightDef {
+		all {
+			content = lightDef
+			borderColor = 00000000
+			bar {
+				height = 15 px
+			}
+		}
+		chapter {
+			borderColor = 00000000
+			title {
+				fontSize = 24 px
+				italic = true
+				padding {
+					top = 10 px
+				}
+				borderWidth {
+					top = 0 px
+					bottom = 1 px
+				}
+				backgroundColor = 00000000
+			}
+			padding {
+				bottom = 15 px
+			}
+		}
+		
+		/*barcodereader {
+			control {
+				iconHeight = 32px
+				iconWidth = 32px
+			}
+		}*/
+	}
+
+	// dark ----------------------------------------------------------------
+	style darkDef {
+		all {
+			content = darkDef
+			header = darkTbl
+			body = darkTbl
+			footer = darkTbl
+			navigation = darkDef
+			borderColor = 00000000
+			borderWidth {
+				top = 0 px
+				bottom = 0 px
+				left = 0 px
+				right = 0 px
+			}
+			bar {
+				height = 15 px
+			}
+
+			fontColor = CFCFCF
+		}
+		
+		frame {
+			backgroundColor = 474747
+		}
+		
+		canvas {
+			backgroundColor = 474747
+		}
+		
+		submitbutton {
+			control {
+				bold = true
+				fontColor = FFFFFF
+			}
+		}
+
+		discardbutton {
+			control {
+				bold = true
+				fontColor = FFFFFF
+			}
+		}
+		
+		dropdown {
+			control {
+				bold = true
+				fontColor = FFFFFF
+			}
+		}
+		
+		signature {
+			thumbnailHeight = 128 px
+//			thumbnailTint = FFFF00
+		}
+		
+		chapter {
+			title {
+				fontSize = 24 px
+				italic = true
+				padding {
+					top = 10 px
+				}
+				borderWidth {
+					top = 0 px
+					bottom = 1 px
+				}
+				backgroundColor = 00000000
+			}
+			padding {
+				bottom = 15 px
+			}
+		}
+	}
+	
+	style darkTbl {
+		all {
+			control {
+				fontColor = 474747
+			}
+		}
+	}
+	
+	// moonlight ----------------------------------------------------------------
+	style moonlightDef {
+		all {
+			content = moonlightDef
+			header = moonlightTbl
+			body = moonlightTbl
+			footer = moonlightTbl
+			navigation = moonlightDef
+			borderColor = 00000000
+			borderWidth {
+				top = 0 px
+				bottom = 0 px
+				left = 0 px
+				right = 0 px
+			}
+			bar {
+				height = 15 px
+			}
+
+			fontColor = B8CDFF
+		}
+		
+		frame {
+			backgroundColor = 04194A
+		}
+		
+		canvas {
+			backgroundColor = 04194A
+		}
+		
+		submitbutton {
+			control {
+				bold = true
+				fontColor = F0AF18
+			}
+		}
+
+		discardbutton {
+			control {
+				bold = true
+				fontColor = F0AF18
+			}
+		}
+		
+		dropdown {
+			control {
+				bold = true
+				fontColor = F0AF18
+			}
+		}
+				
+		chapter {
+			title {
+				fontSize = 24 px
+				italic = true
+				padding {
+					top = 10 px
+				}
+				borderWidth {
+					top = 0 px
+					bottom = 1 px
+				}
+				backgroundColor = 00000000
+			}
+			padding {
+				bottom = 15 px
+			}
+		}
+	}
+	
+	style moonlightTbl {
+		all {
+			control {
+				fontColor = 04194A
+			}
+		}
+	}
+	
+    style styleCheckbox {
+		checkbox {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			control {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+    style styleTextview {
+		textview {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+		}
+	}
+	style styleTextbox {
+		textbox {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			control {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+    style styleNumberbox {
+		numberbox {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+			prefix {
+                fontColor = FF817AFF
+                fontSize = 20px
+                bold = true
+                italic = false
+                underline = true
+                strikethrough = false
+                textAlign = right
+            }
+            postfix {
+                fontColor = 7AABFFFF
+                fontSize = 40px
+                bold = false
+                italic = true
+                underline = false
+                strikethrough = true
+                textAlign = left
+            }
+		}
+	}
+    style styleTextarea {
+		textarea {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			control {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+    style stylePhoto {
+		photo {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+		}
+	}
+    style styleDatepicker {
+		datepicker {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+		}
+	}
+	style styleTimepicker {
+		timepicker {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			control {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+    style styleDropdown {
+		dropdown {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+		}
+	}
+	style styleRadiogroup {
+		radiogroup {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			control {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+	style styleMailto {
+		mailto {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+		}
+	}
+	style styleLinkview {
+		linkview {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			control {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+	style styleBarview {
+		barview {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+			bar {
+                color = 00D636FF
+                borderWidth = 3px
+                borderColor = 263BDEFF
+                height = 30px
+                align = left
+            }
+		}
+	}
+    style styleChapter {
+		chapter {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			content= styleTextview
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			title {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+	style stylePopup {
+		popup {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			content= styleTextview, stylePopup, styleFrame, styleCanvas
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			control {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+	style styleTable {
+		table {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			header=styleTextview, styleAll2
+			body=styleTextbox, styleAll2, styleRemovebutton
+			footer=styleTextview, styleAll2
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+		}
+	}
+	style styleRow {
+		row {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+		}
+	}
+	style styleCell {
+		cell {
+			backgroundColor = CCCCCCFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 999999FF
+		}
+	}
+    style styleRemovebutton {
+		removebutton {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+					
+			}
+			confirm {
+                fontColor = 000000
+                fontSize = 16px
+                bold = true
+                italic = true
+                underline = true
+                strikethrough = true
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderColor = 00000000
+            }
+		}
+	}
+    style styleAddbutton {
+		addbutton {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+					
+			}
+		}
+	}
+	style styleSubmitbutton {
+		submitbutton {
+			backgroundColor = 666666FF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 333333FF
+			label {
+					fontColor = FFFFFFFF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 999999FF
+			}
+			control {
+					fontColor = 84FF80FF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = 62C25FFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 4A9C48FF
+			}
+		}
+	}
+	style styleDiscardbutton {
+		discardbutton {
+			backgroundColor = 315E2FFF
+			margin {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            padding {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderWidth {
+                left = 2px
+                right = 8px
+                top = 4px
+                bottom = 16px
+            }
+            borderColor = 1E3B1DFF
+			label {
+					fontColor = 84FF80FF
+					fontSize = 16px
+					bold = false
+					italic = false
+					underline = false
+					strikethrough = false
+					textAlign = right
+					backgroundColor = 62C25FFF
+					margin {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					padding {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderWidth {
+						left = 8px
+						right = 2px
+						top = 16px
+						bottom = 4px
+					}
+					borderColor = 4A9C48FF
+			}
+			control {
+					fontColor = FFFFFFFF
+					fontSize = 24px
+					bold = true
+					italic = true
+					underline = true
+					strikethrough = true
+					textAlign = left
+					backgroundColor = CCCCCCFF
+					margin {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					padding {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderWidth {
+						left = 16px
+						right = 4px
+						top = 8px
+						bottom = 2px
+					}
+					borderColor = 999999FF
+			}
+		}
+	}
+	style styleFrame {
+		frame {
+			navigation = styleFrame
+			backgroundColor = 0008FF80
+            margin {
+                left = 2px
+                right = 2px
+                top = 2px
+                bottom = 2px
+            }
+            padding {
+                left = 5px
+                right = 5px
+                top = 5px
+                bottom = 5px
+            }
+            borderWidth {
+                left = 5px
+                right = 5px
+                top = 5px
+                bottom = 5px
+            }
+            borderColor = 70FFF780	
+		}
+	}
+	style styleCanvas {
+		canvas {
+			backgroundColor = 70FFF780
+            margin {
+                left = 2px
+                right = 2px
+                top = 2px
+                bottom = 2px
+            }
+            padding {
+                left = 5px
+                right = 5px
+                top = 5px
+                bottom = 5px
+            }
+            borderWidth {
+                left = 5px
+                right = 5px
+                top = 5px
+                bottom = 5px
+            }
+            borderColor = 0008FF80	
+		}
+	}
+	style styleAll2 {
+        all {    
+			backgroundColor = 0008FFFF
+            margin {
+                left = 2px
+                right = 2px
+                top = 2px
+                bottom = 2px
+            }
+            padding {
+                left = 5px
+                right = 5px
+                top = 5px
+                bottom = 5px
+            }
+            borderWidth {
+                left = 5px
+                right = 5px
+                top = 5px
+                bottom = 5px
+            }
+            borderColor = FFF700FF	
+		}
+	}
+	style styleAll {
+        all {
+            backgroundColor = 00000000
+            margin {
+                left = 1px
+                right = 1px
+                top = 1px
+                bottom = 1px
+            }
+            padding {
+                left = 1px
+                right = 1px
+                top = 1px
+                bottom = 1px
+            }
+            borderWidth {
+                left = 1px
+                right = 1px
+                top = 1px
+                bottom = 1px
+            }
+            borderColor = FF00007F
+            navigation = styleAll
+			label {
+                fontColor = 000000
+                fontSize = 16px
+                bold = true
+                italic = true
+                underline = true
+                strikethrough = true
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderColor = FF00007F
+            }
+            control {
+                fontColor = 000000
+                fontSize = 16px
+                bold = true
+                italic = true
+                underline = true
+                strikethrough = true
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderColor = FF00007F
+            }
+            fontColor = 000000
+            fontSize = 16px
+            bold = true
+            italic = true
+            underline = true
+            strikethrough = true
+            textAlign = left
+            bar {
+                color = 00000000
+                borderWidth = 1px
+                borderColor = 00000000
+                height = 1px
+                align = left
+            }
+            prefix {
+                fontColor = 000000
+                fontSize = 16px
+                bold = true
+                italic = true
+                underline = true
+                strikethrough = true
+                textAlign = left
+            }
+            postfix {
+                fontColor = 000000
+                fontSize = 16px
+                bold = true
+                italic = true
+                underline = true
+                strikethrough = true
+                textAlign = left
+            }
+            confirm {
+                fontColor = 000000
+                fontSize = 16px
+                bold = true
+                italic = true
+                underline = true
+                strikethrough = true
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderColor = 00000000
+            }
+            header = styleAll
+            body = styleAll
+            footer = styleAll
+            title {
+                fontColor = 000000
+                fontSize = 16px
+                bold = true
+                italic = true
+                underline = true
+                strikethrough = true
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderColor = FF00007F
+            }
+            content = styleAll
+        }
+    }
+
+
+}
