@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="photo" menuName="S32 Fotó demo" platforms="web ios">
+  <chapter title="Source" />
+  <photo label='All sources enabled:' source="all" />
+  <photo label='All sources enabled (all choices specified)' source="camera photolibrary" />
+  <photo label='Camera only (default):' />
+  <photo label='Photo library only:' source="photolibrary" />
+
+  <chapter title="Sharing" />
+  <photo label='Sharing enabled:' source="all" shareable="true" />
+</form>
