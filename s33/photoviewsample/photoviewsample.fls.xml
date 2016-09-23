@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="photoviewsample" menuName="Photoview Sample" platforms="web ios">
+  <chapter title="Upload photos" />
+  <photo id="newPhotos" source="all" shareable="true" />
+
+  <chapter title="View photos" />
+  <photoview photos='{SELECT p.mediaid FROM uploadedPhotos p}' shareable="true" />
+</form>
