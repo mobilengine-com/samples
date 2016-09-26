@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="labelpos" menuName="Label position/width demo" platforms="ios web">
+	<declarations>
+		<let id="lps" shape="scalar" value="{CASE WHEN lp.checked THEN styles.labelLeft ELSE styles.labelTop END}" />
+		<let id="lws" shape="scalar" value="{CASE WHEN lw.checked THEN styles.labelWide ELSE styles.labelNarrow END}" />
+	</declarations>
+	<checkbox id="lp" label="Label position" text="Left?" />
+	<checkbox id="lw" label="Label width" text="Wide?" />
+
+	<textview label="[Label]" text="[Control]" style="{[styles.colors, lps, lws]}" />
+</form>

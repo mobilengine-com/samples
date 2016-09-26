@@ -1,0 +1,42 @@
+styles {
+    style colors {
+        all {
+            label {
+                backgroundColor = FF9999
+            }
+            control {
+                backgroundColor = 99FF99
+            }
+        }
+    }
+
+    style labelLeft {
+        all {
+            label {
+                position = left
+            }
+        }
+    }
+    style labelTop {
+        all {
+            label {
+                position = top
+            }
+        }
+    }
+
+    style labelWide {
+        all {
+            label {
+                width = 0.75swt
+            }
+        }   
+    }
+    style labelNarrow {
+        all {
+            label {
+                width = 0.25swt
+            }
+        }   
+    }
+}
