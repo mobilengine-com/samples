@@ -1,0 +1,8 @@
+server program update_rtabuser for form generate_report
+using reftab RtabUser;
+{	
+	db.RtabUser.Insert({
+		ResultId: form.info.resultId,
+		UserName: form.info.user.name
+	});
+}
