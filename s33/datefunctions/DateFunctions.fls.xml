@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="datefunc" menuName="Date Functions" platforms="ios web">
+	<datepicker id="dp" label="Select a Date:" dateFormat='(dtf yyyy"-"MM"-"dd)' />
+	<textview label="Day of week:" text="{TOSTRING(DAYOFWEEK(dp.date))}" />
+	<textview label="Week of year (Default):" text="{TOSTRING(WEEKOFYEAR(dp.date))}" />
+	<textview label="Week of year (Sunday is first day of week):" text="{TOSTRING(WEEKOFYEAR(dp.date, 0))}" />
+	<textview label="Week of year (Monday is first day of week):" text="{TOSTRING(WEEKOFYEAR(dp.date, 1))}" />
+	<textview label="Week of year (ISO):" text="{TOSTRING(ISOWEEKOFYEAR(dp.date))}" />
+</form>
