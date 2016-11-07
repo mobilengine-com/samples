@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="DateSubtract" menuName="Date Subtract" platforms="ios web">
+	<datepicker label="Date1:" id="dp1" dateFormat='(dtf yyyy"-"MM"-"dd)' />
+	<datepicker label="Date2:" id="dp2" dateFormat='(dtf yyyy"-"MM"-"dd)' />
+	<textview label="Date1 - Date2:" text="{TOSTRING(dp1.date-dp2.date)}" />
+</form>
