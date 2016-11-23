@@ -1,0 +1,15 @@
+<Form name='Photo Source'>
+	<Control name='root' type='panel'>
+		<Control type="label" text="Source not set (default is camera)" />
+		<Control type="photo" name="photodm" />
+
+		<Control type="label" text="Source: camera" />
+		<Control type="photo" name="photocm" source="camera" />
+
+		<Control type="label" text="Source: photolibrary" />
+		<Control type="photo" name="photolm" source="photolibrary" />
+
+		<Control type="label" text="Source: all" />
+		<Control type="photo" name="photoam" source="all" />
+	</Control>
+</Form>
