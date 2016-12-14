@@ -1,4 +1,4 @@
-<form id='formatters' menuName="Date- and number formatting only works client-side" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+<form id='formatters' menuName="Date Formatting" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
     <numberbox id="numberNumber" label="Enter your number" float="true" numberFormat='{decimalSeparator:"."}'/>
     <textview label="Your number in the Zarblaxian format" text='{FORMATNUMBER(numberNumber.number, {decimalSeparator:"ß", groupSize:2, groupSeparator:"%"})}'/>
     <textview label="Your number in the Elbonian format" text='{FORMATNUMBER(numberNumber.number, {decimalSeparator:"*", groupSize:1, groupSeparator:"@"})}'/>
@@ -53,8 +53,7 @@
 	<numberbox id="minute" number="{4}" float="false" numberFormat='{decimalSeparator:"."}'/>
 	<numberbox id="second" number="{5}" float="false" numberFormat='{decimalSeparator:"."}'/>
 	<textview text='{SELECT formatDtl(dt, (dtf "yyyy: "yyyy" yy: "yy" M:"M" MM:"MM" d:"d" dd:"dd" H:"H" HH:"HH" m:"m" mm:"mm" s:"s" ss:"ss" S?:"" o?:""h: "h" hh:"hh" tt:"tt" MMM:"MMM" MMMM:"MMMM" ddd:"ddd" dddd:"dddd ) ) }' />
-	<textview text='{SELECT formatDtl(dt, (dtf "yyyy: "yyyy" yy: "yy" M:"M" MM:"MM" d:"d" dd:"dd" H:"H" HH:"HH" m:"m" mm:"mm" s:"s" ss:"ss" S?:"" o?:""h: "h" hh:"hh" tt:"tt" MMM:"MMM" MMMM:"MMMM" ddd:"ddd" dddd:"dddd ) ) GROUP BY 1 }' />
 	</chapter>
-
+	<textview text="end"/>
 	
 </form>
