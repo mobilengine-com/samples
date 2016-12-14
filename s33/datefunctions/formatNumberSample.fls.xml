@@ -1,0 +1,60 @@
+<form id='formatters' menuName="Date- and number formatting only works client-side" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <numberbox id="numberNumber" label="Enter your number" float="true" numberFormat='{decimalSeparator:"."}'/>
+    <textview label="Your number in the Zarblaxian format" text='{FORMATNUMBER(numberNumber.number, {decimalSeparator:"ß", groupSize:2, groupSeparator:"%"})}'/>
+    <textview label="Your number in the Elbonian format" text='{FORMATNUMBER(numberNumber.number, {decimalSeparator:"*", groupSize:1, groupSeparator:"@"})}'/>
+    <datepicker id="dateDate" label="Pick a date" dateFormat='(dtf yyyy"-"MM"-"dd)' invalidDateMessage="That's not a date."/>
+    <textview label="Your date in big-endian order" text='{FORMATDTL(dateDate.date, (dtf yyyy"/"MM"/"dd))}'/>
+    <textview label="Your date in little-endian order" text='{FORMATDTL(dateDate.date, (dtf dd"."MM"."yyyy))}'/>
+    <textview label="Your date in middle-endian order" text='{FORMATDTL(dateDate.date, (dtf MM" "dd" "yyyy))}'/>
+    <table label="This control uses the TOSTRING() function to format the result of its server-side reference table query" id="tableGdoo" recordset='{SELECT TOSTRING(1) v}' record="gdoo">
+        <row>
+            <cell>
+                <textview text='{gdoo.v}'/>
+            </cell>
+        </row>
+    </table>
+    <!--This would throw an error at compile time
+        because the query attempts to run a client-side function
+        on a server-side reference table query
+    <table id="tableHku" recordset='{SELECT FORMATNUMBER(k.numint, {decimalSeparator:".", groupSize:3, groupSeparator:" "}) v FROM nufDtl k}' record="hku">
+        <row>
+            <cell>
+                <textview text='{hku.v}'/>
+            </cell>
+        </row>
+    </table>-->
+
+    <dropdown id="ddFoo" label="When was Charlie Chaplin born?" choices='{SELECT numberNumber.number numint, dateDate.date dtl}' keyMap='{numint}' textMap='{FORMATDTL(dtl, (dtf d "/" M "/" yy " " H ":" m ":" s))}'/>
+    <!--This would throw an error at compile time
+        because the query attempts to run a client-side function
+        on a server-side reference table query
+    <dropdown id="ddBar" label="When was Wounded Knee?" choices='{SELECT g.numint, (FORMATDTL(g.dtl, (dtf d"/"M"/"yy" "H":"m":"s))) b FROM nufDtl g}' keyMap='{numint}' textMap='{TOSTRING(dtl)}'/>-->
+    <datepicker id="dpBoo" date='{sysp.dtlFormOpen}' dateFormat='(dtf yy"*"MM"*"d)'/>
+    <datepicker id="dpFoo" date='{sysp.dtlFormOpen}' dateFormat='(dtf yyyy"+*/"d)'/>
+    <datepicker id="dpFooX" date='{sysp.dtlFormOpen}' dateFormat='(dtf yyyy "." MMM "." dd ", " ddd )'/>
+    <timepicker id="tpFooY" seconds='{15*60*60}' timeFormat='(dtf hh ":" mm":"ss" "tt )' width="10 em"/>
+	<textview text='{formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MM"-"dd" "hh":"mm":"ss" "tt ) )}' />
+	<textview text='{formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MMM"-"dd" ("ddd") "hh":"mm":"ss" "tt ) )}' />
+	<textview text='{formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MMMM"-"dd" ("dddd") "hh":"mm":"ss" "tt ) )}' />
+
+	<textview text="server"/>
+	<textview text='{SELECT formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MM"-"dd" "hh":"mm":"ss" "tt ) ) GROUP BY 1 }' />
+	<textview text='{SELECT formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MMM"-"dd" ("ddd") "hh":"mm":"ss" "tt ) ) GROUP BY 1}' />
+	<textview text='{SELECT formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MMMM"-"dd" ("dddd") "hh":"mm":"ss" "tt ) ) GROUP BY 1}' />
+
+	<chapter title="minden">
+	<declarations>
+		<let id="dt" shape="scalar" value="{toDate(year.number, month.number, day.number, hour.number, minute.number, second.number)}"/>
+	</declarations>
+	<numberbox id="year" number="{2016}" float="false" numberFormat='{decimalSeparator:"."}'/>
+	<numberbox id="month" number="{1}" float="false" numberFormat='{decimalSeparator:"."}'/>
+	<numberbox id="day" number="{2}" float="false" numberFormat='{decimalSeparator:"."}'/>
+	<numberbox id="hour" number="{3}" float="false" numberFormat='{decimalSeparator:"."}'/>
+	<numberbox id="minute" number="{4}" float="false" numberFormat='{decimalSeparator:"."}'/>
+	<numberbox id="second" number="{5}" float="false" numberFormat='{decimalSeparator:"."}'/>
+	<textview text='{SELECT formatDtl(dt, (dtf "yyyy: "yyyy" yy: "yy" M:"M" MM:"MM" d:"d" dd:"dd" H:"H" HH:"HH" m:"m" mm:"mm" s:"s" ss:"ss" S?:"" o?:""h: "h" hh:"hh" tt:"tt" MMM:"MMM" MMMM:"MMMM" ddd:"ddd" dddd:"dddd ) ) }' />
+	<textview text='{SELECT formatDtl(dt, (dtf "yyyy: "yyyy" yy: "yy" M:"M" MM:"MM" d:"d" dd:"dd" H:"H" HH:"HH" m:"m" mm:"mm" s:"s" ss:"ss" S?:"" o?:""h: "h" hh:"hh" tt:"tt" MMM:"MMM" MMMM:"MMMM" ddd:"ddd" dddd:"dddd ) ) GROUP BY 1 }' />
+	</chapter>
+
+	
+</form>
