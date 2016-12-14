@@ -35,7 +35,7 @@
 			<cell><textview text='{FORMATDTL(r.DtlArchive, (dtf yyyy"-"MM"-"dd" "HH":"MM":"ss))}' /></cell>
 			<cell><textview text="{TOSTRING(r.ReportName)}" /></cell>
 			<cell><textview text="{TOSTRING(r.AttachmentName)}" /></cell>
-			<cell><reportview text="Download" reportId="{r.ReportviewId}" /></cell>
+			<cell><reportview text="Download" reportviewId="{r.ReportviewId}" /></cell>
 		</row>
 	</table>
 </form>
