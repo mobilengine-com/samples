@@ -1,0 +1,225 @@
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="ios013_DbindPhoto" menuName="ios013_DbindPhoto" platforms="web ios" location="coarse">
+  <textarea id="phototext" label="hehe" hint="phototext0" lines="5"/>
+  <photo id='photo1' text="Add photo" label='Photo: ' photoData='{SELECT datetimeCreated, locationCreated.latitude, locationCreated.longitude, locationCreated.altitude, locationCreated.accuracy, locationCreated.dtuAcquired, fileSizeCreated, heightCreated, widthCreated, phototext.text phtext }'  />
+  <table id="tblPhoto" label="Photo data:" record="photodata" recordset='{select p.photoId, p.datetimeCreated, p.latitude, p.longitude, p.altitude, p.accuracy, p.dtuAcquired, p.fileSizeCreated, p.heightCreated, p.widthCreated, p.phtext from photo1.photos p}'>
+    <header>
+      <row>
+          <cell>
+            <textview text='photoId'/>
+          </cell>
+          <cell>
+            <textview text='phtext'/>
+          </cell>
+          <cell>
+            <textview text='datetimeCreated'/>
+          </cell>
+          <cell>
+            <textview text='locationCreated.latitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationCreated.longitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationCreated.altitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationCreated.accuracy'/>
+          </cell>
+		  <cell>
+			<textview text='locationCreated.dtuAcquired'/>
+          </cell>
+          <cell>
+            <textview text='fileSizeCreated'/>
+          </cell>
+          <cell>
+            <textview text='heightCreated'/>
+          </cell>          
+          <cell>
+            <textview text='widthCreated'/>
+          </cell>
+        </row>
+    </header>
+    <row>
+      <cell width='15 em'>
+        <textview text='{photodata.photoId}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{photodata.phtext}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{ getYear(photodata.datetimeCreated) || "-" || getMonth(photodata.datetimeCreated) || "-" || getDay(photodata.datetimeCreated) || " " || getHour(photodata.datetimeCreated) || ":" || getMinute(photodata.datetimeCreated) || ":" || getSecond(photodata.datetimeCreated) }' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata.latitude)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{toString(photodata.longitude)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{toString(photodata.altitude)}' />
+      </cell>
+	  <cell width='15 em'>
+	    <textview text='{toString(photodata.accuracy)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{ getYear(photodata.dtuAcquired) || "-" || getMonth(photodata.dtuAcquired) || "-" || getDay(photodata.dtuAcquired) || " " || getHour(photodata.dtuAcquired) || ":" || getMinute(photodata.dtuAcquired) || ":" || getSecond(photodata.dtuAcquired) }' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata.fileSizeCreated)}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata.heightCreated)}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata.widthCreated)}' />
+      </cell>
+    </row>
+  </table>
+
+  <popup title="popup" id="ppp">
+	  <photo id='photo1' text="Add photo" label='Photo with photoData, jpgequality, jpegresolution: ' photoData='{SELECT datetimeCreated, locationCreated.latitude, locationCreated.longitude, locationCreated.altitude, locationCreated.accuracy, locationCreated.dtuAcquired, fileSizeCreated, heightCreated, widthCreated, phototext.text phtext }'/>
+	  <table id="tblPhoto" label="Photo data:" record="photodata" recordset='{select p.photoId, p.datetimeCreated, p.latitude, p.longitude, p.altitude, p.accuracy, p.dtuAcquired, p.fileSizeCreated, p.heightCreated, p.widthCreated, p.phtext from photo1.photos p}'>
+		<header>
+		  <row>
+			  <cell>
+				<textview text='photo'/>
+			  </cell>			  
+			  <cell>
+				<textview text='photoId'/>
+			  </cell>			  
+			  <cell>
+				<textview text='phtext'/>
+			  </cell>
+			  <cell>
+				<textview text='datetimeCreated'/>
+			  </cell>
+			  <cell>
+				<textview text='locationCreated.latitude'/>
+			  </cell>
+			  <cell>
+				<textview text='locationCreated.longitude'/>
+			  </cell>
+			  <cell>
+				<textview text='locationCreated.altitude'/>
+			  </cell>
+			  <cell>
+				<textview text='locationCreated.accuracy'/>
+			  </cell>
+			  <cell>
+				<textview text='locationCreated.dtuAcquired'/>
+			  </cell>
+			  <cell>
+				<textview text='fileSizeCreated'/>
+			  </cell>
+			  <cell>
+				<textview text='heightCreated'/>
+			  </cell>          
+			  <cell>
+				<textview text='widthCreated'/>
+			  </cell>
+			</row>
+		</header>
+		<row>
+		  <cell width='50 em'>
+			<photo id="photoInTable" />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{photodata.phtext}' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{ getYear(photodata.datetimeCreated) || "-" || getMonth(photodata.datetimeCreated) || "-" || getDay(photodata.datetimeCreated) || " " || getHour(photodata.datetimeCreated) || ":" || getMinute(photodata.datetimeCreated) || ":" || getSecond(photodata.datetimeCreated) }' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{toString(photodata.latitude)}' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{toString(photodata.longitude)}' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{toString(photodata.altitude)}' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{toString(photodata.accuracy)}' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{ getYear(photodata.dtuAcquired) || "-" || getMonth(photodata.dtuAcquired) || "-" || getDay(photodata.dtuAcquired) || " " || getHour(photodata.dtuAcquired) || ":" || getMinute(photodata.dtuAcquired) || ":" || getSecond(photodata.dtuAcquired) }' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{toString(photodata.fileSizeCreated)}' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{toString(photodata.heightCreated)}' />
+		  </cell>
+		  <cell width='15 em'>
+			<textview text='{toString(photodata.widthCreated)}' />
+		  </cell>
+		</row>
+	  </table>
+  
+  </popup>
+  
+  <photo id='photo2' label='Photo with default photoData, without jpegquality, jpegresolution:: ' singlePhoto="false" postEditable="false"/>
+  <table id="tblPhoto2" label="Photo data:" record="photodata2" recordset='{select p.datetime,  p.locationLatitude, p.locationLongitude, p.locationAltitude, p.locationAccuracy, p.locationDtuAcquired, p.fileSize, p.height, p.width from photo2.photos p}'>
+    <header>
+      <row>
+          <cell>
+            <textview text='datetime'/>
+          </cell>
+          <cell>
+            <textview text='locationLatitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationLongitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationAltitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationAccuracy'/>
+          </cell>
+		  <cell>
+			<textview text='locationDtuAcquired'/>
+          </cell>
+          <cell>
+            <textview text='fileSize'/>
+          </cell>
+          <cell>
+            <textview text='height'/>
+          </cell>          
+          <cell>
+            <textview text='width'/>
+          </cell>
+        </row>
+    </header>
+    <row>
+      <cell width='15 em'>
+        <textview text='{ getYear(photodata2.datetime) || "-" || getMonth(photodata2.datetime) || "-" || getDay(photodata2.datetime) || " " || getHour(photodata2.datetime) || ":" || getMinute(photodata2.datetime) || ":" || getSecond(photodata2.datetime) }' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata2.locationLatitude)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{toString(photodata2.locationLongitude)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{toString(photodata2.locationAltitude)}' />
+      </cell>
+	  <cell width='15 em'>
+	    <textview text='{toString(photodata2.locationAccuracy)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{ getYear(photodata2.locationDtuAcquired) || "-" || getMonth(photodata2.locationDtuAcquired) || "-" || getDay(photodata2.locationDtuAcquired) || " " || getHour(photodata2.locationDtuAcquired) || ":" || getMinute(photodata2.locationDtuAcquired) || ":" || getSecond(photodata2.locationDtuAcquired) }' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata2.fileSize)}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata2.height)}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata2.width)}' />
+      </cell>
+    </row>
+  </table>
+ 
+</form>

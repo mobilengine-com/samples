@@ -1,0 +1,5 @@
+﻿client server program ios013_DbindPhoto_trace for form ios013_DbindPhoto
+using reftab 'product';
+{
+	trace form;
+}

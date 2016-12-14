@@ -1,0 +1,13 @@
+﻿<form xmlns="http://schemas.mobilengine.com/fls/v2" id="send-photo-wef" menuName="Send photos" platforms="web ios" location="disabled">
+	<header>
+		<submitbutton text="Send photos"/>
+	</header>
+	<photo id='photo1' text="Add a photo">
+		<declarations>
+			<let id="cPhoto" shape="scalar" value="{SELECT count(1) v FROM photo1.photos p}"/>
+		</declarations>
+		<validation>
+			<validator cond='{1=cPhoto}' message="Required 1"></validator>
+		</validation> 
+	</photo>
+</form>
