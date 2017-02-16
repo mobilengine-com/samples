@@ -1,0 +1,3 @@
+<Form name="My Form">
+	<Control iconSubmit="=assignment_turned_in" name="root" type="panel"/>
+</Form>
