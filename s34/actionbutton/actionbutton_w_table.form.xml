@@ -19,8 +19,8 @@ dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with 
 		<Control name="hidPgI" type="label" text="" data_type="int" reference="REF" ref_arg="../q/pgI" visible="false"/>
 
 		<Control type="panel" name="r" layout="table" navigation="inline" headless="true">
-			<Control name="tbFrom1" type="textbox" label="From1:" hint_reference="=Product name" width="15 em"/>
-			<Control name="tbFrom2" type="textbox" label="From2:" hint_reference="=Item nr." width="8 em"/>
+			<Control name="tbFrom1" type="textbox" label="From1:" hint="%Product name%" width="15 em"/>
+			<Control name="tbFrom2" type="textbox" label="From2:" hint_reference="=Item nr.%" width="8 em"/>
 			<Control name="ab" type="actionbutton" text="Filter"  data_type="string,string, int"
 				value_reference="SELECT @1, @2, max(@3+0,@4+0,@5+0)+1" value_ref_arg="../tbFrom1,../tbFrom2,../../q/abA.col1,../../q/abB.col1,../ab.col2" />
 		</Control>
@@ -80,7 +80,7 @@ dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with 
 				value_reference="SELECT 'C', max(@1+0,@2+0,@3+0)+1" value_ref_arg="../ab1.col1,../ab2.col1,../ab3.col1" />
 		</Control>
 
-		<Control name="abCheckbox" type="actionbutton" label="this is a checkbox, not an action button" text="check" data_type="int"
+		<Control name="abCheckbox" type="actionbutton" label="checkbox using action button" text="check" data_type="int"
 				value_reference="SELECT (@1 + 1)%2" value_ref_arg="../abCheckbox.col0" sylnCrown="SELECT CASE WHEN @1 + 0 = 0 THEN 'sylUnchecked' ELSE 'sylChecked' END" sylnargCrown="../abCheckbox.col0" />
 
 	</Control>
