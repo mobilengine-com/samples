@@ -9,7 +9,11 @@ dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with 
 	</Rgsyl>
 	
 	<Control type="panel" name="Root" sylnChild = "=mainColor">
-		
+
+		<Control name="tbFrom" type="textbox" hint="From"/>
+		<Control name="ab" type="actionbutton" text="Copy" data_type="string" value_reference="REF" value_ref_arg="../tbFrom" />
+		<Control name="tbTo" type="textbox" hint="To" reference="REF" ref_arg="../ab"/>
+	
 		<Control name="hidPgSize" type="label" data_type="int" text="" reference="SELECT 10" ref_arg="" visible="false"/>
 		<Control name="hidCount" type="label" data_type="int" text="" 
 		reference="SELECT count(*) FROM Reference_order_cikklista 
