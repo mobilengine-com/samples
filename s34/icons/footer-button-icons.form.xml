@@ -1,0 +1,11 @@
+<Form name="footer-button-icons">
+	<Rgsyl>
+		<Syl buttonStyle="material" clrBgValue="#4286f4" clrFontValue="#f0f0f0" icon="assignment_turned_in" syln="submit" duPaddingTop="6dp" duPaddingBottom="6dp" />
+		<Syl buttonStyle="material" clrBgValue="#d64937" clrFontValue="#f0f0f0" icon="undo" syln="back" duPaddingTop="6dp" duPaddingBottom="6dp" />
+	</Rgsyl>
+	<Control name="root" sylnFooterButton="=submit" type="panel">
+		<Control label="The Panel" name="panel1" navigation="popup" sylnFooterButton="=back" type="panel">
+			<Control name="l1" text="Check out this nice looking button below" type="label"/>
+		</Control>
+	</Control>
+</Form>
