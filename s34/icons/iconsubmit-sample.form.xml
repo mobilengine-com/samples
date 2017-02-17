@@ -1,3 +1,5 @@
-<Form name="My Form">
-	<Control iconSubmit="=assignment_turned_in" name="root" type="panel"/>
+<Form name="iconsubmit-sample">
+	<Control iconSubmit="=assignment_turned_in" name="root" type="panel">
+		<Control name="l" type="label" text="The submit icon in the action bar (top) and the floating action button (bottom right) have been replaced with custom icons." />
+	</Control>
 </Form>

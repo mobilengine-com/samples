@@ -1,0 +1,30 @@
+<Form autoform="true" name="ACME Order Form">
+	<Rgsyl>
+		<Syl duIconHeightValue="120dp" duIconWidthValue="230dp" halign="center" iconValue="acme_logo" syln="logo"/>
+		<Syl clrBg="#2a9f51" clrFontValue="#f0f0f0" duIconHeightValue="18dp" duIconSpacing="10dp" duIconWidthValue="18dp" fBold="true" iconValue="dot" pctFontSize="120" syln="itemSeparator"/>
+		<Syl clrBg="#4286f4" clrFontValue="#f0f0f0" fBold="true" iconValue="star_rate" pctFontSize="120" syln="rateSeparator"/>
+		<Syl clrDot="#8ecca3" clrDotSelected="#1f8d45" clrLine="#8ecca3" fBoldLabel="true" syln="itemDetails"/>
+		<Syl clrDot="#dddddd" clrDotSelected="#4286f4" clrLine="#dddddd" fBoldLabel="true" syln="rating" duPaddingTop="8dp" duPaddingBottom="18dp" />
+		<Syl buttonStyle="material" clrBgValue="#4286f4" clrFontValue="#f0f0f0" duIconHeightValue="42dp" iconValue="assignment_turned_in" syln="footerButton"/>
+		<Syl buttonStyle="material" clrBgValue="#d64937" clrFontValue="#f0f0f0" duPaddingTop="8dp" iconValue="delete" syln="removebutton"/>
+		<Syl buttonStyle="material" clrBgValue="#2a9f51" clrFontValue="#f0f0f0" duPaddingBottom="18dp" iconValue="addbutton_white" syln="addbutton"/>
+		<!--
+		<Syl buttonStyle="material" clrBgValue="#d64937" clrFontValue="#f0f0f0" icon="undo" syln="back" duPaddingTop="6dp" duPaddingBottom="6dp" />-->
+	</Rgsyl>
+	<Control iconSubmit="=assignment_turned_in" name="root" sylnFooterButton="=footerButton" type="panel">
+		<Control name="logo" sylnCrown="=logo" type="label"/>
+		<Control count="1" name="orderPanel" navigation="inline" type="panel">
+			<Control name="padding" type="label"/>
+			<Control name="separator" ref_arg="PARENT.igp" reference="SELECT 'Item #' || (@1+1)" sylnCrown="=itemSeparator" type="label"/>
+			<Control label="Product:" name="product" reference="SELECT ItemName FROM Reference_Items" size="large" sylnCrown="=itemDetails" type="combobox"/>
+			<Control choice="button" label="Amount:" name="quantity" ptype="dotted" reference="{Query={Static {1,2,3,4,5,10,50}}}" size="large" sylnCrown="=itemDetails" type="combobox"/>
+		</Control>
+		<Control name="orderButton" sylnCrown="=addbutton" text="Add an Item" type="button">
+			<Actions>
+				<Action removebuttonsize="large" removebuttonsylncrown="removebutton" removebuttontext="Delete Item" target="../orderPanel" type="Generator"/>
+			</Actions>
+		</Control>
+		<Control name="rateSeparator" text="Rate your shopping experience!" type="label" sylnCrown="=rateSeparator" />
+		<Control choice="button" name="quantity" ptype="dotted" reference="{Query={Static {&#x1f626;, &#x1f611;, &#x1f604;}}}" size="large" sylnCrown="=rating" type="combobox"/>
+	</Control>
+</Form>
