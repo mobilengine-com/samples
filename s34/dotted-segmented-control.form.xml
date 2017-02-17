@@ -1,12 +1,15 @@
 <Form name="dotted-segmented-control">
 	<Rgsyl>
-		<Syl syln="greenColors" duPaddingTop="10pt" clrLine="#8ecca3" clrDot="#8ecca3" clrDotSelected="#1f8d45" clrFontValue="#ffffff" clrFontValueSelected="#ffffff" />
-		<Syl syln="greenColors2" duPaddingTop="10pt" clrLine="#8ecca3" clrDot="#00000000" clrDotSelected="#1f8d45" clrFontValue="#ffffff" clrFontValueSelected="#ffffff" pctLineHeight="40" />
+		<Syl syln="greenColors" clrLine="#8ecca3" clrDot="#8ecca3" clrDotSelected="#1f8d45" clrFontValue="#ffffff" clrFontValueSelected="#ffffff" />
+		<Syl syln="greenColors2" clrLine="#8ecca3" clrDot="#00000000" clrDotSelected="#1f8d45" clrFontValue="#ffffff" clrFontValueSelected="#ffffff" pctLineHeight="40" />
+		<Syl syln="greenColors4" clrLine="#8ecca3" clrDot="#00000000" clrDotSelected="#1f8d45" clrFontValue="#cccccc" clrFontValueSelected="#ffffff" pctLineHeight="0" />
 	</Rgsyl>
 
 	<Control name="root" type="panel">
 		<Control name="Small" type="combobox" choice="button" size="small" label="Ice cream?" reference="{Query={Static {Y,N}}}" ptype="dotted" />	
-		<Control name="Medium" type="combobox" choice="button" size="medium" label="Rate the movie!" reference="{Query={Static {1,2,3,4,5}}}" ptype="dotted" sylnCrown="=greenColors" />	
+		<Control name="Medium1" type="combobox" choice="button" size="medium" label="Rate the movie!" reference="{Query={Static {1,2,3,4,5}}}" ptype="dotted" sylnCrown="=greenColors" />
+		<Control name="Medium3" type="combobox" choice="button" size="medium" label="Rate the popcorn!" reference="{Query={Static {1,2,3,4,5}}}" ptype="dotted" sylnCrown="=greenColors4" />
+		<Control choice="button" name="quantity" ptype="dotted" label="Rate your shopping experience!" reference="{Query={Static {😞, 😐, 🙂}}}" size="medium" type="combobox"/>
 		<Control name="Large" type="combobox" choice="button" size="large" label="On a scale of 1 to 10, how is the workshop?" reference="{Query={Static {1,2,3,4,5,6,7,8,9,10}}}" ptype="dotted" sylnCrown="=greenColors2" />	
 	</Control>
 </Form>
