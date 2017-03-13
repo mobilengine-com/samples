@@ -1,0 +1,10 @@
+<Form name='photoviewsample'>
+	<Control name='root' type='panel'>
+		<Control name="s1" type="separator" text="Upload photos" />
+		<Control name="newPhotos" type="photo" source="all" />
+
+		<Control name="s2" type="separator" text="View photos" />
+		<Control name="pv" type="photoview" reference="SELECT mediaid FROM Reference_uploadedPhotos" />
+	</Control>
+</Form>
+
