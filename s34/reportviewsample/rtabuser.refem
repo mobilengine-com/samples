@@ -1,0 +1,6 @@
+<Reftab Name="RtabUser" xmlns="http://schemas.mobilengine.com/reftab/v1" Access="Readonly">
+	<Columns>
+		<Column Name="ResultId" Type="Integer" PrimaryKey="true" NotNull="true" />
+		<Column Name="UserName" Type="Text" NotNull="true" />
+	</Columns>
+</Reftab>

@@ -1,0 +1,10 @@
+<Form name='reportviewsample'>
+	<Control name='root' type='panel'>
+		<Control type="panel" name="reportsTable" color="neutral" layout="table" navigation="inline" generator="SELECT reportname, dtlarchive, reportviewid FROM Reference_RtabLog">
+			<Control name="name" type="label" label="Name" reference="SELECT @1" ref_arg="PARENT.col0" />
+			<Control name="date" type="label" label="Date" reference="SELECT @1" ref_arg="PARENT.col1" />
+			<Control name="rv" type="reportview" reportviewid_reference="SELECT @1" reportviewid_ref_arg="PARENT.col2" text_reference="=Open" />
+		</Control>
+	</Control>
+</Form>
+
