@@ -1,9 +1,7 @@
 <biconf xmlns="http://schemas.mobilengine.com/biconf/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<dashboard id="myDashboard" menuName="testerdashboard1" periscopeId="53834">
+	<dashboard id="tester1dashboard" menuName="Tester1 Dashboard" periscopeId="53834">
 		<filter name="aggregation" value="daily" visible="true"/>
 		<filter name="daterange" value="{&quot;days&quot;:30}" visible="true"/>
 		<drilldown periscopeId="118336"/>
 	</dashboard>
 </biconf>
-
-                
