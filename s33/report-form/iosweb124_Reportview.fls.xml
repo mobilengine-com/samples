@@ -1,0 +1,58 @@
+<form id="iosweb124_Reportview" menuName="iosweb124_Reportview" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+	<declarations>
+		<let id='let1' shape='table' value='{table key, text (1, "London"; 2, "Budapest"; 3, "Miskolc")}'/>
+	</declarations>
+	
+	<chapter title="Filters" />
+	
+	<textbox id="repname" label="Report name:" />
+	<datepicker id="repdate" label="Report date:" dateFormat='(dtf yyyy"-"MM"-"dd)' />
+	<textbox id="username" label="Submitter username:" />
+	<textbox id="rendszam" label="rendszám"/>
+	<dropdown id="ddsite" label="Site" choices='{select l.key,l.text from let1 l}' keyMap='{key}' textMap='{text}' />
+	<numberbox id="rwletszam" label="Létszám" numberFormat='{decimalSeparator: ",", maxFraction: 2, groupSeparator:".", groupSize: 3}' float="false" />
+	
+	<chapter title="Reports" />
+	
+	<table record="r" recordset='{
+			SELECT rl.Id, rl.ReportviewId, rl.DtlT0, rl.DtlArchive, rl.ReportName, rl.AttachmentName 
+			FROM 
+				RtabLog rl
+				JOIN RtabResults rr ON rl.Id=rr.ReportLogId
+				JOIN RtabUser ru ON rr.ResultId=ru.ResultId
+			WHERE 
+				INSTR(rl.ReportName, repname.text)>0 AND
+				(repdate.date IS NULL OR rl.DtlArchive BETWEEN STARTOFDAY(repdate.date) AND ADDDAY(STARTOFDAY(repdate.date), 1)) AND
+				INSTR(ru.UserName, username.text)>0 AND
+				INSTR(ru.Rendszam, rendszam.text)>0 AND
+				(ddsite.selectedKey IS NULL OR ddsite.selectedKey=ru.Site) AND
+				(rwletszam.number IS NULL OR ru.Letszam=rwletszam.number)
+	 		LIMIT 10}'>
+		<header>
+			<row>
+			<cell><textview text="Id" /></cell>
+			<cell><textview text="ReportviewId" /></cell>
+			<cell><textview text='DtlT0' /></cell>
+			<cell><textview text='DtlArchive' /></cell>
+			<cell><textview text="ReportName" /></cell>
+			<cell><textview text="AttachmentName" /></cell>
+			<cell><textview text="Download" /></cell>
+			</row>
+		</header>
+		<row>
+			<cell><textview text="{TOSTRING(r.Id)}" /></cell>
+			<cell><textview text="{r.ReportviewId}" /></cell>
+			<cell><textview text='{FORMATDTL(r.DtlT0, (dtf yyyy"-"MM"-"dd" "HH":"MM":"ss))}' /></cell>
+			<cell><textview text='{FORMATDTL(r.DtlArchive, (dtf yyyy"-"MM"-"dd" "HH":"MM":"ss))}' /></cell>
+			<cell><textview text="{TOSTRING(r.ReportName)}" /></cell>
+			<cell><textview text="{TOSTRING(r.AttachmentName)}" /></cell>
+			<cell><reportview  text="Download" reportviewId="{r.ReportviewId}" /></cell>
+		</row>
+	</table>
+</form>
+
+
+
+
+
+

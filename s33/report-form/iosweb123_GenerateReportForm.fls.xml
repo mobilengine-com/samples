@@ -1,0 +1,9 @@
+<form id="iosweb123_GenerateReportForm" menuName="iosweb123_GenerateReportForm"  title='iosweb123_GenerateReportForm' platforms="web ios"   xmlns="http://schemas.mobilengine.com/fls/v2">
+	<declarations>
+		<let id='let1' shape='table' value='{table key, text (1, "London"; 2, "Budapest"; 3, "Miskolc")}'/>
+	</declarations>
+	
+	<textbox id="textbox" label="rendszám"/>
+	<dropdown id="dropdown" label="Site" choices='{select l.key,l.text from let1 l}' keyMap='{key}' textMap='{text}' />
+	<numberbox id="numberbox" label="Létszám" numberFormat='{decimalSeparator: ",", maxFraction: 2, groupSeparator:".", groupSize: 3}' float="false" />
+</form>

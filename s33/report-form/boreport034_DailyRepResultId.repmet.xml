@@ -1,0 +1,23 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>boreport034_DailyRepResultId</Name>
+	<Format>PDF</Format>
+	<Frequency>Daily</Frequency>
+	<FirstRunAt>2017-04-27T15:10:00</FirstRunAt>
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>true</IncludeTrackData>
+
+	<Email>
+		<Recipients>
+			<To>nobody@mobilengine.com</To>
+		</Recipients>
+		<Attachment>boreport034_DailyRepResultId_attachment</Attachment>
+		<Subject>boreport034_DailyRepResultId_subject</Subject>
+	</Email>
+	<Filter>
+		<Form>iosweb123_GenerateReportForm</Form>
+	</Filter>
+	<LogTable>RtabLog</LogTable>
+	<ResultsTable>RtabResults</ResultsTable>
+</ReportDefinition>

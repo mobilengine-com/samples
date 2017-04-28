@@ -1,0 +1,27 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>boreport022_EachTimeRepResultId</Name>
+	<Format>PDF</Format>
+	<Frequency>EachTimeANewDataRowArrives</Frequency>	
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>true</IncludeTrackData>
+
+	<Email>
+		<Recipients>
+			<To>nobody@mobilengine.com</To>
+		</Recipients>
+		<Attachment>boreport022_EachTimeRepResultId_Attachment</Attachment>
+		<Subject>boreport022_EachTimeRepResultId_Subject</Subject>
+		<Body>Dear Mobilengine User,
+You have received boreport022_EachTimeRepResultId report!
+
+Best regards,
+METEST Team</Body>
+	</Email>
+	<Filter>
+		<Form>iosweb123_GenerateReportForm</Form>
+	</Filter>
+	<LogTable>RtabLog</LogTable>
+	<ResultsTable>RtabResults</ResultsTable>
+</ReportDefinition>

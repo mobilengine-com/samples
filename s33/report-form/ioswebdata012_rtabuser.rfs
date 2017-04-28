@@ -1,0 +1,11 @@
+server program update_rtabuser for form iosweb123_GenerateReportForm
+using reftab RtabUser;
+{	
+	db.RtabUser.Insert({
+		ResultId: form.info.resultId,
+		UserName: form.info.user.name,
+		Rendszam: form.textbox.text,
+		Site: form.dropdown.selectedKey,
+		Letszam: form.numberbox.number
+	});
+}
