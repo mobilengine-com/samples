@@ -1,0 +1,15 @@
+server program 'user-delete' for dacs 'user-delete'
+using reftab 'user';
+using reftab 'user_group' as userGroup;
+using reftab 'group';{
+
+    var user = dacs.user;
+
+	var userGroups = db.userGroup.Read({usern: user.usern});
+	foreach(var userGroup in userGroups) {
+		db.userGroup.Delete(userGroup);
+	}
+
+	db.user.Delete({usern: user.usern});
+
+}

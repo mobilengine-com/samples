@@ -1,0 +1,23 @@
+server program 'user-insert-update' for dacs 'user-insert-update'
+using reftab 'user';
+using reftab 'user_group' as userGroup;
+using reftab 'group';
+{
+
+	trace dacs;
+
+    var user = dacs.user;
+
+	db.user.InsertOrUpdate({usern: user.usern}, {adGuid: user.adGuid, email: user.email, mobile: user.mobile, displayName: user.displayName});
+	
+	var userGroups = db.userGroup.Read({usern: user.usern});
+	foreach(var userGroup in userGroups) {
+		db.userGroup.Delete(userGroup);
+	}
+	
+	foreach(var group in user.groups) {
+		db.userGroup.Insert({usern: user.usern, groupn: group});
+		db.group.InsertOrUpdate({groupn: group}, {groupn: group});
+	}
+
+}

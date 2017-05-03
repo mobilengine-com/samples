@@ -1,0 +1,6 @@
+<integration xmlns="http://schemas.mobilengine.com/integration/v1">
+	<iep name="inUserFromAD" direction="in">
+		<dacsem name="user-insert-update"/>
+		<dacsem name="user-delete"/>
+	</iep>
+</integration>

@@ -1,0 +1,9 @@
+<Reftab Name="user" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="adGuid" Type="Text" />
+		<Column Name="usern" Type="Text" PrimaryKey="true" NotNull="true" />
+		<Column Name="email" Type="Text" />
+		<Column Name="mobile" Type="Text" />
+		<Column Name="displayName" Type="Text" />
+	</Columns>
+</Reftab>

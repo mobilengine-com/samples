@@ -1,0 +1,6 @@
+schema 'user-delete' meta 'user-delete' namespace "http://mobilengine.com/adgw/user-delete"
+
+user: element {
+	adGuid: attribute of type string;
+	usern: attribute of type string;
+}

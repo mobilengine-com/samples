@@ -1,0 +1,10 @@
+schema 'user-insert-update' meta 'user-insert-update' namespace "http://mobilengine.com/adgw/user-insert-update"
+
+user: element {
+	adGuid: attribute of type string;
+	usern: attribute of type string;
+	email: optional attribute of type string;
+	mobile: optional attribute of type string;
+	displayName: optional attribute of type string;
+	groups: wrapped list of element group of type string without whitespace;
+}

@@ -1,0 +1,6 @@
+<Reftab Name="user_group" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="usern" Type="Text" PrimaryKey="true" NotNull="true" />
+		<Column Name="groupn" Type="Text" PrimaryKey="true" NotNull="true" />
+	</Columns>
+</Reftab>

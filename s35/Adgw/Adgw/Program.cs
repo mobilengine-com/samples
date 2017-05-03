@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.DirectoryServices.Protocols;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Security;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -14,6 +17,60 @@ using Newtonsoft.Json.Linq;
 
 namespace ADGW
 {
+    class Dacsman
+    {
+        private readonly string authkey;
+
+        public Dacsman(string authkey)
+        {
+            this.authkey = authkey;
+        }
+
+        public void SendInsertUpdateDacs(Aduser aduser, Umanusr umanusr)
+        {
+            // data: usern, email, mobile, display name, ad guid, groups: group dn
+
+            {
+                var wdxClient = new Adgw.DacsUserInsertUpdate.WdxClient(/*binding, remoteAddressiepn, urlWdx*/);
+
+                //Send dacs
+                try
+                {
+                    wdxClient.EnqueueDacs(
+                        new Adgw.DacsUserInsertUpdate.Dacs
+                        {
+                            dacsid = Guid.NewGuid().ToString("N"),
+                            dtu = DateTime.UtcNow,
+                            meta = Adgw.DacsUserInsertUpdate.DacsMeta.userinsertupdate,
+                            Key = authkey,
+                            Content = new Adgw.DacsUserInsertUpdate.DacsContent
+                            {
+                                Item = new Adgw.DacsUserInsertUpdate.user()
+                                {
+                                    adGuid = aduser.objectGUID,
+                                    usern = umanusr.email,
+                                    email = aduser.mail,
+                                    displayName = aduser.displayname,
+                                    mobile = aduser.mobile,
+                                    groups = aduser.memberOf.ToArray()
+                                }
+                            }
+                        }
+                        );
+                }
+                catch (FaultException<Adgw.DacsUserInsertUpdate.EnqueueDacsFail> fer)
+                {
+                    Console.Error.WriteLine(fer.Detail.Message);
+                }
+            }
+        }
+
+        public void SendDeleteDacs(Umanusrlist umanusrlist)
+        {
+            // data: usern
+            throw new NotImplementedException();
+        }
+    }
 
     internal class Program
     {
@@ -34,6 +91,8 @@ namespace ADGW
                 ConfigurationManager.AppSettings["me:urlUman"], 
                 ConfigurationManager.AppSettings["me:usernpwdDev"]
             );
+
+            var dacsman = new Dacsman(ConfigurationManager.AppSettings["me:urlWdx"], ConfigurationManager.AppSettings["me:iepn"], ConfigurationManager.AppSettings["me:iepApikey"]);
 
             string[] rgforms;
             string[] rgdashboards;
@@ -89,6 +148,7 @@ namespace ADGW
                     var jsonAltuser = uman.WbReqst("alteruser", JsonConvert.SerializeObject(umanUsrAlter)).GetResponseStream().StReadAsUtf8().GetJson();
                     if (HandleEr("error with altering user: ", jsonAltuser)) return;
                 }
+                dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
                 mpMeusrByUsern.Remove(aduser.userprincipalname);
             }
 
@@ -98,6 +158,7 @@ namespace ADGW
                 Console.WriteLine("deleting user {0}", umanusrlist.email);
                 var jsonDeluser = uman.WbReqst("deleteuser", "{{ userId: {0} }}".StFormat(umanusrlist.userId)).GetResponseStream().StReadAsUtf8().GetJson();
                 if (HandleEr("error with deleting user: ", jsonDeluser)) return;
+                dacsman.SendDeleteDacs(umanusrlist);
             }
 
             Console.WriteLine("-- end of modifications --");
