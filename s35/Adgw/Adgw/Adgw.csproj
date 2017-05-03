@@ -49,9 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aduser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Uman.cs" />
+    <Compile Include="Umanusr.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

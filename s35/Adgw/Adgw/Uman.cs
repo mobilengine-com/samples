@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,46 +13,6 @@ using Newtonsoft.Json.Linq;
 
 namespace ADGW
 {
-
-
-    class Umanusr
-    {
-        public Umanusr()
-        {
-            hwValidation = false;
-            fSendEmail = false;
-            fSendSms = false;
-        }
-
-        public string email { get; set; }
-        public string idpIssuer { get; set; }
-        public int companyId { get; set; }
-        public string userName { get; set; }
-        public string mobileNumber { get; set; }
-        public string mobilePlatform { get; set; }
-        public bool hwValidation { get; set; }
-        public string role { get; set; }
-        public bool webformAccess { get; set; }
-        public bool dashboardAccess { get; set; }
-        public bool fSendEmail { get; set; }
-        public bool fSendSms { get; set; }
-
-        public static Umanusr UmanusrFromAduser(Aduser aduser)
-        {
-            return new Umanusr
-            {
-                email = aduser.userprincipalname,
-                idpIssuer = ConfigurationManager.AppSettings["me:issuer"],
-                companyId = int.Parse(ConfigurationManager.AppSettings["me:companyId"]),
-                userName = aduser.displayname,
-                mobileNumber = aduser.mobile,
-                mobilePlatform = "ios",
-                role = "companyadmin",
-                webformAccess = true,
-                dashboardAccess = true
-            };
-        }
-    }
     /// <summary>
     /// Indicates that the marked method builds string by format pattern and (optional) arguments.
     /// Parameter, which contains format string, should be given in constructor. The format string
@@ -120,13 +79,6 @@ namespace ADGW
             return jO["resultCode"].Value<int>() == 0;
         }
 
-        public static int GetResultId(this JObject jO)
-        {
-/*            Assert.That(jO["result"] != null, Is.True,
-                "Json Does Not Contains Result.\n The message was: {0}".StFormat(jO.Property("message").Value));*/
-            return jO.SelectToken("result").Value<int>();
-        }
-
         public static string StReadAsUtf8(this Stream strm)
         {
             using (var sr = new StreamReader(strm, Encoding.UTF8))
@@ -139,8 +91,6 @@ namespace ADGW
     public class Uman
     {
 
-        public Dictionary<string, int> mpIdByStName = new Dictionary<string, int>();
-        private readonly Regex reg = new Regex(@"(#[^.]*#)");
         private string urlUman;
         private string stUsrnPwd;
 
@@ -153,14 +103,12 @@ namespace ADGW
         public HttpWebResponse WbReqst(string action, string stJson)
         {
             var url = urlUman + action;
-            Console.WriteLine(url);
+            //Console.WriteLine(url);
             var req = (HttpWebRequest)WebRequest.Create(url);
 
             var rgUsr = stUsrnPwd.Split('/');
             var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(rgUsr[0] + ":" + rgUsr[1]));
             req.Headers.Add("Authorization", "Basic " + encoded);
-
-            stJson = reg.Replace(stJson, match => mpIdByStName[match.Value].ToString());
 
             var postData = stJson;
             var data = Encoding.UTF8.GetBytes(postData);
