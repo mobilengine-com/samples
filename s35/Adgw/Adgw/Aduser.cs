@@ -2,7 +2,7 @@ using System;
 using System.DirectoryServices.Protocols;
 using System.Linq;
 
-namespace ADGW
+namespace Adgw
 {
     class MultiattrAttribute : Attribute
     {
@@ -20,7 +20,7 @@ namespace ADGW
         }
     }
 
-    class Aduser
+    public class Aduser
     {
         [Adattr("userprincipalname")] //string-unicode
         public string userprincipalname { get; set; }

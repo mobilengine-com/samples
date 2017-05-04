@@ -1,266 +1,126 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.DirectoryServices.Protocols;
-using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Security;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Text;
+using System.ServiceProcess;
+using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using log4net;
+using log4net.Config;
 
-namespace ADGW
+namespace Adgw
 {
-    class Dacsman
-    {
-        private readonly string authkey;
-
-        public Dacsman(string authkey)
-        {
-            this.authkey = authkey;
-        }
-
-        public void SendInsertUpdateDacs(Aduser aduser, Umanusr umanusr)
-        {
-            // data: usern, email, mobile, display name, ad guid, groups: group dn
-
-            {
-                var wdxClient = new Adgw.DacsUserInsertUpdate.WdxClient(/*binding, remoteAddressiepn, urlWdx*/);
-
-                //Send dacs
-                try
-                {
-                    wdxClient.EnqueueDacs(
-                        new Adgw.DacsUserInsertUpdate.Dacs
-                        {
-                            dacsid = Guid.NewGuid().ToString("N"),
-                            dtu = DateTime.UtcNow,
-                            meta = Adgw.DacsUserInsertUpdate.DacsMeta.userinsertupdate,
-                            Key = authkey,
-                            Content = new Adgw.DacsUserInsertUpdate.DacsContent
-                            {
-                                Item = new Adgw.DacsUserInsertUpdate.user()
-                                {
-                                    adGuid = aduser.objectGUID,
-                                    usern = umanusr.email,
-                                    email = aduser.mail,
-                                    displayName = aduser.displayname,
-                                    mobile = aduser.mobile,
-                                    groups = aduser.memberOf.ToArray()
-                                }
-                            }
-                        }
-                        );
-                }
-                catch (FaultException<Adgw.DacsUserInsertUpdate.EnqueueDacsFail> fer)
-                {
-                    Console.Error.WriteLine(fer.Detail.Message);
-                }
-            }
-        }
-
-        public void SendDeleteDacs(Umanusrlist umanusrlist)
-        {
-            // data: usern
-            throw new NotImplementedException();
-        }
-    }
-
     internal class Program
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Program));
 
+        #region Nested classes to support running as service
+        public const string ServiceName = "Adgw";
 
-        private static void Main(string[] args)
+        public class Service : ServiceBase
         {
-            var adman = new Adman(
-                ConfigurationManager.AppSettings["ad:domain"],
-                ConfigurationManager.AppSettings["ad:lookupUser"],
-                ConfigurationManager.AppSettings["ad:lookupUserPwd"],
-                ConfigurationManager.AppSettings["ad:dnAd"],
-                ConfigurationManager.AppSettings["ad:dnMEUserGroup"]
-            );
-            var rgadusr = adman.RgadusrRead();
-
-            var uman = new Uman(
-                ConfigurationManager.AppSettings["me:urlUman"], 
-                ConfigurationManager.AppSettings["me:usernpwdDev"]
-            );
-
-            var dacsman = new Dacsman(ConfigurationManager.AppSettings["me:urlWdx"], ConfigurationManager.AppSettings["me:iepn"], ConfigurationManager.AppSettings["me:iepApikey"]);
-
-            string[] rgforms;
-            string[] rgdashboards;
-            var jsonForms = uman.WbReqst("forms", "{{ companyId: {0} }}".StFormat(ConfigurationManager.AppSettings["me:companyId"]))
-                .GetResponseStream().StReadAsUtf8().GetJson();
-            if (HandleEr("error with getting forms: ", jsonForms)) return;
-
-            rgforms = jsonForms["result"].Where(jtoken => jtoken["platforms"].All(jtokPlat => jtokPlat.Value<string>()!="android")).Select(jtoken => jtoken.Value<string>("name")).ToArray();
-
-            var jsonDashboards = uman.WbReqst("dashboards", "{{ companyId: {0} }}".StFormat(ConfigurationManager.AppSettings["me:companyId"]))
-                .GetResponseStream().StReadAsUtf8().GetJson();
-            if (HandleEr("error with getting dashboards: ", jsonDashboards)) return;
-
-            rgdashboards = jsonDashboards["result"].Select(jtoken => jtoken.Value<string>("name")).ToArray();
-
-            Console.WriteLine("forms: {0}", string.Join(", ", rgforms));
-            Console.WriteLine("dashboards: {0}", string.Join(", ", rgdashboards));
-
-            var jsonUsers = uman.WbReqst("users", "{{ companyId: {0} }}".StFormat(ConfigurationManager.AppSettings["me:companyId"]))
-                .GetResponseStream().StReadAsUtf8().GetJson();
-            if (HandleEr("error with getting users: ", jsonUsers)) return;
-
-            var mpMeusrByUsern = 
-                jsonUsers["result"]
-                    .Where(jtoken => jtoken.Value<string>("idpIssuer") == ConfigurationManager.AppSettings["me:issuer"])
-                    .ToDictionary(jtoken => jtoken.Value<string>("email"), jtoken => jtoken.ToObject<Umanusrlist>());
-
-            foreach (var aduser in rgadusr)
+            Procw procw = new Procw();
+            public Service()
             {
-                var umanusrCreate = Umanusr.UmanusrFromAduser(
-                    aduser,
-                    int.Parse(ConfigurationManager.AppSettings["me:companyId"]),
-                    ConfigurationManager.AppSettings["me:issuer"],
-                    rgforms,
-                    rgdashboards
-                );
-
-                if (!mpMeusrByUsern.ContainsKey(aduser.userprincipalname))
-                {
-                    // create
-                    Console.WriteLine("creating user {0}", umanusrCreate.email);
-                    var jsonCruser = uman.WbReqst("createuser", JsonConvert.SerializeObject(umanusrCreate)).GetResponseStream().StReadAsUtf8().GetJson();
-                    if (HandleEr("error with creating user: ", jsonCruser)) return;
-
-                }
-                else
-                {
-                    // alter
-                    var umanusrlist = mpMeusrByUsern[aduser.userprincipalname];
-                    var umanUsrAlter = umanusrCreate.ToUmanusralter(umanusrlist.userId);
-
-                    Console.WriteLine("altering user {0}", aduser.userprincipalname);
-                    var jsonAltuser = uman.WbReqst("alteruser", JsonConvert.SerializeObject(umanUsrAlter)).GetResponseStream().StReadAsUtf8().GetJson();
-                    if (HandleEr("error with altering user: ", jsonAltuser)) return;
-                }
-                dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
-                mpMeusrByUsern.Remove(aduser.userprincipalname);
+                ServiceName = Program.ServiceName;
             }
 
-            foreach (var umanusrlist in mpMeusrByUsern.Values)
+            protected override void OnStart(string[] args)
             {
-                // delete
-                Console.WriteLine("deleting user {0}", umanusrlist.email);
-                var jsonDeluser = uman.WbReqst("deleteuser", "{{ userId: {0} }}".StFormat(umanusrlist.userId)).GetResponseStream().StReadAsUtf8().GetJson();
-                if (HandleEr("error with deleting user: ", jsonDeluser)) return;
-                dacsman.SendDeleteDacs(umanusrlist);
+                procw.Start(args);
             }
 
-            Console.WriteLine("-- end of modifications --");
-            Console.ReadLine();
-
+            protected override void OnStop()
+            {
+                procw.Stop();
+            }
         }
+        #endregion
 
-        private static bool HandleEr(string stmsg, JObject jsonForms)
+        static void Main(string[] args)
         {
-            if (!jsonForms.FSuccess())
+            BasicConfigurator.Configure();
+            log.Info("Starting adgw");
+
+            AppDomain.CurrentDomain.UnhandledException += (_, unhandledExceptionEventArgs) =>
+               log.Fatal("Unhandled exception, AppDomain will be terminated: {0}".StFormat(unhandledExceptionEventArgs.ExceptionObject.ToString()));
+
+            if (!Environment.UserInteractive)
             {
-                Console.WriteLine(stmsg + jsonForms);
+                log.Info("as service");
+                // running as service
+                using (var service = new Service())
+                    ServiceBase.Run(service);
+            } else {
+                log.Info("as console app");
+                var procw = new Procw();
+                // running as console app
+                procw.Process();
+
+                Console.WriteLine("Press enter to stop...");
                 Console.ReadLine();
-                return true;
+
             }
-            return false;
         }
 
-        public class Adman
+
+        private class Procw
         {
-            private readonly string domainAd; 
-            private readonly string usernAdLookup; 
-            private readonly string pwdUserLookup; 
-            private readonly string dnAd; 
-            private readonly string dnMEUserGroup; 
 
-            public Adman(string domainAd, string usernAdLookup, string pwdUserLookup, string dnAd, string dnMeUserGroup)
+            private Task taskProcess;
+            private CancellationTokenSource cantosoTaskProcess;
+
+            public async Task DoWorkAsync(CancellationToken token)
             {
-                this.domainAd = domainAd;
-                this.usernAdLookup = usernAdLookup;
-                this.pwdUserLookup = pwdUserLookup;
-                this.dnAd = dnAd;
-                dnMEUserGroup = dnMeUserGroup;
-            }
-
-            public List<Aduser> RgadusrRead()
-            {
-                var rgadusr = new List<Aduser>();
-
-                var ldapDirectoryIdentifier = new LdapDirectoryIdentifier(domainAd);
-                var networkCredential = new NetworkCredential(usernAdLookup, pwdUserLookup);
-                var connection = new LdapConnection(ldapDirectoryIdentifier) {AuthType = AuthType.Basic};
-
-                try
-                {
-                    connection.Bind(networkCredential);
-                }
-                catch (Exception exception)
-                {
-                    Trace.WriteLine(exception.ToString());
-                }
-
-                connection.SessionOptions.ProtocolVersion = 3;
-
-                var request = new SearchRequest(dnAd,
-                    "(&(objectClass=person)(objectClass=user)(memberOf={0}))"
-                        .StFormat(dnMEUserGroup),
-                    SearchScope.Subtree,
-                    new[]
-                    {
-                        "userprincipalname", "usnchanged", "whenchanged", "pwdlastset", "objectGUID", "SAMAccountName",
-                        "memberOf", "cn", "displayname", "mail", "telephonenumber", "mobile"
-                    });
-
-
-                var searchOptions = new SearchOptionsControl(SearchOption.DomainScope);
-                request.Controls.Add(searchOptions);
-
-                var pageResultRequestControl = new PageResultRequestControl(1000);
-                request.Controls.Add(pageResultRequestControl);
                 while (true)
                 {
-                    var searchResponse = (SearchResponse) connection.SendRequest(request);
-                    var pageResponse = (PageResultResponseControl) searchResponse.Controls[0];
-
-
-                    foreach (SearchResultEntry entry in searchResponse.Entries)
+                    try
                     {
-                        var aduser = new Aduser();
-                        aduser.ParseFromEntry(entry);
-                        if (!string.IsNullOrEmpty(aduser.userprincipalname))
-                            rgadusr.Add(aduser);
+                        Process();
                     }
-
-                    if (pageResponse.Cookie.Length == 0)
-                        break;
-
-                    pageResultRequestControl.Cookie = pageResponse.Cookie;
+                    catch (Exception e)
+                    {
+                        // Handle exception
+                    }
+                    await Task.Delay(TimeSpan.FromMinutes(int.Parse(ConfigurationManager.AppSettings["secDelay"])), token);
                 }
-
-                foreach (var adusr in rgadusr)
-                {
-                    Console.WriteLine(adusr);
-                }
-                Console.WriteLine("-- end of users --");
-                return rgadusr;
             }
 
+            public void Start(string[] args)
+            {
+                // onstart code here
+                cantosoTaskProcess = new CancellationTokenSource();
+                taskProcess = Task.Run(() => DoWorkAsync(cantosoTaskProcess.Token));
+            }
+
+            public void Process()
+            {
+                var adgw = new Adgwman();
+                adgw.FullSyncAdToME();
+            }
+
+
+            public void Stop()
+            {
+                // onstop code here
+                cantosoTaskProcess.Cancel();
+                try
+                {
+                    taskProcess.Wait();
+                }
+                catch (Exception e)
+                {
+                    // handle exeption
+                }
+            }
         }
 
         //
         // for debug purposes - display all info of AD object
+        //
         private static void MainX(string[] args)
         {
             var domain = "argus.mebt";

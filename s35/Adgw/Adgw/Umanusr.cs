@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Configuration;
-using System.IO;
 using Newtonsoft.Json;
 
-namespace ADGW
+namespace Adgw
 {
     class Umanusrlist : Umanusralter
     {
