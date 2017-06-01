@@ -1,0 +1,8 @@
+<Reftab Name="Badges" Push="true" xmlns="http://schemas.mobilengine.com/reftab/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Columns>
+    <Column Name="BadgeKind" Type="Text"/>
+    <Column Name="Count" NotNull="true" Type="Integer"/>
+    <Column AgentName="true" Name="AgentName" Type="Text"/>
+    <Column Name="DateCreated" NotNull="true" Type="Date"/>
+  </Columns>
+</Reftab>

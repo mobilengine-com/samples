@@ -1,0 +1,6 @@
+<Reftab Name="Tasks" Push="true" xmlns="http://schemas.mobilengine.com/reftab/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Columns>
+		<Column AgentName="true" Name="Assignee" Type="Text"/>
+		<Column Name="Task" NotNull="true" Type="Text"/>
+	</Columns>
+</Reftab>

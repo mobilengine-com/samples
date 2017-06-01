@@ -1,0 +1,41 @@
+server program Program for form Dashboard
+using reftab Badges;
+using reftab Tasks;
+using reftab Messages;
+{
+	if (form.sendmessage.submitter) {
+		
+		var recipient;
+		if (form.recipient.text == "")
+			recipient = null;
+		else
+			recipient = form.recipient.text;
+		db.Messages.Insert({
+			Recipient: recipient,
+			Message: form.message.text
+		});
+		db.Badges.Insert({
+			BadgeKind: "message",
+			Count: 1,
+			AgentName: recipient,
+			DateCreated: dtu.Now().DtuToDtdb()
+		});
+	}
+	if (form.createtask.submitter) {
+		var assignee;
+		if (form.assignee.text == "")
+			assignee = null;
+		else
+			assignee = form.assignee.text;
+		db.Tasks.Insert({
+			Assignee: assignee,
+			Task: form.task.text
+		});
+		db.Badges.Insert({
+			BadgeKind: "task",
+			Count: 1,
+			AgentName: assignee,
+			DateCreated: dtu.Now().DtuToDtdb()
+		});
+	}
+}

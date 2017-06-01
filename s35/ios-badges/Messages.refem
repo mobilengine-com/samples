@@ -1,0 +1,6 @@
+<Reftab Name="Messages" Push="true" xmlns="http://schemas.mobilengine.com/reftab/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Columns>
+		<Column AgentName="true" Name="Recipient" Type="Text"/>
+		<Column Name="Message" NotNull="true" Type="Text"/>
+	</Columns>
+</Reftab>

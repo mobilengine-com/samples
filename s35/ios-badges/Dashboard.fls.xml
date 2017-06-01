@@ -1,0 +1,62 @@
+<form id="Dashboard" menuName="Dashboard" dashboard="true" platforms="ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+	<header />
+	<popup title="View messages">
+		<block badgekind="message">
+			<table label="Message List" record="r" recordset='{SELECT COALESCE(t.Recipient, "Everyone") as Recipient, t.Message FROM Messages t}'>
+				<header>
+					<row>
+						<cell>
+							<textview text="Recipient"/>
+						</cell>
+						<cell>
+							<textview text="Message"/>
+						</cell>
+					</row>
+				</header>
+				<row>
+					<cell>
+						<textview text="{r.Recipient}"/>
+					</cell>
+					<cell>
+						<textview text="{r.Message}"/>
+					</cell>
+				</row>
+			</table>
+		</block>
+	</popup>
+	<popup title="Send message">
+		<textbox id="recipient" label="Recipient: " text="{sysp.user}"/>
+		<textbox id="message" label="Message: " text=""/>
+		<submitbutton id="sendmessage" text="Send" />
+	</popup>
+
+	<popup title="View tasks">
+		<block badgekind="task">
+			<table label="Task List" record="r" recordset='{SELECT COALESCE(t.Assignee, "Unassigned") as Assignee, t.Task FROM Tasks t}'>
+				<header>
+					<row>
+						<cell>
+							<textview text="Assignee"/>
+						</cell>
+						<cell>
+							<textview text="Task"/>
+						</cell>
+					</row>
+				</header>
+				<row>
+					<cell>
+						<textview text="{r.Assignee}"/>
+					</cell>
+					<cell>
+						<textview text="{r.Task}"/>
+					</cell>
+				</row>
+			</table>
+		</block>
+	</popup>
+	<popup title="Create task">
+		<textbox id="assignee" label="Assignee: " text="{sysp.user}"/>
+		<textbox id="task" label="Task: " text=""/>
+		<submitbutton id="createtask" text="Create" />
+	</popup>
+</form>
