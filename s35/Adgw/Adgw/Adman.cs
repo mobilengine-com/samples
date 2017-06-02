@@ -12,15 +12,15 @@ namespace Adgw
         private static readonly ILog log = LogManager.GetLogger(typeof(Adman));
 
 
-        private readonly string domainAd;
+        private readonly string hostDomainserver;
         private readonly string usernAdLookup;
         private readonly string pwdUserLookup;
         private readonly string dnAd;
         private readonly string dnMEUserGroup;
 
-        public Adman(string domainAd, string usernAdLookup, string pwdUserLookup, string dnAd, string dnMeUserGroup)
+        public Adman(string hostDomainserver, string usernAdLookup, string pwdUserLookup, string dnAd, string dnMeUserGroup)
         {
-            this.domainAd = domainAd;
+            this.hostDomainserver = hostDomainserver;
             this.usernAdLookup = usernAdLookup;
             this.pwdUserLookup = pwdUserLookup;
             this.dnAd = dnAd;
@@ -31,7 +31,7 @@ namespace Adgw
         {
             var rgadusr = new List<Aduser>();
 
-            var ldapDirectoryIdentifier = new LdapDirectoryIdentifier(domainAd);
+            var ldapDirectoryIdentifier = new LdapDirectoryIdentifier(hostDomainserver);
             var networkCredential = new NetworkCredential(usernAdLookup, pwdUserLookup);
             var connection = new LdapConnection(ldapDirectoryIdentifier) { AuthType = AuthType.Basic };
 

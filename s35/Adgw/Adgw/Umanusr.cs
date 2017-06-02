@@ -1,66 +1,76 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Adgw
 {
-    class Umanusrlist : Umanusralter
+    public static class Usru
     {
-        public string created { get; set; }
-    }    
-    
-    class Umanusralter : Umanusr
-    {
-        public int userId { get; set; }
+
+        public static Usrprm UsrprmFromAduser(this Aduser aduser, int idCompany, String idpIssuer, string[] rgformAll, string[] rgdashboardAll)
+        {
+            return new Usrprm
+            {
+                usern = aduser.userprincipalname,
+                emailAddress = aduser.mail,
+                idpIssuer = idpIssuer,
+                companyId = idCompany,
+                displayName = aduser.displayname,
+                mobileNumber = aduser.mobile, // TODO: if mobile user, derive from groups
+                mobilePlatform = "ios", // TODO: if mobile user, which platform
+                role = "companyadmin", // TODO: which role
+                webformAccess = true,  // TODO: if wef user
+                biAccess = true, // TODO: if bif user
+                forms = rgformAll.ToList(), // TODO which forms should the user get?
+                dashboards = rgdashboardAll.ToList() // TODO the same
+            };
+        }
+        
     }
 
-    class Umanusr
+    public class Usrprm
     {
-        public Umanusr()
-        {
-            hwValidation = false;
-            fSendEmail = false;
-            fSendSms = false;
-        }
-
-        public string email { get; set; }
+        public int? userId { get; set; }
+        public string usern { get; set; }
         public string idpIssuer { get; set; }
-        public int companyId { get; set; }
-        public string userName { get; set; }
+        public string displayName { get; set; }
+        public string emailAddress { get; set; }
+        public string password { get; set; }
+        public int? companyId { get; set; }
+        public string mobileNumber { get; set; }
+        public string mobilePlatform { get; set; }
+        public bool? hwValidation { get; set; }
+        public string role { get; set; }
+        public bool? webformAccess { get; set; }
+        public bool? biAccess { get; set; }
+        public bool? fSendEmail { get; set; }
+        public bool? fSendSms { get; set; }
+        public JObject jsonExtra { get; set; }
+        public List<string> forms { get; set; }
+        public List<string> dashboards { get; set; }
+    }
+
+    public class Usres
+    {
+        public int? companyId { get; set; }
+        public int userId { get; set; }
+        public string idpIssuer { get; set; }
+        public string usern { get; set; }
+        public string emailAddress { get; set; }
+        public string displayName { get; set; }
         public string mobileNumber { get; set; }
         public string mobilePlatform { get; set; }
         public bool hwValidation { get; set; }
         public string role { get; set; }
         public bool webformAccess { get; set; }
-        public bool dashboardAccess { get; set; }
-        public bool fSendEmail { get; set; }
-        public bool fSendSms { get; set; }
-        public string[] forms { get; set; }
-        public string[] dashboards { get; set; }
+        public bool biAccess { get; set; }
+        //public Dtu created { get; set; }
 
-        public static Umanusr UmanusrFromAduser(Aduser aduser, int idCompany, String idpIssuer, string[] rgformAll, string[] rgdashboardAll)
-        {
-            return new Umanusr
-            {
-                email = aduser.userprincipalname,
-                idpIssuer = idpIssuer,
-                companyId = idCompany,
-                userName = aduser.displayname,
-                mobileNumber = aduser.mobile, // TODO: if mobile user, derive from groups
-                mobilePlatform = "ios", // TODO: if mobile user, which platform
-                role = "companyadmin", // TODO: which role
-                webformAccess = true,  // TODO: if wef user
-                dashboardAccess = true, // TODO: if bif user
-                forms = rgformAll, // TODO which forms should the user get?
-                dashboards = rgdashboardAll // TODO the same
-            };
-        }
+        public JObject JsonExtra { get; set; }
+        public List<string> forms { get; set; }
+        public List<string> dashboards { get; set; }
 
-        public Umanusralter ToUmanusralter(int idUser)
-        {
-            var data = JsonConvert.SerializeObject(this);
-            var umanusralter = (Umanusralter)JsonConvert.DeserializeObject(data, typeof (Umanusralter));
-            umanusralter.userId = idUser;
-            return umanusralter;
-        }
     }
 }

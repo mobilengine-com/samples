@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -38,12 +39,6 @@ namespace Adgw
     public static class Ext
     {
 
-/*        public static HttpStatusCode GetStatusCode(this string stC)
-        {
-            var htsc = stC.ParseKOrNil<HttpStatusCode>();
-            Assert.That(htsc != null, "Not A Valid Http Status Code: '{0}'".StFormat(stC));
-            return htsc.Value;
-        }*/
 
         [StringFormatMethod("stFormat")]
         public static string StFormat(this string stFormat, params object[] args)
@@ -84,6 +79,7 @@ namespace Adgw
 
     public class Uman
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Uman));
 
         private string urlUman;
         private string stUsrnPwd;
@@ -115,47 +111,41 @@ namespace Adgw
 
             try
             {
-                return (HttpWebResponse)req.GetResponse();
+                var httpWebResponse = (HttpWebResponse)req.GetResponse();
+                if (httpWebResponse.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception("Uman error " + httpWebResponse.StatusCode + ": " + httpWebResponse.GetResponseStream().StReadAsUtf8());
+                }
+                return httpWebResponse;
             }
             catch (WebException wer)
             {
                 if (wer.Response != null)
-                    return (HttpWebResponse)wer.Response;
+                    throw new Exception("Uman error " + wer.Status + ": " + wer.Response.GetResponseStream().StReadAsUtf8());
 
                 throw;
             }
         }
 
-        /*
-        public int GetRespValue(HttpWebResponse hwresp)
+        public JObject JsonByRequest(string action, string content)
         {
-            var stResp = StReadAsUtf8(hwresp.GetResponseStream());
-            Assert.That(hwresp.StatusCode, Is.EqualTo(HttpStatusCode.OK), "Unexpected reponse: {0}({1}\n{2}",
-                hwresp.StatusCode, hwresp.StatusDescription, stResp);
+            try
+            {
+                var json = WbReqst(action, content).GetResponseStream().StReadAsUtf8().GetJson();
 
-            return stResp.GetJson().GetResultId();
+                if (!json.FSuccess())
+                {
+                    log.Debug("error with {0} / {1}: {2}".StFormat(action, content, json));
+                    return null;
+                }
+                return json;
+            }
+            catch (Exception er)
+            {
+                log.Debug("error with {0} / {1}: {2}".StFormat(action, content, er.ToString()));
+                return null;
+            }
         }
-
-        public void CheckErrors(string sthwr, Table t)
-        {
-            var rgStErrFromSthwr = sthwr.Split('\n');
-            Assert.That(rgStErrFromSthwr.Count() == t.RowCount, "Count Mismatch Expected: {0} , But Was: {1}".StFormat(t.RowCount, rgStErrFromSthwr.Count()));
-            for (var i = 0; i < t.Rows.Count; i++)
-                Assert.That(rgStErrFromSthwr[i], Is.EqualTo(t.Rows[i].Values.First()));
-        }
-
-        public string ReplaceFromMp(string stJson)
-        {
-            var match = reg.Match(stJson);
-            if (!match.Success)
-                return stJson;
-            var stMatch = match.Value;
-            stJson = stJson.Replace("\"{0}\"".StFormat(stMatch), mpIdByStName[stMatch].ToString());
-            return stJson;
-        }
-        */
-
-
     }
 
 }

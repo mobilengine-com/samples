@@ -16,7 +16,7 @@ namespace Adgw
             this.authkey = authkey;
         }
 
-        public void SendInsertUpdateDacs(Aduser aduser, Umanusr umanusr)
+        public void SendInsertUpdateDacs(Aduser aduser, Usrprm umanusr)
         {
             // data: usern, email, mobile, display name, ad guid, groups: group dn
             {
@@ -37,7 +37,7 @@ namespace Adgw
                                 Item = new Adgw.DacsUserInsertUpdate.user()
                                 {
                                     adGuid = aduser.objectGUID,
-                                    usern = umanusr.email,
+                                    usern = umanusr.usern,
                                     email = aduser.mail,
                                     displayName = aduser.displayname,
                                     mobile = aduser.mobile,
@@ -54,7 +54,7 @@ namespace Adgw
             }
         }
 
-        public void SendDeleteDacs(Umanusrlist umanusrlist)
+        public void SendDeleteDacs(Usres umanusrlist)
         {
             {
                 var wdxClient = new Adgw.DacsUserDelete.WdxClient(/*binding, remoteAddressiepn, urlWdx*/);
@@ -74,7 +74,7 @@ namespace Adgw
                                 Item = new Adgw.DacsUserDelete.user()
                                 {
                                     adGuid = "### not implemented ###",// TODO if needed umanusrlist.objectGUID,
-                                    usern = umanusrlist.email,
+                                    usern = umanusrlist.usern,
                                 }
                             }
                         }
