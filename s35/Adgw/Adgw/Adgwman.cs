@@ -113,7 +113,6 @@ namespace Adgw
                     umanUsrAlter.userId = umanusrlist.userId;
                     if (fAlterNeeded)
                     {
-
                         log.Debug("altering user {0}".StFormat(aduser.userprincipalname));
                         var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrAlter));
                         if (jsonAltuser == null) return;
@@ -122,8 +121,8 @@ namespace Adgw
                     if (fPwdReset)
                     {
                         log.Debug("mobtok revoke of user {0}".StFormat(aduser.userprincipalname));
-                        var jsonAltuser = uman.JsonByRequest("RevokeMobileTokensOfUser", JsonConvert.SerializeObject(new Usrid { userId = umanusrlist.userId }));
-                        if (jsonAltuser == null) return;
+                        var jsonResmobtok = uman.JsonByRequest("RevokeMobileTokensOfUser", JsonConvert.SerializeObject(new Usrid { userId = umanusrlist.userId }));
+                        if (jsonResmobtok == null) return;
                     }
                 }
                 mpMeusrByUsern.Remove(aduser.userprincipalname);
@@ -131,10 +130,15 @@ namespace Adgw
 
             foreach (var umanusrlist in mpMeusrByUsern.Values)
             {
-                // delete
-                log.Debug("deleting user {0}".StFormat(umanusrlist.usern));
-                var jsonDeluser = uman.JsonByRequest("deleteuser", JsonConvert.SerializeObject(new Usrid { userId = umanusrlist.userId }));
-                if (jsonDeluser == null) return;
+                // hard delete, uncomment is thats needed
+//                    log.Debug("deleting user {0}".StFormat(umanusrlist.usern));
+//                    var jsonDeluser = uman.JsonByRequest("deleteuser", JsonConvert.SerializeObject(new Usrid {userId = umanusrlist.userId}));
+//                    if (jsonDeluser == null) return;
+
+                var umanUsrSoftDelete = umanusrlist.UsrprmToSoftDelete();
+                log.Debug("revoking rights of user (soft delete) {0}".StFormat(umanusrlist.usern));
+                var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrSoftDelete));
+                if (jsonAltuser == null) return;
                 dacsman.SendDeleteDacs(umanusrlist);
             }
             log.Debug("-- end of modifications --");

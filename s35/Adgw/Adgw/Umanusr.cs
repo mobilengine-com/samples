@@ -16,6 +16,31 @@ namespace Adgw
             public string whenchanged { get; set; }
         }
 
+        public static Usrprm UsrprmToSoftDelete(this Usres usres)
+        {
+            return new Usrprm
+            {
+                userId = usres.userId,
+                usern = usres.usern,
+                emailAddress = usres.emailAddress,
+                idpIssuer = usres.idpIssuer,
+                companyId = usres.companyId,
+                displayName = usres.displayName,
+                mobileNumber =  null, 
+                mobilePlatform = null,
+                role = null, 
+                webformAccess = false,  
+                biAccess = false, 
+                forms = new List<string>(), 
+                dashboards = new List<string>(), 
+                password = null,
+                fSendEmail = false,
+                fSendSms = false,
+                hwValidation = false,
+                extraData = null
+            };            
+        }
+
         public static Usrprm UsrprmFromAduser(this Aduser aduser, int idCompany, String idpIssuer, string[] rgformAll, string[] rgdashboardAll)
         {
             return new Usrprm
