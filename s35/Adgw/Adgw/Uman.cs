@@ -120,10 +120,18 @@ namespace Adgw
             }
             catch (WebException wer)
             {
-                if (wer.Response != null)
-                    throw new Exception("Uman error " + wer.Status + ": " + wer.Response.GetResponseStream().StReadAsUtf8());
+                if (wer.Status == WebExceptionStatus.ProtocolError)
+                {
+                    var response = wer.Response as HttpWebResponse;
+                    if (response != null)
+                    {
+                        Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
+                        throw new Exception("Uman protocol error with reponse " + response.StatusCode + ": " + wer.Response.GetResponseStream().StReadAsUtf8(), wer);
+                    }
+                    throw new Exception("Uman protocol error no response " + wer.Status, wer);
+                }
+                throw new Exception("Uman web error " + wer, wer);
 
-                throw;
             }
         }
 

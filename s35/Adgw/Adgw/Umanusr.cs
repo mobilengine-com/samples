@@ -8,6 +8,13 @@ namespace Adgw
 {
     public static class Usru
     {
+        public class Adgwpar
+        {
+            public string objectGUID { get; set; }
+            public string pwdlastset { get; set; }
+            public string usnchanged { get; set; }
+            public string whenchanged { get; set; }
+        }
 
         public static Usrprm UsrprmFromAduser(this Aduser aduser, int idCompany, String idpIssuer, string[] rgformAll, string[] rgdashboardAll)
         {
@@ -24,10 +31,20 @@ namespace Adgw
                 webformAccess = true,  // TODO: if wef user
                 biAccess = true, // TODO: if bif user
                 forms = rgformAll.ToList(), // TODO which forms should the user get?
-                dashboards = rgdashboardAll.ToList() // TODO the same
+                dashboards = rgdashboardAll.ToList(), // TODO the same
+                password = null,
+                fSendEmail = false,
+                fSendSms = false,
+                hwValidation = false,
+                extraData = JObject.FromObject(new Adgwpar {objectGUID = aduser.objectGUID, pwdlastset = aduser.pwdlastset, usnchanged = aduser.usnchanged, whenchanged = aduser.whenchanged}).ToString()
             };
         }
         
+    }
+
+    public class Usrid
+    {
+        public int userId { get; set; }
     }
 
     public class Usrprm
@@ -47,7 +64,7 @@ namespace Adgw
         public bool? biAccess { get; set; }
         public bool? fSendEmail { get; set; }
         public bool? fSendSms { get; set; }
-        public JObject jsonExtra { get; set; }
+        public string extraData { get; set; }
         public List<string> forms { get; set; }
         public List<string> dashboards { get; set; }
     }
@@ -68,7 +85,7 @@ namespace Adgw
         public bool biAccess { get; set; }
         //public Dtu created { get; set; }
 
-        public JObject JsonExtra { get; set; }
+        public string extraData { get; set; }
         public List<string> forms { get; set; }
         public List<string> dashboards { get; set; }
 
