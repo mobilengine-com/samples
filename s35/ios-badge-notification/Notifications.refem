@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Reftab 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns="http://schemas.mobilengine.com/reftab/v1"
+	Name="Notifications"
+  Push="true">
+  <Columns>
+    <Column Name="Id" Type="Text" PrimaryKey="true" NotNull="true" />
+    <Column Name="Title" Type="Text" NotNull="true" />
+    <Column Name="Body" Type="Text" />
+    <Column Name="AgentName" Type="Text" AgentName="true" />
+    <Column Name="FormArea" Type="Text" />
+    <Column Name="FormToOpen" Type="Text" />
+  </Columns>
+</Reftab>

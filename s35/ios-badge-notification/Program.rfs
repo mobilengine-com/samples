@@ -2,6 +2,7 @@ server program Program for form Dashboard
 using reftab Badges;
 using reftab Tasks;
 using reftab Messages;
+using reftab Notifications;
 {
 	if (form.sendmessage.submitter) {
 		
@@ -15,10 +16,18 @@ using reftab Messages;
 			Message: form.message.text
 		});
 		db.Badges.Insert({
-			BadgeKind: "message",
+			FormArea: "message",
 			Count: 1,
 			AgentName: recipient,
 			DateCreated: dtu.Now().DtuToDtdb()
+		});
+		db.Notifications.Insert({
+			Id: guid.Generate().ToStringN(),
+			Title: "New Message",
+			Body: form.message.text,
+			AgentName: recipient,
+			FormToOpen: "Dashboard",
+			FormArea: "message"
 		});
 	}
 	if (form.createtask.submitter) {
@@ -32,10 +41,18 @@ using reftab Messages;
 			Task: form.task.text
 		});
 		db.Badges.Insert({
-			BadgeKind: "task",
+			FormArea: "task",
 			Count: 1,
 			AgentName: assignee,
 			DateCreated: dtu.Now().DtuToDtdb()
+		});
+		db.Notifications.Insert({
+			Id: guid.Generate().ToStringN(),
+			Title: "New Task",
+			Body: form.task.text,
+			AgentName: assignee,
+			FormToOpen: "Dashboard",
+			FormArea: "message"
 		});
 	}
 }
