@@ -1,0 +1,15 @@
+<Form name='Toggleable submit buttons' 
+	menu_submit_reference="REF" menu_submit_ref_arg="//root/cbMenu"
+	footer_submit_reference="REF" footer_submit_ref_arg="//root/cbFooter"
+	floating_submit_reference="REF" floating_submit_ref_arg="//root/cbFloating">
+
+	<Control name='root' type='panel'>
+		<Control name='cbMenu' type="checkbox" label="Submit button in menu" />
+		<Control name='cbFooter' type="checkbox" label="Submit button in form footer" />
+		<Control name='cbFloating' type="checkbox" label="Floating submit button" />
+
+		<Control name='popup' type='panel' label="Popup" navigation="popup">
+			<Control name='label' type='label' label="In the popup" />
+		</Control>
+	</Control>
+</Form>
