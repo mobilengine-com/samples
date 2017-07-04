@@ -15,7 +15,9 @@ namespace Adgw
         public void FullSyncAdToME()
         {
             var sw = new Stopwatch();
+            var sw1 = new Stopwatch();
             sw.Start();
+            sw1.Start();
             var adman = new Adman(
                 ConfigurationManager.AppSettings["ad:domainServer"],
                 ConfigurationManager.AppSettings["ad:lookupUser"],
@@ -24,6 +26,8 @@ namespace Adgw
                 ConfigurationManager.AppSettings["ad:dnMEUserGroup"]
                 );
             var rgadusr = adman.RgadusrRead();
+            log.Debug("reading {0} users from ad in {1} msec".StFormat(rgadusr.Count, sw1.ElapsedMilliseconds));
+            sw1.Reset(); sw1.Start();
 
             var uman = new Uman(
                 ConfigurationManager.AppSettings["me:urlUman"],
@@ -50,7 +54,9 @@ namespace Adgw
                 jsonUsers["result"]
                     .Where(jtoken => jtoken.Value<string>("idpIssuer") == ConfigurationManager.AppSettings["me:issuer"])
                     .ToDictionary(jtoken => jtoken.Value<string>("usern"), jtoken => jtoken.ToObject<Usres>());
-
+            log.Debug("reading {0} users from uman in {1} msec".StFormat(mpMeusrByUsern.Count, sw1.ElapsedMilliseconds));
+            sw1.Reset(); sw1.Start();
+            int cNew = 0, cUpdate = 0, cPwdReset = 0;
             foreach (var aduser in rgadusr)
             {
                 var umanusrCreate = aduser.UsrprmFromAduser(
@@ -67,6 +73,7 @@ namespace Adgw
                     var jsonCruser = uman.JsonByRequest("createuser", JsonConvert.SerializeObject(umanusrCreate));
                     if (jsonCruser == null) return;
                     dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
+                    cNew ++;
                 }
                 else
                 {
@@ -117,17 +124,22 @@ namespace Adgw
                         var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrAlter));
                         if (jsonAltuser == null) return;
                         dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
+                        cUpdate++;
                     }
                     if (fPwdReset)
                     {
                         log.Debug("mobtok revoke of user {0}".StFormat(aduser.userprincipalname));
                         var jsonResmobtok = uman.JsonByRequest("RevokeMobileTokensOfUser", JsonConvert.SerializeObject(new Usrid { userId = umanusrlist.userId }));
                         if (jsonResmobtok == null) return;
+                        cPwdReset++;
                     }
                 }
                 mpMeusrByUsern.Remove(aduser.userprincipalname);
             }
+            log.Debug("createing {0}, updating {1} users, reseting passwords: {2} through uman in {3} msec".StFormat(cNew, cUpdate, cPwdReset, sw1.ElapsedMilliseconds));
+            sw1.Reset(); sw1.Start();
 
+            int cDel = 0;
             foreach (var umanusrlist in mpMeusrByUsern.Values)
             {
                 // hard delete, uncomment is thats needed
@@ -140,7 +152,11 @@ namespace Adgw
                 var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrSoftDelete));
                 if (jsonAltuser == null) return;
                 dacsman.SendDeleteDacs(umanusrlist);
+                cDel++;
             }
+            log.Debug("disabling {0} users through uman in {1} msec".StFormat(cDel, sw1.ElapsedMilliseconds));
+            sw1.Reset(); sw1.Start();
+
             log.Debug("-- end of modifications --");
             sw.Stop();
             log.Debug("Ellapsed time: {0}".StFormat(sw.Elapsed));
