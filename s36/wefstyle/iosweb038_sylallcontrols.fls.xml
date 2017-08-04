@@ -1,0 +1,464 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='iosweb038_sylallcontrols' menuName='iosweb038_sylallcontrols' platforms='web ios' style="{styles.styleAll}" dashboard="false">
+    <checkbox label='label of checkbox for validator' id='valid' text='text of textbox for validator' checked="{true}" style="{styles.styleCheckbox}"/>
+
+    <textview id='textview1' label='label of textview v.33' text='text of textview' style="{styles.styleTextview}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </textview>
+    
+    <textbox id='textbox1' label='label of textbox' text='text of textbox' hint="hint of textbox" style="{styles.styleTextbox}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </textbox>
+
+    <numberbox id='numberbox1' numberFormat='{decimalSeparator: ",", maxFraction: 2, groupSeparator:".", groupSize: 3, prefix:"pre", postfix:" post"}' float="false" label='label of numberbox' number='{42}' invalidNumberMessage='Not a number' style="{styles.styleNumberbox}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </numberbox>
+
+    <textarea id='textarea1' label='label of textarea' text='text of textarea' hint="hint of textarea" lines="5" style="{styles.styleTextarea}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </textarea>
+
+    <photo id="photo" label="label of photo" style="{styles.stylePhoto}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </photo>
+	
+    <reportview label="label of reportview" text="text of reportview" style="{styles.styleReportview}" reportviewId="alma">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </reportview>
+
+    <photoview label="label of photoview" style="{styles.stylePhotoview}" photos='{["alma"]}'>
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </photoview>
+	
+    <checkbox id='checkbox1' label='label of checkbox' text='text of checkbox' checked='{false}' style="{styles.styleCheckbox}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </checkbox>
+    
+    <datepicker id='datepicker1' label='label of datepicker' date='{(dtl 2014-03-19T00:00:00)}' invalidDateMessage='Not a date' dateFormat='(dtf yyyy"/"MM"/"dd)' style="{styles.styleDatepicker}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </datepicker>
+    
+    <timepicker id='timepicker1' label='label of timepicker' seconds='{3600}' invalidTimeMessage='Not a time' timeFormat='(dtf HH":"mm)' style="{styles.styleTimepicker}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </timepicker>
+    
+    <dropdown id='dropdown1' label='label of dropdown' choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' style="{styles.styleDropdown}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </dropdown>
+    
+    <radiogroup id='radiogroup1' label='label of radiogroup' choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' style="{styles.styleRadiogroup}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </radiogroup>
+    
+    <mailto id='mailto1' label='label of mailto' text='text of mailto' address='developers@mobilengine.com' style="{styles.styleMailto}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </mailto>
+    
+    <linkview id='linkview1' label='label of linkview' text='text of linkview' url='http://www.mobilengine.com' style="{styles.styleLinkview}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </linkview>
+
+    <barview id="barview" label="label of barview" maxValue="{100}" value="{75}" style="{styles.styleBarview}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </barview>
+	
+	<actionbutton label="label of actionbutton" style="{styles.styleActionbutton}" text="text of actionbutton">
+	<set value="{80}" target="barview.value"/>
+	</actionbutton>
+    
+    <segmentedbutton label='label of segmentedbutton' choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' style="{styles.styleSegmentedbutton}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+    </segmentedbutton>
+
+    <chapter id='chapter1' label='label of chapter' title='title of chapter' style="{styles.styleChapter}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+        <textview label='label of textview in chapter' text='text of textview in chapter'>
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+        </textview>
+    </chapter>
+   
+    <popup id='popup1' label='label of popup' title='title of popup' style="{styles.stylePopup}">
+        <validation>
+			<validator cond="{valid.checked}" message="Form not valid" />
+		</validation>
+        <textview label='label of textview in popup' text='text of textview in popup'>
+            <validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+        </textview>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+		<textview label='label of textview in popup' text='text of textview in popup'/>
+        <popup label='label of popup in popup' title='title of popup in popup'>
+            <validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+            <textview label='label of textview in popup in popup' text='text of textview in popup in popup'>
+ 				<validation>
+					<validator cond="{valid.checked}" message="Form not valid" />
+				</validation>
+            </textview>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+			<textview label='label of textview in popup' text='text of textview in popup'/>
+        </popup>
+    </popup>
+
+    <table id='table1' label='label of table' recordset='{table c1, c2 ("r1c1", "r1c2"; "r2c1", "r2c2")}' record='r' style="{styles.styleTable}">
+        <header>
+            <row style="{styles.styleRow}">
+                <cell style="{styles.styleCell}">
+                   <textview label="c1 header" text='c1 header'>
+                        <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+                    </textview>
+                </cell>
+                <cell style="{styles.styleCell}">
+                    <textview text='c2 header'>
+                        <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+                    </textview>
+                </cell>
+            </row>
+        </header>
+        <row style="{styles.styleRow}">
+            <cell style="{styles.styleCell}">
+                <textbox label="c1 body" text='{r.c1}'>
+                    <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+                </textbox>
+            </cell>
+            <cell style="{styles.styleCell}">
+             	<textbox text='{r.c2}'>
+                    <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+                </textbox>
+            </cell>
+            <cell style="{styles.styleCell}">
+                <removebutton label='label of remove button' text='{"text of Remove button: " ||  r.c1 || " " || r.c2}'>
+                    <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+                </removebutton>
+            </cell>
+        </row>
+        <footer>
+            <row style="{styles.styleRow}">
+                <cell style="{styles.styleCell}">
+                    <textview label="c1 footer"  text='c1 footer'>
+                        <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+                    </textview>
+                </cell>
+                <cell style="{styles.styleCell}">
+                    <textview text='c2 footer'>
+                        <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+                    </textview>
+                </cell>
+            </row>
+        </footer>
+    </table>
+    <addbutton id='addbutton1' label='label of addbutton' table='table1' records='{select "r3c1" c1, "r3c1" c2}' text='Add' style="{styles.styleAddbutton}"/>
+
+    <submitbutton label="label of submitbutton" text="text of submitbutton" style="{styles.styleSubmitbutton}">
+        <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+    </submitbutton>
+
+    <discardbutton label="label of discardbutton" text="text of discardbutton" style="{styles.styleDiscardbutton}">
+        <validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+    </discardbutton>
+	
+	<block id="x">
+		<textview id='textview1'  text='text of textview' style="{styles.styleTextview}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</textview>
+		
+		<textbox id='textbox1'  text='text of textbox' hint="hint of textbox" style="{styles.styleTextbox}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</textbox>
+
+		<numberbox id='numberbox1' numberFormat='{decimalSeparator: ",", maxFraction: 2, groupSeparator:".", groupSize: 3, prefix:"pre", postfix:" post"}' float="false"  number='{42}' invalidNumberMessage='Not a number' style="{styles.styleNumberbox}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</numberbox>
+
+		<textarea id='textarea1'  text='text of textarea' hint="hint of textarea" lines="5" style="{styles.styleTextarea}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</textarea>
+
+		<photo id="photo"  style="{styles.stylePhoto}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</photo>
+		
+		<reportview  text="text of reportview" style="{styles.styleReportview}" reportviewId="alma">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</reportview>
+
+		<photoview  style="{styles.stylePhotoview}" photos='{["alma"]}'>
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</photoview>
+		
+		<checkbox id='checkbox1' text='text of checkbox' checked='{false}' style="{styles.styleCheckbox}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</checkbox>
+		
+		<datepicker id='datepicker1'  date='{(dtl 2014-03-19T00:00:00)}' invalidDateMessage='Not a date' dateFormat='(dtf yyyy"/"MM"/"dd)' style="{styles.styleDatepicker}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</datepicker>
+		
+		<timepicker id='timepicker1'  seconds='{3600}' invalidTimeMessage='Not a time' timeFormat='(dtf HH":"mm)' style="{styles.styleTimepicker}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</timepicker>
+		
+		<dropdown id='dropdown1'  choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' style="{styles.styleDropdown}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</dropdown>
+		
+		<radiogroup id='radiogroup1'  choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' style="{styles.styleRadiogroup}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</radiogroup>
+		
+		<mailto id='mailto1'  text='text of mailto' address='developers@mobilengine.com' style="{styles.styleMailto}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</mailto>
+		
+		<linkview id='linkview1'  text='text of linkview' url='http://www.mobilengine.com' style="{styles.styleLinkview}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</linkview>
+
+		<barview id="barview"  maxValue="{100}" value="{75}" style="{styles.styleBarview}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</barview>
+		
+		<actionbutton  style="{styles.styleActionbutton}" text="text of actionbutton">
+		<set value="{80}" target="barview.value"/>
+		</actionbutton>
+		
+		<segmentedbutton  choices='{table key, text (1, "text1"; 2, "text2"; 3, "text3")}' keyMap='{key}' textMap='{text}' style="{styles.styleSegmentedbutton}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+		</segmentedbutton>
+
+		<chapter id='chapter1'  title='title of chapter' style="{styles.styleChapter}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+			<textview  text='text of textview in chapter'>
+				<validation>
+					<validator cond="{valid.checked}" message="Form not valid" />
+				</validation>
+			</textview>
+		</chapter>
+	   
+		<popup id='popup1'  title='title of popup' style="{styles.stylePopup}">
+			<validation>
+				<validator cond="{valid.checked}" message="Form not valid" />
+			</validation>
+			<textview  text='text of textview in popup'>
+				<validation>
+					<validator cond="{valid.checked}" message="Form not valid" />
+				</validation>
+			</textview>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<textview  text='text of textview in popup'/>
+			<popup  title='title of popup in popup'>
+				<validation>
+					<validator cond="{valid.checked}" message="Form not valid" />
+				</validation>
+				<textview  text='text of textview in popup in popup'>
+					<validation>
+						<validator cond="{valid.checked}" message="Form not valid" />
+					</validation>
+				</textview>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+				<textview  text='text of textview in popup'/>
+			</popup>
+		</popup>
+
+		<table id='table1'  recordset='{table c1, c2 ("r1c1", "r1c2"; "r2c1", "r2c2")}' record='r' style="{styles.styleTable}">
+			<header>
+				<row style="{styles.styleRow}">
+					<cell style="{styles.styleCell}">
+					   <textview  text='c1 header'>
+							<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+						</textview>
+					</cell>
+					<cell style="{styles.styleCell}">
+						<textview text='c2 header'>
+							<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+						</textview>
+					</cell>
+				</row>
+			</header>
+			<row style="{styles.styleRow}">
+				<cell style="{styles.styleCell}">
+					<textbox  text='{r.c1}'>
+						<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+					</textbox>
+				</cell>
+				<cell style="{styles.styleCell}">
+					<textbox text='{r.c2}'>
+						<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+					</textbox>
+				</cell>
+				<cell style="{styles.styleCell}">
+					<removebutton  text='{"text of Remove button: " ||  r.c1 || " " || r.c2}'>
+						<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+					</removebutton>
+				</cell>
+			</row>
+			<footer>
+				<row style="{styles.styleRow}">
+					<cell style="{styles.styleCell}">
+						<textview   text='c1 footer'>
+							<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+						</textview>
+					</cell>
+					<cell style="{styles.styleCell}">
+						<textview text='c2 footer'>
+							<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+						</textview>
+					</cell>
+				</row>
+			</footer>
+		</table>
+		<addbutton id='addbutton1'  table='table1' records='{select "r3c1" c1, "r3c1" c2}' text='Add' style="{styles.styleAddbutton}"/>
+
+		<submitbutton  text="text of submitbutton" style="{styles.styleSubmitbutton}">
+			<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+		</submitbutton>
+
+		<discardbutton  text="text of discardbutton" style="{styles.styleDiscardbutton}">
+			<validation><validator cond="{valid.checked}" message="Form not valid" /></validation>
+		</discardbutton>
+
+	</block>
+</form>
