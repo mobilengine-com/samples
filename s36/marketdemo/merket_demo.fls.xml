@@ -1,0 +1,38 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='merket_demo' menuName='Munkanapló' platforms='web ios' style="{styles.styleAll}" dashboard="false">
+	<declarations>
+		<let id='rgsite' shape='table' value='{TABLE site, contact, phone ("Kopaszi gát", "Kiss József", "+36303030313";"Aquincum", "Kujbus Gergő", "+36305660313";"Clark Hotel", "Kiss József", "+36303030313")}'/>	</declarations>
+	<textview text="[TODO: Market icon placeholder]" style="{[styles.styleAll, styles.right]}"/>
+	<repeater record="s" recordset='{SELECT s.site, s.contact, s.phone FROM rgsite s}'>
+	<table record="r" recordset='{["a"]}' style="{styles.x50}"> 	<row> 						<cell><textview/></cell> <cell>
+		<chapter title="{s.site}" style="{[styles.styleAll, styles.bold, styles.greenFont, styles.center, styles.darkBg]}" >
+			<table record="r" recordset='{["a"]}' style="{styles.w50}"> <!--  -->
+				<row> 
+					<cell><textview text="{s.contact}" style="{[styles.styleAll, styles.greenFont, styles.center]}"/></cell>
+					<cell><linkview text="{s.phone}" style="{[styles.styleAll, styles.greenFont, styles.center]}" url='{"tel:"||s.phone}'/></cell>
+				</row>
+			</table>
+			<table record="r" recordset='{TABLE st, date, hourGreen, hourYellow, hourGrey (styles.bgOrange, "09.05", "0 óra", "0 óra", "0 óra";styles.bgOrange, "09.04", "0 óra", "0 óra", "0 óra";styles.bgOrange, "09.03", "0 óra", "0 óra", "0 óra";styles.bgOrange, "09.02", "0 óra", "0 óra", "0 óra";styles.bgGrey, "09.01", "30 óra", "0 óra", "4 óra")}'
+				style="{styles.tSite}">
+				<header>
+				<row> 
+					<cell><textview/></cell>
+					<cell><textview/></cell>
+					<cell><textview text="Jóváhagyva" style="{[styles.styleAll, styles.center, styles.smallFont]}"/></cell>
+					<cell><textview text="Várakozik" style="{[styles.styleAll, styles.center, styles.smallFont]}"/></cell>
+					<cell><textview text="Levonva" style="{[styles.styleAll, styles.center, styles.smallFont]}"/></cell>
+					<cell><textview/></cell>
+				</row>
+				</header>
+				<row> 
+					<cell><textview style="{[r.st, styles.taller]}" /></cell>
+					<cell><textview text="{r.date}" style="{[styles.styleAll, styles.center, styles.taller]}"/></cell>
+					<cell><textview text="{r.hourGreen}" style="{[styles.styleAll, styles.center, styles.bgGreen, styles.taller]}"/></cell>
+					<cell><textview text="{r.hourYellow}" style="{[styles.styleAll, styles.center, styles.bgOrange, styles.taller]}"/></cell>
+					<cell><textview text="{r.hourGrey}" style="{[styles.styleAll, styles.center, styles.bgGrey, styles.taller]}"/></cell>
+					<cell><submitbutton text='>' style="{[styles.center, styles.buttonNoFrame]}"/></cell>
+				</row>
+			</table>		
+		</chapter>
+		</cell> <cell><textview/></cell> 	</row>	</table>
+	</repeater>
+</form>

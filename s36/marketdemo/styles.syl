@@ -1,0 +1,400 @@
+styles {
+	style darkBg {
+		all {
+			backgroundColor = 212121
+		}
+	}	
+	style bgGreen {
+		all {
+			backgroundColor = 4CAF50
+		}
+	}		
+	style bgLightOrange {
+		all {
+			backgroundColor = FFB74D
+		}
+	}	
+	style bgOrange {
+		all {
+			backgroundColor = FF9800
+		}
+	}
+	style bgGrey {
+		all {
+			backgroundColor = 9E9E9E
+		}
+	}
+	
+	style x50 {
+		table {
+			columnWidth = 25%, 50%, 25%
+			width = fill
+		}
+	}	
+	
+	style w50 {
+		table {
+			columnWidth = 50%, 50%
+			width = fill
+		}
+	}	
+	style tSite {
+		all {
+            backgroundColor = 00000000
+            margin {
+                left = 0px
+                right = 0px
+                top = 0px
+                bottom = 0px
+            }
+            padding {
+                left = 0px
+                right = 0px
+                top = 0px
+                bottom = 0px
+            }
+            borderWidth {
+                left = 0px
+                right = 0px
+                top = 0px
+                bottom = 0px
+            }
+            borderColor = 00000000
+			}
+		table {
+			columnWidth = 0.02%, 0.22%, 0.22%, 0.22%, 0.22%, 0.1%
+			width = fill
+			/*borderWidth {
+					top = 0px
+					bottom = 0px
+					right = 0px
+					left = 0px
+			}
+			header = tSite
+			body = tSite
+			//borderColor = 21212100*/
+		}
+/*		row {
+			content = tSite
+		}
+		cell {
+			borderWidth {
+					top = 1px
+					bottom = 1px
+					right = 1px
+					left = 1px
+			}
+			borderColor = 212121
+			content = styleAll
+		}
+	*/	
+	}	
+	style smallFont {
+		all {
+			control {
+				fontSize = 10px
+			}
+		}
+	}	
+	style largeFont {
+		all {
+			control {
+				fontSize = 20px
+			}
+			button {
+				fontSize = 20px
+			}
+		}
+	}	
+	style buttonNoFrame {
+		all {
+			button {
+				backgroundColor = eeeeee00
+				borderWidth {
+					top = 0px
+					bottom = 0px
+					right = 0px
+					left = 0px					
+				}
+				padding {
+					top = 2px
+					bottom = 2px
+					right = 12px
+					left = 12px
+				}
+				borderColor = dbdbdb00
+			}
+		}
+	}		
+	style right {
+		all {
+			control {
+				textAlign = right
+			}
+		}
+	}	
+	style taller {
+		all {
+			padding {
+				top = 5px
+				bottom = 5px
+				left = 0px
+				right = 0px
+			}
+		}
+	}	
+	style bold {
+		all {
+			control {
+				bold = true
+			}
+			title {
+				bold = true
+			}
+		}
+	}	
+	style greenFont {
+		all {
+			control {
+				fontColor = 99C93B
+			}			
+			title {
+				fontColor = 99C93B
+			}
+			button {
+				fontColor = 99C93B
+			}
+		}
+	}
+	style center {
+		all {
+			control {
+				textAlign = center
+			}			
+			title {
+				textAlign = center
+			}
+		}
+	}
+	
+	style styleAll {
+		linkview {
+			button {
+				underline = true
+			}
+		}
+	
+		navigation {
+			padding {
+				left = 180px
+				right = 0px
+				top = 20px
+				bottom = 20px
+			}
+			
+			backgroundColor = 212121
+			title {
+				fontColor = F5F5F5
+				fontSize = 20px
+				bold = false
+				italic = false
+				underline = false
+				strikethrough = false
+				textAlign = center
+			}
+		}		
+		submitbutton {
+			button {
+                backgroundColor = 00000000
+				borderColor = 848484
+			}
+		}
+		discardbutton {
+			button {
+                backgroundColor = 00000000
+				borderColor = 848484
+			}
+		}
+		backbutton {
+			button {
+                backgroundColor = 00000000
+				borderColor = 848484
+			}
+		}
+        all {
+            backgroundColor = 00000000
+            margin {
+                left = 1px
+                right = 1px
+                top = 1px
+                bottom = 1px
+            }
+            padding {
+                left = 1px
+                right = 1px
+                top = 1px
+                bottom = 1px
+            }
+            borderWidth {
+                left = 0px
+                right = 0px
+                top = 0px
+                bottom = 0px
+            }
+            borderColor = 00000000
+			label {
+                fontColor = F5F5F5
+                fontSize = 16px
+                bold = false
+                italic = false
+				underline = false 
+				strikethrough = false
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 0px
+                    right = 0px
+                    top = 0px
+                    bottom = 0px
+                }
+                borderColor = 00000000
+            }
+            control {
+                fontColor = F5F5F5
+                fontSize = 16px
+                bold = false
+                italic = false
+					underline = false 
+					strikethrough = false
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 0px
+                    right = 0px
+                    top = 0px
+                    bottom = 0px
+                }
+                borderColor = 0000007F
+            }
+
+            fontColor = F5F5F5
+            fontSize = 16px
+            bold = false
+            italic = false
+					underline = false 
+					strikethrough = false
+            textAlign = left
+            bar {
+                color = 00000000
+                borderWidth = 1px
+                borderColor = 00000000
+                height = 1px
+                align = left
+            }
+            prefix {
+                fontColor = F5F5F5
+                fontSize = 16px
+                bold = false
+                italic = false
+					underline = false 
+					strikethrough = false
+                textAlign = left
+            }
+            postfix {
+                fontColor = F5F5F5
+                fontSize = 16px
+                bold = false
+                italic = false
+					underline = false 
+					strikethrough = false
+                textAlign = left
+            }
+            confirm {
+                fontColor = F5F5F5
+                fontSize = 16px
+                bold = false
+                italic = false
+					underline = false 
+					strikethrough = false
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 0px
+                    right = 0px
+                    top = 0px
+                    bottom = 0px
+                }
+                borderColor = 00000000
+            }
+            header = styleAll
+            body = styleAll
+            footer = styleAll
+            title {
+                fontColor = F5F5F5
+                fontSize = 16px
+                bold = false
+                italic = false
+					underline = false 
+					strikethrough = false
+                textAlign = left
+                backgroundColor = 00000000
+                margin {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                padding {
+                    left = 1px
+                    right = 1px
+                    top = 1px
+                    bottom = 1px
+                }
+                borderWidth {
+                    left = 0px
+                    right = 0px
+                    top = 0px
+                    bottom = 0px
+                }
+                borderColor = FF00007F
+            }
+            content = styleAll
+        }
+    }
+}
