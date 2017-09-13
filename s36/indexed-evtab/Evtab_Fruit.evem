@@ -1,0 +1,10 @@
+<Event Name="Evtab_Fruit" xmlns="http://schemas.mobilengine.com/event/v1">
+  <Columns>
+    <Column Name="f_name" Type="Text" />
+	<Column Name="f_type" Type="Text" />
+	<Column Name="f_price" Type="Integer" />
+	<Column Name="f_weight" Type="Float" />
+	<Column Name="f_transport" Type="Date" Indexed="true" />
+	<Column Name="f_user" Type="Text" AgentName="true" />
+  </Columns>
+</Event>
