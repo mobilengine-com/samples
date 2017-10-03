@@ -1,0 +1,6 @@
+<Reftab Name="FruitType" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="Type" Type="Text" />
+    <Column Name="Code" Type="Text" />
+  </Columns>
+</Reftab>
