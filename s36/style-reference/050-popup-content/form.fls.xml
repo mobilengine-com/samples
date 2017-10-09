@@ -1,0 +1,11 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='popupContent' menuName='popupContent' platforms='web ios' style="{styles.yellowTextview}">
+	<popup title="style from form">
+		<textview text="a textview, that looks like the default style" />
+	</popup>
+	<popup title="style on popup" style="{styles.yellowTextview}">
+		<textview text="a textview, that looks like the default style" />
+	</popup>
+	<popup title="content set in style" style="{styles.yellowTextviewPopupContent}">
+		<textview text="a nice yellow textview" />
+	</popup>
+</form>

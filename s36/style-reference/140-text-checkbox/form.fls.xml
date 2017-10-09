@@ -1,0 +1,6 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='text-checkbox' menuName='text-checkbox' platforms='web ios'>
+	<checkbox label="checkbox" text="text" style="{styles.mainStyle}" />
+	<textview label="textview" text="text" style="{styles.mainStyle}" />
+	<textbox label="textbox" text="text" style="{styles.mainStyle}" />
+	<textarea label="textarea" text="text" style="{styles.mainStyle}" />
+</form>

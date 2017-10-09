@@ -1,0 +1,6 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='chapter' menuName='chapter' platforms='web ios' style="{styles.numberbox}">
+	<numberbox label="numberbox" 
+		numberFormat='{decimalSeparator: ",", maxFraction: 2, groupSeparator:".", groupSize: 3, prefix:"pre", postfix:" post"}' 
+		float="false" 
+		number="{123}" />
+</form>

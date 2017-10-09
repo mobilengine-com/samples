@@ -1,0 +1,65 @@
+styles {
+  style base {
+    textview {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+
+      label {
+        borderColor = 2196F3
+        backgroundColor = 90CAF9
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+
+      control {
+        borderColor = 4CAF50
+        backgroundColor = A5D6A7
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+        width = 300px
+      }
+    }
+  }
+
+  style labelAlignStart {
+    all {
+      label {
+        align = start
+      }
+    }
+  }
+  style labelAlignCenter {
+    all {
+      label {
+        align = center
+      }
+    }
+  }
+  style labelAlignEnd {
+    all {
+      label {
+        align = end
+      }
+    }
+  }
+
+  style labelLeft {
+    all {
+      label {
+        position = left
+      }
+    }
+  }
+  style labelTop {
+    all {
+      label {
+        position = top
+      }
+    }
+  }
+
+  style marginTop {
+    all {
+      margin { top=15px left=0px right=0px bottom=0px }
+    }
+  }
+}

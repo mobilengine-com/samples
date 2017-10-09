@@ -1,0 +1,13 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='navigation' menuName='navigation' platforms='web ios' style="{styles.navigation}">
+	<popup title="popup">
+		<popup title="nested popup">
+			<textview text="just some content here" />
+		</popup>
+	</popup>
+
+	<textbox label="Anything is invalid here:">
+		<validation>
+			<validator cond="{false}" message="Invalid" />
+		</validation>
+	</textbox>
+</form>

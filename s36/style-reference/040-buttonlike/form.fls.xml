@@ -1,0 +1,6 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='buttonlike' menuName='buttonlike' platforms='web ios'>
+	<submitbutton label="submitbutton" text="submitbutton" style="{styles.buttonlike}" />
+	<datepicker label="datepicker" style="{styles.buttonlike}" dateFormat='(dtf yyyy"/"MM"/"dd)' />
+	<timepicker label="timepicker" style="{styles.buttonlike}" timeFormat='(dtf HH":"mm)' />
+	<radiogroup label="radiogroup" style="{styles.buttonlike}" choices='{table k, t (1, "t1"; 2, "t2"; 3, "t3")}' keyMap='{k}' textMap='{t}' />
+</form>

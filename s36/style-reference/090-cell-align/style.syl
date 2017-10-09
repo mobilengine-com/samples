@@ -1,0 +1,43 @@
+styles {
+  style table {
+    table {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+
+      body = table
+    }
+    row {
+        content = table
+    }
+    cell {
+        content = table
+        borderColor = 2196F3
+        backgroundColor = 90CAF9
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+    }
+    textview {
+        control {
+            borderColor = 4CAF50
+            backgroundColor = A5D6A7
+            borderWidth { top=5px right=5px bottom=5px left=5px }
+        }
+    }
+  }
+
+  style cellTop {
+    cell {
+      verticalAlign = top
+    }
+  }
+  style cellMiddle {
+    cell {
+      verticalAlign = middle
+    }
+  }
+  style cellBottom {
+    cell {
+      verticalAlign = bottom
+    }
+  }
+}

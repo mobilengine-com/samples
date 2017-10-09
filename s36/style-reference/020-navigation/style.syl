@@ -1,0 +1,44 @@
+styles {
+  style navigation {
+    navigation {
+      borderColor = 3F51B5
+      backgroundColor = 9FA8DA
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+
+      spinnerColor = C5E1A5
+      spinnerSize = 50px
+
+      title {
+        fontColor = C8E6C9
+      }
+      breadcrumbs {
+        fontColor = CDDC39
+      }
+      validationErrors {
+        fontColor = F44336
+      }
+    }
+
+    // styling the buttons in the header
+    submitbutton {
+      button {
+        backgroundColor = E6EE9C
+      }
+    }
+    discardbutton {
+      button {
+        backgroundColor = FFB74D
+      }
+    }
+    backbutton {
+      button {
+        backgroundColor = FFE082
+      }
+    }
+
+    // make sure this style is applied inside popups
+    popup {
+      content = navigation
+    }
+  }
+}

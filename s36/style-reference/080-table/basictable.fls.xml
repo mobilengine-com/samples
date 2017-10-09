@@ -1,0 +1,63 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='basictable' menuName='basictable' platforms='web ios' style="{styles.basictable}">
+	<table label="table width: content" recordset='{table c1, c2 ("row 1, col 1", "row 1, col 2"; "row 2, col 1", "row 2, col 2")}' record='r'>
+		<header>
+			<row>
+				<cell>
+					<textview text="column 1 header" />
+				</cell>
+				<cell>
+					<textview text="column 2 header" />
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell>
+				<textview text="{r.c1}" />
+			</cell>
+			<cell>
+				<textview text="{r.c2}" />
+			</cell>
+		</row>
+		<footer>
+			<row>
+				<cell>
+					<textview text="column 1 footer" />
+				</cell>
+				<cell>
+					<textview text="column 2 footer" />
+				</cell>
+			</row>
+		</footer>
+	</table>
+
+	<table label="table width: fill" recordset='{table c1, c2 ("row 1, col 1", "row 1, col 2"; "row 2, col 1", "row 2, col 2")}' record='r' style="{styles.tableFill}">
+		<header>
+			<row>
+				<cell>
+					<textview text="column 1 header" />
+				</cell>
+				<cell>
+					<textview text="column 2 header" />
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell>
+				<textview text="{r.c1}" />
+			</cell>
+			<cell>
+				<textview text="{r.c2}" />
+			</cell>
+		</row>
+		<footer>
+			<row>
+				<cell>
+					<textview text="column 1 footer" />
+				</cell>
+				<cell>
+					<textview text="column 2 footer" />
+				</cell>
+			</row>
+		</footer>
+	</table>
+</form>

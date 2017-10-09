@@ -1,0 +1,40 @@
+styles {
+  style basictable {
+    table {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+
+      label {
+        borderColor = 2196F3
+        backgroundColor = 90CAF9
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+        width = 150px
+      }
+
+      control {
+        borderColor = 4CAF50
+        backgroundColor = A5D6A7
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+
+      header = basictable
+      body = basictable
+      footer = basictable
+    }
+    row {
+      content = basictable
+    }
+    cell {
+      borderColor = FF9800
+      backgroundColor = FFCC80
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+    }
+  }
+
+  style tableFill {
+    table {
+      width = fill
+    }
+  }
+}

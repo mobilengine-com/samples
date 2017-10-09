@@ -1,0 +1,7 @@
+server program 'saveMediaid' for form 'uploadphotos'
+using reftab 'uploadedPhotos';
+{
+	foreach (var photo in form.newPhotos.photos) {
+		db.uploadedPhotos.Insert({mediaid: photo.photoId});
+	}
+}

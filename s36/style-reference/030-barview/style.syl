@@ -1,0 +1,29 @@
+styles {
+  style barview {
+    barview {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+
+      label {
+        borderColor = 2196F3
+        backgroundColor = 90CAF9
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+
+      control {
+        borderColor = A5D6A7
+        backgroundColor = 4CAF50
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+
+      bar {
+        borderColor = F44336
+        color = B71C1C
+        borderWidth = 5px
+        height = 25%
+        align = left
+      }
+    }
+  }
+}

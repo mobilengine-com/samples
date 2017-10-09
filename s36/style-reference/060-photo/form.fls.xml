@@ -1,0 +1,3 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='photo' menuName='photo' platforms='web ios' style="{styles.photo}">
+	<photo label="Photos:" />
+</form>

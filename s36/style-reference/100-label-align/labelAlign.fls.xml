@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form id="labelalign" menuName="labelalign" platforms="ios web" xmlns="http://schemas.mobilengine.com/fls/v2" style="{styles.base}">
+	<declarations>
+		<let id="longText" shape="scalar" value='{"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}' />
+	</declarations>
+
+	<textview label="label left, label align: default" text="{longText}" style="{[styles.labelLeft]}" />
+	<textview label="label left, label align: start" text="{longText}" style="{[styles.labelLeft, styles.labelAlignStart]}" />
+	<textview label="label left, label align: center" text="{longText}" style="{[styles.labelLeft, styles.labelAlignCenter]}" />
+	<textview label="label left, label align: end" text="{longText}" style="{[styles.labelLeft, styles.labelAlignEnd]}" />
+
+	<textview label="label top, label align: default" text="{longText}" style="{[styles.labelTop, styles.marginTop]}" />
+	<textview label="label top, label align: start" text="{longText}" style="{[styles.labelTop, styles.labelAlignStart]}" />
+	<textview label="label top, label align: center" text="{longText}" style="{[styles.labelTop, styles.labelAlignCenter]}" />
+	<textview label="label top, label align: end" text="{longText}" style="{[styles.labelTop, styles.labelAlignEnd]}" />
+</form>

@@ -1,0 +1,6 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='barview' menuName='barview' platforms='web ios' style="{styles.barview}">
+	<barview label="Barview at 25%" value="{0.25}" />
+	<barview label="Barview at 50%" value="{0.50}" />
+	<barview label="Barview at 75%" value="{0.75}" />
+	<barview label="Barview at 100%" value="{1}" />
+</form>

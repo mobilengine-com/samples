@@ -1,0 +1,61 @@
+styles {
+  style icon {
+    textview {
+      label {
+        borderColor = 2196F3
+        backgroundColor = 90CAF9
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+    }
+  }
+
+  style title {
+    textview {
+      backgroundColor = CDCDCD
+    }
+  }
+
+  style iconTop {
+    textview {
+      label {
+        iconPosition = top
+      }
+    }
+  }
+  style iconRight {
+    textview {
+      label {
+        iconPosition = right
+      }
+    }
+  }
+  style iconBottom {
+    textview {
+      label {
+        iconPosition = bottom
+      }
+    }
+  }
+  style iconLeft {
+    textview {
+      label {
+        iconPosition = left
+      }
+    }
+  }
+
+  style textCenter {
+    textview {
+      label {
+        textAlign = center
+      }
+    }
+  }
+  style textRight {
+    textview {
+      label {
+        textAlign = right
+      }
+    }
+  }
+}

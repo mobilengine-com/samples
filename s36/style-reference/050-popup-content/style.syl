@@ -1,0 +1,20 @@
+styles {
+  style yellowTextview {
+    textview {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+    }
+  }
+
+  style yellowTextviewPopupContent {
+    textview {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+    }
+    popup {
+      content = yellowTextviewPopupContent
+    }
+  }
+}

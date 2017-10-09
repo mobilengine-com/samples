@@ -1,0 +1,47 @@
+styles {
+  style chapter {
+    chapter {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+
+      label {
+        borderColor = 2196F3
+        backgroundColor = 90CAF9
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+        width = 100%
+      }
+
+      control {
+        borderColor = 4CAF50
+        backgroundColor = A5D6A7
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+        margin { top=0px right=0px bottom=0px left=0px }
+      }
+
+      title {
+        borderColor = B71C1C
+        backgroundColor = F44336
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+
+      content = content
+    }
+  }
+
+  style content {
+    textview {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+    }
+
+    canvas {
+      borderColor = FF9800
+      backgroundColor = FFCC80
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+      // remove the default margin of the canvas inside the chapter
+      margin { top=0px right=0px bottom=0px left=0px }
+    }
+  }
+}

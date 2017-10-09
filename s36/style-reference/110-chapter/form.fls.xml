@@ -1,0 +1,5 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='chapter' menuName='chapter' platforms='web ios' style="{styles.chapter}">
+	<chapter label="label" title="title">
+		<textview text="chapter contents here" />
+	</chapter>
+</form>

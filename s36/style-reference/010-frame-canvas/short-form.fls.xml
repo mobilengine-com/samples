@@ -1,0 +1,3 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='short-form' menuName='short-form' platforms='web ios' style="{styles.frameCanvas}">
+	<textview text="a short form" />
+</form>

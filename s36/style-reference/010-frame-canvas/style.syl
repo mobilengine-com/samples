@@ -1,0 +1,14 @@
+styles {
+  style frameCanvas {
+    frame {
+      borderColor = F44336
+      backgroundColor = EF9A9A
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+    }
+    canvas {
+      borderColor = 9C27B0
+      backgroundColor = CE93D8
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+    }
+  }
+}

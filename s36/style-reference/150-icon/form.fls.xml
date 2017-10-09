@@ -1,0 +1,19 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='icon' menuName='icon' platforms='web ios'>
+	<textview label="textAlign: left" style="{styles.title}" />
+	<textview label="iconPosition: top" style="{[styles.icon, styles.iconTop]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: right" style="{[styles.icon, styles.iconRight]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: bottom" style="{[styles.icon, styles.iconBottom]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: left" style="{[styles.icon, styles.iconLeft]}" labelIcon="{icons.cart}" />
+
+	<textview label="textAlign: center" style="{styles.title}" />
+	<textview label="iconPosition: top" style="{[styles.icon, styles.textCenter, styles.iconTop]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: right" style="{[styles.icon, styles.textCenter, styles.iconRight]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: bottom" style="{[styles.icon, styles.textCenter, styles.iconBottom]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: left" style="{[styles.icon, styles.textCenter, styles.iconLeft]}" labelIcon="{icons.cart}" />
+
+	<textview label="textAlign: right" style="{styles.title}" />
+	<textview label="iconPosition: top" style="{[styles.icon, styles.textRight, styles.iconTop]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: right" style="{[styles.icon, styles.textRight, styles.iconRight]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: bottom" style="{[styles.icon, styles.textRight, styles.iconBottom]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: left" style="{[styles.icon, styles.textRight, styles.iconLeft]}" labelIcon="{icons.cart}" />
+</form>
