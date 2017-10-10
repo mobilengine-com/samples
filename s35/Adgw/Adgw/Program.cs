@@ -63,7 +63,7 @@ namespace Adgw
                     {
                         // Handle exception
                     }
-                    await Task.Delay(TimeSpan.FromMinutes(int.Parse(ConfigurationManager.AppSettings["secDelay"])), token);
+                    await Task.Delay(TimeSpan.FromMinutes(int.Parse(ConfigurationManager.AppSettings["minDelay"])), token);
                 }
             }
 
