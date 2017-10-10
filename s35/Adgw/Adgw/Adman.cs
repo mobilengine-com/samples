@@ -29,8 +29,6 @@ namespace Adgw
 
         public List<Aduser> RgadusrRead()
         {
-            var rgadusr = new List<Aduser>();
-
             var ldapDirectoryIdentifier = new LdapDirectoryIdentifier(hostDomainserver);
             var networkCredential = new NetworkCredential(usernAdLookup, pwdUserLookup);
             var connection = new LdapConnection(ldapDirectoryIdentifier) { AuthType = AuthType.Basic };
@@ -41,53 +39,65 @@ namespace Adgw
             }
             catch (Exception exception)
             {
-                Trace.WriteLine(exception.ToString());
+                log.Error("cannot connect to active directory", exception);
+                return null;
             }
 
-            connection.SessionOptions.ProtocolVersion = 3;
-
-            var request = new SearchRequest(dnAd,
-                "(&(objectClass=person)(objectClass=user)(memberOf={0}))"
-                    .StFormat(dnMEUserGroup),
-                SearchScope.Subtree,
-                new[]
-                {
-                    "userprincipalname", "usnchanged", "whenchanged", "pwdlastset", "objectGUID", "SAMAccountName",
-                    "memberOf", "cn", "displayname", "mail", "telephonenumber", "mobile"
-                });
-
-
-            var searchOptions = new SearchOptionsControl(SearchOption.DomainScope);
-            request.Controls.Add(searchOptions);
-
-            var pageResultRequestControl = new PageResultRequestControl(1000);
-            request.Controls.Add(pageResultRequestControl);
-            while (true)
+            try
             {
-                var searchResponse = (SearchResponse)connection.SendRequest(request);
-                var pageResponse = (PageResultResponseControl)searchResponse.Controls[0];
+                var rgadusr = new List<Aduser>();
+
+                connection.SessionOptions.ProtocolVersion = 3;
+
+                var request = new SearchRequest(dnAd,
+                    "(&(objectClass=person)(objectClass=user)(memberOf={0}))"
+                        .StFormat(dnMEUserGroup),
+                    SearchScope.Subtree,
+                    new[]
+                    {
+                        "userprincipalname", "usnchanged", "whenchanged", "pwdlastset", "objectGUID", "SAMAccountName",
+                        "memberOf", "cn", "displayname", "mail", "telephonenumber", "mobile"
+                    });
 
 
-                foreach (SearchResultEntry entry in searchResponse.Entries)
+                var searchOptions = new SearchOptionsControl(SearchOption.DomainScope);
+                request.Controls.Add(searchOptions);
+
+                var pageResultRequestControl = new PageResultRequestControl(1000);
+                request.Controls.Add(pageResultRequestControl);
+                while (true)
                 {
-                    var aduser = new Aduser();
-                    aduser.ParseFromEntry(entry);
-                    if (!string.IsNullOrEmpty(aduser.userprincipalname))
-                        rgadusr.Add(aduser);
+                    var searchResponse = (SearchResponse) connection.SendRequest(request);
+                    var pageResponse = (PageResultResponseControl) searchResponse.Controls[0];
+
+
+                    foreach (SearchResultEntry entry in searchResponse.Entries)
+                    {
+                        var aduser = new Aduser();
+                        aduser.ParseFromEntry(entry);
+                        if (!string.IsNullOrEmpty(aduser.userprincipalname))
+                            rgadusr.Add(aduser);
+                    }
+
+                    if (pageResponse.Cookie.Length == 0)
+                        break;
+
+                    pageResultRequestControl.Cookie = pageResponse.Cookie;
                 }
 
-                if (pageResponse.Cookie.Length == 0)
-                    break;
-
-                pageResultRequestControl.Cookie = pageResponse.Cookie;
+                foreach (var adusr in rgadusr)
+                {
+                    log.Debug(adusr);
+                }
+                log.Debug("-- end of users --");
+                return rgadusr;
             }
-
-            foreach (var adusr in rgadusr)
+            catch (Exception er)
             {
-                log.Debug(adusr);
+                log.Error("cannot read users from active directory", er);
+                return null;
             }
-            log.Debug("-- end of users --");
-            return rgadusr;
+
         }
 
     }

@@ -17,32 +17,10 @@ namespace Adgw
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(Program));
 
-        #region Nested classes to support running as service
-        public const string ServiceName = "Adgw";
-
-        public class Service : ServiceBase
-        {
-            Procw procw = new Procw();
-            public Service()
-            {
-                ServiceName = Program.ServiceName;
-            }
-
-            protected override void OnStart(string[] args)
-            {
-                procw.Start(args);
-            }
-
-            protected override void OnStop()
-            {
-                procw.Stop();
-            }
-        }
-        #endregion
-
         static void Main(string[] args)
         {
-            BasicConfigurator.Configure();
+            LogManager.GetLogger("initialise logging system");
+            XmlConfigurator.Configure();
             log.Info("Starting adgw");
 
             AppDomain.CurrentDomain.UnhandledException += (_, unhandledExceptionEventArgs) =>
@@ -52,7 +30,7 @@ namespace Adgw
             {
                 log.Info("as service");
                 // running as service
-                using (var service = new Service())
+                using (var service = new AdgwService())
                     ServiceBase.Run(service);
             } else {
                 log.Info("as console app");
@@ -67,7 +45,7 @@ namespace Adgw
         }
 
 
-        private class Procw
+        public class Procw
         {
 
             private Task taskProcess;
@@ -191,5 +169,4 @@ namespace Adgw
 
         }
     }
-
 }

@@ -26,6 +26,9 @@ namespace Adgw
                 ConfigurationManager.AppSettings["ad:dnMEUserGroup"]
                 );
             var rgadusr = adman.RgadusrRead();
+            if (rgadusr == null)
+                return;
+
             log.Debug("reading {0} users from ad in {1} msec".StFormat(rgadusr.Count, sw1.ElapsedMilliseconds));
             sw1.Reset(); sw1.Start();
 

@@ -51,7 +51,7 @@ namespace Adgw
                 companyId = idCompany,
                 displayName = aduser.displayname,
                 mobileNumber = aduser.mobile, // TODO: if mobile user, derive from groups
-                mobilePlatform = "ios", // TODO: if mobile user, which platform
+                mobilePlatform = "android,ios", // TODO: if mobile user, which platform
                 role = "companyadmin", // TODO: which role
                 webformAccess = true,  // TODO: if wef user
                 biAccess = true, // TODO: if bif user
