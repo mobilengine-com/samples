@@ -47,6 +47,7 @@ namespace Adgw
 
         public class Procw
         {
+            private static readonly ILog log = LogManager.GetLogger(typeof(Procw));
 
             private Task taskProcess;
             private CancellationTokenSource cantosoTaskProcess;
@@ -57,13 +58,17 @@ namespace Adgw
                 {
                     try
                     {
+                        log.Debug("processing");
                         Process();
                     }
                     catch (Exception e)
                     {
-                        // Handle exception
+                        log.Error("error while processing", e);
                     }
-                    await Task.Delay(TimeSpan.FromMinutes(int.Parse(ConfigurationManager.AppSettings["minDelay"])), token);
+                    var minDelay = int.Parse(ConfigurationManager.AppSettings["minDelay"]);
+                    log.Debug("waiting {0} mins".StFormat(minDelay));
+                    await Task.Delay(TimeSpan.FromMinutes(minDelay), token);
+                    log.Debug("done waiting");
                 }
             }
 
