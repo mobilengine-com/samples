@@ -8,7 +8,7 @@
 			<filedownload text="{f.filn}" mediaId="{f.mediaid}" fileName="{f.filn}" />
 		</repeater>
 	</chapter>
-	<fileupload id="filupl" label="upload v18" acceptedMimetypes="application/pdf, application/word, application/excel"/>
+	<fileupload id="filupl" label="upload pdf, doc or xls" acceptedMimetypes="application/pdf, application/word, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	
 	<table id="tblPhotoGuid" label="File data:" record="filedata" recordset='{select p.mediaId, p.name, p.type, p.size from filupl.files p}'>
 	<header>
