@@ -1,0 +1,18 @@
+<Form name="FildwlControl" description="File download Control">
+  <Control type="panel" name="Root" color="RGB(255,255,255)" >
+	<!--<Control type="location" name="location" />-->
+	<Control type="label" name="label1" text="Filedownload control" color="RGB(245,130,32)" />
+    <Control data_type="string,string,string,string" navigation="inline" generator="SELECT fs.mediaid, fs.filn, fs.type, fs.size, fs.dirid FROM REFERENCE_files fs" ref_arg="" type="panel" name="fildown">
+        <Control  type="filedownload" name="fildwlXxx" 
+			label="download xxx" 
+			text_reference="REF" text_ref_arg="PARENT.col1" 
+			mediaid_reference="REF" mediaid_ref_arg="PARENT.col0"  
+			filename_reference="=XXX-@1" filename_ref_arg="PARENT.col1"/>
+        <Control  type="filedownload" name="fildwlOrig" 
+			label="download original" 
+			text_reference="REF" text_ref_arg="PARENT.col1" 
+			mediaid_reference="REF" mediaid_ref_arg="PARENT.col0"  
+			filename_reference="REF" filename_ref_arg="PARENT.col1"/>
+	</Control>
+  </Control>
+</Form>

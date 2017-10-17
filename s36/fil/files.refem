@@ -4,5 +4,6 @@
 		<Column Name="filn" Type="Text" />
 		<Column Name="type" Type="Text" />
 		<Column Name="dirid" Type="Text" />
+		<Column Name="size" Type="Integer" />
 	</Columns>
 </Reftab>
