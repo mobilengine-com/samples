@@ -62,82 +62,89 @@ namespace Adgw
             int cNew = 0, cUpdate = 0, cPwdReset = 0;
             foreach (var aduser in rgadusr)
             {
-                var umanusrCreate = aduser.UsrprmFromAduser(
-                    int.Parse(ConfigurationManager.AppSettings["me:companyId"]),
-                    ConfigurationManager.AppSettings["me:issuer"],
-                    rgforms,
-                    rgdashboards
-                    );
+                mpMeusrByUsern.Remove(aduser.userprincipalname);
+                try
+                {
+                    var umanusrCreate = aduser.UsrprmFromAduser(
+                        int.Parse(ConfigurationManager.AppSettings["me:companyId"]),
+                        ConfigurationManager.AppSettings["me:issuer"],
+                        rgforms,
+                        rgdashboards
+                        );
 
-                if (!mpMeusrByUsern.ContainsKey(aduser.userprincipalname))
-                {
-                    // create
-                    log.Debug("creating user {0}".StFormat(umanusrCreate.usern));
-                    var jsonCruser = uman.JsonByRequest("createuser", JsonConvert.SerializeObject(umanusrCreate));
-                    if (jsonCruser == null) return;
-                    dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
-                    cNew ++;
-                }
-                else
-                {
-                    // alter
-                    bool fAlterNeeded;
-                    bool fPwdReset;
-                    var umanusrlist = mpMeusrByUsern[aduser.userprincipalname];
-                    if (!string.IsNullOrEmpty(umanusrlist.extraData))
+                    if (!mpMeusrByUsern.ContainsKey(aduser.userprincipalname))
                     {
-                        try
-                        {
-                            var adgwpar = JObject.Parse(umanusrlist.extraData).ToObject<Usru.Adgwpar>();
-                            // send reset pwd
-                            fPwdReset = long.Parse(adgwpar.pwdlastset) < long.Parse(aduser.pwdlastset);
-                            if ( fPwdReset )
-                            {
-                                log.Debug("pwd change detected, mobile tokens have been revoked from {0}".StFormat(aduser.userprincipalname));
-                            }
-
-                            // TODO: objectGuid better handling
-                            Debug.Assert(adgwpar.objectGUID == aduser.objectGUID, "should not change user principal");
-
-                            // send only when changed (compare changed time, should get back from uman first)
-                            fAlterNeeded = long.Parse(adgwpar.usnchanged) < long.Parse(aduser.usnchanged);
-                            if (!fAlterNeeded)
-                            {
-                                log.Debug("user {0} do not need changing, no change has been detected".StFormat(aduser.userprincipalname));
-                            }
-                        }
-                        catch (Exception er)
-                        {
-                            log.Warn("user extra data cannot be parsed, user will be altered", er);
-                            fAlterNeeded = true;
-                            fPwdReset = true;
-                        }
+                        // create
+                        log.Debug("creating user {0}".StFormat(umanusrCreate.usern));
+                        var jsonCruser = uman.JsonByRequest("createuser", JsonConvert.SerializeObject(umanusrCreate));
+                        if (jsonCruser == null) return;
+                        dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
+                        cNew ++;
                     }
                     else
                     {
-                        fAlterNeeded = true;
-                        fPwdReset = true;
-                    }
+                        // alter
+                        bool fAlterNeeded;
+                        bool fPwdReset;
+                        var umanusrlist = mpMeusrByUsern[aduser.userprincipalname];
+                        if (!string.IsNullOrEmpty(umanusrlist.extraData))
+                        {
+                            try
+                            {
+                                var adgwpar = JObject.Parse(umanusrlist.extraData).ToObject<Usru.Adgwpar>();
+                                // send reset pwd
+                                fPwdReset = long.Parse(adgwpar.pwdlastset) < long.Parse(aduser.pwdlastset);
+                                if (fPwdReset)
+                                {
+                                    log.Debug("pwd change detected, mobile tokens have been revoked from {0}".StFormat(aduser.userprincipalname));
+                                }
 
-                    var umanUsrAlter = umanusrCreate;
-                    umanUsrAlter.userId = umanusrlist.userId;
-                    if (fAlterNeeded)
-                    {
-                        log.Debug("altering user {0}".StFormat(aduser.userprincipalname));
-                        var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrAlter));
-                        if (jsonAltuser == null) return;
-                        dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
-                        cUpdate++;
-                    }
-                    if (fPwdReset)
-                    {
-                        log.Debug("mobtok revoke of user {0}".StFormat(aduser.userprincipalname));
-                        var jsonResmobtok = uman.JsonByRequest("RevokeMobileTokensOfUser", JsonConvert.SerializeObject(new Usrid { userId = umanusrlist.userId }));
-                        if (jsonResmobtok == null) return;
-                        cPwdReset++;
+                                // TODO: objectGuid better handling
+                                Debug.Assert(adgwpar.objectGUID == aduser.objectGUID, "should not change user principal");
+
+                                // send only when changed (compare changed time, should get back from uman first)
+                                fAlterNeeded = long.Parse(adgwpar.usnchanged) < long.Parse(aduser.usnchanged);
+                                if (!fAlterNeeded)
+                                {
+                                    log.Debug("user {0} do not need changing, no change has been detected".StFormat(aduser.userprincipalname));
+                                }
+                            }
+                            catch (Exception er)
+                            {
+                                log.Warn("user extra data cannot be parsed, user will be altered", er);
+                                fAlterNeeded = true;
+                                fPwdReset = true;
+                            }
+                        }
+                        else
+                        {
+                            fAlterNeeded = true;
+                            fPwdReset = true;
+                        }
+
+                        var umanUsrAlter = umanusrCreate;
+                        umanUsrAlter.userId = umanusrlist.userId;
+                        if (fAlterNeeded)
+                        {
+                            log.Debug("altering user {0}".StFormat(aduser.userprincipalname));
+                            var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrAlter));
+                            if (jsonAltuser == null) return;
+                            dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
+                            cUpdate++;
+                        }
+                        if (fPwdReset)
+                        {
+                            log.Debug("mobtok revoke of user {0}".StFormat(aduser.userprincipalname));
+                            var jsonResmobtok = uman.JsonByRequest("RevokeMobileTokensOfUser", JsonConvert.SerializeObject(new Usrid {userId = umanusrlist.userId}));
+                            if (jsonResmobtok == null) return;
+                            cPwdReset++;
+                        }
                     }
                 }
-                mpMeusrByUsern.Remove(aduser.userprincipalname);
+                catch (Exception er)
+                {
+                    log.Error("user {0} cannot be processed due to error".StFormat(aduser.SAMAccountName), er);
+                }
             }
             log.Debug("createing {0}, updating {1} users, reseting passwords: {2} through uman in {3} msec".StFormat(cNew, cUpdate, cPwdReset, sw1.ElapsedMilliseconds));
             sw1.Reset(); sw1.Start();
@@ -149,13 +156,19 @@ namespace Adgw
 //                    log.Debug("deleting user {0}".StFormat(umanusrlist.usern));
 //                    var jsonDeluser = uman.JsonByRequest("deleteuser", JsonConvert.SerializeObject(new Usrid {userId = umanusrlist.userId}));
 //                    if (jsonDeluser == null) return;
-
-                var umanUsrSoftDelete = umanusrlist.UsrprmToSoftDelete();
-                log.Debug("revoking rights of user (soft delete) {0}".StFormat(umanusrlist.usern));
-                var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrSoftDelete));
-                if (jsonAltuser == null) return;
-                dacsman.SendDeleteDacs(umanusrlist);
-                cDel++;
+                try
+                {
+                    var umanUsrSoftDelete = umanusrlist.UsrprmToSoftDelete();
+                    log.Debug("revoking rights of user (soft delete) {0}".StFormat(umanusrlist.usern));
+                    var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrSoftDelete));
+                    if (jsonAltuser == null) return;
+                    dacsman.SendDeleteDacs(umanusrlist);
+                    cDel++;
+                }
+                catch (Exception er)
+                {
+                    log.Error("user delete {0} cannot be processed due to error".StFormat(umanusrlist.usern), er);
+                }
             }
             log.Debug("disabling {0} users through uman in {1} msec".StFormat(cDel, sw1.ElapsedMilliseconds));
             sw1.Reset(); sw1.Start();
