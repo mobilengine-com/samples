@@ -143,14 +143,14 @@ namespace Adgw
 
                 if (!json.FSuccess())
                 {
-                    log.Debug("error with {0} / {1}: {2}".StFormat(action, content, json));
+                    log.Error("error with {0} / {1}: {2}".StFormat(action, content, json));
                     return null;
                 }
                 return json;
             }
             catch (Exception er)
             {
-                log.Debug("error with {0} / {1}: {2}".StFormat(action, content, er.ToString()));
+                log.Error("error with {0} / {1}: {2}".StFormat(action, content, er.ToString()));
                 return null;
             }
         }
