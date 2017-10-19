@@ -77,7 +77,7 @@ namespace Adgw
                         // create
                         log.Debug("creating user {0}".StFormat(umanusrCreate.usern));
                         var jsonCruser = uman.JsonByRequest("createuser", JsonConvert.SerializeObject(umanusrCreate));
-                        if (jsonCruser == null) return;
+                        if (jsonCruser == null) continue;
                         dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
                         cNew ++;
                     }
@@ -128,7 +128,7 @@ namespace Adgw
                         {
                             log.Debug("altering user {0}".StFormat(aduser.userprincipalname));
                             var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrAlter));
-                            if (jsonAltuser == null) return;
+                            if (jsonAltuser == null) continue; 
                             dacsman.SendInsertUpdateDacs(aduser, umanusrCreate);
                             cUpdate++;
                         }
@@ -136,7 +136,7 @@ namespace Adgw
                         {
                             log.Debug("mobtok revoke of user {0}".StFormat(aduser.userprincipalname));
                             var jsonResmobtok = uman.JsonByRequest("RevokeMobileTokensOfUser", JsonConvert.SerializeObject(new Usrid {userId = umanusrlist.userId}));
-                            if (jsonResmobtok == null) return;
+                            if (jsonResmobtok == null) continue;
                             cPwdReset++;
                         }
                     }
@@ -161,7 +161,7 @@ namespace Adgw
                     var umanUsrSoftDelete = umanusrlist.UsrprmToSoftDelete();
                     log.Debug("revoking rights of user (soft delete) {0}".StFormat(umanusrlist.usern));
                     var jsonAltuser = uman.JsonByRequest("alteruser", JsonConvert.SerializeObject(umanUsrSoftDelete));
-                    if (jsonAltuser == null) return;
+                    if (jsonAltuser == null) continue;
                     dacsman.SendDeleteDacs(umanusrlist);
                     cDel++;
                 }
