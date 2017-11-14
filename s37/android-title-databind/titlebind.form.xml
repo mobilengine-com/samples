@@ -1,0 +1,9 @@
+<Form name='Form title databinding' 
+	description="Description"
+	title_reference="SELECT CASE WHEN @1='True' THEN NULL ELSE @2 END" title_ref_arg="//root/cbDefault,//root/tbTitle">
+
+	<Control name='root' type='panel'>
+		<Control name='cbDefault' type="checkbox" label="Use 'description' attribute" checked="false" />
+		<Control name='tbTitle' type="textbox" label="Set the title:" text="Title" />
+	</Control>
+</Form>
