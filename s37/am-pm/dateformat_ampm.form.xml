@@ -1,0 +1,74 @@
+<Form name="Dateformat AMPM"  autoform="true" typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}'>
+	<Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline" sqlreferences="0">
+
+		<Control type="textbox" label='Number picker1'  name="tb2x" size="large" ptype="float" readonly="true"
+			data_type="float" reference="SELECT 12.1" />
+
+		<Control type="textbox" label='Number picker2'  name="tb2y" size="large" ptype="int" readonly="true"
+			data_type="int" reference="SELECT 24" />
+	
+	
+		<Control type="textbox" label='(dtf yyyy"%"MM) also works'  name="tb2" size="large"
+			data_type="datetime" dateformat='(dtf yyyy"%"MM)' reference="select @dtlNow" />
+
+		<Control type="textbox" label="inherited format"  name="tb3" size="large"
+			data_type="datetime"  reference="select @dtlNow" />
+
+		<Control type="textbox" label='tb new format (dtf yyyy"-"MMMM"-"dd" ("dddd") "hh":"mm":"ss" "tt )' name="tb7ed" size="large" reference="select @dtlNow"
+			dateformat='(dtf yyyy"-"MMMM"-"dd" ("dddd") "hh":"mm":"ss" "tt )' 
+			/>
+			
+		<Control type="textbox" label="datepicker default format" name="tb4" size="large" readonly="true" reference="select @dtlNow" ptype="date" >
+			<Validators>
+				<Validator type="DateValidator" from="2013-01-01" to="2020-01-01"/>
+			</Validators>
+		</Control>
+
+		<Control type="textbox" label="no spinner date NC" name="tb4.1" size="large" readonly="true" reference="select @dtlNow" ptype="date" is24h="false" isSpinner="false" show_clear_button="true" show_now_button="true" />
+		<Control type="textbox" label="no spinner datetime NC" name="tb4.2" size="large" readonly="true" reference="select @dtlNow" ptype="datetime" is24h="false" isSpinner="false" show_clear_button="true" show_now_button="true" />
+		<Control type="textbox" label="no spinner time NC" name="tb4.3" size="large" readonly="true" reference="select @dtlNow" ptype="time" is24h="false" isSpinner="false" show_clear_button="true" show_now_button="true" />
+		<Control type="textbox" label="spinner date NC" name="tb4.11" size="large" readonly="true" reference="select @dtlNow" ptype="date" is24h="false" isSpinner="true" show_clear_button="true" show_now_button="true" />
+		<Control type="textbox" label="spinner datetime NC" name="tb4.21" size="large" readonly="true" reference="select @dtlNow" ptype="datetime" is24h="false" isSpinner="true" show_clear_button="true" show_now_button="true" />
+		<Control type="textbox" label="spinner time NC" name="tb4.31" size="large" readonly="true" reference="select @dtlNow" ptype="time" is24h="false" isSpinner="true" show_clear_button="true" show_now_button="true" />
+
+		<Control type="textbox" label="no spinner date N" name="tb4.1a" size="large" readonly="true" reference="select @dtlNow" ptype="date" is24h="false" isSpinner="false" show_clear_button="false" show_now_button="true" />
+		<Control type="textbox" label="no spinner datetime N" name="tb4.2a" size="large" readonly="true" reference="select @dtlNow" ptype="datetime" is24h="false" isSpinner="false" show_clear_button="false" show_now_button="true" />
+		<Control type="textbox" label="no spinner time N" name="tb4.3a" size="large" readonly="true" reference="select @dtlNow" ptype="time" is24h="false" isSpinner="false" show_clear_button="false" show_now_button="true" />
+		<Control type="textbox" label="spinner date N" name="tb4.11a" size="large" readonly="true" reference="select @dtlNow" ptype="date" is24h="false" isSpinner="true" show_clear_button="false" show_now_button="true" />
+		<Control type="textbox" label="spinner datetime N" name="tb4.21a" size="large" readonly="true" reference="select @dtlNow" ptype="datetime" is24h="false" isSpinner="true" show_clear_button="false" show_now_button="true" />
+		<Control type="textbox" label="spinner time N" name="tb4.31a" size="large" readonly="true" reference="select @dtlNow" ptype="time" is24h="false" isSpinner="true" show_clear_button="false" show_now_button="true"/>
+
+		<Control type="textbox" label="no spinner date C" name="tb4.1b" size="large" readonly="true" reference="select @dtlNow" ptype="date" is24h="false" isSpinner="false" show_clear_button="true" show_now_button="false" />
+		<Control type="textbox" label="no spinner datetime C" name="tb4.2b" size="large" readonly="true" reference="select @dtlNow" ptype="datetime" is24h="false" isSpinner="false" show_clear_button="true" show_now_button="false" />
+		<Control type="textbox" label="no spinner time C" name="tb4.3b" size="large" readonly="true" reference="select @dtlNow" ptype="time" is24h="false" isSpinner="false" show_clear_button="true" show_now_button="false" />
+		<Control type="textbox" label="spinner date C" name="tb4.11b" size="large" readonly="true" reference="select @dtlNow" ptype="date" is24h="false" isSpinner="true" show_clear_button="true" show_now_button="false" />
+		<Control type="textbox" label="spinner datetime C" name="tb4.21b" size="large" readonly="true" reference="select @dtlNow" ptype="datetime" is24h="false" isSpinner="true" show_clear_button="true" show_now_button="false" />
+		<Control type="textbox" label="spinner time C" name="tb4.31b" size="large" readonly="true" reference="select @dtlNow" ptype="time" is24h="false" isSpinner="true" show_clear_button="true" show_now_button="false" />
+c
+		<Control type="textbox" label="no spinner date" name="tb4.1c" size="large" readonly="true" reference="select @dtlNow" ptype="date" is24h="false" isSpinner="false" show_clear_button="false" show_now_button="false" />
+		<Control type="textbox" label="no spinner datetime" name="tb4.2c" size="large" readonly="true" reference="select @dtlNow" ptype="datetime" is24h="false" isSpinner="false" show_clear_button="false" show_now_button="false" />
+		<Control type="textbox" label="no spinner time" name="tb4.3c" size="large" readonly="true" reference="select @dtlNow" ptype="time" is24h="false" isSpinner="false" show_clear_button="false" show_now_button="false" />
+		<Control type="textbox" label="spinner date" name="tb4.11c" size="large" readonly="true" reference="select @dtlNow" ptype="date" is24h="false" isSpinner="true" show_clear_button="false" show_now_button="false" />
+		<Control type="textbox" label="spinner datetime" name="tb4.21c" size="large" readonly="true" reference="select @dtlNow" ptype="datetime" is24h="false" isSpinner="true" show_clear_button="false" show_now_button="false" />
+		<Control type="textbox" label="spinner time" name="tb4.31c" size="large" readonly="true" reference="select @dtlNow" ptype="time" is24h="false" isSpinner="true" show_clear_button="false" show_now_button="false" />
+		
+		<Control type="textbox" label="datepicker yyyy-MM-dd" name="tb5" size="large" readonly="true" reference="select @dtlNow"
+			ptype="datetime" dateformat="yyyy-MM-dd">
+		</Control>
+
+		<Control type="textbox" label='datepicker (dtf yyyy"%"MM)' name="tb6" size="large" readonly="true" reference="select @dtlNow"
+			ptype="datetime" dateformat='(dtf yyyy"%"MM)' >
+			<Validators>
+				<Validator type="DateValidator" from="2013%01" to="2020%10"/>
+			</Validators>
+		</Control>
+
+		<Control type="textbox" label='datepicker (dtf yyyy"-"MMMM"-"dd" ("dddd") "hh":"mm":"ss" "tt )' name="tb7" size="large" readonly="true" reference="select @dtlNow"
+			ptype="datetime" dateformat='(dtf yyyy"-"MMMM"-"dd" ("dddd") "hh":"mm":"ss" "tt )' 
+			is24h="false"/>
+		<Control type="textbox" label='datepicker (dtf "yyyy: "yyyy" yy: "yy" M:"M" MM:"MM" d:"d" dd:"dd" H:"H" HH:"HH" m:"m" mm:"mm" s:"s" ss:"ss" S?:"" o?:""h: "h" hh:"hh" tt:"tt" MMM:"MMM" MMMM:"MMMM" ddd:"ddd" dddd:"dddd )' name="tb8" size="large" readonly="true" reference="select @dtlNow"
+			ptype="datetime" dateformat='(dtf "yyyy: "yyyy" yy: "yy" M:"M" MM:"MM" d:"d" dd:"dd" H:"H" HH:"HH" m:"m" mm:"mm" s:"s" ss:"ss" S?:"" o?:""h: "h" hh:"hh" tt:"tt" MMM:"MMM" MMMM:"MMMM" ddd:"ddd" dddd:"dddd )' 
+			is24h="false"/>
+		
+	</Control>
+</Form>
