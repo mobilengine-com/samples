@@ -1,0 +1,15 @@
+<Form name='confirmDefault'>
+	<Control name='root' type='panel'>
+		<Control name="tb" type="textbox" label="Textbox:" />
+		<Control name="ph" type="photo" label="Photo:" />
+		<Control name="sig" type="photo" meta_type="signature" label="Signature:" />
+
+		<Control name="discConfirmDefault" type="closebutton" action="discard_form" text="Default confirmation (as on form)" />
+		<Control name="discConfirmAlways" type="closebutton" action="discard_form" confirm_reference="=always" text="Always Confirm" />
+		<Control name="discConfirmIfChanged" type="closebutton" action="discard_form" confirm_reference="=ifchanged" text="Confirm If Changed" />
+		<Control name="discConfirmNever" type="closebutton" action="discard_form" confirm_reference="=never" text="Never Confirm" />
+		<!--
+		<Control name="discConfirmInvalid" type="closebutton" action="discard_form" confirm_reference="=invalid" text="Invalid Confirm_ref value" />
+		-->
+	</Control>
+</Form>
