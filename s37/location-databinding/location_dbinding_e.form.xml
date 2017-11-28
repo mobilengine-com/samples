@@ -1,0 +1,44 @@
+<Form name="LocDbindE"  autoform="false" typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".",maxFraction:3}'>
+	<Rgsyl>
+		<Syl syln="emp" clrBg="#F0F0F0" />
+	</Rgsyl>
+	<Control type="panel" name="root" layout="standard" navigation="inline">
+		
+
+		
+		<Control type="label" text="E: csak akkor lehessen formot beküldeni, ha a user azon a helyen van, amit kiválasztott a kontrolban" sylnCrown="=emp"/>
+
+		<Control type="combobox" label="Project" name="cbProjectValidated1" data_type="string,string"
+			reference="SELECT guid, name FROM reference_project"/>
+		<Control type="label" name="latProjValid1" data_type="float" visible="false" label="Project lat:" reference="SELECT latitude FROM reference_project WHERE guid=@1" ref_arg="../cbProjectValidated1.key"/>
+		<Control type="label" name="longProjValid1" data_type="float" visible="false" label="Project long:" reference="SELECT longitude FROM reference_project WHERE guid=@1" ref_arg="../cbProjectValidated1.key" />
+		<Control type="validator" name="distNativeValid1" data_type="float" label="distance" reference="SELECT geodistance(@1,@2,@3,@4)" ref_arg="../latProjValid1,../longProjValid1,../latLoc,../longLoc">
+			<Validators>
+				<Validator type="NumberValidator" message="Project is more than 50 meters away." max="50" wholenumber="false" verifyat="submit" />
+			</Validators>
+		</Control>		
+
+		<Control type="label" text="You have a nice dashboard here..." sylnCrown="=emp"/>
+		<Control type="label" text=""/>
+		<Control type="label" text=""/>
+		
+		<Control type="label" text="Hidden calculated data:" sylnCrown="=emp"/>
+		<Control name="guidProjClosest" data_type="string" label="Guid of closest project" visible="true" reference="SELECT guid FROM reference_project ORDER BY geodistance(@1,@2, latitude, longitude) LIMIT 1" ref_arg="../latLoc,../longLoc" type="label"/>		
+		<Control name="nameProjClosest" data_type="string" label="Closest project" reference="SELECT name FROM reference_project WHERE guid = @1" ref_arg="../guidProjClosest" type="label" />		
+		<Control name="distProjClosest" data_type="float" label="Distance of closest project" reference="SELECT geodistance(@1,@2, latitude, longitude) FROM reference_project WHERE guid = @3" ref_arg="../latLoc,../longLoc,../guidProjClosest" type="label"/>		
+		<Control name="guidProjClose" data_type="string" label="Guid of close project" visible="true" reference="SELECT case when 50>=@2 THEN @1 ELSE '' END" ref_arg="../guidProjClosest,../distProjClosest" type="label"/>		
+		<Control name="nameProjClose" data_type="string" label="Closest project" reference="SELECT name FROM reference_project WHERE guid = @1" ref_arg="../guidProjClose" type="label" />		
+
+		<Control type="label" text="System data:" sylnCrown="=emp"/>
+		<Control type="location" gpsNeeded="false" name="loc" />
+		<Control type="label" data_type="datetime" label="SysDate:" visible="true" reference="SELECT @dtlNow" />
+		<Control type="label" data_type="bool" label="SysLoc present:" visible="true" reference="SELECT @locationSet"/>
+		<Control type="label" name="latLoc" data_type="float" label="SysLoc.Lat:" visible="true" reference="SELECT @locationLatitude"/>
+		<Control type="label" name="longLoc" data_type="float" label="SysLoc.Long:" visible="true" reference="SELECT @locationLongitude"/>
+		<Control type="label" data_type="float" label="SysLoc.Alt:" visible="true" reference="SELECT @locationAltitude"/>
+		<Control type="label" name="SysLoc.Acc" data_type="float" label="SysLoc.Acc:" visible="true" reference="SELECT @locationAccuracy"/>
+		<Control type="label" name="SysLoc.Dtl" data_type="datetime" label="SysLoc.Dtl:" visible="true" reference="SELECT @locationDtlAcquired"/>
+
+
+	</Control>
+</Form>

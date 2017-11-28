@@ -1,0 +1,78 @@
+<Form name="LocDbind"  autoform="true" typed="true" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".",maxFraction:3}'>
+	<Control type="panel" name="root" color="RGB(255,255,255)" layout="standard" navigation="inline">
+
+		<Control type="label" data_type="datetime" label="SysDate:" visible="true" reference="SELECT @dtlNow" />
+		<Control type="label" data_type="bool" label="SysLoc present:" visible="true" reference="SELECT @locationSet"/>
+		<Control type="label" name="latLoc" data_type="float" label="SysLoc.Lat:" visible="true" reference="SELECT @locationLatitude"/>
+		<Control type="label" name="longLoc" data_type="float" label="SysLoc.Long:" visible="true" reference="SELECT @locationLongitude"/>
+		<Control type="label" data_type="float" label="SysLoc.Alt:" visible="true" reference="SELECT @locationAltitude"/>
+		<Control type="label" name="SysLoc.Acc" data_type="float" label="SysLoc.Acc:" visible="true" reference="SELECT @locationAccuracy"/>
+		<Control type="label" name="SysLoc.Dtl" data_type="datetime" label="SysLoc.Dtl:" visible="true" reference="SELECT @locationDtlAcquired"/>
+		<Control type="callbutton" label="" text="Show on map" call_action="android.intent.action.VIEW" reference="=geo:@1,@2" ref_arg="../latLoc,../longLoc" />
+	
+		<Control type="checkbox" name="tb" data_type="string" text="v3"/>
+
+		<Control type="location" gpsNeeded="false" name="loc" />
+		
+		<Control type="combobox" label="Project" name="cbProject" data_type="string,string"
+			reference="SELECT guid, name FROM reference_project"/>
+		<Control type="label" name="latProj" data_type="float" label="Project lat:" reference="SELECT latitude FROM reference_project WHERE guid=@1" ref_arg="../cbProject.key"/>
+		<Control type="label" name="longProj" data_type="float" label="Project long:" reference="SELECT longitude FROM reference_project WHERE guid=@1" ref_arg="../cbProject.key" />
+		<Control type="label" name="distNative" data_type="float" label="distance native" reference="SELECT geodistance(@1,@2,@3,@4)" ref_arg="../latProj,../longProj,../latLoc,../longLoc" />
+		
+		<Control data_type="string, string, float, float" navigation="inline" layout="table" generator="SELECT guid, name, latitude, longitude FROM reference_project" ref_arg="" type="panel" name="tbl">
+			<Control type="label" name="name" data_type="string" label="Project" reference="REF" ref_arg="PARENT.col1" width="fix 10 em"/>
+			<Control type="label" name="latProj" data_type="float" label="Lat" reference="REF" ref_arg="PARENT.col2" width="fix 10 em"/>
+			<Control type="label" name="longProj" data_type="float" label="Lon" reference="REF" ref_arg="PARENT.col3" width="fix 10 em"/>
+			<Control type="label" name="distNative" data_type="float" label="Dist" reference="SELECT geodistance(@1,@2,@3,@4)" ref_arg="../latProj,../longProj,../../../latLoc,../../../longLoc"  width="fix 10 em" />
+		</Control>
+		
+		<!-- B: mutassunk panelt, ha egy helyre ért -->
+		<Control name="guidProjClosest" data_type="string" label="Guid of closest project" visible="false" reference="SELECT guid FROM reference_project ORDER BY geodistance(@1,@2, latitude, longitude) LIMIT 1" ref_arg="../latLoc,../longLoc" type="label"/>		
+		<Control name="nameProjClosest" data_type="string" label="Closest project" reference="SELECT name FROM reference_project WHERE guid = @1" ref_arg="../guidProjClosest" type="label" />		
+		<Control name="distProjClosest" data_type="float" label="Distance of closest project" reference="SELECT geodistance(@1,@2, latitude, longitude) FROM reference_project WHERE guid = @3" ref_arg="../latLoc,../longLoc,../guidProjClosest" type="label"/>		
+
+		<Control type="label" text="Here we are:" name="xxxxxxxz"/>
+		<Control data_type="string, string, float, float" headless="true" navigation="inline" layout="table" generator="SELECT guid, name, latitude, longitude FROM reference_project WHERE guid = @1 AND 50>@2" ref_arg="../guidProjClosest,../distProjClosest" type="panel" name="tbl1">
+			<Control name="nameProjClosest" data_type="string" label="Project" reference="REF" ref_arg="PARENT.col1" type="label" />		
+			<Control type="closebutton" text="Start" name="shit" action="submit_form"/>
+			<Control type="callbutton" label="" name="cbmap" text="Show on map" call_action="android.intent.action.VIEW" reference="=geo:@1,@2" ref_arg="PARENT.col2,PARENT.col3" />
+		</Control>
+		
+		<!-- C: validáljuk, hogy a user tényleg azon a projekten van, amit kiválasztott a kontrolban -->
+		<Control type="combobox" label="Project" name="cbProjectValidated" data_type="string,string"
+			reference="SELECT guid, name FROM reference_project"/>
+		<Control type="label" name="latProjValid" data_type="float" visible="false" label="Project lat:" reference="SELECT latitude FROM reference_project WHERE guid=@1" ref_arg="../cbProjectValidated.key"/>
+		<Control type="label" name="longProjValid" data_type="float" visible="false" label="Project long:" reference="SELECT longitude FROM reference_project WHERE guid=@1" ref_arg="../cbProjectValidated.key" />
+		<Control type="label" name="distNativeValid" data_type="float" visible="false" label="distance" reference="SELECT geodistance(@1,@2,@3,@4)" ref_arg="../latProjValid,../longProjValid,../latLoc,../longLoc"/>
+		<Control type="label" name="distNativeValidText" data_type="string" visible="true" label="is ok?" reference="SELECT CASE WHEN 50 >= @1 THEN 'Ok' ELSE 'Too far, should be in 50 meters' END" ref_arg="../distNativeValid"/>
+		
+		
+		<!-- D: a kontrolba azt a projektet írja be az app automatikusan ahol van -->
+		<Control type="label" text="Select (here we are by default):" name="xxxxxxy"/>
+		<Control type="combobox" label="Project" name="cbProjectDefault" data_type="string,string"
+			reference="SELECT guid, name FROM reference_project"
+			value_reference="REF" value_ref_arg="../nameProjClosest"
+		/>
+		<!-- E: csak akkor lehessen formot beküldeni, ha a user azon a helyen van, amit kiválasztott a kontrolban -->
+		<Control type="combobox" label="Project" name="cbProjectValidated1" data_type="string,string"
+			reference="SELECT guid, name FROM reference_project"/>
+		<Control type="label" name="latProjValid1" data_type="float" visible="false" label="Project lat:" reference="SELECT latitude FROM reference_project WHERE guid=@1" ref_arg="../cbProjectValidated1.key"/>
+		<Control type="label" name="longProjValid1" data_type="float" visible="false" label="Project long:" reference="SELECT longitude FROM reference_project WHERE guid=@1" ref_arg="../cbProjectValidated1.key" />
+		<Control type="validator" name="distNativeValid1" data_type="float" label="distance" reference="SELECT geodistance(@1,@2,@3,@4)" ref_arg="../latProjValid1,../longProjValid1,../latLoc,../longLoc">
+			<Validators>
+				<Validator type="NumberValidator" message="Project is more than 50 meters away." max="50" wholenumber="false" verifyat="submit" />
+			</Validators>
+		</Control>		
+		<!-- F: legyen a formon egy 'my location' gomb -->
+		<Control type="combobox" label="Project" name="cbProjectAb" data_type="string,string"
+			reference="SELECT guid, name FROM reference_project"
+			value_reference="REF" value_ref_arg="../ab.col1"
+		/>
+		<Control name="ab" type="actionbutton" text="Set to location" data_type="string,string" 
+			value_reference="SELECT @1,@2" value_ref_arg="../guidProjClosest,../nameProjClosest" />
+		<!-- G: automatikus formbeküldés, ha teljesül egy gps validáció -->
+
+
+	</Control>
+</Form>
