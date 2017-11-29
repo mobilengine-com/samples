@@ -1,0 +1,18 @@
+<Form name='Camera Selection'>
+	<Control name='root' type='panel'>
+		<Control type="label" name="l1" text="Back (default)" />
+		<Control type="photo" name="photodef" />
+
+		<Control type="label" name="l2" text="Back" />
+		<Control type="photo" name="photob" source="all" camera="back" />
+
+		<Control type="label" name="l3" text="Front" />
+		<Control type="photo" name="photof" source="all" camera="front" />
+
+		<Control type="label" name="l4" text="Front, Back" />
+		<Control type="photo" name="photofb" source="all" camera="front back" />
+
+		<Control type="label" name="l5" text="Back, Front" />
+		<Control type="photo" name="photobf" source="all" camera="back front" />
+	</Control>
+</Form>
