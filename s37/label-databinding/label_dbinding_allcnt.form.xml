@@ -12,7 +12,8 @@
 			<Control type="label" label="a" text="b" data_type="string" label_reference="SELECT CASE WHEN @1 THEN 'X' ELSE 'Y' END" label_ref_arg="../../cb"/>
 		</Control>
 		<Control type="button" label="a" text="b" data_type="string" label_reference="SELECT CASE WHEN @1 THEN 'X' ELSE 'Y' END" label_ref_arg="../cb"/>
-		<Control type="radiobutton" label="a" text="b" data_type="string" label_reference="SELECT CASE WHEN @1 THEN 'X' ELSE 'Y' END" label_ref_arg="../cb"/>
+		<Control type="checkbox" label="a" label_reference="SELECT CASE WHEN @1 THEN 'X' ELSE 'Y' END" label_ref_arg="../cb"/>
+		<Control type="radiobutton" label="a" text="b" label_reference="SELECT CASE WHEN @1 THEN 'X' ELSE 'Y' END" label_ref_arg="../cb"  reference="SELECT 1,'1' union  SELECT 2,'2' union  SELECT 3,'3' union SELECT 4,'4' union SELECT 5,'5'" data_type="int,string"/>
 		<Control type="textbox" label="a" text="b" data_type="string" label_reference="SELECT CASE WHEN @1 THEN 'X' ELSE 'Y' END" label_ref_arg="../cb"/>
 		<Control type="textbox" ptype="date" label="a" text="b" data_type="string" label_reference="SELECT CASE WHEN @1 THEN 'X' ELSE 'Y' END" label_ref_arg="../cb"/>
 		<Control type="textbox" ptype="int" label="a" text="b" data_type="string" label_reference="SELECT CASE WHEN @1 THEN 'X' ELSE 'Y' END" label_ref_arg="../cb"/>
