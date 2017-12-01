@@ -1,0 +1,16 @@
+<Form name="Bad next form"  autoform="false" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' 
+	typed="true" sillyNulls="false"> <!--  next_form_name="this.form.does.not.exist.neither" -->
+	<Control type="panel" name="root" layout="standard" navigation="inline">
+		<Control type="closebutton" action="submit_form" label="The next form does not exist" 
+		text="Lets try open"  data_type="string" next_form_name="this.form.does.not.exist"/>
+		<Control type="closebutton" action="submit_form" label="This form exists exist" 
+		text="Lets try open"  data_type="string" next_form_name="Bad next form"/>
+		<Control type="closebutton" action="submit_form" label="No next form" 
+		text="Submit"  data_type="string"/>
+		<Control type="panel" name="aaa" layout="standard" navigation="popup" back_action='discard_form'
+		label="panel closes automatically and goes to not existing next form" data_type="string" sec_auto_close="10"> <!--  next_form_name="this.form.does.not.exist.neither2"  -->
+			<Control type="label" label="a" text="b" data_type="string"/>
+			<Control type="label" label="a" text="b" data_type="string"/>
+		</Control>
+	</Control>
+</Form>
