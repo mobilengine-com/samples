@@ -2,8 +2,8 @@
 	typed="true" sillyNulls="false">
 	<Control type="panel" name="root" layout="standard" navigation="inline">
 		<Control type="checkbox" label="null?" name="cb"/>
-		<Control type="label" name="null" data_type="string" label="Null" visible="true" reference="SELECT CASE WHEN @1 THEN null ELSE 'something.not.null' END" ref_arg="../cb" />
-		<Control type="label" name="null1" data_type="string" label="SELECT case when @1 is null then 'null' else 'not null'" visible="true" reference="SELECT case when @1 is null then 'null' else 'not null'" ref_arg="../null" />
-		<Control type="label" name="coalesce" data_type="string" label="SELECT coalesce(@1, 'null')" visible="true" reference="SELECT coalesce(@1, 'null')" ref_arg="../null" />
+		<Control type="label" name="null" data_type="string" label="Null" reference="SELECT CASE WHEN @1 THEN null ELSE 'something.not.null' END" ref_arg="../cb" />
+		<Control type="label" name="null1" data_type="string" label="SELECT CASE WHEN @1 is null THEN 'null' ELSE 'not null' END" reference="SELECT CASE WHEN @1 is null THEN 'null' ELSE 'not null' END" ref_arg="../null" />
+		<Control type="label" name="coalesce" data_type="string" label="SELECT coalesce(@1, 'null')" reference="SELECT coalesce(@1, 'null')" ref_arg="../null" />
 	</Control>
 </Form>
