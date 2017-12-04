@@ -1,0 +1,15 @@
+﻿<Form name="BindingUntyped">
+  <Control type="panel" name="root">
+    <Control type="label" label="Value Binding" color="RGB(200,200,200)" />
+    <Control type="combobox" name="vfrom" size="large" label="From:" reference="SELECT id, name FROM Reference_product" />
+    <Control type="label" name="vfroml" size="large" label="Value of From:" reference="SELECT CAST(@1 AS TEXT)" ref_arg="../vfrom" />
+    <Control type="combobox" name="vto" size="large" label="To:" reference="SELECT id, name FROM Reference_product" value_reference="REF" value_ref_arg="../vfrom" />
+    <Control type="label" name="vtol" size="large" label="Value of To:" reference="SELECT CAST(@1 AS TEXT)" ref_arg="../vto" />
+
+    <Control type="label" label="Key Binding" color="RGB(200,200,200)" />
+    <Control type="combobox" name="kfrom" size="large" label="From:" reference="SELECT id,name FROM Reference_product" />
+    <Control type="label" name="kfoml" size="large" label="Key of From:" reference="SELECT CAST(@1 AS TEXT)" ref_arg="../kfrom.key" />
+    <Control type="combobox" name="kto" size="large" label="To:" reference="SELECT id,name FROM Reference_product" key_reference="REF" key_ref_arg="../kfrom.key" />
+    <Control type="label" name="ktol" size="large" label="Key of To:" reference="SELECT CAST(@1 AS TEXT)" ref_arg="../kto.key" />
+  </Control>
+</Form>
