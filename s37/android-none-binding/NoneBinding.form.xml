@@ -1,0 +1,20 @@
+﻿<Form typed="true" name="NoneBinding" description="NoneBinding" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" numberformat="{decimalSeparator:&quot;.&quot;}">
+  <Control type="panel" name="root">
+    <Control type="label" label="Default" color="RGB(200,200,200)" />
+    <Control type="combobox" name="cbDefault1" label="Null combo:" data_type="int,string" reference="SELECT id, name FROM Reference_product" />
+    <Control type="combobox" name="cbDebault2" choice="switch" label="Null:" data_type="int,string" reference="SELECT id, name FROM Reference_product" />
+
+    <Control type="label" label="Fix value" color="RGB(200,200,200)" />
+    <Control type="combobox" name="cbfix1" label="Combo:" data_type="int,string" reference="SELECT id, name FROM Reference_product" none="(empty)" />
+    <Control type="combobox" name="cbfix2" choice="switch" label="Switch:" data_type="int,string" reference="SELECT id, name FROM Reference_product" none="(empty)" />
+
+    <Control type="label" label="Databound to NULL" color="RGB(200,200,200)" />
+    <Control type="combobox" name="cbNull1" label="Null combo:" data_type="int,string" reference="SELECT id, name FROM Reference_product" none_reference="SELECT NULL" />
+    <Control type="combobox" name="cbNull2" choice="switch" label="Null switch:" data_type="int,string" reference="SELECT id, name FROM Reference_product" none_reference="SELECT NULL" />
+
+    <Control type="label" label="Databound" color="RGB(200,200,200)" />
+    <Control type="textbox" name="tb" label="Set &lt;None> text:" text="(nothing)" />
+    <Control type="combobox" name="cb1" label="Combo:" data_type="int,string" reference="SELECT id, name FROM Reference_product" none_reference="REF" none_ref_arg="../tb" />
+    <Control type="combobox" name="cb2" choice="switch" label="Switch:" data_type="int,string" reference="SELECT id, name FROM Reference_product" none_reference="REF" none_ref_arg="../tb" />
+  </Control>
+</Form>
