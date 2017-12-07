@@ -10,9 +10,11 @@ dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with 
 	
 	<Control type="panel" name="Root" sylnChild = "=mainColor">
 
-		<Control name="tbFrom" type="textbox" hint="From"/>
-		<Control name="ab" type="actionbutton" text="Copy" data_type="string" value_reference="REF" value_ref_arg="../tbFrom" />
-		<Control name="tbTo" type="textbox" hint="To" reference="REF" ref_arg="../ab"/>
+		<Control name="tbFrom" type="textbox" hint="From" size="large"/>
+		<Control name="ab" type="actionbutton" text="Copy" data_type="string" 
+			text_reference="=A.@1.B" text_ref_arg="../tbFrom"
+			value_reference="REF" value_ref_arg="../tbFrom" />
+		<Control name="tbTo" type="textbox" hint="To" reference="REF" ref_arg="../ab"  size="large"/>
 	
 		<Control name="hidPgSize" type="label" data_type="int" text="" reference="SELECT 10" ref_arg="" visible="false"/>
 		<Control name="hidCount" type="label" data_type="int" text="" 
@@ -62,12 +64,13 @@ dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with 
 		
 		<Control type="panel" name="p" layout="table" navigation="inline" headless="true"> 
 			<Control name="t" type="label" text="AAAA" data_type="string" reference="SELECT CASE 
-				WHEN max(@1+0,@3+0,@5+0)=0 THEN 'x'
-				WHEN max(@1+0,@3+0,@5+0)=@1+0 THEN @2 
-				WHEN max(@1+0,@3+0,@5+0)=@3+0 THEN @4 
-				WHEN max(@1+0,@3+0,@5+0)=@5+0 THEN @6
-				ELSE 'no way' END " ref_arg="../ab1.col1,../ab1.col0,../ab2.col1,../ab2.col0,../ab3.col1,../ab3.col0" 
-				visible="true" width="2 em"/>
+				WHEN max(@1+0,@3+0,@5+0,@7+0)=0 THEN ''
+				WHEN max(@1+0,@3+0,@5+0,@7+0)=@1+0 THEN @2 
+				WHEN max(@1+0,@3+0,@5+0,@7+0)=@3+0 THEN @4 
+				WHEN max(@1+0,@3+0,@5+0,@7+0)=@5+0 THEN @6
+				WHEN max(@1+0,@3+0,@5+0,@7+0)=@7+0 THEN @8
+				ELSE 'no way' END " ref_arg="../ab1.col1,../ab1.col0,../ab2.col1,../ab2.col0,../ab3.col1,../ab3.col0,../abD.col1,../abD.col0" 
+				visible="true" width="10 em"/>
 				
 			<!-- uncomment to visualize version changes
 			<Control name="v1" type="label" text="" data_type="int" reference="SELECT @1+0" ref_arg="../ab1.col1" visible="false"  width="2 em"/>
@@ -77,11 +80,13 @@ dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with 
 			-->
 
 			<Control name="ab1" type="actionbutton" label="action button" text="A" data_type="string,int"
-				value_reference="SELECT 'A', max(@1+0,@2+0,@3+0)+1" value_ref_arg="../ab1.col1,../ab2.col1,../ab3.col1" />
+				value_reference="SELECT @4||'A', max(@1+0,@2+0,@3+0)+1" value_ref_arg="../ab1.col1,../ab2.col1,../ab3.col1,../t" />
 			<Control name="ab2" type="actionbutton" label="action button" text="B"  data_type="string,int"
-				value_reference="SELECT 'B', max(@1+0,@2+0,@3+0)+1" value_ref_arg="../ab1.col1,../ab2.col1,../ab3.col1" />
+				value_reference="SELECT @4||'B', max(@1+0,@2+0,@3+0)+1" value_ref_arg="../ab1.col1,../ab2.col1,../ab3.col1,../t" />
 			<Control name="ab3" type="actionbutton" label="action button" text="C"  data_type="string,int"
-				value_reference="SELECT 'C', max(@1+0,@2+0,@3+0)+1" value_ref_arg="../ab1.col1,../ab2.col1,../ab3.col1" />
+				value_reference="SELECT @4||'C', max(@1+0,@2+0,@3+0)+1" value_ref_arg="../ab1.col1,../ab2.col1,../ab3.col1,../t" />
+			<Control name="abD" type="actionbutton" label="action button" text="&lt;"  data_type="string,int"
+				value_reference="SELECT substr(@4, 1, length(@4)-1), max(@1+0,@2+0,@3+0)+1" value_ref_arg="../ab1.col1,../ab2.col1,../ab3.col1,../t" />
 		</Control>
 
 		<Control name="abCheckbox" type="actionbutton" label="checkbox using action button" text="check" data_type="int"
