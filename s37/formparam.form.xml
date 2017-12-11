@@ -7,7 +7,9 @@
 		text="Open"  data_type="string" next_form_name="formparam"/>
 		<Control type="checkbox" label="A,B/X,Y" name="cb"/>
 		<Control type="label" reference = "SELECT (case when @1 then 'A' else 'X' end) ||', '|| (case when @1 then 'B' else 'Y' end)" ref_arg="../cb"/>
-		<Control type="closebutton" action="submit_form" label="Next with parameter: A, B" 
+		<Control type="closebutton" action="submit_form" label="Submit + next with parameter: A, B" 
+		text="Open"  data_type="string" next_form_name="formparam" param_reference="SELECT (case when @1 then 'A' else 'X' end), (case when @1 then 'B' else 'Y' end)" param_ref_arg="../cb"/>
+		<Control type="closebutton" action="discard_form" label="Discard + next with parameter: A, B" 
 		text="Open"  data_type="string" next_form_name="formparam" param_reference="SELECT (case when @1 then 'A' else 'X' end), (case when @1 then 'B' else 'Y' end)" param_ref_arg="../cb"/>
 	</Control>
 </Form>
