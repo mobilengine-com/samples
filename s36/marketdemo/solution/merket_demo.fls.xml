@@ -1,7 +1,6 @@
-<form xmlns='http://schemas.mobilengine.com/fls/v2' id='merket_demo' menuName='Munkanapló' platforms='web ios' style="{styles.styleAll}" dashboard="false">
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='merket_demo' menuName='Munkanapló' dashboard="true" platforms='web ios' style="{styles.styleAll}">
 	<declarations>
 		<let id='rgsite' shape='table' value='{TABLE site, contact, phone ("Kopaszi gát", "Kiss József", "+36303030313";"Aquincum", "Kujbus Gergő", "+36305660313";"Clark Hotel", "Kiss József", "+36303030313")}'/>	</declarations>
-	<textview text="[TODO: Market icon placeholder]" style="{[styles.styleAll, styles.right]}"/>
 	<repeater record="s" recordset='{SELECT s.site, s.contact, s.phone FROM rgsite s}'>
 	<table record="r" recordset='{["a"]}' style="{styles.x50}"> 	<row> 						<cell><textview/></cell> <cell>
 		<chapter title="{s.site}" style="{[styles.styleAll, styles.bold, styles.greenFont, styles.center, styles.darkBg]}" >
