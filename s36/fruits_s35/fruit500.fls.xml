@@ -1,0 +1,120 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='fruit500form' menuName='fruit500' platforms='web ios' dashboard="false">
+	<declarations>
+		<let id="letFruitType" shape="table" access='private'
+		     value='{SELECT ft.Code, ft.Type FROM FruitType ft}' />
+		<let id="letFruit" shape="table" access='private'
+		     value='{SELECT f.Fruit, f.Type, f.Price, f.Quantity, f.Date, f.Unit, f.Storage FROM FRUIT500 f}' />
+		<let id="letFruitFiltered" shape="table" access='private'
+		     value='{SELECT f.Fruit, f.Type, f.Price, f.Quantity, f.Date, f.Unit, f.Storage, "CODE" Code FROM FRUIT500 f JOIN FruitType ft ON f.Type=ft.Type WHERE (table1.fFruit.text = "" OR f.Fruit LIKE table1.fFruit.text) AND (f.Type = table1.fTypeCode.selectedKey OR table1.fTypeCode.selectedKey IS NULL) }' />
+	</declarations>
+	<checkbox id="chk" label="check here !!!" text="checked"/>
+	<table id='table1' recordset='{SELECT f.Fruit, f.Type, f.Price, f.Quantity, f.Date, f.Unit, f.Storage, f.Code code FROM letFruitFiltered f LIMIT 10}' record='r' >
+			 <!--  JOIN letFruitType ft ON ft.type = f.Type -->
+        <header>
+            <row >
+                <cell >
+                   <textbox id="fFruit" hint='Fruit'/>
+                </cell>
+                <cell >
+                    <textbox id="fType" hint='Type'/>
+                </cell>
+                <cell >
+					<dropdown id="fTypeCode"  choices='{SELECT ft.Code, ft.Type FROM FruitType ft}' keyMap="{Type}" textMap="{Code}"/>
+                </cell>
+                <cell >
+                    <textbox hint='Price'/>
+                </cell>
+                <cell >
+                    <textview text='Quantity'/>
+                </cell>
+                <cell >
+                    <textview text='Date'/>
+                </cell>
+                <cell >
+                    <textview text='Unit'/>
+                </cell>
+                <cell >
+                    <textview text='Storage'/>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+            </row>
+        </header>
+        <row>
+            <cell>
+                <textbox text='{r.Fruit}'/>
+            </cell>
+            <cell >
+             	<textbox text='{r.Type}'/>
+            </cell>
+            <!--cell >
+             	<textview/>
+            </cell-->            
+			<cell >
+             	<dropdown  choices='{SELECT ft.Code, ft.Type FROM FruitType ft}' keyMap="{Type}" textMap="{Code}" selectedKey="{r.Type}"/>
+            </cell>
+            <cell >
+             	<numberbox number='{r.Price}' numberFormat='{decimalSeparator:"."}'/>
+            </cell>
+            <cell >
+             	<numberbox number='{r.Quantity}' float="true" numberFormat='{decimalSeparator:"."}'/>
+            </cell>
+            <cell >
+             	<datepicker date='{r.Date}' dateFormat='(dtf yyyy "/" MM "/" dd)'/>
+            </cell>
+            <cell >
+             	<textbox text='{r.Unit}'/>
+            </cell>
+            <cell >
+             	<textbox text='{r.Storage}'>
+                </textbox>
+            </cell>
+            <cell >
+                <removebutton text='Remove'>
+                </removebutton>
+            </cell>
+        </row>
+		<footer>
+           <row >
+                <cell >
+                   <textview text='{SELECT toString(count(1)) t FROM letFruitFiltered x}'/>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+                <cell >
+					<block></block>
+                </cell>
+            </row>
+		</footer>
+    
+    </table>
+    <!--addbutton id='addbutton1' table='table1' records='{select "r3c1" c1, "r3c1" c2}' text='Add' /-->
+
+    <submitbutton label="label of submitbutton" text="text of submitbutton" >
+    </submitbutton>
+
+    <discardbutton label="label of discardbutton" text="text of discardbutton" >
+    </discardbutton>
+	
+
+</form>
