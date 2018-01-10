@@ -5,7 +5,7 @@
 		<let id="letFruit" shape="table" access='private'
 		     value='{SELECT f.Fruit, f.Type, f.Price, f.Quantity, f.Date, f.Unit, f.Storage FROM FRUIT500 f}' />
 		<let id="letFruitFiltered" shape="table" access='private'
-		     value='{SELECT f.Fruit, f.Type, f.Price, f.Quantity, f.Date, f.Unit, f.Storage, "CODE" Code FROM FRUIT500 f JOIN FruitType ft ON f.Type=ft.Type WHERE (table1.fFruit.text = "" OR f.Fruit LIKE table1.fFruit.text) AND (f.Type = table1.fTypeCode.selectedKey OR table1.fTypeCode.selectedKey IS NULL) }' />
+		     value='{SELECT f.Fruit, f.Type, f.Price, f.Quantity, f.Date, f.Unit, f.Storage, "CODE" Code FROM letFruit f WHERE (table1.fFruit.text = "" OR f.Fruit LIKE table1.fFruit.text) AND (f.Type = table1.fTypeCode.selectedKey OR table1.fTypeCode.selectedKey IS NULL) }' />
 	</declarations>
 	<checkbox id="chk" label="check here !!!" text="checked"/>
 	<table id='table1' recordset='{SELECT f.Fruit, f.Type, f.Price, f.Quantity, f.Date, f.Unit, f.Storage, f.Code code FROM letFruitFiltered f LIMIT 10}' record='r' >
