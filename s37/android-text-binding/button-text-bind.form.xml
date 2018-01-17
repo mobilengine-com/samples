@@ -1,0 +1,18 @@
+<Form name='button-text-bind' inlineReference="true" floating_submit_reference="=false">
+    <Control name='root' type='panel'>
+        <Control name="tb" type="textbox" label="Button text: " />
+        <Control name="but1" type="button" label="button" text="{=@[../tb]}">
+            <Actions>
+                <Action type="generator" target="../atable" />
+            </Actions>
+        </Control>
+        <Control name="sig" type="photo" meta_type="signature" label="signature:" text_reference="REF" text_ref_arg="../tb" />
+        <Control name="photo" type="photo" label="photo" text_reference="REF" text_ref_arg="../tb" />
+        <Control name="actbtn" type="actionbutton" label="actionbutton" text_reference="REF" text_ref_arg="../tb" />
+        <Control name="addbut1" type="addbutton" label="addbutton" text_reference="REF" text_ref_arg="../tb" target="../atable" />
+        <Control name="rembut1" type="removebutton" label="removebutton" text_reference="REF" text_ref_arg="../tb" />
+        <Control name="closeb2" type="closebutton" action="discard_form" label="closebutton" text_reference="REF" text_ref_arg="../tb" />
+        <Control name="scan" type="textbox" label="barcode scan" ptype="barcode" scan_text="Scan" scan_text_reference="REF" scan_text_ref_arg="../tb" />
+        <Control type="panel" name="atable" count="0" visible="false" />
+    </Control>
+</Form>
