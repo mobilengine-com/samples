@@ -1,0 +1,25 @@
+<Form name='add-remove-button' floating_submit_reference="=false">
+    <Control name='root' type='panel'>
+        <Control type="textbox" name="ta" label="Target Attr.: " text="1" />
+
+        <Control type="button" text="Add" label="Old button:">
+            <Actions>
+                <Action type="generator" target="../buttonTable" targetattribute="../ta" generateonemptyattribute="false" cleartargetattribute="true" />
+            </Actions>
+        </Control>
+        <Control type="button" text="Add" label="Old button (don't create remove button):">
+            <Actions>
+                <Action type="generator" target="../buttonTable" targetattribute="../ta" generateonemptyattribute="false" cleartargetattribute="true" createremovebutton="false" />
+            </Actions>
+        </Control>
+
+        <Control type="addbutton" text="Add" label="New genbutton:" target="../buttonTable" targetattribute="../ta" generateonemptyattribute="false" cleartargetattribute="true" />
+        <Control type="addbutton" text="Add" label="New genbutton (create remove button):" target="../buttonTable" targetattribute="../ta" generateonemptyattribute="false" cleartargetattribute="true" createremovebutton="true" />
+
+        <Control type="panel" name="buttonTable" layout="table" navigation="inline" count="0">
+            <Control type="label" label="T.Attr" reference="=@1" ref_arg="PARENT.value" />
+            <Control type="removebutton" label="Remove 1" text="Remove" />
+            <Control type="removebutton" label="Remove 2" text="Delete" />
+        </Control>
+    </Control>
+</Form>
