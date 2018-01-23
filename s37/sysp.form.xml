@@ -1,0 +1,27 @@
+<Form name="sysp"  autoform="false" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' 
+	typed="true" sillyNulls="false">
+	<Control type="panel" name="root" layout="standard" navigation="inline">
+		<Control type="textbox" label="tb" name="tb" text=""/>
+		<Control type="label" label="lvl3 inline refarg" text="" reference="SELECT '@[tb]: '|| @[../tb] || ', @user: '||@user"/>
+		<Control type="label" label="lvl2 inline refarg" text="" reference="=user: @user tb: @[../tb]"/>
+
+		<Control type="label" label="lvl3 @user," text="" reference="SELECT ifnull(@user, 'null')" ref_arg=""/>
+		<Control type="label" label="lvl3 @user ," text="" reference="SELECT ifnull(@user , 'null')" ref_arg=""/>
+		<Control type="label" label="lvl3 ' @user '" text="" reference="SELECT ' @user '" ref_arg=""/>
+		<Control type="label" label="lvl3 (@user)" text="" reference="SELECT lower(@user)" ref_arg=""/>
+		<Control type="label" label="lvl3 ( @user )" text="" reference="SELECT lower (@user )" ref_arg=""/>
+		<Control type="label" label="lvl3 ( @user )" text="" reference="SELECT lower (@user )" ref_arg=""/>
+		<Control type="label" label="lvl3 @user1," text="" reference="SELECT ifnull(@user1,'null')" ref_arg=""/>
+		<Control type="label" label="lvl3 '@user'" text="" reference="SELECT ifnull('''@user''' , '') || ifnull(@user1,'nu @user ll')" ref_arg=""/>
+		<Control type="label" label="lvl2 1 @user 2" text="" reference="=1 @user 2" ref_arg=""/>
+		<Control type="label" label="lvl2 1+@user+2" text="" reference="=1+@user+2" ref_arg=""/>
+		<Control type="label" label="lvl2 1 @user1 2" text="" reference="=1 @user1 2" ref_arg=""/>
+		<Control type="label" label="lvl2 1 @ 2" text="" reference="=1 @ 2" ref_arg=""/>
+		<Control type="label" name="latLoc" data_type="float" label="SysLoc.Lat:" visible="true" reference="SELECT @locationLatitude"/>
+		<Control type="label" name="longLoc" data_type="float" label="SysLoc.Long:" visible="true" reference="SELECT @locationLongitude"/>
+
+
+		<!-- Control type="label" label="lvl1" text="" reference="1 + @user + 2" ref_arg=""/ -->
+		<Control type="location" gpsNeeded="false" name="loc" />
+	</Control>
+</Form>

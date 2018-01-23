@@ -1,0 +1,207 @@
+﻿<Form name="InlineRefForm" version="1" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' 
+	typed="true" sillyNulls="false" inlineReference="true" rdt_name="{SELECT 'rdtname: '||@[//RootPanel/xy]}" title="{=Title.@[//RootPanel/xy]}" 
+	menu_submit="{REF://RootPanel/cb}" footer_submit="{SELECT not @[//RootPanel/cb]}" floating_submit="{REF://RootPanel/cb}">
+<!-- -->
+	<Rgsyl>
+		<Syl syln="normal" clrFont="#000000" clrBg="#FFFFFF" pctFontSize="100" fBold="false" fItalic="false" fUnderline="false" fStrikethrough="false" duPaddingTop="1px" duPaddingBottom="0px" />
+		<Syl syln="dark" clrFont="#eeeeee" clrBg="#111111" pctFontSize="100" fBold="false" fItalic="false" fUnderline="false" fStrikethrough="false" duPaddingTop="1px" duPaddingBottom="0px" />
+	</Rgsyl>
+
+    <Control type="panel" name="RootPanel" layout="standard" navigation="inline" childStyle="{=@[//RootPanel/cobSylChild]}">
+
+		<Control type="checkbox" name="cb" label="X/Y"/>
+		<Control type="label" name="xy" label="X/Y" text="{SELECT CASE WHEN @[../cb] THEN 'x' ELSE 'y' END FROM (SELECT '1' a UNION ALL SELECT p.guid a FROM reference_project p  ) LIMIT 1}"/>
+		
+		<Control type="combobox" name="cobSyl" label="default" size="medium" 
+			choices="{Static {'normal', 'dark'}}" selectedValue="{=normal}" style="dark"/>
+		
+		<Control type="combobox" name="cobSylChild" label="default child" size="medium" 
+			choices="{Static {'normal', 'dark'}}" selectedValue="{=normal}" style="normal"/>
+		
+		<Control type="panel" name="sylChildInline" navigation="inline" childStyle="{=@[//RootPanel/cobSylChild]}">
+			<Control type="label" name="inherits" label="Inherits Syl" text="From Parent" />
+		</Control>
+		
+		<Control type="panel" name="sylChildPopup" navigation="popup" text="SylChild Popup" 
+			 style="{REF://RootPanel/cobSyl}" childStyle="{=@[//RootPanel/cobSylChild]}" footerButtonStyle="{REF://RootPanel/cobSyl}">
+			<Control type="label" name="inherits" label="Inherits Syl" text="From Parent" />
+			<Control type="panel" name="panel" navigation="inline">
+				<Control type="label" name="label" label="Should look" text="the same as above" />
+			</Control>
+		</Control>
+		<Control type="panel" name="sylChildPopupGen" navigation="popup" text="SylChild Genpanel Popup" 
+			style="{REF://RootPanel/cobSyl}"  childStyle="{=@[//RootPanel/cobSylChild]}" 
+			recordset="{SELECT a FROM (SELECT 'x' a UNION ALL SELECT 'y' a) WHERE a>=@[../xy]}">
+			<Control type="label" name="inherits" label="Inherits Syl" text="{=From Parent @[PARENT.col0]}" />
+			<Control type="panel" name="panel" navigation="inline">
+				<Control type="label" name="label" label="Should look" text="the same as above" />
+			</Control>
+		</Control>
+		<Control type="label" name="SiemensSep" label="{=MyLabel @[../xy]}" text="{SELECT 'MyText ' || @[../xy]}" style="{=@[//RootPanel/cobSyl]}" />
+		<Control type="separator" name="sep" text="{=MySeparator @[../xy]}" style="{=@[//RootPanel/cobSyl]}" />
+		<Control type="textbox" name="Username" label="{=Username @[../xy]}" text="{=@user / @[../xy]}" hint="{=/hint/@[../xy]}"
+			style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="textbox" name="textbox" label="{=write text here @[../xy]}" text="" hint="{=/hint/@[../xy]}"
+			style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="validator" name="val2" label="Validator" text="{=@[../Username]}" style="{=@[//RootPanel/cobSyl]}">
+			<Validators>
+				<Validator type="RequiredValidator" verifyat="change" changeindicator="text" />
+			</Validators>		
+		</Control>	
+		<Control type="textbox" ptype="barcode" name="barcode" label="Barcode" text="0123456" style="{=@[//RootPanel/cobSyl]}"
+			scan_text="{=Scan here @[../xy]}"/>
+		<Control type="textbox" ptype="date" name="date" label="date" text="1992-12-30 12:30:30"  style="{=@[//RootPanel/cobSyl]}" />
+		<Control type="textbox" ptype="time" name="time" label="time" text="1992-12-30 12:30:30"  style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="textbox" ptype="datetime" name="datetime" label="datetime" text="1992-12-30 12:30:30" style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="textbox" ptype="int" name="int" label="int" text="123456" style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="textbox" ptype="float" name="float" label="float" text="1.23456" style="{=@[//RootPanel/cobSyl]}"			/>
+		<Control type="checkbox" name="checkbox" label="{=Check this @[../xy]}" style="{=@[//RootPanel/cobSyl]}"
+			checked="{SELECT not @[PARENT/cb]}"/>
+		<Control type="button" name="buttonAdd" label="{=push this @[../xy]}" text="{=add @[../xy]}" style="{=@[../cobSyl]}">
+			<Actions>
+				<Action type="generator" target="../table2" targetattribute="../Username" generateonemptyattribute="true" />
+			</Actions>
+		</Control>
+		<Control type="combobox" name="combodyn_key" label="{=Select one dynamic key @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string,string" choices="{SELECT k, v FROM (SELECT 'x' k, '1' v UNION ALL SELECT 'y' k, '2' v) WHERE k>=@[../xy]}" 
+			selectedKey="{REF:PARENT/xy}"/>
+		<Control type="combobox" name="combodyn_value" label="{=Select one dynamic value @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string,string" choices="{SELECT k, v FROM (SELECT 'x' v, '1' k UNION ALL SELECT 'y' v, '2' k) WHERE v>=@[../xy]}" 
+			selectedValue="{REF:PARENT/xy}"/>
+		<Control type="combobox" name="combo" label="{=Select one @[../xy]}" style="{=@[//RootPanel/cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}"
+			none="{=none.@[PARENT/xy]}"/>
+		<Control type="combobox" choice="select" name="comboselect" label="{=Select one @[../xy]}" style="{=@[//RootPanel/cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}"/>
+		<Control type="combobox" choice="switch" name="comboswitch" label="{=Select one @[../xy]}" style="{=@[//RootPanel/cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}"/>
+		<Control type="combobox" name="comboempty" label="{=Select one @[../xy]}" style="{=@[//RootPanel/cobSyl]}" choices="{Static {}}" />
+		<Control type="combobox" choice="select" name="comboselectempty" label="{=Select one @[../xy]}" style="{=@[//RootPanel/cobSyl]}" choices="{Static {}}" />
+		<Control type="combobox" choice="switch" name="comboswitchempty" label="{=Select one @[../xy]}" style="{=@[//RootPanel/cobSyl]}" choices="{Static {}}" />
+		<Control type="radiobutton" name="radio" label="{=Radio @[../xy]}" style="{=@[//RootPanel/cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}"/>
+		<Control type="radiobutton" name="radioempty" label="{=Radio @[../xy]}" style="{=@[//RootPanel/cobSyl]}" choices="{Static {}}" />
+		<Control type="photo" name="photo" style="{=@[//RootPanel/cobSyl]}" 
+			text="{SELECT @[PARENT/xy]}" summary="{=Summary: @[PARENT/xy]}"/>
+		<Control type="photo" meta_type="signature" name="sign" label="{=Sign here @[../xy]}" text="{=Sign button @[../xy]}" style="{=@[//RootPanel/cobSyl]}"/>
+
+		<Control name="actionbutton" type="actionbutton" label="{=Action this @[../xy]}" text="{=Copy action @[../xy]}" 
+			data_type="string" value="{REF:../Username}" style="{REF://RootPanel/cobSyl}" />
+		<Control type="label" label="Actionbutton value" text="{=@[PARENT/actionbutton.col0]}"
+			style="{REF://RootPanel/cobSyl}" />
+		<Control type="reportview" name="reportview" label="{=view this report @[../xy]}" reportviewid="{SELECT 'alma'}" 
+			text="{=Open @[PARENT/xy]}" 
+			style="{REF://RootPanel/cobSyl}" />
+		<Control  type="filedownload" name="filedownload" label="{=view this document @[../xy]}" text="{=File @[PARENT/xy]}" mediaid="{REF:../Username}"
+			style="{REF://RootPanel/cobSyl}" />
+		<Control type="link" name="link" label="{=link this phone @[../xy]}" size="medium" 
+			link_type="phone_number" link_target="{=@[../Username]}" text="{=Link @[PARENT/xy]}"
+			style="{REF://RootPanel/cobSyl}" />
+		<Control type="location" name="location" gpsNeeded="false" style="{REF://RootPanel/cobSyl}" />
+		<Control type="callbutton" name="callbutton" label="{=call this on map @[../xy]}" 
+			text="{=Show on map @[PARENT/xy]}" call_action="android.intent.action.VIEW" 
+			call_data="{=geo:@locationLatitude,@locationLongitude}" style="{REF://RootPanel/cobSyl}" />
+		<Control type="callbutton" name="callbutton_timer" label="{=send email to @[../xy]}" 
+			text="{=email to @[PARENT/xy]}" call_action="android.intent.action.SEND" call_type="message/rfc822" 
+			extras="{SELECT 'android.intent.extra.SUBJECT', 'Subj.'||@[../xy] union all SELECT 'android.intent.extra.TEXT', 'Text: '||@[../xy]}" style="{REF://RootPanel/cobSyl}"/>
+		<Control type="closebutton" name="closebutton_submit" label="{=submit this @[../xy]}" 
+			text="{=Start @[PARENT/xy]}" action="submit_form" next_form_name="sysp" parameter="{SELECT @user, @[../xy]}"
+			style="{REF://RootPanel/cobSyl}" />
+		<Control type="closebutton" name="closebutton_discard" label="{=discard this @[../xy]}" 
+			text="{=Start @[PARENT/xy]}" action="discard_form" next_form_name="sysp"
+			style="{REF://RootPanel/cobSyl}" /> <!-- confirm="{SELECT case when @[../cb] THEN 'always' ELSE 'never' END}" -->
+		<Control type="photoview" name="photoview" photos="{SELECT a FROM (SELECT 'x' a UNION ALL SELECT 'y' a) WHERE a>=@[../xy]}" 
+			style="{REF://RootPanel/cobSyl}" />
+
+			<Control type="panel" navigation="popup" name="popup" label="{=Pop this @[../xy]}" style="{=@[//RootPanel/cobSyl]}" childStyle="{=@[./cobSyl]}">
+			<Control type="combobox" name="cobSyl" label="default" size="medium" choices="{Static {'normal','dark'}}" selectedValue="{=normal}" style="{=@[../cobSyl]}" />
+			<Control type="textbox" name="Username" label="Username" text="usr" style="{=@[//RootPanel/cobSyl]}">
+			</Control>
+		</Control>
+		<!-- xxxx -->
+		<Control type="panel" name="table" label="{=Table this @[../xy]}" layout="table" navigation="inline"  recordset="{Static {'1','2'}}"
+			style="{=@[//RootPanel/cobSyl]}" rowStyle="{SELECT CASE @[SELF.igp] % 2 WHEN 0 THEN 'dark' ELSE 'normal' END}">
+			<Control type="combobox" name="cobSyl" label="default" size="medium" choices="{Static {'normal','dark'}}" selectedValue="{=normal}" style="{=@[../cobSyl]}" />
+			
+			<Control type="label" name="SiemensSep" label="MyLabel" text="MyText" style="{=@[../cobSyl]}" />
+			<Control type="separator" name="sep" text="MyText" style="{=@[../cobSyl]}" />
+			<Control type="textbox" name="Username" label="Username" text="usr" style="{=@[../cobSyl]}"/>
+			<Control type="textbox" ptype="barcode" name="barcode" label="Barcode" text="0123456" style="{=@[../cobSyl]}" />
+			<Control type="checkbox" name="chb" label="Check this" style="{=@[../cobSyl]}" />
+			<Control type="button" name="btn" label="Push this" style="{=@[../cobSyl]}" />
+			<Control type="combobox" name="combo" label="Select one" style="{=@[../cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" />
+			<Control type="combobox" choice="select" name="comboselect" label="Select one" style="{=@[../cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" />
+			<Control type="combobox" choice="switch" name="comboswitch" label="Select one" style="{=@[../cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" />
+			<Control type="combobox" name="comboempty" label="Select one" style="{=@[../cobSyl]}" choices="{Static {}}" />
+			<Control type="combobox" choice="select" name="comboselectempty" label="Select one" style="{=@[../cobSyl]}" choices="{Static {}}" />
+			<Control type="combobox" choice="switch" name="comboswitchempty" label="Select one" style="{=@[../cobSyl]}" choices="{Static {}}" />
+			<Control type="radiobutton" name="radio" label="Radio" style="{=@[../cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" />
+			<Control type="radiobutton" name="radioempty" label="Radio" style="{=@[../cobSyl]}" choices="{Static {}}" />
+			<Control type="photo" name="photo" label="Take photo" style="{=@[../cobSyl]}"/>
+			<Control type="photo" meta_type="signature" name="sign" label="Select one" style="{=@[../cobSyl]}" />
+			<Control type="panel" navigation="popup" name="popup" label="Pop this" style="{=@[../cobSyl]}" />
+		</Control>
+		
+		<Control type="panel" name="table2" label="Table this" layout="table" navigation="inline" style="{=@[//RootPanel/cobSyl]}" count="1">
+			<Control type="combobox" name="cobSyl" label="default" size="medium" choices="{Static {'normal','dark'}}" selectedValue="{=normal}" style="{=@[../cobSyl]}" />
+			
+			<Control type="removebutton" name="rembut1" label="{= removebutton @[//RootPanel/xy]}" text="{REF://RootPanel/xy}" />
+			<Control type="label" name="SiemensSep" label="MyLabel" text="MyText" style="{=@[../cobSyl]}" />
+			<Control type="separator" name="sep" text="MyText" style="{=@[../cobSyl]}" />
+			<Control type="textbox" name="Username" label="Username" text="usr" style="{=@[../cobSyl]}" />
+			<Control type="textbox" ptype="barcode" name="barcode" label="Barcode" text="0123456" style="{=@[../cobSyl]}" />
+			<Control type="checkbox" name="chb" label="Check this" style="{=@[../cobSyl]}" />
+			<Control type="button" name="btn" label="Push this" style="{=@[../cobSyl]}" />
+			<Control type="combobox" name="combo" label="Select one" style="{=@[../cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" />
+			<Control type="combobox" choice="select" name="comboselect" label="Select one" style="{=@[../cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" />
+			<Control type="combobox" choice="switch" name="comboswitch" label="Select one" style="{=@[../cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" />
+			<Control type="combobox" name="comboempty" label="Select one" style="{=@[../cobSyl]}" choices="{Static {}}" />
+			<Control type="combobox" choice="select" name="comboselectempty" label="Select one" style="{=@[../cobSyl]}" choices="{Static {}}" />
+			<Control type="combobox" choice="switch" name="comboswitchempty" label="Select one" style="{=@[../cobSyl]}" choices="{Static {}}" />
+			<Control type="radiobutton" name="radio" label="Radio" style="{=@[../cobSyl]}" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" />
+			<Control type="radiobutton" name="radioempty" label="Radio" style="{=@[../cobSyl]}" choices="{Static {}}" />
+			<Control type="photo" name="photo" label="Take photo" style="{=@[../cobSyl]}" />
+			<Control type="photo" meta_type="signature" name="sign" label="Select one" style="{=@[../cobSyl]}" />
+			<Control type="panel" navigation="popup" name="popup" label="Pop this" style="{=@[../cobSyl]}" />
+		</Control>
+		<Control type="textbox" name="Username2" label="Username" text="" style="{=@[../cobSyl]}" />
+		
+		<Control type="panel" name="table3" label="Large" layout="table" navigation="inline" style="{=@[//RootPanel/cobSyl]}" childStyle="{=@[//RootPanel/cobSylChild]}" count="3">
+			<Control type="label" name="index" label="igp" text="{=@[PARENT.igp]}" width="2em" />
+			<Control type="label" name="SiemensSep" label="MyLabel" text="MyText"  width="6em" />
+			<Control type="textbox" name="Username" label="Username" text="usr" width="6em" />
+			<Control type="textbox" ptype="barcode" name="barcode" label="Barcode" text="0123456" width="6em" />
+			<Control type="checkbox" name="chb" label="Check this" width="6em" />
+			<Control type="button" name="btn" label="Push this" width="6em" />
+			<Control type="combobox" name="combo" label="Select one" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" width="6em" />
+			<Control type="combobox" choice="select" name="comboselect" label="Select one" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" width="6em" />
+			<Control type="combobox" choice="switch" name="comboswitch" label="Select one" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" width="6em" />
+			<Control type="combobox" name="comboempty" label="Select one" choices="{Static {}}" width="6em" />
+			<Control type="combobox" choice="select" name="comboselectempty" label="Select one" choices="{Static {}}" width="6em" />
+			<Control type="combobox" choice="switch" name="comboswitchempty" label="Select one" choices="{Static {}}" width="6em" />
+			<Control type="radiobutton" name="radio" label="Radio" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" width="6em" />
+			<Control type="radiobutton" name="radioempty" label="Radio" choices="{Static {}}" width="6em" />
+			<Control type="photo" name="photo" label="Take photo" width="6em" />
+			<Control type="photo" meta_type="signature" name="sign" label="Select one" width="6em" />
+			<Control type="panel" navigation="popup" name="popup" label="Pop this" width="6em" />
+		</Control>	
+
+		<Control type="panel" name="table4" label="Small" layout="table" navigation="inline" 
+			style="{=@[//RootPanel/cobSyl]}" rowStyle="{SELECT CASE @[SELF.igp] % 2 WHEN 0 THEN 'dark' ELSE 'normal' END}"
+			count="3">
+			<Control type="label" name="index" label="igp" text="{=@[PARENT.igp]}" width="2em" />
+			<Control type="label" name="SiemensSep" label="MyLabel" text="MyText"  width="6em" />
+			<Control type="textbox" name="Username" label="Username" text="usr" width="6em" />
+			<Control type="textbox" ptype="barcode" name="barcode" label="Barcode" text="0123456" width="6em" />
+			<Control type="checkbox" name="chb" label="Check this" width="6em" />
+			<Control type="button" name="btn" label="Push this" width="6em" />
+			<Control type="combobox" name="combo" label="Select one" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" width="6em" />
+			<Control type="combobox" choice="select" name="comboselect" label="Select one" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" width="6em" />
+			<Control type="combobox" choice="switch" name="comboswitch" label="Select one" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" width="6em" />
+			<Control type="combobox" name="comboempty" label="Select one" choices="{Static {}}" width="6em" />
+			<Control type="combobox" choice="select" name="comboselectempty" label="Select one" choices="{Static {}}" width="6em" />
+			<Control type="combobox" choice="switch" name="comboswitchempty" label="Select one" choices="{Static {}}" width="6em" />
+			<Control type="radiobutton" name="radio" label="Radio" choices="{Static {'ecc', 'pecc', 'kimehecc'}}" width="6em" />
+			<Control type="radiobutton" name="radioempty" label="Radio" choices="{Static {}}" width="6em" />
+			<Control type="photo" name="photo" label="Take photo" width="6em" />
+			<Control type="photo" meta_type="signature" name="sign" label="Select one" width="6em" />
+			<Control type="panel" navigation="popup" name="popup" label="Pop this" width="6em" />	
+		</Control>	
+	</Control>
+</Form>
