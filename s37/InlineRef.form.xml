@@ -3,14 +3,14 @@
 	menu_submit="{REF://RootPanel/cb}" footer_submit="{SELECT not @[//RootPanel/cb]}" floating_submit="{REF://RootPanel/cb}">
 <!-- -->
 	<Rgsyl>
-		<Syl syln="normal" clrFont="#000000" clrBg="#FFFFFF" pctFontSize="100" fBold="false" fItalic="false" fUnderline="false" fStrikethrough="false" duPaddingTop="1px" duPaddingBottom="0px" />
-		<Syl syln="dark" clrFont="#eeeeee" clrBg="#111111" pctFontSize="100" fBold="false" fItalic="false" fUnderline="false" fStrikethrough="false" duPaddingTop="1px" duPaddingBottom="0px" />
+		<Syl syln="normal" clrFont="#000000" clrBg="#FFFFFF" />
+		<Syl syln="dark" clrFont="#eeeeee" clrBg="#111111" />
 	</Rgsyl>
 
     <Control type="panel" name="RootPanel" layout="standard" navigation="inline" childStyle="{=@[//RootPanel/cobSylChild]}">
 
 		<Control type="checkbox" name="cb" label="X/Y"/>
-		<Control type="label" name="xy" label="X/Y" text="{SELECT CASE WHEN @[../cb] THEN 'x' ELSE 'y' END FROM (SELECT '1' a UNION ALL SELECT p.guid a FROM reference_project p  ) LIMIT 1}"/>
+		<Control type="label" name="xy" label="X/Y" text="{SELECT CASE WHEN @[../cb] THEN 'x' ELSE 'y' END}"/>
 		
 		<Control type="combobox" name="cobSyl" label="default" size="medium" 
 			choices="{Static {'normal', 'dark'}}" selectedValue="{=normal}" style="dark"/>
