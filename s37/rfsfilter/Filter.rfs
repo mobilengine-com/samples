@@ -1,0 +1,41 @@
+server program FilterScheduled
+	for schedule * * * * * 
+	first run at 2100-01-01 10:00
+using reftab FRUIT500;
+{
+	trace db.FRUIT500.Read({Fruit: ["Apple", "Pear"]});
+	trace db.FRUIT500.Read({
+		Fruit: {
+			greaterOrEqual: "Apple", 
+			lessOrEqual: "Lemon"
+		},
+		Price: {
+			notEqual: 500
+		},
+		Quantity: {
+			greaterThan: 120.0, 
+			lessThan: 200.0
+		}
+	});
+	trace db.FRUIT500.Read({
+		Fruit: {
+			within: ["Apple", "Pear", "Lemon", "Avocado", "Banana"]
+		},
+		Type: {
+			notIn: ["Pome fruit", "Tropical"]
+		}
+	});
+	trace db.FRUIT500.Read({
+		Fruit: {
+			within: []
+		}
+	});
+	trace db.FRUIT500.Read({
+		Fruit: {
+			within: ["Apple", "Pear"]
+		},
+		Type: {
+			notIn: []
+		}
+	});
+}

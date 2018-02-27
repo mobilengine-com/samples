@@ -1,0 +1,11 @@
+<Reftab Name="FRUIT500" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="Fruit" Type="Text" PrimaryKey="true" NotNull="true"/>
+    <Column Name="Type" Type="Text" />
+    <Column Name="Price" Type="Integer" />
+    <Column Name="Quantity" Type="Float" />
+	<Column Name="Date" Type="Date" DateFormat='(dtf yyyy "." MM "." dd)' />
+	<Column Name="Unit" Type="Text" />
+	<Column Name="Storage" Type="Text" />
+  </Columns>
+</Reftab>
