@@ -3,6 +3,7 @@ server program FilterScheduled
 	first run at 2100-01-01 10:00
 using reftab FRUIT500;
 {
+	trace db.FRUIT500.Read({Fruit: "Apple"});
 	trace db.FRUIT500.Read({Fruit: ["Apple", "Pear"]});
 	trace db.FRUIT500.Read({
 		Fruit: {
