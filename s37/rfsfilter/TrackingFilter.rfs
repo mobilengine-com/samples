@@ -1,0 +1,25 @@
+server program TrackingFilter 
+	for schedule * * * * * 
+	first run at 2100-01-01 10:00
+{
+	
+	trace "all tracking in company: ";
+	trace db.tracking.Read(map.New());
+	trace "tracking of accuracy < 100: ";
+	trace db.tracking.Read({
+		accuracy: {
+			greaterOrEqual: 0, 
+			lessThan: 100
+		}
+	});
+	
+	trace "tracking of user 101 between 2018-2-28 15:00 and 15:10: ";
+	trace db.tracking.Read({
+		user: "101",
+		dtu: {
+			greaterOrEqual: dtu.New(2018, 2, 28,  15,  0, 0, 0).DtuToDtdb(), 
+			lessOrEqual:    dtu.New(2018, 2, 28,  15, 10, 0, 0).DtuToDtdb()
+		}
+	});
+
+}

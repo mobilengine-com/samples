@@ -1,10 +1,13 @@
-server program FilterScheduled
+server program RtabFilter 
 	for schedule * * * * * 
 	first run at 2100-01-01 10:00
 using reftab FRUIT500;
 {
+	trace "fruit apple: ";
 	trace db.FRUIT500.Read({Fruit: "Apple"});
+	trace "fruit apple and pear: ";
 	trace db.FRUIT500.Read({Fruit: ["Apple", "Pear"]});
+	trace "fruit apple <= fruit <= lemon & price <> 500 & 120 < quantity < 200 ";
 	trace db.FRUIT500.Read({
 		Fruit: {
 			greaterOrEqual: "Apple", 
@@ -18,6 +21,7 @@ using reftab FRUIT500;
 			lessThan: 200.0
 		}
 	});
+	trace "fruit in apple, pear, lemon, avocado, banana & type not in pome fruit, tropical ";
 	trace db.FRUIT500.Read({
 		Fruit: {
 			within: ["Apple", "Pear", "Lemon", "Avocado", "Banana"]
@@ -26,11 +30,13 @@ using reftab FRUIT500;
 			notIn: ["Pome fruit", "Tropical"]
 		}
 	});
+	trace "fruit in empty set (= nothing)";
 	trace db.FRUIT500.Read({
 		Fruit: {
 			within: []
 		}
 	});
+	trace "fruit in apple, pear and type not in empty set (= all of them)";
 	trace db.FRUIT500.Read({
 		Fruit: {
 			within: ["Apple", "Pear"]
@@ -39,4 +45,5 @@ using reftab FRUIT500;
 			notIn: []
 		}
 	});
+	
 }
