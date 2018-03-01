@@ -13,13 +13,26 @@ server program TrackingFilter
 		}
 	});
 	
-	trace "tracking of user 101 between 2018-2-28 15:00 and 15:10: ";
-	trace db.tracking.Read({
+	trace "tracking of user 101 between 2018-2-28 15:39 and 15:55: ";
+	var rgpos = db.tracking.Read({
 		user: "101",
 		dtu: {
-			greaterOrEqual: dtu.New(2018, 2, 28,  15,  0, 0, 0).DtuToDtdb(), 
-			lessOrEqual:    dtu.New(2018, 2, 28,  15, 10, 0, 0).DtuToDtdb()
+			greaterOrEqual: dtu.New(2018, 3, 1,  14, 39, 0, 0).DtuToDtdb(), 
+			lessOrEqual:    dtu.New(2018, 3, 1,  14, 55, 0, 0).DtuToDtdb()
 		}
 	});
+	trace rgpos;
+	trace "distance: ", db.tracking.Geodistance(rgpos);
 
+	trace "tracking of user 101 between 2018-2-28 15:28 and 15:55: ";
+	rgpos = db.tracking.Read({
+		user: "101",
+		dtu: {
+			greaterOrEqual: dtu.New(2018, 3, 1,  14, 28, 0, 0).DtuToDtdb(), 
+			lessOrEqual:    dtu.New(2018, 3, 1,  14, 55, 0, 0).DtuToDtdb()
+		}
+	});
+	trace rgpos;
+	trace "distance: ", db.tracking.Geodistance(rgpos);
+	
 }
