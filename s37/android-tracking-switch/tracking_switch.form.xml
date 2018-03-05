@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Form name="tracking_switch" autoform="false" typed="true"  numberformat='{decimalSeparator:"."}'  dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	sillyNulls="false" inlineReference="true" ksubmit="nobutton">
+ 
+  <Control name="root" type="panel">
+		<Control type="closebutton" action="submit_form" size="large" name="on" text="Turn Tracking On" />
+		<Control type="closebutton" action="submit_form" size="large" name="off" text="Turn Tracking Off" />
+		<Control type="closebutton" action="submit_form" size="large" name="reset" text="Reset Tracking To Server Setting" />
+  </Control>
+</Form>

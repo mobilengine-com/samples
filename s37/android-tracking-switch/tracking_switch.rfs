@@ -1,0 +1,13 @@
+client program TrackingSwitch for form 'tracking_switch'
+{
+	if (form.controlSubmit == form.root.on) {
+		trace "turning tracking on";
+		tracking.TurnOn();
+	} else if (form.controlSubmit == form.root.off) {
+		trace "turning tracking off";
+		tracking.TurnOff();
+	} else {
+		trace "reset tracking";
+		tracking.TurnToDefault();
+	}
+}
