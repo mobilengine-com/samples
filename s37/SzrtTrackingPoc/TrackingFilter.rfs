@@ -1,0 +1,28 @@
+server program TrackingFilter 
+	for schedule * * * * * 
+	first run at 2100-01-01 10:00
+using reftab 'ut';
+{
+	var dmDist = 0.0;
+	var rgut = db.ut.Read({guidNap: "2b66d9781c4e4b36bd61e01e7dbac3f6"});
+	foreach (var ut in rgut) {
+		var rgtrack = db.tracking.Read({
+			user: ut.usern ,
+			instid: ut.instid ,
+			dtu: {
+				greaterOrEqual: ut.dtuKezdet, 
+				lessOrEqual:    ut.dtuVeg
+			}
+		});
+		var dmDistCurr = db.tracking.Geodistance(rgtrack);
+		trace "ut: ", ut, "\ntracks: ", rgtrack, "\ndist: ", dmDistCurr;
+		dmDist = dmDist + dmDistCurr;
+	}
+	trace "nap vege tav: ", dmDist;
+
+/*
+    instid: "
+15837efeb9724d3194a7bcc6241abcdc
+	", 
+*/
+}

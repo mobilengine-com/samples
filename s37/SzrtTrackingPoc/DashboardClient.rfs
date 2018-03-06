@@ -1,0 +1,115 @@
+client program DashboardClientRfs for form 'Dashboard'
+using reftab 'state';
+{
+	var rgstate = db.state.Read({usern: form.user.name});
+	var state;
+	if (rgstate.Count() == 0) {
+		state = {
+			usern: form.user.name,
+			nap: 0,
+			uton: 0
+		};
+	} else {
+		state = rgstate[0];
+	}
+	
+	if (form.controlSubmit != null && form.controlSubmit != undefined) {
+		if (form.controlSubmit.nid=="NapKapcsolo") {
+			trace "beküldve a NapKapcsolóval";
+			if (form.root.fNap.value=="true") {
+				trace "napVege";
+				tracking.TurnOff();
+				state.nap = 0;
+			} else {
+				trace "napKezdete";
+				tracking.TurnOn();
+				state.nap = 1;
+			}
+			state.uton = 0;
+		} else if (form.controlSubmit.nid=="UtonKapcsolo") {
+			trace "beküldve az UtonKapcsolóval";
+			if (form.root.fUton.value=="true") {
+				trace "megerkezés";
+				state.uton = 0;
+			} else {
+				trace "indulás";
+				state.uton = 1;
+			}
+		} else {
+			trace "beküldve ???", form.controlSubmit;
+		}
+		db.state.InsertOrUpdate({usern: form.user.name}, state);
+	}
+/*
+form: {
+	controlSubmit:
+		{
+			nid: "submitSwitch", 
+			npth: "Dashboard/root/submitSwitch", 
+			parent:
+				{
+					:
+						{
+							nid: "", 
+							npth: "Dashboard/root/", 
+							parent: <<recursion>>, 
+							type: "label"
+						}, 
+					fNap:
+						{
+							nid: "fNap", 
+							npth: "Dashboard/root/fNap", 
+							parent: <<recursion>>, 
+							type: "label", 
+							value: "false"
+						}, 
+					nid: "root", 
+					npth: "Dashboard/root", 
+					parent: <<recursion>>, 
+					submitSwitch: <<recursion>>, 
+					type: "panel"
+				}, 
+			type: "closebutton", 
+			value: ""
+		}, 
+	dtlSubmit: <<null>>, 
+	dtuSubmit: <<null>>, 
+	nid: "Dashboard", 
+	npth: "Dashboard", 
+	parent: <<null>>, 
+	root:
+		{
+			:
+				{
+					nid: "", 
+					npth: "Dashboard/root/", 
+					parent: <<recursion>>, 
+					type: "label"
+				}, 
+			fNap:
+				{
+					nid: "fNap", 
+					npth: "Dashboard/root/fNap", 
+					parent: <<recursion>>, 
+					type: "label", 
+					value: "false"
+				}, 
+			nid: "root", 
+			npth: "Dashboard/root", 
+			parent: <<recursion>>, 
+			submitSwitch:
+				{
+					nid: "submitSwitch", 
+					npth: "Dashboard/root/submitSwitch", 
+					parent: <<recursion>>, 
+					type: "closebutton", 
+					value: ""
+				}, 
+			type: "panel"
+		}, 
+	type: "form", 
+	user: {id: -1, name: "101"}
+	}
+*/
+	trace form;
+}

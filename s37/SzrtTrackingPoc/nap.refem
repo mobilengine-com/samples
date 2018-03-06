@@ -1,0 +1,11 @@
+<Reftab Name="nap" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="usern" Type="Text" NotNull="true"/>
+	<Column Name="guid" Type="Text" NotNull="true" PrimaryKey="true" />
+	<Column Name="dtuKezdet" Type="Date" NotNull="true"/>
+	<Column Name="dtlKezdet" Type="Date" NotNull="true"/>
+	<Column Name="dtuVeg" Type="Date" />
+	<Column Name="dtlVeg" Type="Date" />
+	<Column Name="dmDistance" Type="Float" />
+  </Columns>
+</Reftab>

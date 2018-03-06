@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Form name="Dashboard" autoform="true" typed="true"  numberformat='{decimalSeparator:"."}'  dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	sillyNulls="false" inlineReference="true">
+ 
+  <Control name="root" type="panel">
+	<!-- NapKezdet/NapVege + státusz -> tracking on/off 			-->
+	<Control type="label" name="instid" visible="false" data_type="string"
+		text="{SELECT @instid}"/>
+	<Control type="label" name="fNap" visible="false" data_type="bool"
+		text="{SELECT s.nap FROM (SELECT st.nap FROM reference_state st UNION ALL SELECT 0 nap) s LIMIT 1}"/>
+	<Control type="label" label="Nap állapot" text="{SELECT CASE WHEN @[../fNap] THEN 'brrrrmmmmm' ELSE 'zzz' END}"/>
+	<Control type="closebutton" name="NapKapcsolo" action="submit_form"
+		text="{SELECT CASE WHEN @[../fNap] THEN 'Végez' ELSE 'Kezd' END}" enabled="{SELECT NOT @[../fUton]}" />
+	<!-- Indulás / Érkezés + státusz -> tracking counting on/off 	-->
+	<Control type="label" name="fUton" visible="false" data_type="bool"
+		text="{SELECT s.uton FROM (SELECT st.uton FROM reference_state st UNION ALL SELECT 0 uton) s LIMIT 1}"/>
+	<Control type="label" label="Utazás" text="{SELECT CASE WHEN @[../fNap] THEN CASE WHEN @[../fUton] THEN 'úton' ELSE 'megérkezett' END ELSE '-' END}"/>
+	<Control type="closebutton" name="UtonKapcsolo" action="submit_form"
+		text="{SELECT CASE WHEN @[../fUton] THEN 'Megérkezik' ELSE 'Indul' END}" enabled="{REF:../fNap}" />
+	<!-- Privát  ON/OFF + státusz    -> tracking counting on/off	-->
+	<!-- Control type="label" name="fPrivat" visible="false" data_type="bool"
+		text="{SELECT s.privat FROM (SELECT st.privat FROM reference_state st UNION ALL SELECT 0 privat) s LIMIT 1}"/>
+	<Control type="label" label="Privát út" text="{SELECT CASE WHEN @[../fPrivat] THEN 'Privát' ELSE 'Munka' END}"/>
+	<Control type="closebutton" name="PrivatKapcsolo" action="submit_form"
+		text="{SELECT CASE WHEN @[../fPrivat] THEN 'Privát vége' ELSE 'Privát start' END}" / -->
+  </Control>
+</Form>

@@ -1,0 +1,182 @@
+server program DashboardServerRfs for form 'Dashboard'
+using reftab 'state';
+using reftab 'ut';
+using reftab 'nap';
+{
+	trace form;
+
+	var rgstate = db.state.Read({usern: form.user.name});
+	var state;
+	if (rgstate.Count() == 0) {
+		state = {
+			usern: form.user.name,
+			nap: 0,
+			uton: 0
+		};
+	} else {
+		state = rgstate[0];
+	}
+	
+	trace "starting state: ", state;
+	
+	var rgnap = db.nap.Read({
+		usern: form.user.name,
+		dtuVeg: null,
+		dtlVeg: null,
+		dmDistance: null
+	});
+	
+	var nap;
+	if (rgnap.Count() == 0) {
+		nap = null; 
+	} else {
+		nap = rgnap[0];
+	}
+
+	trace "current nap ", nap;
+
+	
+	if (form.controlSubmit != null && form.controlSubmit != undefined) {
+		if (form.controlSubmit.nid=="NapKapcsolo") {
+			trace "beküldve a NapKapcsolóval";
+			if (form.root.fNap.value=="true") {
+				trace "napVege";
+				state.nap = 0;
+				var dmDist = 0.0;
+				var rgut = db.ut.Read({guidNap: nap.guid});
+				foreach (var ut in rgut) {
+					var rgtrack = db.tracking.Read({
+						user: ut.usern,
+						instid: ut.instid,
+						dtu: {
+							greaterOrEqual: ut.dtuKezdet, 
+							lessOrEqual:    ut.dtuVeg
+						}
+					});
+					var dmDistCurr = db.tracking.Geodistance(rgtrack);
+					trace "ut: ", ut, "\ntracks: ", rgtrack, "\ndist: ", dmDistCurr;
+					dmDist = dmDist + dmDistCurr;
+				}
+				
+				db.nap.Update({guid: nap.guid}, 
+					{
+						dtuVeg: form.dtuSubmit.DtuToDtdb(),
+						dtlVeg: form.dtlSubmit.DtlToDtdb(),
+						dmDistance: dmDist
+					}
+				);
+				trace "nap vege tav: ", dmDist;
+				
+			} else {
+				trace "napKezdete";
+				
+				state.nap = 1;
+				
+				db.nap.Insert({
+					usern: form.user.name,
+					guid: guid.Generate().ToStringN(),
+					dtuKezdet: form.dtuSubmit.DtuToDtdb(),
+					dtlKezdet: form.dtlSubmit.DtlToDtdb(),
+					dtuVeg: null,
+					dtlVeg: null,
+					dmDistance: null
+				});
+			}
+			state.uton = 0;
+		} else if (form.controlSubmit.nid=="UtonKapcsolo") {
+			trace "beküldve az UtonKapcsolóval";
+			if (form.root.fUton.value=="true") {
+				trace "megerkezés";
+				state.uton = 0;
+				db.ut.Update({
+					usern: form.user.name,
+					instid: form.root.instid.value,
+					dtuVeg: null,
+					dtlVeg: null					
+				},
+				{
+					dtuVeg: form.dtuSubmit.DtuToDtdb(),
+					dtlVeg: form.dtlSubmit.DtlToDtdb()
+				});
+				
+			} else {
+				trace "indulás";
+				state.uton = 1;
+
+				db.ut.Insert({
+					usern: form.user.name,
+					instid: form.root.instid.value,
+					guidNap: nap.guid,
+					dtuKezdet: form.dtuSubmit.DtuToDtdb(),
+					dtlKezdet: form.dtlSubmit.DtlToDtdb(),
+					dtuVeg: null,
+					dtlVeg: null
+				});
+				
+			}
+		} else {
+			trace "beküldve ???", form.controlSubmit;
+		}
+		db.state.InsertOrUpdate({usern: form.user.name}, state);
+		trace "state updated to: ", state;
+	}
+/*
+form: {
+    controlSubmit:
+        {
+            nid: "NapKapcsolo", 
+            npth: "Dashboard/root/NapKapcsolo", 
+            parent: <<reference>>, 
+            type: "closebutton", 
+            value: ""
+        }, 
+    dtlSubmit: 2018.03.05. 15:43:14 (Dtl), 
+    dtuSubmit: 2018.03.05. 14:43:14 (Dtu), 
+    nid: "Dashboard", 
+    npth: "Dashboard", 
+    parent: <<null>>, 
+    resultId: 32, 
+    root:
+        {
+            fNap:
+                {
+                    nid: "fNap", 
+                    npth: "Dashboard/root/fNap", 
+                    parent: <<reference>>, 
+                    type: "label", 
+                    value: "false"
+                }, 
+            fUton:
+                {
+                    nid: "fUton", 
+                    npth: "Dashboard/root/fUton", 
+                    parent: <<reference>>, 
+                    type: "label", 
+                    value: "true"
+                }, 
+            NapKapcsolo:
+                {
+                    nid: "NapKapcsolo", 
+                    npth: "Dashboard/root/NapKapcsolo", 
+                    parent: <<reference>>, 
+                    type: "closebutton", 
+                    value: ""
+                }, 
+            nid: "root", 
+            npth: "Dashboard/root", 
+            parent: <<reference>>, 
+            type: "panel", 
+            UtonKapcsolo:
+                {
+                    nid: "UtonKapcsolo", 
+                    npth: "Dashboard/root/UtonKapcsolo", 
+                    parent: <<reference>>, 
+                    type: "closebutton", 
+                    value: ""
+                }
+        }, 
+    type: "form", 
+    user: {companyId: 101, id: 9, name: "101"}
+}
+*/
+}
