@@ -35,7 +35,6 @@
 		<Control type="label" data_type="bool" label="SysLoc present:" visible="true" reference="SELECT @locationSet"/>
 		<Control type="label" name="latLoc" data_type="float" label="SysLoc.Lat:" visible="true" reference="SELECT @locationLatitude"/>
 		<Control type="label" name="longLoc" data_type="float" label="SysLoc.Long:" visible="true" reference="SELECT @locationLongitude"/>
-		<Control type="label" data_type="float" label="SysLoc.Alt:" visible="true" reference="SELECT @locationAltitude"/>
 		<Control type="label" name="SysLoc.Acc" data_type="float" label="SysLoc.Acc:" visible="true" reference="SELECT @locationAccuracy"/>
 		<Control type="label" name="SysLoc.Dtl" data_type="datetime" label="SysLoc.Dtl:" visible="true" reference="SELECT @locationDtlAcquired"/>
 
