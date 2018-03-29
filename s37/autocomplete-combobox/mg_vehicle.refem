@@ -1,0 +1,14 @@
+<Reftab Name="mg_vehicle" SyncNullAsEmptyString="true" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+	<Column Name="vehicle_no" Type="Text" NotNull="true" PrimaryKey="true" />
+	<Column Name="serial_no" Type="Text" />
+	<Column Name="trailer" Type="Text" />
+	<Column Name="manufacturer" Type="Text" />
+	<Column Name="model" Type="Text" />
+	<Column Name="vehicle_type" Type="Text" />
+	<Column Name="haulier" Type="Text" />
+	<Column Name="haulier_carrier_no" Type="Text" />
+	<Column Name="driver" Type="Text" NotNull="true" />
+	<Column Name="driver_name" Type="Text" NotNull="true" />
+  </Columns>
+</Reftab>

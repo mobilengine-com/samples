@@ -1,0 +1,29 @@
+<Reftab Name="mg_biometric_data" SyncNullAsEmptyString="true" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="bd_guid" Type="Text" PrimaryKey="true" NotNull="true" />
+		<Column Name="usr" Type="Text" NotNull="true" />
+		<Column Name="start_date" Type="Date" DateFormat='(dtf dd"-"MM"-"yyyy)' />
+		<Column Name="biometric_pin" Type="Text" />
+		<Column Name="category" Type="Text" NotNull="true" />
+		<Column Name="employer" Type="Text" NotNull="true" />
+		<Column Name="role" Type="Text" />
+		<Column Name="company" Type="Text" />
+		<Column Name="surname" Type="Text" NotNull="true" />
+		<Column Name="first_name" Type="Text" NotNull="true" />
+		<Column Name="middle_name" Type="Text" />
+		<Column Name="date_of_birth" Type="Date" DateFormat='(dtf dd"-"MM"-"yyyy)' NotNull="true" />
+		<Column Name="national_ins_no" Type="Text" />
+		<Column Name="post_code" Type="Text" />
+		<Column Name="adr_line_1" Type="Text" />
+		<Column Name="adr_line_2" Type="Text" />
+		<Column Name="town" Type="Text" />
+		<Column Name="county" Type="Text" />
+		<Column Name="health_problem" Type="Text" />
+		<Column Name="e_mail1" Type="Text" />
+		<Column Name="tel_mobile" Type="Text" />
+		<Column Name="type_of_passport" Type="Text" />
+		<Column Name="ref_no" Type="Text" />
+		<Column Name="exp_date" Type="Date" DateFormat='(dtf dd"-"MM"-"yyyy)' />
+		<Column Name="rtw_doc_type" Type="Text" />
+	</Columns>
+</Reftab>

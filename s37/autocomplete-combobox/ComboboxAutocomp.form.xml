@@ -1,0 +1,76 @@
+﻿<Form name="ComboboxAutocomp" version="1" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' 
+	typed="true" sillyNulls="false" inlineReference="true" >
+<!-- -->
+	<Rgsyl>
+		<Syl syln="normal" clrFont="#000000" clrBg="#FFFFFF" />
+		<Syl syln="dark" clrFont="#eeeeee" clrBg="#111111" />
+		<Syl syln="normalg" clrFont="#777777" clrBg="#FFFFFF" />
+		<Syl syln="darkg" clrFont="#777777" clrBg="#111111" />
+		<Syl syln="red" clrFont="#000000" clrBg="#FF0000" />
+		<Syl syln="redw" clrFont="#eeeeee" clrBg="#FF0000" />
+		<Syl syln="redg" clrFont="#777777" clrBg="#FF0000" />
+	</Rgsyl>
+
+    <Control type="panel" name="RootPanel" layout="standard" navigation="inline" childStyle="{=@[//RootPanel/cobSylChild]}">
+
+		<Control type="checkbox" name="cb" label="X/Y"/>
+		<Control type="label" name="xy" label="X/Y" text="{SELECT CASE WHEN @[../cb] THEN 'x' ELSE 'y' END}"/>
+		
+		<Control type="combobox" name="cobSyl" label="default" size="medium" 
+			choices="{Static {'normal', 'dark', 'normalg', 'darkg', 'red', 'redw', 'redg'}}" selectedValue="{=normal}" style="dark"/>
+		
+		<Control type="combobox" name="cobSylChild" label="default child" size="medium" 
+			choices="{Static {'normal', 'dark', 'normalg', 'darkg', 'red', 'redw', 'redg'}}" selectedValue="{=normal}" style="normal"/>
+		<Control type="combobox" name="combodyn_value_autocomplete" label="Autocomplete" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string" choice="autocomplete"
+			hint="Filter by name"
+			choices="{SELECT fruit FROM reference_fruit500 where @[SELF.filter] is null OR fruit like @[SELF.filter]||'%' ORDER BY fruit LIMIT 20}" 
+			/>
+		<Control type="combobox" name="combodyn_value" label="Normal" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string" 
+			choices="{SELECT fruit FROM reference_fruit500}" 
+			/>
+			
+		<Control type="textbox" name="Search" label="Search:" text="" />
+		<Control type="combobox" name="Full_Name" label="Full Name:" text="" size="medium" 
+		reference="SELECT surname || ' ' || first_name || ' ' || middle_name || ' - ' || biometric_pin AS name FROM Reference_mg_biometric_data WHERE name LIKE '%' || @1 || '%' GROUP BY name ORDER BY name" ref_arg="../Search" >
+			<Validators>
+				<Validator type="RequiredValidator" message="" />
+			</Validators>
+		</Control>
+
+		<Control type="combobox" name="Full_Name_Autocomplete" label="Full Name:" text="" size="medium" choice="autocomplete"
+		reference="SELECT surname || ' ' || first_name || ' ' || middle_name || ' - ' || biometric_pin AS name FROM Reference_mg_biometric_data WHERE name LIKE '%' || @1 || '%' GROUP BY name ORDER BY name" ref_arg="SELF.filter" >
+			<Validators>
+				<Validator type="RequiredValidator" message="" />
+			</Validators>
+		</Control>
+
+		<Control type="label" name="Reg_No_sf" text="ASD000"/>
+		<Control type="textbox" name="Driver_Fltr" label="Search for driver (min. 4 chars)" text="" size="medium" submit="false" 
+		reference="SELECT driver_name FROM Reference_mg_vehicle WHERE vehicle_no = @1" ref_arg="../Reg_No_sf" />
+		 <!--  -->
+		<Control type="combobox" name="Driver_Name_Combo_sf" label="*Driver Name:" text="" size="medium" submit="false" data_type="string, string" 
+		reference="SELECT 'add_new' AS driver, 'Add new' AS driver_name UNION ALL SELECT DISTINCT driver, driver_name FROM Reference_mg_vehicle WHERE driver IS NOT NULL AND driver != '' AND driver_name LIKE '%' || @1 || '%' AND LENGTH( @1 ) &gt; 3 ORDER BY driver_name" ref_arg="../Driver_Fltr" 
+		value_reference="SELECT driver_name FROM Reference_mg_vehicle WHERE vehicle_no = @1" value_ref_arg="../Reg_No_sf" >
+			<Validators>
+				<Validator type="RequiredValidator" message="" />
+			</Validators>
+		</Control>		
+		
+		<Control type="combobox" name="Driver_Name_Combo_sf_auto" label="*Driver Name:" text="" 
+			size="medium" submit="false" data_type="string, string" 
+			reference="SELECT 'add_new' AS driver, 'Add new' AS driver_name 
+				UNION ALL SELECT DISTINCT driver, driver_name 
+					FROM Reference_mg_vehicle 
+					WHERE driver IS NOT NULL AND driver != '' AND driver_name LIKE '%' || @1 || '%' AND LENGTH( @1 ) &gt; 3 
+					ORDER BY driver_name" ref_arg="SELF.filter" 
+			value_reference="SELECT driver_name FROM Reference_mg_vehicle WHERE vehicle_no = @1" value_ref_arg="../Reg_No_sf" 
+			choice="autocomplete" >
+			<Validators>
+				<Validator type="RequiredValidator" message="" />
+			</Validators>
+		</Control>
+		
+	</Control>
+</Form>
