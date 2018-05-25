@@ -1,0 +1,10 @@
+server program MultiuserInsert
+	for schedule * * * * * 
+	first run at 2100-01-01 10:00
+using reftab files;
+{
+	db.files.Insert({usr: "alma,korte,barack,,,", file_guid: "abc", file_name: "abc.pdf" });
+	db.files.Insert({usr: "alma", file_guid: "cba", file_name: "cba.pdf" });
+	db.files.Insert({usr: "gandalf,geza", file_guid: "bca", file_name: "bca.pdf" });
+	db.files.Insert({usr: null, file_guid: "cab", file_name: "cab.pdf" });
+}

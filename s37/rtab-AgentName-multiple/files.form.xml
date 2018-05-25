@@ -1,0 +1,13 @@
+<Form name="files" description="files" typed="true" hidden="false" autoform="true" 
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".", maxFraction:2}' xmlns:ofm="http://schemas.mobilengine.com/plugins/ofm">
+    <Control type="panel" name="root">
+
+        <Control type="panel" name="files" navigation="inline" layout="table" 
+				data_type="string,string,string" 
+				generator="SELECT F.file_guid, F.file_name, f.usr FROM Reference_files F" ref_arg="" table_width="1 swt">
+            <Control type="label" name="guid" label="guid" visible="true" reference="SELECT @1" ref_arg="PARENT.col0" width="remaining 1"/>
+            <Control type="label" name="name" label="name" visible="true" reference="SELECT @1" ref_arg="PARENT.col1" width="remaining 1"/>
+            <Control type="label" name="usr" label="usr" visible="true" reference="SELECT @1" ref_arg="PARENT.col2" width="remaining 1"/>
+        </Control>
+    </Control>
+</Form>

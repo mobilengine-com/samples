@@ -1,0 +1,10 @@
+server program MultiuserUpdate
+	for schedule * * * * * 
+	first run at 2100-01-01 10:00
+using reftab files;
+{
+	db.files.Update({file_guid: "abc"}, {usr: "alma,citrom,narancs", file_name: "abc1.pdf" });
+	db.files.Update({file_guid: "cba"}, {usr: "gandalf", file_name: "cba1.pdf" });
+	db.files.Update({file_guid: "bca"}, {usr: "korte", file_name: "bca1.pdf" });
+	db.files.Update({file_guid: "cab"}, {usr: "", file_name: "cab1.pdf" });
+}

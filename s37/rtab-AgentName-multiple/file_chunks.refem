@@ -1,0 +1,8 @@
+<Reftab Name="file_chunks" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" NullOnDelete="true">
+  <Columns>
+    <Column Name="usr" Type="Text" AgentName="multiple" />
+    <Column Name="file_guid" Type="Text" />
+	<Column Name="chunk_no" Type="Integer" />
+	<Column Name="chunk_content" Type="Text" />
+  </Columns>
+</Reftab>
