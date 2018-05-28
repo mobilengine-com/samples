@@ -1,0 +1,12 @@
+server program MultiuserAssign
+	for schedule * * * * * 
+	first run at 2100-01-01 10:00
+using reftab files;
+{
+	var file = db.files.Read({file_guid: "abc"}).SingleOrDefault();
+	
+	if (file != null) {
+		var usrNew = file.usr+",gandalf";
+		db.files.Update({file_guid: file.file_guid}, {usr: usrNew});
+	}
+}
