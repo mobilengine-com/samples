@@ -1,0 +1,393 @@
+<form id='ticketsIos' menuName='ticketsIos' title='ticketsIos' platforms='ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letFp" shape="record" value="{SELECT fp.guid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid, f.file_size, f.file_hash, f.file_name FROM floorplan fp JOIN files f ON f.file_guid = fp.file_guid WHERE params.guidFloorplan = fp.guid}"/>
+		<let id="letPointSelected" shape="record" value="{SELECT annotator.selectedPoint.id, annotator.selectedPoint.categoryId, annotator.selectedPoint.pageIndex, annotator.selectedPoint.xFraction xFraction, annotator.selectedPoint.yFraction yFraction WHERE annotator.selectedPoint IS NOT NULL}"/>				
+		<let id="letPointNew" shape="record" value="{SELECT annotator.newPoint.categoryId, annotator.newPoint.pageIndex, annotator.newPoint.xFraction xFraction, annotator.newPoint.yFraction yFraction WHERE annotator.newPoint IS NOT NULL }"/>				
+		<let id="letTickets" shape="table" value="{SELECT t.guid, t.category, t.section, t.status, t.description, t.guidContractor, t.dueDate, t.mediaidSignature FROM 	ticket t WHERE t.guidPoint=letPointSelected.id AND t.status>=0}"/>
+		<let id="isNewPoint" shape="scalar" value="{letPointNew IS NOT NULL}"/>
+		<let id="fDebug" shape="scalar" value="{cbDebug.checked}"></let>
+	</declarations>
+	<params>
+		<param id="guidFloorplan"/>
+	</params>
+	<checkbox id="cbDebug" label="debug"/>
+
+	<if cond="{fDebug}" >
+		<segmentedbutton id="sbPointSize" label="point size %" choices="{[0.5, 1.0, 2.0, 4.0]}" keyMap = "{v}" textMap="{toString(v)}" />
+		<popup id="b" title="testing">
+
+			<annotator id="annotator_default" text='default' />
+
+			<annotator id="annotator_empty" text='no ddata' 
+				chunks='{SELECT "almafa" WHERE 0=1}' fileName="" />
+
+			<annotator id="annotator_bad64" text='bad base 64' 
+				chunks='{SELECT "almafa"}' fileName="" />
+
+			<annotator id="annotator_badfile" text='bad file - png' 
+				chunks='{["iVBORw0KGgoAAAANSUhEUgAAADMAAAAKCAMAAAFZDabrAAAAAXNSR0IArs4c6QAAAARnQU1BAACx",
+						"jwv8YQUAAAB7UExURQAAAAyMRgyMRAyMRguLRQuNRQmORAyMRQuLRgqMRguMRgyMRAuLRgyMRguK",
+						"RgyMRQuLRgqKRQyLRQ+PRwuLRguLRgB/Pw6NRhWUPwyMRg2NRAyLRguKRwyMRguLRQuLRgyLRQyM",
+						"RgyLRguLRQuLRQyMRQuLRguLRgB/P1qfmFcAAAApdFJOUwD3PP+zXDS7w3SDZGzTcI/rMIsg858I",
+						"JAz7OKNEUFjHVM/L3yyT75sE3gzqVQAAAAlwSFlzAAAXEQAAFxEByibzPwAAAMFJREFUKFOFkNkS",
+						"gzAIRVHcd611t1arxv//wsYEt7EzPQ8MXC6BCXDMNaAu4hreW2JC0eNOsEoAL2HnBKRz+gJwk0FH",
+						"MQywuAP1OYO7SJVq7L1iLQtvXyHakjH5JCPlO/GkkBNRmWIpqs+SpDMlU7dFJauEsWKbkXfm2+tj",
+						"Ml8uECyjHlopjSGmVqjfrpJkhsf647xfKAPzjEzaSbri13bzaOzap/rKaSbtJjem77ywxO7UHfci",
+						"RJrT5tT8T946WvQF4QALkGwPp+4AAAAASUVORK5CYII="]}' fileName="collapse_arrow.png" />
+			<annotator id="annotator_nocats" text='no categories' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" />
+
+			<annotator id="annotator_pointwithbadcat" text='point with bad cat' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CAT" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "theresnosuchcat" categoryId, 0 pageIndex, 0.0 xFraction, 0.0 yFraction }'/>
+
+			<annotator id="annotator_pointwithdoublecat" text='point with multiple same id cat' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CAT" abbreviation, "#CA0000" color UNION ALL SELECT "cat" id, "cat1" name, "CB" abbreviation, "#00CA00" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'/>
+
+			<annotator id="annotator_pointwithwrongcolorcat" text='point with good cat wrong color' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CAT" abbreviation, "almafa" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'/>
+
+			<annotator id="annotator_pointwithnoabbrcat" text='point with good cat no abbr' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'/>
+
+			<annotator id="annotator_pointwithlargeabbrcat" text='point with good cat large abbr' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'/>
+
+			<annotator id="annotator_pointwithwrongpage" text='point with wrong page' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 10 pageIndex, 0.5 xFraction, 0.5 yFraction }'/>
+
+			<annotator id="annotator_pointhoutsideof01x" text='point outside of x 0-1' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 1.5 xFraction, 0.5 yFraction }'/>
+
+			<annotator id="annotator_pointhoutsideof01y" text='point outside of y 0-1' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 1.5 yFraction }'/>
+
+			<annotator id="annotator_pointhoutsideof01xmin" text='point outside of x 0-1 minus' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, -1.5 xFraction, 0.5 yFraction }'/>
+
+			<annotator id="annotator_pointhoutsideof01ymin" text='point outside of y 0-1 minus' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, -1.5 yFraction }'/>
+
+			<annotator id="annotator_pointon00" text='point on x,y: 0,0' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.0 xFraction, 0.0 yFraction }'/>
+
+			<annotator id="annotator_pointon01" text='point on x,y: 0,1' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.0 xFraction, 1.0 yFraction }'/>
+
+			<annotator id="annotator_pointon10" text='point on x,y: 1,0' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 1.0 xFraction, 0.0 yFraction }'/>
+
+			<annotator id="annotator_pointon11" text='point on x,y: 1,1' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 1.0 xFraction, 1.0 yFraction }'/>
+
+			<annotator id="annotator_position_55" text='position on x,y: 0.5,0.5, scale 0.5' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 0.5 scale, 0.5 xFractionOfCenter, 0.5 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_00" text='position on x,y: 0.0,0.0, scale 1' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 1 scale, 0.0 xFractionOfCenter, 0.0 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_01" text='position on x,y: 0.0,1.0, scale 1' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 1 scale, 0.0 xFractionOfCenter, 1.0 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_10" text='position on x,y: 1.0,0.0, scale 1' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 1 scale, 1.0 xFractionOfCenter, 0.0 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_11" text='position on x,y: 1.0,1.0, scale 1' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 1 scale, 1.0 xFractionOfCenter, 1.0 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_nopage" text='position - no page' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 10 pageIndex, 0.5 scale, 0.5 xFractionOfCenter, 0.5 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_largescale" text='position - large scale' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 1000 scale, 0.5 xFractionOfCenter, 0.5 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_smallscale" text='position - small scale' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 0.001 scale, 0.5 xFractionOfCenter, 0.5 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_negcale" text='position - neg scale' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, -1 scale, 0.5 xFractionOfCenter, 0.5 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_x_outside_plus" text='position on x outside plus' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 0.5 scale, 1.5 xFractionOfCenter, 0.5 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_y_outside_plus" text='position on y outside plus' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 0.5 scale, 0.5 xFractionOfCenter, 1.5 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_x_outside_minus" text='position on x outside minus' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 0.5 scale, -1.5 xFractionOfCenter, 0.5 yFractionOfCenter}' />
+
+			<annotator id="annotator_position_y_outside_minus" text='position on y outside minus' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CA" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				position='{SELECT 0 pageIndex, 0.5 scale, 0.5 xFractionOfCenter, -1.5 yFractionOfCenter}' />
+				
+
+			<annotator id="annotator_pointsizelarge" text='point size large' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				pointSize='{1000.0}'/>
+
+			<annotator id="annotator_pointsizesmall" text='point size small' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				pointSize='{0.0001}'/>
+
+			<annotator id="annotator_pointsizeneg" text='point size negative' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				pointSize='{-10.0}'/>
+
+			<annotator id="annotator_selectedcatnotexist" text='selected category not exist' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				selectedCategoryId='{"nosuchcategory"}'/>
+
+			<annotator id="annotator_selectedcatmulti" text='selected category -multiple matching' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "CAT" abbreviation, "#CA0000" color UNION ALL SELECT "cat" id, "cat1" name, "CB" abbreviation, "#00CA00" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 0.5 xFraction, 0.5 yFraction }'
+				selectedCategoryId='{"cat"}'/>
+				
+			<annotator text='no id' 
+				chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+				categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+				points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 1.0 xFraction, 1.0 yFraction }'/>
+				
+			<popup id="multiset" title="multiple open on set">
+				<annotator text='no id' 
+					chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+					categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+					points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 1.0 xFraction, 1.0 yFraction }'  openOnSet="{true}"/>
+				<annotator text='no id' 
+					chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+					categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
+					points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 1.0 xFraction, 1.0 yFraction }'  openOnSet="{true}"/>
+			</popup>
+				
+		</popup>
+	</if>
+	
+	<annotator id="annotator" text='Show floorplan with points' 
+		chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+		categories='{SELECT c.guid id, c.name, c.abbr abbreviation, c.rgb color FROM category c}' 
+		points='{SELECT p.guid id, t.category categoryId, p.ipage pageIndex, p.pctX xFraction, p.pctY yFraction
+			FROM ticket t JOIN point p ON p.guid = t.guidPoint 
+			WHERE p.guidFloorplan = letFp.guid AND t.status>=0 }'
+
+		title='{"This is " || fileName || " floorplan"}'
+		selectedCategoryId="{letFp.category}"
+		pointSize="{sbPointSize.selectedKey}"
+
+		selectCategoryText="Válassz szakágat!" noCategoryText="Mutasd mindet" newPointColor="#FF00FF" openOnSet="{true}"/>
+
+	<if cond="{fDebug}" >
+		<textview id="posScale" label="position scale" text='{toString(annotator.position.scale)}'/>
+		<textview id="posPageIndex" label="position page index" text='{toString(annotator.position.pageIndex)}' style="{styles.sizeSmall}"/>
+		<textview id="posPctX" label="position page x%" text='{toString(annotator.position.xFractionOfCenter)}' style="{styles.sizeSmall}"/>
+		<textview id="posPctY" label="position page y%" text='{toString(annotator.position.yFractionOfCenter)}' style="{styles.sizeSmall}"/>
+	</if>
+
+	<if id="ifTicketSel" cond="{letPointSelected IS NOT NULL}">
+		<if cond="{fDebug}" >
+			<textview id="pid" label="point id" text='{letPointSelected.id}'/>
+			<textview id="pageIndex" label="point page index" text='{toString(letPointSelected.pageIndex)}' style="{styles.sizeSmall}"/>
+			<textview id="pctX" label="point page x%" text='{toString(letPointSelected.xFraction)}' style="{styles.sizeSmall}"/>
+			<textview id="pctY" label="point page y%" text='{toString(letPointSelected.yFraction)}' style="{styles.sizeSmall}"/>
+		</if>
+		<repeater id="ticketsOld" recordset="{SELECT t.guid, t.category, t.section, t.status, t.description, t.guidContractor, t.dueDate, t.mediaidSignature FROM letTickets t}"
+			record="letTicket">
+			<block>
+				<declarations>
+					<let id="letGuid" shape="scalar" value="{letTicket.guid}"/>
+					<let id="letMediaidSignatureOld" shape="scalar" value="{letTicket.mediaidSignature}"/>
+				</declarations>
+				
+				<if cond="{fDebug}" >
+					<textview id="name" label="ticket id" text='{letGuid}'/>
+				</if>
+				<textbox id="section" label="section" text='{letTicket.section}' style="{styles.sizeSmall}"/>
+				<dropdown id="ddCategory" label="category" choices="{SELECT c.guid, c.name FROM category c}" keyMap = "{guid}" textMap = "{name}" selectedKey="{letTicket.category}" style="{styles.sizeSmall}" >
+					<validation>
+						<validator cond="{selectedKey IS NOT NULL}" message="select a category" />
+					</validation>
+				</dropdown>
+				<textarea id="description" label="description" lines="3" text="{letTicket.description}" style="{styles.sizeSmall}"/>
+				<datepicker id="dueDate" label="due date" date="{letTicket.dueDate}" dateFormat='(dtf yyyy"-"MM"-"dd)' style="{styles.sizeSmall}"/>
+				<!-- photoview / 
+				<Control type="photoview" name="ticketPhotoView" label="" 
+					reference="SELECT mediaidPhoto FROM reference_ticketPhoto WHERE @1=guidTicket" ref_arg="PARENT.col0"/>
+				<Control type="photoview" name="ticketSignatureView" label="" 
+					reference="SELECT @1 WHERE @1 IS NOT NULL AND @1 NOT LIKE '%null%'" ref_arg="PARENT.col7"/>
+				-->
+				<photoview label="existing photos" photos="{SELECT tp.mediaidPhoto FROM ticketPhoto tp WHERE tp.guidTicket = letGuid}" style="{styles.sizeSmall}"/>
+				<photo id="photo" label="photos" style="{styles.sizeSmall}"/>
+				<photoview label="existing signature" photos="{letTicket.mediaidSignature}" style="{styles.sizeSmall}"/>
+				<signature id="signature" label="signature" />
+				
+				<dropdown id="ddStatus" label="status" choices="{SELECT c.status, c.name FROM ticketStatus c}" keyMap = "{status}" textMap = "{name}" selectedKey="{letTicket.status}" style="{styles.sizeSmall}" >
+					<validation>
+						<validator cond="{selectedKey IS NOT NULL}" message="select a status" />
+					</validation>
+				</dropdown>
+			</block>
+		</repeater>
+	</if>		
+
+	<if id="ifTicketNew" cond="{letPointNew IS NOT NULL OR letPointSelected IS NOT NULL}">
+		<declarations>
+			<let id="pointId" shape="scalar" value="{CASE WHEN isNewPoint THEN toStringN(newGuid()) ELSE letPointSelected.id END}"/>
+			<let id="letPageIndex" shape="scalar" value="{CASE WHEN isNewPoint THEN letPointNew.pageIndex ELSE letPointSelected.pageIndex END}"/>
+			<let id="letXFraction" shape="scalar" value="{CASE WHEN isNewPoint THEN letPointNew.xFraction ELSE letPointSelected.xFraction END}"/>
+			<let id="letYFraction" shape="scalar" value="{CASE WHEN isNewPoint THEN letPointNew.yFraction ELSE letPointSelected.yFraction END}"/>
+			<let id="letCategoryId" shape="scalar" value="{CASE WHEN isNewPoint THEN letPointNew.categoryId ELSE letPointSelected.categoryId END}"/>
+		</declarations>
+		<if cond="{fDebug}" >
+			<textview id="id" label="ticket id" text='{pointId}' style="{styles.sizeSmall}"/>
+			<textview id="pageIndex" label="point page index" text='{toString(letPageIndex)}' style="{styles.sizeSmall}"/>
+			<textview id="pctX" label="point page x%" text='{toString(letXFraction)}' style="{styles.sizeSmall}"/>
+			<textview id="pctY" label="point page y%" text='{toString(letYFraction)}' style="{styles.sizeSmall}"/>
+		</if>
+		<repeater recordset="{SELECT 1 x WHERE isNewPoint}" record="_" id="ticketsNew">
+			<block>
+				<declarations>
+					<let id="letGuid" shape="scalar" value="{toStringN(newGuid())}"/>
+				</declarations>
+				<textbox id="section" label="section" text='' style="{styles.sizeSmall}"/>
+				<dropdown id="ddCategory" label="category" choices="{SELECT c.guid, c.name FROM category c}" 
+					keyMap = "{guid}" textMap = "{name}" selectedKey="{letCategoryId}"  style="{styles.sizeSmall}">
+					<validation>
+						<validator cond="{selectedKey IS NOT NULL}" message="select a category" />
+					</validation>
+				</dropdown>
+				<textarea id="description" label="description" lines="3" text="" style="{styles.sizeSmall}"/>
+				<datepicker id="dueDate" label="due date" dateFormat='(dtf yyyy"-"MM"-"dd)' style="{styles.sizeSmall}"/>
+				<!-- photoview / 
+				<Control type="photoview" name="ticketPhotoView" label="" 
+					reference="SELECT mediaidPhoto FROM reference_ticketPhoto WHERE @1=guidTicket" ref_arg="PARENT.col0"/>
+				<Control type="photoview" name="ticketSignatureView" label="" 
+					reference="SELECT @1 WHERE @1 IS NOT NULL AND @1 NOT LIKE '%null%'" ref_arg="PARENT.col7"/>
+				-->
+				<photo id="photo" label="photos" style="{styles.sizeSmall}"/>
+				<signature id="signature" label="signature" style="{styles.sizeSmall}" />
+				
+				<dropdown id="ddStatus" label="status" choices="{SELECT c.status, c.name FROM ticketStatus c}" keyMap = "{status}" textMap = "{name}"  style="{styles.sizeSmall}" selectedKey="{1}">
+					<validation>
+						<validator cond="{selectedKey IS NOT NULL}" message="select a status" />
+					</validation>
+				</dropdown>
+			</block>
+		</repeater>
+		<addbutton table='ticketsNew' records='{SELECT 1 x}' text="Add new ticket"/>
+	</if>
+	<if cond="{fDebug}" >
+
+		<textview text=' '/>
+		<textview text=' '/>
+		<textview text=' '/>
+
+		<table id='t' record='r'
+			recordset='{SELECT p.id, p.categoryId, p.pageIndex, p.xFraction, p.yFraction FROM annotator.points p}'>
+			<row>
+				<cell>
+					<textview width="8 em" id="id" text='{r.id}' />
+				</cell>
+				<cell>
+					<textview width="8 em" id="categoryId" text='{r.categoryId}' />
+				</cell>
+				<cell>
+					<textview width="8 em" id="pageIndex" text='{toString(r.pageIndex)}' />
+				</cell>
+				<cell>
+					<textview width="8 em" id="xFraction" text='{toString(r.xFraction)}' />
+				</cell>
+				<cell>
+					<textview width="8 em" id="yFraction" text='{toString(r.yFraction)}' />
+				</cell>
+
+			</row>
+		</table>
+	</if>
+	
+	<popup id="a" title="korte">
+		<textview text="alma"/>
+		<checkbox id="chkShow" text="show"/> 
+		<annotator id="annotator2" text='Show floorplan with points' fileName="{letFp.file_name}" 
+			chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" 
+			categories='{SELECT c.guid id, c.name, c.abbr abbreviation, c.rgb color FROM category c}' 
+			points='{SELECT p.guid id, t.category categoryId, p.ipage pageIndex, p.pctX xFraction, p.pctY yFraction
+				FROM ticket t JOIN point p ON p.guid = t.guidPoint 
+				WHERE p.guidFloorplan = letFp.guid AND t.status>=0 }'
+			title='{"This is " || fileName || " floorplan"}'
+			selectedCategoryId="{letFp.category}"
+			pointSize="{sbPointSize.selectedKey}"
+			selectCategoryText="Válassz szakágat!" noCategoryText="Mutasd mindet XXX" newPointColor="#FF00FF" openOnSet="{chkShow.checked}"/>
+	</popup>
+</form>

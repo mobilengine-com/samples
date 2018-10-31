@@ -1,0 +1,7 @@
+schema file_content meta file_content
+
+file_content : element {
+    file_guid   : attribute of type string;
+    chunk_no    : attribute of type int;
+    chunk_data : element of type string without whitespace;
+}

@@ -1,0 +1,13 @@
+schema file_attribute meta file_attribute
+
+file_attribute : element {
+    action              : attribute of type string values "new" "update" "delete";
+    status              : attribute of type string;
+    number_of_chunks    : attribute of type int;
+    chunk_size          : attribute of type int;
+    file_guid           : attribute of type string;
+    file_name           : attribute of type string;
+    file_size           : attribute of type int;
+    file_hash           : attribute of type string;
+    user                : attribute of type string;
+}

@@ -1,0 +1,11 @@
+<Reftab Name="file_update_process_details" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly">
+  <Columns>
+    <Column Name="tervrajz_id" Type="Text" PrimaryKey='true' NotNull='true' />
+    <Column Name="actual_file_guid" Type="Text" NotNull='true' />
+    <Column Name="actual_file_hash" Type="Text" NotNull='true' />
+    <Column Name="new_file_guid" Type="Text" NotNull='true' />
+    <Column Name="new_file_name" Type="Text" NotNull='true' />
+    <Column Name="new_file_hash" Type="Text" />
+	<Column Name="file_content_changed" Type="Integer" />
+  </Columns>
+</Reftab>

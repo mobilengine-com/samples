@@ -1,0 +1,9 @@
+styles {
+	style sizeSmall {
+		all {
+			label {
+				position = left
+			}
+		}
+	}
+}

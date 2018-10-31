@@ -1,0 +1,8 @@
+<Reftab Name="category" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" >
+  <Columns>
+	<Column Name="guid" Type="Text" PrimaryKey="true"  NotNull="true"/>
+	<Column Name="name" Type="Text" />
+	<Column Name="abbr" Type="Text" />
+	<Column Name="rgb" Type="Text" />
+  </Columns>
+</Reftab>

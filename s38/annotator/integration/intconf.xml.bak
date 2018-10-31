@@ -1,0 +1,6 @@
+<integration xmlns="http://schemas.mobilengine.com/integration/v1">
+    <iep name="in" direction="in">
+        <dacsem name="file_attribute"/>
+        <dacsem name="file_content"/>
+    </iep>
+</integration>

@@ -1,0 +1,5 @@
+schema 'NewOdmizerJob' meta 'NewOdmizerJob'
+
+NewOdmizerJob: element {
+	MediaId: attribute of type string;
+}

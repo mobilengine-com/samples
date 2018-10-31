@@ -1,0 +1,6 @@
+<Reftab Name="ticketPhoto" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" >
+  <Columns>
+	<Column Name="guidTicket" Type="Text" PrimaryKey="true" NotNull="true"/>
+	<Column Name="mediaidPhoto" Type="Text"  PrimaryKey="true" NotNull="true"/>
+  </Columns>
+</Reftab>

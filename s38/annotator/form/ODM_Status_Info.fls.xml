@@ -1,0 +1,142 @@
+<form id='ODMStatusInfo' menuName='ODM' title='ODM' platforms='web' dashboard='true' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id='debug' shape='scalar' value='{false}'/>
+		<let id='sysDate' shape='scalar' value='{sysp.dtlFormOpen}'/>
+		<let id="rowTableCount" shape="scalar" access='private'
+			value='{SELECT COUNT(C.usr) amt FROM (SELECT F.usr FROM files F WHERE F.status IN ("in_progress", "ready") GROUP BY F.usr) C}'
+		/>
+	</declarations>
+
+	<header>
+		<discardbutton text="Refresh" />
+	</header>
+
+	<if cond='{debug}'>
+		<textview id="sysRfsVer" label="sys_rfsver:" text="1" />
+		<textview id="sysDateText" label="sys_date:" text='{FORMATDTL(sysp.dtlFormOpen, (dtf yyyy "-" MM "-" dd " " HH ":" mm ":" ss))}' />
+	</if>
+
+	<chapter title="Status">
+		<table id='outer' record='r' recordset='{1}'>
+			<header>
+				<row>
+					<cell>
+						<textview width="20 em" text="Pending" />
+					</cell>
+					<cell>
+						<textview width="20 em" text="Up-to-date" />
+					</cell>
+				</row>
+			</header>
+			<row>
+					<cell>
+						<block>
+							<table id='pu' record='r' recordset='{1}'>
+								<row>
+									<cell>
+										<textview width="15 em" text='{"Users"}' />
+									</cell>
+									<cell>
+										<textview width="5 em" text='{SELECT TOSTRING(COUNT(T.usr)) amt FROM (SELECT F.usr FROM files F WHERE F.status = "in_progress" OR F.status = "ready" GROUP BY F.usr) T}' />
+									</cell>
+								</row>
+							</table>
+							<table id='pd' record='r' recordset='{1}'>
+								<row>
+									<cell>
+										<textview width="15 em" text='{"Documents"}' />
+									</cell>
+									<cell>
+										<textview width="5 em" text='{SELECT TOSTRING(COUNT(F.file_guid)) amt FROM files F WHERE F.status = "in_progress" OR F.status = "ready"}' />
+									</cell>
+								</row>
+							</table>
+						</block>
+					</cell>
+					<cell>
+						<block>
+							<table id='uu' record='r' recordset='{1}'>
+								<row>
+									<cell>
+										<textview width="15 em" text='{"Users"}' />
+									</cell>
+									<cell>
+										<textview width="5 em"
+											text='{SELECT
+														TOSTRING(COUNT(T.usr)) amt
+													FROM
+														(
+														SELECT F.usr, COUNT(F.status) Upt
+														FROM files F
+														WHERE F.status = "up_to_date"
+														GROUP BY F.usr
+														) T
+														LEFT JOIN
+														(
+														SELECT F.usr, COUNT(F.status) Inp
+														FROM files F
+														WHERE F.status != "up_to_date"
+														GROUP BY F.usr
+														) T2 ON T.usr = T2.usr
+													WHERE T2.Inp IS NULL
+													}' />
+									</cell>
+								</row>
+							</table>
+							<table id='ud' record='r' recordset='{1}'>
+								<row>
+									<cell>
+										<textview width="15 em" text='{"Documents"}' />
+									</cell>
+									<cell>
+										<textview width="5 em" text='{SELECT TOSTRING(COUNT(F.file_guid)) amt FROM files F WHERE F.status = "up_to_date"}' />
+									</cell>
+								</row>
+							</table>
+						</block>
+					</cell>
+			</row>
+		</table>
+	</chapter>
+
+	<chapter title="Pending Users">
+		<table id='details' record='r'
+			recordset='{SELECT
+							F.usr, COUNT(F.file_name) pending_docs, GROUP_CONCAT(F.file_name, "&#xA;") file_name, MIN(F.status_updated_at) min_date
+						FROM files F
+						WHERE F.status IN ("in_progress", "ready")
+						GROUP BY F.usr
+						ORDER BY min_date
+						LIMIT
+							(CASE WHEN pager.selectedKey IS NULL THEN 0 ELSE pager.selectedValue.row_from END), (CASE WHEN pager.selectedKey IS NULL THEN 0 ELSE (pager.selectedValue.row_until - pager.selectedValue.row_from) END)
+						}'>
+			<row>
+					<cell>
+						<textview id="usr" width="20 em" text='{r.usr}' />
+					</cell>
+                    <cell>
+						<textview width="20 em" text='{TOSTRING(r.pending_docs)}' />
+					</cell>
+					<cell>
+						<repeater id='fn' record='r'
+							recordset='{SELECT F.file_name FROM files F WHERE F.usr = r.usr AND F.status IN ("in_progress", "ready")}' >
+							<textview width="35 em" text='{r.file_name}' />
+						</repeater>
+						<!--textview id="documentName" width="20 em" text='{r.file_name}' /-->
+					</cell>
+					<cell>
+						<textview id="syncTime" width="15 em" text='{FORMATDTL(r.min_date, (dtf dd "-" MM "-" yyyy " " HH ":" mm))}' />
+					</cell>
+			</row>
+		</table>
+		<if cond='{debug}'>
+			<textview text='{TOSTRING(rowTableCount)}'/>
+		</if>
+        <if cond='{rowTableCount &gt; 20}'>
+            <dropdown id="pager" label="Page:" width="20 em" choices="{SELECT p.row_from, p.row_until, p.row_numbers FROM page_generator p WHERE p.row_from &lt; rowTableCount}" selectedKey='{SELECT "1 - 20"}'
+                keyMap="{row_numbers}"
+                textMap="{row_numbers}"
+            />
+        </if>
+	</chapter>
+</form>

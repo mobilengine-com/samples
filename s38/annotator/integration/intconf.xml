@@ -1,0 +1,13 @@
+<integration xmlns="http://schemas.mobilengine.com/integration/v1">
+    <!--iep name="in" direction="in">
+        <dacsem name="file_attribute"/>
+        <dacsem name="file_content"/>
+    </iep-->
+	<iep name="in" direction="in">
+		<dacsem name="FileContentBatch"/>
+	</iep>
+	<iep name="out" direction="out">
+		<dacsem name="NewOdmizerJob"/>
+	</iep>
+
+</integration>

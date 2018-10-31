@@ -1,0 +1,1198 @@
+server client program ticketIos for form 'ticketsIos'
+using reftab floorplan;
+using reftab point;
+using reftab ticket;
+using reftab ticketPhoto;
+{
+	trace form;
+	
+	var guidPoint = form.ifTicketNew.pointId;
+	
+	// create point
+	if (form.isNewPoint) {
+		db.point.Insert({
+			guid: guidPoint,
+			guidFloorplan:	form.letFp.guid,
+			ipage: form.ifTicketNew.letPageIndex,
+			pctX: form.ifTicketNew.letXFraction,
+			pctY: form.ifTicketNew.letYFraction
+		});
+		
+	}
+	
+	// update tickets
+	if (form.ifTicketSel.cond) {
+		foreach (var ticketRow in form.ifTicketSel.ticketsOld.rows) {
+
+			var guidTicket = ticketRow.letGuid;
+			var dueDate = null;
+			if (ticketRow.dueDate.date != null) {
+				dueDate = ticketRow.dueDate.date.DtlToDtdb();
+			}
+			var mediaidSignature = ticketRow.signature.binaryId;
+			if (mediaidSignature == null) {
+				mediaidSignature = ticketRow.letMediaidSignatureOld;
+			}
+			db.ticket.Update({
+				guid: guidTicket
+			}, {
+				category: ticketRow.ddCategory.selectedKey,
+				section: ticketRow.section.text,
+				status: ticketRow.ddStatus.selectedKey,
+				description: ticketRow.description.text,
+//				guidContractor: ticketRow.ddContractor.value,
+				mediaidSignature: mediaidSignature,
+				dueDate: dueDate
+			});		
+			foreach(var photo in ticketRow.photo.photos) {
+				db.ticketPhoto.Insert({guidTicket: guidTicket, mediaidPhoto: photo.photoId});
+			}
+		}
+		
+	}
+	if (form.ifTicketNew.cond) {
+		foreach (var ticketRow in form.ifTicketNew.ticketsNew.rows) {
+			var dueDate = null;
+			if (ticketRow.dueDate.date != null) {
+				dueDate = ticketRow.dueDate.date.DtlToDtdb();
+			}
+			var mediaidSignature = ticketRow.signature.binaryId;
+			var guidTicket = ticketRow.letGuid;
+			db.ticket.Insert({
+				guid: guidTicket,
+				guidPoint: guidPoint,
+				category: ticketRow.ddCategory.selectedKey,
+				section: ticketRow.section.text,
+				status: ticketRow.ddStatus.selectedKey,
+				description: ticketRow.description.text,
+//				guidContractor: ticketRow.ddContractor.value,
+				mediaidSignature: mediaidSignature,
+				dueDate: dueDate
+			});
+			foreach(var photo in ticketRow.photo.photos) {
+				db.ticketPhoto.Insert({guidTicket: guidTicket, mediaidPhoto: photo.photoId});
+			}
+		}
+	}
+	
+	//create tickets
+	
+	
+/*	if (form.controlSubmit.nid == "btnSaveAndDone" || form.controlSubmit.nid == "btnSaveAndAgain") {
+		//ticketPanel.par...
+		//ticketPanel.ticket...
+		
+		var ticketPanel = form.root.ticket[0];
+		
+		var guidPoint = ticketPanel.par.guidPoint.value;
+		if (guidPoint==null || guidPoint == "") {
+			guidPoint = guid.Generate().ToStringN();
+
+			db.point.Insert({
+				guid: guidPoint,
+				guidFloorplan:	ticketPanel.par.guidFloorplan.value,
+				ipage: int.Parse(ticketPanel.par.ipage.value),
+				pctX: float.Parse(ticketPanel.par.xPct.value),
+				pctY: float.Parse(ticketPanel.par.yPct.value)
+			});
+		}
+		
+		foreach (var ticketRow in ticketPanel.ticketNew) {
+			var dueDate = null;
+			if (ticketRow.dueDate.value!="") {
+				dueDate = dtl.Parse( (dtf yyyy"-"MM"-"dd), 
+					ticketRow.dueDate.value
+				).DtlToDtdb();
+			}
+			var guidTicket = guid.Generate().ToStringN();
+			var mediaidSignature = null;
+			if (ticketRow.signature.SingleOrDefault()!=null) {
+				mediaidSignature = ticketRow.signature.SingleOrDefault().value.mediaid.ToStringN();
+			}
+			db.ticket.Insert({
+				guid: guidTicket,
+				guidPoint: guidPoint,
+				category: ticketRow.categoryKey.value,
+				section: ticketRow.section.value,
+				status: int.Parse(ticketRow.statusKey.value),
+				description: ticketRow.description.value,
+				guidContractor: ticketRow.contractorKey.value,
+				mediaidSignature: mediaidSignature,
+				dueDate: dueDate
+			});
+			foreach(var photo in ticketRow.ticketPhoto) {
+				db.ticketPhoto.Insert({guidTicket: guidTicket, mediaidPhoto: photo.value.mediaid.ToStringN()});
+			}
+		}
+		
+		
+		foreach (var ticketRow in ticketPanel.ticketOld) {
+			var dueDate = null;
+			if (ticketRow.dueDate.value!="") {
+				dueDate = dtl.Parse( (dtf yyyy"-"MM"-"dd), 
+					ticketRow.dueDate.value
+				).DtlToDtdb();
+			}
+			var guidTicket = ticketRow.guid.value;
+			var mediaidSignature = null;
+			if (ticketRow.signature.SingleOrDefault()!=null) {
+				mediaidSignature = ticketRow.signature.SingleOrDefault().value.mediaid.ToStringN();
+			}
+			
+			db.ticket.Update({
+				guid: guidTicket
+			}, {
+				category: ticketRow.categoryKey.value,
+				section: ticketRow.section.value,
+				status: int.Parse(ticketRow.statusKey.value),
+				description: ticketRow.description.value,
+				guidContractor: ticketRow.contractorKey.value,
+				mediaidSignature: mediaidSignature,
+				dueDate: dueDate
+			});		
+			foreach(var photo in ticketRow.ticketPhoto) {
+				db.ticketPhoto.Insert({guidTicket: guidTicket, mediaidPhoto: photo.value.mediaid.ToStringN()});
+			}
+		}
+		
+	}
+*/
+
+/*
+new point: 
+2018-10-10 11:07:55.893999+0200 MobilengineClient[268:39476] {
+
+    annotator:
+
+        {
+
+            newPoint:
+
+                {
+
+                    categoryId: <<null>>, 
+
+                    pageIndex: 0, 
+
+                    xPercent: 0.676342267247906, 
+
+                    yPercent: 0.22350117151671
+
+                }, 
+
+            parentControl: <<ref: ticketsIos>>, 
+
+            selectedPoint: <<null>>
+
+        }, 
+
+    fDebug: true, 
+	
+	isNewPoint: true, 
+
+    ifTicketNew:
+
+        {
+
+            cond: true, 
+
+            id:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketNew>>, 
+
+                    text: "b2ee70e117cd918e6aaaa39c53a579e4"
+
+                }, 
+
+            letPageIndex: 0, 
+
+            letXPercent: 0.676342267247906, 
+
+            letYPercent: 0.22350117151671, 
+
+            pageIndex:
+
+                {parentControl: <<ref: ticketsIos.ifTicketNew>>, text: "0"}, 
+
+            parentControl: <<ref: ticketsIos>>, 
+
+            pctX:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketNew>>, 
+
+                    text: "0.676342267247907"
+
+                }, 
+
+            pctY:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketNew>>, 
+
+                    text: "0.22350117151671"
+
+                }, 
+
+            pointId: "b2ee70e117cd918e6aaaa39c53a579e4", 
+
+            ticketsNew:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketNew>>, 
+
+                    rows:
+
+                        [
+
+                            {
+
+                                ddCategory:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        selectedKey:
+
+                                            "d43ea343927a450783f68d9ad3bf331a", 
+
+                                        selectedText: "gépészet", 
+
+                                        selectedValue:
+
+                                            {
+
+                                                guid:
+
+                                                    "d43ea343927a450783f68d9ad3bf331a", 
+
+                                                name: "gépészet"
+
+                                            }
+
+                                    }, 
+
+                                ddStatus:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        selectedKey: 1, 
+
+                                        selectedText: "open", 
+
+                                        selectedValue: {name: "open", status: 1}
+
+                                    }, 
+
+                                description:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        text: ""
+
+                                    }, 
+
+                                dueDate:
+
+                                    {
+
+                                        date: <<null>>, 
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>
+
+                                    }, 
+
+                                parentControl:
+
+                                    <<ref: ticketsIos.ifTicketNew.ticketsNew>>, 
+
+                                photo:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        photos: []
+
+                                    }, 
+
+                                section:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        text: ""
+
+                                    }, 
+
+                                signature:
+
+                                    {
+
+                                        binaryId: <<null>>, 
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>
+
+                                    }
+
+                            }
+
+                        ]
+
+                }
+
+        }, 
+
+    ifTicketSel:
+
+        {
+
+            cond: false, 
+
+            pageIndex:
+
+                {parentControl: <<ref: ticketsIos.ifTicketSel>>, text: <<null>>}, 
+
+            parentControl: <<ref: ticketsIos>>, 
+
+            pctX:
+
+                {parentControl: <<ref: ticketsIos.ifTicketSel>>, text: <<null>>}, 
+
+            pctY:
+
+                {parentControl: <<ref: ticketsIos.ifTicketSel>>, text: <<null>>}, 
+
+            pid:
+
+                {parentControl: <<ref: ticketsIos.ifTicketSel>>, text: <<null>>}, 
+
+            ticketsOld: {parentControl: <<ref: ticketsIos.ifTicketSel>>, rows: []}
+
+        }, 
+
+    info:
+
+        {
+
+            dtlSubmit: 2018.10.10. 11:07:54 (Dtl), 
+
+            dtuSubmit: 2018.10.10. 9:07:54 (Dtu), 
+
+            user: {id: -1, name: "gandalf"}
+
+        }, 
+
+    letFp:
+
+        {
+
+            building: "E", 
+
+            category: <<null>>, 
+
+            file_guid: "1385bd2de14b46869d175354ffcf0f55", 
+
+            file_hash: "3cff565fa49312edbe4ff3634d9ae83b", 
+
+            file_name: "E.02.02 PINCESZINTI ALAPRAJZ_M.pdf", 
+
+            file_size: 2374407, 
+
+            floor: "P1", 
+
+            guid: "ae7116e7105443829581a9efb43bef70", 
+
+            name: "E-P1"
+
+        }, 
+
+    letPointNew:
+
+        {
+
+            categoryId: <<null>>, 
+
+            pageIndex: 0, 
+
+            xPercent: 0.676342267247906, 
+
+            yPercent: 0.22350117151671
+
+        }, 
+
+    letPointSelected: <<null>>, 
+
+    letTickets: [], 
+
+    parentControl: <<null>>, 
+
+    submissionTitle: "ticketsIos", 
+
+    submitButton: <<null>>, 
+
+    t:
+
+        {
+
+            parentControl: <<ref: ticketsIos>>, 
+
+            rows:
+
+                [
+
+                    {
+
+                        categoryId:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "d43ea343927a450783f68d9ad3bf331a"
+
+                            }, 
+
+                        id:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "123"
+
+                            }, 
+
+                        pageIndex:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "0"
+
+                            }, 
+
+                        parentControl: <<ref: ticketsIos.t>>, 
+
+                        xPercent:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "0.5"
+
+                            }, 
+
+                        yPercent:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "0.5"
+
+                            }
+
+                    }, 
+
+                    {
+
+                        categoryId:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "3dc43bc327b7472298def62c0dc335a1"
+
+                            }, 
+
+                        id:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "ce18f81c89f44affba057204134a1f52"
+
+                            }, 
+
+                        pageIndex:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "0"
+
+                            }, 
+
+                        parentControl: <<ref: ticketsIos.t>>, 
+
+                        xPercent:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "0.178703710436821"
+
+                            }, 
+
+                        yPercent:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "0.139483794569969"
+
+                            }
+
+                    }
+
+                ]
+
+        }
+
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+select point, existing + new: 
+2018-10-10 11:16:53.319441+0200 MobilengineClient[277:44263] {
+
+    annotator:
+
+        {
+
+            newPoint: <<null>>, 
+
+            parentControl: <<ref: ticketsIos>>, 
+
+            selectedPoint:
+
+                {
+
+                    categoryId: "3dc43bc327b7472298def62c0dc335a1", 
+
+                    id: "ce18f81c89f44affba057204134a1f52", 
+
+                    pageIndex: 0, 
+
+                    xPercent: 0.178703710436821, 
+
+                    yPercent: 0.139483794569969
+
+                }
+
+        }, 
+
+    fDebug: true, 
+
+    ifTicketNew:
+
+        {
+
+            cond: true, 
+
+            id:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketNew>>, 
+
+                    text: "ce18f81c89f44affba057204134a1f52"
+
+                }, 
+
+            isNewPoint: false, 
+
+            letPageIndex: 0, 
+
+            letXPercent: 0.178703710436821, 
+
+            letYPercent: 0.139483794569969, 
+
+            pageIndex:
+
+                {parentControl: <<ref: ticketsIos.ifTicketNew>>, text: "0"}, 
+
+            parentControl: <<ref: ticketsIos>>, 
+
+            pctX:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketNew>>, 
+
+                    text: "0.178703710436821"
+
+                }, 
+
+            pctY:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketNew>>, 
+
+                    text: "0.139483794569969"
+
+                }, 
+
+            pointId: "ce18f81c89f44affba057204134a1f52", 
+
+            ticketsNew:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketNew>>, 
+
+                    rows:
+
+                        [
+
+                            {
+
+                                ddCategory:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        selectedKey:
+
+                                            "d43ea343927a450783f68d9ad3bf331a", 
+
+                                        selectedText: "gépészet", 
+
+                                        selectedValue:
+
+                                            {
+
+                                                guid:
+
+                                                    "d43ea343927a450783f68d9ad3bf331a", 
+
+                                                name: "gépészet"
+
+                                            }
+
+                                    }, 
+
+                                ddStatus:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        selectedKey: 1, 
+
+                                        selectedText: "open", 
+
+                                        selectedValue: {name: "open", status: 1}
+
+                                    }, 
+
+                                description:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        text: ""
+
+                                    }, 
+
+                                dueDate:
+
+                                    {
+
+                                        date: <<null>>, 
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>
+
+                                    }, 
+
+                                parentControl:
+
+                                    <<ref: ticketsIos.ifTicketNew.ticketsNew>>, 
+
+                                photo:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        photos: []
+
+                                    }, 
+
+                                section:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>, 
+
+                                        text: ""
+
+                                    }, 
+
+                                signature:
+
+                                    {
+
+                                        binaryId: <<null>>, 
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketNew.ticketsNew.rows[0]>>
+
+                                    }
+
+                            }
+
+                        ]
+
+                }
+
+        }, 
+
+    ifTicketSel:
+
+        {
+
+            cond: true, 
+
+            pageIndex:
+
+                {parentControl: <<ref: ticketsIos.ifTicketSel>>, text: "0"}, 
+
+            parentControl: <<ref: ticketsIos>>, 
+
+            pctX:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketSel>>, 
+
+                    text: "0.178703710436821"
+
+                }, 
+
+            pctY:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketSel>>, 
+
+                    text: "0.139483794569969"
+
+                }, 
+
+            pid:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketSel>>, 
+
+                    text: "ce18f81c89f44affba057204134a1f52"
+
+                }, 
+
+            ticketsOld:
+
+                {
+
+                    parentControl: <<ref: ticketsIos.ifTicketSel>>, 
+
+                    rows:
+
+                        [
+
+                            {
+
+                                ddCategory:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketSel.ticketsOld.rows[0]>>, 
+
+                                        selectedKey:
+
+                                            "3dc43bc327b7472298def62c0dc335a1", 
+
+                                        selectedText: "villamosság", 
+
+                                        selectedValue:
+
+                                            {
+
+                                                guid:
+
+                                                    "3dc43bc327b7472298def62c0dc335a1", 
+
+                                                name: "villamosság"
+
+                                            }
+
+                                    }, 
+
+                                ddStatus:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketSel.ticketsOld.rows[0]>>, 
+
+                                        selectedKey: 1, 
+
+                                        selectedText: "open", 
+
+                                        selectedValue: {name: "open", status: 1}
+
+                                    }, 
+
+                                description:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketSel.ticketsOld.rows[0]>>, 
+
+                                        text: "xyz"
+
+                                    }, 
+
+                                dueDate:
+
+                                    {
+
+                                        date: <<null>>, 
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketSel.ticketsOld.rows[0]>>
+
+                                    }, 
+
+                                name:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketSel.ticketsOld.rows[0]>>, 
+
+                                        text: "baa6a29ec4e7475e858e5ad84c688bec"
+
+                                    }, 
+
+                                parentControl:
+
+                                    <<ref: ticketsIos.ifTicketSel.ticketsOld>>, 
+
+                                photo:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketSel.ticketsOld.rows[0]>>, 
+
+                                        photos: []
+
+                                    }, 
+
+                                section:
+
+                                    {
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketSel.ticketsOld.rows[0]>>, 
+
+                                        text: ""
+
+                                    }, 
+
+                                signature:
+
+                                    {
+
+                                        binaryId: <<null>>, 
+
+                                        parentControl:
+
+                                            <<ref: ticketsIos.ifTicketSel.ticketsOld.rows[0]>>
+
+                                    }
+
+                            }
+
+                        ]
+
+                }
+
+        }, 
+
+    info:
+
+        {
+
+            dtlSubmit: 2018.10.10. 11:16:52 (Dtl), 
+
+            dtuSubmit: 2018.10.10. 9:16:52 (Dtu), 
+
+            user: {id: -1, name: "gandalf"}
+
+        }, 
+
+    letFp:
+
+        {
+
+            building: "E", 
+
+            category: <<null>>, 
+
+            file_guid: "1385bd2de14b46869d175354ffcf0f55", 
+
+            file_hash: "3cff565fa49312edbe4ff3634d9ae83b", 
+
+            file_name: "E.02.02 PINCESZINTI ALAPRAJZ_M.pdf", 
+
+            file_size: 2374407, 
+
+            floor: "P1", 
+
+            guid: "ae7116e7105443829581a9efb43bef70", 
+
+            name: "E-P1"
+
+        }, 
+
+    letPointNew: <<null>>, 
+
+    letPointSelected:
+
+        {
+
+            categoryId: "3dc43bc327b7472298def62c0dc335a1", 
+
+            id: "ce18f81c89f44affba057204134a1f52", 
+
+            pageIndex: 0, 
+
+            xPercent: 0.178703710436821, 
+
+            yPercent: 0.139483794569969
+
+        }, 
+
+    letTickets:
+
+        [
+
+            {
+
+                category: "3dc43bc327b7472298def62c0dc335a1", 
+
+                description: "xyz", 
+
+                dueDate: <<null>>, 
+
+                guid: "baa6a29ec4e7475e858e5ad84c688bec", 
+
+                guidContractor: "", 
+
+                mediaidSignature: <<null>>, 
+
+                section: "", 
+
+                status: 1
+
+            }
+
+        ], 
+
+    parentControl: <<null>>, 
+
+    submissionTitle: "ticketsIos", 
+
+    submitButton: <<null>>, 
+
+    t:
+
+        {
+
+            parentControl: <<ref: ticketsIos>>, 
+
+            rows:
+
+                [
+
+                    {
+
+                        categoryId:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "d43ea343927a450783f68d9ad3bf331a"
+
+                            }, 
+
+                        id:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "123"
+
+                            }, 
+
+                        pageIndex:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "0"
+
+                            }, 
+
+                        parentControl: <<ref: ticketsIos.t>>, 
+
+                        xPercent:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "0.5"
+
+                            }, 
+
+                        yPercent:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[0]>>, 
+
+                                text: "0.5"
+
+                            }
+
+                    }, 
+
+                    {
+
+                        categoryId:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "3dc43bc327b7472298def62c0dc335a1"
+
+                            }, 
+
+                        id:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "ce18f81c89f44affba057204134a1f52"
+
+                            }, 
+
+                        pageIndex:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "0"
+
+                            }, 
+
+                        parentControl: <<ref: ticketsIos.t>>, 
+
+                        xPercent:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "0.178703710436821"
+
+                            }, 
+
+                        yPercent:
+
+                            {
+
+                                parentControl: <<ref: ticketsIos.t.rows[1]>>, 
+
+                                text: "0.139483794569969"
+
+                            }
+
+                    }
+
+                ]
+
+        }
+
+}
+
+
+*/
+}

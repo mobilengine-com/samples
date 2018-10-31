@@ -1,0 +1,491 @@
+server client program ticket for form 'ticket'
+using reftab floorplan;
+using reftab point;
+using reftab ticket;
+using reftab ticketPhoto;
+{
+	trace form;
+	if (form.controlSubmit.nid == "btnSaveAndDone" || form.controlSubmit.nid == "btnSaveAndAgain") {
+		//ticketPanel.par...
+		//ticketPanel.ticket...
+		
+		var ticketPanel = form.root.ticket[0];
+		
+		var guidPoint = ticketPanel.par.guidPoint.value;
+		if (guidPoint==null || guidPoint == "") {
+			guidPoint = guid.Generate().ToStringN();
+
+			db.point.Insert({
+				guid: guidPoint,
+				guidFloorplan:	ticketPanel.par.guidFloorplan.value,
+				ipage: int.Parse(ticketPanel.par.ipage.value),
+				pctX: float.Parse(ticketPanel.par.xPct.value),
+				pctY: float.Parse(ticketPanel.par.yPct.value)
+			});
+		}
+		
+		foreach (var ticketRow in ticketPanel.ticketNew) {
+			var dueDate = null;
+			if (ticketRow.dueDate.value!="") {
+				dueDate = dtl.Parse( (dtf yyyy"-"MM"-"dd), 
+					ticketRow.dueDate.value
+				).DtlToDtdb();
+			}
+			var guidTicket = guid.Generate().ToStringN();
+			var mediaidSignature = null;
+			if (ticketRow.signature.SingleOrDefault()!=null) {
+				mediaidSignature = ticketRow.signature.SingleOrDefault().value.mediaid.ToStringN();
+			}
+			db.ticket.Insert({
+				guid: guidTicket,
+				guidPoint: guidPoint,
+				category: ticketRow.categoryKey.value,
+				section: ticketRow.section.value,
+				status: int.Parse(ticketRow.statusKey.value),
+				description: ticketRow.description.value,
+				guidContractor: ticketRow.contractorKey.value,
+				mediaidSignature: mediaidSignature,
+				dueDate: dueDate
+			});
+			foreach(var photo in ticketRow.ticketPhoto) {
+				db.ticketPhoto.Insert({guidTicket: guidTicket, mediaidPhoto: photo.value.mediaid.ToStringN()});
+			}
+		}
+		
+		
+		foreach (var ticketRow in ticketPanel.ticketOld) {
+			var dueDate = null;
+			if (ticketRow.dueDate.value!="") {
+				dueDate = dtl.Parse( (dtf yyyy"-"MM"-"dd), 
+					ticketRow.dueDate.value
+				).DtlToDtdb();
+			}
+			var guidTicket = ticketRow.guid.value;
+			var mediaidSignature = null;
+			if (ticketRow.signature.SingleOrDefault()!=null) {
+				mediaidSignature = ticketRow.signature.SingleOrDefault().value.mediaid.ToStringN();
+			}
+			
+			db.ticket.Update({
+				guid: guidTicket
+			}, {
+				category: ticketRow.categoryKey.value,
+				section: ticketRow.section.value,
+				status: int.Parse(ticketRow.statusKey.value),
+				description: ticketRow.description.value,
+				guidContractor: ticketRow.contractorKey.value,
+				mediaidSignature: mediaidSignature,
+				dueDate: dueDate
+			});		
+			foreach(var photo in ticketRow.ticketPhoto) {
+				db.ticketPhoto.Insert({guidTicket: guidTicket, mediaidPhoto: photo.value.mediaid.ToStringN()});
+			}
+		}
+		
+	}
+/*
+{
+    controlSubmit:
+        {
+            nid: "btnSaveAndDone", 
+            npth: "floorplans/root/ticket/ticket<0>/btnSaveAndDone", 
+            parent: <<reference>>, 
+            type: "closebutton", 
+            value: ""
+        }, 
+    dtlSubmit: 2018.04.13. 10:45:27 (Dtl), 
+    dtuSubmit: 2018.04.13. 8:45:27 (Dtu), 
+    nid: "floorplans", 
+    npth: "floorplans", 
+    parent: <<null>>, 
+    resultId: 136, 
+    root:
+        {
+            floorplans:
+                [
+                    {
+                        category:
+                            {
+                                nid: "category", 
+                                npth:
+                                    "floorplans/root/floorplans/floorplans<0>/category", 
+                                parent: <<reference>>, 
+                                type: "label", 
+                                value: ""
+                            }, 
+                        fileGuid:
+                            {
+                                nid: "fileGuid", 
+                                npth:
+                                    "floorplans/root/floorplans/floorplans<0>/fileGuid", 
+                                parent: <<reference>>, 
+                                type: "label", 
+                                value: "a51af607aab242c5be79d704c1c92de4"
+                            }, 
+                        fileHash:
+                            {
+                                nid: "fileHash", 
+                                npth:
+                                    "floorplans/root/floorplans/floorplans<0>/fileHash", 
+                                parent: <<reference>>, 
+                                type: "label", 
+                                value: "8efe89cc916df0eda0702e1affddc568"
+                            }, 
+                        guid:
+                            {
+                                nid: "guid", 
+                                npth:
+                                    "floorplans/root/floorplans/floorplans<0>/guid", 
+                                parent: <<reference>>, 
+                                type: "label", 
+                                value: "80818ba45eeb4974a5bb088801fa6647"
+                            }, 
+                        name:
+                            {
+                                nid: "name", 
+                                npth:
+                                    "floorplans/root/floorplans/floorplans<0>/name", 
+                                parent: <<reference>>, 
+                                type: "label", 
+                                value: "E-1"
+                            }, 
+                        nid: "floorplans<0>", 
+                        npth: "floorplans/root/floorplans/floorplans<0>", 
+                        panelCall:
+                            [
+                                parent: <<reference>>, 
+                                type: "panel", 
+                                nid: "panelCall", 
+                                npth:
+                                    "floorplans/root/floorplans/floorplans<0>/panelCall"
+                            ], 
+                        parent: <<reference>>, 
+                        rawFileName:
+                            {
+                                nid: "rawFileName", 
+                                npth:
+                                    "floorplans/root/floorplans/floorplans<0>/rawFileName", 
+                                parent: <<reference>>, 
+                                type: "label", 
+                                value: "E.02.04 ELSÕ EMELETI ALAPRAJZ_M.pdf"
+                            }, 
+                        rawFileSize:
+                            {
+                                nid: "rawFileSize", 
+                                npth:
+                                    "floorplans/root/floorplans/floorplans<0>/rawFileSize", 
+                                parent: <<reference>>, 
+                                type: "label", 
+                                value: "2169536"
+                            }, 
+                        type: "panel"
+                    }, 
+                    parent: <<reference>>, 
+                    type: "panel", 
+                    nid: "floorplans", 
+                    npth: "floorplans/root/floorplans"
+                ], 
+            linkReferenceTable:
+                {
+                    nid: "linkReferenceTable", 
+                    npth: "floorplans/root/linkReferenceTable", 
+                    parent: <<reference>>, 
+                    type: "label", 
+                    value: "a"
+                }, 
+            nid: "root", 
+            npth: "floorplans/root", 
+            par:
+                {
+                    guidFloorplan:
+                        {
+                            nid: "guidFloorplan", 
+                            npth: "floorplans/root/par/guidFloorplan", 
+                            parent: <<reference>>, 
+                            type: "label", 
+                            value: "80818ba45eeb4974a5bb088801fa6647"
+                        }, 
+                    nid: "par", 
+                    npth: "floorplans/root/par", 
+                    parent: <<reference>>, 
+                    type: "panel"
+                }, 
+            parent: <<reference>>, 
+            pushGuid:
+                {
+                    nid: "pushGuid", 
+                    npth: "floorplans/root/pushGuid", 
+                    parent: <<reference>>, 
+                    type: "label", 
+                    value: "cf15d199f6854d30a7d5fb7fdffc2976"
+                }, 
+            ticket:
+                [
+                    {
+                        btnSaveAndAgain:
+                            {
+                                nid: "btnSaveAndAgain", 
+                                npth:
+                                    "floorplans/root/ticket/ticket<0>/btnSaveAndAgain", 
+                                parent: <<reference>>, 
+                                type: "closebutton", 
+                                value: ""
+                            }, 
+                        btnSaveAndDone:
+                            {
+                                nid: "btnSaveAndDone", 
+                                npth:
+                                    "floorplans/root/ticket/ticket<0>/btnSaveAndDone", 
+                                parent: <<reference>>, 
+                                type: "closebutton", 
+                                value: ""
+                            }, 
+                        nid: "ticket<0>", 
+                        npth: "floorplans/root/ticket/ticket<0>", 
+                        par:
+                            {
+                                category:
+                                    {
+                                        nid: "category", 
+                                        npth:
+                                            "floorplans/root/ticket/ticket<0>/par/category", 
+                                        parent: <<reference>>, 
+                                        type: "label", 
+                                        value: ""
+                                    }, 
+                                guid:
+                                    {
+                                        nid: "guid", 
+                                        npth:
+                                            "floorplans/root/ticket/ticket<0>/par/guid", 
+                                        parent: <<reference>>, 
+                                        type: "label", 
+                                        value: ""
+                                    }, 
+                                guidFloorplan:
+                                    {
+                                        nid: "guidFloorplan", 
+                                        npth:
+                                            "floorplans/root/ticket/ticket<0>/par/guidFloorplan", 
+                                        parent: <<reference>>, 
+                                        type: "label", 
+                                        value:
+                                            "80818ba45eeb4974a5bb088801fa6647"
+                                    }, 
+                                guidPoint:
+                                    {
+                                        nid: "guidPoint", 
+                                        npth:
+                                            "floorplans/root/ticket/ticket<0>/par/guidPoint", 
+                                        parent: <<reference>>, 
+                                        type: "label", 
+                                        value: ""
+                                    }, 
+                                ipage:
+                                    {
+                                        nid: "ipage", 
+                                        npth:
+                                            "floorplans/root/ticket/ticket<0>/par/ipage", 
+                                        parent: <<reference>>, 
+                                        type: "label", 
+                                        value: "0"
+                                    }, 
+                                nid: "par", 
+                                npth: "floorplans/root/ticket/ticket<0>/par", 
+                                parent: <<reference>>, 
+                                type: "panel", 
+                                xPct:
+                                    {
+                                        nid: "xPct", 
+                                        npth:
+                                            "floorplans/root/ticket/ticket<0>/par/xPct", 
+                                        parent: <<reference>>, 
+                                        type: "label", 
+                                        value: "0.2955729067325592"
+                                    }, 
+                                yPct:
+                                    {
+                                        nid: "yPct", 
+                                        npth:
+                                            "floorplans/root/ticket/ticket<0>/par/yPct", 
+                                        parent: <<reference>>, 
+                                        type: "label", 
+                                        value: "0.5384021401405334"
+                                    }
+                            }, 
+                        parent: <<reference>>, 
+                        ticketNew:
+                            [
+                                {
+                                    category:
+                                        {
+                                            key:
+                                                "3dc43bc327b7472298def62c0dc335a1", 
+                                            nid: "category", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/category", 
+                                            parent: <<reference>>, 
+                                            type: "combobox", 
+                                            value: "villamosság"
+                                        }, 
+                                    categoryKey:
+                                        {
+                                            nid: "categoryKey", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/categoryKey", 
+                                            parent: <<reference>>, 
+                                            type: "label", 
+                                            value:
+                                                "3dc43bc327b7472298def62c0dc335a1"
+                                        }, 
+                                    contractor:
+                                        {
+                                            key:
+                                                "68cfd2de6e4448cb86421bc8c2664fd7", 
+                                            nid: "contractor", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/contractor", 
+                                            parent: <<reference>>, 
+                                            type: "combobox", 
+                                            value: "Guzmán Bt"
+                                        }, 
+                                    contractorKey:
+                                        {
+                                            nid: "contractorKey", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/contractorKey", 
+                                            parent: <<reference>>, 
+                                            type: "label", 
+                                            value:
+                                                "68cfd2de6e4448cb86421bc8c2664fd7"
+                                        }, 
+                                    description:
+                                        {
+                                            nid: "description", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/description", 
+                                            parent: <<reference>>, 
+                                            type: "textbox", 
+                                            value: "összedõlt az egész"
+                                        }, 
+                                    dueDate:
+                                        {
+                                            nid: "dueDate", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/dueDate", 
+                                            parent: <<reference>>, 
+                                            type: "textbox", 
+                                            value: ""
+                                        }, 
+                                    nid: "ticketNew<0>", 
+                                    npth:
+                                        "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>", 
+                                    parent: <<reference>>, 
+                                    section:
+                                        {
+                                            nid: "section", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/section", 
+                                            parent: <<reference>>, 
+                                            type: "textbox", 
+                                            value: "abc"
+                                        }, 
+                                    signature:
+                                        [
+                                            {
+                                                nid: "signature", 
+                                                npth:
+                                                    "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/signature", 
+                                                parent: <<reference>>, 
+                                                type: "photo", 
+                                                value:
+                                                    {
+                                                        dtlShoot:
+                                                            2018.04.13. 10:45:00 (Dtl), 
+                                                        dtuShoot:
+                                                            2018.04.13. 8:45:00 (Dtu), 
+                                                        mediaid:
+                                                            {c99867b1-d3bc-44f1-b844-cbfde80fe19b}, 
+                                                        summary: ""
+                                                    }
+                                            }, 
+                                            parent: <<reference>>, 
+                                            type: "photos", 
+                                            nid: "signature", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/signature"
+                                        ], 
+                                    status:
+                                        {
+                                            key: "1", 
+                                            nid: "status", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/status", 
+                                            parent: <<reference>>, 
+                                            type: "combobox", 
+                                            value: "open"
+                                        }, 
+                                    statusKey:
+                                        {
+                                            nid: "statusKey", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/statusKey", 
+                                            parent: <<reference>>, 
+                                            type: "label", 
+                                            value: "1"
+                                        }, 
+                                    ticketPhoto:
+                                        [
+                                            {
+                                                nid: "ticketPhoto", 
+                                                npth:
+                                                    "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/ticketPhoto", 
+                                                parent: <<reference>>, 
+                                                type: "photo", 
+                                                value:
+                                                    {
+                                                        dtlShoot:
+                                                            2018.04.13. 10:44:55 (Dtl), 
+                                                        dtuShoot:
+                                                            2018.04.13. 8:44:55 (Dtu), 
+                                                        mediaid:
+                                                            {36548ed5-7279-4806-9263-d88e15a68895}, 
+                                                        summary: ""
+                                                    }
+                                            }, 
+                                            parent: <<reference>>, 
+                                            type: "photos", 
+                                            nid: "ticketPhoto", 
+                                            npth:
+                                                "floorplans/root/ticket/ticket<0>/ticketNew/ticketNew<0>/ticketPhoto"
+                                        ], 
+                                    type: "panel"
+                                }, 
+                                parent: <<reference>>, 
+                                type: "panel", 
+                                nid: "ticketNew", 
+                                npth:
+                                    "floorplans/root/ticket/ticket<0>/ticketNew"
+                            ], 
+                        ticketOld:
+                            [
+                                parent: <<reference>>, 
+                                type: "panel", 
+                                nid: "ticketOld", 
+                                npth:
+                                    "floorplans/root/ticket/ticket<0>/ticketOld"
+                            ], 
+                        type: "panel"
+                    }, 
+                    parent: <<reference>>, 
+                    type: "panel", 
+                    nid: "ticket", 
+                    npth: "floorplans/root/ticket"
+                ], 
+            type: "panel"
+        }, 
+    type: "form", 
+    user: {companyId: 100, id: 2, name: "gandalf"}
+}
+*/	
+}

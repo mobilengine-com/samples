@@ -1,0 +1,5 @@
+<Event Name="UsersWaitingForSync" xmlns="http://schemas.mobilengine.com/event/v1">
+	<Columns>
+		<Column Name="usr" Type="Text" AgentName="true"/>
+	</Columns>
+</Event>

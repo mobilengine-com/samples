@@ -1,0 +1,6 @@
+<Reftab Name="send_push" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="true" Access="Readonly" >
+  <Columns>
+    <Column Name="usr" Type="Text" AgentName="true" PrimaryKey="true" NotNull="true" />
+    <Column Name="guid" Type="Text" />
+  </Columns>
+</Reftab>

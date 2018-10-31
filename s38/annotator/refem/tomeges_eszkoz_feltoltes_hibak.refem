@@ -1,0 +1,13 @@
+<Reftab Name="tomeges_eszkoz_feltoltes_hibak" Access="Hidden" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="guid" Type="Text"/>
+    <Column Name="sorszam" Type="Integer"/>
+	<Column Name="eszkoz_tipus" Type="Text"/>
+	<Column Name="gyarto" Type="Text"/>
+	<Column Name="tipusszam" Type="Text"/>
+	<Column Name="projekt" Type="Text"/>
+	<Column Name="uzembe_helyezve" Type="Date"/>
+	<Column Name="felhasznalo" Type="Text"/>
+	<Column Name="feltoltes_ideje" Type="Date"/>
+  </Columns>
+</Reftab>
