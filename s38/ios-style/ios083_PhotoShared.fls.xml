@@ -1,0 +1,68 @@
+<form  id="photo" menuName="ios083_PhotoShared" title="ios083_PhotoShared" platforms="web ios" location="coarse" xmlns="http://schemas.mobilengine.com/fls/v2">
+ 
+  
+  <photo id='photo1' label='Sharing enabled'  source="all" shareable="true" />
+  
+  <table id="tblPhoto2" label="Photo data:" record="photodata2" recordset='{select p.datetime,  p.locationLatitude, p.locationLongitude, p.locationAltitude, p.locationAccuracy, p.locationDtuAcquired, p.fileSize, p.height, p.width from photo1.photos p}'>
+    <header>
+      <row>
+          <cell>
+            <textview text='datetime'/>
+          </cell>
+          <cell>
+            <textview text='locationLatitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationLongitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationAltitude'/>
+          </cell>
+		  <cell>
+            <textview text='locationAccuracy'/>
+          </cell>
+		  <cell>
+			<textview text='locationDtuAcquired'/>
+          </cell>
+          <cell>
+            <textview text='fileSize'/>
+          </cell>
+          <cell>
+            <textview text='height'/>
+          </cell>          
+          <cell>
+            <textview text='width'/>
+          </cell>
+        </row>
+    </header>
+    <row>
+      <cell width='15 em'>
+        <textview text='{ getYear(photodata2.datetime) || "-" || getMonth(photodata2.datetime) || "-" || getDay(photodata2.datetime) || " " || getHour(photodata2.datetime) || ":" || getMinute(photodata2.datetime) || ":" || getSecond(photodata2.datetime) }' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata2.locationLatitude)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{toString(photodata2.locationLongitude)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{toString(photodata2.locationAltitude)}' />
+      </cell>
+	  <cell width='15 em'>
+	    <textview text='{toString(photodata2.locationAccuracy)}' />
+      </cell>
+	  <cell width='15 em'>
+        <textview text='{ getYear(photodata2.locationDtuAcquired) || "-" || getMonth(photodata2.locationDtuAcquired) || "-" || getDay(photodata2.locationDtuAcquired) || " " || getHour(photodata2.locationDtuAcquired) || ":" || getMinute(photodata2.locationDtuAcquired) || ":" || getSecond(photodata2.locationDtuAcquired) }' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata2.fileSize)}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata2.height)}' />
+      </cell>
+      <cell width='15 em'>
+        <textview text='{toString(photodata2.width)}' />
+      </cell>
+    </row>
+  </table>
+</form>

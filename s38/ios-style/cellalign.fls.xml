@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form id="cellalign" menuName="cellalign" platforms="ios web" xmlns="http://schemas.mobilengine.com/fls/v2" style="{styles.table}">
+	<declarations>
+		<let id="longText" shape="scalar" value='{"Long text to increase the height of the cell. Long text to increase the height of the cell. Long text to increase the height of the cell. Long text to increase the height of the cell. Long text to increase the height of the cell. Long text to increase the height of the cell."}' />
+	</declarations>
+
+	<table record="r" recordset="{[1]}">
+		<row>
+			<cell>
+				<textview text="{longText}"/>
+			</cell>
+			<cell style="{[styles.cellTop]}">
+				<textview text="align: default"/>
+			</cell>
+			<cell style="{[styles.cellTop]}">
+				<textview text="align: top"/>
+			</cell>
+			<cell style="{[styles.cellMiddle]}">
+				<textview text="align: middle"/>
+			</cell>
+			<cell style="{[styles.cellBottom]}">
+				<textview text="align: bottom"/>
+			</cell>
+		</row>
+	</table>
+</form>

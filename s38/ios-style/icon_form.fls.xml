@@ -1,0 +1,37 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='icon_form' menuName='icon_form' platforms='web ios'>
+	<textview label="textAlign: left" style="{styles.title4Icon}" />
+	<textview label="iconPosition: top" style="{[styles.icon, styles.iconTop]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: right" style="{[styles.icon, styles.iconRight]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: bottom" style="{[styles.icon, styles.iconBottom]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: left" style="{[styles.icon, styles.iconLeft]}" labelIcon="{icons.cart}" />
+
+	<textview label="textAlign: center" style="{styles.title4Icon}" />
+	<textview label="iconPosition: top" style="{[styles.icon, styles.textCenter, styles.iconTop]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: right" style="{[styles.icon, styles.textCenter, styles.iconRight]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: bottom" style="{[styles.icon, styles.textCenter, styles.iconBottom]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: left" style="{[styles.icon, styles.textCenter, styles.iconLeft]}" labelIcon="{icons.cart}" />
+
+	<textview label="textAlign: right" style="{styles.title4Icon}" />
+	<textview label="iconPosition: top" style="{[styles.icon, styles.textRight, styles.iconTop]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: right" style="{[styles.icon, styles.textRight, styles.iconRight]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: bottom" style="{[styles.icon, styles.textRight, styles.iconBottom]}" labelIcon="{icons.cart}" />
+	<textview label="iconPosition: left" style="{[styles.icon, styles.textRight, styles.iconLeft]}" labelIcon="{icons.cart}" />
+
+	<textview label="textAlign: left" style="{styles.title4Icon}" />
+	<discardbutton label="iconPosition: top" text="button" style="{[styles.icon, styles.iconTop]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: right" text="button" style="{[styles.icon, styles.iconRight]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: bottom" text="button" style="{[styles.icon, styles.iconBottom]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: left" text="button" style="{[styles.icon, styles.iconLeft]}" linkIcon="{icons.cart}" />
+
+	<textview label="textAlign: center" style="{styles.title4Icon}" />
+	<discardbutton label="iconPosition: top" text="button" style="{[styles.icon, styles.textCenter, styles.iconTop]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: right" text="button" style="{[styles.icon, styles.textCenter, styles.iconRight]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: bottom" text="button" style="{[styles.icon, styles.textCenter, styles.iconBottom]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: left" text="button" style="{[styles.icon, styles.textCenter, styles.iconLeft]}" linkIcon="{icons.cart}" />
+
+	<textview label="textAlign: right" style="{styles.title4Icon}" />
+	<discardbutton label="iconPosition: top" text="button" style="{[styles.icon, styles.textRight, styles.iconTop]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: right" text="button" style="{[styles.icon, styles.textRight, styles.iconRight]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: bottom" text="button" style="{[styles.icon, styles.textRight, styles.iconBottom]}" linkIcon="{icons.cart}" />
+	<discardbutton label="iconPosition: left" text="button" style="{[styles.icon, styles.textRight, styles.iconLeft]}" linkIcon="{icons.cart}" />
+</form>

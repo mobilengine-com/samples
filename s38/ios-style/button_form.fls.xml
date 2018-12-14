@@ -1,0 +1,57 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='buttonlike' menuName='buttonlike' platforms='web ios'>
+	<table id="t" recordset='{SELECT "" v WHERE 0=1}' record='r'><row><cell><textview text="alma"/></cell></row></table>
+	<addbutton label="addbutton" text="addbutton" style="{styles.buttonlike}" records='{SELECT "alma" v}' table="t" />
+	<addbutton label="addbutton" text="addbutton" style="{[styles.buttonlike, styles.b400w5p]}" records='{SELECT "alma" v}' table="t" />
+	<dropdown label="dropdown" style="{styles.buttonlike}"  choices='{SELECT "alma" v}' keyMap="{v}" textMap="{v}"/>
+	<dropdown label="dropdown" style="{[styles.buttonlike, styles.b400w5p]}"  choices='{["alma"]}' keyMap="{v}" textMap="{v}"/>
+	<linkview label="linkview" text="linkview" style="{styles.buttonlike}" url="https://index.hu" />
+	<linkview label="linkview" text="linkview" style="{[styles.buttonlike, styles.b400w5p]}" url="https://index.hu"/>
+	<submitbutton label="submitbutton" text="submitbutton" style="{styles.buttonlike}" />
+	<submitbutton label="submitbutton" text="submitbutton" style="{[styles.buttonlike, styles.b400w5p]}" />
+	<discardbutton label="discardbutton" text="discardbutton" style="{styles.buttonlike}" />
+	<discardbutton label="discardbutton" text="discardbutton" style="{[styles.buttonlike, styles.b400w5p]}" />
+	<barcodereader label="barcodereader" text="barcodereader" style="{styles.buttonlike}" />
+	<barcodereader label="barcodereader" text='{"barcode: "||coalesce(barcode, "N/A")}' style="{[styles.buttonlike, styles.b400w5p]}" />
+	<nfcreader label="nfcreader" id="nfc1" text='{"payload: "||coalesce(nfc1.payload, "N/A")}' style="{styles.buttonlike}" />
+	<nfcreader label="nfcreader" id="nfc2" text='{"payload: "||coalesce(payload, "N/A")}' prompt="Gimme NFC" acceptedRegex="^BAU.*$" style="{[styles.buttonlike, styles.b400w5p]}" />
+	<nfcreader label="nfcreader" id="nfc3" text='{"payload: "||coalesce(payload, "N/A")}' prompt="Put NFC tag next to the top of the device" acceptedRegex="^BAU.*$" />
+	<actionbutton label="actionbutton" text="actionbutton" style="{styles.buttonlike}" ><set target="x.text" value='{"alma1"}'/></actionbutton>
+	<actionbutton label="actionbutton" text="actionbutton" style="{[styles.buttonlike, styles.b400w5p]}" ><set target="z.checked" value='{true}'/></actionbutton>
+
+	<reportview label="reportview" text="reportview" style="{styles.buttonlike}" reportviewId='{"alma"}' />
+	<reportview label="reportview" text="reportview" style="{[styles.buttonlike, styles.b400w5p]}" reportviewId='{"alma"}' />
+
+	<filedownload label="filedownload" text="filedownload" style="{styles.buttonlike}" mediaId='{"alma"}' />
+	<filedownload label="filedownload" text="filedownload" style="{[styles.buttonlike, styles.b400w5p]}" mediaId='{"alma"}' />
+	
+	<fileview label="fileview" text="fileview" style="{styles.buttonlike}" />
+	<fileview label="fileview" text="fileview" style="{[styles.buttonlike, styles.b400w5p]}" />
+
+	<annotator label="annotator" text="annotator" style="{styles.buttonlike}" />
+	<annotator label="annotator" text="annotator" style="{[styles.buttonlike, styles.b400w5p]}" />
+
+	<signature label="signature" hint="signature" style="{styles.buttonlike}" />
+	<signature label="signature" hint="signature" style="{[styles.buttonlike, styles.b400w5p]}" />
+
+	<datepicker label="datepicker" style="{styles.buttonlike}"  dateFormat='(dtf yyyy"-"MM"-"dd)'/>
+	<datepicker label="datepicker" style="{[styles.buttonlike, styles.b400w5p]}"  dateFormat='(dtf yyyy"-"MM"-"dd)'/>
+
+	<timepicker label="timepicker" style="{styles.buttonlike}"  timeFormat='(dtf HH":"mm)'/>
+	<timepicker label="timepicker" style="{[styles.buttonlike, styles.b400w5p]}"  timeFormat='(dtf HH":"mm)'/>
+
+	<numberbox label="numberbox" style="{styles.buttonlike}" numberFormat='{decimalSeparator: "."}'/>
+	<numberbox label="numberbox" style="{[styles.buttonlike, styles.b400w5p]}" numberFormat='{decimalSeparator: "."}'/>
+
+	<photo label="photo" style="{styles.buttonlike}"/>
+	<photo label="photo" style="{[styles.buttonlike, styles.b400w5p]}"/>
+
+	<!--
+	<datepicker label="datepicker" style="{styles.buttonlike}" dateFormat='(dtf yyyy"/"MM"/"dd)' />
+	<timepicker label="timepicker" style="{styles.buttonlike}" timeFormat='(dtf HH":"mm)' />
+	<radiogroup label="radiogroup" style="{styles.buttonlike}" choices='{table k, t (1, "t1"; 2, "t2"; 3, "t3")}' keyMap='{k}' textMap='{t}' />
+	-->
+	<textview id="x" text="alma"/>
+	<checkbox id="z" text="z" />
+	<checkbox id="cb" text="alma" checked="{z.checked}"/>
+
+</form>

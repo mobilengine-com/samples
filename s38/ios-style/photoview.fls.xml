@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="photoview" menuName="photoview" platforms="web ios" style="{styles.photoview}">
+  <photoview label="photoview" photos='{SELECT p.mediaid FROM uploadedPhotos p}' />
+</form>

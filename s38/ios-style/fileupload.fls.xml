@@ -1,0 +1,67 @@
+<form id="fileuploadForm" 
+      menuName="fileupload" 
+      title='fileupload' 
+      platforms="web ios" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	<fileupload id="filupl" label="upload v33" acceptedMimetypes="application/pdf"/>
+	<repeater id="rgfile" record="f" recordset='{SELECT 1}'>
+		<checkbox id="cb" label="needed"></checkbox>
+		<fileupload id="filuplIn" label="fupin" acceptedMimetypes="application/pdf"/>
+		<table id="tblin" label="File data:" record="filedata" recordset='{select p.mediaId, p.name, p.type, p.size from filuplIn.files p}'>
+		<row>
+		<declarations>
+			<let id="mediaId" shape="scalar" value='{filedata.mediaId}' />
+			<let id="name" shape="scalar" value='{filedata.name}' />
+			<let id="type" shape="scalar" value='{filedata.type}' />
+			<let id="size" shape="scalar" value='{filedata.size}' />
+		</declarations>
+		  <cell width='17 em'>
+			<textview text='{filedata.mediaId}' />
+		  </cell>
+		  <cell width='17 em'>
+			<textview text='{filedata.name}'   />
+		  </cell>
+		  <cell width='17 em'>
+			<textview text='{filedata.type}' />
+		  </cell>	  
+		  <cell width='17 em'>
+			<textview text='{toString(filedata.size)}' />
+		  </cell>
+		</row>
+		</table>			
+	</repeater>
+<!--	
+	<table id="tblPhotoGuid" label="File data:" record="filedata" recordset='{SELECT (SELECT t.mediaid FROM x.rr t) mediaid, "1" name, "2" type, 3 size FROM (SELECT r.tblin.rows rr FROM rgfile.rows r WHERE r.cb.checked) x}'>
+	<header>
+	  <row>
+		  <cell>
+			<textview text='mediaId'/>
+		  </cell>          
+		  <cell>
+			<textview text='name'/>
+		  </cell>
+		  <cell>
+			<textview text='type'/>
+		  </cell>		  
+		  <cell>
+			<textview text='size'/>
+		  </cell>
+		</row>
+	</header>
+	<row>
+	  <cell width='17 em'>
+		<textview text='{filedata.mediaId}' />
+	  </cell>
+	  <cell width='17 em'>
+		<textview text='{filedata.name}'   />
+	  </cell>
+	  <cell width='17 em'>
+		<textview text='{filedata.type}' />
+	  </cell>	  
+	  <cell width='17 em'>
+		<textview text='{toString(filedata.size)}' />
+	  </cell>
+	</row>
+	</table>	
+-->
+</form>

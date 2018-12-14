@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form id="labelalign" menuName="labelalign" platforms="ios web" xmlns="http://schemas.mobilengine.com/fls/v2" style="{styles.base}">
+	<declarations>
+		<let id="longText" shape="scalar" value='{"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}' />
+	</declarations>
+<numberbox id='nbMaxFiles' number='{10}' numberFormat='{decimalSeparator: ".", maxFraction: 2}' float='false'/>
+
+	<table record="r" recordset="{[1]}" style="{[styles.Default, styles.table]}">
+		<row>
+			<cell>
+				<textview text="{longText}"/>
+			</cell>
+			<cell style="{[styles.table]}">
+				<textview text="align: default"/>
+			</cell>
+			<cell style="{[styles.cellTop]}">
+				<textview text="align: top"/>
+			</cell>
+			<cell style="{[styles.cellMiddle]}">
+				<textview text="align: middle"/>
+			</cell>
+			<cell style="{[styles.cellBottom]}">
+				<textview text="align: bottom"/>
+			</cell>			
+			<cell style="{[styles.cellFill]}">
+				<textview text="align: fill"/>
+			</cell>
+		</row>
+	</table>
+	<textview label="default style, no label" style="{styles.Default}" />
+	<textview text="{longText}" style="{styles.Default}" />
+	<textview label="no label, label align: default, width: fill" style="{[styles.labelLeft, styles.wfill]}" />
+	<textview text="{longText}" style="{[styles.labelLeft, styles.wfill]}" />
+	<textview label="no label, label align: default, width: auto" style="{[styles.labelLeft, styles.wfit]}" />
+	<textview text="{longText}" style="{[styles.labelLeft, styles.wfit]}" />
+	<textview label="no label, label align: default, width: 150/500" style="{[styles.labelLeft, styles.w500]}" />
+	<textview text="{longText}" style="{[styles.labelLeft, styles.w500]}" />
+
+	<textview label="default style, label" text="{longText}" style="{styles.Default}" />
+	<textview label="label top, label align: default, width: fill" text="{longText}" style="{[styles.labelTop, styles.wfill]}" />
+	<textview label="label top, label align: default, width: auto" text="{longText}" style="{[styles.labelTop, styles.wfit]}" />
+	<textview label="label top, label align: default, width: 150/500" text="{longText}" style="{[styles.labelTop, styles.w500]}" />
+
+	<textview label="label left, label align: default, width: fill" text="{longText}" style="{[styles.labelLeft, styles.wfill]}" />
+	<textview label="label left, label align: default, width: auto" text="{longText}" style="{[styles.labelLeft, styles.wfit]}" />
+	<textview label="label left, label align: default, width: 150/500" text="{longText}" style="{[styles.labelLeft, styles.w500]}" />
+
+	<textview label="{longText}" text="long label, control align: default" style="{[styles.labelLeft]}" />
+	<textview label="{longText}" text="long label, control align: start" style="{[styles.labelLeft, styles.controlAlignStart, styles.wfill]}" />
+	<textview label="{longText}" text="long label, control align: center" style="{[styles.labelLeft, styles.controlAlignCenter, styles.wfill]}" />
+	<textview label="{longText}" text="long label, control align: end" style="{[styles.labelLeft, styles.controlAlignEnd, styles.wfill]}" />
+
+	<textview label="{longText}" text="long label" style="{[styles.labelLeft]}" />
+	
+	<textview label="label left, label align: default" text="{longText}" style="{[styles.labelLeft]}" />
+	<textview label="label left, label align: start" text="{longText}" style="{[styles.labelLeft, styles.labelAlignStart]}" />
+	<textview label="label left, label align: center" text="{longText}" style="{[styles.labelLeft, styles.labelAlignCenter]}" />
+	<textview label="label left, label align: end" text="{longText}" style="{[styles.labelLeft, styles.labelAlignEnd]}" />
+
+	<textview label="label top, label align: default" text="{longText}" style="{[styles.labelTop, styles.marginTop]}" />
+	<textview label="label top, label align: start" text="{longText}" style="{[styles.labelTop, styles.labelAlignStart]}" />
+	<textview label="label top, label align: center" text="{longText}" style="{[styles.labelTop, styles.labelAlignCenter]}" />
+	<textview label="label top, label align: end" text="{longText}" style="{[styles.labelTop, styles.labelAlignEnd]}" />
+	
+
+	<textview label="{longText}" text="long label, control align: default" style="{[styles.labelTop, styles.wfit]}" />
+	<textview label="{longText}" text="long label, control align: start" style="{[styles.labelTop, styles.controlAlignStart, styles.wfit]}" />
+	<textview label="{longText}" text="long label, control align: center" style="{[styles.labelTop, styles.controlAlignCenter, styles.wfit]}" />
+	<textview label="{longText}" text="long label, control align: end" style="{[styles.labelTop, styles.controlAlignEnd, styles.wfit]}" />
+	
+</form>
