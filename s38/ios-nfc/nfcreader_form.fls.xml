@@ -1,0 +1,5 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='nfcreader_form' menuName='NFC reader sample' platforms='ios'>
+	<nfcreader label="nfcreader" id="nfc1" text='{"payload: "||coalesce(nfc1.payload, "N/A")}' style="{styles.buttonlike}" />
+	<nfcreader label="nfcreader" id="nfc2" text='{"payload: "||coalesce(payload, "N/A")}' prompt="Gimme NFC" acceptedRegex="^BAU.*$" style="{[styles.buttonlike, styles.b400w5p]}" />
+	<nfcreader label="nfcreader" id="nfc3" text='{"payload: "||coalesce(payload, "N/A")}' prompt="Put NFC tag next to the top of the device" acceptedRegex="^BAU.*$" />
+</form>

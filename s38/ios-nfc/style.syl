@@ -1,0 +1,48 @@
+styles {
+/*button*/
+  style buttonlike {
+    all {
+      borderColor = CDDC39
+      backgroundColor = E6EE9C
+      borderWidth { top=5px right=5px bottom=5px left=5px }
+
+      label {
+        borderColor = 2196F3
+        backgroundColor = 90CAF9
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+
+      control {
+        borderColor = A5D6A7
+        backgroundColor = 4CAF50
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+
+      button {
+        borderColor = B71C11
+        backgroundColor = 00000022
+        borderWidth { top=5px right=5px bottom=5px left=5px }
+      }
+    }
+  }
+  style b400w5p {
+    all {
+		control {
+		}
+		button {
+			textAlign = center
+			fontColor = 020202
+			bold = false
+			italic = false
+			underline = false
+			
+			padding { top=5px right=5px bottom=5px left=5px }
+			width = 400px
+			
+		}
+    }
+	
+	
+  }
+
+}
