@@ -1,0 +1,20 @@
+server program RfsOperators 
+	for schedule * * * * * 
+	first run at 2000-01-01 10:00
+{
+	trace "HelloWorld!";
+
+	trace "6 | 3 | 12", 6 | 3 | 12;	
+	trace "6 & 3", 6 & 3;
+	trace "6 ^ 3", 6 ^ 3;
+	trace "256 >> 3", 256 >> 3;
+	trace "6 << 3", 6 << 3;
+	trace "~12", ~12;
+	trace "26 % 3", 26 % 3;
+	
+	trace "1 ?? 2", 1 ?? 2;
+	trace "null ?? 2", null ?? 2;
+	trace "26 % 2 == 0 ? alma : korte", 26 % 2 == 0 ? "alma" : "korte";
+	trace "26 % 2 == 1 ? alma : korte", 26 % 2 == 1 ? "alma" : "korte";
+
+}
