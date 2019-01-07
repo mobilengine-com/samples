@@ -1,0 +1,22 @@
+<form id='noneText' menuName='none text' title='none text' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+		<declarations>
+			<let id="category" shape="table" value='{SELECT "1" guid, "cat1" name UNION ALL SELECT "2" guid, "cat2" name UNION ALL SELECT "3" guid, "cat3" name UNION ALL SELECT "4" guid, "cat4" name }'/>
+		</declarations>
+
+		<dropdown id="noneDefault" choices='{SELECT cat.guid, cat.name FROM category cat}'
+			keyMap="{guid}" textMap="{name}"
+			/>
+		<textview text='{coalesce(noneDefault.selectedKey, "null") || ": " ||coalesce(noneDefault.selectedText, "null")}'/>
+		<textbox label='Text to none: ' id="tb"/>
+		<dropdown id="none" choices='{SELECT cat.guid, cat.name FROM category cat}'
+			keyMap="{guid}" textMap="{name}" noneText='{SELECT "Alma: "||tb.text}'
+			/>
+		<textview text='{coalesce(none.selectedKey, "null") || ": " ||coalesce(none.selectedText, "null")}'/>
+		
+		<datepicker id="dueDateNoneDef" label="due date" dateFormat='(dtf yyyy"-"MM"-"dd)'/>
+		<datepicker id="dueDateNone" label="due date" dateFormat='(dtf yyyy"-"MM"-"dd)' noneText='{"Semmi "||tb.text}'/>
+		
+		<timepicker id="dueTimeNoneDef" label="due time" timeFormat='(dtf HH":"mm)'/>
+		<timepicker id="dueTimeNone" label="due time" timeFormat='(dtf HH":"mm)' noneText='{"Semmi "||tb.text}'/>
+
+</form>

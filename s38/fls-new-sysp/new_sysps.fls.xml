@@ -1,0 +1,9 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='new_sysps' menuName='new sysps' platforms='web ios' dashboard="false">
+    <checkbox label='label of checkbox for validator' id='valid' text='text of textbox for validator' checked="{true}"/>
+
+    <textview id='syspUser' label='{"user"}' text='{sysp.user}'/>
+    <textview id='syspClientVersion' label='{"version"}' text='{sysp.clientVersion}'/>
+    <textview id='syspLocale' label='{"locale"}' text='{sysp.locale}'/>
+    <textview id='syspInstid' label='{"instid"}' text='{sysp.instid}'/>
+
+</form>
