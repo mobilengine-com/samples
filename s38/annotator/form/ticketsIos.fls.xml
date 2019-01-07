@@ -15,7 +15,62 @@
 	<if cond="{fDebug}" >
 		<segmentedbutton id="sbPointSize" label="point size %" choices="{[0.5, 1.0, 2.0, 4.0]}" keyMap = "{v}" textMap="{toString(v)}" />
 		<popup id="b" title="testing">
+				<annotator id="annotatorNoSelNoNew" text='Show floorplan with points -sel -new' 
+			chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+			categories='{SELECT c.guid id, c.name, c.abbr abbreviation, c.rgb color FROM category c}' 
+			points='{SELECT p.guid id, t.category categoryId, p.ipage pageIndex, p.pctX xFraction, p.pctY yFraction
+				FROM ticket t JOIN point p ON p.guid = t.guidPoint 
+				WHERE p.guidFloorplan = letFp.guid AND t.status>=0 }'
+			allowSelection="{false}" allowNewPoint="{false}"
+			title='{"This is " || fileName || " floorplan"}'
+			selectedCategoryId="{letFp.category}"
+			pointSize="{sbPointSize.selectedKey}"
 
+			selectCategoryText="Válassz szakágat!" noCategoryText="Mutasd mindet" newPointColor="#FF00FF"/>
+
+			<annotator id="annotatorSelNoNew" text='Show floorplan with points +sel -new' 
+			chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+			categories='{SELECT c.guid id, c.name, c.abbr abbreviation, c.rgb color FROM category c}' 
+			points='{SELECT p.guid id, t.category categoryId, p.ipage pageIndex, p.pctX xFraction, p.pctY yFraction
+				FROM ticket t JOIN point p ON p.guid = t.guidPoint 
+				WHERE p.guidFloorplan = letFp.guid AND t.status>=0 }'
+			allowSelection="{true}" allowNewPoint="{false}"
+			title='{"This is " || fileName || " floorplan"}'
+			selectedCategoryId="{letFp.category}"
+			pointSize="{sbPointSize.selectedKey}"
+
+			selectCategoryText="Válassz szakágat!" noCategoryText="Mutasd mindet" newPointColor="#FF00FF"/>
+
+			<annotator id="annotatorSelNew" text='Show floorplan with points +sel +new' 
+			chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+			categories='{SELECT c.guid id, c.name, c.abbr abbreviation, c.rgb color FROM category c}' 
+			points='{SELECT p.guid id, t.category categoryId, p.ipage pageIndex, p.pctX xFraction, p.pctY yFraction
+				FROM ticket t JOIN point p ON p.guid = t.guidPoint 
+				WHERE p.guidFloorplan = letFp.guid AND t.status>=0 }'
+			allowSelection="{true}" allowNewPoint="{true}"
+			title='{"This is " || fileName || " floorplan"}'
+			selectedCategoryId="{letFp.category}"
+			pointSize="{sbPointSize.selectedKey}"
+
+			selectCategoryText="Válassz szakágat!" noCategoryText="Mutasd mindet" newPointColor="#FF00FF"/>
+
+	<checkbox id="cbSel" label="Sel"/>
+	<checkbox id="cbNew" label="New"/>
+
+
+			<annotator id="annotatorSelNewDbind" text='Show floorplan with points ?sel ?new' 
+			chunks="{SELECT c.chunk_content FROM (SELECT ch.chunk_content, ch.chunk_no FROM file_chunks ch WHERE ch.file_guid = letFp.file_guid ORDER BY chunk_no) c}" fileName="{letFp.file_name}" 
+			categories='{SELECT c.guid id, c.name, c.abbr abbreviation, c.rgb color FROM category c}' 
+			points='{SELECT p.guid id, t.category categoryId, p.ipage pageIndex, p.pctX xFraction, p.pctY yFraction
+				FROM ticket t JOIN point p ON p.guid = t.guidPoint 
+				WHERE p.guidFloorplan = letFp.guid AND t.status>=0 }'
+			allowSelection="{cbSel.checked}" allowNewPoint="{cbNew.checked}"
+			title='{"This is " || fileName || " floorplan"}'
+			selectedCategoryId="{letFp.category}"
+			pointSize="{sbPointSize.selectedKey}"
+
+			selectCategoryText="Válassz szakágat!" noCategoryText="Mutasd mindet" newPointColor="#FF00FF"/>
+<!--	
 			<annotator id="annotator_default" text='default' />
 
 			<annotator id="annotator_empty" text='no ddata' 
@@ -231,7 +286,7 @@
 					categories='{SELECT "cat" id, "cat" name, "abbre via tion" abbreviation, "#CACACA" color}' 
 					points='{SELECT "id" id, "cat" categoryId, 0 pageIndex, 1.0 xFraction, 1.0 yFraction }'  openOnSet="{true}"/>
 			</popup>
-				
+				-->
 		</popup>
 	</if>
 	
@@ -357,19 +412,19 @@
 			recordset='{SELECT p.id, p.categoryId, p.pageIndex, p.xFraction, p.yFraction FROM annotator.points p}'>
 			<row>
 				<cell>
-					<textview width="8 em" id="id" text='{r.id}' />
+					<textview id="id" text='{r.id}' />
 				</cell>
 				<cell>
-					<textview width="8 em" id="categoryId" text='{r.categoryId}' />
+					<textview id="categoryId" text='{r.categoryId}' />
 				</cell>
 				<cell>
-					<textview width="8 em" id="pageIndex" text='{toString(r.pageIndex)}' />
+					<textview id="pageIndex" text='{toString(r.pageIndex)}' />
 				</cell>
 				<cell>
-					<textview width="8 em" id="xFraction" text='{toString(r.xFraction)}' />
+					<textview id="xFraction" text='{toString(r.xFraction)}' />
 				</cell>
 				<cell>
-					<textview width="8 em" id="yFraction" text='{toString(r.yFraction)}' />
+					<textview id="yFraction" text='{toString(r.yFraction)}' />
 				</cell>
 
 			</row>
