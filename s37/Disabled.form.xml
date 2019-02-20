@@ -1,0 +1,137 @@
+﻿<Form name="Disabled" version="1" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' 
+	typed="true" sillyNulls="false" inlineReference="true" >
+<!-- -->
+	<Rgsyl>
+		<Syl syln="normal" clrFont="#000000" clrBg="#FFFFFF" />
+		<Syl syln="dark" clrFont="#eeeeee" clrBg="#111111" />
+	</Rgsyl>
+
+    <Control type="panel" name="RootPanel" layout="standard" navigation="inline" childStyle="{=@[//RootPanel/cobSylChild]}">
+
+		<Control type="checkbox" name="cb" label="X/Y"/>
+		<Control type="checkbox" name="cbe" label="Enabled"/>
+		<Control type="label" name="xy" label="X/Y" text="{SELECT CASE WHEN @[../cb] THEN 'x' ELSE 'y' END}"/>
+		
+		<Control type="combobox" name="cobSyl" label="default" size="medium" 
+			choices="{Static {'normal', 'dark'}}" selectedValue="{=normal}" style="dark"/>
+		
+		<Control type="combobox" name="cobSylChild" label="default child" size="medium" 
+			choices="{Static {'normal', 'dark'}}" selectedValue="{=normal}" style="normal"/>
+		
+		<Control type="panel" name="sylChildInline" navigation="inline" childStyle="{=@[//RootPanel/cobSylChild]}">
+			<Control type="label" name="inherits" label="Inherits Syl" text="From Parent" />
+		</Control>
+		
+		<Control type="panel" name="sylChildPopup" navigation="popup" text="SylChild Popup" 
+			 style="{REF://RootPanel/cobSyl}" childStyle="{=@[//RootPanel/cobSylChild]}" footerButtonStyle="{REF://RootPanel/cobSyl}">
+			<Control type="label" name="inherits" label="Inherits Syl" text="From Parent" />
+			<Control type="panel" name="panel" navigation="inline">
+				<Control type="label" name="label" label="Should look" text="the same as above" />
+			</Control>
+		</Control>
+		<Control type="panel" name="sylChildPopupGen" navigation="popup" text="SylChild Genpanel Popup" 
+			style="{REF://RootPanel/cobSyl}"  childStyle="{=@[//RootPanel/cobSylChild]}" 
+			recordset="{SELECT a FROM (SELECT 'x' a UNION ALL SELECT 'y' a) WHERE a>=@[../xy]}">
+			<Control type="label" name="inherits" label="Inherits Syl" text="{=From Parent @[PARENT.col0]}" />
+			<Control type="panel" name="panel" navigation="inline">
+				<Control type="label" name="label" label="Should look" text="the same as above" />
+			</Control>
+		</Control>
+		<Control type="label" name="SiemensSep" label="{=MyLabel @[../xy]}" text="{SELECT 'MyText ' || @[../xy]}" 
+			style="{=@[//RootPanel/cobSyl]}" />
+		<Control type="separator" name="sep" text="{=MySeparator @[../xy]}" style="{=@[//RootPanel/cobSyl]}" />
+		<Control type="textbox" name="Username" label="{=Username @[../xy]}" text="{=@user / @[../xy]}" hint="{=/hint/@[../xy]}"
+			style="{=@[//RootPanel/cobSyl]}"  enabled="{REF:../cbe}"  >
+		</Control>	
+		<Control type="combobox" name="combodyn_value_autocomplete" label="{=Select one dynamic value @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string" enabled="{REF:../cbe}" choice="autocomplete"
+			choices="{SELECT fruit FROM reference_fruit500}" 
+			/>
+		<Control type="combobox" name="combodyn_value" label="{=Select one dynamic value @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string,string" enabled="{REF:../cbe}"
+			choices="{SELECT k, v FROM (SELECT 'x' v, '1' k UNION ALL SELECT 'y' v, '2' k) WHERE v>=@[../xy]}" 
+			selectedValue="{REF:PARENT/xy}"/>
+		<Control type="combobox" name="combodyn_value_button" label="{=Select one dynamic value @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string,string" choice="button" enabled="{REF:../cbe}"
+			choices="{SELECT k, v FROM (SELECT 'x' v, '1' k UNION ALL SELECT 'y' v, '2' k) WHERE v>=@[../xy]}" 
+			selectedValue="{REF:PARENT/xy}"/>		
+		<Control type="combobox" name="combodyn_value_buttondotted" label="{=Select one dynamic value @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string,string" choice="button"  ptype="dotted" enabled="{REF:../cbe}"
+			choices="{SELECT k, v FROM (SELECT 'x' v, '1' k UNION ALL SELECT 'y' v, '2' k) WHERE v>=@[../xy]}" 
+			selectedValue="{REF:PARENT/xy}"/>
+		<Control type="combobox" name="combodyn_value_select" label="{=Select one dynamic value @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string,string" choice="select" enabled="{REF:../cbe}"
+			choices="{SELECT k, v FROM (SELECT 'x' v, '1' k UNION ALL SELECT 'y' v, '2' k) WHERE v>=@[../xy]}" 
+			selectedValue="{REF:PARENT/xy}"/>
+		<Control type="combobox" name="combodyn_value_switch" label="{=Select one dynamic value @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			data_type="string,string" choice="switch" enabled="{REF:../cbe}"
+			choices="{SELECT k, v FROM (SELECT 'x' v, '1' k UNION ALL SELECT 'y' v, '2' k) WHERE v>=@[../xy]}" 
+			selectedValue="{REF:PARENT/xy}" />
+		<Control type="radiobutton" name="radio" label="{=Radio @[../xy]}" style="{=@[//RootPanel/cobSyl]}" 
+			choices="{SELECT k, v FROM (SELECT 'x' v, '1' k UNION ALL SELECT 'y' v, '2' k) WHERE v>=@[../xy]}" 
+			data_type="string,string"  selectedValue="{REF:PARENT/xy}" enabled="{REF:../cbe}"
+		/>
+		<Control type="checkbox" name="checkbox" label="{=Check this @[../xy]}" style="{=@[//RootPanel/cobSyl]}"
+			enabled="{REF:../cbe}" checked="{SELECT not @[PARENT/cb]}"/>
+		<Control type="textbox" ptype="date" name="date" label="date" text="1992-12-30 12:30:30" 
+			readonly="true" enabled="{REF:../cbe}" style="{=@[//RootPanel/cobSyl]}" />
+		<Control type="textbox" ptype="time" name="time" label="time" text="1992-12-30 12:30:30" 
+			readonly="true" enabled="{REF:../cbe}" style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="textbox" ptype="datetime" name="datetime" label="datetime" text="1992-12-30 12:30:30" 
+			readonly="true" enabled="{REF:../cbe}" style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="textbox" ptype="int" name="int" label="int" text="123456" 
+			readonly="true" enabled="{REF:../cbe}" style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="textbox" ptype="float" name="float" label="float" text="1.23456" 
+			readonly="true" enabled="{REF:../cbe}" style="{=@[//RootPanel/cobSyl]}"			/>
+		<Control type="textbox" ptype="barcode" name="barcode" label="Barcode" text="0123456" style="{=@[//RootPanel/cobSyl]}"
+			readonly="true" enabled="{REF:../cbe}"
+			scan_text="{=Scan here @[../xy]}"/>
+		<Control type="callbutton" name="callbuttonEnab" label="{=ENABLED: true call this on map @[../xy]}" validatorGroup="alma"
+			enabled="true"
+			text="{=Show on map @[PARENT/xy]}" call_action="android.intent.action.VIEW" 
+			call_data="{=geo:@locationLatitude,@locationLongitude}" style="{REF://RootPanel/cobSyl}" />
+		<Control type="callbutton" name="callbuttonDisab" label="{=ENABLED:false call this on map @[../xy]}" validatorGroup="alma"
+			enabled="false"
+			text="{=Show on map @[PARENT/xy]}" call_action="android.intent.action.VIEW" 
+			call_data="{=geo:@locationLatitude,@locationLongitude}" style="{REF://RootPanel/cobSyl}" />
+		<Control type="callbutton" name="callbuttonDefault" label="{=ENABLED:default call this on map @[../xy]}" validatorGroup="alma"
+			text="{=Show on map @[PARENT/xy]}" call_action="android.intent.action.VIEW" 
+			call_data="{=geo:@locationLatitude,@locationLongitude}" style="{REF://RootPanel/cobSyl}" />
+		<Control type="callbutton" name="callbutton" label="{=ENABLED: dbinded call this on map @[../xy]}" validatorGroup="alma"
+			enabled="{REF:../cbe}"
+			text="{=Show on map @[PARENT/xy]}" call_action="android.intent.action.VIEW" 
+			call_data="{=geo:@locationLatitude,@locationLongitude}" style="{REF://RootPanel/cobSyl}" />
+		<Control type="callbutton" name="callbutton_timer" label="{=send email to @[../xy]}" validatorGroup="korte"
+			enabled="{REF:../cbe}"
+			text="{=email to @[PARENT/xy]}" call_action="android.intent.action.SEND" call_type="message/rfc822" 
+			extras="{SELECT 'android.intent.extra.SUBJECT', 'Subj.'||@[../xy] union all SELECT 'android.intent.extra.TEXT', 'Text: '||@[../xy]}" style="{REF://RootPanel/cobSyl}"/>
+		<Control type="closebutton" name="closebutton_submit" label="{=submit this @[../xy]}"  validatorGroup="alma korte"
+			enabled="{REF:../cbe}"
+			text="{=Start @[PARENT/xy]}" action="submit_form" next_form_name="sysp" parameter="{SELECT @user, @[../xy]}"
+			style="{REF://RootPanel/cobSyl}" />
+		<Control type="closebutton" name="closebutton_discard" label="{=discard this @[../xy]}"  validatorGroup="alma korte"
+			enabled="{REF:../cbe}"
+			text="{=Start @[PARENT/xy]}" action="discard_form" next_form_name="sysp"
+			style="{REF://RootPanel/cobSyl}" /> <!-- confirm="{SELECT case when @[../cb] THEN 'always' ELSE 'never' END}" -->
+			
+		<Control type="textbox" name="textbox" label="{=write text here @[../xy]}" text="" hint="{=/hint/@[../xy]}"
+			style="{=@[//RootPanel/cobSyl]}"/>
+		<Control type="validator" name="val2" label="Validator" reference="=@[../Username]" style="{=@[//RootPanel/cobSyl]}">
+		</Control>	
+		<Control type="addbutton" name="buttonAdd" label="{=push this @[../xy]}" text="{=add @[../xy]}" style="{=@[../cobSyl]}" 
+			createremovebutton="false"
+			target="../table2" targetattribute="../Username" generateonemptyattribute="true"
+			enabled="{REF:../cbe}"
+		>
+		</Control>
+
+		<!-- xxxx -->
+		<Control type="panel" name="table2" label="Table this" layout="table" navigation="inline" style="{=@[//RootPanel/cobSyl]}" count="1">
+			<Control type="combobox" name="cobSyl" label="default" size="medium" choices="{Static {'normal','dark'}}" selectedValue="{=normal}" style="{=@[../cobSyl]}" />
+			
+			<Control type="removebutton" name="rembut1" label="{= removebutton @[//RootPanel/xy]}" text="{REF://RootPanel/xy}" 
+			enabled="{REF://RootPanel/cbe}"	/>
+		</Control>
+
+	</Control>
+</Form>
