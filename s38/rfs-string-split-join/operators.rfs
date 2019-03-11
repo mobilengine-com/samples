@@ -1,0 +1,18 @@
+server program RfsOperators 
+	for schedule 1 1 1 1 1 
+	first run at 2030-01-01 10:00
+{
+	trace "HelloWorld!";
+
+	trace "Hello,World,,!,".Split(",");
+	trace "Hello,World,,!,".Split("");
+	trace "Hello,World,,!,".SplitOnMany(["ll", ","], false);
+	trace "Hello,World,,!,".SplitOnMany(["ll", ","], true); 
+	trace "Hello,World,,!,".SplitOnMany(["ll", ",", ""], true); 
+
+	trace "Hello,World,,!,".SplitOnMany([], false);
+
+	trace ",".Join(["alma", "korte"]);
+	trace "".Join([]);
+
+}

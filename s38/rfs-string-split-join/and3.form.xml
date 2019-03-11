@@ -1,0 +1,13 @@
+<Form name="and3" description="and3" version="1">
+
+<Control type="panel" name="root" >
+	<Control type="panel" name="genpanel" label="genpanel" lazy_table="true" layout="table" navigation="inline" 
+			generator="SELECT Fruit, Type, Price, Quantity FROM REFERENCE_Fruit ORDER BY Fruit " >
+		<Control type="textbox" name="textbox2" label="Fruit" reference="SELECT @1" ref_arg="PARENT.col0" width="5em"/>
+		<Control type="textbox" name="textbox3" label="Type" reference="SELECT @1" ref_arg="PARENT.col1"  width="5em"/>
+		<Control type="textbox" name="textbox4" label="Price" reference="SELECT @1" ref_arg="PARENT.col2" width="5em" />
+		<Control type="textbox" name="textbox5" label="Quantity" reference="SELECT @1" ref_arg="PARENT.col3" width="5em" />
+		
+	</Control>
+</Control>
+</Form>

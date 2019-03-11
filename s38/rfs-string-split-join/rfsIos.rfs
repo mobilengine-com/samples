@@ -1,0 +1,18 @@
+client program rfsIos3 for form ios3
+using reftab Fruit;
+{
+	trace "HelloWorld!";
+
+	trace "Hello,World,,!,".Split(",");
+	trace "Hello,World,,!,".Split("");
+	trace "Hello,World,,!,".SplitOnMany(["ll", ","], false);
+	trace "Hello,World,,!,".SplitOnMany(["ll", ","], true); 
+	trace "Hello,World,,!,".SplitOnMany(["ll", ",", ""], true); 
+
+//	trace "Hello,World,,!,".SplitOnMany([1, 2], false);
+	trace "Hello,World,,!,".SplitOnMany([], false);
+
+	trace ",".Join(["alma", "korte"]);
+	trace "".Join([]);	
+
+}

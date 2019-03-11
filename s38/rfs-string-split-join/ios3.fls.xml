@@ -1,0 +1,20 @@
+<form id='ios3' menuName='ios3' title='ios3' platforms='ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+<declarations>
+	<let id="l" shape="scalar" value='{5}'></let>
+</declarations>
+<table 
+		label='table1'
+		record='tbl'
+		recordset='{SELECT s.Fruit Fruit, s.Type Type, s.Price Price, s.Quantity Quantity FROM Fruit s LIMIT 2 OFFSET l}'>
+		<row>
+			<cell>
+				<textview text='{tostring(tbl.Fruit)}'/>
+				<textview text='{tostring(tbl.Type)}'/>
+				<textview text='{tostring(tbl.Price)}'/>
+				<textview text='{tostring(tbl.Quantity)}'/>
+			</cell>
+		</row>
+		</table>
+
+
+</form>

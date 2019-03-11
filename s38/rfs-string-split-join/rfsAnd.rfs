@@ -1,0 +1,17 @@
+client program rfsAnd3 for form and3
+using reftab Fruit;
+{
+	trace "HelloWorld!";
+
+	trace "Hello,World,,!,".Split(","); 
+	trace "Hello,World,,!,".Split(""); //xxx self
+	trace "Hello,World,,!,".SplitOnMany(["ll", ","], false); 
+	trace "Hello,World,,!,".SplitOnMany(["ll", ","], true); 
+	trace "Hello,World,,!,".SplitOnMany(["ll", ",", ""], true); 
+//	trace "Hello,World,,!,".SplitOnMany([1, 2], false);
+	trace "Hello,World,,!,".SplitOnMany([], false); //xxxx self
+
+	trace ",".Join(["alma", "korte"]);
+	trace "".Join([]);	
+
+}
