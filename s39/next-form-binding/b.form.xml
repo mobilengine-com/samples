@@ -1,0 +1,5 @@
+<Form name="b" ksubmit="nobutton">
+  <Control type="panel" name="Root">
+    <Control type="label" text="This is form 'b'" />
+  </Control>
+</Form>

@@ -1,0 +1,9 @@
+<Form name="a" ksubmit="nobutton">
+  <Control type="panel" name="Root">
+    <Control type="label" text="This is form 'a'" />
+
+    <Control type="label" text="Type the name of the next form below (a, b and c forms are avaliable)" />
+    <Control type="textbox" name="NextIn" label="Next Form:" />
+    <Control type="closebutton" name="NextbuttonBind" action="discard_form" text="Go" />
+  </Control>
+</Form>
