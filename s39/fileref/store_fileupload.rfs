@@ -1,0 +1,17 @@
+server program trace_filupl for form file_upload
+using reftab files;
+{
+	var priority = int.Parse(form.priority.text);
+	foreach (var row in form.file.filerefs) {
+		var uploadedFile = row.fileref;
+		var fileWithPrio = fileref.New(uploadedFile.MediaId(), priority);
+		var newRow = {
+			fileref: fileWithPrio,
+			filename: fileWithPrio.Filename(),
+			size: fileWithPrio.Size(), 
+			checksum: fileWithPrio.Checksum()
+		};
+		db.files.Insert(newRow);
+	}
+}
+

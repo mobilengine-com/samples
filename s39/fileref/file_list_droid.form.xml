@@ -1,0 +1,15 @@
+<Form name="file_list_droid" description="file_list" inlineReference="true" sillyNulls="false" typed="true"
+		dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" 
+		numberformat="{decimalSeparator:&quot;.&quot;}">
+	<Control name="root" type="panel">
+		<Control type="panel" layout="table" navigation="inline"
+			data_type="string,string,int,string"
+			generator="SELECT fileref, filename, size, checksum FROM Reference_files">
+			
+			<Control type="label" label="Name" data_type="string" text="{=@[PARENT.col1]}" />
+			<Control type="label" label="Size" data_type="int" text="{SELECT CAST(@[PARENT.col2] AS INT)}" />
+			<Control type="label" label="Checksum" data_type="string" text="{=@[PARENT.col3]}" />
+			<Control type="filedownload" label="" text="View" mediaid="{=@[PARENT.col0]}" />
+		</Control> 
+	</Control>
+</Form>

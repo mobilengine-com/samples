@@ -1,0 +1,8 @@
+<Reftab Name="files" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false">
+  <Columns>
+    <Column Name="fileref" Type="Fileref" PrimaryKey="true" NotNull="true" />
+    <Column Name="filename" Type="Text" />
+    <Column Name="size" Type="Integer" />
+    <Column Name="checksum" Type="Text" />
+  </Columns>
+</Reftab>
