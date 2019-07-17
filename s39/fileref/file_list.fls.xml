@@ -4,48 +4,15 @@
       platforms="web ios" 
       xmlns="http://schemas.mobilengine.com/fls/v2">
 	
-    <table recordset="{SELECT f.fileref, f.filename, f.size, f.checksum FROM files f}" record="r">
-        <header>
-            <row>
-                <cell>
-                    <textview label="Name" />
-                </cell>
-                <cell>
-                    <textview label="Size" />
-                </cell>
-                <cell>
-                    <textview label="SHA-1 Checksum" />
-                </cell>
-                <cell>
-                    <textview label="Priority" />
-                </cell>
-                <cell>
-                    <textview label="" />
-                </cell>
-                <cell>
-                    <textview label="" />
-                </cell>
-            </row>
-        </header>
-        <row>
-            <cell>
-                <textview text="{r.filename}" />
-            </cell>
-            <cell>
-                <textview text="{TOSTRING(r.size)}" />
-            </cell>
-            <cell>
-                <textview text="{r.checksum}" />
-            </cell>
-            <cell>
-                <textview text="{TOSTRING(PRIORITY(r.fileref))}" />
-            </cell>
-            <cell>
-                <fileview text='Open' fileref="{r.fileref}" />
-            </cell>
-            <cell>
-                <filedownload text='Download' fileref="{r.fileref}" />
-            </cell>
-        </row>
-    </table>
+    <repeater recordset="{SELECT f.fileref, f.filename, f.size, f.checksum FROM files f}" record="r">
+        <textview text="{r.filename}" style="{styles.separator}" />
+        <textview label="MediaId:" text="{MEDIAID(r.fileref)}" />
+        <textview label="Size:" text="{TOSTRING(r.size)}" />
+        <textview label="Checksum:" text="{r.checksum}" />
+        <textview label="Priority:" text="{TOSTRING(PRIORITY(r.fileref))}" />
+        <fileview label="Open in FileView:" text='Open' fileref="{r.fileref}" />
+        <filedownload label="Open in FileDownload:" text='Download' fileref="{r.fileref}" />
+        <photoview label="View in PhotoView:" photos='{MEDIAID(r.fileref)}' />
+        <annotator label="View in Annotator:" text='Open' fileref='{r.fileref}' />
+    </repeater>
 </form>

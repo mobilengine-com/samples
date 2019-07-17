@@ -1,15 +1,24 @@
 <Form name="file_list_droid" description="file_list" inlineReference="true" sillyNulls="false" typed="true"
 		dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss)" 
 		numberformat="{decimalSeparator:&quot;.&quot;}">
+	<Rgsyl>
+		<Syl syln="separator">
+			<Background color="#888888" />
+			<Font color="#ffffff" size="150" />
+			<Margin top="12dp" />
+		</Syl>
+	</Rgsyl>
 	<Control name="root" type="panel">
-		<Control type="panel" layout="table" navigation="inline"
+		<Control type="panel" navigation="inline"
 			data_type="string,string,int,string"
 			generator="SELECT fileref, filename, size, checksum FROM Reference_files">
 			
-			<Control type="label" label="Name" data_type="string" text="{=@[PARENT.col1]}" />
-			<Control type="label" label="Size" data_type="int" text="{SELECT CAST(@[PARENT.col2] AS INT)}" />
-			<Control type="label" label="Checksum" data_type="string" text="{=@[PARENT.col3]}" />
-			<Control type="filedownload" label="" text="View" mediaid="{=@[PARENT.col0]}" />
+			<Control type="separator" text="{=@[PARENT.col1]}" sylnCrown="=separator" />
+			<Control type="label" label="MediaId:" text="{=@[PARENT.col0]}" />
+			<Control type="label" label="Size:" data_type="int" text="{SELECT CAST(@[PARENT.col2] AS INT)}" />
+			<Control type="label" label="Checksum:" data_type="string" text="{=@[PARENT.col3]}" />
+			<Control type="filedownload" label="Open with Filedownload:" text="Open" mediaid="{=@[PARENT.col0]}" />
+			<Control type="photoview" label="Open with Photoview:" text="Open" mediaid="{=@[PARENT.col0]}" />
 		</Control> 
 	</Control>
 </Form>

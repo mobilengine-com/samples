@@ -1,0 +1,5 @@
+<Form name='barcode' autoform='false'>
+	<Control name='root' type='panel'>
+		<Control name='bc1' type='textbox' ptype="barcode" label="Barcode reader" />
+	</Control>
+</Form>

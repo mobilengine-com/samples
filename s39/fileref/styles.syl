@@ -1,0 +1,9 @@
+styles {
+    style separator {
+        all {
+            backgroundColor = 666666
+            fontColor = ffffff
+            fontSize = 1.5em
+        }
+    }
+}
