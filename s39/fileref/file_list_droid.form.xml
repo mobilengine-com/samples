@@ -18,8 +18,9 @@
 			<Control type="label" label="Size:" data_type="int" text="{SELECT @[PARENT.col2]}" />
 			<Control type="label" label="Checksum:" data_type="string" text="{=@[PARENT.col3]}" />
 			<Control type="label" label="Priority:" data_type="int" text="{SELECT PRIORITY(@[PARENT.col0])}" />
-			<Control type="filedownload" label="Open with Filedownload:" text="Open" mediaid="{SELECT MEDIAID(@[PARENT.col0])}" />
-			<Control type="photoview" label="Open with Photoview:" text="Open" mediaid="{SELECT MEDIAID(@[PARENT.col0])}" />
+			<Control type="filedownload" label="Open with Filedownload:" text="Open" fileref="{SELECT @[PARENT.col0]}" />
+			<!-- photoview works with mediaId and fileref too -->
+			<Control type="photoview" text="Open" photos="{SELECT MEDIAID(@[PARENT.col0]) UNION ALL SELECT @[PARENT.col0]}" />
 		</Control> 
 	</Control>
 </Form>
