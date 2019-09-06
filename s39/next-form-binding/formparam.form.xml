@@ -1,0 +1,33 @@
+<Form name="formparam"  autoform="false" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' 
+	typed="true" sillyNulls="false">
+	<Control type="panel" name="root" layout="standard" navigation="inline">
+		<Control type="label" text="" reference="SELECT ifnull(@user ,'null')||', '||ifnull(@user, 'null')" ref_arg=""/>
+		<Control type="label" text="" reference="SELECT ifnull(@param0 ,'null')||', '||ifnull(@param1 , 'null')" ref_arg=""/>
+		<Control type="closebutton" action="submit_form" label="Next without parameter" 
+		text="Open"  data_type="string" next_form_name="formparam"/>
+		<Control type="checkbox" label="A,B/X,Y" name="cb"/>
+		<Control type="label" reference = "SELECT (case when @1 then 'A' else 'X' end) ||', '|| (case when @1 then 'B' else 'Y' end)" ref_arg="../cb"/>
+		<Control type="closebutton" action="submit_form" label="Submit + next with parameter: A, B" 
+		text="Open"  data_type="string" next_form_name="formparam" param_reference="SELECT (case when @1 then 'A' else 'X' end), (case when @1 then 'B' else 'Y' end)" param_ref_arg="../cb"/>
+		<Control type="closebutton" action="discard_form" label="Discard + next with parameter: A, B" 
+		text="Open"  data_type="string" next_form_name="formparam" param_reference="SELECT (case when @1 then 'A' else 'X' end), (case when @1 then 'B' else 'Y' end)" param_ref_arg="../cb"/>
+		<Control type="closebutton" action="discard_form" label="Discard no next form param" 
+		text="Open"  data_type="string" next_form_name="formparam"/>
+		<Control type="panel" navigation="popup" layout="standard"  next_form_name="formparam" text="discard on back popup with param"
+			back_action='discard_form' param_reference="SELECT (case when @1 then 'A' else 'X' end), (case when @1 then 'B' else 'Y' end)" param_ref_arg="../cb">
+			<Control type="label" reference = "SELECT (case when @1 then 'A' else 'X' end) ||', '|| (case when @1 then 'B' else 'Y' end)" ref_arg="../../cb"/>
+		</Control>
+		<Control type="panel" navigation="popup" layout="standard"  next_form_name="formparam"  text="discard on back popup wo param"
+			back_action='discard_form' >
+			<Control type="label" reference = "SELECT (case when @1 then 'A' else 'X' end) ||', '|| (case when @1 then 'B' else 'Y' end)" ref_arg="../../cb"/>
+		</Control>
+		<Control type="panel" navigation="popup" layout="standard"  next_form_name="formparam" text="10s auto discard popup with param"
+			sec_auto_close="10"	back_action='discard_form' param_reference="SELECT (case when @1 then 'A' else 'X' end), (case when @1 then 'B' else 'Y' end)" param_ref_arg="../cb">
+			<Control type="label" reference = "SELECT (case when @1 then 'A' else 'X' end) ||', '|| (case when @1 then 'B' else 'Y' end)" ref_arg="../../cb"/>
+		</Control>
+		<Control type="panel" navigation="popup" layout="standard"  next_form_name="formparam"  text="10s auto discard popup wo param"
+			sec_auto_close="10" back_action='discard_form' >
+			<Control type="label" reference = "SELECT (case when @1 then 'A' else 'X' end) ||', '|| (case when @1 then 'B' else 'Y' end)" ref_arg="../../cb"/>
+		</Control>
+	</Control>
+</Form>
