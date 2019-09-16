@@ -1,0 +1,5 @@
+schema 'hello-dacs' meta 'hello-dacs' namespace "http://schemas.acme.com/HelloWorld"
+
+Hello: element {
+	Message: attribute of type string;
+}

@@ -1,0 +1,4 @@
+server program 'trace_dacs' for dacs 'hello-dacs'
+{
+	trace dacs;
+}
