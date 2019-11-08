@@ -6,12 +6,16 @@
 	</Rgsyl>
 
 	<Control name="root" type="panel">
+		<Control allowUnselect="false" type="combobox" choice="button" size="small" label="UnselectFalse" reference="{Query={Static {Y,N}}}" />	
+	
 		<Control allowUnselect="true" type="combobox" choice="button" size="small" label="Ice cream?" reference="{Query={Static {Y,N}}}" />	
 		<Control allowUnselect="true" type="combobox" choice="button" size="medium" label="Rate the movie!" reference="{Query={Static {1,2,3,4,5}}}" sylnCrown="=greenColors" />
 		<Control allowUnselect="true" type="combobox" choice="button" size="medium" label="Rate the popcorn!" reference="{Query={Static {1,2,3,4,5}}}" sylnCrown="=greenColors4" />
 		<Control allowUnselect="true" choice="button" label="Rate your shopping experience!" reference="{Query={Static {😞, 😐, 🙂}}}" size="medium" type="combobox"/>
 		<Control allowUnselect="true" type="combobox" choice="button" size="large" label="On a scale of 1 to 10, how is the workshop?" reference="{Query={Static {1,2,3,4,5,6,7,8,9,10}}}" sylnCrown="=greenColors2" />	
 
+		<Control allowUnselect="false" type="combobox" choice="button" size="small" label="UnselectFalseDotted" reference="{Query={Static {Y,N}}}" ptype="dotted" />
+		
 		<Control allowUnselect="true" type="combobox" choice="button" size="small" label="Ice cream?" reference="{Query={Static {Y,N}}}" ptype="dotted" />	
 		<Control allowUnselect="true" type="combobox" choice="button" size="medium" label="Rate the movie!" reference="{Query={Static {1,2,3,4,5}}}" ptype="dotted" sylnCrown="=greenColors" />
 		<Control allowUnselect="true" type="combobox" choice="button" size="medium" label="Rate the popcorn!" reference="{Query={Static {1,2,3,4,5}}}" ptype="dotted" sylnCrown="=greenColors4" />
