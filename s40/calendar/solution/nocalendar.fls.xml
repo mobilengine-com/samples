@@ -1,0 +1,5 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='nocalendar' menuName='nocalendar' platforms='web'>
+	<textview text="alma"/>
+	<datepicker label="date" dateFormat='(dtf yyyy"-"MM"-"dd)'/>
+</form>

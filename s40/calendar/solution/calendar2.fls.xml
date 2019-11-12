@@ -1,0 +1,624 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='calendar2' menuName='calendar2' platforms='web' >
+
+	<datepicker dateFormat='(dtf yyyy"-"MM"-"dd)' id='dpDay' date='{sysp.dtlFormOpen}'></datepicker>
+	<datepicker dateFormat='(dtf yyyy"-"MM"-"dd)' id='dpWeek' date='{nextWeekday(AddDay(dpDay.date, -6), 1)}'></datepicker>
+	<datepicker dateFormat='(dtf yyyy"-"MM"-"dd)' id='dpMonth' date='{startOfMonth(dpDay.date)}'></datepicker>
+
+	<chapter title="default with events">
+		<calendar  events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"/>
+	</chapter>
+
+	<!-- modes -->
+	<chapter title="month with events">
+		<calendar 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "month" mode, null date}'
+		/>
+	</chapter>
+	<chapter title="week with events">
+		<calendar 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "agendaWeek" mode, null date}'
+		/>
+	</chapter>
+	<chapter title="day with events">
+		<calendar 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "agendaDay" mode, null date}'
+		/>
+	</chapter>
+
+	<!-- position -->
+
+	<chapter title="month with position">
+		<calendar 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "month" mode, dpMonth.date}'
+		/>
+	</chapter>
+	<chapter title="week with position">
+		<calendar 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "agendaWeek" mode, dpWeek.date}'
+		/>
+	</chapter>
+	<chapter title="day with position">
+		<calendar 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "agendaDay" mode, dpDay.date}'
+		/>
+	</chapter>
+
+	<!-- categories - colors -->
+	<chapter title="month with position with agent colors">
+		<calendar 
+			categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+			events="{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "month" mode, dpMonth.date}'
+		/>
+	</chapter>
+	<chapter title="week with position with agent colors">
+		<calendar 
+			categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+			events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "agendaWeek" mode, dpWeek.date}'
+		/>
+	</chapter>
+	<chapter title="day with position with agent colors">
+		<calendar 
+			categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+			events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "agendaDay" mode, dpDay.date}'
+		/>
+	</chapter>
+
+	<popup title='Operations'>
+		
+		<!-- filtering events -->
+		<dropdown keyMap="{guid}" textMap="{name}" choices='{SELECT a.guid, a.name from agent a}' id="ddAgent" />
+		<dropdown keyMap="{guid}" textMap="{name}" choices='{SELECT l.guid, l.name from location l}' id="ddLocation" />
+		<chapter title="month with filtering">
+			<calendar 
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e
+						WHERE (e.guidAgent = ddAgent.selectedKey OR ddAgent.selectedKey IS NULL) 
+						AND (e.guidLocation = ddLocation.selectedKey OR ddLocation.selectedKey IS NULL ) }"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week with filtering">
+			<calendar 
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e
+						WHERE (e.guidAgent = ddAgent.selectedKey OR ddAgent.selectedKey IS NULL) 
+						AND (e.guidLocation = ddLocation.selectedKey OR ddLocation.selectedKey IS NULL ) }"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day with filtering">
+			<calendar 
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e
+						WHERE (e.guidAgent = ddAgent.selectedKey OR ddAgent.selectedKey IS NULL) 
+						AND (e.guidLocation = ddLocation.selectedKey OR ddLocation.selectedKey IS NULL ) }"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+		</chapter>
+		<!-- selecting events -->
+		<chapter title="month eventSelection">
+			<calendar id='calSelInMonth'
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+			<textview label="Selected event" text='{calSelInMonth.selectedEvent.id || ": " || calSelInMonth.selectedEvent.label}' />
+		</chapter>
+		<chapter title="week eventSelection">
+			<calendar id='calSelInWeek'
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+			<textview label="Selected event" text='{calSelInWeek.selectedEvent.id || ": " || calSelInWeek.selectedEvent.label}' />
+		</chapter>
+		<chapter title="day eventSelection">
+			<calendar id='calSelInDay'
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+			<textview label="Selected event" text='{calSelInDay.selectedEvent.id || ": " || calSelInDay.selectedEvent.label}' />
+		</chapter>
+
+		<!-- new interval selection -->
+		<chapter title="month new interval">
+			<calendar id='calNewInMonth'
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+			<textview label="Selected event" text='{formatDtl( calNewInMonth.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) ) || " - "
+								 || formatDtl( calNewInMonth.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}' />
+
+		</chapter>
+		<chapter title="week new interval">
+			<calendar id='calNewInWeek'
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+			<textview label="Selected event" text='{formatDtl( calNewInWeek.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) ) || " - "
+								 || formatDtl( calNewInWeek.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}' />
+		</chapter>
+		<chapter title="day new interval">
+			<calendar id='calNewInDay'
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+			<textview label="Selected event" text='{formatDtl( calNewInDay.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) ) || " - "
+								 || formatDtl( calNewInDay.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}' />
+		</chapter>
+
+		<!-- adding events -->
+
+		<!-- deleting events -->
+
+	</popup>
+
+	<popup title='Date settings and formating'>
+	<!-- position with custom header -->
+		<chapter title="month with custom header">
+			<textview style="{[styles.calHeader]}" text='{formatDtl(calMwCH.position.date, (dtf yyyy"-"MM))}'/>
+			<calendar id="calMwCH"
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week with custom header">
+			<textview style="{[styles.calHeader]}" text='{formatDtl(calWwCH.position.date, (dtf yyyy"-"MM"-"dd)) || " - " || formatDtl(addDay(calWwCH.position.date, 6), (dtf MM"-"dd)) || ", Week #" || toString(isoWeekOfYear(calWwCH.position.date)) }'/>
+			<calendar id="calWwCH"
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day with custom header">
+			<textview style="{[styles.calHeader]}" text='{formatDtl(calWwCH.position.date, (dtf yyyy"-"MM"-"dd))}'/>
+			<calendar id="calDwCH"
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+		</chapter>
+		<!-- start/end hour -->
+		<chapter title="month with 8:00 start/ 18:00 end">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+				startHour='8'
+				endHour='18'
+						/>
+		</chapter>
+		<chapter title="week with 8:00 start/ 18:00 end">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+				startHour='8'
+				endHour='18'
+			/>
+		</chapter>
+		<chapter title="day with 8:00 start/ 18:00 end">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+				startHour='8'
+				endHour='18'
+			/>
+		</chapter>
+	
+		<!-- slot duration -->
+		<chapter title="month with 15 min slots">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+				slotDuration="15"
+						/>
+		</chapter>
+		<chapter title="week with 15 min slots">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+				slotDuration="15"
+			/>
+		</chapter>
+		<chapter title="day with 15 min slots">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+				slotDuration="15"
+			/>
+		</chapter>
+	
+		<!-- weekends -->
+		<chapter title="month without weekends">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+				weekends='false'
+			/>
+		</chapter>
+		<chapter title="week with position without weekends">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+				weekends='false'
+			/>
+		</chapter>
+		<chapter title="day with position without weekends">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+				weekends='false'
+			/>
+		</chapter>
+		<!-- date format -->	
+
+		<!-- day names -->
+		<chapter title="month with hun day names">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+				dayNames="Hétfő,Kedd,Szerda,Csütörtök,Péntek,Szombat,Vasárnap"
+						/>
+		</chapter>
+		<chapter title="week with hun day names">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+				dayNames="Hétfő,Kedd,Szerda,Csütörtök,Péntek,Szombat,Vasárnap"
+			/>
+		</chapter>
+		<chapter title="day with hun day names">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+				dayNames="Hétfő,Kedd,Szerda,Csütörtök,Péntek,Szombat,Vasárnap"
+			/>
+		</chapter>
+
+			<!-- time format -->
+		<chapter title="month with time format">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+				timeFormat='(dtf hh":"mm" "tt)'
+						/>
+		</chapter>
+		<chapter title="week with time format">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+				timeFormat='(dtf hh":"mm" "tt)'
+			/>
+		</chapter>
+		<chapter title="day with time format">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+				timeFormat='(dtf hh":"mm" "tt)'
+			/>
+		</chapter>
+	</popup>
+
+	<!-- styles -->
+
+	<!-- size: width -->
+	<popup title='Sizes'>
+		<chapter title="month width 50%">
+			<calendar 
+				style='{[styles.w50pct]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week width 50%">
+			<calendar 
+				style='{[styles.w50pct]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day width 50%">
+			<calendar 
+				style='{[styles.w50pct]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+		</chapter>
+		<chapter title="month width 300px">
+			<calendar 
+				style='{[styles.w300px]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week width 300px">
+			<calendar 
+				style='{[styles.w300px]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day width 300px">
+			<calendar 
+				style='{[styles.w300px]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+		</chapter>	
+		<!-- size: height -->
+		<chapter title="month height 400px">
+			<calendar 
+				style='{[styles.calH400]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week height 400px">
+			<calendar 
+				style='{[styles.calH400]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day height 400px">
+			<calendar 
+				style='{[styles.calH400]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+		</chapter>	
+		<chapter title="month height auto">
+			<calendar 
+				style='{[styles.calHAuto]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week height auto">
+			<calendar 
+				style='{[styles.calHAuto]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day height auto">
+			<calendar 
+				style='{[styles.calHAuto]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+		</chapter>	
+		<chapter title="month width 300px height 400px">
+			<calendar 
+				style='{[styles.w300px, styles.calH400]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week width 300px height 400px">
+			<calendar 
+				style='{[styles.w300px, styles.calH400]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day width 300px height 400px">
+			<calendar 
+				style='{[styles.w300px, styles.calH400]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+		</chapter>		
+
+		<chapter title="month height 800px">
+			<calendar 
+				style='{[styles.calH800]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week height 800px">
+			<calendar 
+				style='{[styles.calH800]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day height 800px">
+			<calendar 
+				style='{[styles.calH800]}'
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+			/>
+		</chapter>	
+	</popup>
+	<popup title='Styles'>
+		<!-- new color -->
+		<chapter title="month with new color yellow">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+					position='{SELECT "month" mode, dpMonth.date}'
+					style='{[styles.calNewY]}'
+							/>
+			</chapter>
+			<chapter title="week with new color yellow">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+					position='{SELECT "agendaWeek" mode, dpWeek.date}'
+					style='{[styles.calNewY]}'
+				/>
+			</chapter>
+			<chapter title="day with new color yellow">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+					position='{SELECT "agendaDay" mode, dpDay.date}'
+					style='{[styles.calNewY]}'
+				/>
+			</chapter>
+		<!-- today color -->
+		<chapter title="month with today color magenta">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+				style='{[styles.calTodayM]}'
+						/>
+		</chapter>
+		<chapter title="week with today color magenta">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+				style='{[styles.calTodayM]}'
+			/>
+		</chapter>
+		<chapter title="day with today color magenta">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+				style='{[styles.calTodayM]}'
+			/>
+		</chapter>
+
+		<!-- text props  calTextGreen15B --> 
+		<chapter title="month with text props green 15px bold">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "month" mode, dpMonth.date}'
+				style='{[styles.calTextGreen15B]}'
+						/>
+		</chapter>
+		<chapter title="week with text props green 15px bold">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaWeek" mode, dpWeek.date}'
+				style='{[styles.calTextGreen15B]}'
+			/>
+		</chapter>
+		<chapter title="day with text props green 15px bold">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				position='{SELECT "agendaDay" mode, dpDay.date}'
+				style='{[styles.calTextGreen15B]}'
+			/>
+		</chapter>
+	</popup>
+
+	<popup title='In table'>
+	<!-- within table header -->
+		<chapter title="month+week+day within table header">
+			<table record='r' recordset='{SELECT 1 v WHERE 1=2}' style="{[styles.tcw3x500px]}">
+				<header>
+					<row>
+						<cell>
+							<calendar 
+								events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+								position='{SELECT "month" mode, dpMonth.date}'
+							/>
+						</cell>
+						<cell>
+							<calendar 
+								events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+								position='{SELECT "agendaWeek" mode, dpWeek.date}'
+							/>
+						</cell>
+						<cell>
+							<calendar 
+								events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+								position='{SELECT "agendaDay" mode, dpDay.date}'
+							/>
+						</cell>					
+					</row>
+				</header>
+				<row><cell><block></block></cell></row>
+			</table>
+		</chapter>
+
+		<chapter title="month+week+day within table header">
+				<table record='r' recordset='{SELECT 1 v WHERE 1=2}' style="{[styles.tcw3x500px]}">
+					<header>
+						<row>
+							<cell>
+								<textbox text="alma"/>
+							</cell>
+							<cell>
+								<textbox text="alma"/>
+							</cell>
+							<cell>
+								<textbox text="alma"/>
+							</cell>					
+						</row>
+					</header>
+					<row><cell><block></block></cell></row>
+				</table>
+			</chapter>
+	
+		<!-- within table row -->
+		<chapter title="month+week+day within table row">
+			<table record='r' recordset='{[1,2]}' style="{[styles.tcw3x500px]}">
+				<header>
+					<row>
+						<cell><textview text="month"/></cell>
+						<cell><textview text="week"/></cell>
+						<cell><textview text="day"/></cell>
+					</row>
+				</header>
+
+				<row>
+					<cell>
+						<calendar 
+							events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+							position='{SELECT "month" mode, dpMonth.date}'
+						/>
+					</cell>
+					<cell>
+						<calendar 
+							events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+							position='{SELECT "agendaWeek" mode, dpWeek.date}'
+						/>
+					</cell>
+					<cell>
+						<calendar 
+							events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+							position='{SELECT "agendaDay" mode, dpDay.date}'
+						/>
+					</cell>					
+				</row>
+			</table>
+
+			<table record='r' recordset='{[1,2]}' style="{[styles.tcw3x500px]}">
+				<header>
+					<row>
+						<cell><textview text="month"/></cell>
+						<cell><textview text="week"/></cell>
+						<cell><textview text="day"/></cell>
+					</row>
+				</header>
+
+				<row>
+					<cell>
+						<textbox text="alma"/>
+					</cell>
+					<cell>
+						<textbox text="alma"/>
+					</cell>
+					<cell>
+						<textbox text="alma"/>
+					</cell>					
+				</row>
+			</table>
+		
+		</chapter>
+	
+	</popup>
+
+</form>

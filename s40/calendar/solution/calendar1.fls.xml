@@ -1,0 +1,125 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='calendar1' menuName='calendar1' platforms='web' >
+	<!-- "id", "categoryId", "dateFrom", "secondsFrom", "dateTo", "secondsTo", "label" -->
+	<table id="t" 
+		recordset='{SELECT "alma" id, "r" categoryId, (DTL 2019-10-23T10:15:00) dateFrom, (DTL 2019-10-23T11:15:00) dateTo, "alma" label UNION ALL SELECT "körte" id, "g" categoryId, (DTL 2019-10-24T08:00:00) dateFrom, (DTL 2019-10-24T18:00:00) dateTo, "körte" label}' record="r">
+		<row>
+			<declarations>
+				<let id="id" shape="scalar" value="{r.id}"/>
+				<let id="categoryId" shape="scalar" value="{tbCategory.text}"/>
+				<let id="label" shape="scalar" value="{tbLabel.text}"/>
+				<let id="dateFrom" shape="scalar" value="{TODATE(TOINT( GETYEAR(dpFrom.date) ), TOINT( GETMONTH(dpFrom.date) ), TOINT( GETDAY(dpFrom.date) ), TOINT(tpFrom.seconds/60/60), TOINT( (tpFrom.seconds/60) % 60), TOINT( tpFrom.seconds % 60 ) )}"/>
+				<let id="dateTo" shape="scalar" value="{TODATE(TOINT( GETYEAR(dpTo.date) ), TOINT( GETMONTH(dpTo.date) ), TOINT( GETDAY(dpTo.date) ), TOINT(tpTo.seconds/60/60), TOINT( (tpTo.seconds/60) % 60), TOINT( tpTo.seconds % 60 ) )}"/>
+			</declarations>
+			<cell>
+				<textbox id="tbLabel" text="{r.label}"/>
+			</cell>
+			<cell>
+					<textbox id="tbCategory" text="{r.categoryId}"/>
+			</cell>
+			<cell>
+				<datepicker id="dpFrom" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{r.dateFrom}"/>
+			</cell>
+			<cell>
+				<timepicker id="tpFrom" timeFormat='(dtf HH":"mm)' seconds="{(TOINT(GETHour(r.dateFrom))*60+TOINT(GETMinute(r.dateFrom)))*60+TOINT(GETSecond(r.dateFrom))}"/>
+			</cell>
+			<cell>
+				<datepicker id="dpTo" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{r.dateFrom}"/>
+			</cell>
+			<cell>
+				<timepicker id="tpTo" timeFormat='(dtf HH":"mm)' seconds="{(TOINT(GETHour(r.dateTo))*60+TOINT(GETMinute(r.dateTo)))*60+TOINT(GETSecond(r.dateTo))}"/>
+			</cell>
+			<cell><removebutton text="Remove"/></cell>
+		</row>
+	</table>
+	<addbutton records='{SELECT toStringN(newGuid()) id, "r" categoryId, cal.newEvent.dateFrom dateFrom, cal.newEvent.dateTo dateTo, "" label}' table="t" text="Add"/>
+	<table record="dummy" recordset="{SELECT 1 WHERE 3=4}">
+		<header>
+			<row>
+				<cell>
+					<segmentedbutton id="ddMode" keyMap="{v}" textMap="{v}" choices='{["month", "agendaWeek", "agendaDay"]}' selectedKey='{"agendaWeek"}'/>
+				</cell>
+				<cell>
+					<datepicker id="dpPos" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{sysp.dtlFormOpen}" />
+				</cell>
+				<cell>
+					<actionbutton text="&lt; M">
+						<set value="{addMonth(dpPos.date, -1)}" target="dpPos.date"/>
+					</actionbutton>
+				</cell>
+					<cell>
+					<actionbutton text="&lt; W">
+						<set value="{addDay(dpPos.date, -7)}" target="dpPos.date"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="Today!">
+						<set value="{sysp.dtlFormOpen}" target="dpPos.date"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="&gt; W">
+						<set value="{addDay(dpPos.date, 7)}" target="dpPos.date"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="&gt; M">
+						<set value="{addMonth(dpPos.date, 1)}" target="dpPos.date"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<checkbox id="fNew" text="new" checked="{true}"/>
+				</cell>
+				<cell>
+					<checkbox id="fSelect" text="select" checked="{true}"/>
+				</cell>
+			</row>
+		</header>
+		<row><cell><block></block></cell></row>
+	</table>
+
+	<segmentedbutton id="sbHeightStyle" keyMap="{label}" textMap="{label}" selectedKey='{"h300"}'
+		choices='{TABLE label, style ("h300", styles.calH300; "h400", styles.calH400; "h500", styles.calH500 )}'/>
+	<segmentedbutton id="sbBgStyle" keyMap="{label}" textMap="{label}" selectedKey='{"bgColorY"}'
+		choices='{TABLE label, style ("bgColorY", styles.calBgColorY; "bgColorC", styles.calBgColorC; "bgColorM", styles.calBgColorM )}'/>
+	<calendar id="cal" events='{SELECT r.id, r.categoryId, r.dateFrom, r.dateTo, r.label FROM t.rows r}'
+		style="{[styles.calDefault, sbHeightStyle.selectedValue.style, sbBgStyle.selectedValue.style]}"
+		categories='{TABLE id, backgroundColor, borderColor, textColor, selectedBackgroundColor, selectedBorderColor, selectedTextColor  (
+			"r", "FF0000", "790000", "000000", "FFFF00", null, null; 
+			"g", "00FF00", "007900", "797979", "FFFF00", null, null; 
+			"b", "0000FF", "000079", "FFFFFF", "FFFF00", null, null)}'
+		allowSelection="{fSelect.checked}"
+		allowNew="{fNew.checked}"
+		position='{SELECT ddMode.selectedKey mode, dpPos.date}'/>
+	<popup title="in popup" id="popup">
+		<calendar id="calPop" events='{SELECT r.id, r.categoryId, r.dateFrom, r.dateTo, r.label FROM t.rows r}'
+		allowSelection="{false}"
+		allowNew="{false}"
+		position='{SELECT ddMode.selectedKey mode, dpPos.date}'/>
+	</popup>
+	<datepicker id="dpPosOut" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{cal.position.date}" />
+
+	<chapter title="Selected event">
+		<textview label="id" text="{cal.selectedEvent.id}"/>
+		<textview label="label" text="{cal.selectedEvent.label}"/>
+		<textview label="from" text='{formatDtl( cal.selectedEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+		<textview label="to" text='{formatDtl( cal.selectedEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+	</chapter>
+	<chapter title="New event">
+			<textview label="from" text='{formatDtl( cal.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+			<textview label="to" text='{formatDtl( cal.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+	</chapter>
+	<chapter title="Test">
+		<declarations>
+			<let id="letSE" shape="record" value='{SELECT tbLabel.text id, "alma" categoryId, dpFrom.date dateFrom, dpTo.date dateTo, tbLabel.text label}'></let>
+		</declarations>
+			<datepicker id="dpFrom" dateFormat='(dtf yyyy"-"MM"-"dd)'/>
+			<datepicker id="dpTo" dateFormat='(dtf yyyy"-"MM"-"dd)'/>
+			<textbox id="tbLabel" text="valami"/>
+
+			<textview label="id" text="{letSE.id}"/>
+			<textview label="label" text="{letSE.label}"/>
+			<textview label="from" text='{formatDtl( letSE.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+			<textview label="to" text='{formatDtl( letSE.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+	</chapter>
+</form>

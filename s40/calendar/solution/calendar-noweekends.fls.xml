@@ -1,0 +1,21 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='calendar_noweekends' menuName='calendar_noweekends' platforms='web' >
+	<datepicker dateFormat='(dtf yyyy"-"MM"-"dd)' id='dpwE'></datepicker>
+
+	<!-- weekends -->
+	<chapter title="month without weekends">
+		<calendar 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "month" mode, dpwE.date}'
+			weekends='false'
+		/>
+	</chapter>
+	<chapter title="week with position without weekends">
+		<calendar 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+			position='{SELECT "agendaWeek" mode, dpwE.date}'
+			weekends='false'
+		/>
+	</chapter>
+
+</form>

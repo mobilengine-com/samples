@@ -1,0 +1,129 @@
+styles {
+    style calHeader {
+        textview {
+            control {
+                textAlign = center
+                fontSize = 20px
+                italic = true
+            }
+        }
+    }
+
+    style calDefault {
+        calendar {
+            control {
+                fontColor = 00FF00
+                fontSize = 15px
+                bold = true
+            }
+            newColor = FF7979
+            todayColor = 79FF79
+        }
+    }
+    style calTextGreen15B {
+        calendar {
+            control {
+                fontColor = 007F00
+                fontSize = 15px
+                bold = true
+            }
+        }
+    }
+    style calNewY {
+        calendar {
+            newColor = FFFF00
+        }
+    }
+    style calTodayM {
+        calendar {
+            todayColor = FF00FF
+        }
+    }
+    style calH300 {
+        calendar {
+            control {
+                height = 300px
+            }
+        }
+    }
+    style calH400 {
+        calendar {
+            control {
+                height = 400px
+            }
+        }
+    }
+    style calH500 {
+        calendar {
+            control {
+                height = 500px
+            }
+        }
+    }
+    style calH800 {
+        calendar {
+            control {
+                height = 800px
+            }
+        }
+    }
+    style calHAuto {
+        calendar {
+            control {
+                height = auto
+            }
+        }
+    }
+    style w50pct {
+        calendar {
+            control {
+                width = 50%
+            }
+        }
+    }
+    style w300px {
+        calendar {
+            control {
+                width = 300px
+            }
+        }
+    }
+    
+
+    style calBgColorY {
+        calendar {
+            control {
+                backgroundColor = fafab1
+            }
+        }
+    }
+    style calBgColorC {
+        calendar {
+            control {
+                backgroundColor = b1f9fa
+            }
+        }
+    }
+    style calBgColorM {
+        calendar {
+            control {
+                backgroundColor = fab1f1
+            }
+        }
+    }        
+    style tcw3x500px {
+        table {
+            columnWidth = 500px, 500px, 500px
+            header = tcw3x500px
+            body = tcw3x500px
+        }
+        row {
+            content = tcw3x500px
+        }
+        all {
+            control {
+                width = auto
+            }
+        }
+    }
+}
