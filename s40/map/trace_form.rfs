@@ -1,0 +1,4 @@
+client server program trace_form for form map_demo
+{
+    trace form;
+}

@@ -1,0 +1,15 @@
+styles {
+    style largeMap {
+        map {
+            control {
+                height = 600px
+            }
+        }
+    }
+
+    style table {
+       table {
+            columnWidth = 0.32swt
+        }
+    }
+}

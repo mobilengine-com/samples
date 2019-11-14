@@ -1,0 +1,7 @@
+<Reftab Name="cities" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="name" Type="Text" PrimaryKey="true" NotNull="true" />
+		<Column Name="lat" Type="Float" />
+		<Column Name="lng" Type="Float" />
+	</Columns>
+</Reftab>

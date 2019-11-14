@@ -1,0 +1,183 @@
+<form id='map_demo' menuName="Map Demo" platforms='web' dashboard="true" xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <chapter title="Default Map">
+        <map label="Default map, with label: " />
+    </chapter>
+
+    <chapter title="Points/line/icons Databinding, Custom height">
+        <declarations>
+            <let id="iconNormal" shape="scalar" access="private" value="{SELECT CASE WHEN iconSwitch.checked THEN icons.dot ELSE icons.marker END}" />
+            <let id="iconSelected" shape="scalar" access="private" value="{SELECT CASE WHEN iconSwitch.checked THEN icons.dot_big_red ELSE icons.marker_selected END}" />
+            <let id="placesTable" shape="table" access="private" value='{TABLE id, lineId, lat, lng, icon, selectedIcon (
+                NULL, "M3", 47.571072, 19.15583, NULL, NULL;
+                NULL, "M3", 47.620386, 19.410918, NULL, NULL;
+                NULL, "M3", 47.732847, 19.961437, NULL, NULL;
+                NULL, "M3", 47.744853, 20.453075, NULL, NULL;
+                NULL, "M3", 47.885028, 20.83485, NULL, NULL;
+                NULL, "M3", 47.847255, 21.14796, NULL, NULL;
+                NULL, "M3", 47.810838, 21.156886, NULL, NULL;
+                NULL, "M3", 47.791928, 21.257823, NULL, NULL;
+                NULL, "M3", 47.899301, 21.519435, NULL, NULL;
+                NULL, "M3", 47.891474, 21.818126, NULL, NULL;
+                NULL, "M3", 47.949915, 22.138789, NULL, NULL;
+                NULL, "M3", 47.993587, 22.2411, NULL, NULL;
+                NULL, "M3", 48.077609, 22.256892, NULL, NULL;
+                NULL, "M30", 47.885028, 20.83485, NULL, NULL;
+                NULL, "M30", 47.97934, 20.898708, NULL, NULL;
+                NULL, "M30", 48.113839, 20.844463, NULL, NULL;
+                NULL, "M35", 47.793312, 21.253017, NULL, NULL;
+                NULL, "M35", 47.659827, 21.472057, NULL, NULL;
+                NULL, "M35", 47.55752, 21.553767, NULL, NULL;
+                NULL, "M35", 47.312748, 21.507762, NULL, NULL;
+                "Road 4 Western End", "4", 47.40438, 19.315303, icons.marker, NULL;
+                "Point #1 on Road 4", "4", 47.260115, 19.621547, icons.dot, NULL;
+                "Point #2 on Road 4", "4", 47.193901, 19.911311, icons.dot, NULL;
+                "Point #3 on Road 4", "4", 47.213494, 20.039027, icons.dot, NULL;
+                "Point #4 on Road 4", "4", 47.14909, 20.142024, icons.dot, NULL;
+                "Point #5 on Road 4", "4", 47.235877, 20.82455, icons.dot, NULL;
+                "Point #6 on Road 4", "4", 47.32997, 21.111568, icons.dot, NULL;
+                "Road 4 Eastern End", "4", 47.234246, 21.532825, icons.marker, NULL;
+                "Miskolc", NULL, 48.079444, 20.867122, iconNormal, iconSelected;
+                "Debrecen", NULL, 47.545007, 21.631358, iconNormal, iconSelected;
+                "Hatvan", NULL, 47.666764, 19.705318, iconNormal, iconSelected;
+                "Budapest", NULL, 47.49539, 19.050258, iconNormal, iconSelected;
+                "Jászberény", NULL, 47.497709, 19.918521, iconNormal, iconSelected;
+            )}' />
+        </declarations>
+
+        <textbox id="placeFilter" label="Filter lines containing:" text="" />
+        <checkbox id="iconSwitch" label="Change city icons:" />
+        <textview label="Selected point (from map):" text='{COALESCE(mapPointsBind.selectedPoint, "[Nothing Selected]")}' />
+        
+        <map id="mapPointsBind" 
+            points='{SELECT pa.id, pa.lineId, pa.lat, pa.lng, pa.icon, pa.selectedIcon FROM placesTable pa WHERE pa.lineId IS NULL OR pa.lineId LIKE "%"||placeFilter.text||"%"}' 
+            iconConfig='{TABLE icon, width, height, anchorx, anchory (
+                icons.dot, 20, 20, 10, 10;
+                icons.dot_big_red, 40, 40, 20, 20
+            )}'
+            lineConfig='{TABLE lineId, weight, color (
+                "M3", 8, "#ef5350";
+                "M35", 5, "#00BCD4";
+                "M30", 5, "#7CB342";
+                "4", 5, "#D84315"
+            )}'
+            center="{TABLE lat, lng, zoom (47.7, 20.25, 8)}" 
+            style="{styles.largeMap}" />
+        
+    </chapter>
+
+    <chapter title="Center Datainbinding">
+        <declarations>
+            <let id="center1" shape="table" value="{TABLE lat, lng, zoom (47.499, 19.044, 16; 48.105, 20.81, 11)}" />
+            <let id="offset" shape="scalar" value="{SELECT CASE WHEN switch.checked THEN 1 ELSE 0 END}" />
+        </declarations>
+        <checkbox id="switch" label=" " text="Switch between Miskolc (zoomed out) and Budapest (zoomed in):" />
+        <textview label="Center lat (from map): " text="{TOSTRING(mapCenterBind.center.lat)}" />
+        <textview label="Center lng (from map): " text="{TOSTRING(mapCenterBind.center.lng)}" />
+        <textview label="Zoom (from map): " text="{TOSTRING(mapCenterBind.center.zoom)}" />
+        <map id="mapCenterBind" 
+            label="Map: " 
+            center="{SELECT p.lat, p.lng, p.zoom FROM center1 p LIMIT 1 OFFSET offset}" />
+    </chapter>
+
+    <chapter title="Map with lots of cities">
+        <checkbox id="showAL" label="Show A-L:" checked="{true}" />
+        <checkbox id="showMZ" label="Show M-Z:" checked="{true}" />
+        <textview label="Total Points: " text="{SELECT TOSTRING(COUNT(*)) FROM citiesMap.points p}" />
+        <map id="citiesMap" 
+            label="Map: " 
+            points='{SELECT t.name id, NULL lineId, t.lat, t.lng, icons.dot icon, NULL selectedIcon FROM cities t WHERE (showAL.checked and LOWER(t.name) BETWEEN "a" AND "l") OR (showMZ.checked and LOWER(t.name) BETWEEN "m" AND "z")}'
+            iconConfig='{SELECT icons.dot icon, 20 width, 20 height, 10 anchorx, 10 anchory}' />
+        <textview label="Selected city:" text="{citiesMap.selectedPoint}" />
+    </chapter>
+
+    <chapter title="Map with filtered cities">
+        <textbox id="filter" label="Search city: " text="" />
+        <map id="citiesMapFiltered" 
+            label="Map: " 
+            points='{SELECT t.name id, NULL lineId, t.lat, t.lng, icons.marker icon, icons.marker_selected selectedIcon FROM cities t WHERE LOWER(t.name) LIKE "%" || LOWER(filter.text) || "%"}' />
+        <textview label="Selected city:" text="{citiesMapFiltered.selectedPoint}" />
+    </chapter>
+
+    <chapter title="Maps in a table">
+        <table record="r" recordset="{TABLE c (1;2;3)}" style="{styles.table}">
+            <row>
+                <cell>
+                    <map />
+                </cell>
+                <cell>
+                    <map />
+                </cell>
+                <cell>
+                    <map />
+                </cell>
+            </row>
+        </table>
+    </chapter>
+
+    <chapter title="Map with custom points">
+        <map 
+            points="{SELECT NULL id, NULL lineId, t.lat1 lat, t.lng1 lng, icons.marker icon, NULL selectedIcon FROM points1.rows t}"
+         />
+        <table id="points1" record="r" recordset="{TABLE lat, lng (0, 0)}">
+            <header>
+                <row>
+                    <cell><textview text="Latitude" /></cell>
+                    <cell><textview text="Longitude" /></cell>
+                </row>
+            </header>
+            <row>
+                <declarations>
+                    <let id="lat1" shape="scalar" value="{SELECT r.lat}" />
+                    <let id="lng1" shape="scalar" value="{SELECT r.lng}" />
+                </declarations>
+                <cell><textview id="l1" text="{TOSTRING(lat1)}" /></cell>
+                <cell><textview id="l2" text="{TOSTRING(lng1)}" /></cell>
+            </row>
+        </table>
+        <numberbox id="lat" label="Latitude:" numberFormat='{decimalSeparator:"."}' />
+        <numberbox id="lng" label="Longitude:" numberFormat='{decimalSeparator:"."}' />
+        <addbutton table="points1" text="Add point" records="{SELECT lat.number lat, lng.number lng}" />
+    </chapter>
+
+    <chapter id="ccNullLatLon" title="Corner case: Map points with NULL latitude/longitude">
+        <declarations>
+            <let id="placesTable" shape="table" access="private" value='{TABLE id, lat, lng (
+                "p1", NULL, 19.15583;
+                "p2", 47.571072, NULL;
+            )}' />
+        </declarations>
+        <map points='{SELECT pa.id, NULL lineId, pa.lat, pa.lng, icons.marker icon, icons.marker_selected selectedIcon FROM placesTable pa}' center="{TABLE lat, lng, zoom (47.7, 20.25, 8)}" />
+    </chapter>
+
+    <chapter title="Corner case: Map with NULL zoom">
+        <map center="{TABLE lat, lng, zoom (47.499, 19.044, NULL)}" />
+    </chapter>
+
+    <chapter title="Corner case: Map with zoom 999">
+        <map center="{TABLE lat, lng, zoom (47.499, 19.044, 999)}" />
+    </chapter>
+
+    <chapter title="Corner case: Map with zoom 0">
+        <map center="{TABLE lat, lng, zoom (47.499, 19.044, 0)}" />
+    </chapter>
+
+    <chapter title="Corner case: Map with zoom -10">
+        <map center="{TABLE lat, lng, zoom (47.499, 19.044, -10)}" />
+    </chapter>
+
+    <chapter title="Corner case: Map with NULL center latitude">
+        <map center="{TABLE lat, lng, zoom (NULL, 19.044, 5)}" />
+    </chapter>
+
+    <chapter title="Corner case: Map with -99 center latitude">
+        <map center="{TABLE lat, lng, zoom (-99, 19.044, 5)}" />
+    </chapter>
+
+    <chapter title="Corner case: Map with 99 center latitude">
+        <map center="{TABLE lat, lng, zoom (99, 19.044, 5)}" />
+    </chapter>
+
+    <chapter title="Corner case: Map with NULL center longitude">
+        <map center="{TABLE lat, lng, zoom (47.499, NULL, 5)}" />
+    </chapter>
+</form>
