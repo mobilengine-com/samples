@@ -98,6 +98,25 @@
         <textview label="Selected city:" text="{citiesMapFiltered.selectedPoint}" />
     </chapter>
 
+    <chapter title="Map with two tracks (~20000 points)">
+        <textview text="There are two tracks on this map, one in the north-east US and one in north italy" />
+        <map points='{ 
+                SELECT NULL id, "t1" lineId, t1.lat, t1.lng, NULL icon, NULL selectedIcon FROM track1 t1 UNION ALL
+                SELECT NULL id, "t2" lineId, t2.lat, t2.lng, NULL icon, NULL selectedIcon FROM track2 t2
+            }'
+            lineConfig='{TABLE lineId, weight, color (
+                "t1", 8, "#ef5350";
+                "t2", 8, "#00BCD4"
+            )}' 
+            center="{TABLE lat, lng, zoom (45, -45, 4)}"
+            style="{styles.largeMap}" />
+    </chapter>
+
+    <chapter title="Map with a track (16589 points)">
+        <map points='{SELECT t.name id, NULL lineId, t.lat, t.lng, icons.marker icon, icons.marker_selected selectedIcon FROM cities t WHERE LOWER(t.name) LIKE "%" || LOWER(filter.text) || "%"}' />
+        <textview label="Selected city:" text="{citiesMapFiltered.selectedPoint}" />
+    </chapter>
+
     <chapter title="Maps in a table">
         <table record="r" recordset="{TABLE c (1;2;3)}" style="{styles.table}">
             <row>
