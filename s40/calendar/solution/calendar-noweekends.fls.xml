@@ -6,14 +6,16 @@
 	<chapter title="month without weekends">
 		<calendar 
 			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
-			position='{SELECT "month" mode, dpwE.date}'
+			showDate='{dpwE.date}'
+			mode="month"
 			weekends='false'
 		/>
 	</chapter>
 	<chapter title="week with position without weekends">
 		<calendar 
 			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
-			position='{SELECT "agendaWeek" mode, dpwE.date}'
+			showDate='{dpwE.date}'
+			mode="agendaWeek"
 			weekends='false'
 		/>
 	</chapter>

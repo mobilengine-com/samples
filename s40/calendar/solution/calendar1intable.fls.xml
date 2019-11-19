@@ -1,5 +1,5 @@
 <form xmlns='http://schemas.mobilengine.com/fls/v2' 
-	id='calendar1' menuName='calendar1' platforms='web' >
+	id='calendar1intable' menuName='calendar1 in table' platforms='web' >
 	<!-- "id", "categoryId", "dateFrom", "secondsFrom", "dateTo", "secondsTo", "label" -->
 	<table id="t" 
 		recordset='{SELECT "alma" id, "r" categoryId, (DTL 2019-10-23T10:15:00) dateFrom, (DTL 2019-10-23T11:15:00) dateTo, "alma" label UNION ALL SELECT "körte" id, "g" categoryId, (DTL 2019-10-24T08:00:00) dateFrom, (DTL 2019-10-24T18:00:00) dateTo, "körte" label}' record="r">
@@ -82,6 +82,9 @@
 		choices='{TABLE label, style ("h300", styles.calH300; "h400", styles.calH400; "h500", styles.calH500; "hAuto", styles.calHAuto )}'/>
 	<segmentedbutton id="sbBgStyle" keyMap="{label}" textMap="{label}" selectedKey='{"bgColorY"}'
 		choices='{TABLE label, style ("bgColorY", styles.calBgColorY; "bgColorC", styles.calBgColorC; "bgColorM", styles.calBgColorM )}'/>
+	<table record='r' recordset='{SELECT 1 v WHERE 1 = 0}' style='{[styles.tcw3x500px]}'>
+		<header><row>
+		<cell>
 	<calendar id="cal" events='{SELECT r.id, r.categoryId, r.dateFrom, r.dateTo, r.label FROM t.rows r}'
 		style="{[styles.calDefault, sbHeightStyle.selectedValue.style, sbBgStyle.selectedValue.style]}"
 		categories='{TABLE id, backgroundColor, borderColor, textColor, selectedBackgroundColor, selectedBorderColor, selectedTextColor  (
@@ -91,18 +94,27 @@
 		allowSelection="{fSelect.checked}"
 		allowNew="{fNew.checked}"
 		showDate='{dpPos.date}'/>
+		</cell>
+		<cell>
+			<block>
+					<chapter title="Selected event">
+							<textview label="id" text="{cal.selectedEvent.id}"/>
+							<textview label="label" text="{cal.selectedEvent.label}"/>
+							<textview label="from" text='{formatDtl( cal.selectedEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+							<textview label="to" text='{formatDtl( cal.selectedEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+						</chapter>
+						<chapter title="New event">
+								<textview label="from" text='{formatDtl( cal.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+								<textview label="to" text='{formatDtl( cal.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+						</chapter>
+			</block>
+		</cell>
+		</row></header>
+		<row><cell><block></block></cell></row>
+	</table>		
+	
 	<datepicker id="dpPosOut" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{cal.showDate}" />
 
-	<chapter title="Selected event">
-		<textview label="id" text="{cal.selectedEvent.id}"/>
-		<textview label="label" text="{cal.selectedEvent.label}"/>
-		<textview label="from" text='{formatDtl( cal.selectedEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
-		<textview label="to" text='{formatDtl( cal.selectedEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
-	</chapter>
-	<chapter title="New event">
-			<textview label="from" text='{formatDtl( cal.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
-			<textview label="to" text='{formatDtl( cal.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
-	</chapter>
 	<chapter title="Test">
 		<declarations>
 			<let id="letSE" shape="record" value='{SELECT tbLabel.text id, "alma" categoryId, dpFrom.date dateFrom, dpTo.date dateTo, tbLabel.text label}'></let>
