@@ -21,6 +21,14 @@
 			<Control type="filedownload" label="Open with Filedownload:" text="Open" fileref="{SELECT @[PARENT.col0]}" />
 			<!-- photoview works with mediaId and fileref too -->
 			<Control type="photoview" photos="{SELECT MEDIAID(@[PARENT.col0]) UNION ALL SELECT @[PARENT.col0]}" />
-		</Control> 
+		</Control>
+
+		<Control type="separator" text="Floorplan Test"/>
+		<Control type="callbutton" text="Open first fileref in Floorplan Plugin" call_component="com.mobilengine.android,com.bauapp.plugin.floorplan.DownloaderActivity" plugin="true" />
+		<Control name="par" type="panel">
+			<Control type="label" name="categories" text='SELECT "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", "c1", "c1", "000000"' />
+			<Control type="label" name="points" text='SELECT "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 0, 0.5, 0.5, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"' />
+			<Control type="label" name="floorplanId" text='{SELECT MEDIAID(fileref) FROM Reference_files LIMIT 1}' />
+		</Control>
 	</Control>
 </Form>
