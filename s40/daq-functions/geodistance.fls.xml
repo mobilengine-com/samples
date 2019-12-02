@@ -1,0 +1,13 @@
+<form id="geodistance" menuName="geodistance" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+    <chapter title="Precomputed static value (server side): ">
+        <textview text='{SELECT TOSTRING(geodistance(48.104167, 20.791667, 47.4925, 19.051389))}' />
+    </chapter>
+
+    <chapter title="Client side computed value: ">
+        <numberbox id="lat1" label="lat1: " number="{48.104167}" float="true" />
+        <numberbox id="lng1" label="lng1: " number="{20.791667}" float="true" />
+        <numberbox id="lat2" label="lat2: " number="{47.4925}" float="true" />
+        <numberbox id="lng2" label="lng2: " number="{19.051389}" float="true" />
+        <textview label="Result: " text='{SELECT TOSTRING(GEODISTANCE(lat1.number, lng1.number, lat2.number, lng2.number))}' />
+    </chapter>
+</form>

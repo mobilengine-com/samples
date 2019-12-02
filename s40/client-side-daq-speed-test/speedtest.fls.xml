@@ -1,0 +1,18 @@
+<form id="speedtest" 
+      menuName="speedtest" 
+      title='speedtest' 
+      platforms="web ios" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+    
+    <declarations>
+        <let id="clientData" shape="table" value="{SELECT d.text 'text' FROM data d}" />
+    </declarations>
+
+    <header />
+
+    <textbox id="filter" label="Filter:" text="" />
+    <textview label=" " text="Try '80c7138c-f101-11e9-bc4f-d050998a134b' for an existing row" />
+
+    <textview label="Rows where the GUID equals the filter:" text="{SELECT TOSTRING(COUNT(*)) FROM clientData d WHERE d.text = filter.text}" />
+    <textview label="Total Rows: " text="{SELECT TOSTRING(COUNT(*)) FROM clientData d}" />
+</form>
