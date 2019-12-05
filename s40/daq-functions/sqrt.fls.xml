@@ -1,0 +1,11 @@
+<form id="sqrt" menuName="sqrt" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+    <chapter title="Precomputed static value (server side): ">
+        <textview label="Sqrt(4)" text='{SELECT COALESCE(TOSTRING(sqrt(4)), "NULL")}' />
+        <textview label="Sqrt(-1)" text='{SELECT COALESCE(TOSTRING(sqrt(-1)), "NULL")}' />
+    </chapter>
+
+    <chapter title="Client side computed value: ">
+        <numberbox id="n" label="number: " number="{2}" float="true" />
+        <textview label="Result: " text='{SELECT COALESCE(TOSTRING(SQRT(n.number)), "NULL")}' />
+    </chapter>
+</form>
