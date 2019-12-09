@@ -1,0 +1,32 @@
+<form id="nocloseOnSubmit" menuName="Don't close on submit" title="Don't close on submit" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+  <header />
+  <table id="tblPhotoGuid" record="r" recordset="{TABLE r (1;2;3)}">
+    <header>
+      <row>
+        <cell>
+          <textview text="Textbox" />
+        </cell>
+        <cell>
+          <textview text="Photo" />
+        </cell>
+        <cell>
+          <textview text="FileUpload" />
+        </cell>
+      </row>
+    </header>
+    <row>
+      <cell>
+        <textbox id="textCtrl" text="Proba" />
+      </cell>
+      <cell>
+        <photo id="photoCtrl" />
+      </cell>
+      <cell>
+        <fileupload id="filuplCtrl" acceptedMimetypes="application/pdf, application/word, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+      </cell>
+      <cell>
+          <submitbutton text="Submit &amp; Keep Open" closeForm="{false}" />
+      </cell>
+    </row>
+  </table>
+</form>
