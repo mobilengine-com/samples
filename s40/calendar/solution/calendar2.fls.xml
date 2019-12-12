@@ -644,7 +644,7 @@
 	<popup title='In table'>
 	<!-- within table header -->
 		<chapter title="month+week+day within table header">
-			<table record='r' recordset='{SELECT 1 v WHERE 1=2}' style="{[styles.tcw3x500px]}">
+			<table record='r' recordset='{SELECT 1 v WHERE 1=2}' style="{[styles.tcw2x800px]}">
 				<header>
 					<row>
 						<cell>
@@ -749,4 +749,147 @@
 	
 	</popup>
 
+	<popup title='Bad data'>
+		<chapter title="month with events with same id">
+			<calendar 
+			events='{SELECT "alma" id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+			mode="month" showDate='{dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week with events with same id">
+			<calendar 
+			events='{SELECT "alma" id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+			mode='agendaWeek' showDate='{dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day with events with same id">
+			<calendar 
+			events='{SELECT "alma" id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+			mode='agendaDay' showDate='{dpDay.date}'
+			/>
+		</chapter>
+
+		<chapter title="month with events with null id">
+			<calendar 
+				events="{SELECT null id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				mode="month" showDate='{dpMonth.date}'
+						/>
+		</chapter>
+		<chapter title="week with events with null id">
+			<calendar 
+				events="{SELECT null id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				mode='agendaWeek' showDate='{dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day with events with null id">
+			<calendar 
+				events="{SELECT null id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				mode='agendaDay' showDate='{dpDay.date}'
+			/>
+		</chapter>
+
+		<chapter title="month with events with null dateFrom">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, null dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+					mode="month" showDate='{dpMonth.date}'
+							/>
+			</chapter>
+			<chapter title="week with events with null dateFrom">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, null dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+					mode='agendaWeek' showDate='{dpWeek.date}'
+				/>
+			</chapter>
+			<chapter title="day with events with null dateFrom">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, null dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+					mode='agendaDay' showDate='{dpDay.date}'
+				/>
+		</chapter>	
+
+		<chapter title="month with events with null dateTo">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, null dateTo, e.name label FROM event e}"
+					mode="month" showDate='{dpMonth.date}'
+							/>
+			</chapter>
+			<chapter title="week with events with null dateTo">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, null dateTo, e.name label FROM event e}"
+					mode='agendaWeek' showDate='{dpWeek.date}'
+				/>
+			</chapter>
+			<chapter title="day with events with null dateTo">
+				<calendar 
+					events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, null dateTo, e.name label FROM event e}"
+					mode='agendaDay' showDate='{dpDay.date}'
+				/>
+		</chapter>		
+
+	<!-- category errors -->
+		<chapter title="month with position with wrong category id">
+			<calendar 
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events='{SELECT e.guid id, e.guidAgent||"alma" categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode="month" showDate='{dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week with position with wrong category id">
+			<calendar 
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events='{SELECT e.guid id,e.guidAgent||"alma" categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode='agendaWeek' showDate='{dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day with position with wrong category id">
+			<calendar 
+				categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+				events='{SELECT e.guid id,e.guidAgent||"alma" categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode='agendaDay' showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<chapter title="month with position with null category colors - its not bad though">
+			<calendar 
+				categories='{SELECT a.guid id, null backgroundColor, null borderColor, null textColor, null selectedBackgroundColor, null selectedBorderColor, null selectedTextColor FROM agent a}'
+				events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode="month" showDate='{dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week with position with null category colors">
+			<calendar 
+				categories='{SELECT a.guid id, null backgroundColor, null borderColor, null textColor, null selectedBackgroundColor, null selectedBorderColor, null selectedTextColor FROM agent a}'
+				events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode='agendaWeek' showDate='{dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day with position with null category colors">
+			<calendar 
+			categories='{SELECT a.guid id, null backgroundColor, null borderColor, null textColor, null selectedBackgroundColor, null selectedBorderColor, null selectedTextColor FROM agent a}'
+			events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode='agendaDay' showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<chapter title="month with position with wrong category colors ">
+			<calendar 
+				categories='{SELECT a.guid id, "alma" backgroundColor, "alma" borderColor, "alma" textColor, "alma" selectedBackgroundColor, "alma" selectedBorderColor, "alma" selectedTextColor FROM agent a}'
+				events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode="month" showDate='{dpMonth.date}'
+			/>
+		</chapter>
+		<chapter title="week with position with wrong category colors">
+			<calendar 
+			categories='{SELECT a.guid id, "alma" backgroundColor, "alma" borderColor, "alma" textColor, "alma" selectedBackgroundColor, "alma" selectedBorderColor, "alma" selectedTextColor FROM agent a}'
+			events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode='agendaWeek' showDate='{dpWeek.date}'
+			/>
+		</chapter>
+		<chapter title="day with position with wrong category colors">
+			<calendar 
+			categories='{SELECT a.guid id, "alma" backgroundColor, "alma" borderColor, "alma" textColor, "alma" selectedBackgroundColor, "alma" selectedBorderColor, "alma" selectedTextColor FROM agent a}'
+			events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+				mode='agendaDay' showDate='{dpDay.date}'
+			/>
+		</chapter>
+	
+	</popup>
 </form>

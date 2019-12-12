@@ -1,4 +1,11 @@
 styles {
+
+    style bgGreen {
+        all {
+            backgroundColor = 00FF00
+        }
+    }
+
     style calHeader {
         textview {
             control {
@@ -12,12 +19,11 @@ styles {
     style calDefault {
         calendar {
             control {
-                fontColor = 00FF00
+                fontColor = 111111
                 fontSize = 15px
-                bold = true
             }
-            newColor = FF7979
-            todayColor = 79FF79
+            newColor = 7979FF
+            todayColor = A9A9FF
         }
     }
     style calTextGreen15B {
@@ -124,6 +130,39 @@ styles {
         all {
             control {
                 width = auto
+            }
+        }
+    }
+
+    style tableNoSeparator {
+        table {
+            control {
+                borderWidth { top=0px right=0px bottom=0px left=0px }
+            }
+        }
+    }
+
+    style tcw2x800px {
+        table {
+            columnWidth = 1000px, 800px
+            header = tcw2x800px
+            body = tcw2x800px
+        }
+        row {
+            content = tcw2x800px
+        }
+        cell {
+            verticalAlign = top
+            content = tcw2x800px
+        }
+        all {
+            control {
+                width = auto
+            }
+        }
+        chapter {
+            title {
+                borderWidth { top=0px right=0px bottom=0px left=0px }
             }
         }
     }

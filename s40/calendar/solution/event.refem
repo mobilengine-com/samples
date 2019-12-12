@@ -1,11 +1,11 @@
-<Reftab Name="event" xmlns="http://schemas.mobilengine.com/reftab/v1">
+<Reftab Name="event" Push='true' xmlns="http://schemas.mobilengine.com/reftab/v1">
     <Columns>
         <Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true"/>
         <Column Name="name" Type="Text" NotNull="true" />
         <Column Name="description" Type="Text" />
         <Column Name="dtlStart" Type="Date" />
         <Column Name="dtlEnd" Type="Date" />
-        <Column Name="guidAgent" Type="Text" />
-        <Column Name="guidLocation" Type="Text" />
+        <Column Name="guidAgent" Type="Text" Indexed='true' />
+        <Column Name="guidLocation" Type="Text"  Indexed='true' />
     </Columns>
 </Reftab>

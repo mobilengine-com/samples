@@ -1,5 +1,5 @@
 <form xmlns='http://schemas.mobilengine.com/fls/v2' 
-	id='calendar1' menuName='calendar1' platforms='web' >
+	id='calendar1local' menuName='calendar1local' platforms='web' >
 	<!-- "id", "categoryId", "dateFrom", "secondsFrom", "dateTo", "secondsTo", "label" -->
 	<table record="dummy" recordset="{SELECT 1 WHERE 3=4}" style="{[styles.tableNoSeparator]}">
 		<declarations>
@@ -40,62 +40,114 @@
 		<row><cell><block></block></cell></row>
 	</table>
 
+	<repeater id='tblNew' record='r' recordset='{SELECT "" guid, "" name, "" description, "" guidAgent, 
+		"" guidLocation, sysp.dtlFormOpen dtlStart, sysp.dtlFormOpen dtlEnd WHERE 1=0}'>
+		<block>
+			<declarations>
+				<let id='guid' shape='scalar' value='{r.guid}'/>
+				<let id='name' shape='scalar' value='{r.name}'/>
+				<let id='description' shape='scalar' value='{r.description}'/>
+				<let id='guidAgent' shape='scalar' value='{r.guidAgent}'/>
+				<let id='guidLocation' shape='scalar' value='{r.guidLocation}'/>
+				<let id='dtlStart' shape='scalar' value='{r.dtlStart}'/>
+				<let id='dtlEnd' shape='scalar' value='{r.dtlEnd}'/>
+			</declarations>
+			<textview text='{"new: "||r.guid||": "||r.name}' />
+		</block>
+	</repeater>
+
+	<if cond="{false}">
+	<repeater id='tblDel' record='r' recordset='{SELECT "" guid WHERE 1=0}'>
+		<block>
+			<declarations>
+				<let id='guid' shape='scalar' value='{r.guid}'/>
+			</declarations>
+			<textview text='{"deleted: "||r.guid}' />
+		</block>
+	</repeater>
+
+	<repeater id='tblMod' record='r' recordset='{SELECT "" guid WHERE 1=0}'>
+		<block>
+			<declarations>
+				<let id='guid' shape='scalar' value='{r.guid}'/>
+			</declarations>
+			<textview text='{"modified: "||r.guid}' />
+		</block>
+	</repeater>
+	</if>
 	<textview style="{[styles.calHeader]}" text='{formatDtl(cal.showDate, (dtf yyyy"-"MM"-"dd)) || " - " || formatDtl(addDay(cal.showDate, 6), (dtf MM"-"dd)) || ", Week #" || toString(isoWeekOfYear(cal.showDate)) }'/>
 	<table style="{[styles.tableNoSeparator, styles.tcw2x800px]}" record='r' recordset='{SELECT 1 v WHERE 1=2}'>
+		<declarations>
+			<let id='letEventsServer' shape='table' value='{loadNewerFromServer:SELECT e.guid, e.guidAgent, e.guidLocation, e.dtlStart, e.dtlEnd, e.name, e.description FROM event e}'/>
+			<let id='letEventsServerAndLocalI' shape='table' 
+				value='{SELECT e.guid, e.guidAgent, e.guidLocation, e.dtlStart, e.dtlEnd, e.name, e.description FROM letEventsServer e 
+				UNION ALL
+				SELECT e.guid,e.guidAgent, e.guidLocation, e.dtlStart, e.dtlEnd, e.name, e.description FROM tblNew.rows e}'/>
+			<let id='letEventsServerAndLocal' shape='table' 
+				value='{SELECT e.guid, e.guidAgent, e.guidLocation, e.dtlStart, e.dtlEnd, e.name, e.description FROM letEventsServerAndLocalI e WHERE e.guid NOT IN (SELECT del.guid FROM tblDel.rows del)}'/>
+		</declarations>
 		<header>
 			<row>
 				<cell> <!-- SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e -->
-					<calendar id="cal" events='{loadNewerFromServer:SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+					<calendar id="cal" events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM letEventsServerAndLocal e}'
 						style="{[styles.calDefault, styles.calHAuto]}"
 						categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
 						showDate='{dtlPos}' weekends="false" startHour="8" endHour="18"/>
 				</cell>
 				<cell>
 					<block>
-						<if cond='{cal.selectedEvent IS NOT NULL AND cal.selectedEvent.id IS NOT NULL}'>
+						<declarations>
+							<let shape='record' id='dateSelected' value='{SELECT  cal.selectedEvent.dateFrom,  cal.selectedEvent.dateTo}'></let>
+						</declarations>
+						<repeater record="ev" recordset="{SELECT e.guid, e.guidAgent, e.guidLocation, e.dtlStart, e.dtlEnd, e.name, e.description FROM letEventsServerAndLocal e}" >
+						<if cond='{cal.selectedEvent IS NOT NULL AND cal.selectedEvent.id IS NOT NULL AND ev.guid = cal.selectedEvent.id}'>
 							<chapter title="Selected event">
-								<declarations>
-									<let shape='record' id='ev' value='{SELECT e.guid, e.name, e.description, e.guidAgent, e.guidLocation FROM event e WHERE e.guid = cal.selectedEvent.id}'></let>
-									<let shape='record' id='dateSelected' value='{SELECT  cal.selectedEvent.dateFrom,  cal.selectedEvent.dateTo}'></let>
-								</declarations>
 								<textbox id="name" label="name" text="{ev.name}"/>
 								<textbox id="descr" label="description" text="{ev.description}"/>
 								<dropdown id="ddAgent" label="agent" keyMap="{guid}" textMap="{name}" choices='{SELECT a.guid, a.name from agent a}' selectedKey='{ev.guidAgent}' />
 								<dropdown id="ddLocation" label="location" keyMap="{guid}" textMap="{name}" choices='{SELECT l.guid, l.name from location l}' selectedKey='{ev.guidLocation}' />
 								<textview label="from" text='{formatDtl( dateSelected.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
 								<textview label="to" text='{formatDtl( dateSelected.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
-								<submitbutton text='Save' id="btnSave" nextForm='{forms.calendar1}'/>
-								<submitbutton text='Delete' id="btnDelete"  nextForm='{forms.calendar1}'/>
+								<addbutton records="{SELECT ev.guid}" table="tblMod" text='Save' id="btnSave"/>
+								<addbutton records="{SELECT ev.guid}" table="tblDel" text='Delete' id="btnDelete"/>
 								<actionbutton text='Cancel'>
 										<set value="{SELECT null id, null categoryId, null dateFrom, null dateTo, null label}" target="cal.selectedEvent"/>
 								</actionbutton>
 								<map 
 								points='{SELECT l.guid id, null lineId, l.lat lat, l.long lng, icons.marker icon, icons.marker_selected selectedIcon FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey}'
-								center='{SELECT l.lat lat, l.long lng, 5 zoom FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey}'
+								center='{SELECT l.lat lat, l.long lng, 5 zoom FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey LIMIT 1}'
 								/>
 
 							</chapter>
 						</if>
+						</repeater> 
 						<if cond='{cal.newEvent.dateFrom IS NOT NULL}'>
 							<chapter title="New event">
 									<declarations>
 											<let shape='record' id='dateSelectedNew' value='{SELECT cal.newEvent.dateFrom, cal.newEvent.dateTo}'></let>
 										</declarations>
-								<textbox id="nameNew" label="name" text="{ev.name}"/>
-								<textbox id="descrNew" label="description" text="{ev.description}"/>
-								<dropdown id="ddAgentNew" label="agent" keyMap="{guid}" textMap="{name}" choices='{SELECT a.guid, a.name from agent a}' selectedKey='{ev.guidAgent}' />
-								<dropdown id="ddLocationNew" label="location" keyMap="{guid}" textMap="{name}" choices='{SELECT l.guid, l.name from location l}' selectedKey='{ev.guidLocation}' />
+								<textbox id="nameNew" label="name"/>
+								<textbox id="descrNew" label="description"/>
+								<dropdown id="ddAgentNew" label="agent" keyMap="{guid}" textMap="{name}" choices='{SELECT a.guid, a.name from agent a}' />
+								<dropdown id="ddLocationNew" label="location" keyMap="{guid}" textMap="{name}" choices='{SELECT l.guid, l.name from location l}' />
 								<textview label="from" text='{formatDtl( cal.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
 								<textview label="to" text='{formatDtl( cal.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
-								<submitbutton text='Add' id="btnAdd" nextForm='{forms.calendar1}' waitForRfs='{false}'/>
+								<addbutton records='{SELECT toStringN(newGuid()) guid, 
+									nameNew.text name, 
+									descrNew.text description,
+									ddAgentNew.selectedKey guidAgent, 
+									ddLocationNew.selectedKey guidLocation,
+									cal.newEvent.dateFrom dtlStart,
+									cal.newEvent.dateTo dtlEnd }' 
+									table='tblNew' text='Add' id="btnAdd"/>
 								<actionbutton text='Cancel'>
 										<set value="{SELECT null dateFrom, null dateTo}" target="cal.newEvent"/>
 								</actionbutton>
-								<!-- map -->
+								<!-- map 
 								<map 
 								points='{SELECT l.guid id, null lineId, l.lat lat, l.long lng, icons.marker icon, icons.marker_selected selectedIcon FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey}'
 								center='{SELECT l.lat lat, l.long lng, 5 zoom FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey}'
-								/>
+								/> -->
 							</chapter>
 
 						</if>

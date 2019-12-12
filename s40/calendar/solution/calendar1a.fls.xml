@@ -1,0 +1,105 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='calendar1a' menuName='calendar1a' platforms='web' >
+	<!-- "id", "categoryId", "dateFrom", "secondsFrom", "dateTo", "secondsTo", "label" -->
+	<table id="t" 
+		recordset='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}' record="r">
+		<row>
+			<declarations>
+				<let id="id" shape="scalar" value="{r.id}"/>
+				<let id="categoryId" shape="scalar" value="{tbCategory.text}"/>
+				<let id="label" shape="scalar" value="{tbLabel.text}"/>
+				<let id="dateFrom" shape="scalar" value="{TODATE(TOINT( GETYEAR(dpFrom.date) ), TOINT( GETMONTH(dpFrom.date) ), TOINT( GETDAY(dpFrom.date) ), TOINT(tpFrom.seconds/60/60), TOINT( (tpFrom.seconds/60) % 60), TOINT( tpFrom.seconds % 60 ) )}"/>
+				<let id="dateTo" shape="scalar" value="{TODATE(TOINT( GETYEAR(dpTo.date) ), TOINT( GETMONTH(dpTo.date) ), TOINT( GETDAY(dpTo.date) ), TOINT(tpTo.seconds/60/60), TOINT( (tpTo.seconds/60) % 60), TOINT( tpTo.seconds % 60 ) )}"/>
+			</declarations>
+			<cell>
+				<textbox id="tbLabel" text="{r.label}"/>
+			</cell>
+			<cell>
+					<textbox id="tbCategory" text="{r.categoryId}"/>
+			</cell>
+			<cell>
+				<datepicker id="dpFrom" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{r.dateFrom}" firstDayOfWeek='monday'/>
+			</cell>
+			<cell>
+				<timepicker id="tpFrom" timeFormat='(dtf HH":"mm)' seconds="{(TOINT(GETHour(r.dateFrom))*60+TOINT(GETMinute(r.dateFrom)))*60+TOINT(GETSecond(r.dateFrom))}"/>
+			</cell>
+			<cell>
+				<datepicker id="dpTo" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{r.dateFrom}" firstDayOfWeek='monday'/>
+			</cell>
+			<cell>
+				<timepicker id="tpTo" timeFormat='(dtf HH":"mm)' seconds="{(TOINT(GETHour(r.dateTo))*60+TOINT(GETMinute(r.dateTo)))*60+TOINT(GETSecond(r.dateTo))}"/>
+			</cell>
+			<cell><removebutton text="Remove"/></cell>
+		</row>
+	</table>
+	<addbutton records='{SELECT toStringN(newGuid()) id, "r" categoryId, cal.newEvent.dateFrom dateFrom, cal.newEvent.dateTo dateTo, "" label}' table="t" text="Add"/>
+	<table record="dummy" recordset="{SELECT 1 WHERE 3=4}">
+		<declarations>
+			<let shape='scalar' id='dtlPos' value='{nextWeekday(AddDay(dpPos1.date, -6), 1)}'></let>
+		</declarations>
+		<header>
+			<row>
+				<cell>
+					<datepicker id="dpPos1" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{sysp.dtlFormOpen}" firstDayOfWeek='monday'/>
+				</cell>
+				<cell>
+					<actionbutton text="&lt; M">
+						<set value="{addMonth(dtlPos, -1)}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+					<cell>
+					<actionbutton text="&lt; W">
+						<set value="{addDay(dtlPos, -7)}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="Today!">
+						<set value="{sysp.dtlFormOpen}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="&gt; W">
+						<set value="{addDay(dtlPos, 7)}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="&gt; M">
+						<set value="{addMonth(dtlPos, 1)}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+			</row>
+		</header>
+		<row><cell><block></block></cell></row>
+	</table>
+
+	<textview style="{[styles.calHeader]}" text='{formatDtl(cal.showDate, (dtf yyyy"-"MM"-"dd)) || " - " || formatDtl(addDay(cal.showDate, 6), (dtf MM"-"dd)) || ", Week #" || toString(isoWeekOfYear(cal.showDate)) }'/>
+	<calendar id="cal" events='{SELECT r.id, r.categoryId, r.dateFrom, r.dateTo, r.label FROM t.rows r}'
+		style="{[styles.calDefault, styles.calHAuto]}"
+		categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+		showDate='{dtlPos}'/>
+	<datepicker id="dpPosOut" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{cal.showDate}" firstDayOfWeek='monday' />
+
+	<chapter title="Selected event">
+		<textview label="id" text="{cal.selectedEvent.id}"/>
+		<textview label="label" text="{cal.selectedEvent.label}"/>
+		<textview label="from" text='{formatDtl( cal.selectedEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+		<textview label="to" text='{formatDtl( cal.selectedEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+	</chapter>
+	<chapter title="New event">
+			<textview label="from" text='{formatDtl( cal.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+			<textview label="to" text='{formatDtl( cal.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+	</chapter>
+	<chapter title="Test">
+		<declarations>
+			<let id="letSE" shape="record" value='{SELECT tbLabel.text id, "alma" categoryId, dpFrom.date dateFrom, dpTo.date dateTo, tbLabel.text label}'></let>
+		</declarations>
+			<datepicker id="dpFrom" dateFormat='(dtf yyyy"-"MM"-"dd)' firstDayOfWeek='monday'/>
+			<datepicker id="dpTo" dateFormat='(dtf yyyy"-"MM"-"dd)' firstDayOfWeek='monday'/>
+			<textbox id="tbLabel" text="valami"/>
+
+			<textview label="id" text="{letSE.id}"/>
+			<textview label="label" text="{letSE.label}"/>
+			<textview label="from" text='{formatDtl( letSE.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+			<textview label="to" text='{formatDtl( letSE.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+	</chapter>
+</form>

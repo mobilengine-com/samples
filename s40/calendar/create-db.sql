@@ -5,7 +5,7 @@ create table agent(guid text PRIMARY KEY, name text, color text);
 insert into agent(guid, name, color) values 
     ('agent1', 'Józsi', 'FF0000'), 
     ('agent2', 'Sanyi', '00FF00'),
-    ('agent3', 'Karesz', '0000FF');
+    ('agent3', 'Jen', '0000FF');
 
 drop table if EXISTS location;
 create table location(guid text PRIMARY KEY, name text, lat float, long float);
