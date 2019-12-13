@@ -1,0 +1,44 @@
+﻿<Form name="TqlLvl1" version="1" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' 
+	typed="true" sillyNulls="false" inlineReference="true">
+	<Rgsyl>
+		<Syl syln="normal" clrFont="#000000" clrBg="#FFFFFF" />
+		<Syl syln="dark" clrFont="#eeeeee" clrBg="#111111" />
+	</Rgsyl>
+
+    <Control type="panel" name="RootPanel" layout="standard" navigation="inline">
+
+		<Control type="panel" name="table" layout="table" navigation="inline" data_type='int' recordset="{Static {1,2,3,4}}">
+			<Control type="label" name="num" data_type='int' label="Number" text="{REF:PARENT.col0}" />
+		</Control>
+
+		<Control name="sum" label="sum" type='label' data_type='int' text="{SUM:PARENT/table/table.*/num}"/>
+		<Control name="avg" label="avg" type='label' data_type='float' text="{AVG:PARENT/table/table.*/num}"/>
+		<Control name="min" label="min" type='label' data_type='int' text="{MIN:PARENT/table/table.*/num}"/>
+		<Control name="max" label="max" type='label' data_type='int' text="{MAX:PARENT/table/table.*/num}"/>
+		<Control name="count2" label="count2" type='label' data_type='int' text="{COUNT2:PARENT/table/table.*/num}"/>
+		<Control name="first" label="first" type='label' data_type='int' text="{FIRST:PARENT/table/table.*/num}"/>
+
+		<Control type="panel" name="table1" layout="table" navigation="inline" data_type='float' recordset="{Static {1.1,2.1,3.1,4.1}}">
+			<Control type="label" name="num" data_type='float' label="Number" text="{REF:PARENT.col0}" />
+		</Control>
+
+		<Control name="sum1" label="sum" type='label' data_type='float' text="{SUM:PARENT/table1/table1.*/num}"/>
+		<Control name="avg1" label="avg" type='label' data_type='float' text="{AVG:PARENT/table1/table1.*/num}"/>
+		<Control name="min1" label="min" type='label' data_type='float' text="{MIN:PARENT/table1/table1.*/num}"/>
+		<Control name="max1" label="max" type='label' data_type='float' text="{MAX:PARENT/table1/table1.*/num}"/>
+		<Control name="count2_1" label="count2" type='label' data_type='float' text="{COUNT2:PARENT/table1/table1.*/num}"/>
+		<Control name="first1" label="first" type='label' data_type='float' text="{FIRST:PARENT/table1/table1.*/num}"/>
+
+		<Control type='label' text='-- Empty table --' />
+		<Control type="panel" name="table2" layout="table" navigation="inline" data_type='int' recordset="{Static {}}">
+			<Control type="label" name="num" data_type='float' label="Number" text="{REF:PARENT.col0}" />
+		</Control>
+
+		<Control name="sum2" label="sum" type='label' data_type='int' text="{SUM:PARENT/table2/table2.*/num}"/>
+		<Control name="avg2" label="avg" type='label' data_type='int' text="{AVG:PARENT/table2/table2.*/num}"/>
+		<Control name="min2" label="min" type='label' data_type='int' text="{MIN:PARENT/table2/table2.*/num}"/>
+		<Control name="max2" label="max" type='label' data_type='int' text="{MAX:PARENT/table2/table2.*/num}"/>
+		<Control name="count2_2" label="count2" type='label' data_type='int' text="{COUNT2:PARENT/table2/table2.*/num}"/>
+		<Control name="first2" label="first" type='label' data_type='int' text="{FIRST:PARENT/table2/table2.*/num}"/>
+	</Control>
+</Form>
