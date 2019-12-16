@@ -1,0 +1,90 @@
+<form id='kiertekeles_anomalia' platforms='web' menuName='Kiértékelés Anomália' title='Kiértékelés Anomália' xmlns='http://schemas.mobilengine.com/fls/v2' style='{styles.Default}'>
+	<declarations>
+		<let id='stStatus' shape='scalar' value='{"unchecked"}' />
+		<let id='iCounter' shape='scalar' value='{0}' />
+		<let id='iSwitch' shape='scalar' value='{0}' />
+		
+		<let id='iCheckedFilesCnt' shape='scalar'
+			value='{SELECT
+						COUNT(8) cnt
+					FROM
+						tblFiles.rows FR
+					WHERE
+						FR.cbSelect.checked
+					}'/>
+	</declarations>
+	<header>
+		<discardbutton text='Elvetés' confirm='{false}' />
+		<submitbutton text='Mentés'/>
+	</header>
+	
+	
+	<textview label='Status: ' text='{stStatus}' />
+	<textview label='Counter' text='{TOSTRING(iCounter)}' />
+	<textview label='Checked files:' text='{TOSTRING(iCheckedFilesCnt)}' />
+	
+	<actionbutton id='abtnOperation' text='{updateUserInput:CASE
+		WHEN iCheckedFilesCnt != 0 THEN "set all unchecked"
+		WHEN stStatus = "checked" THEN "set all unchecked"
+		ELSE "set all checked"
+	    END}'>
+		<set target='iCounter'
+			value='{iCounter + 1}'/>
+		<set target='iSwitch'
+			value='{ABS(iSwitch-1)}'/>
+		<set target='stStatus'
+			value='{updateUserInput:CASE
+						WHEN iCheckedFilesCnt != 0 THEN "unchecked"
+						WHEN stStatus = "checked" THEN "unchecked"
+						ELSE "checked"
+					END}'/>
+		
+	</actionbutton>
+	<checkbox id='cbSelectX'/>
+
+	<table id='tblFiles' record='r'
+		recordset='{SELECT
+						"fid1" id,
+						"file1" name,
+						"pdf" extension
+					UNION ALL
+					SELECT
+						"fid2" id,
+						"file2" name,
+						"pdf" extension
+					UNION ALL
+					SELECT
+						"fid3" id,
+						"file3" name,
+						"pdf" extension
+					UNION ALL
+					SELECT
+						"fid4" id,
+						"file4" name,
+						"pdf" extension
+					UNION ALL
+					SELECT
+						"fid5" id,
+						"file5" name,
+						"pdf" extension}'>
+		<row>
+			<cell>
+				<checkbox id='cbSelect'
+					checked='{updateUserInput:CASE
+								WHEN iCounter != -1 AND stStatus = "checked" THEN true
+								WHEN iCounter != -1 AND stStatus = "unchecked" THEN false
+							  END}'/>
+			</cell>
+			<cell>
+				<textview text='{"iCounter: " || toString(iCounter) || "stStatus: " || stStatus || " expr: " ||CASE
+								WHEN iCounter != -1 AND stStatus = "checked" THEN "true"
+								WHEN iCounter != -1 AND stStatus = "unchecked" THEN "false"
+							  END || " checked? "||CASE WHEN cbSelect.checked THEN "x" ELSE "-" END}' />
+			</cell>
+			<cell>
+				<textview text='{r.name || "." || r.extension}' />
+			</cell>
+		</row>
+	</table>
+	
+</form>

@@ -1,0 +1,60 @@
+<form id='setall' platforms='web' menuName='Set all' title='Set all' xmlns='http://schemas.mobilengine.com/fls/v2' style='{styles.Default}'>
+	<declarations>
+		<let id='fSet' shape='scalar' value='{false}' />
+	</declarations>
+
+	
+	
+	<textview label='FSet: ' text='{CASE WHEN fSet THEN "true" ELSE "false" END}' />
+	
+	<actionbutton id='abSet' text='Set'>
+		<set target='fSet'
+			value='{true}'/>
+	</actionbutton>
+	
+	<actionbutton id='abClear' text='Clear'>
+		<set target='fSet'
+			value='{false}'/>
+	</actionbutton>
+	
+	<table id='tblFiles' record='r'
+		recordset='{SELECT
+						"fid1" id,
+						"file1" name,
+						"pdf" extension
+					UNION ALL
+					SELECT
+						"fid2" id,
+						"file2" name,
+						"pdf" extension
+					UNION ALL
+					SELECT
+						"fid3" id,
+						"file3" name,
+						"pdf" extension
+					UNION ALL
+					SELECT
+						"fid4" id,
+						"file4" name,
+						"pdf" extension
+					UNION ALL
+					SELECT
+						"fid5" id,
+						"file5" name,
+						"pdf" extension}'>
+		<row>
+			<cell>
+				<checkbox id='cbSelect'
+					checked='{fSet}'/>
+			</cell>
+			<cell>
+				<checkbox id='cbSelectForced'
+					checked='{updateUserInput:fSet}'/>
+			</cell>
+			<cell>
+				<textview text='{r.name || "." || r.extension}' />
+			</cell>
+		</row>
+	</table>
+	
+</form>

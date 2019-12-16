@@ -1,0 +1,8 @@
+<Form name='form1' description='form1' typed='true' footer_submit_reference='SELECT 0' floating_submit_reference='SELECT 0' dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'>
+	<Control type='panel' name='root'>
+				<Control type="closebutton" name="mentes" action="submit_form" text="Következő form" next_form_name="form2"/>	
+	</Control>
+</Form>
+		
+
+

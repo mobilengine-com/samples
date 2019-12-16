@@ -1,0 +1,7 @@
+<Form name='form2' description='form2' typed='true' next_form_name='form1' menu_submit_reference='SELECT 0' footer_submit_reference='SELECT 1' floating_submit_reference='SELECT 0' dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'>
+	<Control type='panel' name='root'>		
+	</Control>
+</Form>
+		
+
+

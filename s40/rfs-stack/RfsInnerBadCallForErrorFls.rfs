@@ -1,0 +1,12 @@
+client program RfsInnerBadCallForErrorFls for form errorForm
+{
+  var greeterBot = function(var firstname, var lastname)
+  {
+	  alma(1);
+  };
+  var greeterBot2 = function(var firstname, var lastname)
+  {
+  		greeterBot("Petar", "Hoyt");
+  };
+  greeterBot2("Petar", "Hoyt");
+}

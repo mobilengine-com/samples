@@ -1,0 +1,14 @@
+server program RfsInnerBadCall
+	for schedule * * * * * 
+	first run at 2099-01-01 10:00
+{
+  var greeterBot = function(var firstname, var lastname)
+  {
+	  alma(1);
+  };
+  var greeterBot2 = function(var firstname, var lastname)
+  {
+  		greeterBot("Petar", "Hoyt");
+  };
+  greeterBot2("Petar", "Hoyt");
+}

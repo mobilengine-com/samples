@@ -1,0 +1,8 @@
+client program RfsStackoverflowForForm1 for form form2
+{
+  var greeterBot2 = function(var firstname, var lastname)
+  {
+  		greeterBot2("Petar", "Hoyt");
+  };
+  greeterBot2("Petar", "Hoyt");
+}

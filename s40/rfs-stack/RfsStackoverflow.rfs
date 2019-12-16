@@ -1,0 +1,10 @@
+server program RfsStackoverflow
+	for schedule * * * * * 
+	first run at 2099-01-01 10:00
+{
+  var greeterBot2 = function(var firstname, var lastname)
+  {
+  		greeterBot2("Petar", "Hoyt");
+  };
+  greeterBot2("Petar", "Hoyt");
+}
