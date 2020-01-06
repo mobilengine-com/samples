@@ -137,7 +137,7 @@
         <map 
             points="{SELECT NULL id, NULL lineId, t.lat1 lat, t.lng1 lng, icons.marker icon, NULL selectedIcon FROM points1.rows t}"
          />
-        <table id="points1" record="r" recordset="{TABLE lat, lng (0, 0)}">
+        <table id="points1" record="r" recordset="{TABLE lat, lng (0.0, 0.0)}">
             <header>
                 <row>
                     <cell><textview text="Latitude" /></cell>
