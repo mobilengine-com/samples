@@ -436,6 +436,30 @@
 				timeFormat='(dtf hh":"mm" "tt)'
 			/>
 		</chapter>
+
+		<!-- day format -->
+		<chapter title="month with day format">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				mode="month" showDate='{dpMonth.date}'
+				dateFormat='(dtf dd"\n"dddd)'
+						/>
+		</chapter>
+		<chapter title="week with day format">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				mode='agendaWeek' showDate='{dpWeek.date}'
+				dateFormat='(dtf dd"\n"dddd)'
+			/>
+		</chapter>
+		<chapter title="day with day format">
+			<calendar 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}"
+				mode='agendaDay' showDate='{dpDay.date}'
+				dateFormat='(dtf dd"\n"dddd)'
+			/>
+		</chapter>
+	
 	</popup>
 
 	<!-- styles -->
@@ -669,27 +693,7 @@
 				</header>
 				<row><cell><block></block></cell></row>
 			</table>
-		</chapter>
-
-		<chapter title="month+week+day within table header">
-				<table record='r' recordset='{SELECT 1 v WHERE 1=2}' style="{[styles.tcw3x500px]}">
-					<header>
-						<row>
-							<cell>
-								<textbox text="alma"/>
-							</cell>
-							<cell>
-								<textbox text="alma"/>
-							</cell>
-							<cell>
-								<textbox text="alma"/>
-							</cell>					
-						</row>
-					</header>
-					<row><cell><block></block></cell></row>
-				</table>
-			</chapter>
-	
+		</chapter>	
 		<!-- within table row -->
 		<chapter title="month+week+day within table row">
 			<table record='r' recordset='{[1,2]}' style="{[styles.tcw3x500px]}">
