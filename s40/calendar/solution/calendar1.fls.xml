@@ -87,7 +87,7 @@
 								<dropdown id="ddLocationNew" label="location" keyMap="{guid}" textMap="{name}" choices='{SELECT l.guid, l.name from location l}' selectedKey='{ev.guidLocation}' />
 								<textview label="from" text='{formatDtl( cal.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
 								<textview label="to" text='{formatDtl( cal.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
-								<submitbutton text='Add' id="btnAdd" nextForm='{forms.calendar1}' waitForRfs='{false}'/>
+								<submitbutton text='Add' id="btnAdd" nextForm='{forms.calendar1}'/>
 								<actionbutton text='Cancel'>
 										<set value="{SELECT null dateFrom, null dateTo}" target="cal.newEvent"/>
 								</actionbutton>
