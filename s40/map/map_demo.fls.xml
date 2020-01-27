@@ -55,10 +55,10 @@
                 icons.dot_big_red, 40, 40, 20, 20
             )}'
             lineConfig='{TABLE lineId, weight, color (
-                "M3", 8, "#ef5350";
-                "M35", 5, "#00BCD4";
-                "M30", 5, "#7CB342";
-                "4", 5, "#D84315"
+                "M3", 8, "ef5350";
+                "M35", 5, "00BCD4";
+                "M30", 5, "7CB342";
+                "4", 5, "D84315"
             )}'
             center="{TABLE lat, lng, zoom (47.7, 20.25, 8)}" 
             style="{styles.largeMap}" />
@@ -105,8 +105,8 @@
                 SELECT NULL id, "t2" lineId, t2.lat, t2.lng, NULL icon, NULL selectedIcon FROM track2 t2
             }'
             lineConfig='{TABLE lineId, weight, color (
-                "t1", 8, "#ef5350";
-                "t2", 8, "#00BCD4"
+                "t1", 8, "ef5350";
+                "t2", 8, "00BCD4"
             )}' 
             center="{TABLE lat, lng, zoom (45, -45, 4)}"
             style="{styles.largeMap}" />
