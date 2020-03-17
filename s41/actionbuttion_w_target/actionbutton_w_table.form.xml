@@ -1,0 +1,82 @@
+﻿<Form name="ab_w_table" version="1" send_label="Back" typed="true" numberformat='{decimalSeparator: ".", maxFraction: 2}' 
+dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with table"
+inlineReference='true' sillyNulls='false'>
+	
+	<Rgsyl>
+		<Syl syln="mainColor" clrBg="#EAEAEA"/>
+		<Syl syln="sep1Color" clrBg="#00355F" clrFont="#FFFFFF"/>
+		<Syl syln="sylChecked" clrBg="#7A7A7A" buttonStyle="flat" iconValue="c_checkbox_icon" duIconWidthValue="40px" duIconHeightValue="40px"/>
+		<Syl syln="sylUnchecked" clrBg="#7A7A7A" buttonStyle="flat" iconValue="u_checkbox_icon" duIconWidthValue="40px" duIconHeightValue="40px"/>
+	</Rgsyl>
+	
+	<Control type="panel" name="Root" sylnChild = "=mainColor">
+
+		<Control name="tbFromWT" type="textbox" hint="From" size="large"/>
+		<Control name="abWT" type="actionbutton" data_type="string" 
+			text="{=A.@[../tbFromWT].B with Target}"
+			value="{REF:../tbFromWT}"
+			target="../tbToWT" />
+		<Control name="abWToth" type="actionbutton" data_type="string,string" 
+			text="{=A.@[../tbFromWT].B with Target Other}"
+			value="{SELECT 'almafa '||@[../tbFromWT], 'kortefa '||@[../tbFromWT]}"
+			target="../tbToWT.value,../tbToWT2.value" />
+		<Control name="tbToWT" type="textbox" hint="To" size="large"/>
+		<Control name="tbToWT2" type="textbox" hint="To" size="large"/>
+
+		<Control name="hidPgSize" type="label" data_type="int" text="" reference="SELECT 10" ref_arg="" visible="false"/>
+		<Control name="hidCount" type="label" data_type="int" text="" 
+		reference="SELECT count(*) FROM Reference_order_cikklista 
+			WHERE (@1 IS NULL OR termek_neve like '%'||@1||'%')
+			AND (@2 IS NULL OR cikkszam like @2||'%')" ref_arg="../r/ab.col0,../r/ab.col1" visible="false"/>
+		<Control name="hidPgCount" type="label" data_type="int" text="" reference="SELECT CASE WHEN @1%@2=0 THEN @1/@2 ELSE @1/@2+1 END" ref_arg="../hidCount,../hidPgSize" visible="false"/>
+		<Control name="hidPgI" type="label" text="" data_type="int" reference="REF" ref_arg="../q/pgI" visible="false"/>
+
+		<Control type="panel" name="r" layout="table" navigation="inline" headless="true">
+			<Control name="tbFrom1" type="textbox" label="From1:" hint="%Product name%" width="15 em"/>
+			<Control name="tbFrom2" type="textbox" label="From2:" hint_reference="=Item nr.%" width="8 em"/>
+			<Control name="ab" type="actionbutton" text="Filter"  data_type="string,string"
+				value_reference="SELECT @1, @2" value_ref_arg="../tbFrom1,../tbFrom2" />
+		</Control>
+		
+		<Control type="panel" name="MunkalapPanel" layout="table" navigation="inline" 
+			data_type="string,string,string,string"
+			generator="SELECT termek_neve, cikkszam, rendelesi_egyseg, raklap_mennyiseg 
+			FROM Reference_order_cikklista 
+			WHERE (@1='' OR @1 IS NULL OR termek_neve like '%'||@1||'%') 
+			AND (@2='' OR @2 IS NULL OR cikkszam like @2||'%')
+			ORDER BY termek_neve LIMIT @3 OFFSET @4*@5 " 
+			ref_arg="../r/ab.col0,../r/ab.col1,../hidPgSize,../hidPgI,../hidPgSize" label="Table!">
+			<Control type="label" name="TermekNeve" label="Product name" text="" operation="" depends="" reference="REF" ref_arg="PARENT.col0"  width="15 em"/>
+			<Control type="label" name="CikkszamL" label="Item nr." text="" operation="" depends="" reference="SELECT @1 " ref_arg="PARENT.col1"  width="8 em"/>
+			<Control type="label" name="RendelesiEgysegL" label="Unit" text="" operation="" depends="" reference="SELECT @1 " ref_arg="PARENT.col2" width="5 em" />
+		</Control>
+
+		<Control type="panel" name="q" layout="table" navigation="inline" headless="true">
+			<Control name="abA" type="actionbutton" label="action button" text="-1"  data_type="int"
+				value_reference="SELECT min(ifnull(@1,0) - 1, ifnull(@2,0) -1)" value_ref_arg="../pgI,../../hidPgCount"
+				target="../pgI" />
+
+			<Control name="t" type="label" text="" data_type="string" reference="SELECT (@1+1)||'/'||@2" ref_arg="../../hidPgI,../../hidPgCount" visible="true" width="5 em"/>
+			<Control name="pgI" type="label" text="" data_type="int"  reference="SELECT 0" visible="false"/>
+			
+			<Control name="abB" type="actionbutton" label="action button" text="+1" data_type="int"
+				value_reference="SELECT min(ifnull(@1,0) + 1, ifnull(@2,0) -1)" value_ref_arg="../pgI,../../hidPgCount"
+				target="../pgI" />
+		</Control>
+		
+		<Control type="panel" name="p1" layout="table" navigation="inline" headless="true"> 
+			<Control name="t" type="label" text="" data_type="string"
+				visible="true" width="10 em"/>
+				
+			<Control name="ab1" type="actionbutton" label="action button" text="A" data_type="string"
+				value="{SELECT coalesce(@[../t], '')||'A'}" target="../t" />
+			<Control name="ab2" type="actionbutton" label="action button" text="B"  data_type="string"
+				value="{SELECT coalesce(@[../t], '')||'B'}" target="../t" />
+			<Control name="ab3" type="actionbutton" label="action button" text="C"  data_type="string"
+				value="{SELECT coalesce(@[../t], '')||'C'}" target="../t" />
+			<Control name="abD" type="actionbutton" label="action button" text="&lt;"  data_type="string"
+				value="{SELECT substr(coalesce(@[../t], ''), 1, length(coalesce(@[../t], ''))-1)}"  target="../t"/>
+		</Control>
+
+	</Control>
+</Form>
