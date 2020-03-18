@@ -1,5 +1,5 @@
-﻿<Form name="ab_w_table" version="1" send_label="Back" typed="true" numberformat='{decimalSeparator: ".", maxFraction: 2}' 
-dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with table"
+﻿<Form name="ab_w_target" version="1" send_label="Back" typed="true" numberformat='{decimalSeparator: ".", maxFraction: 2}' 
+dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Actionbutton with target"
 inlineReference='true' sillyNulls='false'>
 	
 	<Rgsyl>
@@ -19,23 +19,24 @@ inlineReference='true' sillyNulls='false'>
 		<Control name="abWToth" type="actionbutton" data_type="string,string" 
 			text="{=A.@[../tbFromWT].B with Target Other}"
 			value="{SELECT 'almafa '||@[../tbFromWT], 'kortefa '||@[../tbFromWT]}"
-			target="../tbToWT.value,../tbToWT2.value" />
+			target="../tbToWT.value,../gp/gp&lt;0&gt;/tbToWT2.value" />
 		<Control name="tbToWT" type="textbox" hint="To" size="large"/>
-		<Control name="tbToWT2" type="textbox" hint="To" size="large"/>
-
-		<Control name="hidPgSize" type="label" data_type="int" text="" reference="SELECT 10" ref_arg="" visible="false"/>
-		<Control name="hidCount" type="label" data_type="int" text="" 
-		reference="SELECT count(*) FROM Reference_order_cikklista 
-			WHERE (@1 IS NULL OR termek_neve like '%'||@1||'%')
-			AND (@2 IS NULL OR cikkszam like @2||'%')" ref_arg="../r/ab.col0,../r/ab.col1" visible="false"/>
-		<Control name="hidPgCount" type="label" data_type="int" text="" reference="SELECT CASE WHEN @1%@2=0 THEN @1/@2 ELSE @1/@2+1 END" ref_arg="../hidCount,../hidPgSize" visible="false"/>
-		<Control name="hidPgI" type="label" text="" data_type="int" reference="REF" ref_arg="../q/pgI" visible="false"/>
+		<Control type='panel' name='gp' count='1' navigation='inline' layout='standard'>
+			<Control name="tbToWT2" type="textbox" hint="To" size="large"/>
+		</Control>	
+		<Control name="hidPgSize" type="label" data_type="int" text="10" visible="false"/>
+		<Control name="hidCount" type="label" data_type="int" visible="false"
+			text="{SELECT count(*) FROM Reference_order_cikklista 
+			WHERE (@[../r/ab.col0] IS NULL OR termek_neve like '%'||@[../r/ab.col0]||'%')
+			AND (@[../r/ab.col1] IS NULL OR cikkszam like @[../r/ab.col1]||'%')}"/>
+		<Control name="hidPgCount" type="label" data_type="int" visible="false"
+			text="{SELECT CASE WHEN @[../hidCount]%@[../hidPgSize]=0 THEN @[../hidCount]/@[../hidPgSize] ELSE @[../hidCount]/@[../hidPgSize]+1 END}" />
+		<Control name="hidPgI" type="label" data_type="int" text="{REF:../q/pgI}" visible="false"/>
 
 		<Control type="panel" name="r" layout="table" navigation="inline" headless="true">
 			<Control name="tbFrom1" type="textbox" label="From1:" hint="%Product name%" width="15 em"/>
 			<Control name="tbFrom2" type="textbox" label="From2:" hint_reference="=Item nr.%" width="8 em"/>
-			<Control name="ab" type="actionbutton" text="Filter"  data_type="string,string"
-				value_reference="SELECT @1, @2" value_ref_arg="../tbFrom1,../tbFrom2" />
+			<Control name="ab" type="actionbutton" text="Filter"  data_type="string,string"	value="{SELECT @[../tbFrom1], @[../tbFrom2]}"/>
 		</Control>
 		
 		<Control type="panel" name="MunkalapPanel" layout="table" navigation="inline" 
@@ -46,21 +47,22 @@ inlineReference='true' sillyNulls='false'>
 			AND (@2='' OR @2 IS NULL OR cikkszam like @2||'%')
 			ORDER BY termek_neve LIMIT @3 OFFSET @4*@5 " 
 			ref_arg="../r/ab.col0,../r/ab.col1,../hidPgSize,../hidPgI,../hidPgSize" label="Table!">
-			<Control type="label" name="TermekNeve" label="Product name" text="" operation="" depends="" reference="REF" ref_arg="PARENT.col0"  width="15 em"/>
-			<Control type="label" name="CikkszamL" label="Item nr." text="" operation="" depends="" reference="SELECT @1 " ref_arg="PARENT.col1"  width="8 em"/>
-			<Control type="label" name="RendelesiEgysegL" label="Unit" text="" operation="" depends="" reference="SELECT @1 " ref_arg="PARENT.col2" width="5 em" />
+			<Control type="label" name="TermekNeve" label="Product name" text="{REF:PARENT.col0}"  width="15 em"/>
+			<Control type="label" name="CikkszamL" label="Item nr." text="{REF:PARENT.col1}"  width="8 em"/>
+			<Control type="label" name="RendelesiEgysegL" label="Unit" text="{REF:PARENT.col2}" width="5 em" />
 		</Control>
 
 		<Control type="panel" name="q" layout="table" navigation="inline" headless="true">
 			<Control name="abA" type="actionbutton" label="action button" text="-1"  data_type="int"
-				value_reference="SELECT min(ifnull(@1,0) - 1, ifnull(@2,0) -1)" value_ref_arg="../pgI,../../hidPgCount"
+				value="{SELECT min(ifnull(@[../pgI],0) - 1, ifnull(@[../../hidPgCount],0) -1)}"
 				target="../pgI" />
 
-			<Control name="t" type="label" text="" data_type="string" reference="SELECT (@1+1)||'/'||@2" ref_arg="../../hidPgI,../../hidPgCount" visible="true" width="5 em"/>
+			<Control name="t" type="label" data_type="string" 
+				text="{SELECT (@[../../hidPgI]+1)||'/'||@[../../hidPgCount]}" visible="true" width="5 em"/>
 			<Control name="pgI" type="label" text="" data_type="int"  reference="SELECT 0" visible="false"/>
 			
 			<Control name="abB" type="actionbutton" label="action button" text="+1" data_type="int"
-				value_reference="SELECT min(ifnull(@1,0) + 1, ifnull(@2,0) -1)" value_ref_arg="../pgI,../../hidPgCount"
+				value="{SELECT min(ifnull(@[../pgI],0) + 1, ifnull(@[../../hidPgCount],0) -1)}"
 				target="../pgI" />
 		</Control>
 		
