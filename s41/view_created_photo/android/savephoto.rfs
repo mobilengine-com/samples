@@ -1,0 +1,11 @@
+client server program 'savephoto' for form 'ViewNewPhoto'
+using reftab photos;
+{
+	trace form;
+	foreach (var p in form.root.photo) {
+		db.photos.Insert({photoId: p.value.mediaid.ToStringN()});
+	}
+	foreach (var s in form.root.signature) {
+		db.photos.Insert({photoId: s.value.mediaid.ToStringN()});
+	}
+}

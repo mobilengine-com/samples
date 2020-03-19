@@ -1,0 +1,7 @@
+﻿<form id='photoViewNewPhoto' menuName="photo" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<photo id="photo" label="photo"	source="all" />
+	<photoview id="photoview" label="Photoview" photos="{SELECT p.photoId FROM photo.photos p}" />
+
+	<signature id="signature" label="signature"	/>
+	<photoview id="signatureview" label="Signature Photoview" photos="{signature.binaryId}" />
+</form>

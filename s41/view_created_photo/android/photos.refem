@@ -1,0 +1,5 @@
+<Reftab Name="photos" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="photoId" Type="Text" />
+	</Columns>
+</Reftab>
