@@ -1,0 +1,20 @@
+﻿<form id='ViewNewPhotoIos' menuName="ViewNewPhotoIos" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+	<chapter title="Photo">
+		<textview text="Take a photo, it will instantly be visible in the photoview &amp; fileviews below" />
+
+		<photo id="photo" label="photo"	source="all" />
+		<photoview label="Photoview" photos="{SELECT p.photoId FROM photo.photos p}" />
+
+		<repeater record="r" recordset="{SELECT p.photoId FROM photo.photos p}">
+			<filedownload label="Filedownload" text="Open" mediaId="{r.photoId}" />
+		</repeater>
+	</chapter>
+
+	<chapter title="Signature">
+		<textview text="The signature you make here will instantly be visible in the photoview below" />
+		<signature id="signature" label="signature"	/>
+		<photoview label="Photoview" photos="{signature.binaryId}" />
+		<filedownload label="Filedownload" text="Open"  mediaId="{signature.binaryId}" />
+	</chapter>
+</form>

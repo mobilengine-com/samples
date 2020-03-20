@@ -1,4 +1,4 @@
-client server program 'savephoto' for form 'ViewNewPhoto'
+client server program 'savephoto' for form 'ViewNewPhotoAndroid'
 using reftab photos;
 {
 	trace form;

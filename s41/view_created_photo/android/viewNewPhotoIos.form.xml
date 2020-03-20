@@ -1,9 +1,12 @@
-<Form name='ViewNewPhoto' autoform="true">
+<Form name='ViewNewPhotoAndroid' autoform="true">
 	<Control name='root' type='panel'>
+		<Control type="separator" text="Create photos &amp; a signature" />
+		<Control type="label" text="Make sure the device is offline when submitting this form." />
+		
 		<Control type="photo" label="photo" name="photo" />
 		<Control type="photo" meta_type="signature" label="Signature" name="signature" />
 
-		<Control type="label" label="Previously sent photos:" />
+		<Control type="separator" label="Previously sent photos:" />
 		<Control type="photoview" label="Photoview" name="pv" reference="SELECT photoId FROM Reference_photos" />
 	</Control>
 </Form>
