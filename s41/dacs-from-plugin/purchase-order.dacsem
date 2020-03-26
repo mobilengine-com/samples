@@ -1,0 +1,35 @@
+//example-16
+schema 'purchase-order' meta 'purchase-order' namespace "http://schemas.acme.com/purchase-order"
+
+purchaseOrder: element {
+	orderDate: attribute of type dtu(dtf yyyy "-" MM "-" dd);
+
+	shipTo: element{
+		name: element of type string without whitespace;
+		street: element of type string without whitespace;
+		city: element of type string without whitespace;
+		state: element of type string without whitespace;
+		zip: element of type int;
+		country: attribute of type string values "US" "HU" "RO" "SK";
+	}	
+	
+	billTo: element{
+		name: element of type string without whitespace;
+		street: element of type string without whitespace;
+		city: element of type string without whitespace;
+		state: element of type string without whitespace;
+		zip: element of type int;
+		country: attribute of type string values "US" "HU" "RO" "SK";
+	}	
+	
+	comment: optional element of type string with whitespace;
+	items: wrapped list of element item {
+		productName: element of type string without whitespace;
+		quantity: element of type int;
+		USPrice: element of type float;
+		comment: optional element of type string with whitespace;
+		shipDate: optional element of type dtu(dtf yyyy "-" MM "-" dd);
+		partNum : attribute of type string;
+	}
+	
+}

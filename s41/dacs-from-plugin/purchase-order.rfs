@@ -1,0 +1,5 @@
+server program 'purchase-order' for dacs 'purchase-order'
+{
+    trace "Received Dacs:";
+    trace dacs;
+}

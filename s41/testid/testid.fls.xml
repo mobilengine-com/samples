@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="testId" menuName="testId" platforms="ios web">
+	<textbox id="first" label='elso' text="blabla" testId="proba" />
+    <textbox id="second" label='masodik' text="blabla 2" testId="proba2" />
+</form>

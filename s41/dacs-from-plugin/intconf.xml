@@ -1,0 +1,5 @@
+<integration xmlns="http://schemas.mobilengine.com/integration/v1">
+	<iep name="in" direction="in">
+		<dacsem name="purchase-order"/>
+	</iep>
+</integration>

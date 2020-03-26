@@ -1,0 +1,33 @@
+<purchaseOrder orderDate='2020-01-31' xmlns='http://schemas.acme.com/purchase-order'>
+  <shipTo country='US'>
+    <name>Joe</name>
+    <street>123 Fake Str.</street>
+    <city>Springield</city>
+    <state>MI</state>
+    <zip>55123</zip>
+  </shipTo>
+  <billTo country='US'>
+    <name>Joe</name>
+    <street>123 Fake Str.</street>
+    <city>Springield</city>
+    <state>MI</state>
+    <zip>55123</zip>
+  </billTo>
+  <comment>Watch out for dogs</comment>
+  <items>
+    <item partNum='123456789'>
+      <productName>ACME Hammer</productName>
+      <quantity>42</quantity>
+      <USPrice>3.1415</USPrice>
+      <comment>Usual ACME quality</comment>
+      <shipDate>2020-01-29</shipDate>
+    </item>
+    <item partNum='456789123'>
+      <productName>ACME Drill</productName>
+      <quantity>14</quantity>
+      <USPrice>31.415</USPrice>
+      <comment>9/10 coyotes prefer an ACME drill</comment>
+      <shipDate>2020-01-29</shipDate>
+    </item>
+  </items>
+</purchaseOrder>
