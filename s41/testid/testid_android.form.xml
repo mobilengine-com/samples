@@ -1,0 +1,42 @@
+<Form name="testid_android" inlineReference="true">
+    <Control type="panel" name="Root">
+        <Control type="checkbox" text="North Anthony" />
+        <Control type="checkbox" text="Roselynborough" />
+        <Control type="checkbox" text="Gonzaloland" />
+        <Control type="checkbox" text="Cartwrightville" />
+        <Control type="checkbox" text="Kossmouth" />
+        <Control type="checkbox" text="Bayershire" />
+        <Control type="checkbox" text="Lake Tierrahaven" />
+        <Control type="checkbox" text="Feilchester" />
+        <Control type="checkbox" text="Kubfort" />
+        <Control type="checkbox" text="Port Alexandre" />
+        <Control type="checkbox" text="Esperanzaberg" />
+        <Control type="checkbox" text="Trompfurt" />
+        <Control type="checkbox" text="Port Ricostad" />
+        <Control type="checkbox" text="North Elizaville" />
+        <Control type="checkbox" text="Devenland" />
+        <Control type="checkbox" text="Hyattshire" />
+        <Control type="checkbox" text="Port Vestaborough" />
+        <Control type="checkbox" text="South Sylvestermouth" />
+        <Control type="checkbox" text="North Lonzostad" />
+        <Control type="checkbox" text="Marleyshire" />
+        <Control type="checkbox" text="Satterfieldtown" />
+        <Control type="checkbox" text="Lake Nickolasmouth" />
+        <Control type="checkbox" text="Hilpertburgh" />
+        <Control type="checkbox" text="VonRuedenview" />
+        <Control type="checkbox" text="New Olga" />
+        <Control type="checkbox" text="Port Rashawntown" />
+        <Control type="checkbox" text="East Marjorystad" />
+        <Control type="checkbox" text="Lenorachester" />
+        <Control type="checkbox" text="Nicolasborough" />
+        <Control type="checkbox" text="Pfannerstillside" />
+        <Control name="cbWestIda" type="checkbox" testid="westIda" text="West Ida" />
+        <Control type="checkbox" text="Port Wendellhaven" />
+        <Control type="checkbox" text="Idellaburgh" />
+        <Control type="checkbox" text="West Salvadortown" />
+        <Control type="checkbox" text="Lake Cyrus" />
+        <Control type="checkbox" text="New Gustavemouth" />
+        <Control type="checkbox" text="New Laron" />
+        <Control type="label" text="{SELECT 'West Ida Checked:' || @[../cbWestIda]}" testid="{SELECT 'checked_' || @[../cbWestIda]}" />
+    </Control>
+</Form>
