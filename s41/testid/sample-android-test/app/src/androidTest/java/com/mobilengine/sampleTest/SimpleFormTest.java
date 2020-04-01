@@ -81,6 +81,7 @@ public class SimpleFormTest {
         mDevice.wait(Until.findObject(By.desc("username")), 10000);
         mDevice.findObject(By.desc("username")).setText("gandalf");
         mDevice.findObject(By.desc("password")).setText("Vujmag16");
+        mDevice.findObject(By.desc("url")).setText("http://192.168.1.107:8081");
         mDevice.findObject(By.desc("logIn")).click();
 
         // wait for the sync to start & finish
