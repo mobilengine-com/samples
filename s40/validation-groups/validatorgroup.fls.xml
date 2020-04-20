@@ -1,21 +1,30 @@
 <form id="validationgroup" menuName="Validation Group Demo" title="Validation Group Demo" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
   <header />
 
-  <textview text='(textboxes below are only valid if their text is "OK")' />
+  <textview text='(all textboxes below are only valid if their text is "OK")' />
 
-  <textbox label="The validator for this textbox is in both 'Group A' and 'Group B':">
-    <validation>
-      <validator cond='{text = "OK"}' group="groupA groupB" message='Text is not "OK"' />
-    </validation>
-  </textbox>
+  <chapter title="Default Group">
+    <textview label="The validator for these textboxes is in the default group" />
+    <textbox>
+      <validation>
+        <validator cond='{text = "OK"}' message='Text is not "OK"' />
+      </validation>
+    </textbox>
+    <textbox>
+      <validation>
+        <validator cond='{text = "OK"}' message='Text is not "OK"' />
+      </validation>
+    </textbox>
+    <submitbutton text="Submit if the default group is valid" />
+  </chapter>
 
   <chapter title="Group A">
-    <textbox label='Textbox:' text="">
+    <textbox>
       <validation>
         <validator cond='{text = "OK"}' group="groupA" message='Text is not "OK"' />
       </validation>
     </textbox>
-    <textbox label='Textbox:' text="">
+    <textbox>
       <validation>
         <validator cond='{text = "OK"}' group="groupA" message='Text is not "OK"' />
       </validation>
@@ -24,16 +33,31 @@
   </chapter>
 
   <chapter title="Group B">
-    <textbox label='Textbox:' text="">
+    <textbox>
       <validation>
         <validator cond='{text = "OK"}' group="groupB" message='Text is not "OK"' />
       </validation>
     </textbox>
-    <textbox label='Textbox:' text="">
+    <textbox>
       <validation>
         <validator cond='{text = "OK"}' group="groupB" message='Text is not "OK"' />
       </validation>
     </textbox>
     <submitbutton validatorGroup="groupB" text="Submit if 'Group B' is valid" />
+  </chapter>
+
+  <chapter title="Group A &amp; B">
+    <textview label="The validator for these textboxes is in both 'Group A' and 'Group B':" />
+    <textbox>
+      <validation>
+        <validator cond='{text = "OK"}' group="groupA groupB" message='Text is not "OK"' />
+      </validation>
+    </textbox>
+    <textbox>
+      <validation>
+        <validator cond='{text = "OK"}' group="groupA groupB" message='Text is not "OK"' />
+      </validation>
+    </textbox>
+    <submitbutton validatorGroup="groupB" text="Submit if 'Group A' &amp; 'Group B' are both valid" />
   </chapter>
 </form>
