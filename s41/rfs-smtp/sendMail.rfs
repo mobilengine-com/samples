@@ -1,0 +1,21 @@
+server program sendMail for form sendMail 
+{
+    var rgTo = list.New();
+    foreach (var row in form.repTo.rows) {
+		rgTo.Add(row.tbRecipient.text);
+    }
+    var rgAttach = list.New();
+    for (var i = 0; i<form.filupl.files.Count(); i=i+1) {
+        var file = form.filupl.files[i]; 
+        var fileref = form.filupl.filerefs[i]; 
+        rgAttach.Add({fileref: fileref.fileref, filename: file.name});
+    }
+
+    smtp.SendEmail({
+        recipients: rgTo,
+        subject: form.tbSubject.text,
+        body: form.taBody.text,
+        html: false,
+        attachments: rgAttach
+    });
+}

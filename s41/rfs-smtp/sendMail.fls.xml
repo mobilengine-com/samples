@@ -1,0 +1,9 @@
+<form id='sendMail' platforms='web' menuName='send mail' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <repeater id='repTo' record='recTo' recordset='{[1]}'>
+        <textbox label="To" id="tbRecipient"/>
+    </repeater>
+    <addbutton records='{SELECT 1 v}' table='repTo' text='Add recipient'/>
+    <textbox id="tbSubject" label="Subject"/>
+    <textarea id="taBody" lines='5' label='Mail'/>
+    <fileupload id="filupl" acceptedMimetypes='.dpkg' label='attach dpkg'/>
+</form>
