@@ -9,8 +9,9 @@ using form linkedForm;
     smtp.SendEmail({
         recipients: rgTo,
         subject: form.tbSubject.text,
-        body: "<html><body>link to form with data: <a href='{0}'>here</a></body></html>"
-            .Replace("{0}", forms.linkedForm.webformUrl+"?data="+form.tbParam.text.UrlEncode()),
+        body: "<html><body>link to form with data: <a href='{0}?data={1}'>here</a></body></html>"
+            .Replace("{0}", forms.linkedForm.webformUrl)
+            .Replace("{1}", form.tbParam.text.UrlEncode()),
         html: true
     });
 }
