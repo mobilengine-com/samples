@@ -1,0 +1,6 @@
+<form id='linkedForm' platforms='web' menuName='linked form' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <params>
+        <param id='data'/>
+    </params>
+    <textview label="data sent to form" text="{params.data}"/>
+</form>

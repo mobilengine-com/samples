@@ -1,0 +1,16 @@
+server program sendLink for form sendLink
+using form linkedForm;
+{
+    var rgTo = list.New();
+    foreach (var row in form.repTo.rows) {
+		rgTo.Add(row.tbRecipient.text);
+    }
+
+    smtp.SendEmail({
+        recipients: rgTo,
+        subject: form.tbSubject.text,
+        body: "<html><body>link to form with data: <a href='{0}'>here</a></body></html>"
+            .Replace("{0}", forms.linkedForm.webformUrl+"?data="+form.tbParam.text.UrlEncode()),
+        html: true
+    });
+}

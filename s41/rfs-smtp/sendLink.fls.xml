@@ -1,0 +1,8 @@
+<form id='sendLink' platforms='web' menuName='send link' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <repeater id='repTo' record='recTo' recordset='{[1]}'>
+        <textbox label="To" id="tbRecipient"/>
+    </repeater>
+    <addbutton records='{SELECT 1 v}' table='repTo' text='Add recipient'/>
+    <textbox id="tbSubject" label="Subject"/>
+    <textbox id="tbParam" label="show this data in form"/>
+</form>
