@@ -1,0 +1,103 @@
+client program ticketClient for form 'ticket'
+using reftab project;
+using reftab floorplan;
+using reftab point;
+using reftab ticket;
+using reftab ticketPhoto;
+{
+	trace form;
+	Assert(false, "should fail!");
+	if (form.controlSubmit.nid == "btnSaveAndDone" || form.controlSubmit.nid == "btnSaveAndAgain") {
+		//ticketPanel.par...
+		//ticketPanel.ticket...
+		
+		var ticketPanel = form.root.ticket[0];
+		var point = null;
+		var floorplan = null;
+		var project = null;
+		
+		var guidPoint = ticketPanel.par.guidPoint.value;
+		if (guidPoint==null || guidPoint == "") {
+			guidPoint = guid.Generate().ToStringN();
+
+			point = {
+				guid: guidPoint,
+				guidFloorplan:	ticketPanel.par.guidFloorplan.value,
+				ipage: int.Parse(ticketPanel.par.ipage.value),
+				pctX: float.Parse(ticketPanel.par.xPct.value),
+				pctY: float.Parse(ticketPanel.par.yPct.value)
+			};
+			db.point.Insert(point);
+			
+			floorplan = db.floorplan.Read({guid: point.guidFloorplan})[0];
+			project = db.project.Read({guid: floorplan.projectGuid})[0];
+
+		} else {
+			point = db.point.Read( {guid: guidPoint})[0];			
+			floorplan = db.floorplan.Read({guid: point.guidFloorplan})[0];
+			project = db.project.Read({guid: floorplan.projectGuid})[0];
+		}
+		
+		foreach (var ticketRow in ticketPanel.ticketNew) {
+			var dueDate = null;
+			if (ticketRow.dueDate.value!="") {
+				dueDate = dtl.Parse( (dtf yyyy"-"MM"-"dd), 
+					ticketRow.dueDate.value
+				).DtlToDtdb();
+			}
+			var guidTicket = guid.Generate().ToStringN();
+			var mediaidSignature = null;
+			if (ticketRow.signature.SingleOrDefault()!=null) {
+				mediaidSignature = ticketRow.signature.SingleOrDefault().value.mediaid.ToStringN();
+			}
+			var ticket = {
+				guid: guidTicket,
+				guidPoint: guidPoint,
+				category: ticketRow.categoryKey.value,
+				section: ticketRow.section.value,
+				status: int.Parse(ticketRow.statusKey.value),
+				description: ticketRow.description.value,
+				guidUserAssignee: ticketRow.assigneeKey.value,
+				guidUserCreator: ticketRow.guidUserCreator.value,
+				mediaidSignature: mediaidSignature,
+				dueDate: dueDate
+			};
+			db.ticket.Insert(ticket);
+	
+			foreach(var photo in ticketRow.ticketPhoto) {
+				db.ticketPhoto.Insert({guidTicket: guidTicket, mediaidPhoto: photo.value.mediaid.ToStringN()});
+			}
+		}
+		
+		
+		foreach (var ticketRow in ticketPanel.ticketOld) {
+			var dueDate = null;
+			if (ticketRow.dueDate.value!="") {
+				dueDate = dtl.Parse( (dtf yyyy"-"MM"-"dd), 
+					ticketRow.dueDate.value
+				).DtlToDtdb();
+			}
+			var guidTicket = ticketRow.guid.value;
+			var mediaidSignature = null;
+			if (ticketRow.signature.SingleOrDefault()!=null) {
+				mediaidSignature = ticketRow.signature.SingleOrDefault().value.mediaid.ToStringN();
+			}
+
+            db.ticket.Update({guid: guidTicket}, {
+				guid: guidTicket,
+				category: ticketRow.categoryKey.value,
+				section: ticketRow.section.value,
+				status: int.Parse(ticketRow.statusKey.value),
+				description: ticketRow.description.value,
+				guidUserAssignee: ticketRow.assigneeKey.value,
+				mediaidSignature: mediaidSignature,
+				dueDate: dueDate
+			});	
+	
+			foreach(var photo in ticketRow.ticketPhoto) {
+				db.ticketPhoto.Insert({guidTicket: guidTicket, mediaidPhoto: photo.value.mediaid.ToStringN()});
+			}
+		}
+		
+	}
+}

@@ -1,0 +1,54 @@
+<form id='floorplanmanager' menuName='floorplans' title='floorplans' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+	<chapter title='Floorplans'>
+		<dropdown width="12 em" id="ddProject" choices='{SELECT p.guid, p.name FROM project p order by name}' keyMap="{guid}" textMap="{name}"/>
+		<table id='t' record='r'
+			recordset='{SELECT fp.guid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid FROM floorplan fp WHERE fp.projectGuid = ddProject.selectedKey ORDER BY name}'>
+			<row>
+				<declarations>
+					<let id="guid" shape="scalar" value="{r.guid}"/>
+				</declarations>
+				<cell>
+					<textbox width="8 em" id="name" text='{r.name}' hint="name">
+						<validation>
+							<validator cond='{text is not null AND text is not ""}' message='Name is required' />
+						</validation>
+					</textbox>
+				</cell>
+				<cell>
+					<textbox width="8 em" id="building" text='{r.building}' hint="building"/>
+				</cell>
+				<cell>
+					<textbox width="8 em" id="floor" text='{r.floor}' hint="floor"/>
+				</cell>
+				<cell>
+					<dropdown width="12 em" id="cat" choices='{SELECT cat.guid, cat.name FROM category cat}' keyMap="{guid}" textMap="{name}"
+						selectedKey="{r.category}"/>
+				</cell>
+				<cell>
+					<dropdown width="40 em" id="file" choices='{SELECT f.file_guid, f.file_name, f.file_size FROM files f}' keyMap="{file_guid}" textMap="{file_name}" 
+						selectedKey="{r.file_guid}">
+						<validation>
+							<validator cond='{selectedKey is not null}' message='File is required' />
+						</validation>
+					</dropdown>
+				</cell>
+			</row>
+		</table>
+		<addbutton id="addbtn" access="private" text="Add floorplan for files:" table="t" records='{SELECT null guid, null name, null building, null floor, null category, fs.file_guid file_guid FROM t_fs.rows fs WHERE fs.x.checked}'/>
+		<segmentedbutton label="files" id="fssb" access="private" choices='{["New", "All"]}' keyMap="{v}" textMap="{v}" selectedKey='{"New"}'/>
+		<table access="private" label="Files" id="t_fs" record="r" recordset='{SELECT f.file_guid, f.file_name, f.file_size FROM files f WHERE f.mediaId is not null AND ( fssb.selectedKey="All" OR f.file_guid NOT IN (SELECT fp.file_guid FROM floorplan fp) )}' >
+		<row>
+			<declarations>
+				<let id="file_guid" shape="scalar" value="{r.file_guid}"/>
+			</declarations>
+			<cell>
+				<checkbox id="x"/>
+			</cell>
+			<cell>
+				<textview text="{r.file_name}"/>
+			</cell>
+		</row>
+		</table>
+	</chapter>
+</form>

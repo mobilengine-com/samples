@@ -1,0 +1,24 @@
+server program usermanager for form 'usermanager'
+using reftab user;
+using reftab project;
+using reftab userProject;
+{
+	var projectGuid = form.ddProject.selectedKey;
+	if (projectGuid == null) {
+		trace "no project selected";
+	} 
+	else {
+		db.userProject.DeleteMany({projectGuid: projectGuid});
+		foreach (var row in form.t.rows) {
+			var guidUser = row.userGuid;
+			
+			var project = db.project.Read({guid: projectGuid})[0];
+
+			db.userProject.Insert({
+				userGuid: guidUser,
+				lcompGuid: project.lcompGuid,
+				projectGuid: projectGuid
+			});
+		}
+	}	
+}

@@ -1,0 +1,58 @@
+styles {
+	style bgGrey {
+		all {
+			control {
+				backgroundColor = 777777
+			}
+			borderColor = 000000
+			borderWidth {top = 2px bottom = 2px left = 2px right = 2px}
+		}
+	}
+	style h800 {
+		all {
+			control {
+				height = 800px
+			}
+		}
+	}
+	style w800 {
+		all {
+			control {
+				width = 800px
+			}
+		}
+	}
+	style w500 {
+		all {
+			control {
+				width = 500px
+			}
+		}
+	}
+	style w100pct {
+		all {
+			control {
+				width = 100%
+			}
+		}
+	}
+	style tcw5050pct {
+		table {
+			columnWidth = 800px, 500px
+			header = tcw5050pct
+		}
+		row {
+			content = tcw5050pct
+		}
+		cell {
+			verticalAlign = top
+		}
+	}
+	style sizeSmall {
+		all {
+			label {
+				position = left
+			}
+		}
+	}
+}

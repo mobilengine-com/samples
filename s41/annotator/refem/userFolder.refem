@@ -1,0 +1,8 @@
+<Reftab Name='userFolder' Access='Hidden' xmlns='http://schemas.mobilengine.com/reftab/v1'>
+  <Columns>
+	<Column Name='userGuid' Type='Text' NotNull='true'/>
+	<Column Name='lcompGuid' Type='Text' NotNull='true'/>
+	<Column Name='projectGuid' Type='Text' NotNull='true'/>
+	<Column Name='folderGuid' Type='Text' NotNull='true'/>
+  </Columns>
+</Reftab>

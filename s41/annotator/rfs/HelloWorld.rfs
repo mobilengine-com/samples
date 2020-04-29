@@ -1,0 +1,6 @@
+server program HelloSchedule 
+	for schedule * * * * * 
+	first run at 2000-01-01 10:00
+{
+	trace "HelloWorld!";
+}

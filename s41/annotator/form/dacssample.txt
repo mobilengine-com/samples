@@ -1,0 +1,13 @@
+https://devzgaspar.mobilengine.com:4443/services/wdx/wdx.svc/apikey
+
+<Dacs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" meta="FileContentBatch">
+  <!-- The apikey url is: ..../wdx/wdx.svc/apikey -->
+  <Key>c66bf4c3fcbe4934bc0b3315b1dcac3e</Key>
+  <Content>
+    <!-- don't forget to set the same xmlns here that you set in the dacsem -->
+    <Batch MediaId="str1234" Last="123" Md5Sum="str1234">
+	  <Chunk Index="123" />
+	</Batch>
+
+  </Content>
+</Dacs>

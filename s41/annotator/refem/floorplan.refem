@@ -1,0 +1,14 @@
+<Reftab Name="floorplan" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" >
+  <Columns>
+	<Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true"/>
+	<Column Name="lcompGuid" Type="Text" NotNull="true" />
+	<Column Name="projectGuid" Type="Text" NotNull="true" />
+	<Column Name="folderGuid" Type="Text" />
+	<Column Name="name" Type="Text" />
+	<Column Name="building" Type="Text" />
+	<Column Name="floor" Type="Text" />
+	<Column Name="category" Type="Text" />
+	<Column Name="file_guid" Type="Text" NotNull="true"/>
+  </Columns>
+</Reftab>
+

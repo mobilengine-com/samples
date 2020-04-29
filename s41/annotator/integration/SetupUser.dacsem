@@ -1,0 +1,14 @@
+schema 'SetupUser' meta 'SetupUser'
+
+User: element {
+	ServerGuid: attribute of type string;
+	ServerName: attribute of type string;
+	MecompGuid: attribute of type string;
+	MecompName: attribute of type string;
+	Guid: attribute of type string;
+	Name: attribute of type string;
+	Email: attribute of type string;
+	UserId: attribute of type int;
+	LcompGuid: optional attribute of type string;
+	Role: optional attribute of type string;
+}

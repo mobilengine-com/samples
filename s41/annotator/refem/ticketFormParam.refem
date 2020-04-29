@@ -1,0 +1,7 @@
+<Reftab Name="ticketFormParam" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" >
+  <Columns>
+	<Column Name="usern" Type="Text" PrimaryKey="true" NotNull="true"/>
+	<Column Name="guidFloorplan" Type="Text"/>
+	<Column Name="fAgain" Type="Text"/>
+  </Columns>
+</Reftab>

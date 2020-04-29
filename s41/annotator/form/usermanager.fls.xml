@@ -1,0 +1,34 @@
+<form id='usermanager' menuName='user manager' title='user manager' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<chapter title='Users for project'>
+		<dropdown width="12 em" id="ddProject" choices='{SELECT p.guid, p.name FROM project p order by name}' keyMap="{guid}" textMap="{name}"/>
+		<table id='t' record='r'
+			recordset='{SELECT up.userGuid, (SELECT u.name FROM user u WHERE u.guid = up.userGuid) name FROM userProject up WHERE up.projectGuid = ddProject.selectedKey ORDER BY name}'>
+			<row>
+				<declarations>
+					<let id="userGuid" shape="scalar" value="{r.userGuid}"/>
+				</declarations>
+				<cell>
+					<textview id="name" text="{r.name}"/>
+				</cell>
+				<cell>
+					<removebutton id="remove" text="remove"/>
+				</cell>
+			</row>
+		</table>
+		<addbutton id="addbtn" access="private" text="Add users to project:" table="t" records='{SELECT fs.guid userGuid, fs.name FROM t_fs.rows fs WHERE fs.x.checked}'/>
+		<table access="private" label="Users" id="t_fs" record="r" recordset='{SELECT u.guid, u.name FROM user u WHERE u.guid NOT IN (SELECT up.userGuid FROM userProject up WHERE up.projectGuid = ddProject.selectedKey)}' >
+		<row>
+			<declarations>
+				<let id="guid" shape="scalar" value="{r.guid}"/>
+				<let id="name" shape="scalar" value="{r.name}"/>
+			</declarations>
+			<cell>
+				<checkbox id="x"/>
+			</cell>
+			<cell>
+				<textview text="{r.name}"/>
+			</cell>
+		</row>
+		</table>
+	</chapter>
+</form>

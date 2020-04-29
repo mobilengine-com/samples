@@ -1,0 +1,6 @@
+schema 'SetupLcomp' meta 'SetupLcomp'
+
+Lcomp: element {
+	Guid: attribute of type string;
+	Name: attribute of type string;
+}

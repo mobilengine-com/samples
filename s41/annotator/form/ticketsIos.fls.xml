@@ -1,0 +1,164 @@
+<form id='ticketsIos' menuName='ticketsIos' title='ticketsIos' platforms='ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+
+		<let id="letFp" shape="record" value="{SELECT fp.guid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid, f.file_size, f.file_hash, f.file_name, f.mediaId FROM floorplan fp JOIN files f ON f.file_guid = fp.file_guid WHERE params.guidFloorplan = fp.guid}"/>
+		<let id="letPointSelected" shape="record" value="{SELECT annotator.selectedPoint.id, annotator.selectedPoint.categoryId, annotator.selectedPoint.pageIndex, annotator.selectedPoint.xFraction xFraction, annotator.selectedPoint.yFraction yFraction WHERE annotator.selectedPoint IS NOT NULL}"/>				
+		<let id="letPointNew" shape="record" value="{SELECT annotator.newPoint.categoryId, annotator.newPoint.pageIndex, annotator.newPoint.xFraction xFraction, annotator.newPoint.yFraction yFraction WHERE annotator.newPoint IS NOT NULL }"/>				
+		<let id="letTickets" shape="table" value="{SELECT t.guid, t.category, t.section, t.status, t.description, t.comments, t.guidUserCreator, t.guidUserAssignee, t.dueDate, t.mediaidSignature FROM 	ticket t WHERE t.guidPoint=letPointSelected.id AND t.status>=0}"/>
+		<let id="isNewPoint" shape="scalar" value="{letPointNew IS NOT NULL}"/>
+		<let id="fDebug" shape="scalar" value="{cbDebug.checked}"></let>
+	</declarations>
+	<params>
+		<param id="guidFloorplan"/>
+	</params>
+	<checkbox id="cbDebug" label="debug"/>
+	
+	<annotator id="annotator" text='Show floorplan with points' 
+		fileref="{letFp.mediaId}" fileName="{letFp.file_name}"
+		categories='{SELECT c.guid id, c.name, c.abbr abbreviation, c.rgb color FROM category c}' 
+		points='{SELECT p.guid id, t.category categoryId, p.ipage pageIndex, p.pctX xFraction, p.pctY yFraction, st.shape shape
+			FROM ticket t JOIN point p ON p.guid = t.guidPoint JOIN ticketStatus st ON t.status = st.status
+			WHERE p.guidFloorplan = letFp.guid AND t.status>=0 }'
+
+		title='{"This is " || fileName || " floorplan"}'
+		selectedCategoryId="{letFp.category}"
+		pointSize="{7.5}"
+
+		selectCategoryText="Válassz szakágat!" noCategoryText="Mutasd mindet" newPointColor="#FF00FF" mixedPointColor="#FF69B4" openOnSet="{true}"/>
+
+	<if cond="{fDebug}" >
+		<textview id="posScale" label="position scale" text='{toString(annotator.position.scale)}'/>
+		<textview id="posPageIndex" label="position page index" text='{toString(annotator.position.pageIndex)}' style="{styles.sizeSmall}"/>
+		<textview id="posPctX" label="position page x%" text='{toString(annotator.position.xFractionOfCenter)}' style="{styles.sizeSmall}"/>
+		<textview id="posPctY" label="position page y%" text='{toString(annotator.position.yFractionOfCenter)}' style="{styles.sizeSmall}"/>
+	</if>
+
+	<if id="ifTicketSel" cond="{letPointSelected IS NOT NULL}">
+		<if cond="{fDebug}" >
+			<textview id="pid" label="point id" text='{letPointSelected.id}'/>
+			<textview id="pageIndex" label="point page index" text='{toString(letPointSelected.pageIndex)}' style="{styles.sizeSmall}"/>
+			<textview id="pctX" label="point page x%" text='{toString(letPointSelected.xFraction)}' style="{styles.sizeSmall}"/>
+			<textview id="pctY" label="point page y%" text='{toString(letPointSelected.yFraction)}' style="{styles.sizeSmall}"/>
+		</if>
+		<repeater id="ticketsOld" recordset="{SELECT t.guid, t.category, t.section, t.status, t.description, t.comments, t.guidUserCreator, t.guidUserAssignee, t.dueDate, t.mediaidSignature FROM letTickets t}"
+			record="letTicket">
+			<block>
+				<declarations>
+					<let id="letGuid" shape="scalar" value="{letTicket.guid}"/>
+					<let id="letMediaidSignatureOld" shape="scalar" value="{letTicket.mediaidSignature}"/>
+				</declarations>
+				
+				<if cond="{fDebug}" >
+					<textview id="name" label="ticket id" text='{letGuid}'/>
+				</if>
+				<textbox id="section" label="section" text='{letTicket.section}' style="{styles.sizeSmall}"/>
+				<dropdown id="ddCategory" label="category" choices="{SELECT c.guid, c.name FROM category c}" keyMap = "{guid}" textMap = "{name}" selectedKey="{letTicket.category}" style="{styles.sizeSmall}" >
+					<validation>
+						<validator cond="{selectedKey IS NOT NULL}" message="select a category" />
+					</validation>
+				</dropdown>
+				<textarea id="description" label="description" lines="3" text="{letTicket.description}" style="{styles.sizeSmall}"/>
+				<textview id="comments" label="comments" text="{letTicket.comments}" style="{styles.sizeSmall}"/>
+				<datepicker id="dueDate" label="due date" date="{letTicket.dueDate}" dateFormat='(dtf yyyy"-"MM"-"dd)' style="{styles.sizeSmall}"/>
+				<!-- photoview / 
+				<Control type="photoview" name="ticketPhotoView" label="" 
+					reference="SELECT mediaidPhoto FROM reference_ticketPhoto WHERE @1=guidTicket" ref_arg="PARENT.col0"/>
+				<Control type="photoview" name="ticketSignatureView" label="" 
+					reference="SELECT @1 WHERE @1 IS NOT NULL AND @1 NOT LIKE '%null%'" ref_arg="PARENT.col7"/>
+				--> 									
+
+				<photoview label="existing photos" photos="{SELECT SUBSTR(TOSTRING(tp.mediaidPhoto), 1, 32) FROM ticketPhoto tp WHERE tp.guidTicket = letGuid}" style="{styles.sizeSmall}"/>
+				<photo id="photo" label="photos" style="{styles.sizeSmall}"/>
+				<photoview label="existing signature" photos="{SELECT SUBSTR(TOSTRING(letTicket.mediaidSignature), 1, 32) WHERE letTicket.mediaidSignature IS NOT NULL}" style="{styles.sizeSmall}"/>
+				<signature id="signature" label="signature" />
+				
+				<dropdown id="ddStatus" label="status" choices="{SELECT c.status, c.name FROM ticketStatus c}" keyMap = "{status}" textMap = "{name}" selectedKey="{letTicket.status}" style="{styles.sizeSmall}" >
+					<validation>
+						<validator cond="{selectedKey IS NOT NULL}" message="select a status" />
+					</validation>
+				</dropdown>
+				<textview label="creator" text="{SELECT u.name FROM user u WHERE u.guid = letTicket.guidUserCreator}" style="{styles.sizeSmall}"/>
+				<dropdown id="ddAssignee" label="assignee" choices="{SELECT u.guid, u.name FROM user u}" 
+					keyMap = "{guid}" textMap = "{name}" selectedKey="{letTicket.guidUserAssignee}" style="{styles.sizeSmall}" />
+			</block>
+		</repeater>
+	</if>		
+
+	<if id="ifTicketNew" cond="{letPointNew IS NOT NULL OR letPointSelected IS NOT NULL}">
+		<declarations>
+			<let id="pointId" shape="scalar" value="{CASE WHEN isNewPoint THEN toStringN(newGuid()) ELSE letPointSelected.id END}"/>
+			<let id="letPageIndex" shape="scalar" value="{CASE WHEN isNewPoint THEN letPointNew.pageIndex ELSE letPointSelected.pageIndex END}"/>
+			<let id="letXFraction" shape="scalar" value="{CASE WHEN isNewPoint THEN letPointNew.xFraction ELSE letPointSelected.xFraction END}"/>
+			<let id="letYFraction" shape="scalar" value="{CASE WHEN isNewPoint THEN letPointNew.yFraction ELSE letPointSelected.yFraction END}"/>
+			<let id="letCategoryId" shape="scalar" value="{CASE WHEN isNewPoint THEN letPointNew.categoryId ELSE letPointSelected.categoryId END}"/>
+		</declarations>
+		<if cond="{fDebug}" >
+			<textview id="id" label="ticket id" text='{pointId}' style="{styles.sizeSmall}"/>
+			<textview id="pageIndex" label="point page index" text='{toString(letPageIndex)}' style="{styles.sizeSmall}"/>
+			<textview id="pctX" label="point page x%" text='{toString(letXFraction)}' style="{styles.sizeSmall}"/>
+			<textview id="pctY" label="point page y%" text='{toString(letYFraction)}' style="{styles.sizeSmall}"/>
+		</if>
+		<repeater recordset="{SELECT 1 x WHERE isNewPoint}" record="_" id="ticketsNew">
+			<block>
+				<declarations>
+					<let id="letGuid" shape="scalar" value="{toStringN(newGuid())}"/>
+				</declarations>
+				<textbox id="section" label="section" text='' style="{styles.sizeSmall}"/>
+				<dropdown id="ddCategory" label="category" choices="{SELECT c.guid, c.name FROM category c}" 
+					keyMap = "{guid}" textMap = "{name}" selectedKey="{letCategoryId}"  style="{styles.sizeSmall}">
+					<validation>
+						<validator cond="{selectedKey IS NOT NULL}" message="select a category" />
+					</validation>
+				</dropdown>
+				<textarea id="description" label="description" lines="3" text="" style="{styles.sizeSmall}"/>
+				<datepicker id="dueDate" label="due date" dateFormat='(dtf yyyy"-"MM"-"dd)' style="{styles.sizeSmall}"/>
+				<!-- photoview / 
+				<Control type="photoview" name="ticketPhotoView" label="" 
+					reference="SELECT mediaidPhoto FROM reference_ticketPhoto WHERE @1=guidTicket" ref_arg="PARENT.col0"/>
+				<Control type="photoview" name="ticketSignatureView" label="" 
+					reference="SELECT @1 WHERE @1 IS NOT NULL AND @1 NOT LIKE '%null%'" ref_arg="PARENT.col7"/>
+				-->
+				<photo id="photo" label="photos" style="{styles.sizeSmall}"/>
+				<signature id="signature" label="signature" style="{styles.sizeSmall}" />
+				
+				<dropdown id="ddStatus" label="status" choices="{SELECT c.status, c.name FROM ticketStatus c}" keyMap = "{status}" textMap = "{name}"  style="{styles.sizeSmall}" selectedKey="{1}">
+					<validation>
+						<validator cond="{selectedKey IS NOT NULL}" message="select a status" />
+					</validation>
+				</dropdown>
+				<textview label="creator" text="{SELECT u.name FROM user u WHERE u.email = sysp.user}" style="{styles.sizeSmall}"/>
+				<dropdown id="ddAssignee" label="assignee" choices="{SELECT u.guid, u.name FROM user u}" 
+					keyMap = "{guid}" textMap = "{name}" style="{styles.sizeSmall}" />
+			</block>
+		</repeater>
+		<addbutton table='ticketsNew' records='{SELECT 1 x}' text="Add new ticket"/>
+	</if>
+	<if cond="{fDebug}" >
+
+		<textview text=' '/>
+		<textview text=' '/>
+		<textview text=' '/>
+
+		<table id='t' record='r'
+			recordset='{SELECT p.id, p.categoryId, p.pageIndex, p.xFraction, p.yFraction FROM annotator.points p}'>
+			<row>
+				<cell>
+					<textview id="id" text='{r.id}' />
+				</cell>
+				<cell>
+					<textview id="categoryId" text='{r.categoryId}' />
+				</cell>
+				<cell>
+					<textview id="pageIndex" text='{toString(r.pageIndex)}' />
+				</cell>
+				<cell>
+					<textview id="xFraction" text='{toString(r.xFraction)}' />
+				</cell>
+				<cell>
+					<textview id="yFraction" text='{toString(r.yFraction)}' />
+				</cell>
+
+			</row>
+		</table>
+	</if>
+</form>

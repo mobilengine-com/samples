@@ -1,0 +1,10 @@
+schema 'InviteStatus' meta 'InviteStatus'
+
+User: element {
+	InviteGuid: optional attribute of type string;
+	UserGuid: attribute of type string;
+	Email: attribute of type string;
+	MecompGuid: optional attribute of type string;
+	UserId: optional attribute of type int;
+	Status: attribute of type string;
+}

@@ -1,0 +1,16 @@
+﻿<form id='Sqrt' menuName="Sqrt" xmlns='http://schemas.mobilengine.com/fls/v2' platforms="web">
+	<declarations>
+		<let id="x0" shape="scalar" value='{ toFloat( "3"||substr("000000000000000000", 1, ((1+length( toString(toInt(num.number)) ))/2)-1 ) )}'/>
+		<let id="x1" shape="scalar" value='{(x0 + num.number/x0)/2}'/>
+		<let id="x2" shape="scalar" value='{(x1 + num.number/x1)/2}'/>
+		<let id="x3" shape="scalar" value='{(x2 + num.number/x2)/2}'/>
+		<let id="x4" shape="scalar" value='{(x3 + num.number/x3)/2}'/>
+		<let id="x5" shape="scalar" value='{(x4 + num.number/x4)/2}'/>
+		<let id="x6" shape="scalar" value='{(x5 + num.number/x5)/2}'/>
+		<let id="x7" shape="scalar" value='{(x6 + num.number/x6)/2}'/>
+		<let id="x8" shape="scalar" value='{(x7 + num.number/x7)/2}'/>
+		<let id="x9" shape="scalar" value='{(x8 + num.number/x8)/2}'/>
+	</declarations>
+	<numberbox id="num" float="true" numberFormat='{decimalSeparator: "."}' />
+	<numberbox id="sqrtNum" float="true" number='{x9}' numberFormat='{decimalSeparator: "."}'/>
+</form>
