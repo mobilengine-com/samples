@@ -13,5 +13,15 @@ using reftab files;
 		};
 		db.files.Insert(newRow);
 	}
+	foreach (var row in form.photo.photos) {
+		var fileWithPrio = fileref.New(row.photoId, priority);
+		var newRow = {
+			fileref: fileWithPrio,
+			filename: fileWithPrio.Filename(),
+			size: fileWithPrio.Size(), 
+			checksum: fileWithPrio.Checksum()
+		};
+		db.files.Insert(newRow);
+	}
 }
 

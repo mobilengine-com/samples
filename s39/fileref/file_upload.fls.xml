@@ -5,7 +5,8 @@
       xmlns="http://schemas.mobilengine.com/fls/v2">
 
     <fileupload id="file" label="Upload a file (jpg/pdf):" acceptedMimetypes="application/octet-stream,image/jpeg,application/pdf"/>
+    <photo id="photo" label="And/Or upload a photo:" />
     <textbox id="priority" label="Priority:" text="1" />
-    
+
     <textview text="Uploaded files will be stored in the files reftab by an RFS." />
 </form>
