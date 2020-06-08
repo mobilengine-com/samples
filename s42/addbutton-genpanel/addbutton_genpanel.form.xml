@@ -1,0 +1,67 @@
+﻿<Form name="addbutton_genpanel" typed="true" numberformat='{decimalSeparator: ".", maxFraction: 2}' dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)' description="Addbutton for Genpanel" inlineReference='true' sillyNulls='false'>
+	<Control type="panel" name="Root">
+		<!-- this works before s42, included here for testing -->
+		<!--
+		<Control type="panel" text="Inline panel generated with count" navigation="popup" name="count_inline_holder">
+			<Control type="panel" name="count_inline" navigation="inline" count="3">
+				<Control name="tb" label="A textbox" type="textbox" />
+				<Control name="rb" label="Custom Remove" type="removebutton" text="X" />
+			</Control>
+			<Control type='button' name='gen_count_inline' size="large" text='Add'>
+				<Actions>
+					<Action type='generator' target='../count_inline' createremovebutton="true" />
+				</Actions>
+			</Control>
+		</Control>
+
+		<Control type="panel" text="Table panel generated with count" navigation="popup" name="count_table_holder">
+			<Control type="panel" name="count_table" layout="table" count="3">
+				<Control name="tb" label="A textbox" type="textbox" />
+				<Control name="rb" label="Custom Remove" type="removebutton" text="X" />
+			</Control>
+			<Control type='button' name='gen_count_table' size="large" text='Add'>
+				<Actions>
+					<Action type='generator' target='../count_table' createremovebutton="true" />
+				</Actions>
+			</Control>
+		</Control>
+		-->
+
+		<Control type="panel" text="Inline panel generated with generator" navigation="popup" name="generator_inline_holder">
+			<Control type="panel" name="generator_inline" navigation="inline" generator="SELECT 'a' UNION SELECT 'b' UNION SELECT 'c'">
+				<Control name="tb" label="A textbox" type="textbox" text="{SELECT @[PARENT.col0]}" />
+				<Control name="rb" label="Custom Remove" type="removebutton" text="X" />
+			</Control>
+			<Control type='button' name='gen_generator_inline' size="large" text='Add'>
+				<Actions>
+					<Action type='generator' target='../generator_inline' createremovebutton="true" />
+				</Actions>
+			</Control>
+		</Control>
+
+		<Control type="panel" text="Table panel generated with generator" navigation="popup" name="generator_table_holder">
+			<Control type="panel" name="generator_table" layout="table" generator="SELECT 'a' UNION SELECT 'b' UNION SELECT 'c'">
+				<Control name="tb" label="A textbox" type="textbox" text="{SELECT @[PARENT.col0]}" />
+				<Control name="rb" label="Custom Remove" type="removebutton" text="X" />
+			</Control>
+			<Control type='button' name='gen_generator_table' size="large" text='Add'>
+				<Actions>
+					<Action type='generator' target='../generator_table' createremovebutton="true" />
+				</Actions>
+			</Control>
+		</Control>
+
+		<Control type="panel" text="Table panel generated with generator (databound generator)" navigation="popup" name="generator_table_holder_dynamic">
+			<Control type="textbox" name="generate_input" label="Generate input: " text="input" />
+			<Control type="panel" name="generator_table" layout="table" generator="SELECT 'a' UNION SELECT 'b' UNION SELECT @[../generate_input]">
+				<Control name="tb" label="A textbox" type="textbox" text="{SELECT @[PARENT.col0]}" />
+				<Control name="rb" label="Custom Remove" type="removebutton" text="X" />
+			</Control>
+			<Control type='button' name='gen_generator_table' size="large" text='Add'>
+				<Actions>
+					<Action type='generator' target='../generator_table' createremovebutton="true" />
+				</Actions>
+			</Control>
+		</Control>
+	</Control>
+</Form>
