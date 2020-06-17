@@ -1,0 +1,79 @@
+<form id="combined_button" menuName="combined_button" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+  <popup title="Counting added &amp; removed rows">
+    <declarations>
+      <let id="added" shape="scalar" value="{0}" />
+      <let id="removed" shape="scalar" value="{0}" />
+    </declarations>
+    <textview text='{"Added rows: " || TOSTRING(added)}' />
+    <textview text='{"Removed rows: " || TOSTRING(removed)}' />
+    <table id="countingTable" record="r" recordset="{TABLE v (1)}">
+      <row>
+        <cell>
+          <textview text="A Row" /> 
+        </cell>
+        <cell>
+          <combinedbutton text="Remove">
+            <actionbutton>
+              <set target="removed" value="{removed + 1}" />
+            </actionbutton>
+            <removebutton />
+          </combinedbutton>
+        </cell>
+      </row>
+    </table>
+    <combinedbutton text="Add a row">
+      <actionbutton>
+        <set target="added" value="{added + 1}" />
+      </actionbutton>
+      <addbutton table="countingTable" records="{TABLE v (1)}" />
+    </combinedbutton>
+  </popup>
+
+  <popup title="Move row to another table">
+    <textview text="Use the 'Move' buttons to fix the tables" />
+    <table id="tableA" record="r" recordset='{TABLE city ("Tokyo";"Debrecen";"Shanghai";"Szeged";"Miskolc";"Mexico City")}' label="Foreign cities">
+      <row>
+        <cell>
+          <textbox text="{r.city}" />
+        </cell>
+        <cell>
+          <combinedbutton text="Move ▼">
+            <addbutton table="tableB" records="{SELECT r.city city}" />
+            <removebutton />
+          </combinedbutton>
+        </cell>
+      </row>
+    </table>
+    <table id="tableB" record="r" recordset='{TABLE city ("Budapest";"Delhi";"São Paulo";"Pécs")}' label="Hungarian cities">
+      <row>
+        <cell>
+          <textbox text="{r.city}" />
+        </cell>
+        <cell>
+          <combinedbutton text="Move ▲">
+            <addbutton table="tableA" records="{SELECT r.city city}" />
+            <removebutton />
+          </combinedbutton>
+        </cell>
+      </row>
+    </table>
+  </popup>
+
+  <popup title="Submit a form twice">
+    <declarations>
+      <let id="submits" shape="scalar" value="{0}" />
+    </declarations>
+    <textview text='{"Total submissions with the below button: " || TOSTRING(submits)}' />
+    <textview text="Also note that the &lt;combinedbutton> supports confirmation messages:" />
+    <combinedbutton text="Submit two times" confirm="{true}" confirmMessage="Do you really want to submit this form two times?">
+      <submitbutton closeForm="{false}" />
+      <actionbutton>
+        <set target="submits" value="{submits + 1}" />
+      </actionbutton>
+      <submitbutton closeForm="{false}" />
+      <actionbutton>
+        <set target="submits" value="{submits + 1}" />
+      </actionbutton>
+    </combinedbutton>
+  </popup>
+</form>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="action_set_table_shaped" menuName="action_set_table_shaped" platforms="ios web">
+	<!-- action.fls.xml(9,38): Cannot use static value for non scalar pl -->
+	<!-- 
+	<actionbutton text="set bad shape">
+		<set target="table1.recordset" value='hello' />
+	</actionbutton>
+	-->
+
+	<!-- action.fls.xml(16,39): 'value' requires 1 column(s) but daq returns 2 [SELECT 1 v, 2 v2] -->
+	<!--
+	<actionbutton text="set bad shape 2">
+		<set target="table1.recordset" value='{SELECT 1 v, 2 v2}' />
+	</actionbutton>
+	-->
+	
+	<!-- action.fls.xml(23,39): Type mismatch on 'value': expected String but was Int [SELECT 1 c1 UNION SELECT 2 c1] -->
+	<!--
+	<actionbutton text="set bad column type">
+		<set target="table1.recordset" value='{SELECT 1 c1 UNION SELECT 2 c1}' />
+	</actionbutton>
+	-->
+
+	<!-- action.fls.xml(30,39): 'value' requires column(s) (v) but daq returns (c1) [SELECT "tada1" c1 UNION SELECT "tada2" c1] -->
+	<!--
+	<actionbutton text="set bad column name">
+		<set target="table1.recordset" value='{SELECT "tada1" c1 UNION SELECT "tada2" c1}' />
+	</actionbutton>
+	-->
+
+	<actionbutton text="Set apples">
+		<set target="table1.recordset" value='{SELECT "apples"}' />
+	</actionbutton>
+
+	<actionbutton text="Set apples|pears">
+		<set target="table1.recordset" value='{SELECT "apples" v UNION SELECT "pears" v}' />
+	</actionbutton>
+
+	<actionbutton text="Set peaches|oranges|bananas">
+		<!-- should just replace this with the other -->
+		<set target="table1.recordset" value='{SELECT "apples" v UNION SELECT "pears" v}' />
+		<set target="table1.recordset" value='{TABLE v ("peaches"; "oranges"; "bananas")}' />
+	</actionbutton>
+
+	<actionbutton text="Set empty">
+		<set target="table1.recordset" value='{SELECT "apples" v WHERE false}' />
+	</actionbutton>
+
+	<table id="table1" record="r" recordset='{SELECT "apples" v WHERE true}' >
+		<row>
+			<cell>
+				<textview text='{r.v}' />
+			</cell>
+		</row>
+	</table>
+
+	<actionbutton text="Copy to table below">
+		<set target="table2.recordset" value='{SELECT t.v v FROM table1.recordset t}' />
+	</actionbutton>
+
+	<table id="table2" record="r" recordset='{SELECT "apples" v WHERE true}'>
+		<row>
+			<cell>
+				<textview text='{r.v}' />
+			</cell>
+		</row>
+	</table>
+</form>

@@ -1,0 +1,4 @@
+server program trace_form for form combined_button
+{
+	trace form;
+}
