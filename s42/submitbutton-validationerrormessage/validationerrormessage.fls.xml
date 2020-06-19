@@ -1,0 +1,15 @@
+<form id="validationerrormessage" menuName="validationerrormessage" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+  <header>
+    <discardbutton text="Discard" />
+  </header>
+
+  <textview text="Submit the form with the button in the header to see the message." />
+  <textbox id="tbVal" label="Type 'OK' to make valid:">
+    <validation>
+      <validator cond='{tbVal.text = "OK"}' message="Must be 'OK'" />
+    </validation>
+  </textbox>
+  <submitbutton validationErrorMessage="Hey! The form is invalid!" text="Submit with custom message" />
+  <submitbutton validationErrorMessage="" text="Submit with no message (empty string)" />
+  <submitbutton validationErrorMessage="{null}" text="Submit with no message (null)" />
+</form>

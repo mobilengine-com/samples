@@ -76,4 +76,18 @@
       </actionbutton>
     </combinedbutton>
   </popup>
+
+  <popup title="Validate button press">
+    <textbox id="tbVal" label="Type 'OK' to make valid:">
+      <validation>
+        <validator cond='{tbVal.text = "OK"}' message="Must be 'OK'" />
+      </validation>
+    </textbox>
+    <textbox id="tbOut" label="This text will be set to Valid by the combinedbutton below:" text="---" />
+    <combinedbutton text="Set" validatorGroup="default" validationErrorMessage="Form not valid, not setting value.">
+      <actionbutton>
+        <set target="tbOut.text" value='{"Valid"}' />
+      </actionbutton>
+    </combinedbutton>
+  </popup>
 </form>
