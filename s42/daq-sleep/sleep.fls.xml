@@ -1,0 +1,4 @@
+<form id="sleep" menuName="sleep" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+  <textbox id="textbox1" label="Enter some text: " />
+  <textview label="The above text will appear here, after a 1sec delay:" text="{SELECT i.t FROM (SELECT textbox1.text t, SLEEP(1000) s) i}" />
+</form>
