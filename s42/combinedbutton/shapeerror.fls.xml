@@ -1,0 +1,19 @@
+<form id="shape_error" menuName="shape_error" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+  <chapter title="Shape error on action button">
+    <declarations>
+      <let id="counter" shape="scalar" value="{0}" />
+    </declarations>
+    <textview label="Counter: " text="{TOSTRING(counter)}" />
+    <combinedbutton text="Shape error when setting counter value">
+      <actionbutton>
+        <set target="counter" value="{1}" />
+      </actionbutton>
+      <actionbutton>
+        <set target="counter" value="{TABLE v (10;20)}" />
+      </actionbutton>
+      <actionbutton>
+        <set target="counter" value="{2}" />
+      </actionbutton>
+    </combinedbutton>
+  </chapter>
+</form>

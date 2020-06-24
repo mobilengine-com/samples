@@ -1,0 +1,22 @@
+<form id="network_errors" menuName="network_errors" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+  <chapter title="Slowly count to 5 (test daq timeout / network error)">
+    <textview id="textview" label="Textview: " text="" />
+    <combinedbutton text="Slow evals, daq timeout">
+      <actionbutton>
+        <set target="textview.text" value='{SELECT i.a FROM (SELECT "1" a, textview.text t, SLEEP(1000) s ORDER BY 1) i}' />
+      </actionbutton>
+      <actionbutton>
+        <set target="textview.text" value='{SELECT i.a FROM (SELECT "2" a, textview.text t, SLEEP(1000) s ORDER BY 1) i}' />
+      </actionbutton>
+      <actionbutton>
+        <set target="textview.text" value='{SELECT i.a FROM (SELECT "3" a, textview.text t, SLEEP(1000) s ORDER BY 1) i}' />
+      </actionbutton>
+      <actionbutton>
+        <set target="textview.text" value='{SELECT i.a FROM (SELECT "4" a, textview.text t, SLEEP(1000) s ORDER BY 1) i}' />
+      </actionbutton>
+      <actionbutton>
+        <set target="textview.text" value='{SELECT i.a FROM (SELECT "5" a, textview.text t, SLEEP(1000) s ORDER BY 1) i}' />
+      </actionbutton>
+    </combinedbutton>
+  </chapter>
+</form>

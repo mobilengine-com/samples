@@ -1,5 +1,5 @@
 <form id="combined_button" menuName="combined_button" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
-  <popup title="Counting added &amp; removed rows">
+  <chapter title="Counting added &amp; removed rows">
     <declarations>
       <let id="added" shape="scalar" value="{0}" />
       <let id="removed" shape="scalar" value="{0}" />
@@ -27,9 +27,9 @@
       </actionbutton>
       <addbutton table="countingTable" records="{TABLE v (1)}" />
     </combinedbutton>
-  </popup>
+  </chapter>
 
-  <popup title="Move row to another table">
+  <chapter title="Move row to another table">
     <textview text="Use the 'Move' buttons to fix the tables" />
     <table id="tableA" record="r" recordset='{TABLE city ("Tokyo";"Debrecen";"Shanghai";"Szeged";"Miskolc";"Mexico City")}' label="Foreign cities">
       <row>
@@ -57,9 +57,9 @@
         </cell>
       </row>
     </table>
-  </popup>
+  </chapter>
 
-  <popup title="Submit a form twice">
+  <chapter title="Submit a form twice">
     <declarations>
       <let id="submits" shape="scalar" value="{0}" />
     </declarations>
@@ -75,19 +75,19 @@
         <set target="submits" value="{submits + 1}" />
       </actionbutton>
     </combinedbutton>
-  </popup>
+  </chapter>
 
-  <popup title="Validate button press">
+  <chapter title="Validate button press">
     <textbox id="tbVal" label="Type 'OK' to make valid:">
       <validation>
         <validator cond='{tbVal.text = "OK"}' message="Must be 'OK'" />
       </validation>
     </textbox>
-    <textbox id="tbOut" label="This text will be set to Valid by the combinedbutton below:" text="---" />
+    <textbox id="tbOut" label="This text will be set to Valid by the combinedbutton below:" text="-" />
     <combinedbutton text="Set" validatorGroup="default" validationErrorMessage="Form not valid, not setting value.">
       <actionbutton>
         <set target="tbOut.text" value='{"Valid"}' />
       </actionbutton>
     </combinedbutton>
-  </popup>
+  </chapter>
 </form>
