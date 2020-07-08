@@ -1,0 +1,66 @@
+<form id="orderby" menuName="orderby" title='orderby' platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+    <declarations>
+        <let id="t" shape="table" value='{TABLE c, n ("b",1; "a",2; "n",3; "a",4; "n",5; "a", 6)}' />
+        <let id="t2" shape="table" value='{TABLE c ("a"; "aa"; "aaa"; "aaa"; "aaaa"; "aaaaa")}' />
+    </declarations>
+
+    <chapter title="ORIGINAL ORDER">
+        <repeater recordset="{SELECT t.c c2 FROM t t}" record="r">
+            <textview text="{r.c2}" />
+        </repeater>
+    </chapter>
+    
+    <chapter title="ORDER ASCENDING (IMPLICIT)">
+        <repeater recordset="{SELECT t.c c2 FROM t t ORDER BY c2}" record="r">
+            <textview text="{r.c2}" />
+        </repeater>
+    </chapter>
+
+    <chapter title="ASCENDING">
+        <repeater recordset="{SELECT t.c c2 FROM t t ORDER BY c2 ASC}" record="r">
+            <textview text="{r.c2}" />
+        </repeater>
+    </chapter>
+
+    <chapter title="DESCENDING">
+        <repeater recordset="{SELECT t.c c2 FROM t t ORDER BY c2 DESC}" record="r">
+            <textview text="{r.c2}" />
+        </repeater>
+    </chapter>
+
+    <chapter title="ASCENDING, LIMIT 3">
+        <repeater recordset="{SELECT t.c c2 FROM t t ORDER BY c2 ASC LIMIT 3}" record="r">
+            <textview text="{r.c2}" />
+        </repeater>
+    </chapter>
+
+    <chapter title="DESCENDING, LIMIT 3">
+        <repeater recordset="{SELECT t.c c2 FROM t t ORDER BY c2 DESC LIMIT 3}" record="r">
+            <textview text="{r.c2}" />
+        </repeater>
+    </chapter>
+
+    <chapter title="SUBSELECT ORDERING">
+        <repeater recordset="{SELECT t2.c2 FROM (SELECT t.c c2 FROM t t) t2 ORDER BY c2}" record="r">
+            <textview text="{r.c2}" />
+        </repeater>
+    </chapter>
+
+    <chapter title="MULTICOL ORDERING">
+        <repeater recordset="{SELECT t.c, t.n FROM t t ORDER BY c, n DESC}" record="r">
+            <textview text='{r.c || "," || TOSTRING(r.n)}' />
+        </repeater>
+    </chapter>
+
+    <chapter title="ORDER BY LENGTH()">
+        <repeater recordset="{SELECT t.c FROM t2 t ORDER BY LENGTH(c)}" record="r">
+            <textview text='{r.c}' />
+        </repeater>
+    </chapter>
+
+    <chapter title="ORDER BY TABLE VALUE">
+        <repeater recordset="{SELECT t.c FROM t t ORDER BY c}" record="r">
+            <textview text='{r.c}' />
+        </repeater>
+    </chapter>
+</form>
