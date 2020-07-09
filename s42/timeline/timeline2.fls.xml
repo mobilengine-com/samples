@@ -1,0 +1,512 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='timeline2' menuName='timeline2' platforms='web' >
+
+	<chapter title="default">
+		<timeline />
+	</chapter>
+
+	<chapter title="default with events">
+		<timeline  events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+			resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+			/>
+	</chapter>
+
+	<chapter title="day with events">
+		<timeline 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+			resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+		/>
+	</chapter>
+
+	<!-- position -->
+	<datepicker dateFormat='(dtf yyyy"-"MM"-"dd)' id='dpDay' date='{(dtl 2020-06-29T00:00:00)}' firstDayOfWeek="monday"/>
+	<chapter title="day with position">
+		<timeline 
+			events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+			resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+			showDate='{dpDay.date}'
+		/>
+	</chapter>
+
+	<!-- categories - colors -->
+	<chapter title="day with position with agent colors">
+		<timeline 
+			categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+			events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+			resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+			showDate='{dpDay.date}'
+		/>
+	</chapter>
+
+	<popup title='Operations'>
+		
+		<!-- filtering events -->
+		<dropdown keyMap="{guid}" textMap="{name}" choices='{SELECT a.guid, a.name from agent a}' id="ddAgent" />
+		<dropdown keyMap="{guid}" textMap="{name}" choices='{SELECT l.guid, l.name from location l}' id="ddLocation" />
+		<chapter title="day with filtering">
+			<timeline 
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e
+						WHERE (e.guidAgent = ddAgent.selectedKey OR ddAgent.selectedKey IS NULL) 
+						AND (e.guidLocation = ddLocation.selectedKey OR ddLocation.selectedKey IS NULL ) }"
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a WHERE a.guid = ddAgent.selectedKey OR ddAgent.selectedKey IS NULL}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<!-- selecting events -->
+		<chapter title="day eventSelection">
+			<timeline id='calSelInDay'
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+			<textview label="Selected event" text='{calSelInDay.selectedEvent.id || ": " || calSelInDay.selectedEvent.label}' />
+		</chapter>
+
+		<!-- selecting events with preselected -->
+		<dropdown id="ddEvent"
+			keyMap='{guid}' textMap='{name}' choices='{SELECT ev.guid, ev.name FROM event ev}'/>
+			<chapter title="day eventSelection with preselection">
+				<timeline id='calSelInDay2'
+					categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+					events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+					resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+					selectedEvent="{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e WHERE e.guid = ddEvent.selectedKey}"
+					showDate='{dpDay.date}'
+				/>
+				<textview label="Selected event" text='{calSelInDay2.selectedEvent.id || ": " || calSelInDay2.selectedEvent.label}' />
+			</chapter>		
+		
+	</popup>
+
+	<popup title='Date settings and formating'>
+	<!-- position with custom header -->
+		<chapter title="day with custom header">
+			<textview style="{[styles.calHeader]}" text='{formatDtl(calDwCH.showDate, (dtf yyyy"-"MM"-"dd))}'/>
+			<timeline id="calDwCH"
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<!-- start/end hour -->
+		<chapter title="day with 8:00 start/ 15:00 end">
+			<timeline 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				startHour='8'
+				endHour='15'
+			/>
+		</chapter>
+	
+		<!-- slot duration -->
+		<chapter title="day with 15 min slots">
+			<timeline 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				slotDuration="15"
+			/>
+		</chapter>
+	
+		<!-- time format -->
+		<chapter title="day with time format">
+			<timeline 
+				events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				timeFormat='(dtf hh":"mm" "tt)'
+			/>
+		</chapter>
+	
+	</popup>
+
+	<!-- width/height settings -->
+	<popup title="Width/height settings">
+		<!-- 
+labelWidth 
+		-->
+		<chapter title="day label width 50px">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				labelWidth="50"
+			/>
+		</chapter>
+		<!-- 
+columnWidth
+		-->
+		<chapter title="day column width 50px">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				columnWidth="50"
+			/>
+		</chapter>
+		<!-- 
+columnWidth auto
+		-->
+		<chapter title="day column width auto">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				columnWidth="auto"
+			/>
+		</chapter>
+		<!-- 
+headerHeight
+		-->
+		<chapter title="day header height 50px">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				headerHeight="50"
+			/>
+		</chapter>
+		<!-- 
+rowHeight 
+		-->
+		<chapter title="day header height 50px">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				rowHeight="50"
+			/>
+		</chapter>
+		<!-- 
+rowHeight auto
+		-->
+		<chapter title="day row height auto">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				rowHeight="auto"
+			/>
+		</chapter>
+		<!-- 
+eventHeight
+		-->
+		<chapter title="day row height 50px event height 25">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				rowHeight="50"
+				eventHeight="25"
+			/>
+		</chapter>
+		<!-- 
+eventHeight auto
+		-->
+		<chapter title="day row height 50px event height auto">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				rowHeight="50"
+				eventHeight="auto"
+			/>
+		</chapter>
+
+	</popup>
+
+	<!-- size: width -->
+	<popup title='Sizes'>
+		<chapter title="day width fill">
+			<timeline 
+				style='{[styles.wFill]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<chapter title="day width auto!er">
+			<timeline 
+				style='{[styles.wAuto]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<chapter title="day width 50%">
+			<timeline 
+				style='{[styles.w50pct]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<chapter title="day width 300px">
+			<timeline 
+				style='{[styles.w300px]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>	
+		<!-- size: height -->
+		<chapter title="day height 400px">
+			<timeline 
+				style='{[styles.calH400]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>	
+		<chapter title="day height auto">
+			<timeline 
+				style='{[styles.calHAuto]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>	
+		<chapter title="day width 300px height 400px">
+			<timeline 
+				style='{[styles.w300px, styles.calH400]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>		
+
+		<chapter title="day height 800px">
+			<timeline 
+				style='{[styles.calH800]}'
+				events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>	
+	</popup>
+	<popup title='Styles'>
+		<!-- now color -->
+		<chapter title="day with now color magenta">
+			<timeline 
+			events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				style='{[styles.calTodayM]}'
+			/>
+		</chapter>
+
+		<!-- text props  calTextGreen15B --> 
+		<chapter title="day with text props green 15px bold">
+			<timeline 
+			events="{SELECT e.guid id, e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+				style='{[styles.calTextGreen15B]}'
+			/>
+		</chapter>
+	</popup>
+
+	<popup title='In table'>
+	<!-- within table header -->
+		<chapter title="day within table header">
+			<table record='r' recordset='{SELECT 1 v WHERE 1=2}' style="{[styles.tcw2x800px]}">
+				<header>
+					<row>
+						<cell>
+							<timeline 
+								events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+								resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+								showDate='{dpDay.date}'
+							/>
+						</cell>
+						<cell>
+							<timeline 
+								events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+								resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+								showDate='{dpDay.date}'
+							/>
+						</cell>
+						<cell>
+							<timeline 
+								events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+								resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+								showDate='{dpDay.date}'
+							/>
+						</cell>					
+					</row>
+				</header>
+				<row><cell><block></block></cell></row>
+			</table>
+		</chapter>	
+		<!-- within table row -->
+		<chapter title="day within table row">
+			<table record='r' recordset='{[1,2]}' style="{[styles.tcw3x500px]}">
+				<header>
+					<row>
+						<cell><textview text="month"/></cell>
+						<cell><textview text="week"/></cell>
+						<cell><textview text="day"/></cell>
+					</row>
+				</header>
+
+				<row>
+					<cell>
+						<timeline 
+							events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+							resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+							showDate='{dpDay.date}'
+						/>
+					</cell>
+					<cell>
+						<timeline 
+							events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+							resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+							showDate='{dpDay.date}'
+						/>
+					</cell>
+					<cell>
+						<timeline 
+							events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+							resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+							showDate='{dpDay.date}'
+						/>
+					</cell>					
+				</row>
+			</table>
+
+			<table record='r' recordset='{[1,2]}' style="{[styles.tcw3x500px]}">
+				<header>
+					<row>
+						<cell><textview text="month"/></cell>
+						<cell><textview text="week"/></cell>
+						<cell><textview text="day"/></cell>
+					</row>
+				</header>
+
+				<row>
+					<cell>
+						<textbox text="alma"/>
+					</cell>
+					<cell>
+						<textbox text="alma"/>
+					</cell>
+					<cell>
+						<textbox text="alma"/>
+					</cell>					
+				</row>
+			</table>
+		
+		</chapter>
+	
+	</popup>
+
+	<popup title='Bad data'>
+		<chapter title="day with events with same id">
+			<timeline 
+			events='{SELECT "alma" id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}'
+			resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+			showDate='{dpDay.date}'
+			/>
+		</chapter>
+
+		<chapter title="day with events with null id">
+			<timeline 
+				events="{SELECT null id, null categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+
+		<chapter title="day with events with null dateFrom">
+				<timeline 
+					events="{SELECT e.guid id, null categoryId, null dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+					resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+					showDate='{dpDay.date}'
+				/>
+		</chapter>	
+
+		<chapter title="day with events with null dateTo">
+				<timeline 
+					events="{SELECT e.guid id, null categoryId, e.dtlStart dateFrom, null dateTo, e.name label, e.guidAgent resourceId FROM event e}"
+					resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+					showDate='{dpDay.date}'
+				/>
+		</chapter>		
+
+	<!-- category errors -->
+		<chapter title="day with position with wrong category id">
+			<timeline 
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				events='{SELECT e.guid id,e.guidAgent||"alma" categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}'
+				resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<chapter title="day with position with null category colors">
+			<timeline 
+			categories='{SELECT a.guid id, null backgroundColor, null textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+			events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}'
+			resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<chapter title="day with position with wrong category colors">
+			<timeline 
+			categories='{SELECT a.guid id, "alma" backgroundColor, "alma" textColor, "alma" selectedBackgroundColor, "alma" selectedTextColor FROM agent a}'
+			events='{SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent resourceId FROM event e}'
+			resources='{SELECT a.guid id, "agent "||a.name label FROM agent a}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+	
+	</popup>
+	<popup title="A lot of data">
+		<chapter title="10 x events/resources">
+			<timeline 
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				events='{SELECT e.guid||b.v id , e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent||b.v resourceId FROM event e, (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]) b}'
+				resources='{SELECT a.guid||b.v id, "agent "||a.name||b.v label FROM agent a, (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]) b}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		<!-- 
+		<chapter title="100 x events/resources">
+			<timeline 
+				categories='{SELECT a.guid id, a.color backgroundColor, "000000" textColor, null selectedBackgroundColor, null selectedTextColor FROM agent a}'
+				events='{SELECT e.guid||b.v||b2.v id , e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label, e.guidAgent||b.v||b2.v resourceId FROM event e, (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]) b, (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]) b2}'
+				resources='{SELECT a.guid||b.v||b2.v id, "agent "||a.name||b.v||b2.v label FROM agent a, (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]) b, (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]) b2}'
+				showDate='{dpDay.date}'
+			/>
+		</chapter>
+		-->
+	</popup>
+</form>

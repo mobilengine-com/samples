@@ -1,0 +1,35 @@
+styles {
+    style lbltxt {
+        all {
+            label {
+                position = left
+            }
+        }
+    }
+    style icon200 {
+        all {
+            control {
+                iconWidth = 200px
+                iconHeight = 100px
+            }
+        }
+    }
+    style bgClear {
+
+    }
+    style bgRed {
+        all {
+            backgroundColor = FF0000
+        }
+    }
+    style bgYellow {
+        all {
+            backgroundColor = FFFF00
+        }
+    }
+    style bgGreen {
+        all {
+            backgroundColor = 00FF00
+        }
+    }
+}

@@ -1,0 +1,9 @@
+server program producersWeb for form producersWeb
+using reftab producer;
+{
+  foreach (var row in form.tblProducer.rows) {
+    if (row.letProducer.guid == null) {
+      db.producer.Insert({guid: guid.Generate().ToStringN(), name: row.letProducer.name, description: row.letProducer.description});
+    }
+  }
+}

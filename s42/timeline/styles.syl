@@ -1,0 +1,220 @@
+styles {
+
+    style bgGreen {
+        all {
+            backgroundColor = 00FF00
+        }
+    }
+
+    style calHeader {
+        textview {
+            control {
+                textAlign = center
+                fontSize = 20px
+                italic = true
+            }
+        }
+    }
+
+    style calDefault {
+        calendar {
+            control {
+                fontColor = 111111
+                fontSize = 15px
+            }
+            label {
+
+            }
+            newColor = 7979FF
+            todayColor = A9A9FF
+        }
+        timeline {
+            control {
+                fontColor = 111111
+                fontSize = 15px
+            }
+            label {
+
+            }
+            nowColor = 7979FF
+        }
+    }
+    style calTextGreen15B {
+        calendar {
+            control {
+                fontColor = 007F00
+                fontSize = 15px
+                bold = true
+            }
+        }
+        timeline {
+            control {
+                fontColor = 007F00
+                fontSize = 15px
+                bold = true
+            }
+        }
+    }
+    style calNewY {
+        calendar {
+            newColor = FFFF00
+        }
+    }
+    style calTodayM {
+        calendar {
+            todayColor = FF00FF
+        }
+        timeline {
+            nowColor = FF00FF
+        }
+    }
+    style calH300 {
+        all {
+            control {
+                height = 300px
+            }
+        }
+    }
+    style calH400 {
+        all {
+            control {
+                height = 400px
+            }
+        }
+    }
+    style calH500 {
+        all {
+            control {
+                height = 500px
+            }
+        }
+    }
+    style calH800 {
+        all {
+            control {
+                height = 800px
+            }
+        }
+    }
+    style calHAuto {
+        all {
+            control {
+                height = auto
+            }
+        }
+    }
+    style w50pct {
+        all {
+            control {
+                width = 50%
+            }
+        }
+    }
+    style w300px {
+        all {
+            control {
+                width = 300px
+            }
+        }
+    }
+    style calW800 {
+        all {
+            control {
+                width = 800px
+            }
+        }
+    }
+    style calW1500 {
+        all {
+            control {
+                width = 1500px
+            }
+        }
+    }
+    style wAuto {
+        all {
+            control {
+                width = auto
+            }
+        }
+    }
+    style wFill {
+        all {
+            control {
+                width = fill
+            }
+        }
+    }
+    
+
+    style calBgColorY {
+        all {
+            control {
+                backgroundColor = fafab1
+            }
+        }
+    }
+    style calBgColorC {
+        all {
+            control {
+                backgroundColor = b1f9fa
+            }
+        }
+    }
+    style calBgColorM {
+        all {
+            control {
+                backgroundColor = fab1f1
+            }
+        }
+    }        
+    
+    style tcw3x500px {
+        table {
+            columnWidth = 500px, 500px, 500px
+            header = tcw3x500px
+            body = tcw3x500px
+        }
+        row {
+            content = tcw3x500px
+        }
+        all {
+            control {
+                width = auto
+            }
+        }
+    }
+
+    style tableNoSeparator {
+        table {
+            control {
+                borderWidth { top=0px right=0px bottom=0px left=0px }
+            }
+        }
+    }
+
+    style tcw2x800px {
+        table {
+            columnWidth = 1500px, 800px
+            header = tcw2x800px
+            body = tcw2x800px
+        }
+        row {
+            content = tcw2x800px
+        }
+        cell {
+            verticalAlign = top
+            content = tcw2x800px
+        }
+        all {
+            control {
+                width = auto
+            }
+        }
+        chapter {
+            title {
+                borderWidth { top=0px right=0px bottom=0px left=0px }
+            }
+        }
+    }
+}

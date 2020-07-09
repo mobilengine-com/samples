@@ -1,0 +1,34 @@
+server program calendar1 for form calendar1
+using reftab event;
+{
+  trace form;
+  if (form.submitButton != null) {
+    if (form.submitButton == form.btnSave) {
+      trace "save";
+      db.event.Update({guid: form.ev.guid},
+      {
+        name: form.name.text, 
+        description: form.descr.text,
+        guidAgent: form.ddAgent.selectedKey,
+        guidLocation: form.ddLocation.selectedKey,
+        dtlStart: form.dateSelected.dateFrom.DtlToDtdb(),
+        dtlEnd: form.dateSelected.dateTo.DtlToDtdb()
+      });
+    }
+    else if (form.submitButton == form.btnDelete) {
+      trace "delete";
+      db.event.Delete({guid: form.ev.guid});
+    }
+    else if (form.submitButton == form.btnAdd) {
+      trace "add";
+      db.event.Insert({guid: guid.Generate().ToStringN(), 
+        name: form.nameNew.text, 
+        description: form.descrNew.text,
+        guidAgent: form.ddAgentNew.selectedKey,
+        guidLocation: form.ddLocationNew.selectedKey,
+        dtlStart: form.dateSelectedNew.dateFrom.DtlToDtdb(),
+        dtlEnd: form.dateSelectedNew.dateTo.DtlToDtdb()
+      });
+    }
+  }
+}

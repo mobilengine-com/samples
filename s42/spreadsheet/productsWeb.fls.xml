@@ -1,0 +1,171 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='productsWeb' menuName='Products' platforms='web'>
+	<declarations>
+		<let id='letProducerPar' shape='record' value='{SELECT p.guid, p.name FROM producer p WHERE p.guid = params.guidProducerPar}' />		
+	</declarations>
+	<params>
+		<param id='guidProducerPar'/>
+	</params>
+	<dropdown id='ddProducerPar'
+	choices='{SELECT pr.guid, pr.name FROM producer pr WHERE 
+		params.guidProducerPar IS NULL OR pr.guid = params.guidProducerPar}'
+	selectedKey='{params.guidProducerPar}'
+	keyMap='{guid}'
+	textMap='{name}'
+	/>
+<chapter title='{SELECT "Products for "||letProducerPar.name}'>
+		<table id='tblProduct' record='prd' recordset='{SELECT p.guid, p.name, p.guidProducer, p.itemNumber, p.dtlIntroduced, p.urlDatasheet, p.urlDoP, p.urlBIMObject, p.urlOther, p.filerefVignette FROM product p WHERE ddProducerPar.selectedKey IS NULL or p.guidProducer = ddProducerPar.selectedKey LIMIT 100}'>
+			<header>
+				<row>
+					<cell>
+						<block></block>
+					</cell>
+					<cell>
+						<block></block>
+					</cell>
+					<cell>
+						<textview text='producer' />
+					</cell>
+					<cell>
+						<textview text='name' />
+					</cell>
+					<cell>
+						<textview text='item#' />
+					</cell>
+					<cell>
+						<textview text='introduced' />
+					</cell>
+					<cell>
+						<textview text='datasheet' />
+					</cell>
+					<cell>
+						<textview text='DoP' />
+					</cell>
+					<cell>
+						<textview text='BIM Object' />
+					</cell>
+					<cell>
+						<textview text='other link' />
+					</cell>
+				</row>
+			</header>
+			<row>
+				<cell>
+					<declarations>
+						<let id='letProduct' shape='record' value='{SELECT prd.guid, prd.name, prd.guidProducer, prd.itemNumber, prd.dtlIntroduced, prd.urlDatasheet, prd.urlDoP, prd.urlBIMObject, prd.urlOther, prd.filerefVignette}' />
+						<let id='letProducer' shape='record' value='{SELECT pr.guid, pr.name FROM producer pr WHERE pr.guid = letProduct.guidProducer}' />
+						<let id='letFNew' shape='scalar' value='{prd.guid IS NULL}' />
+						<let id='letFEdit' shape='scalar' value='{false}'/>
+					</declarations>
+					<if cond='{prd.filerefVignette IS NOT NULL}'>
+						<photoview photos='{MEDIAID(prd.filerefVignette)}'/>
+					</if>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{prd.filerefVignette IS NOT NULL}'>
+							<checkbox id="chbSel" checked='{false}'/>
+						</if>
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{not letFNew}'>
+							<textview text='{SELECT p.name FROM producer p WHERE p.guid = prd.guidProducer}' />
+						</if>
+						<if cond='{letFNew}'>
+							<dropdown id='ddProducer'
+							choices='{SELECT pr.guid, pr.name FROM producer pr WHERE 
+								params.guidProducerPar IS NULL OR pr.guid = params.guidProducerPar}'
+							selectedKey='{params.guidProducerPar}'
+							keyMap='{guid}'
+							textMap='{name}'
+							/>
+						</if>
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{not letFNew}'>
+							<textview text='{prd.name}' />
+						</if>
+						<if cond='{letFNew}'>
+							<textbox id='tbName' />
+						</if>
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{not letFNew}'>
+							<textview text='{prd.itemNumber}' />
+						</if>
+						<if cond='{letFNew}'>
+							<textbox id='tbItemNumber' />
+						</if>
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{not letFNew}'>
+							<textview text='{formatDtl(prd.dtlIntroduced, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}' />
+						</if>
+						<if cond='{letFNew}'>
+							<datepicker id='dpDtlIntroduced'/>
+						</if>
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{not letFNew and prd.urlDatasheet is not null}'>
+							<linkview url='{prd.urlDatasheet}' text='link' />
+						</if>
+						<if cond='{letFNew}'>
+							<textbox id='tbUrlDatasheet'/>
+						</if>
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{not letFNew and prd.urlDoP is not null}'>
+							<linkview url='{prd.urlDoP}' text='link' />
+						</if>
+						<if cond='{letFNew}'>
+							<textbox id='tbUrlDoP' />
+						</if>
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{not letFNew and prd.urlBIMObject is not null}'>
+							<linkview url='{prd.urlBIMObject}' text='link' />
+						</if>
+						<if cond='{letFNew}'>
+							<textbox id='tbUrlBIMObject' />
+						</if>
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{not letFNew and prd.urlOther is not null}'>
+							<linkview url='{prd.urlOther}' text='link' />
+						</if>
+						<if cond='{letFNew}'>
+							<textbox id='tbUrlOther'/>
+						</if>
+					</block>
+				</cell>
+			</row>
+		</table>
+		<addbutton records='{SELECT null guid, null name, null guidProducer, null itemNumber, null dtlIntroduced, null urlDatasheet, null urlDoP, null urlBIMObject, null urlOther, null filerefVignette}' table='tblProduct' text='Add' />
+		<spreadsheet text="Xlsx from selected products" 
+			worksheet='Products'
+			header='{SELECT "producer" c1, "productId" c2, "product name" c3, "item number" c4, "introduced" c5, "datasheet" c6, "DoP link" c7, "BIM object" c8, "other link" c9}'
+			columnWidths='{SELECT 20 c1, 32 c2, 20 c3, 16 c4, 12 c5}'
+			data='{SELECT r.letProducer.name producer, r.letProduct.guid, r.letProduct.name, r.letProduct.itemNumber, r.letProduct.dtlIntroduced, r.letProduct.urlDatasheet, r.letProduct.urlDoP, r.letProduct.urlBIMObject, r.letProduct.urlOther 
+			FROM tblProduct.rows r WHERE r.chbSel.checked}' />
+		<multifiledownload text='Download selected vignettes' 
+			files='{SELECT r.letProduct.filerefVignette fileref, r.letProduct.guid||".png" fileName 
+			FROM tblProduct.rows r WHERE r.chbSel.checked}' />
+	</chapter>
+	<submitbutton id="btnSave" text='Save' nextForm="{forms.productsWeb}" />
+	<submitbutton id="btnGen" text='Generate vignettes' closeForm="{false}" />
+</form>

@@ -1,0 +1,37 @@
+server program productsWeb for form productsWeb
+using reftab product;
+using dacs ProductVignetteRequest as req;
+{
+  trace form;
+  if (form.submitButton == form.btnGen) {
+    foreach (var product in db.product.Read(/*{filerefVignette: null}*/map.New()) ) {
+      var reqDacs = messages.req.New();
+      reqDacs.Product.guid = product.guid;
+      reqDacs.Send();
+    }
+  } 
+  else if (form.submitButton == form.btnSave) {
+    foreach (var row in form.tblProduct.rows) {
+      if (row.letFNew) {
+        var product = {
+          guid: guid.Generate().ToStringN(), 
+          name: row.tbName.text, 
+          guidProducer: row.ddProducer.selectedKey,
+          itemNumber: row.tbItemNumber.text,
+          dtlIntroduced: row.dpDtlIntroduced.date?.DtlToDtdb(),
+          urlDatasheet: row.tbUrlDatasheet.text,
+          urlDoP: row.tbUrlDoP.text,
+          urlBIMObject: row.tbUrlBIMObject.text,
+          urlOther: row.tbUrlOther.text,
+          filerefVignette: null
+        };
+        db.product.Insert(product);
+
+        var reqDacs = messages.req.New();
+
+        reqDacs.Product.guid = product.guid;
+        reqDacs.Send();
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+<Reftab Name="vignette" Push='true' xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name="guidVignette" Type="Text" PrimaryKey="true" NotNull="true"/>
+        <Column Name="guidProduct" Type="Text" NotNull="true"/>
+        <Column Name="dtlLinked" Type="Date"/>
+        <Column Name="usernLinked" Type="Text"/>
+    </Columns>
+</Reftab>

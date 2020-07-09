@@ -1,0 +1,113 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='calendar1' menuName='calendar1' platforms='web' >
+	<!-- "id", "categoryId", "dateFrom", "secondsFrom", "dateTo", "secondsTo", "label" -->
+	<table record="dummy" recordset="{SELECT 1 WHERE 3=4}" style="{[styles.tableNoSeparator]}">
+		<declarations>
+			<let shape='scalar' id='dtlPos' value='{nextWeekday(AddDay(dpPos1.date, -6), 1)}'></let>
+		</declarations>
+		<header>
+			<row>
+				<cell>
+					<datepicker id="dpPos1" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{sysp.dtlFormOpen}" firstDayOfWeek='monday'/>
+				</cell>
+				<cell>
+					<actionbutton text="&lt; M">
+						<set value="{addMonth(dtlPos, -1)}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+					<cell>
+					<actionbutton text="&lt; W">
+						<set value="{addDay(dtlPos, -7)}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="Today!">
+						<set value="{sysp.dtlFormOpen}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="&gt; W">
+						<set value="{addDay(dtlPos, 7)}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+				<cell>
+					<actionbutton text="&gt; M">
+						<set value="{addMonth(dtlPos, 1)}" target="dtlPos"/>
+					</actionbutton>
+				</cell>
+			</row>
+		</header>
+		<row><cell><block></block></cell></row>
+	</table>
+
+	<textview style="{[styles.calHeader]}" text='{SELECT formatDtl(cal.showDate, (dtf yyyy"-"MM"-"dd)) || " - " || formatDtl(addDay(cal.showDate, 6), (dtf MM"-"dd)) || ", Week #" || toString(isoWeekOfYear(cal.showDate)) }'/>
+	<table style="{[styles.tableNoSeparator, styles.tcw2x800px]}" record='r' recordset='{SELECT 1 v WHERE 1=2}'>
+		<header>
+			<row>
+				<cell> <!-- SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e -->
+					<calendar id="cal" events='{loadNewerFromServer:SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
+						style="{[styles.calDefault, styles.calHAuto]}"
+						categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
+						showDate='{dtlPos}' weekends="false" startHour="8" endHour="18"/>
+				</cell>
+				<cell>
+					<block>
+						<if cond='{cal.selectedEvent IS NOT NULL AND cal.selectedEvent.id IS NOT NULL}'>
+							<chapter title="Selected event">
+								<declarations>
+									<let shape='record' id='ev' value='{SELECT e.guid, e.name, e.description, e.guidAgent, e.guidLocation FROM event e WHERE e.guid = cal.selectedEvent.id}'></let>
+									<let shape='record' id='dateSelected' value='{SELECT  cal.selectedEvent.dateFrom,  cal.selectedEvent.dateTo}'></let>
+								</declarations>
+								<textbox id="name" label="name" text="{ev.name}"/>
+								<textbox id="descr" label="description" text="{ev.description}"/>
+								<dropdown id="ddAgent" label="agent" keyMap="{guid}" textMap="{name}" choices='{SELECT a.guid, a.name from agent a}' selectedKey='{ev.guidAgent}' />
+								<dropdown id="ddLocation" label="location" keyMap="{guid}" textMap="{name}" choices='{SELECT l.guid, l.name from location l}' selectedKey='{ev.guidLocation}' />
+								<textview label="from" text='{formatDtl( dateSelected.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+								<textview label="to" text='{formatDtl( dateSelected.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+								<submitbutton text='Save' id="btnSave" nextForm='{forms.calendar1}'/>
+								<submitbutton text='Delete' id="btnDelete"  nextForm='{forms.calendar1}'/>
+								<actionbutton text='Cancel'>
+										<set value="{SELECT null id, null categoryId, null dateFrom, null dateTo, null label}" target="cal.selectedEvent"/>
+								</actionbutton>
+								<map 
+								points='{SELECT l.guid id, null lineId, l.lat lat, l.long lng, icons.marker icon, icons.marker_selected selectedIcon FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey}'
+								center='{SELECT l.lat lat, l.long lng, 5 zoom FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey}'
+								/>
+
+							</chapter>
+						</if>
+						<if cond='{cal.newEvent.dateFrom IS NOT NULL}'>
+							<chapter title="New event">
+									<declarations>
+											<let shape='record' id='dateSelectedNew' value='{SELECT cal.newEvent.dateFrom, cal.newEvent.dateTo}'></let>
+										</declarations>
+								<textbox id="nameNew" label="name" text="{ev.name}"/>
+								<textbox id="descrNew" label="description" text="{ev.description}"/>
+								<dropdown id="ddAgentNew" label="agent" keyMap="{guid}" textMap="{name}" choices='{SELECT a.guid, a.name from agent a}' selectedKey='{ev.guidAgent}' />
+								<dropdown id="ddLocationNew" label="location" keyMap="{guid}" textMap="{name}" choices='{SELECT l.guid, l.name from location l}' selectedKey='{ev.guidLocation}' />
+								<textview label="from" text='{formatDtl( cal.newEvent.dateFrom, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+								<textview label="to" text='{formatDtl( cal.newEvent.dateTo, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'/>
+								<submitbutton text='Add' id="btnAdd" nextForm='{forms.calendar1}' waitForRfs='{true}'/>
+								<actionbutton text='Cancel'>
+										<set value="{SELECT null dateFrom, null dateTo}" target="cal.newEvent"/>
+								</actionbutton>
+								<!-- map -->
+								<map 
+								points='{SELECT l.guid id, null lineId, l.lat lat, l.long lng, icons.marker icon, icons.marker_selected selectedIcon FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey}'
+								center='{SELECT l.lat lat, l.long lng, 5 zoom FROM location l WHERE l.guid = ddLocationNew.selectedKey OR l.guid = ddLocation.selectedKey}'
+								/>
+							</chapter>
+
+						</if>
+					</block>
+				</cell>
+			</row>
+		</header>
+		<row><cell><block></block></cell></row>
+	</table>
+
+	<map points='{SELECT l.guid id, null lineId, l.lat lat, l.long lng, icons.marker icon, icons.marker_selected selectedIcon FROM location l }'
+	center='{SELECT l.lat lat, l.long lng, 5 zoom FROM location l LIMIT 1}'	
+	/>
+
+</form>
