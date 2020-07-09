@@ -8,6 +8,9 @@
 		<header>
 			<row>
 				<cell>
+					<dropdown id="ddMode" keyMap="{v}" textMap="{v}" choices='{["month", "agendaWeek", "agendaDay", "alma"]}'></dropdown>
+				</cell>
+				<cell>
 					<datepicker id="dpPos1" dateFormat='(dtf yyyy"-"MM"-"dd)' date="{sysp.dtlFormOpen}" firstDayOfWeek='monday'/>
 				</cell>
 				<cell>
@@ -47,6 +50,7 @@
 				<cell> <!-- SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e -->
 					<calendar id="cal" events='{loadNewerFromServer:SELECT e.guid id,e.guidAgent categoryId, e.dtlStart dateFrom, e.dtlEnd dateTo, e.name label FROM event e}'
 						style="{[styles.calDefault, styles.calHAuto]}"
+						mode="{ddMode.selectedKey}"
 						categories='{SELECT a.guid id, a.color backgroundColor, "00000" borderColor, "00000" textColor, null selectedBackgroundColor, "FFFFFF" selectedBorderColor, null selectedTextColor FROM agent a}'
 						showDate='{dtlPos}' weekends="false" startHour="8" endHour="18"/>
 				</cell>
