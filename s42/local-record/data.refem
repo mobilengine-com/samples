@@ -1,0 +1,7 @@
+<Reftab Name="data" Push='true' xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true"/>
+        <Column Name="version" Type="Integer" NotNull="true"/>
+        <Column Name="value" Type="Text"/>
+    </Columns>
+</Reftab>

@@ -1,0 +1,104 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='local' menuName='local' platforms='web'>
+	<declarations>
+		<let id="tblData" shape="table" value="{loadNewerFromServer:SELECT d.guid, d.version, d.value FROM data d}" />
+		<let id="tblDataDel" shape="table" value="{SELECT d.guid, d.version, d.value FROM tblData d WHERE d.guid NOT IN (SELECT r.letRecord.guid FROM t.rows r)}" />
+	</declarations>
+	<table id="t" recordset='{SELECT d.guid, d.version, d.value FROM tblData d}' record="r"
+		recordLocal="{SELECT r.guid, r.version, tbValue.text value}">
+		<header>
+			<row>
+				<cell>
+					<block/>
+				</cell>
+					<cell><textview text="Row"/></cell>
+				<cell><textview text="Guid"/></cell>
+			<!--	<cell><textview text="Version"/></cell> -->
+				<cell><textview text="Value"/></cell>
+			</row>
+		</header>
+		<row>
+			<declarations>
+				<let id="letRecord" shape="record" value="{SELECT r.guid, r.version, r.value}" />
+				<let id="letRecordLocal" shape="record" value="{SELECT r.guid, r.version, tbValue.text}" />
+			</declarations>
+			<cell>
+				<block>
+					<!-- conflict: remote: update, local: update -->
+					<if cond="{rBase.guid IS NOT NULL AND rLocal.guid IS NOT NULL AND rIncoming.guid IS NOT NULL AND rAccepted.guid IS NULL}">
+						<popup title="!U" openMode="dialog">
+							<textview label="base value" text="{rBase.value}"/>
+							<textview label="local value" text="{recordLocal.value}"/>
+							<textview label="incoming value" text="{rIncoming.value}"/>
+							<actionbutton text="Accept incoming">
+								<set value="{SELECT rIncoming.guid, rIncoming.version, rIncoming.value}" target="rAccepted" />
+								<set value="{rIncoming.value}" target="tbValue.text" />
+							</actionbutton>
+							<actionbutton text="Accept local">
+								<set value="{SELECT recordLocal.guid, recordLocal.version, recordLocal.value}" target="rAccepted" />
+							</actionbutton>
+							<backbutton text="back"/>
+						</popup>
+					</if>
+					<!-- conflict: remote: delete, local: update -->
+					<if cond="{rBase.guid IS NOT NULL AND rLocal.guid IS NOT NULL AND rIncoming.guid IS NULL AND rAccepted.guid IS NULL}">
+						<popup title="!D" openMode="dialog">
+							<textview label="base value" text="{rBase.value}"/>
+							<textview label="local value" text="{recordLocal.value}"/>
+							<textview label="incoming value" text="(deleted)"/>
+							<removebutton text="Accept incoming delete"/>
+							<actionbutton text="Accept local"><set value="{recordLocal.value}" target="tbValue.text" /></actionbutton>
+							<backbutton text="back"/>
+						</popup>
+					</if>
+				</block>
+			</cell>
+			<cell>
+				<textview text="{ToString(rIndex)}"/>
+			</cell>
+			<cell>
+				<textview text="{r.guid}"/>
+			</cell>
+		<!--	<cell>
+				<textview text="{ToString(r.version)}"/>
+			</cell> -->
+			<cell>
+				<textbox id="tbValue" text="{r.value}"/>
+			</cell>
+			<cell>
+				<combinedbutton text="Remove">
+					<addbutton records="{SELECT r.guid guid, r.version version, r.value value}" table="tDel"/>
+					<removebutton/>
+				</combinedbutton>
+			</cell>
+		</row>
+	</table>
+	<addbutton records="{SELECT ToStringN(newGuid()) guid, 0 version, null value}" table="t" text="Add new"></addbutton>
+	<combinedbutton id="btnSave" text="Save">
+		<actionbutton>
+			<set value="{SELECT d.guid, d.version, d.value FROM tblData d WHERE 1=2}" target="tDel.recordset"/>
+		</actionbutton>
+		<submitbutton closeForm="{false}" waitForRfs="{false}"/>
+	</combinedbutton>
+
+	<table id="tDel" recordset='{SELECT d.guid, d.version, d.value FROM tblData d WHERE 1=2}' record="r">
+	<header>
+		<row>
+			<cell><textview text="Guid"/></cell>
+			<cell><textview text="Value"/></cell>
+		</row>
+	</header>
+	<row>
+		<declarations>
+			<let id="letRecord" shape="record" value="{SELECT r.guid, r.version, r.value}" />
+		</declarations>
+		<cell>
+			<textview text="{r.guid}"/>
+		</cell>
+		<cell>
+			<textview id="tbValue" text="{r.value}"/>
+		</cell>
+	</row>
+	</table>
+
+</form>

@@ -1,0 +1,84 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='paging' menuName='paging' platforms='web'>
+	<declarations><let id="pgNum" shape="scalar" value="{0}" /></declarations>
+	<table id="t" recordset='{loadNewerFromServer:SELECT d.guid, d.version, d.value FROM data d ORDER BY value LIMIT 10 OFFSET pgNum*10}' record="r"
+		recordLocal="{SELECT r.guid, r.version, tbValue.text value}">
+		<header>
+			<row>
+				<cell><textview text="Row"/></cell>
+				<cell><textview text="Guid"/></cell>
+				<cell><textview text="Version"/></cell>
+				<cell><textview text="Value (edit)"/></cell>
+				<cell><textview text="Value (base)"/></cell>
+				<cell><textview text="Value (local)"/></cell>
+				<cell><textview text="Value (incoming)"/></cell>
+			</row>
+		</header>
+		<row>
+			<declarations>
+				<let id="letRecord" shape="record" value="{SELECT r.guid, r.version, r.value}" />
+				<let id="letRecordLocal" shape="record" value="{SELECT r.guid, r.version, tbValue.text}" />
+			</declarations>
+			<cell>
+				<textview text="{ToString(rIndex)}"/>
+			</cell>
+			<cell>
+				<textview text="{r.guid}"/>
+			</cell>
+			<cell>
+				<textview text="{ToString(r.version)}"/>
+			</cell>
+			<cell>
+				<textbox id="tbValue" text="{r.value}"/>
+			</cell>
+			<cell>
+				<textview text="{rBase.value}"/>
+			</cell>
+			<cell>
+				<textview text="{rLocal.value}"/>
+			</cell>
+			<cell>
+				<textview text="{rIncoming.value}"/>
+			</cell>
+			<cell>
+				<combinedbutton text="Remove">
+					<addbutton records="{SELECT r.guid guid, r.version version, r.value value}" table="tDel"/>
+					<removebutton/>
+				</combinedbutton>
+			</cell>
+		</row>
+	</table>
+	<combinedbutton id="btnSaveMinus" text="-">
+		<submitbutton closeForm="{false}" waitForRfs="{false}"/>
+		<actionbutton ><set value="{max(0, pgNum-1)}" target="pgNum" /></actionbutton>
+	</combinedbutton>
+	<textview label="page" text="{toString(pgNum)}"/>
+	<combinedbutton id="btnSavePlus" text="+">
+		<submitbutton closeForm="{false}" waitForRfs="{false}"/>
+		<actionbutton ><set value="{pgNum+1}" target="pgNum" /></actionbutton>
+	</combinedbutton>
+
+	<addbutton records="{SELECT ToStringN(newGuid()) guid, 0 version, null value}" table="t" text="Add new"></addbutton>
+	<submitbutton id="btnSave" text="Save" closeForm="{false}" waitForRfs="{false}"/>
+
+	<table id="tDel" recordset='{SELECT d.guid, d.version, d.value FROM data d WHERE 1=2}' record="r">
+		<header>
+			<row>
+				<cell><textview text="Guid"/></cell>
+				<cell><textview text="Value"/></cell>
+			</row>
+		</header>
+		<row>
+			<declarations>
+				<let id="letRecord" shape="record" value="{SELECT r.guid, r.version, r.value}" />
+			</declarations>
+			<cell>
+				<textview text="{r.guid}"/>
+			</cell>
+			<cell>
+				<textview id="tbValue" text="{r.value}"/>
+			</cell>
+		</row>
+	</table>
+	
+</form>

@@ -1,0 +1,99 @@
+server program nolocal for form nolocal
+using reftab data;
+{
+  trace form;
+  var mpId = map.New();
+  foreach (var row in form.t.rows) {
+    var record = row.letRecord;
+    var value = row.tbValue.text;
+    mpId[record.guid] = record;
+      var dta = db.data.Read({guid: record.guid}).SingleOrDefault();
+      if (dta == null) {
+        db.data.Insert({guid: record.guid, version: 1, value: value});
+      } else {
+        if (dta.value != value) {
+            db.data.Update({guid: record.guid}, {/*version: dta.version + 1, */value: value});
+        }
+      }
+  }
+  foreach (var dta in db.data.Read(map.New())) {
+      if (!mpId.ContainsKey(dta.guid)) {
+          db.data.Delete({guid: dta.guid});
+      }
+  }
+}
+
+/*
+
+{
+    btnSave:
+        {
+            closeForm: false, 
+            parentControl: <<ref: local>>, 
+            submitter: true, 
+            validatorGroup: "default"
+        }, 
+    info:
+        {
+            dtlSubmit: 2020.07.09. 18:20:17 (Dtl), 
+            dtuSubmit: 2020.07.09. 16:20:17 (Dtu), 
+            formn: "local", 
+            platform: "web", 
+            resultId: 387, 
+            user: {companyId: 142, id: 39, name: "u142"}
+        }, 
+    parentControl: <<null>>, 
+    submissionTitle: "local", 
+    submitButton: <<ref: local.btnSave>>, 
+    t:
+        {
+            parentControl: <<ref: local>>, 
+            rows:
+                [
+                    {
+                        letRecord:
+                            {
+                                guid: "69ce794235b7f1895fe21519800a241e", 
+                                value: <<null>>, 
+                                version: 0
+                            }, 
+                        parentControl: <<ref: local.t>>, 
+                        tbValue:
+                            {
+                                parentControl: <<ref: local.t.rows[0]>>, 
+                                text: "abc"
+                            }
+                    }, 
+                    {
+                        letRecord:
+                            {
+                                guid: "51b76e064216fd2c5fe2b9a9840ce099", 
+                                value: <<null>>, 
+                                version: 0
+
+                            }, 
+
+                        parentControl: <<ref: local.t>>, 
+
+                        tbValue:
+
+                            {
+
+                                parentControl: <<ref: local.t.rows[1]>>, 
+
+                                text: "123"
+
+                            }
+
+                    }
+
+                ]
+
+        }
+
+}
+
+
+
+
+*/

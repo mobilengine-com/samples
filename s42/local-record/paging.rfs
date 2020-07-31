@@ -1,0 +1,138 @@
+server program paging for form paging
+using reftab data;
+{
+  trace form;
+  foreach (var row in form.t.rows) {
+    var record = row.letRecord;
+    var value = row.tbValue.text;
+      var dta = db.data.Read({guid: record.guid}).SingleOrDefault();
+      if (dta == null) {
+        db.data.Insert({guid: record.guid, version: 1, value: value});
+      } else {
+        if (dta.value != value) {
+            db.data.Update({guid: record.guid}, {/*version: dta.version + 1, */value: value});
+        }
+      }
+  }
+  foreach (var row in form.tDel.rows) {
+    var record = row.letRecord;
+    var dta = db.data.Delete({guid: record.guid});
+  }
+
+}
+
+/*
+tDel:
+
+        {
+
+            parentControl: <<ref: local>>, 
+
+            rows:
+
+                [
+
+                    {
+
+                        letRecord:
+
+                            {
+
+                                guid: "7ca8522ad6ce81c5affd7b22b07b6e5b", 
+
+                                value: "kóla", 
+
+                                version: 1
+
+                            }, 
+
+                        parentControl: <<ref: local.tDel>>, 
+
+                        tbValue:
+
+                            {
+
+                                parentControl: <<ref: local.tDel.rows[0]>>, 
+
+                                text: "kóla"
+
+                            }
+
+                    }
+
+                ]
+
+        }
+
+{
+    btnSave:
+        {
+            closeForm: false, 
+            parentControl: <<ref: local>>, 
+            submitter: true, 
+            validatorGroup: "default"
+        }, 
+    info:
+        {
+            dtlSubmit: 2020.07.09. 18:20:17 (Dtl), 
+            dtuSubmit: 2020.07.09. 16:20:17 (Dtu), 
+            formn: "local", 
+            platform: "web", 
+            resultId: 387, 
+            user: {companyId: 142, id: 39, name: "u142"}
+        }, 
+    parentControl: <<null>>, 
+    submissionTitle: "local", 
+    submitButton: <<ref: local.btnSave>>, 
+    t:
+        {
+            parentControl: <<ref: local>>, 
+            rows:
+                [
+                    {
+                        letRecord:
+                            {
+                                guid: "69ce794235b7f1895fe21519800a241e", 
+                                value: <<null>>, 
+                                version: 0
+                            }, 
+                        parentControl: <<ref: local.t>>, 
+                        tbValue:
+                            {
+                                parentControl: <<ref: local.t.rows[0]>>, 
+                                text: "abc"
+                            }
+                    }, 
+                    {
+                        letRecord:
+                            {
+                                guid: "51b76e064216fd2c5fe2b9a9840ce099", 
+                                value: <<null>>, 
+                                version: 0
+
+                            }, 
+
+                        parentControl: <<ref: local.t>>, 
+
+                        tbValue:
+
+                            {
+
+                                parentControl: <<ref: local.t.rows[1]>>, 
+
+                                text: "123"
+
+                            }
+
+                    }
+
+                ]
+
+        }
+
+}
+
+
+
+
+*/

@@ -1,0 +1,39 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='nolocal' menuName='nolocal' platforms='web'>
+	<table id="t" recordset='{loadNewerFromServer:SELECT d.guid, d.version, d.value FROM data d}' record="r">
+		<header>
+			<row>
+				<cell><textview text="Row"/></cell>
+				<cell><textview text="Guid"/></cell>
+				<cell><textview text="Version"/></cell>
+				<cell><textview text="Value"/></cell>
+			</row>
+		</header>
+		<row>
+			<declarations>
+				<let id="letRecord" shape="record" value="{SELECT r.guid, r.version, r.value}" />
+				<let id="letRecordLocal" shape="record" value="{SELECT r.guid, r.version, tbValue.text}" />
+			</declarations>
+			<cell>
+				<textview text="{ToString(rIndex)}"/>
+			</cell>
+			<cell>
+				<textview text="{r.guid}"/>
+			</cell>
+			<cell>
+				<textview text="{ToString(r.version)}"/>
+			</cell>
+			<cell>
+				<textbox id="tbValue" text="{r.value}"/>
+			</cell>
+			<cell>
+				<textview text="{r.value}"/>
+			</cell>
+			<cell>
+				<removebutton text="Remove"/>
+			</cell>
+		</row>
+	</table>
+	<addbutton records="{SELECT ToStringN(newGuid()) guid, 0 version, null value}" table="t" text="Add new"></addbutton>
+	<submitbutton id="btnSave" text="Save" closeForm="{false}" waitForRfs="{false}"/>
+</form>
