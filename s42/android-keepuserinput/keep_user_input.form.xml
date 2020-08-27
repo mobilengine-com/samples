@@ -1,0 +1,23 @@
+<Form name="keep_user_input" description="keep_user_input" typed="true" autoform="true" dateformat='(dtf yyyy"."MM"."dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".", maxFraction: 2}' sillyNulls="false" inlineReference="true">
+  <Control type="panel" name="Root">
+    <Control type="textbox" label="Source" name="t1" size="large" data_type="string" text="alma" />
+    <Control type="textbox" label="Destination (overwrite user input, the default)" name="t2" size="large" data_type="string" text="{SELECT @[../t1]}" />
+    <Control type="textbox" label="Destination (keep user input)" name="tk2" size="large" data_type="string" text="{keepUserInput|SELECT @[../t1]}" />
+
+    <Control type="checkbox" label="Source" name="c1" size="large" data_type="string" checked="true" />
+    <Control type="checkbox" label="Destination (overwrite user input, the default)" name="c2" size="large" data_type="string" checked="{SELECT @[../c1]}" />
+    <Control type="checkbox" label="Destination (keep user input)" name="ck2" size="large" data_type="string" checked="{keepUserInput| SELECT @[../c1]}" />
+
+    <Control type="combobox" label="Source" name="cb1" ptype="dotted" 
+      allowUnselect="true" choice="button" size="small" data_type="int,string" 
+      choices="{SELECT 1 ky, 'L' txt UNION ALL SELECT 2 ky, 'C' txt UNION ALL SELECT 3 ky, 'E' txt}" />
+    <Control type="combobox" label="Destination (overwrite user input, the default)" name="cb2" ptype="dotted" 
+      allowUnselect="true" choice="button" size="small" data_type="int,string" 
+      choices="{SELECT 1 ky, 'L' txt UNION ALL SELECT 2 ky, 'C' txt UNION ALL SELECT 3 ky, 'E' txt}"
+      selectedKey="{SELECT @[../cb1.key]}" />
+    <Control type="combobox" label="Destination (keep user input)" name="cb2k" ptype="dotted" 
+      allowUnselect="true" choice="button" size="small" data_type="int,string" 
+      choices="{SELECT 1 ky, 'L' txt UNION ALL SELECT 2 ky, 'C' txt UNION ALL SELECT 3 ky, 'E' txt}"
+      selectedKey="{keepUserInput| SELECT @[../cb1.key]}" />
+  </Control>
+</Form>
