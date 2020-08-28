@@ -1,0 +1,20 @@
+styles {
+    style popup500x500 {
+        calendar {
+            eventBubble = popup500x500
+        }
+        map {
+            pointBubble = popup500x500
+        }
+        timeline {
+            eventBubble = popup500x500
+        }
+        popup {
+            content = popup500x500
+        }
+        frame {
+            frameWidth = 500px
+            frameHeight = 500px
+        }
+    }
+}

@@ -1,0 +1,11 @@
+﻿<form id='popup_openmode' menuName="popup_openmode" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<popup label="openMode=fullscreen (the default)" title="Open">
+		<backbutton />
+	</popup>
+	<popup label="OpenMode=dialog" title="Open" openMode="dialog" style="{[styles.popup500x500]}">
+		<backbutton />
+	</popup>
+	<popup label="OpenMode=bubble" title="Open" openMode="bubble" style="{[styles.popup500x500]}">
+		<backbutton />
+	</popup>
+</form>
