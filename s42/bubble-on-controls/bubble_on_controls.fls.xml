@@ -1,0 +1,58 @@
+﻿<form id='bubble_on_controls' menuName="bubble_on_controls" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<popup title="Map">
+		<map style="{[styles.popup500x500]}" points='{TABLE id, lineId, lat, lng, icon, selectedIcon (
+			"(-50,-50)", null, -50, -50, icons.marker, icons.marker_selected; 
+			"(-40,-40)", null, -40, -40, icons.marker, icons.marker_selected;
+			"(-30,-30)", null, -30, -30, icons.marker, icons.marker_selected;
+			"(-20,-20)", null, -20, -20, icons.marker, icons.marker_selected;
+			"(-10,-10)", null, -10, -10, icons.marker, icons.marker_selected;
+			"(0,0)", null, 0, 0, icons.marker, icons.marker_selected; 
+			"(10,10)", null, 10, 10, icons.marker, icons.marker_selected;
+			"(20,20)", null, 20, 20, icons.marker, icons.marker_selected;
+			"(30,30)", null, 30, 30, icons.marker, icons.marker_selected;
+			"(40,40)", null, 40, 40, icons.marker, icons.marker_selected
+		)}'>
+			<pointBubble>
+				<textview label="The selected point is:" text="{selectedPoint}" />
+				<backbutton text="Close" />
+			</pointBubble>
+		</map>
+	</popup>
+
+	<popup title="Calendar">
+		<calendar 
+			events='{TABLE id, categoryId, dateFrom, dateTo, label (
+				"event1", "cat1", (dtl 2020-07-20T12:00:00), (dtl 2020-07-20T14:00:00), "event1";
+				"event2", "cat1", (dtl 2020-07-21T12:00:00), (dtl 2020-07-21T14:00:00), "event2"
+			)}'
+			allowNew="{true}"
+			categories='{TABLE id, backgroundColor, borderColor, textColor, selectedBackgroundColor, selectedBorderColor, selectedTextColor ("cat1", "FFFFFF", "000000", "000000", "AFFFAF", "000000", "000000")}'
+			showDate='{(dtl 2020-07-20T12:00:00)}'
+			weekends="false"
+			startHour="8"
+			endHour="18"
+			style="{[styles.popup500x500]}">
+			<eventBubble>
+				<textview text="{selectedEvent.id}" />
+				<backbutton text="Close" />
+			</eventBubble>
+		</calendar>
+	</popup>
+
+	<popup title="Timeline">
+		<timeline 
+			showDate="{(dtl 2020-08-27T00:00:00)}"
+			events='{TABLE id, categoryId, dateFrom, dateTo, label, resourceId (
+				"e1", "c1", (dtl 2020-08-27T10:00:00), (dtl 2020-08-27T12:00:00), "event1", "r1";
+				"e2", "c2", (dtl 2020-08-27T11:00:00), (dtl 2020-08-27T15:00:00), "event2", "r2";
+				"e3", "c3", (dtl 2020-08-27T08:00:00), (dtl 2020-08-27T20:00:00), "event3", "r3";
+			)}'
+			resources='{TABLE id, label ("r1", "resource1"; "r2", "resource2"; "r3", "resource3")}'
+			style="{[styles.popup500x500]}">
+			<eventBubble>
+				<textview label="The selected event id is:" text="{selectedEvent.id}" />
+				<backbutton text="Close" />
+			</eventBubble>
+		</timeline>
+	</popup>
+</form>
