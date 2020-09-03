@@ -1,0 +1,12 @@
+<form id="ios055_SimpleSignatureForm" 
+      menuName="ios055_SimpleSignatureForm" 
+      title='ios055_SimpleSignatureForm' 
+      platforms="ios" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	  
+	<signature id='signature' label="label of signature" hint="Hint def"/>
+	<signature id='signature1' label="label of signature" hint="Hint 1" strokeWidth="{1}"/>
+	<signature id='signature5' label="label of signature" hint="Hint 5" strokeWidth="{5}"/>
+	<signature id='signature10' label="label of signature" hint="Hint 10" strokeWidth="{10}"/>
+	<signature id='signature20' label="label of signature" hint="Hint 20" strokeWidth="{20}"/>
+</form>
