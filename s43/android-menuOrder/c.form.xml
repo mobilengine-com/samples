@@ -1,0 +1,4 @@
+<Form name='c' menuOrder="0">
+	<Control name='root' type='panel'>
+	</Control>
+</Form>

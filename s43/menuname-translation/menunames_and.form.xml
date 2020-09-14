@@ -1,0 +1,8 @@
+<Form name='menuNames_and' description="default menu name">
+	<MenuNames>
+		<MenuName language="en" value="My form" />
+		<MenuName language="hu" value="A formom" />
+	</MenuNames>
+	<Control name='root' type='panel'>
+	</Control>
+</Form>

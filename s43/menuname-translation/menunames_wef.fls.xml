@@ -1,0 +1,19 @@
+﻿<form id='menunames_web' menuName="default menu name" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="not_used" shape="scalar" value='{42}' />
+	</declarations>
+	<menuNames>
+		<menuName language="en" value="My form" />
+		<menuName language="hu" value="A formom" />
+	</menuNames>
+	<header>
+		<discardbutton text="Discard" />
+		<submitbutton text="Submit" />
+	</header>
+
+	<popup title="The first popup">
+		<popup title="The second popup">
+			<popup title="The third popup" />
+		</popup>
+	</popup>
+</form>
