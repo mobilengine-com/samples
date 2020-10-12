@@ -1,8 +1,8 @@
 <form id="speedtest" 
-      menuName="speedtest" 
-      title='speedtest' 
-      platforms="web ios" 
-      xmlns="http://schemas.mobilengine.com/fls/v2">
+        menuName="speedtest" 
+        title='speedtest' 
+        platforms="web ios" 
+        xmlns="http://schemas.mobilengine.com/fls/v2">
     
     <declarations>
         <let id="clientData" shape="table" value="{SELECT d.text 'text' FROM data d}" />
@@ -12,6 +12,6 @@
 
     <textbox id="prefix" label="Change this to re-sort all rows (sort is done by (this text || reftab value): " text="" />
 
-    <textview label="Top row:" text="{SELECT d.text FROM clientData d ORDER BY (prefix.text || text) LIMIT 1}" />
+    <textview label="Top row:" text="{clientOrderBy: SELECT d.text FROM clientData d ORDER BY (prefix.text || text) LIMIT 1}" />
     <textview label="Total Rows: " text="{SELECT TOSTRING(COUNT(*)) FROM clientData d}" />
 </form>
