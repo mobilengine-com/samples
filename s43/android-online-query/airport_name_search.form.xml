@@ -1,0 +1,26 @@
+﻿<Form name="airport_name_search" typed="true" autoform="false" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)" numberformat="{decimalSeparator:&quot;.&quot;}" inlineReference="true" sillyNulls="false">
+  <Control type="panel" name="root">
+    <Control type="label" text="Search airport by name (try ferihegy, kennedy, la guardia, chales de gaulle, balaton, etc.)" />
+
+    <Control type="textbox" name="filter" size="large" hint="Name" text="" />
+
+    <!--
+    <Control type="panel" name="generatedPanel" layout="table" navigation="inline" 
+        table_width="2swt" data_type="string,string,float,float,int,string" 
+        generator="SELECT city, country, lat_decimal, lon_decimal, id, name FROM Reference_airports WHERE name LIKE '%' || @[../filter] || '%' ORDER BY id LIMIT 1">
+          <Control type="label" name="igp" label="Igp" width="0.2swt" text="{SELECT CAST(@[PARENT.igp] AS TEXT)}" />
+          <Control type="label" name="id" label="Id" width="0.2swt" text="{SELECT CAST(@[PARENT.col4] AS TEXT)}" />
+          <Control type="label" name="name" label="Name" width="0.4swt" text="{SELECT @[PARENT.col5]}" />
+          <Control type="label" name="city" label="City" width="0.4swt" text="{SELECT @[PARENT.col0]}" />
+          <Control type="label" name="country" label="Country" width="0.4swt" text="{SELECT @[PARENT.col1]}" />
+          <Control type="label" name="lat" label="Lat" width="0.2swt" text="{SELECT CAST(@[PARENT.col2] AS TEXT)}" />
+          <Control type="label" name="lng" label="Lng" width="0.2swt" text="{SELECT CAST(@[PARENT.col3] AS TEXT)}" />
+    </Control>
+    -->
+
+    <Control type="label" name="onlineLabel" data_type="string" text="{online|SELECT 'Found: ' || name FROM airports WHERE name LIKE '%' || @[../filter] || '%' ORDER BY id LIMIT 1}" />
+    <Control type="label" name="onlineLabelDep" data_type="string" text="{SELECT 'Above in lowercase (databinding online query value): ' || LOWER(COALESCE(@[../onlineLabel], ''))}" />
+    <Control type="label" data_type="string" text="{SELECT 'Last status: ' || COALESCE(@lastOnlineQueryStatus, '-')}" />
+    <Control type="label" data_type="string" text="{SELECT 'Last message: ' || COALESCE(@lastOnlineQueryMessage, '-')}" />
+  </Control>
+</Form>
