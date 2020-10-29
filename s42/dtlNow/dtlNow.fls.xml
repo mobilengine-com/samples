@@ -1,0 +1,11 @@
+<form id='dtlNow' menuName='dtlNow sample' title='dtlNow sample' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letv" shape="scalar" value="{1}"/>
+		<let id="letDtlNow" shape="record" value="{SELECT letv v, dtlNow() now}"/>
+	</declarations>	<textview label='client now' text='{toString(letDtlNow.v)||" "|| formatDtl(letDtlNow.now, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}'/>
+	<actionbutton text="now">
+		<set value="{letv+1}" target="letv" />
+	</actionbutton>
+	<textview label='server now' text='{formatDtl(dtlNow(), (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}'/>
+	<textview label='form open' text='{SELECT formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)) FROM floorplan f LIMIT 1}'/>
+</form>

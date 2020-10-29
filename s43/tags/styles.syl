@@ -1,0 +1,26 @@
+styles {
+	style w800 {
+		all {
+			control {
+				width = 800px
+			}
+		}
+	}
+	style YB {
+		tags {
+			tag {
+				fontColor = FFFF00
+				backgroundColor = 0000FF
+			}
+		}
+	} 
+	style MG {
+		tags {
+			tag {
+				fontColor = FF00FF
+				backgroundColor = 00FF00
+				bold = true
+			}
+		}
+	}
+}
