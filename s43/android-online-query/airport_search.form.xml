@@ -1,7 +1,8 @@
-﻿<Form name="airport_search" typed="true" autoform="false" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)" numberformat="{decimalSeparator:&quot;.&quot;}" inlineReference="true" sillyNulls="false">
+<Form name="airport_search" typed="true" autoform="false" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)" numberformat="{decimalSeparator:&quot;.&quot;}" inlineReference="true" sillyNulls="false">
   <Control type="panel" name="root">
     <Control type="label" text="Search airport by name (try ferihegy, kennedy, la guardia, chales de gaulle, balaton, etc.)" />
     <Control type="textbox" name="filter" size="large" hint="Name" text="" />
+    <Control type="label" label="Status:" text="{SELECT CASE WHEN @onlineQueryRunning THEN 'Query running...' ELSE 'Query completed' END}" />
     <Control type="panel" name="generatedPanel" layout="table" navigation="inline" 
         table_width="1.3swt" data_type="string,string,float,float,int,string" 
         recordset="{online|SELECT city, country, lat_decimal, lon_decimal, id, name FROM airports WHERE name LIKE '%' || @[../filter] || '%' ORDER BY id LIMIT 10}">
