@@ -1,0 +1,41 @@
+<form id='tagsSample' menuName='tags sample' title='tags sample' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letv" shape="scalar" value="{1}"/>
+		<let id="letDtlNow" shape="record" value="{SELECT letv v, dtlNow() now}"/>
+	</declarations>	<textview label='client now' text='{toString(letDtlNow.v)||" "|| formatDtl(letDtlNow.now, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}'/>
+	<actionbutton text="now">
+		<set value="{letv+1}" target="letv" />
+	</actionbutton>
+	<textview label='server now' text='{formatDtl(dtlNow(), (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}'/>
+	<textview label='form open' text='{SELECT formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)) FROM floorplan f LIMIT 1}'/>
+
+	<textbox id='tbA' hint="Gyümölcs" text='Alma?'/>	
+	<chapter title="Preselected">
+		<table id='tFrom' record="r" recordset='{["korte"]}'>
+			<row><cell><textbox id='tb' text='{r.v}'/></cell><cell><removebutton text=""></removebutton></cell></row>
+		</table>
+		<addbutton records='{""}' table="tFrom" text=""></addbutton>
+	</chapter>
+	<chapter title="Available">
+		<table id='tFromAvail' record="r" recordset='{["alma", "korte", "citrom", "dinnye", "narancs", "xxx"]}'>
+			<row><cell><textbox id='tb' text='{r.v}'/></cell><cell><removebutton text=""></removebutton></cell></row>
+		</table>
+		<addbutton records='{""}' table="tFromAvail" text=""></addbutton>
+	</chapter>
+	<checkbox id="cbRO" text="Readonly"/>
+	<checkbox id="cbAllowNew" text="Allow new"/>
+	<dropdown id='sbStyle'
+		keyMap="{style}" textMap="{name}" 
+		choices='{TABLE name, style ("default", styles.Default; "Y/B", styles.YB; "M/G", styles.MG)}'/>
+	<tags id="tgs" predictionMode="prefix" style='{[styles.w800, sbStyle.selectedKey]}'
+		availableTags='{SELECT r.tb.text v FROM tFromAvail.rows r WHERE coalesce(r.tb.text, "") &lt;> ""}' 
+		selectedTags='{SELECT r.tb.text v FROM tFrom.rows r WHERE coalesce(r.tb.text, "") &lt;> ""}' hint="tags pre"
+		readonly='{cbRO.checked}' allowNewTag='{cbAllowNew.checked}'/>
+	<tags id="tgsSub" predictionMode="substring" availableTags='{["alma", "korte", "citrom", "dinnye", "narancs", "xxx"]}' 
+		selectedTags='{SELECT r.tb.text v FROM tFrom.rows r WHERE coalesce(r.tb.text, "") &lt;> ""}' hint="tags sub"/>
+	<chapter title="Selected">
+		<table id='tTo' record="r" recordset='{SELECT st.v FROM tgs.selectedTags st}'>
+			<row><cell><textview text='{r.v}'/></cell></row>
+		</table>
+	</chapter>
+</form>

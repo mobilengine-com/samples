@@ -1,0 +1,27 @@
+server program tagsSample for form 'tagsSample'
+{
+    trace form;
+    foreach ( var tag in form.tgs.selectedTags) { 
+        trace tag.v;
+    }
+}
+
+/*
+{
+
+form: {
+    ...
+    tgs:
+        {
+            parentControl: <<ref: tagsSample>>, 
+            selectedTags: [{v: "korte"}, {v: "alma"}, {v: "narancs"}]
+        }, 
+    ...
+}
+
+foreach:
+"korte"
+"alma"
+"narancs"
+
+ */
