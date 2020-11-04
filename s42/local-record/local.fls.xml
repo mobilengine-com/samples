@@ -5,7 +5,7 @@
 		<let id="tblDataDel" shape="table" value="{SELECT d.guid, d.version, d.value FROM tblData d WHERE d.guid NOT IN (SELECT r.letRecord.guid FROM t.rows r)}" />
 	</declarations>
 	<table id="t" recordset='{SELECT d.guid, d.version, d.value FROM tblData d}' record="r"
-		recordLocal="{SELECT r.guid, r.version, tbValue.text value}">
+		recordLocal="{SELECT r.guid, r.version, tbValue.text value}" keepLocalIfDisappear="true">
 		<header>
 			<row>
 				<cell>
@@ -47,7 +47,9 @@
 							<textview label="local value" text="{recordLocal.value}"/>
 							<textview label="incoming value" text="(deleted)"/>
 							<removebutton text="Accept incoming delete"/>
-							<actionbutton text="Accept local"><set value="{recordLocal.value}" target="tbValue.text" /></actionbutton>
+							<actionbutton text="Accept local">
+								<set value="{SELECT recordLocal.guid, recordLocal.version, recordLocal.value}" target="rAccepted" />
+							</actionbutton>
 							<backbutton text="back"/>
 						</popup>
 					</if>
