@@ -2,7 +2,7 @@
 	id='email address' menuName='email address' platforms='web ios'>
 		<textbox label="enter email address" hint='{"\\a\\b"}'>
 			<validation>
-				<validator cond='{regexp("^\\S+@\\S+\.\\S+$", text)}' message="Invalid email address"/>
+				<validator cond='{regexp("^\\S+@\\S+\\.\\S+$", text)}' message="Invalid email address"/>
 			</validation>
 		</textbox>
 </form>
