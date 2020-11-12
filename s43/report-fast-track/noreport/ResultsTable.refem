@@ -1,0 +1,6 @@
+<Reftab Name="RtabResults" Push="true" Notify="true" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="ReportLogId" Type="Integer" PrimaryKey="true" NotNull="true" />
+		<Column Name="ResultId" Type="Integer" PrimaryKey="true" NotNull="true" Indexed="true" />
+	</Columns>
+</Reftab>
