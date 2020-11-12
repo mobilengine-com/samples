@@ -30,33 +30,53 @@
   </chapter>
 
   <chapter title="Move row to another table">
+    <declarations>
+      <let id="cities1" shape="table" value='{TABLE city ("Budapest";"Delhi";"São Paulo";"Pécs")}' />
+      <let id="cities2" shape="table" value='{TABLE city ("Tokyo";"Debrecen";"Shanghai";"Szeged";"Miskolc";"Mexico City")}' />
+    </declarations>
     <textview text="Use the 'Move' buttons to fix the tables" />
-    <table id="tableA" record="r" recordset='{TABLE city ("Tokyo";"Debrecen";"Shanghai";"Szeged";"Miskolc";"Mexico City")}' label="Foreign cities">
+    <table id="table1" record="r" recordset='{SELECT c.city FROM cities1 c}' label="Foreign cities">
       <row>
         <cell>
           <textbox text="{r.city}" />
         </cell>
         <cell>
           <combinedbutton text="Move ▼">
-            <addbutton table="tableB" records="{SELECT r.city city}" />
+            <addbutton table="table2" records="{SELECT r.city city}" />
             <removebutton />
           </combinedbutton>
         </cell>
       </row>
     </table>
-    <table id="tableB" record="r" recordset='{TABLE city ("Budapest";"Delhi";"São Paulo";"Pécs")}' label="Hungarian cities">
+    <table id="table2" record="r" recordset='{SELECT c.city FROM cities2 c}' label="Hungarian cities">
       <row>
         <cell>
           <textbox text="{r.city}" />
         </cell>
         <cell>
           <combinedbutton text="Move ▲">
-            <addbutton table="tableA" records="{SELECT r.city city}" />
+            <addbutton table="table1" records="{SELECT r.city city}" />
             <removebutton />
           </combinedbutton>
         </cell>
       </row>
     </table>
+
+    <table id="table1Copy" record="r" recordset='{SELECT c.city FROM cities1 c}' label="Foreign cities">
+      <row>
+        <cell>
+          <textbox text="{r.city}" />
+        </cell>
+      </row>
+    </table>
+
+    <combinedbutton text="Submit &amp; reset tables">
+      <submitbutton closeForm="{false}" />
+      <actionbutton>
+        <set target="table1.recordset" value="{SELECT c.city FROM cities1 c}" />
+        <set target="table2.recordset" value="{SELECT c.city FROM cities2 c}" />
+      </actionbutton>
+    </combinedbutton>
   </chapter>
 
   <chapter title="Submit a form twice">
