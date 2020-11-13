@@ -1,15 +1,21 @@
-<form id="validationerrormessage" menuName="validationerrormessage" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+<form id='validationerrormessage' menuName='validationerrormessage' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
   <header>
-    <discardbutton text="Discard" />
+    <discardbutton text='Discard' />
   </header>
 
-  <textview text="Submit the form with the button in the header to see the message." />
-  <textbox id="tbVal" label="Type 'OK' to make valid:">
+  <textbox id='tbVal' label='Type "OK" to make valid:'>
     <validation>
-      <validator cond='{tbVal.text = "OK"}' message="Must be 'OK'" />
+      <validator cond='{tbVal.text = "OK"}' message='Must be "OK"' />
     </validation>
   </textbox>
-  <submitbutton validationErrorMessage="Hey! The form is invalid!" text="Submit with custom message" />
-  <submitbutton validationErrorMessage="" text="Submit with no message (empty string)" />
-  <submitbutton validationErrorMessage="{null}" text="Submit with no message (null)" />
+
+  <submitbutton  text='Submit (use the default error message)' />
+  <submitbutton validationErrorMessage='Hey! The form is invalid!' text='Submit (custom error message)' />
+  <submitbutton validationErrorMessage='' text='Submit (error message is empty)' />
+  <submitbutton validationErrorMessage='{null}' text='Submit (error message is null)' />
+
+  <textview />
+
+  <textbox id='verrMsg' label='Set validation error message: ' />
+  <submitbutton validationErrorMessage='{verrMsg.text}' text='Submit, use the above error message' />
 </form>

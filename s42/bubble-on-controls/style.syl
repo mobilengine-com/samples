@@ -5,6 +5,9 @@ styles {
         }
         map {
             pointBubble = popup500x500
+            control {
+                height = 600px
+            }
         }
         timeline {
             eventBubble = popup500x500

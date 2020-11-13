@@ -1,11 +1,48 @@
 ﻿<form id='popup_openmode' menuName="popup_openmode" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
 	<popup label="openMode=fullscreen (the default)" title="Open">
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
 		<backbutton />
 	</popup>
-	<popup label="OpenMode=dialog" title="Open" openMode="dialog" style="{[styles.popup500x500]}">
+	<popup label="OpenMode=dialog" title="Open" openMode="dialog" style="{styles.myPopup}">
+		<chapter title="Popup contents" />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
 		<backbutton />
 	</popup>
-	<popup label="OpenMode=bubble" title="Open" openMode="bubble" style="{[styles.popup500x500]}">
+	<popup label="OpenMode=bubble" title="Open" openMode="bubble" style="{styles.myPopup}">
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
+		<textview text="Maiores in ut ipsa molestiae. Laborum voluptates est. Qui facere voluptas quod. Ex error earum praesentium itaque quis. Mollitia et non sunt temporibus.
+			Aut dolores enim enim esse earum ea quidem similique enim. Veniam amet fuga tenetur id eligendi voluptatem iste atque sint. Nihil sit voluptatem quis et et.
+			Tempore quia sit esse esse labore nam nobis velit eum. Sequi dignissimos aut veritatis nihil. Sunt sit corporis beatae deserunt rerum. Exercitationem eos totam voluptas." />
 		<backbutton />
 	</popup>
 </form>

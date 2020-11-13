@@ -46,19 +46,24 @@
 		<set target="table1.recordset" value='{SELECT "apples" v WHERE false}' />
 	</actionbutton>
 
-	<table id="table1" record="r" recordset='{SELECT "apples" v WHERE true}' >
+	<table id="table1" record="r" recordset='{SELECT "apples" v}' >
 		<row>
 			<cell>
 				<textview text='{r.v}' />
 			</cell>
+			<cell>
+				<removebutton text="X" />
+			</cell>
 		</row>
 	</table>
 
-	<actionbutton text="Copy to table below">
+	<addbutton table="table1" records='{SELECT "zebra" v}' text="Add zebra" />
+
+	<actionbutton text="Copy recordset to table below">
 		<set target="table2.recordset" value='{SELECT t.v v FROM table1.recordset t}' />
 	</actionbutton>
 
-	<table id="table2" record="r" recordset='{SELECT "apples" v WHERE true}'>
+	<table id="table2" record="r" recordset='{SELECT "apples" v}'>
 		<row>
 			<cell>
 				<textview text='{r.v}' />

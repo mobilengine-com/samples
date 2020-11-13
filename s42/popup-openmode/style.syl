@@ -1,20 +1,20 @@
 styles {
-    style popup500x500 {
+    style myPopup {
         calendar {
-            eventBubble = popup500x500
+            eventBubble = myPopup
         }
         map {
-            pointBubble = popup500x500
+            pointBubble = myPopup
         }
         timeline {
-            eventBubble = popup500x500
+            eventBubble = myPopup
         }
         popup {
-            content = popup500x500
+            content = myPopup
         }
         frame {
-            frameWidth = 500px
-            frameHeight = 500px
+            frameWidth = 300px
+            frameHeight = 200px
         }
     }
 }
