@@ -31,8 +31,8 @@
 
   <chapter title="Move row to another table">
     <declarations>
-      <let id="cities1" shape="table" value='{TABLE city ("Budapest";"Delhi";"São Paulo";"Pécs")}' />
-      <let id="cities2" shape="table" value='{TABLE city ("Tokyo";"Debrecen";"Shanghai";"Szeged";"Miskolc";"Mexico City")}' />
+      <let id="cities1" shape="table" value='{TABLE city ("Budapest";"São Paulo";"Pécs")}' />
+      <let id="cities2" shape="table" value='{TABLE city ("Tokyo";"Debrecen";"Miskolc";"Mexico City")}' />
     </declarations>
     <textview text="Use the 'Move' buttons to fix the tables" />
     <table id="table1" record="r" recordset='{SELECT c.city FROM cities1 c}' label="Foreign cities">
@@ -61,15 +61,6 @@
         </cell>
       </row>
     </table>
-
-    <table id="table1Copy" record="r" recordset='{SELECT c.city FROM cities1 c}' label="Foreign cities">
-      <row>
-        <cell>
-          <textbox text="{r.city}" />
-        </cell>
-      </row>
-    </table>
-
     <combinedbutton text="Submit &amp; reset tables">
       <submitbutton closeForm="{false}" />
       <actionbutton>
