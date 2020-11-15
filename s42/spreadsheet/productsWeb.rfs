@@ -1,6 +1,6 @@
 server program productsWeb for form productsWeb
 using reftab product;
-using dacs ProductVignetteRequest as req;
+//using dacs ProductVignetteRequest as req;
 {
   trace form;
   if (form.submitButton == form.btnGen) {
@@ -26,11 +26,11 @@ using dacs ProductVignetteRequest as req;
           filerefVignette: null
         };
         db.product.Insert(product);
-
+/*
         var reqDacs = messages.req.New();
 
         reqDacs.Product.guid = product.guid;
-        reqDacs.Send();
+        reqDacs.Send();*/
       }
     }
   }

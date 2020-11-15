@@ -61,11 +61,7 @@
 					</if>
 				</cell>
 				<cell>
-					<block>
-						<if cond='{prd.filerefVignette IS NOT NULL}'>
-							<checkbox id="chbSel" checked='{false}'/>
-						</if>
-					</block>
+					<checkbox id="chbSel" checked='{false}'/>
 				</cell>
 				<cell>
 					<block>
