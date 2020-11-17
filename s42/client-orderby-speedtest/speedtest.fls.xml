@@ -10,8 +10,8 @@
 
     <header />
 
-    <textbox id="prefix" label="Change this to re-sort all rows (sort is done by (this text || reftab value): " text="" />
+    <numberbox id="prefix" label="Change this to re-sort all rows (sort is done by substring(text, n)): " number="{1}" />
 
-    <textview label="Top row:" text="{clientOrderBy: SELECT d.text FROM clientData d ORDER BY (prefix.text || text) LIMIT 1}" />
+    <textview label="Top row:" text="{clientOrderBy: SELECT d.text FROM clientData d ORDER BY SUBSTR(text, prefix.number) LIMIT 1}" />
     <textview label="Total Rows: " text="{SELECT TOSTRING(COUNT(*)) FROM clientData d}" />
 </form>
