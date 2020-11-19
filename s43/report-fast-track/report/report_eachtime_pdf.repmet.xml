@@ -14,8 +14,8 @@
 		<Attachment>report</Attachment>
 		<Subject>Your report</Subject>
 	</Email>
-	<Filter>		
-		<Form>reports</Form>
+	<Filter>
+		<Form>report_form</Form>
 	</Filter>
 	<LogTable>RtabLog</LogTable>
 	<ResultsTable>RtabResults</ResultsTable>

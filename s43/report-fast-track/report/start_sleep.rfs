@@ -1,0 +1,7 @@
+server program start_sleep for form filler
+using rfs sleep;
+{
+	for (var i=0; i < 10; i=i+1) {
+		rfs.sleep.New().Run();
+	}
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="filler" menuName="Filler" platforms="web ios">
+	<header />
+
+	<textview text="You can start multiple rfs here." />
+	<textview text="While they are running, you can start reports on the other form." />
+	<textview text="Depending on the fast track value, the started reports will complete inbetween rfs runs, or after all rfs runs have finished." />
+
+	<submitbutton text="Start 10 rfs, each running for 5 seconds" />
+</form>

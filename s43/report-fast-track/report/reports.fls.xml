@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://schemas.mobilengine.com/fls/v2" id="reports" menuName="Reports" platforms="web ios">
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="report_form" menuName="Reports" platforms="web ios">
 	<header />
 
 	<chapter title="Generate" />
