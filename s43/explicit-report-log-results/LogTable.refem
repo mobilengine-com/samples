@@ -1,0 +1,10 @@
+<Reftab Name="RtabLog" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="Id" Type="Integer" PrimaryKey="true" NotNull="true" />
+		<Column Name="ReportviewId" Type="Text" NotNull="true" Indexed="true" />
+		<Column Name="DtlT0" Type="Date" NotNull="true" />
+		<Column Name="DtlArchive" Type="Date" NotNull="true" />
+		<Column Name="ReportName" Type="Text" NotNull="true" />
+		<Column Name="AttachmentName" Type="Text" NotNull="true" />
+	</Columns>
+</Reftab>
