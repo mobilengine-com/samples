@@ -1,4 +1,4 @@
-server program on_report_form for form report_form
+server program rfs_priority for schedule * * * * * first run at 2100-01-01 00:00
 using rfs rfs_started_from_rfs;
 using report report_eachtime_pdf;
 {
