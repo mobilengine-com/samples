@@ -1,0 +1,18 @@
+﻿<form id='hidden_header' menuName="hidden_header" showHeader="false" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<header>
+		<discardbutton text="Discard" />
+		<submitbutton text="Submit" />
+	</header>
+
+	<popup title="The first popup">
+		<popup title="The second popup">
+			<popup title="The third popup">
+				<submitbutton text="Submit" />
+				<discardbutton text="Discard" />
+				<backbutton text="Back" />
+			</popup>
+			<backbutton text="Back" />
+		</popup>
+		<backbutton text="Back" />
+	</popup>
+</form>
