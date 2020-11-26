@@ -1,0 +1,7 @@
+<Form name='synctime_typed' typed="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)" numberformat="{decimalSeparator:&quot;.&quot;}" inlineReference="true" sillyNulls="false">
+	<Control name='root' type='panel'>
+		<Control type="label" label="Form Opened:" text="{=@dtlNow}" />
+		<Control type="label" label="Sync:" text="{=@dtlSync}" />
+		<Control type="label" label="SyncApplied:" text="{=@dtlSyncApplied}" />
+	</Control>
+</Form>

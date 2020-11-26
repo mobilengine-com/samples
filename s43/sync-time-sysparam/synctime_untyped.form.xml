@@ -1,0 +1,7 @@
+<Form name='synctime_untyped' inlineReference="true">
+	<Control name='root' type='panel'>
+		<Control type="label" label="Now:" text="{=@dtlNow}" />
+		<Control type="label" label="Sync:" text="{=@dtlSync}" />
+		<Control type="label" label="SyncApplied:" text="{=@dtlSyncApplied}" />
+	</Control>
+</Form>

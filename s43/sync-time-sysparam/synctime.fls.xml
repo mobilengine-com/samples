@@ -1,0 +1,4 @@
+﻿<form id='synctime' menuName="synctime" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<textview label="Sync:" text='{FORMATDTL(sysp.dtlSync, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}' />
+	<textview label="Sync applied:" text='{FORMATDTL(sysp.dtlSyncApplied, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}' />
+</form>
