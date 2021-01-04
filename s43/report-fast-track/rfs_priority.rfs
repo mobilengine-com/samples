@@ -4,11 +4,11 @@ using report report_eachtime_pdf;
 {
 	// start another rfs
 	var rfsRun = rfs.rfs_started_from_rfs.New();
-	rfsRun.SetHighPriority(true);
+	rfsRun.SetPriority("high");
 	rfsRun.Run();
 
 	// start a report
 	var repRun = reports.report_eachtime_pdf.New();
-	repRun.HighPriority = true;
+	repRun.SetPriority("high");
 	repRun.Run();
 }

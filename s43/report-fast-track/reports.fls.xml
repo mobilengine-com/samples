@@ -3,10 +3,10 @@
 	<header />
 
 	<chapter title="Generate" />
-	<submitbutton text="Generate Report (No fast track)" fastTrack="none" closeForm="{false}" />
-	<submitbutton text="Generate Report (Default)" closeForm="{false}" />
-	<submitbutton text="Generate Report (Rfs)" fastTrack="rfs" closeForm="{false}" />
-	<submitbutton text="Generate Report (RfsAndReports)" fastTrack="rfsAndReports" closeForm="{false}" />
+	<submitbutton text="Generate Report (Low Priority)" priority="low" closeForm="{false}" />
+	<submitbutton text="Generate Report (Default Priority)" closeForm="{false}" />
+	<submitbutton text="Generate Report (Medium Priority)" priority="medium" closeForm="{false}" />
+	<submitbutton text="Generate Report (High Priority)" priority="high" closeForm="{false}" />
 
 	<chapter title="Reports" />
 	<table record="r" recordset='{loadNewerFromServer:
