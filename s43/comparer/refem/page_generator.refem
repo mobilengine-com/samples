@@ -1,0 +1,7 @@
+<Reftab Name="page_generator" Access="Hidden" SyncNullAsEmptyString="true" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="row_from" Type="Integer" NotNull="true" />
+		<Column Name="row_until" Type="Integer" NotNull="true" />
+		<Column Name="row_numbers" Type="Text" NotNull="true" />
+	</Columns>
+</Reftab>

@@ -1,0 +1,208 @@
+<form id='compareFloorplan' menuName='compare floorplan' title='{case when letFp1.guid IS NOT NULL AND letFp2.guid IS NOT NULL THEN letFp1.name||" vs "||letFp2.name ELSE letFp1.name END}' platforms='web' 
+	showHeader="false"
+	xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letGuidComparePdf" shape="scalar" value="{SELECT ToStringN(newGuid())}"/>
+		<let id="letComparePdf" shape="record" value="{loadNewerFromServer:SELECT pdfcres.guidComparePdf, pdfcres.mediaIdResult FROM pdfcres pdfcres WHERE pdfcres.guidComparePdf = letGuidComparePdf}"/>
+		<let id="letDdFp2SelectedKey" shape="scalar" value='{SELECT "" WHERE 0=1}'/>
+		<let id="letFp1" shape="record" value="{SELECT fp.guid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid, f.file_size, f.file_hash, f.file_name, f.mediaId FROM floorplan fp JOIN files f ON f.file_guid = fp.file_guid WHERE ddFp1.selectedKey = fp.guid}"/>
+		<let id="letFp2" shape="record" value="{SELECT fp.guid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid, f.file_size, f.file_hash, f.file_name, f.mediaId FROM floorplan fp JOIN files f ON f.file_guid = fp.file_guid WHERE letDdFp2SelectedKey =  fp.guid}"/>
+		<let id="fDebug" shape="scalar" value="{cbDebug.checked}"></let>
+		<let id="letMode" shape="scalar" value='{"vs"}'></let>
+	</declarations>
+	<params>
+		<param id="guidFloorplan"/>
+	</params>
+	<if cond='{coalesce(params.guidFloorplan, "") = ""}'>
+		<dropdown id="ddFp1" label="Floorplan 1" keyMap="{guid}" textMap="{name}" choices="{SELECT fp.guid, fp.name FROM floorplan fp}"
+			selectedKey="{params.guidFloorplan}"/>
+	</if>
+	<chapter title='{case when letFp1.guid IS NOT NULL AND letFp2.guid IS NOT NULL THEN "Össszehasonlítás" ELSE letFp1.name END}'
+		style='{styles.noborder}'>
+		<if cond='{letFp2.guid IS NULL}'>
+			<popup title="Összehasonlítás" linkIcon="{icons.vsO}" openMode="dialog" style="{[styles.w1600, styles.compareLink]}">
+				<backbutton text="X" style="{styles.ctrlX}"/>
+				<table record='_' recordset="{SELECT 1 v WHERE 1=2}" style="{[styles.noborder, styles.tcw50vs50pct]}">
+					<header>
+						<row>
+							<cell style="{styles.vCenter}">
+								<block>
+									<textview text='Korábbi verzió'/>
+									<dropdown id="ddFp2" keyMap="{guid}" textMap="{name}" choices="{SELECT fp.guid, fp.name FROM floorplan fp}" style='{styles.w40em}'/>
+									<textview text='vagy'/>
+									<dropdown id="ddFp2x" noneText='Másik dokumentum' keyMap="{guid}" textMap="{name}" choices="{SELECT fp.guid, fp.name FROM floorplan fp}" style='{styles.w40em}'/>
+								</block>
+							</cell>
+							<cell style="{styles.vCenter}"><textview labelIcon='{icons.vs_bar}' label='' style='{styles.vsBar}'/></cell>
+							<cell style="{styles.vCenter}">
+								<textview text="{letFp1.name}"/>
+							</cell>
+						</row>
+					</header>
+					<row><cell><block></block></cell></row>
+				</table>
+				<combinedbutton text="Összehasonlít" style="{styles.hCenterButton}">
+					<actionbutton>
+						<set value="{coalesce(ddFp2.selectedKey, ddFp2x.selectedKey)}" target="letDdFp2SelectedKey" />
+						<set value='{"vs"}' target='comparer1.mode' />
+						<set value='{"vs"}' target='letMode' />
+					</actionbutton>
+					<backbutton/>
+				</combinedbutton>
+			</popup>
+		</if>
+		<if cond='{letFp2.guid IS NOT NULL}'>
+			<table record="_" recordset='{SELECT "1" v WHERE 1=2}' style="{[styles.noborder, styles.tcw50vs50pct]}">
+				<header>
+					<row>
+						<cell style="{styles.vCenter}">
+							<actionbutton text="{letFp1.name}" style='{[styles.btnFpComp, 
+								case when comparer1.adjustPhase="1" then styles.btnFpCompSel else null end,
+								case when letMode="0" then styles.btnModeSel else null end
+							]}'>
+								<set value='{"overlay"}' target='comparer1.mode'/>
+								<set value='{"0"}' target='letMode'/>
+								<set value='{0}' target='comparer1.overlayFraction'/>
+							</actionbutton>
+						</cell>
+						<cell style="{styles.vCenter}"><textview labelIcon='{icons.vsO}' label='' style='{styles.vsO2}'/></cell>
+						<cell style="{styles.vCenter}">
+							<actionbutton text="{letFp2.name}" style='{[
+								styles.btnFpComp, 
+								case when comparer1.adjustPhase="2" then styles.btnFpCompSel else null end,
+								case when letMode="1" then styles.btnModeSel else null end
+							]}'>
+								<set value='{"overlay"}' target='comparer1.mode'/>
+								<set value='{"1"}' target='letMode'/>
+								<set value='{1}' target='comparer1.overlayFraction'/>
+							</actionbutton>
+						</cell>
+					</row>
+				</header>
+				<row><cell><block></block></cell></row>
+			</table>
+			<table record="_" recordset='{SELECT "1" v WHERE 1=2}' style="{[styles.noborder, styles.tcwModes]}">
+				<header>
+					<row style="{styles.borderBlue}">
+						<cell style="{styles.vCenter}">
+							<actionbutton text='Különbségek' linkIcon='{case when letMode="vs" then icons.modeVSSel else icons.modeVS end}' 
+								style='{[styles.btnMode, case when letMode="vs" then styles.btnModeSel else null end]}'>
+								<set value='{"vs"}' target='comparer1.mode'/>
+								<set value='{"vs"}' target='letMode'/>
+							</actionbutton>
+						</cell>
+						<cell style="{styles.divCell}"><textview/></cell>
+						<cell style="{styles.vCenter}">
+							<actionbutton text="Átfedés" linkIcon='{case when letMode="overlay" then icons.modeOverlaySel else icons.modeOverlay end}' 
+								style='{[styles.btnMode, case when letMode="overlay" then styles.btnModeSel else null end]}'>
+								<set value='{"overlay"}' target='comparer1.mode'/>
+								<set value='{"overlay"}' target='letMode'/>
+							</actionbutton>
+						</cell>
+						<cell style="{styles.divCell}"><textview/></cell>
+						<cell style="{styles.vCenter}">
+							<actionbutton text="Felfedés" linkIcon='{case when letMode="split" then icons.modeSplitSel else icons.modeSplit end}' 
+								style='{[styles.btnMode, case when letMode="split" then styles.btnModeSel else null end]}'>
+								<set value='{"split"}' target='comparer1.mode'/>
+								<set value='{"split"}' target='letMode'/>
+							</actionbutton>
+						</cell>
+						<cell style="{styles.divCell}"><textview/></cell>
+						<cell style="{styles.vCenter}">
+							<actionbutton text="Illesztés" linkIcon='{case when letMode="adjust" then icons.modeAdjustSel else icons.modeAdjust end}' 
+								style='{[styles.btnMode, case when letMode="adjust" then styles.btnModeSel else null end]}'>
+								<set value='{"adjust"}' target='comparer1.mode'/>
+								<set value='{"adjust"}' target='letMode'/>
+							</actionbutton>
+						</cell>
+					</row>
+				</header>
+				<row><cell><block></block></cell></row>
+			</table>
+			<if cond='{letMode="vs"}'>
+				<table record='_' recordset='{SELECT 1 v WHERE 1=2}' style='{[styles.noborder, styles.modeToolbarHeight]}'>
+					<header><row>
+						<cell><textview text='Hiányzó elemek' label='' style='{styles.lblMissingLegend}'/></cell>
+						<cell><textview text='Új elemek' label='' style='{styles.lblNewLegend}' /></cell>
+					</row></header>
+					<row><cell><block></block></cell></row>
+				</table>
+			</if>
+			<if cond='{letMode="overlay"}'>
+				<table record='_' recordset='{SELECT 1 v WHERE 1=2}' style='{[styles.noborder, styles.modeToolbarHeight]}'>
+					<header><row>
+						<cell>
+							<segmentedbutton id='sbOverlayFraction' keyMap='{v}' textMap='{ToString(v)||"%"}' 
+								choices='{[0, 25, 50, 75, 100]}' selectedKey='{25}'/>
+						</cell>
+						<cell>
+							<numberbox id='nbOverlayFraction' float='false' number='{sbOverlayFraction.selectedKey}'  />
+						</cell>
+					</row></header>
+					<row><cell><block></block></cell></row>
+				</table>				
+			</if>
+			<if cond='{letMode="split"}'>
+				<table record='_' recordset='{SELECT 1 v WHERE 1=2}' style='{[styles.noborder, styles.modeToolbarHeight, styles.tcw100pct]}'>
+					<header><row>
+						<cell><textview style='{styles.w100pct}'
+							text='Mozgassa a csúszkát, hogy felfedje a különbségeket a tervrajzok között'/></cell>
+					</row></header>
+					<row><cell><block></block></cell></row>
+				</table>				
+			</if>
+			<if cond='{letMode="adjust"}'>
+				<table record='_' recordset='{SELECT 1 v WHERE 1=2}' style='{[styles.noborder, styles.modeToolbarHeight, styles.tcw100pct]}'>
+					<header><row>
+						<cell>
+							<textview style='{styles.w100pct}'
+							text='{case comparer1.adjustPhase when "1" then "Az illesztés funkcióval egyszerűen egymásra helyezhet elcsúsztatott dokumentumokat. Jelöljön ki egy pontot az első dokumentumon." 
+								when "2" then "Jelölje ki a második dokumentumon is ugyanazt a pontot amit az elsőn megjelölt." else "" end}' /></cell>
+					</row></header>
+					<row><cell><block></block></cell></row>
+				</table>				
+			</if>
+			<if cond='{letMode=""}'>
+				<table record='_' recordset='{SELECT 1 v WHERE 1=2}' style='{[styles.noborder, styles.modeToolbarHeight]}'>
+					<header><row>
+						<cell><block></block></cell>
+					</row></header>
+					<row><cell><block></block></cell></row>
+				</table>				
+			</if>
+
+		</if>
+		<annotator id="comparer1" text='Show floorplan with points' style='{[styles.h800, styles.w1600, styles.borderGray]}'
+			fileref="{letFp1.mediaId}" fileref2="{letFp2.mediaId}" 
+			mode='{"vs"}'
+			overlayFraction='{nbOverlayFraction.number/100.0}'
+			categories='{SELECT c.guid id, c.name, c.abbr abbreviation, c.rgb color FROM category c}'  
+			points='{SELECT p.guid id, t.category categoryId, p.ipage pageIndex, p.pctX xFraction, p.pctY yFraction, st.shape shape
+				FROM ticket t JOIN point p ON p.guid = t.guidPoint JOIN ticketStatus st ON t.status = st.status
+				WHERE p.guidFloorplan = letFp1.guid AND t.status>=0 }'
+			mixedPointColor='FFFF00'
+			newPointColor='00FFFF'
+			title='{"This is " || fileName || " floorplan"}'
+			selectedCategoryId="{letFp2.category}"
+			pointSize='{1.5}'
+			exportFileName='{"letoltes.pdf"}'
+			tooltipZoomIn='{"Nagyítás"}'
+			tooltipZoomOut='{"Kicsinyítés"}'
+			tooltipPrevPage='{"Előző oldal"}'
+			tooltipNextPage='{"Következő oldal"}'
+			tooltipFitPage='{"Lap illesztés"}'
+			tooltipActualSize='{"Normál méret"}'
+			tooltipTogglePoints='{"Pontok ki/be"}'
+			tooltipExport='{"Letöltés"}'
+			labelPage='{"Oldal"}'
+		/>
+		
+	</chapter>
+	<checkbox id="cbDebug" label="debug"/>
+	<if cond="{fDebug}" >
+		<textview label='mode' text='{comparer1.mode}' />
+		<textview label='adjust phase' text='{comparer1.adjustPhase}' />
+		<textview label='newPoint' text='{ToString(comparer1.newPoint.xFraction) ||","||ToString(comparer1.newPoint.yFraction)}' />
+		<textview label='selectedPoint' text='{comparer1.selectedPoint.id}' />
+	</if>
+</form>

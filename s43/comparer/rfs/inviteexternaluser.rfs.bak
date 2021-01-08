@@ -1,0 +1,5 @@
+server program inviteexternaluser for form 'inviteexternaluser'
+using reftab extuser;
+using dacs InviteExternal;
+{
+}

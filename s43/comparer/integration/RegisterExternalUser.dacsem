@@ -1,0 +1,7 @@
+schema 'RegisterExternalUser' meta 'RegisterExternalUser'
+
+User: element {
+	Guid: attribute of type string;
+	GuidLcomp: attribute of type string;
+	Status: attribute of type string;
+}

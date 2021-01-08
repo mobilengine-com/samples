@@ -1,0 +1,3 @@
+﻿<form id='UploadFile' menuName="Upload File" xmlns='http://schemas.mobilengine.com/fls/v2' platforms="web">
+	<fileupload id="fileupload" label="Upload file:" acceptedMimetypes="application/pdf" />
+</form>

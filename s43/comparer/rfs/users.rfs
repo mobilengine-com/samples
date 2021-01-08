@@ -1,0 +1,149 @@
+server program users for form 'users'
+using reftab user;
+using reftab userLcomp;
+using reftab userProject;
+using reftab userFolder;
+using reftab settings;
+using dacs InviteExternal;
+using dacs SendSyncCru;
+using dacs SendSyncDel;
+{
+	if (form.submitButton != null && form.submitButton["letUserGuidToDelete"]!=null) {
+		var userGuidToDelete = form.submitButton.letUserGuidToDelete;
+
+		var user = db.user.Read({guid: userGuidToDelete}).Single();
+
+		var rguserlcomp = db.userLcomp.Read({userGuid: user.guid});
+		foreach (var userLcomp in rguserlcomp) {
+			db.userLComp.Delete(userLcomp);
+
+			var syncDacs = messages.SendSyncDel.New();
+
+			syncDacs.Packet.guid = userLcomp.userGuid+"/"+userLcomp.lcompGuid;
+			syncDacs.Packet.guidLcomp = userLcomp.lcompGuid;
+			syncDacs.Packet.guidProject = null;
+			syncDacs.Packet.guidFolder = null;
+			syncDacs.Packet.kind = "userLcomp";
+			
+			syncDacs.Send();		
+	
+		}
+		var rguserproject = db.userProject.Read({userGuid: user.guid});
+		foreach (var userProject in rguserproject) {
+			db.userProject.Delete(userProject);
+
+			var syncDacs = messages.SendSyncDel.New();
+
+			syncDacs.Packet.guid = userProject.userGuid+"/"+userProject.projectGuid;
+			syncDacs.Packet.guidLcomp = userProject.lcompGuid;
+			syncDacs.Packet.guidProject = userProject.projectGuid;
+			syncDacs.Packet.guidFolder = null;
+			syncDacs.Packet.kind = "userProject";
+			
+			syncDacs.Send();		
+		}		
+		var rguserfolder = db.userFolder.Read({userGuid: user.guid});
+		foreach (var userFolder in rguserfolder) {
+			db.userFolder.Delete(userFolder);
+
+			var syncDacs = messages.SendSyncDel.New();
+
+			syncDacs.Packet.guid = userFolder.userGuid+"/"+userFolder.folderGuid;
+			syncDacs.Packet.guidLcomp = userFolder.lcompGuid;
+			syncDacs.Packet.guidProject = userFolder.projectGuid;
+			syncDacs.Packet.guidFolder = userFolder.folderGuid;
+			syncDacs.Packet.kind = "userFolder";
+			
+			syncDacs.Send();		
+		}		
+
+		db.user.Delete(user);
+		var syncDacs = messages.SendSyncDel.New();
+
+		syncDacs.Packet.guid = user.guid;
+		syncDacs.Packet.guidLcomp = null;
+		syncDacs.Packet.guidProject = null;
+		syncDacs.Packet.guidFolder = null;
+		syncDacs.Packet.kind = "user";
+		
+		syncDacs.Send();		
+
+	} 
+	else {
+		var lcompGuidLocal = db.settings.Read({name: "lcompGuid"})[0].value;
+		
+		var lcompGuid = form.letLcomp != null ? form.letLcomp.guid : lcompGuidLocal;
+		foreach (var row in form.t.rows) {
+			var guidRow = row.letUserGuid ?? guid.Generate().ToStringN();
+			var usr = {
+				name: row.name.text,
+				email: row.email.text,
+				fExternal: (row.fExternal.checked ? 1 : 0)
+			};
+			db.user.InsertOrUpdate({guid: guidRow}, usr);
+
+			var user = db.user.Read({guid: guidRow})[0];
+			{
+				var syncDacs = messages.SendSyncCru.New();
+
+				syncDacs.Packet.guid = user.guid;
+				syncDacs.Packet.guidLcomp = null; //should be synced everywhere
+				syncDacs.Packet.guidProject = null;
+				syncDacs.Packet.guidFolder = null;
+				syncDacs.Packet.userNew();
+				foreach ( var key in user.Keys() ) {
+					syncDacs.Packet.user[key] = user[key];
+				}
+				
+				syncDacs.Send();		
+			}
+			
+			var role = row.ddRole.selectedKey;
+			var userCompEx = db.userLcomp.Read({userGuid: guidRow, lcompGuid: lcompGuid}).SingleOrDefault();
+			if (role==null) {
+				if ( userCompEx != null ) {
+					db.userLcomp.Delete({userGuid: guidRow, lcompGuid: lcompGuid});
+					var syncDacs = messages.SendSyncDel.New();
+
+					syncDacs.Packet.guid = user.guid+"/"+lcompGuid;
+					syncDacs.Packet.guidLcomp = lcompGuid;
+					syncDacs.Packet.guidProject = null;
+					syncDacs.Packet.guidFolder = null;
+					syncDacs.Packet.kind = "userLcomp";
+					
+					syncDacs.Send();		
+				}
+			}
+			else {
+				var userComp = {userGuid: guidRow, lcompGuid: lcompGuid, role: role};
+				db.userLcomp.InsertOrUpdate({userGuid: guidRow, lcompGuid: lcompGuid}, userComp);
+				{
+					var syncDacs = messages.SendSyncCru.New();
+
+					syncDacs.Packet.guid = user.guid+"/"+lcompGuid;
+					syncDacs.Packet.guidLcomp = lcompGuid;
+					syncDacs.Packet.guidProject = null;
+					syncDacs.Packet.guidFolder = null;
+					syncDacs.Packet.userLcompNew();
+					syncDacs.Packet.userLcomp["userGuid"] = userComp.userGuid;
+					syncDacs.Packet.userLcomp["lcompGuid"] = userComp.lcompGuid;
+					syncDacs.Packet.userLcomp["role"] = userComp.role;
+					
+					syncDacs.Send();		
+				}
+			}
+				
+			if (row.letUserGuid == null && row.fExternal.checked) {
+				var inviteDacs = messages.InviteExternal.New();
+				inviteDacs.User.InviteGuid = guidRow;
+				inviteDacs.User.Name = usr.name;
+				inviteDacs.User.Email = usr.email;
+				inviteDacs.User.LcompGuid = lcompGuid;
+				inviteDacs.Send();
+				db.user.Update({guid: guidRow}, {
+					status: "invite sent"
+				});
+			}
+		}
+	}	
+}

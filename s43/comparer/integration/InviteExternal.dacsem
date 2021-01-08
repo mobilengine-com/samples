@@ -1,0 +1,12 @@
+schema 'InviteExternal' meta 'InviteExternal'
+
+User: element {
+	InviteGuid: attribute of type string;
+	Name: attribute of type string;
+	Email: attribute of type string;
+	LcompGuid: optional attribute of type string;
+	ProjectGuid: optional attribute of type string;
+	Forms: optional wrapped list of element Form of type string without whitespace;
+	HasWebformAccess: optional attribute of type string;
+	HasBIAccess: optional attribute of type string;
+}

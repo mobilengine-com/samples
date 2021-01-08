@@ -1,0 +1,239 @@
+server program ticketIos for form 'ticketsIos'
+using dacs SendSyncCru;
+using dacs SendSyncMedia;
+using reftab project;
+using reftab floorplan;
+using reftab point;
+using reftab ticket;
+using reftab ticketPhoto;
+using reftab user;
+{
+	trace form;
+	Assert(form?.cbDebug?.checked ?? false, "debug should be checked");
+	
+	var guidPoint = form.ifTicketNew.pointId;
+
+	var xxx = guidPoint?.Length();
+	trace "xxx", xxx;
+	var point = null;
+	var floorplan = null;
+	var project = null;
+
+	// create point
+	if (form.isNewPoint) {
+		point = {
+			guid: guidPoint,
+			guidFloorplan:	form.letFp.guid,
+			ipage: form.ifTicketNew.letPageIndex,
+			pctX: form.ifTicketNew.letXFraction,
+			pctY: form.ifTicketNew.letYFraction
+		};
+		db.point.Insert(point);
+		
+		floorplan = db.floorplan.Read({guid: point.guidFloorplan})[0];
+		project = db.project.Read({guid: floorplan.projectGuid})[0];
+			
+		var syncDacs = messages.SendSyncCru.New();
+
+		syncDacs.Packet.guid = point.guid;
+		syncDacs.Packet.guidLcomp = project.lcompGuid;
+		syncDacs.Packet.guidProject = floorplan.projectGuid;
+		syncDacs.Packet.pointNew();
+		foreach ( var key in point.Keys() ) {
+			syncDacs.Packet.point[key] = point[key];
+		}
+		syncDacs.Send();
+		
+	} else {
+		point = db.point.Read({	guid: guidPoint	})[0];
+		floorplan = db.floorplan.Read({guid: point.guidFloorplan})[0];
+		project = db.project.Read({guid: floorplan.projectGuid})[0];
+	}
+	
+	// update tickets
+	if (form.ifTicketSel.cond) {
+		foreach (var ticketRow in form.ifTicketSel.ticketsOld.rows) {
+
+			var guidTicket = ticketRow.letGuid;
+			var dueDate = null;
+			if (ticketRow.dueDate.date != null) {
+				dueDate = ticketRow.dueDate.date.DtlToDtdb();
+			}
+            var mediaidSignature = ticketRow.signature.binaryId;
+            var filerefSignature = null;
+
+			if (mediaidSignature == null) {
+                mediaidSignature = ticketRow.letMediaidSignatureOld;
+            }
+            if (mediaidSignature != null) {
+                filerefSignature = fileref.New(guid.Parse(mediaidSignature), 0);
+            }
+			db.ticket.Update({
+				guid: guidTicket
+			}, {
+				category: ticketRow.ddCategory.selectedKey,
+				section: ticketRow.section.text,
+				status: ticketRow.ddStatus.selectedKey,
+                description: ticketRow.description.text,
+				guidUserAssignee: ticketRow.ddAssignee.selectedKey,
+				mediaidSignature: filerefSignature,
+				dueDate: dueDate
+			});		
+			
+			var ticket = db.ticket.Read({guid: guidTicket})[0];
+			if (ticket.mediaidSignature != null) {
+				var syncMedia = messages.SendSyncMedia.New();
+				syncMedia.Media.mediaId = ticket.mediaidSignature.MediaId();
+				syncMedia.Media.filename = ticket.mediaidSignature.Filename() ?? syncMedia.Media.mediaId+".jpg";
+				syncMedia.Media.checksum = ticket.mediaidSignature.Checksum();
+				syncMedia.Media.size = ticket.mediaidSignature.Size();
+				syncMedia.Media.guidLcomp = project.lcompGuid;
+				syncMedia.Media.guidProject = floorplan.projectGuid;
+				syncMedia.Media.guidFolder = floorplan.folderGuid;
+				syncMedia.Send();
+			}
+						
+			var syncDacs = messages.SendSyncCru.New();
+			syncDacs.Packet.guid = ticket.guid;
+			syncDacs.Packet.guidLcomp = project.lcompGuid;
+			syncDacs.Packet.guidProject = floorplan.projectGuid;
+			syncDacs.Packet.ticketNew();
+			foreach ( var key in ticket.Keys() ) {
+                var val = ticket[key];
+                if (TypeOf(val) == "fileref") {
+                    val = val.ToString();
+                }
+				if (TypeOf(val) == "dtdb") {
+					val = val.DeclareAsDtl();
+				}
+				syncDacs.Packet.ticket[key] = val;
+			}
+			syncDacs.Send();
+			
+			foreach(var photo in ticketRow.photo.photos) {
+				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(guid.Parse(photo.photoId), 0)};
+				db.ticketPhoto.Insert(ticketPhoto);
+
+				var syncMedia = messages.SendSyncMedia.New();
+				syncMedia.Media.mediaId = ticketPhoto.mediaidPhoto.MediaId();
+                syncMedia.Media.filename = ticketPhoto.mediaidPhoto.Filename() ?? syncMedia.Media.mediaId+".jpg";
+                syncMedia.Media.checksum = ticketPhoto.mediaidPhoto.Checksum();
+                syncMedia.Media.size = ticketPhoto.mediaidPhoto.Size();
+				syncMedia.Media.guidLcomp = project.lcompGuid;
+				syncMedia.Media.guidProject = floorplan.projectGuid;
+				syncMedia.Media.guidFolder = floorplan.folderGuid;
+				syncMedia.Send();
+
+				var syncDacs = messages.SendSyncCru.New();
+
+				syncDacs.Packet.guid = ticketPhoto.guidTicket+"/"+ticketPhoto.mediaidPhoto.MediaId();
+				syncDacs.Packet.guidLcomp = project.lcompGuid;
+				syncDacs.Packet.guidProject = floorplan.projectGuid;
+				syncDacs.Packet.guidFolder = floorplan.folderGuid;
+				syncDacs.Packet.ticketPhotoNew();
+				foreach ( var key in ticketPhoto.Keys() ) {
+                    var val = ticketPhoto[key];
+                    if (TypeOf(val) == "fileref") {
+                        val = val.ToString();
+                    }
+					syncDacs.Packet.ticketPhoto[key] = val;
+				}
+				syncDacs.Send();
+				
+			}
+		}
+		
+	}
+	if (form.ifTicketNew.cond) {
+		foreach (var ticketRow in form.ifTicketNew.ticketsNew.rows) {
+			var dueDate = null;
+			if (ticketRow.dueDate.date != null) {
+				dueDate = ticketRow.dueDate.date.DtlToDtdb();
+			}
+			var mediaidSignature = ticketRow.signature.binaryId;
+            var guidTicket = ticketRow.letGuid;
+            var userCreator = db.user.Read({email: form.info.user.name }).SingleOrDefault();
+
+            var filerefSignature = null;
+            if (mediaidSignature != null) {
+                filerefSignature = fileref.New(guid.Parse(mediaidSignature), 0);
+            }
+			var ticket = {
+				guid: guidTicket,
+				guidPoint: guidPoint,
+				category: ticketRow.ddCategory.selectedKey,
+				section: ticketRow.section.text,
+				status: ticketRow.ddStatus.selectedKey,
+				description: ticketRow.description.text,
+                guidUserCreator: userCreator.guid,
+				guidUserAssignee: ticketRow.ddAssignee.selectedKey,
+				mediaidSignature: filerefSignature,
+				dueDate: dueDate
+			};
+			db.ticket.Insert(ticket);
+
+			if (ticket.mediaidSignature != null) {
+				var syncMedia = messages.SendSyncMedia.New();
+				syncMedia.Media.mediaId = ticket.mediaidSignature.MediaId();
+				syncMedia.Media.filename = ticket.mediaidSignature.Filename() ?? syncMedia.Media.mediaId+".jpg";
+				syncMedia.Media.checksum = ticket.mediaidSignature.Checksum();
+				syncMedia.Media.size = ticket.mediaidSignature.Size();
+				syncMedia.Media.guidLcomp = project.lcompGuid;
+				syncMedia.Media.guidProject = floorplan.projectGuid;
+				syncMedia.Media.guidFolder = floorplan.folderGuid;
+				syncMedia.Send();
+			}
+			
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = ticket.guid;
+			syncDacs.Packet.guidLcomp = project.lcompGuid;
+			syncDacs.Packet.guidProject = floorplan.projectGuid;
+			syncDacs.Packet.ticketNew();
+			foreach ( var key in ticket.Keys() ) {
+                var val = ticket[key];
+                if (TypeOf(val) == "fileref") {
+                    val = val.ToString();
+                }
+				if (TypeOf(val) == "dtdb") {
+					val = val.DeclareAsDtl();
+				}
+				syncDacs.Packet.ticket[key] = val;
+			}
+			syncDacs.Send();
+
+			foreach(var photo in ticketRow.photo.photos) {
+				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(guid.Parse(photo.photoId), 0)};
+				db.ticketPhoto.Insert(ticketPhoto);
+				
+				var syncMedia = messages.SendSyncMedia.New();
+				syncMedia.Media.mediaId = ticketPhoto.mediaidPhoto.MediaId();
+                syncMedia.Media.filename = ticketPhoto.mediaidPhoto.Filename() ?? syncMedia.Media.mediaId+".jpg";
+                syncMedia.Media.checksum = ticketPhoto.mediaidPhoto.Checksum();
+                syncMedia.Media.size = ticketPhoto.mediaidPhoto.Size();
+				syncMedia.Media.guidLcomp = project.lcompGuid;
+				syncMedia.Media.guidProject = floorplan.projectGuid;
+				syncMedia.Media.guidFolder = floorplan.folderGuid;
+				syncMedia.Send();
+
+				var syncDacs = messages.SendSyncCru.New();
+
+				syncDacs.Packet.guid = ticketPhoto.guidTicket+"/"+ticketPhoto.mediaidPhoto.MediaId();
+				syncDacs.Packet.guidLcomp = project.lcompGuid;
+				syncDacs.Packet.guidProject = floorplan.projectGuid;
+				syncDacs.Packet.guidFolder = floorplan.folderGuid;
+				syncDacs.Packet.ticketPhotoNew();
+				foreach ( var key in ticketPhoto.Keys() ) {
+                    var val = ticketPhoto[key];
+                    if (TypeOf(val) == "fileref") {
+                        val = val.ToString();
+                    }
+					syncDacs.Packet.ticketPhoto[key] = val;
+				}
+				syncDacs.Send();
+				
+			}
+		}
+	}
+	
+}

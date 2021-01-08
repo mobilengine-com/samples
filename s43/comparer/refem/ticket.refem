@@ -1,0 +1,15 @@
+<Reftab Name="ticket" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" >
+  <Columns>
+	<Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true"/>
+	<Column Name="guidPoint" Type="Text" NotNull="true"/>
+	<Column Name="category" Type="Text" NotNull="true"/>
+	<Column Name="section" Type="Text"/>
+	<Column Name="status" Type="Integer" NotNull="true"/>
+	<Column Name="description" Type="Text"/>
+	<Column Name="comments" Type="Text"/>
+	<Column Name="guidUserCreator" Type="Text"/>
+	<Column Name="guidUserAssignee" Type="Text"/>
+	<Column Name="mediaidSignature" Type="Fileref"/>
+	<Column Name="dueDate" Type="Date"/>
+  </Columns>
+</Reftab>

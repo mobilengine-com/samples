@@ -1,0 +1,23 @@
+schema 'SendOperation' meta 'SendOperation'
+
+Operation: element {
+	guid: attribute of type string;
+	guidLcomp: attribute of type string;
+	guidProject: optional attribute of type string;
+	guidFolder: optional attribute of type string;
+	ticketComment: optional element {
+		ticketGuid: attribute of type string;
+		comment: attribute of type string;
+		user: attribute of type string;
+	}
+	ticketAssign: optional element {
+		ticketGuid: attribute of type string;
+		guidUserAssignee: attribute of type string;
+		user: attribute of type string;
+	}
+	ticketToStatus: optional element {
+		ticketGuid: attribute of type string;
+		status: attribute of type int;
+		user: attribute of type string;
+	}
+}

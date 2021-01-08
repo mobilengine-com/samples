@@ -1,0 +1,276 @@
+server program floorplanInit for schedule * * * * * 
+	first run at 2200-01-01 10:00
+
+using reftab lcomp;
+using reftab project;
+using reftab folder;
+using reftab files;
+using reftab floorplan;
+using reftab point;
+using reftab ticket;
+using reftab ticketPhoto;
+using reftab user;
+using reftab userLcomp;
+using reftab userProject;
+using reftab userFolder;
+
+using dacs SendSyncCru;
+using dacs SendSyncMedia;
+{
+	foreach ( var lcomp in db.lcomp.Read({ismaster: 1}) ) {
+		var syncDacs = messages.SendSyncCru.New();
+
+		syncDacs.Packet.guid = lcomp.guid;
+		syncDacs.Packet.guidLcomp = lcomp.guid;
+		syncDacs.Packet.lcompNew();
+		foreach ( var key in lcomp.Keys() ) {
+			if (key != "ismaster") {
+				syncDacs.Packet.lcomp[key] = lcomp[key];
+			}
+		}
+		
+		syncDacs.Send();
+	}		
+	foreach ( var project in db.project.Read(map.New()) ) {
+		var comp = db.lcomp.Read({ismaster: 1, guid: project.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = project.guid;
+			syncDacs.Packet.guidLcomp = project.lcompGuid;
+			syncDacs.Packet.guidProject = project.guid;
+			syncDacs.Packet.projectNew();
+			foreach ( var key in project.Keys() ) {
+				syncDacs.Packet.project[key] = project[key];
+			}
+			
+			syncDacs.Send();
+		}
+	}	
+	foreach ( var folder in db.folder.Read(map.New()) ) {
+		var comp = db.lcomp.Read({ismaster: 1, guid: folder.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = folder.guid;
+			syncDacs.Packet.guidLcomp = folder.lcompGuid;
+			syncDacs.Packet.guidProject = folder.projectGuid;
+			syncDacs.Packet.folderNew();
+			foreach ( var key in folder.Keys() ) {
+				syncDacs.Packet.folder[key] = folder[key];
+			}
+			
+			syncDacs.Send();
+		}
+	}	
+	foreach ( var floorplan in db.floorplan.Read(map.New()) ) {
+		var comp = db.lcomp.Read({ismaster: 1, guid: floorplan.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = floorplan.guid;
+			syncDacs.Packet.guidLcomp = floorplan.lcompGuid;
+			syncDacs.Packet.guidProject = floorplan.projectGuid;
+			syncDacs.Packet.guidFolder = floorplan.folderGuid;
+			syncDacs.Packet.floorplanNew();
+			foreach ( var key in floorplan.Keys() ) {
+				syncDacs.Packet.floorplan[key] = floorplan[key];
+			}
+			
+			syncDacs.Send();
+		}
+	}	
+	foreach ( var file in db.files.Read(map.New()) ) {
+		var comp = db.lcomp.Read({ismaster: 1, guid: file.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+			if (file.mediaId != null) {
+				var syncMedia = messages.SendSyncMedia.New();
+				syncMedia.Media.mediaId = file.mediaId.MediaId();
+				syncMedia.Media.filename = file.mediaId.Filename();
+				syncMedia.Media.checksum = file.mediaId.Checksum();
+				syncMedia.Media.size = file.mediaId.Size();
+				syncMedia.Media.guidLcomp = file.lcompGuid;
+				syncMedia.Media.guidProject = file.projectGuid;
+				syncMedia.Media.guidFolder = file.folderGuid;
+				syncMedia.Send();
+			}
+			
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = file.file_guid;
+			syncDacs.Packet.guidLcomp = file.lcompGuid;
+			syncDacs.Packet.guidProject = file.projectGuid;
+			syncDacs.Packet.guidFolder = file.folderGuid;
+			syncDacs.Packet.fileNew();
+			foreach ( var key in file.Keys() ) {
+				var val = file[key];
+				if (TypeOf(val) == "dtdb") {
+					val = val.DeclareAsDtl();
+				} else if (TypeOf(val) == "fileref") {
+					val = val.ToString();
+				}
+				syncDacs.Packet.file[key] = val;
+			}
+			
+			syncDacs.Send();
+		}
+	}
+	foreach ( var point in db.point.Read(map.New()) ) {
+		var floorplan = db.floorplan.Read({guid: point.guidFloorplan}).Single();
+		var project = db.project.Read({guid: floorplan.projectGuid}).Single();
+		var comp = db.lcomp.Read({ismaster: 1, guid: project.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = point.guid;
+			syncDacs.Packet.guidLcomp = project.lcompGuid;
+			syncDacs.Packet.guidProject = floorplan.projectGuid;
+			syncDacs.Packet.guidFolder = floorplan.folderGuid;
+			syncDacs.Packet.pointNew();
+			foreach ( var key in point.Keys() ) {
+				syncDacs.Packet.point[key] = point[key];
+			}
+			
+			syncDacs.Send();
+		}
+	}
+	foreach ( var ticket in db.ticket.Read(map.New()) ) {
+		var point = db.point.Read({guid: ticket.guidPoint}).Single();		
+		var floorplan = db.floorplan.Read({guid: point.guidFloorplan}).Single();
+		var project = db.project.Read({guid: floorplan.projectGuid}).Single();
+		var comp = db.lcomp.Read({ismaster: 1, guid: project.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+			if (ticket.mediaidSignature != null) {
+				var syncMedia = messages.SendSyncMedia.New();
+				syncMedia.Media.mediaId = ticket.mediaidSignature.MediaId();
+				syncMedia.Media.filename = ticket.mediaidSignature.Filename() ?? syncMedia.Media.mediaId+".jpg";
+				syncMedia.Media.checksum = ticket.mediaidSignature.Checksum();
+				syncMedia.Media.size = ticket.mediaidSignature.Size();
+				syncMedia.Media.guidLcomp = project.lcompGuid;
+				syncMedia.Media.guidProject = floorplan.projectGuid;
+				syncMedia.Media.guidFolder = floorplan.folderGuid;
+				syncMedia.Send();
+			}
+
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = ticket.guid;
+			syncDacs.Packet.guidLcomp = project.lcompGuid;
+			syncDacs.Packet.guidProject = floorplan.projectGuid;
+			syncDacs.Packet.guidFolder = floorplan.folderGuid;
+			syncDacs.Packet.ticketNew();
+			foreach ( var key in ticket.Keys() ) {
+				var val = ticket[key];
+				if (TypeOf(val) == "dtdb") {
+					val = val.DeclareAsDtl();
+				} else if (TypeOf(val) == "fileref") {
+					val = val.ToString();
+				}
+				syncDacs.Packet.ticket[key] = val;
+			}
+			
+			syncDacs.Send();
+		}
+	}
+	foreach ( var ticketPhoto in db.ticketPhoto.Read(map.New()) ) {
+		var ticket = db.ticket.Read({guid: ticketPhoto.guidTicket}).Single();		
+		var point = db.point.Read({guid: ticket.guidPoint}).Single();		
+		var floorplan = db.floorplan.Read({guid: point.guidFloorplan}).Single();
+		var project = db.project.Read({guid: floorplan.projectGuid}).Single();
+		
+		var syncMedia = messages.SendSyncMedia.New();
+
+		syncMedia.Media.mediaId = ticket.mediaidSignature.MediaId();
+		syncMedia.Media.filename = ticket.mediaidSignature.Filename() ?? syncMedia.Media.mediaId+".jpg";
+		syncMedia.Media.checksum = ticket.mediaidSignature.Checksum();
+		syncMedia.Media.size = ticket.mediaidSignature.Size();
+		syncMedia.Media.guidLcomp = project.lcompGuid;
+		syncMedia.Media.guidProject = floorplan.projectGuid;
+		syncMedia.Media.guidFolder = floorplan.folderGuid;
+		syncMedia.Send();
+	
+		var syncDacs = messages.SendSyncCru.New();
+
+		syncDacs.Packet.guid = ticketPhoto.guidTicket+"/"+ticket.mediaidSignature.MediaId();
+		syncDacs.Packet.guidLcomp = project.lcompGuid;
+		syncDacs.Packet.guidProject = floorplan.projectGuid;
+		syncDacs.Packet.guidFolder = floorplan.folderGuid;
+		syncDacs.Packet.ticketPhotoNew();
+		foreach ( var key in ticketPhoto.Keys() ) {
+			var val = ticketPhoto[key];
+			if (TypeOf(val) == "fileref") {
+				val = val.ToString();
+			}
+			syncDacs.Packet.ticketPhoto[key] = val;
+		}
+		syncDacs.Send();
+	}	
+	
+	foreach ( var user in db.user.Read(map.New()) ) {
+		var syncDacs = messages.SendSyncCru.New();
+
+		syncDacs.Packet.guid = user.guid;
+		syncDacs.Packet.guidLcomp = null;
+		syncDacs.Packet.guidProject = null;
+		syncDacs.Packet.guidFolder = null;
+		syncDacs.Packet.userNew();
+		foreach ( var key in user.Keys() ) {
+			syncDacs.Packet.user[key] = user[key];
+		}
+		
+		syncDacs.Send();
+	}	
+	foreach ( var userLcomp in db.userLcomp.Read(map.New()) ) {
+		var comp = db.lcomp.Read({ismaster: 1, guid: userLcomp.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = userLcomp.userGuid+"/"+userLcomp.lcompGuid;
+			syncDacs.Packet.guidLcomp = userLcomp.lcompGuid;
+			syncDacs.Packet.guidProject = null;
+			syncDacs.Packet.userLcompNew();
+			foreach ( var key in userLcomp.Keys() ) {
+				syncDacs.Packet.userLcomp[key] = userLcomp[key];
+			}
+			
+			syncDacs.Send();
+		}
+	}	
+	foreach ( var userProject in db.userProject.Read(map.New()) ) {
+		var comp = db.lcomp.Read({ismaster: 1, guid: userProject.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = userProject.userGuid+"/"+userProject.projectGuid;
+			syncDacs.Packet.guidLcomp = userProject.lcompGuid;
+			syncDacs.Packet.guidProject = userProject.projectGuid;
+			syncDacs.Packet.userProjectNew();
+			foreach ( var key in userProject.Keys() ) {
+				syncDacs.Packet.userProject[key] = userProject[key];
+			}
+			
+			syncDacs.Send();
+		}
+	}	
+	foreach ( var userFolder in db.userFolder.Read(map.New()) ) {
+		var comp = db.lcomp.Read({ismaster: 1, guid: userProject.lcompGuid}).SingleOrDefault();
+		if (comp != null) {
+
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = userFolder.userGuid+"/"+userFolder.folderGuid;
+			syncDacs.Packet.guidLcomp = userFolder.lcompGuid;
+			syncDacs.Packet.guidProject = userFolder.projectGuid;
+			syncDacs.Packet.guidFolder = userFolder.folderGuid;
+			syncDacs.Packet.userFolderNew();
+			foreach ( var key in userFolder.Keys() ) {
+				syncDacs.Packet.userFolder[key] = userFolder[key];
+			}
+			
+			syncDacs.Send();
+		}
+	}	
+
+
+}

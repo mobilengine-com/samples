@@ -1,0 +1,102 @@
+schema 'ReceiveSyncCru' meta 'ReceiveSyncCru'
+Packet: element {
+	guid: attribute of type string;
+	guidLcomp: optional attribute of type string;
+	guidProject: optional attribute of type string;
+	guidFolder: optional attribute of type string;
+
+	lcomp: optional element {
+		guid: attribute of type string;
+		name: attribute of type string;
+	}
+	project: optional element {
+		guid: attribute of type string;
+		lcompGuid: attribute of type string;
+		name: attribute of type string;
+	}
+	folder: optional element {
+		guid: attribute of type string;
+		lcompGuid: attribute of type string;
+		projectGuid: attribute of type string;
+		name: attribute of type string;
+	}
+	
+	file: optional element {
+		usr: optional attribute of type string;
+		lcompGuid: attribute of type string;
+		projectGuid: optional attribute of type string;
+		folderGuid: optional attribute of type string;
+		file_guid: attribute of type string;
+		file_name: optional attribute of type string;
+		file_ext: optional attribute of type string;
+		file_display_name: optional attribute of type string;
+		file_size: optional attribute of type int;
+		file_hash: optional attribute of type string;
+		mediaId: optional attribute of type string;
+	}		
+	
+	floorplan: optional element {
+		guid: attribute of type string;
+		lcompGuid: attribute of type string;
+		projectGuid: attribute of type string;
+		folderGuid: optional attribute of type string;
+		name: optional attribute of type string;
+		building: optional attribute of type string;
+		floor: optional attribute of type string;
+		category: optional attribute of type string;
+		file_guid: optional attribute of type string;
+	}
+
+	point: optional element {
+		guid: attribute of type string;
+		guidFloorplan: attribute of type string;
+		ipage: attribute of type int;
+		pctX: attribute of type float;
+		pctY: attribute of type float;
+	}
+
+	ticket: optional element {
+		guid: attribute of type string;
+		guidPoint: attribute of type string;
+		category: attribute of type string;
+		section: optional attribute of type string;
+		status: attribute of type int;
+		description: optional attribute of type string;
+		comments: optional attribute of type string;
+		guidUserAssignee: optional attribute of type string;
+		guidUserCreator: optional attribute of type string;
+		mediaidSignature: optional attribute of type string;
+		dueDate: optional attribute of type dtl (dtf yyyy"-"MM"-"dd);
+	}
+	
+	ticketPhoto: optional element {
+		guidTicket: attribute of type string;
+		mediaidPhoto: attribute of type string;
+	}
+
+	user: optional element {
+		guid: attribute of type string;
+		name: attribute of type string;
+		email: attribute of type string;
+		fExternal: attribute of type int;
+		status: optional attribute of type string;
+	}
+	
+	userLcomp: optional element {
+		userGuid: attribute of type string;
+		lcompGuid: attribute of type string;
+		role: attribute of type string;
+	}
+	userProject: optional element {
+		userGuid: attribute of type string;
+		lcompGuid: attribute of type string;
+		projectGuid: attribute of type string;
+		role: attribute of type string;
+	}
+	userFolder: optional element {
+		userGuid: attribute of type string;
+		lcompGuid: attribute of type string;
+		projectGuid: attribute of type string;
+		folderGuid: attribute of type string;
+	}
+}

@@ -1,0 +1,9 @@
+schema 'UserDuplicate' meta 'UserDuplicate'
+
+UserDuplicate: element {
+	UserGuidNew: attribute of type string;
+	UserGuidExisting: attribute of type string;
+	Email: attribute of type string;
+	MecompGuidExistingFrom: optional attribute of type string;
+	UserStatusExisting: optional attribute of type string;
+}

@@ -1,0 +1,17 @@
+schema 'FileContentBatch' meta 'FileContentBatch'
+
+Batch: element {
+	MediaId: attribute of type string;
+	
+	// 1 on the last batch, 0 otherwise
+	Last: attribute of type int;
+
+	// md5 hash of the file (before base64 encoding) as a hex string
+	Md5Sum: optional attribute of type string;
+
+	Chunks: list of element Chunk {
+		// zero based
+		Index: attribute of type int;
+		Data: content of type string without whitespace;
+	}
+}

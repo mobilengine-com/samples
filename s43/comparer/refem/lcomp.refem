@@ -1,0 +1,7 @@
+<Reftab Name="lcomp" Access="Hidden" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+	<Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true"/>
+	<Column Name="name" Type="Text" NotNull="true" />
+	<Column Name="ismaster" Type="Integer" NotNull="true" />
+  </Columns>
+</Reftab>

@@ -1,0 +1,8 @@
+<Reftab Name="ticketStatus" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" >
+  <Columns>
+	<Column Name="status" Type="Integer" PrimaryKey="true"  NotNull="true"/>
+	<Column Name="name" Type="Text" />
+	<Column Name="shape" Type="Text" />
+  </Columns>
+</Reftab>
+

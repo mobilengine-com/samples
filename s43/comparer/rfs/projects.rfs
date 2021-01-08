@@ -1,0 +1,71 @@
+server program projects for form 'projects'
+using dacs SendSyncCru;
+using reftab folder;
+using reftab project;
+using reftab settings;
+using reftab user;
+using reftab userLcomp;
+{
+	trace form;
+	var lcompGuidLocal = db.settings.Read({name: "lcompGuid"}).Single().value;
+	var user = db.user.Read({email: form.info.user.name}).Single();
+	var userLcomp = db.userLcomp.Read({userGuid: user.guid, lcompGuid: lcompGuidLocal}).Single();
+	
+	if (userLcomp == null) {
+		Error("lcomp not assigned to user" + user + " / "+ lcompGuidLocal);
+	}
+	if (userLcomp.role != "admin") {
+		Error("not enough rights " + userLcomp);
+	}
+	
+	foreach (var row in form.t.rows) {
+		var projectGuid = row.letProjectGuid ?? guid.Generate().ToStringN();
+		var lcompGuid = row.letLcompGuid ?? lcompGuidLocal;
+		var project = {
+			guid: projectGuid,
+			lcompGuid: lcompGuid,
+			name: row.name.text
+		};
+		db.project.InsertOrUpdate({guid: projectGuid}, project);
+		
+		{
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = project.guid;
+			syncDacs.Packet.guidLcomp = project.lcompGuid;
+			syncDacs.Packet.guidProject = project.guid;
+			syncDacs.Packet.projectNew();
+			foreach ( var key in project.Keys() ) {
+				syncDacs.Packet.project[key] = project[key];
+			}
+			
+			syncDacs.Send();		
+		}
+		
+		foreach (var row2 in row.t2.rows) {
+			var folderGuid = row2.letFolderGuid ?? guid.Generate().ToStringN();
+			var folder = {
+				guid: folderGuid,
+				lcompGuid: lcompGuid,
+				projectGuid: projectGuid,
+				name: row2.name.text
+			};
+			db.folder.InsertOrUpdate({guid: folderGuid}, folder);
+			
+			var syncDacs = messages.SendSyncCru.New();
+
+			syncDacs.Packet.guid = folder.guid;
+			syncDacs.Packet.guidLcomp = folder.lcompGuid;
+			syncDacs.Packet.guidProject = folder.projectGuid;
+			syncDacs.Packet.guidFolder = folder.guid;
+			syncDacs.Packet.folderNew();
+			foreach ( var key in folder.Keys() ) {
+				syncDacs.Packet.folder[key] = folder[key];
+			}
+			
+			syncDacs.Send();		
+				
+		}
+	}
+	
+}
