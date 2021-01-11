@@ -3,12 +3,11 @@
 	xmlns='http://schemas.mobilengine.com/fls/v2'>
 	<declarations>
 		<let id="letGuidComparePdf" shape="scalar" value="{SELECT ToStringN(newGuid())}"/>
-		<let id="letComparePdf" shape="record" value="{loadNewerFromServer:SELECT pdfcres.guidComparePdf, pdfcres.mediaIdResult FROM pdfcres pdfcres WHERE pdfcres.guidComparePdf = letGuidComparePdf}"/>
 		<let id="letDdFp2SelectedKey" shape="scalar" value='{SELECT "" WHERE 0=1}'/>
 		<let id="letFp1" shape="record" value="{SELECT fp.guid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid, f.file_size, f.file_hash, f.file_name, f.mediaId FROM floorplan fp JOIN files f ON f.file_guid = fp.file_guid WHERE ddFp1.selectedKey = fp.guid}"/>
 		<let id="letFp2" shape="record" value="{SELECT fp.guid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid, f.file_size, f.file_hash, f.file_name, f.mediaId FROM floorplan fp JOIN files f ON f.file_guid = fp.file_guid WHERE letDdFp2SelectedKey =  fp.guid}"/>
 		<let id="fDebug" shape="scalar" value="{cbDebug.checked}"></let>
-		<let id="letMode" shape="scalar" value='{"vs"}'></let>
+		<let id="letMode" shape="scalar" value='{select coalesce(comparer1.mode, "vs")}'></let>
 	</declarations>
 	<params>
 		<param id="guidFloorplan"/>
