@@ -2,7 +2,7 @@ styles {
 	style bgGrey {
 		all {
 			control {
-				backgroundColor = 777777
+				backgroundColor = AAAAAA
 			}
 			borderColor = 000000
 			borderWidth {top = 2px bottom = 2px left = 2px right = 2px}
@@ -18,14 +18,21 @@ styles {
 	style w800 {
 		all {
 			control {
-				width = 800px
+				width = 500px
+			}
+		}
+	}
+	style w1600 {
+		all {
+			control {
+				width = 1000px
 			}
 		}
 	}
 	style w500 {
 		all {
 			control {
-				width = 500px
+				width = 300px
 			}
 		}
 	}
@@ -36,22 +43,332 @@ styles {
 			}
 		}
 	}
-	style tcw5050pct {
+	style w40em {
+		all {
+			control {
+				width = 40em
+			}
+		}
+	}
+	style compareLink {
+		popup {
+			fontColor = 004583
+			control {
+				textAlign = right
+				iconPosition = left
+			}
+			button {
+				width = fill
+				textAlign = right
+				underline = false
+				bold = true
+				fontSize = 14px
+			}
+		}
+	}
+	style tcw1em8em {
 		table {
-			columnWidth = 800px, 500px
+			columnWidth = 1em, 8em
 			header = tcw5050pct
 		}
 		row {
-			content = tcw5050pct
+			content = tcw5050pct, w100pct
+		}
+	}
+	style tcw5050pct {
+		table {
+			columnWidth = 500px, 500px
+			header = tcw5050pct
+		}
+		
+		row {
+			content = tcw5050pct, w100pct
 		}
 		cell {
 			verticalAlign = top
 		}
 	}
+	style tcw100pct {
+		table {
+			columnWidth = 1000px
+			header = tcw100pct
+		}
+		
+		row {
+			content = tcw100pct, w100pct
+		}
+		cell {
+			verticalAlign = top
+		}
+	}
+	style tcw50vs50pct {
+		table {
+			columnWidth = 480px, 30px, 480px
+			header = tcw50vs50pct
+		}
+		row {
+			content = tcw50vs50pct, w100pct
+		}
+		cell {
+			verticalAlign = top
+		}
+	}
+	style tcwModes {
+		table {
+			columnWidth = 249px, 1px, 249px, 1px, 249px, 1px, 249px
+			header = tcwModes
+		}
+		row {
+			content = tcwModes, w100pct
+			padding {bottom = 0px left = 0px right = 0px top = 0px }
+			margin {bottom = 0px left = 0px right = 0px top = 0px }
+		}
+		cell {
+			verticalAlign = top
+		}
+	}
+
+
+
+
+
+
+
+
+
 	style sizeSmall {
 		all {
 			label {
 				position = left
+			}
+		}
+	}
+
+	style ctrlX {
+		all {
+			control {
+				textAlign = right
+				iconPosition = left
+			}
+			button {
+				borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+				backgroundColor = 00000000
+				width = fill
+				textAlign = right
+				underline = false
+			}
+		}
+	}
+	style hCenterButton {
+		all {
+			label {
+				position = top
+			}
+			control {
+				align = center
+				margin { bottom = 10px }
+			}
+			button {
+				borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+				backgroundColor = 048947
+				fontColor = FFFFFF
+				width = auto
+				textAlign = center
+				underline = false
+			}
+		}
+	}
+
+	style noborder {
+		all {
+			borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+			label {
+				borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+			}
+			control {
+				borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+			}
+			button {
+				borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+			}
+		}
+		chapter {
+			title {
+				borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+			}
+		}
+		table {
+			body = noborder
+			header = noborder
+			footer = noborder
+		}
+		row {
+			content = noborder
+		}
+	}
+
+	style vCenter {
+		cell {
+			verticalAlign = middle
+		}
+	}
+
+	style vsBar {
+		textview {
+			label {
+				width = 30px
+				iconFit = fit
+				iconPosition = left
+				iconHeight = 160px 
+				iconWidth = 30px
+			}
+			control {
+				height = 160px
+			}
+		}
+	}
+	style vsO2 {
+		textview {
+			label {
+				width = 30px
+				iconFit = fit
+				iconPosition = left
+				iconHeight = 30px 
+				iconWidth = 30px
+			}
+			control {
+				height = 30px
+			}
+		}
+	}
+
+	style divCell {
+		cell {
+			padding {bottom = 0px left = 0px right = 0px top = 0px }
+			margin {bottom = 0px left = 0px right = 0px top = 0px }
+			verticalAlign = middle
+			content = divCell
+		}
+		textview {
+			padding {bottom = 0px left = 0px right = 0px top = 0px }
+			margin {bottom = 0px left = 0px right = 0px top = 0px }
+			control {
+				padding {bottom = 0px left = 0px right = 0px top = 0px }
+				margin {bottom = 0px left = 0px right = 0px top = 0px }
+				backgroundColor = AAAAAA
+				width = 1px
+				height = 30px
+			}
+		}
+	}
+	style borderBlue {
+		row {
+			borderWidth {bottom = 1px left = 1px right = 1px top = 1px }
+			borderColor = 004583
+		}
+	}	
+	
+	style btnModeSel {
+		all {
+			control {
+				fontColor = FFFFFF
+				borderColor = 004583
+				backgroundColor = 004583
+			}
+		}
+	}	
+	style btnMode {
+		all {
+			padding {bottom = 0px left = 0px right = 0px top = 0px }
+			margin {bottom = 0px left = 0px right = 0px top = 0px }
+			control {
+				padding {bottom = 0px left = 0px right = 0px top = 0px }
+				margin {bottom = 0px left = 0px right = 0px top = 0px }
+				width = fill
+				height = 40px
+			}
+			button {
+				padding {bottom = 0px left = 0px right = 0px top = 0px }
+				margin {bottom = 0px left = 0px right = 0px top = 0px }
+				width = fill
+				fontColor = 004583
+				borderColor = 004583
+				borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+				backgroundColor = 00000000
+			}
+		}
+	}
+	style btnFpCompSel {
+		all {
+			control {
+				fontColor = FFFFFF
+				borderColor = 048947
+				backgroundColor = 048947
+			}
+		}
+	}
+	style btnFpComp {
+		all {
+			control {
+				padding {bottom = 0px left = 0px right = 0px top = 0px }
+				margin {bottom = 0px left = 0px right = 0px top = 0px }
+				width = fill
+				height = 40px
+				borderColor = 004583
+				borderWidth {bottom = 1px left = 1px right = 1px top = 1px }
+			}
+			button {
+				padding {bottom = 0px left = 0px right = 0px top = 0px }
+				margin {bottom = 0px left = 0px right = 0px top = 0px }
+				borderWidth {bottom = 0px left = 0px right = 0px top = 0px }
+				width = fill
+				fontColor = 004583
+				backgroundColor = 00000000
+			}
+		}
+	}
+	style borderGray {
+		all {
+			control {
+				borderColor = AAAAAA
+				padding {bottom = 3px left = 3px right = 3px top = 3px }
+				borderWidth {bottom = 3px left = 3px right = 3px top = 3px }
+			}
+		}
+	}
+
+	style lblNewLegend {
+		textview {
+			label {
+				width = 20px
+				backgroundColor = 004583
+			}
+			control {
+				padding {left = 5px}
+				height = 20px
+				fontColor = 004583
+			}
+		}
+	}
+	style lblMissingLegend {
+		textview {
+			padding {bottom = 3px left = 3px right = 3px top = 3px }
+			label {
+				width = 20px
+				backgroundColor = FF0000
+			}
+			control {
+				padding {left = 5px}
+				height = 20px
+				fontColor = FF0000
+			}
+		}
+	}
+
+	style modeToolbarHeight {
+		table {
+			control {
+				height = 30px
 			}
 		}
 	}
