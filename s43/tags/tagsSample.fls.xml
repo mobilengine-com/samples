@@ -7,7 +7,6 @@
 		<set value="{letv+1}" target="letv" />
 	</actionbutton>
 	<textview label='server now' text='{formatDtl(dtlNow(), (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}'/>
-	<textview label='form open' text='{SELECT formatDtl(sysp.dtlFormOpen, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)) FROM floorplan f LIMIT 1}'/>
 
 	<textbox id='tbA' hint="Gyümölcs" text='Alma?'/>	
 	<chapter title="Preselected">
@@ -24,7 +23,7 @@
 	</chapter>
 	<checkbox id="cbRO" text="Readonly"/>
 	<checkbox id="cbAllowNew" text="Allow new"/>
-	<dropdown id='sbStyle'
+	<dropdown id='sbStyle' label="style"
 		keyMap="{style}" textMap="{name}" 
 		choices='{TABLE name, style ("default", styles.Default; "Y/B", styles.YB; "M/G", styles.MG)}'/>
 	<tags id="tgs" predictionMode="prefix" style='{[styles.w800, sbStyle.selectedKey]}'
