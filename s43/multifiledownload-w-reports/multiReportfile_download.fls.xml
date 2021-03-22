@@ -1,0 +1,39 @@
+<form id="multiReportfile_download" menuName="multiReportfile_download" platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+	
+	<chapter title="Reports" />
+	<table record="r" recordset='{
+			SELECT rl.Id, rl.ReportviewId, rl.DtlT0, rl.DtlArchive, rl.ReportName, rl.AttachmentName 
+			FROM 
+				RtabLog rl }'>
+		<header>
+			<row>
+			<cell><textview text="Id" /></cell>
+			<cell><textview text="ReportviewId" /></cell>
+			<cell><textview text='DtlT0' /></cell>
+			<cell><textview text='DtlArchive' /></cell>
+			<cell><textview text="ReportName" /></cell>
+			<cell><textview text="AttachmentName" /></cell>
+			<cell><textview text="Download" /></cell>
+			</row>
+		</header>
+		<row>
+			<cell><textview text="{TOSTRING(r.Id)}" /></cell>
+			<cell><textview text="{r.ReportviewId}" /></cell>
+			<cell><textview text='{FORMATDTL(r.DtlT0, (dtf yyyy"-"MM"-"dd" "HH":"MM":"ss))}' /></cell>
+			<cell><textview text='{FORMATDTL(r.DtlArchive, (dtf yyyy"-"MM"-"dd" "HH":"MM":"ss))}' /></cell>
+			<cell><textview text="{TOSTRING(r.ReportName)}" /></cell>
+			<cell><textview text="{TOSTRING(r.AttachmentName)}" /></cell>
+			<cell><reportview  text="Download" reportviewId="{r.ReportviewId}" /></cell>
+		</row>
+	</table>
+	<multifiledownload text="Download all report" zipFileName='{"Reports.zip"}' files='{select null fileref,null fileName, Rl.ReportviewId reportviewId from RtabLog Rl}' />
+	<multifiledownload text="Download with Name" zipFileName='{"ReportsWithName.zip"}' files='{select null fileref,Rl.ReportName||".pdf" fileName, Rl.ReportviewId reportviewId from RtabLog Rl}' />
+	<multifiledownload text="Download with non valid reportviewId" zipFileName='{"Empty.zip"}' files='{select null fileref,Rl.ReportName||".pdf" fileName, "NotWalidReportViewId" reportviewId from RtabLog Rl}' />
+	<multifiledownload text="Download with weird name" zipFileName='{"ReportsWithweirdName.zip"}' files='{select null fileref,"/,(árvíztűrő-tükörfúrógép),\.pdf" fileName, Rl.ReportviewId reportviewId from RtabLog Rl}' />
+</form>
+
+
+
+
+
+

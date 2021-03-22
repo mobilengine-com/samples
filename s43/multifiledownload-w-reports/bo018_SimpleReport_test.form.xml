@@ -1,0 +1,7 @@
+<Form name="bo018_SimpleReport_test" description="bo018_SimpleReport_test">
+<!-- boreport001_SimpleReport.rpt-->
+	<Control type="panel" name="Root" color="RGB(255,255,255)" >
+		<Control type="textbox" name="User" label="User" text="" reference="SELECT @user"/>
+		<Control type="textbox" name="dtlNow" label="dtlNow" text="" reference="SELECT @dtlNow"/>
+	</Control>
+</Form>
