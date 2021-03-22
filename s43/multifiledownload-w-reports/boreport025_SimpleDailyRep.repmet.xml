@@ -10,13 +10,12 @@
 
 	<Email>
 		<Recipients>
-			<To>botond.bakai@mobilengine.com</To>
+			<To>demo@mobilengine.com</To>
 		</Recipients>
 		<Attachment>boreport025_SimpleDailyRep_attachment</Attachment>
 		<Subject>boreport025_SimpleDailyRep_subject</Subject>
 	</Email>
 	<Filter>
-		<User>and1</User>
 		<Form>bo018_SimpleReport_test</Form>
 	</Filter>
 	<LogTable>RtabLog</LogTable>
