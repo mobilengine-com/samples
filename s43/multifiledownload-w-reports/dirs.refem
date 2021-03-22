@@ -1,0 +1,6 @@
+<Reftab Name="dirs" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="dirid" Type="Text" />
+		<Column Name="dirn" Type="Text" />
+	</Columns>
+</Reftab>

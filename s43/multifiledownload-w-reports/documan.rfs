@@ -1,0 +1,18 @@
+﻿client server program documanRfs for form documanForm
+using reftab 'dirs';
+using reftab 'rtabFiles';
+{
+	trace form;
+	foreach (var dir in form.rgdir.rows) {
+		if (dir.dir.fNew) {
+			db.dirs.Insert({dirid: dir.dir.dirid, dirn: dir.dir.dirn});
+		}
+
+		for (var i = 0; i<dir.filupl.files.Count(); i=i+1) {
+            var file = dir.filupl.files[i]; 
+            var fileref = dir.filupl.filerefs[i]; 
+			db.rtabFiles.Insert({filn: file.name, mediaid: fileref.fileref, dirid: dir.dir.dirid, type: file.type, size: file.size});
+		}
+	}
+}
+

@@ -26,14 +26,10 @@
 			<cell><reportview  text="Download" reportviewId="{r.ReportviewId}" /></cell>
 		</row>
 	</table>
+	<multifiledownload text="Download very much all" zipFileName='all-dirs-and-reports.zip' files='{select fs.mediaid fileref, ds.dirn || "/" || fs.filn fileName, null reportviewId from rtabFiles fs join dirs ds on fs.dirid = ds.dirid
+		union all select null fileref,null fileName, Rl.ReportviewId reportviewId from RtabLog Rl}' />
 	<multifiledownload text="Download all report" zipFileName='{"Reports.zip"}' files='{select null fileref,null fileName, Rl.ReportviewId reportviewId from RtabLog Rl}' />
 	<multifiledownload text="Download with Name" zipFileName='{"ReportsWithName.zip"}' files='{select null fileref,Rl.ReportName||".pdf" fileName, Rl.ReportviewId reportviewId from RtabLog Rl}' />
 	<multifiledownload text="Download with non valid reportviewId" zipFileName='{"Empty.zip"}' files='{select null fileref,Rl.ReportName||".pdf" fileName, "NotWalidReportViewId" reportviewId from RtabLog Rl}' />
 	<multifiledownload text="Download with weird name" zipFileName='{"ReportsWithweirdName.zip"}' files='{select null fileref,"/,(árvíztűrő-tükörfúrógép),\.pdf" fileName, Rl.ReportviewId reportviewId from RtabLog Rl}' />
 </form>
-
-
-
-
-
-

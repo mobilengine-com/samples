@@ -1,0 +1,16 @@
+<Form name="DocumanFormL" description="Document Manager">
+	<Control type="panel" name="Root" color="RGB(255,255,255)" >
+		<Control type="panel" navigation="inline" name="rgdir" generator="SELECT ds.dirid, ds.dirn FROM REFERENCE_dirs ds ORDER BY dirn" ref_arg="" >
+			<Control type="label" name="label11" reference="=Documents in @1" ref_arg="PARENT.col1" color="RGB(245,130,32)" />
+			<Control data_type="string,string,string,string" navigation="inline" layout="table" generator="SELECT fs.mediaid, fs.filn, fs.type, fs.size, fs.dirid FROM REFERENCE_rtabFiles fs WHERE fs.dirid = @1" ref_arg="PARENT.col0" type="panel" name="fildown">
+				<Control  type="filedownload" name="fildwlOrig" label="Document" 
+					text_reference="REF" text_ref_arg="PARENT.col1" 
+					mediaid_reference="REF" mediaid_ref_arg="PARENT.col0"/>
+				<Control  type="label" name="lblType" label="Type" 
+					reference="REF" ref_arg="PARENT.col2"/>
+				<Control  type="label" name="lblSize" label="Size" 
+					reference="REF" ref_arg="PARENT.col3"/>
+			</Control>
+		</Control>
+	</Control>
+</Form>
