@@ -1,0 +1,22 @@
+<form id='toStringBool' menuName='toStringBool' title='toStringBool' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+		<declarations>
+			<let id='f' shape='scalar' value='{CASE WHEN chbNull.checked THEN null ELSE chb.checked END}' />
+			<let id='n' shape='scalar' value='{CASE WHEN chbNull.checked THEN null ELSE nb.number END}' />
+		</declarations>
+
+		<textview label='static true' text='{toString(true)}'/>
+		<textview label='static false' text='{toString(false)}'/>
+
+		<checkbox id='chbNull' text='null?'/>
+		<checkbox id='chb' text='check it'/>
+		<numberbox id='nb'/>
+
+		<textview label='toString(chb.checked)'  text='{toString(chb.checked)}'/>
+		<textview label='coalesce(toString(f), "null")' text='{coalesce(toString(f), "null")}'/>
+		<textview label='coalesce(toString(n), "null")' text='{coalesce(toString(n), "null")}'/>
+		<textview label='toString(chb.checked) server' text='{SELECT toString(chb.checked) ORDER BY 1}'/>
+		<textview label='coalesce(toString(f), "null") server' text='{SELECT coalesce(toString(f), "null") ORDER BY 1}'/>
+		<textview label='coalesce(toString(n), "null") server' text='{SELECT coalesce(toString(n), "null") ORDER BY 1}'/>
+	
+</form>
