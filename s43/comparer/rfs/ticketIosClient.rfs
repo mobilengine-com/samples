@@ -6,13 +6,9 @@ using reftab ticketPhoto;
 using reftab user;
 {
 	trace form;
-	Assert(form?.cbDebug?.checked ?? false, "debug should be checked");
-
+	
 	var guidPoint = form.ifTicketNew.pointId;
-
-	var xxx = guidPoint?.Length();
-	trace "xxx", xxx;
-
+	
 	// create point
 	if (form.isNewPoint) {
 		db.point.Insert({

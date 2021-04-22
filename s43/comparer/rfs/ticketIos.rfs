@@ -9,12 +9,9 @@ using reftab ticketPhoto;
 using reftab user;
 {
 	trace form;
-	Assert(form?.cbDebug?.checked ?? false, "debug should be checked");
 	
 	var guidPoint = form.ifTicketNew.pointId;
 
-	var xxx = guidPoint?.Length();
-	trace "xxx", xxx;
 	var point = null;
 	var floorplan = null;
 	var project = null;
@@ -66,7 +63,7 @@ using reftab user;
                 mediaidSignature = ticketRow.letMediaidSignatureOld;
             }
             if (mediaidSignature != null) {
-                filerefSignature = fileref.New(guid.Parse(mediaidSignature), 0);
+                filerefSignature = fileref.New(mediaidSignature, 0);
             }
 			db.ticket.Update({
 				guid: guidTicket
@@ -111,7 +108,7 @@ using reftab user;
 			syncDacs.Send();
 			
 			foreach(var photo in ticketRow.photo.photos) {
-				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(guid.Parse(photo.photoId), 0)};
+				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(photo.photoId, 0)};
 				db.ticketPhoto.Insert(ticketPhoto);
 
 				var syncMedia = messages.SendSyncMedia.New();
@@ -156,7 +153,7 @@ using reftab user;
 
             var filerefSignature = null;
             if (mediaidSignature != null) {
-                filerefSignature = fileref.New(guid.Parse(mediaidSignature), 0);
+                filerefSignature = fileref.New(mediaidSignature, 0);
             }
 			var ticket = {
 				guid: guidTicket,
@@ -203,7 +200,7 @@ using reftab user;
 			syncDacs.Send();
 
 			foreach(var photo in ticketRow.photo.photos) {
-				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(guid.Parse(photo.photoId), 0)};
+				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(photo.photoId, 0)};
 				db.ticketPhoto.Insert(ticketPhoto);
 				
 				var syncMedia = messages.SendSyncMedia.New();

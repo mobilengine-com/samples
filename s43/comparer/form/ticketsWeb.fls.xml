@@ -17,6 +17,7 @@
 		style='{styles.w500}'
 		/>
 	<checkbox id='cbClosed' text='Show closed'/>
+	<discardbutton text='Compare' nextForm='{forms.compareFloorplan}'><params><param id='guidFloorplan' value='{letFp.guid}' /></params></discardbutton>
 	<table record='r' recordset='{SELECT 1 WHERE 0=1}' style='{styles.tcw5050pct}'>
 		<header>
 			<row>
@@ -31,7 +32,7 @@
 				newPointColor='00FFFF'
 				title='{"This is " || fileName || " floorplan"}'
 				selectedCategoryId="{letFp.category}"
-				pointSize="{2}"
+				pointSize="{1.5}"
 				/>
 			</cell>
 			<cell>
@@ -57,34 +58,33 @@
 							<if cond="{fDebug}" >
 								<textview id="name" label="ticket id" text='{letGuid}'/>
 							</if>
-							<textbox id="section" label="section" text='{letTicket.section}' style="{styles.sizeSmall}"/>
-							<dropdown id="ddCategory" label="category" choices="{SELECT c.guid, c.name FROM category c}" keyMap = "{guid}" textMap = "{name}" selectedKey="{letTicket.category}" style="{styles.sizeSmall}" >
+							<textbox id="section" hint="section" text='{letTicket.section}' style="{styles.sizeSmall}"/>
+							<dropdown id="ddCategory" noneText="-category-" choices="{SELECT c.guid, c.name FROM category c}" keyMap = "{guid}" textMap = "{name}" selectedKey="{letTicket.category}" style="{styles.sizeSmall}" >
 								<validation>
 									<validator cond="{selectedKey IS NOT NULL}" message="select a category" />
 								</validation>
 							</dropdown>
-							<textarea id="description" label="description" lines="3" text="{letTicket.description}" style="{styles.sizeSmall}"/>
-							<textview id="comments" label="comments" text="{letTicket.comments}" style="{styles.sizeSmall}"/>
-							<datepicker id="dueDate" label="due date" date="{letTicket.dueDate}" dateFormat='(dtf yyyy"-"MM"-"dd)' style="{styles.sizeSmall}"/>
-							<!-- photoview / 
-							<Control type="photoview" name="ticketPhotoView" label="" 
-								reference="SELECT mediaidPhoto FROM reference_ticketPhoto WHERE @1=guidTicket" ref_arg="PARENT.col0"/>
-							<Control type="photoview" name="ticketSignatureView" label="" 
-								reference="SELECT @1 WHERE @1 IS NOT NULL AND @1 NOT LIKE '%null%'" ref_arg="PARENT.col7"/>
-							--> 									
-			
-							<photoview label="existing photos" photos="{SELECT SUBSTR(TOSTRING(tp.mediaidPhoto), 1, 32) FROM ticketPhoto tp WHERE tp.guidTicket = letGuid}" style="{styles.sizeSmall}"/>
-							<photo id="photo" label="photos" style="{styles.sizeSmall}"/>
-							<photoview label="existing signature" photos="{SELECT SUBSTR(TOSTRING(letTicket.mediaidSignature), 1, 32) WHERE letTicket.mediaidSignature IS NOT NULL}" style="{styles.sizeSmall}"/>
-							<signature id="signature" label="signature" />
+							<textarea id="description" hint="description" lines="3" text="{letTicket.description}" style="{styles.sizeSmall}"/>
+							<textview text='comments'/>
+							<textview id="comments" text="{letTicket.comments}" style="{styles.sizeSmall}"/>
+							<datepicker id="dueDate" hint="due date" 
+							date="{letTicket.dueDate}" dateFormat='(dtf yyyy"-"MM"-"dd)' style="{styles.sizeSmall}"/>
 							
-							<dropdown id="ddStatus" label="status" choices="{SELECT c.status, c.name FROM ticketStatus c}" keyMap = "{status}" textMap = "{name}" selectedKey="{letTicket.status}" style="{styles.sizeSmall}" >
+			
+							<textview text='existing photos'/>
+							<photoview photos="{SELECT SUBSTR(TOSTRING(tp.mediaidPhoto), 1, 32) FROM ticketPhoto tp WHERE tp.guidTicket = letGuid}" style="{styles.sizeSmall}"/>
+							<textview text='photos'/>
+							<photo id="photo" style="{styles.sizeSmall}"/>
+							<textview text='existing signature'/>
+							<photoview photos="{SELECT SUBSTR(TOSTRING(letTicket.mediaidSignature), 1, 32) WHERE letTicket.mediaidSignature IS NOT NULL}" style="{styles.sizeSmall}"/>
+							
+							<dropdown id="ddStatus" noneText="-status-" choices="{SELECT c.status, c.name FROM ticketStatus c}" keyMap = "{status}" textMap = "{name}" selectedKey="{letTicket.status}" style="{styles.sizeSmall}" >
 								<validation>
 									<validator cond="{selectedKey IS NOT NULL}" message="select a status" />
 								</validation>
 							</dropdown>
-							<textview label="creator" text="{SELECT u.name FROM user u WHERE u.guid = letTicket.guidUserCreator}" style="{styles.sizeSmall}"/>
-							<dropdown id="ddAssignee" label="assignee" choices="{SELECT u.guid, u.name FROM user u}" 
+							<textview text='{SELECT "creator: "||coalesce(u.name, "n.a.") FROM user u WHERE u.guid = letTicket.guidUserCreator}' style="{styles.sizeSmall}"/>
+							<dropdown id="ddAssignee" noneText="-assignee-" choices="{SELECT u.guid, u.name FROM user u}" 
 								keyMap = "{guid}" textMap = "{name}" selectedKey="{letTicket.guidUserAssignee}" style="{styles.sizeSmall}" />
 						</block>
 					</repeater>
@@ -109,31 +109,31 @@
 							<declarations>
 								<let id="letGuid" shape="scalar" value="{toStringN(newGuid())}"/>
 							</declarations>
-							<textbox id="section" label="section" text='' style="{styles.sizeSmall}"/>
-							<dropdown id="ddCategory" label="category" choices="{SELECT c.guid, c.name FROM category c}" 
+							<textbox id="section" hint="section" text='' style="{styles.sizeSmall}"/>
+							<dropdown id="ddCategory" noneText="-category-" choices="{SELECT c.guid, c.name FROM category c}" 
 								keyMap = "{guid}" textMap = "{name}" selectedKey="{letCategoryId}"  style="{styles.sizeSmall}">
 								<validation>
 									<validator cond="{selectedKey IS NOT NULL}" message="select a category" />
 								</validation>
 							</dropdown>
-							<textarea id="description" label="description" lines="3" text="" style="{styles.sizeSmall}"/>
-							<datepicker id="dueDate" label="due date" dateFormat='(dtf yyyy"-"MM"-"dd)' style="{styles.sizeSmall}"/>
+							<textarea id="description" hint="description" lines="3" text="" style="{styles.sizeSmall}"/>
+							<datepicker id="dueDate" hint="due date" 
+								dateFormat='(dtf yyyy"-"MM"-"dd)' style="{styles.sizeSmall}"/>
 							<!-- photoview / 
 							<Control type="photoview" name="ticketPhotoView" label="" 
 								reference="SELECT mediaidPhoto FROM reference_ticketPhoto WHERE @1=guidTicket" ref_arg="PARENT.col0"/>
 							<Control type="photoview" name="ticketSignatureView" label="" 
 								reference="SELECT @1 WHERE @1 IS NOT NULL AND @1 NOT LIKE '%null%'" ref_arg="PARENT.col7"/>
 							-->
-							<photo id="photo" label="photos" style="{styles.sizeSmall}"/>
-							<signature id="signature" label="signature" style="{styles.sizeSmall}" />
-							
-							<dropdown id="ddStatus" label="status" choices="{SELECT c.status, c.name FROM ticketStatus c}" keyMap = "{status}" textMap = "{name}"  style="{styles.sizeSmall}" selectedKey="{1}">
+							<textview text='photos'/>
+							<photo id="photo" style="{styles.sizeSmall}"/>
+							<dropdown id="ddStatus" noneText="-status-" choices="{SELECT c.status, c.name FROM ticketStatus c}" keyMap = "{status}" textMap = "{name}"  style="{styles.sizeSmall}" selectedKey="{1}">
 								<validation>
 									<validator cond="{selectedKey IS NOT NULL}" message="select a status" />
 								</validation>
 							</dropdown>
-							<textview label="creator" text="{SELECT u.name FROM user u WHERE u.email = sysp.user}" style="{styles.sizeSmall}"/>
-							<dropdown id="ddAssignee" label="assignee" choices="{SELECT u.guid, u.name FROM user u}" 
+							<textview text='{SELECT "creator: "||coalesce(u.name, "n.a.") FROM user u WHERE u.email = sysp.user}' style="{styles.sizeSmall}"/>
+							<dropdown id="ddAssignee" noneText="-assignee-" choices="{SELECT u.guid, u.name FROM user u}" 
 								keyMap = "{guid}" textMap = "{name}" style="{styles.sizeSmall}" />
 						</block>
 					</repeater>

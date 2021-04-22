@@ -6,7 +6,6 @@ using reftab ticket;
 using reftab ticketPhoto;
 {
 	trace form;
-	Assert(false, "should fail!");
 	if (form.controlSubmit.nid == "btnSaveAndDone" || form.controlSubmit.nid == "btnSaveAndAgain") {
 		//ticketPanel.par...
 		//ticketPanel.ticket...

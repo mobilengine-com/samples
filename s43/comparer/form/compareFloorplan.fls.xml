@@ -56,7 +56,7 @@
 					<row>
 						<cell style="{styles.vCenter}">
 							<actionbutton text="{letFp1.name}" style='{[styles.btnFpComp, 
-								case when comparer1.adjustPhase="1" then styles.btnFpCompSel else null end,
+								case when comparer1.adjustPhase in ("1", "2") then styles.btnFpCompSel else null end,
 								case when letMode="0" then styles.btnModeSel else null end
 							]}'>
 								<set value='{"overlay"}' target='comparer1.mode'/>
@@ -68,7 +68,7 @@
 						<cell style="{styles.vCenter}">
 							<actionbutton text="{letFp2.name}" style='{[
 								styles.btnFpComp, 
-								case when comparer1.adjustPhase="2" then styles.btnFpCompSel else null end,
+								case when comparer1.adjustPhase in ("3", "4") then styles.btnFpCompSel else null end,
 								case when letMode="1" then styles.btnModeSel else null end
 							]}'>
 								<set value='{"overlay"}' target='comparer1.mode'/>
@@ -121,8 +121,8 @@
 			<if cond='{letMode="vs"}'>
 				<table record='_' recordset='{SELECT 1 v WHERE 1=2}' style='{[styles.noborder, styles.modeToolbarHeight]}'>
 					<header><row>
-						<cell><textview text='Hiányzó elemek' label='' style='{styles.lblMissingLegend}'/></cell>
-						<cell><textview text='Új elemek' label='' style='{styles.lblNewLegend}' /></cell>
+						<cell><checkbox id='chbOldOnVs' text='Hiányzó elemek' label='' style='{styles.lblMissingLegend}' checked='{true}'/></cell>
+						<cell><checkbox id='chbNewOnVs' text='Új elemek' label='' style='{styles.lblNewLegend}' checked='{true}'/></cell>
 					</row></header>
 					<row><cell><block></block></cell></row>
 				</table>
@@ -155,8 +155,12 @@
 					<header><row>
 						<cell>
 							<textview style='{styles.w100pct}'
-							text='{case comparer1.adjustPhase when "1" then "Az illesztés funkcióval egyszerűen egymásra helyezhet elcsúsztatott dokumentumokat. Jelöljön ki egy pontot az első dokumentumon." 
-								when "2" then "Jelölje ki a második dokumentumon is ugyanazt a pontot amit az elsőn megjelölt." else "" end}' /></cell>
+							text='{case comparer1.adjustPhase 
+								when "1" then "Az illesztés funkcióval egyszerűen egymásra helyezhet elcsúsztatott dokumentumokat. 1. lépés: Jelöljön ki egy pontot az első tervrajzon." 
+								when "2" then "2. lépés: Jelöljön meg egy másik pontot a tervrajzon." 
+								when "3" then "3. lépés: Jelölje meg az elsőnek megjelölt pontot a második tervrajzon." 
+								when "4" then "4. lépés: Jelölje meg a másodjára megjelölt pontot a második tervrajzon." 
+								else "" end}' /></cell>
 					</row></header>
 					<row><cell><block></block></cell></row>
 				</table>				
@@ -195,6 +199,10 @@
 			tooltipExport='{"Letöltés"}'
 			labelPage='{"Oldal"}'
 		/>
+		<!-- 
+			showOldOnVS='{chbOldOnVs.checked}'
+			showNewOnVS='{chbNewOnVs.checked}'
+		-->
 		
 	</chapter>
 	<checkbox id="cbDebug" label="debug"/>

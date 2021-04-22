@@ -18,7 +18,7 @@ styles {
 	style w800 {
 		all {
 			control {
-				width = 500px
+				width = 1000px
 			}
 		}
 	}
@@ -338,7 +338,7 @@ styles {
 	}
 
 	style lblNewLegend {
-		textview {
+		checkbox {
 			label {
 				width = 20px
 				backgroundColor = 004583
@@ -351,7 +351,7 @@ styles {
 		}
 	}
 	style lblMissingLegend {
-		textview {
+		checkbox {
 			padding {bottom = 3px left = 3px right = 3px top = 3px }
 			label {
 				width = 20px

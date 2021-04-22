@@ -3,8 +3,7 @@ client program floorplans for form 'floorplans'
 using reftab ticketFormParam;
 {
 	trace form;
-    trace form.controlSubmit.parent.parent.parent;
-    Assert(false, "should fail!");
+	trace form.controlSubmit.parent.parent.parent;
 
 	var guidFloorplan = form.controlSubmit.parent.parent.parent.guid.value;
 	trace guidFloorplan;

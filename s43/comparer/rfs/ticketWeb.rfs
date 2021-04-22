@@ -9,7 +9,7 @@ using reftab ticketPhoto;
 using reftab user;
 {
 	trace form;
-	Assert(form?.cbDebug?.checked ?? false, "debug should be checked");
+	
 	var guidPoint = form.ifTicketNew.pointId;
 
 	var point = null;
@@ -56,15 +56,6 @@ using reftab user;
 			if (ticketRow.dueDate.date != null) {
 				dueDate = ticketRow.dueDate.date.DtlToDtdb();
 			}
-            var mediaidSignature = ticketRow.signature.binaryId;
-            var filerefSignature = null;
-
-			if (mediaidSignature == null) {
-                mediaidSignature = ticketRow.letMediaidSignatureOld;
-            }
-            if (mediaidSignature != null) {
-                filerefSignature = fileref.New(guid.Parse(mediaidSignature), 0);
-            }
 			db.ticket.Update({
 				guid: guidTicket
 			}, {
@@ -73,22 +64,10 @@ using reftab user;
 				status: ticketRow.ddStatus.selectedKey,
                 description: ticketRow.description.text,
 				guidUserAssignee: ticketRow.ddAssignee.selectedKey,
-				mediaidSignature: filerefSignature,
 				dueDate: dueDate
 			});		
 			
 			var ticket = db.ticket.Read({guid: guidTicket})[0];
-			if (ticket.mediaidSignature != null) {
-				var syncMedia = messages.SendSyncMedia.New();
-				syncMedia.Media.mediaId = ticket.mediaidSignature.MediaId();
-				syncMedia.Media.filename = ticket.mediaidSignature.Filename() ?? syncMedia.Media.mediaId+".jpg";
-				syncMedia.Media.checksum = ticket.mediaidSignature.Checksum();
-				syncMedia.Media.size = ticket.mediaidSignature.Size();
-				syncMedia.Media.guidLcomp = project.lcompGuid;
-				syncMedia.Media.guidProject = floorplan.projectGuid;
-				syncMedia.Media.guidFolder = floorplan.folderGuid;
-				syncMedia.Send();
-			}
 						
 			var syncDacs = messages.SendSyncCru.New();
 			syncDacs.Packet.guid = ticket.guid;
@@ -108,7 +87,7 @@ using reftab user;
 			syncDacs.Send();
 			
 			foreach(var photo in ticketRow.photo.photos) {
-				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(guid.Parse(photo.photoId), 0)};
+				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(photo.photoId, 0)};
 				db.ticketPhoto.Insert(ticketPhoto);
 
 				var syncMedia = messages.SendSyncMedia.New();
@@ -147,14 +126,9 @@ using reftab user;
 			if (ticketRow.dueDate.date != null) {
 				dueDate = ticketRow.dueDate.date.DtlToDtdb();
 			}
-			var mediaidSignature = ticketRow.signature.binaryId;
             var guidTicket = ticketRow.letGuid;
             var userCreator = db.user.Read({email: form.info.user.name }).SingleOrDefault();
 
-            var filerefSignature = null;
-            if (mediaidSignature != null) {
-                filerefSignature = fileref.New(guid.Parse(mediaidSignature), 0);
-            }
 			var ticket = {
 				guid: guidTicket,
 				guidPoint: guidPoint,
@@ -164,23 +138,12 @@ using reftab user;
 				description: ticketRow.description.text,
                 guidUserCreator: userCreator.guid,
 				guidUserAssignee: ticketRow.ddAssignee.selectedKey,
-				mediaidSignature: filerefSignature,
+				mediaidSignature: null,
 				dueDate: dueDate
 			};
 			db.ticket.Insert(ticket);
 
-			if (ticket.mediaidSignature != null) {
-				var syncMedia = messages.SendSyncMedia.New();
-				syncMedia.Media.mediaId = ticket.mediaidSignature.MediaId();
-				syncMedia.Media.filename = ticket.mediaidSignature.Filename() ?? syncMedia.Media.mediaId+".jpg";
-				syncMedia.Media.checksum = ticket.mediaidSignature.Checksum();
-				syncMedia.Media.size = ticket.mediaidSignature.Size();
-				syncMedia.Media.guidLcomp = project.lcompGuid;
-				syncMedia.Media.guidProject = floorplan.projectGuid;
-				syncMedia.Media.guidFolder = floorplan.folderGuid;
-				syncMedia.Send();
-			}
-			
+		
 			var syncDacs = messages.SendSyncCru.New();
 
 			syncDacs.Packet.guid = ticket.guid;
@@ -200,7 +163,7 @@ using reftab user;
 			syncDacs.Send();
 
 			foreach(var photo in ticketRow.photo.photos) {
-				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(guid.Parse(photo.photoId), 0)};
+				var ticketPhoto = {guidTicket: guidTicket, mediaidPhoto: fileref.New(photo.photoId, 0)};
 				db.ticketPhoto.Insert(ticketPhoto);
 				
 				var syncMedia = messages.SendSyncMedia.New();
@@ -234,439 +197,3 @@ using reftab user;
 	}
 	
 }
-
-/*
-{
-
-    annotator:
-
-        {
-
-            newPoint:
-
-                {
-
-                    categoryId: <<null>>, 
-
-                    pageIndex: 1, 
-
-                    xFraction: 0.741379087727651, 
-
-                    yFraction: 0.163157894736842
-
-                }, 
-
-            parentControl: <<ref: ticketsWeb>>, 
-
-            selectedPoint: <<null>>
-
-        }, 
-
-    cbDebug: {checked: false, parentControl: <<ref: ticketsWeb>>}, 
-
-    ddCat:
-
-        {
-
-            parentControl: <<ref: ticketsWeb>>, 
-
-            selectedKey: <<null>>, 
-
-            selectedText: <<null>>, 
-
-            selectedValue: <<null>>
-
-        }, 
-
-    fDebug: false, 
-
-    ifTicketNew:
-
-        {
-
-            cond: true, 
-
-            id:
-
-                {
-
-                    parentControl: <<ref: ticketsWeb.ifTicketNew>>, 
-
-                    text: "c0d85f40514b491d4bedda644d0c01c1"
-
-                }, 
-
-            letCategoryId: <<null>>, 
-
-            letPageIndex: 1, 
-
-            letXFraction: 0.741379087727651, 
-
-            letYFraction: 0.163157894736842, 
-
-            pageIndex:
-
-                {parentControl: <<ref: ticketsWeb.ifTicketNew>>, text: "1"}, 
-
-            parentControl: <<ref: ticketsWeb>>, 
-
-            pctX:
-
-                {
-
-                    parentControl: <<ref: ticketsWeb.ifTicketNew>>, 
-
-                    text: "0.7413790877276508"
-
-                }, 
-
-            pctY:
-
-                {
-
-                    parentControl: <<ref: ticketsWeb.ifTicketNew>>, 
-
-                    text: "0.1631578947368421"
-
-                }, 
-
-            pointId: "c0d85f40514b491d4bedda644d0c01c1", 
-
-            ticketsNew:
-
-                {
-
-                    parentControl: <<ref: ticketsWeb.ifTicketNew>>, 
-
-                    rows:
-
-                        [
-
-                            {
-
-                                ddAssignee:
-
-                                    {
-
-                                        parentControl:
-
-                                            <<ref: ticketsWeb.ifTicketNew.ticketsNew.rows[0]>>, 
-
-                                        selectedKey: <<null>>, 
-
-                                        selectedText: <<null>>, 
-
-                                        selectedValue: <<null>>
-
-                                    }, 
-
-                                ddCategory:
-
-                                    {
-
-                                        parentControl:
-
-                                            <<ref: ticketsWeb.ifTicketNew.ticketsNew.rows[0]>>, 
-
-                                        selectedKey:
-
-                                            "d43ea343927a450783f68d9ad3bf331a", 
-
-                                        selectedText: "gépészet", 
-
-                                        selectedValue:
-
-                                            {
-
-                                                guid:
-
-                                                    "d43ea343927a450783f68d9ad3bf331a", 
-
-                                                name: "gépészet"
-
-                                            }
-
-                                    }, 
-
-                                ddStatus:
-
-                                    {
-
-                                        parentControl:
-
-                                            <<ref: ticketsWeb.ifTicketNew.ticketsNew.rows[0]>>, 
-
-                                        selectedKey: 2, 
-
-                                        selectedText:
-
-                                            "resolved by subcontractor", 
-
-                                        selectedValue:
-
-                                            {
-
-                                                name:
-
-                                                    "resolved by subcontractor", 
-
-                                                status: 2
-
-                                            }
-
-                                    }, 
-
-                                description:
-
-                                    {
-
-                                        parentControl:
-
-                                            <<ref: ticketsWeb.ifTicketNew.ticketsNew.rows[0]>>, 
-
-                                        text: "alma"
-
-                                    }, 
-
-                                dueDate:
-
-                                    {
-
-                                        date: <<null>>, 
-
-                                        parentControl:
-
-                                            <<ref: ticketsWeb.ifTicketNew.ticketsNew.rows[0]>>
-
-                                    }, 
-
-                                letGuid: "315954f6980da1dfdd648acb819373c9", 
-
-                                parentControl:
-
-                                    <<ref: ticketsWeb.ifTicketNew.ticketsNew>>, 
-
-                                photo:
-
-                                    {
-
-                                        parentControl:
-
-                                            <<ref: ticketsWeb.ifTicketNew.ticketsNew.rows[0]>>, 
-
-                                        photos: []
-
-                                    }, 
-
-                                section:
-
-                                    {
-
-                                        parentControl:
-
-                                            <<ref: ticketsWeb.ifTicketNew.ticketsNew.rows[0]>>, 
-
-                                        text: "zzz"
-
-                                    }, 
-
-                                signature:
-
-                                    {
-
-                                        binaryId: <<null>>, 
-
-                                        parentControl:
-
-                                            <<ref: ticketsWeb.ifTicketNew.ticketsNew.rows[0]>>
-
-                                    }
-
-                            }
-
-                        ]
-
-                }
-
-        }, 
-
-    ifTicketSel:
-
-        {
-
-            cond: false, 
-
-            pageIndex:
-
-                {parentControl: <<ref: ticketsWeb.ifTicketSel>>, text: <<null>>}, 
-
-            parentControl: <<ref: ticketsWeb>>, 
-
-            pctX:
-
-                {parentControl: <<ref: ticketsWeb.ifTicketSel>>, text: <<null>>}, 
-
-            pctY:
-
-                {parentControl: <<ref: ticketsWeb.ifTicketSel>>, text: <<null>>}, 
-
-            pid:
-
-                {parentControl: <<ref: ticketsWeb.ifTicketSel>>, text: <<null>>}, 
-
-            ticketsOld: {parentControl: <<ref: ticketsWeb.ifTicketSel>>, rows: []}
-
-        }, 
-
-    info:
-
-        {
-
-            dtlSubmit: 2020.03.24. 16:59:34 (Dtl), 
-
-            dtuSubmit: 2020.03.24. 15:59:34 (Dtu), 
-
-            formn: "ticketsWeb", 
-
-            platform: "web", 
-
-            resultId: 113, 
-
-            user: {companyId: 103, id: 11, name: "controller"}
-
-        }, 
-
-    isNewPoint: true, 
-
-    letFp:
-
-        {
-
-            building: "E0202", 
-
-            category: "f57079810b2c534a1f6f573bea07289d", 
-
-            file_guid: "cd52f55af6704f2ca0e1117dfe3a8244", 
-
-            file_hash: <<null>>, 
-
-            file_name:
-
-                "a850b4d3117044b49f5f165b46d5a90c_E.02.02 PINCESZINTI ALAPRAJZ_M.pdf", 
-
-            file_size: 2374407, 
-
-            floor: "1", 
-
-            guid: "9517347507fd48cb9bf352d5a71f2132", 
-
-            mediaId: Fileref(6c2b8cc7912108644b81d99b9b67f5d3|0), 
-
-            name: "E0202-1em"
-
-        }, 
-
-    letPointNew:
-
-        {
-
-            categoryId: <<null>>, 
-
-            pageIndex: 1, 
-
-            xFraction: 0.741379087727651, 
-
-            yFraction: 0.163157894736842
-
-        }, 
-
-    letPointSelected: <<null>>, 
-
-    letTickets: [], 
-
-    parentControl: <<null>>, 
-
-    posPageIndex: {parentControl: <<ref: ticketsWeb>>, text: "0"}, 
-
-    posPctX: {parentControl: <<ref: ticketsWeb>>, text: "0.5"}, 
-
-    posPctY: {parentControl: <<ref: ticketsWeb>>, text: "0.5"}, 
-
-    posScale: {parentControl: <<ref: ticketsWeb>>, text: "0.14895068164535627"}, 
-
-    submissionTitle: "tickets on web", 
-
-    submitButton: <<null>>, 
-
-    t:
-
-        {
-
-            parentControl: <<ref: ticketsWeb>>, 
-
-            rows:
-
-                [
-
-                    {
-
-                        categoryId:
-
-                            {
-
-                                parentControl: <<ref: ticketsWeb.t.rows[0]>>, 
-
-                                text: "3dc43bc327b7472298def62c0dc335a1"
-
-                            }, 
-
-                        id:
-
-                            {
-
-                                parentControl: <<ref: ticketsWeb.t.rows[0]>>, 
-
-                                text: "3b4d8544d9423c56c15342eba8d422f4"
-
-                            }, 
-
-                        pageIndex:
-
-                            {
-
-                                parentControl: <<ref: ticketsWeb.t.rows[0]>>, 
-
-                                text: "0"
-
-                            }, 
-
-                        parentControl: <<ref: ticketsWeb.t>>, 
-
-                        xFraction:
-
-                            {
-
-                                parentControl: <<ref: ticketsWeb.t.rows[0]>>, 
-
-                                text: "0.171925265409628"
-
-                            }, 
-
-                        yFraction:
-
-                            {
-
-                                parentControl: <<ref: ticketsWeb.t.rows[0]>>, 
-
-                                text: "0.113498459536371"
-
-                            }
-
-                    }
-
-                ]
-
-        }
-
-}
-*/
