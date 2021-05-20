@@ -1,0 +1,8 @@
+styles {
+    style default {
+        all {
+            // column widths are not affected by the visibility of the columns
+            columnWidth = 100px, 50px, 100px, 100px, 100px, 50px, 150px, 150px
+        }
+    }
+}

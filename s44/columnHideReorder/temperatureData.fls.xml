@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="temperature_data" menuName="temperature_data" platforms="ios web" style="{styles.default}">
+	<declarations>
+		<let id="data" shape="table" value='{
+			TABLE Month,RecMax,AvgMax,Avg,AvgMin,RecMin,Precip,Sunny (
+				"January",18.1,1.2,-1.6,-4,-25.6,39,55;
+				"February",19.7,4.5,1.1,-1.7,-23.4,37,84;
+				"March",25.4,10.2,5.6,1.7,-15.1,37,137;
+				"April",30.2,16.3,11.1,6.3,-4.6,47,182;
+				"May",34,21.4,15.9,10.8,-1.6,65,230;
+				"June",39.5,24.4,19,13.9,3,70,248;
+				"July",40.7,26.5,20.8,15.4,5.9,50,274;
+				"August",39.4,26,20.2,14.9,5,50,255;
+				"September",35.2,22.1,16.4,11.5,-3.1,43,197;
+				"October",25,16.1,11,6.7,-9.5,47,156;
+				"November",22.6,8.1,4.8,2.1,-16.4,60,67;
+				"December",19.3,3.1,0.4,-1.8,-20.8,49,48;
+				"Whole Year",40.7,15,10.4,6.4,-25.6,593,1933
+			)}' />
+		<let id="allColumns" shape="table" value='{TABLE v, isRecord, isAverage (
+			"Month",	false,	false;
+			"RecMax",	true,	false;
+			"AvgMax",	false,	true;
+			"Avg",		false,	true;
+			"AvgMin",	false,	true;
+			"RecMin",	true,	false;
+			"Precip",	false,	false;
+			"Sunny",	false,	false)}' />
+		<let id="visibleOrderedColumns" shape="table" value='{clientOrderBy:
+			SELECT c.v 
+			FROM allColumns c
+			WHERE 
+				(NOT c.isRecord OR showRec.checked) AND
+				(NOT c.isAverage OR showAvg.checked)
+			ORDER BY
+				CASE WHEN v = "Month" THEN 0 ELSE 1 END,
+				CASE orderSelect.selectedKey WHEN "A-Z" THEN v END ASC,
+				CASE orderSelect.selectedKey WHEN "Z-A" THEN v END DESC
+		}' />
+	</declarations>
+	
+	<checkbox id="showRec" label="Show records:" checked="{true}" />
+	<checkbox id="showAvg" label="Show averages:" checked="{true}" />
+	<segmentedbutton id="orderSelect" label="Order columns:" choices='{TABLE v (
+		"A-Z";
+		"Z-A";
+	)}' keyMap='{v}' textMap='{v}' selectedKey='{"A-Z"}' />
+
+	<!-- visibleColumns sets which columns are visible, and in what order -->
+	<table id="table1" record="r" 
+			recordset='{SELECT d.Month,d.RecMax,d.AvgMax,d.Avg,d.AvgMin,d.RecMin,d.Precip,d.Sunny FROM data d}' 
+			visibleColumns='{SELECT cn.v FROM visibleOrderedColumns cn}' >
+		<header>
+			<row>
+				<!-- columnIds are defined on cells -->
+				<!-- they can be defined on either header, body and footer cells -->
+				<!-- they need to be unique -->
+				<!-- default column names are c1, c2, ... cN -->
+				<cell columnId="Month"><textview text="Month" /></cell>
+				<cell columnId="RecMax"><textview text="Record Max" /></cell>
+				<cell columnId="AvgMax"><textview text="Average Max" /></cell>
+				<cell columnId="Avg"><textview text="Average" /></cell>
+				<cell columnId="AvgMin"><textview text="Average Min" /></cell>
+				<cell columnId="RecMin"><textview text="Record Min" /></cell>
+				<cell><textview text="Precipitation" /></cell>
+				<!-- this columnId is defined twice, but it doesn't matter as long as they are both the same -->
+				<cell columnId="Sunny"><textview text="Sunny hours" /></cell>
+			</row>
+		</header>
+		<row>
+			<cell><textview text="{TOSTRING(r.Month)}" /></cell>
+			<cell><textview text="{TOSTRING(r.RecMax)}" /></cell>
+			<cell><textview text="{TOSTRING(r.AvgMax)}" /></cell>
+			<cell><textview text="{TOSTRING(r.Avg)}" /></cell>
+			<cell><textview text="{TOSTRING(r.AvgMin)}" /></cell>
+			<cell><textview text="{TOSTRING(r.RecMin)}" /></cell>
+			<!-- columnIds defined here just for fun -->
+			<cell columnId="Precip"><textview text="{TOSTRING(r.Precip)}" /></cell>
+			<!-- this columnId is defined twice, but it doesn't matter as long as they are both the same -->
+			<cell columnId="Sunny"><textview text="{TOSTRING(r.Sunny)}" /></cell>
+		</row>
+	</table>
+</form>

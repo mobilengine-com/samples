@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="large_table" menuName="large_table" platforms="ios web">
+	<declarations>
+		<let id="allColumns" shape="table" value='{
+			TABLE v (
+				"myCol1";
+				"myCol2";
+				"myCol3";
+				"myCol4";
+				"myCol5";
+				"myCol6";
+				"myCol7";
+				"myCol8";
+				"myCol9";
+				"myCol10";
+				"myCol11";
+				"myCol12";
+				"myCol13";
+				"myCol14";
+				"myCol15";
+				"myCol16";
+				"myCol17";
+				"myCol18";
+				"myCol19";
+				"myCol20";
+				"myCol21";
+				"myCol22";
+				"myCol23";
+				"myCol24";
+				"myCol25";
+				"myCol26";
+				"myCol27";
+				"myCol28";
+				"myCol29";
+				"myCol30";
+				"myCol31";
+				"myCol32";
+				"myCol33";
+				"myCol34";
+				"myCol35";
+				"myCol36";
+				"myCol37";
+				"myCol38";
+				"myCol39";
+				"myCol40";
+				"myCol41";
+				"myCol42";
+				"myCol43";
+				"myCol44";
+				"myCol45";
+				"myCol46";
+				"myCol47";
+				"myCol48";
+				"myCol49";
+				"myCol50";
+				"myCol51";
+				"myCol52";
+				"myCol53";
+				"myCol54";
+				"myCol55";
+				"myCol56";
+				"myCol57";
+				"myCol58";
+				"myCol59";
+				"myCol60"
+			)
+		}' />
+		<let id="selectedColumns" shape="table" value='{
+			SELECT ac.v 
+			FROM allColumns ac 
+			WHERE
+				CASE showSelect.selectedKey 
+				WHEN "Odd" THEN TOINT(SUBSTR(ac.v, 6)) % 2 != 0
+				WHEN "Even" THEN TOINT(SUBSTR(ac.v, 6)) % 2 = 0
+				WHEN "Up to 5" THEN TOINT(SUBSTR(ac.v, 6)) &lt;= 5
+				WHEN "Up to 10" THEN TOINT(SUBSTR(ac.v, 6)) &lt;= 10
+				ELSE true
+				END
+		}' />
+		<let id="orderedSelectedColumns" shape="table" value='{clientOrderBy:
+			SELECT sc.v
+			FROM selectedColumns sc 
+			ORDER BY
+				CASE orderSelect.selectedKey WHEN "A-Z" THEN TOINT(SUBSTR(v, 6)) END ASC,
+				CASE orderSelect.selectedKey WHEN "Z-A" THEN TOINT(SUBSTR(v, 6)) END DESC
+		}' />
+	</declarations>
+
+	<segmentedbutton id="showSelect" label="Show columns:" choices='{TABLE v (
+		"All";
+		"Odd";
+		"Even";
+		"Up to 5";
+		"Up to 10"
+	)}' keyMap='{v}' textMap='{v}' selectedKey='{"All"}' />
+
+	<segmentedbutton id="orderSelect" label="Order columns:" choices='{TABLE v (
+		"A-Z";
+		"Z-A";
+	)}' keyMap='{v}' textMap='{v}' selectedKey='{"A-Z"}' />
+
+	<!-- visibleColumns sets which columns are visible, and in what order -->
+	<table id="table1" record="r" recordset='{SELECT cn.v FROM allColumns cn UNION ALL SELECT cn.v FROM allColumns cn UNION ALL SELECT cn.v FROM allColumns cn}' 
+			visibleColumns='{SELECT cn.v FROM orderedSelectedColumns cn}' >
+		<header>
+			<row>
+				<!-- columnIds are the defined on cells, these are the -->
+				<!-- strings that need to be in visibleColumns -->
+				<cell columnId="myCol1"><textview text="h1" /></cell>
+				<cell columnId="myCol2"><textview text="h2" /></cell>
+				<cell columnId="myCol3"><textview text="h3" /></cell>
+				<cell columnId="myCol4"><textview text="h4" /></cell>
+				<cell columnId="myCol5"><textview text="h5" /></cell>
+				<cell columnId="myCol6"><textview text="h6" /></cell>
+				<cell columnId="myCol7"><textview text="h7" /></cell>
+				<cell columnId="myCol8"><textview text="h8" /></cell>
+				<cell columnId="myCol9"><textview text="h9" /></cell>
+				<cell columnId="myCol10"><textview text="h10" /></cell>
+				<cell columnId="myCol11"><textview text="h11" /></cell>
+				<cell columnId="myCol12"><textview text="h12" /></cell>
+				<cell columnId="myCol13"><textview text="h13" /></cell>
+				<cell columnId="myCol14"><textview text="h14" /></cell>
+				<cell columnId="myCol15"><textview text="h15" /></cell>
+				<cell columnId="myCol16"><textview text="h16" /></cell>
+				<cell columnId="myCol17"><textview text="h17" /></cell>
+				<cell columnId="myCol18"><textview text="h18" /></cell>
+				<cell columnId="myCol19"><textview text="h19" /></cell>
+				<cell columnId="myCol20"><textview text="h20" /></cell>
+				<cell columnId="myCol21"><textview text="h21" /></cell>
+				<cell columnId="myCol22"><textview text="h22" /></cell>
+				<cell columnId="myCol23"><textview text="h23" /></cell>
+				<cell columnId="myCol24"><textview text="h24" /></cell>
+				<cell columnId="myCol25"><textview text="h25" /></cell>
+				<cell columnId="myCol26"><textview text="h26" /></cell>
+				<cell columnId="myCol27"><textview text="h27" /></cell>
+				<cell columnId="myCol28"><textview text="h28" /></cell>
+				<cell columnId="myCol29"><textview text="h29" /></cell>
+				<cell columnId="myCol30"><textview text="h30" /></cell>
+				<cell columnId="myCol31"><textview text="h31" /></cell>
+				<cell columnId="myCol32"><textview text="h32" /></cell>
+				<cell columnId="myCol33"><textview text="h33" /></cell>
+				<cell columnId="myCol34"><textview text="h34" /></cell>
+				<cell columnId="myCol35"><textview text="h35" /></cell>
+				<cell columnId="myCol36"><textview text="h36" /></cell>
+				<cell columnId="myCol37"><textview text="h37" /></cell>
+				<cell columnId="myCol38"><textview text="h38" /></cell>
+				<cell columnId="myCol39"><textview text="h39" /></cell>
+				<cell columnId="myCol40"><textview text="h40" /></cell>
+				<cell columnId="myCol41"><textview text="h41" /></cell>
+				<cell columnId="myCol42"><textview text="h42" /></cell>
+				<cell columnId="myCol43"><textview text="h43" /></cell>
+				<cell columnId="myCol44"><textview text="h44" /></cell>
+				<cell columnId="myCol45"><textview text="h45" /></cell>
+				<cell columnId="myCol46"><textview text="h46" /></cell>
+				<cell columnId="myCol47"><textview text="h47" /></cell>
+				<cell columnId="myCol48"><textview text="h48" /></cell>
+				<cell columnId="myCol49"><textview text="h49" /></cell>
+				<cell columnId="myCol50"><textview text="h50" /></cell>
+				<cell columnId="myCol51"><textview text="h51" /></cell>
+				<cell columnId="myCol52"><textview text="h52" /></cell>
+				<cell columnId="myCol53"><textview text="h53" /></cell>
+				<cell columnId="myCol54"><textview text="h54" /></cell>
+				<cell columnId="myCol55"><textview text="h55" /></cell>
+				<cell columnId="myCol56"><textview text="h56" /></cell>
+				<cell columnId="myCol57"><textview text="h57" /></cell>
+				<cell columnId="myCol58"><textview text="h58" /></cell>
+				<cell columnId="myCol59"><textview text="h59" /></cell>
+				<cell columnId="myCol60"><textview text="h60" /></cell>
+			</row>
+		</header>
+		<row>
+			<cell><textview text="c1" /></cell>
+			<cell><textview text="c2" /></cell>
+			<cell><textview text="c3" /></cell>
+			<cell><textview text="c4" /></cell>
+			<cell><textview text="c5" /></cell>
+			<cell><textview text="c6" /></cell>
+			<cell><textview text="c7" /></cell>
+			<cell><textview text="c8" /></cell>
+			<cell><textview text="c9" /></cell>
+			<cell><textview text="c10" /></cell>
+			<cell><textview text="c11" /></cell>
+			<cell><textview text="c12" /></cell>
+			<cell><textview text="c13" /></cell>
+			<cell><textview text="c14" /></cell>
+			<cell><textview text="c15" /></cell>
+			<cell><textview text="c16" /></cell>
+			<cell><textview text="c17" /></cell>
+			<cell><textview text="c18" /></cell>
+			<cell><textview text="c19" /></cell>
+			<cell><textview text="c20" /></cell>
+			<cell><textview text="c21" /></cell>
+			<cell><textview text="c22" /></cell>
+			<cell><textview text="c23" /></cell>
+			<cell><textview text="c24" /></cell>
+			<cell><textview text="c25" /></cell>
+			<cell><textview text="c26" /></cell>
+			<cell><textview text="c27" /></cell>
+			<cell><textview text="c28" /></cell>
+			<cell><textview text="c29" /></cell>
+			<cell><textview text="c30" /></cell>
+			<cell><textview text="c31" /></cell>
+			<cell><textview text="c32" /></cell>
+			<cell><textview text="c33" /></cell>
+			<cell><textview text="c34" /></cell>
+			<cell><textview text="c35" /></cell>
+			<cell><textview text="c36" /></cell>
+			<cell><textview text="c37" /></cell>
+			<cell><textview text="c38" /></cell>
+			<cell><textview text="c39" /></cell>
+			<cell><textview text="c40" /></cell>
+			<cell><textview text="c41" /></cell>
+			<cell><textview text="c42" /></cell>
+			<cell><textview text="c43" /></cell>
+			<cell><textview text="c44" /></cell>
+			<cell><textview text="c45" /></cell>
+			<cell><textview text="c46" /></cell>
+			<cell><textview text="c47" /></cell>
+			<cell><textview text="c48" /></cell>
+			<cell><textview text="c49" /></cell>
+			<cell><textview text="c50" /></cell>
+			<cell><textview text="c51" /></cell>
+			<cell><textview text="c52" /></cell>
+			<cell><textview text="c53" /></cell>
+			<cell><textview text="c54" /></cell>
+			<cell><textview text="c55" /></cell>
+			<cell><textview text="c56" /></cell>
+			<cell><textview text="c57" /></cell>
+			<cell><textview text="c58" /></cell>
+			<cell><textview text="c59" /></cell>
+			<cell><textview text="c60" /></cell>
+		</row>
+		<footer>
+			<row>
+				<cell><textview text="f1" /></cell>
+				<cell><textview text="f2" /></cell>
+				<cell><textview text="f3" /></cell>
+				<cell><textview text="f4" /></cell>
+				<cell><textview text="f5" /></cell>
+				<cell><textview text="f6" /></cell>
+				<cell><textview text="f7" /></cell>
+				<cell><textview text="f8" /></cell>
+				<cell><textview text="f9" /></cell>
+				<cell><textview text="f10" /></cell>
+				<cell><textview text="f11" /></cell>
+				<cell><textview text="f12" /></cell>
+				<cell><textview text="f13" /></cell>
+				<cell><textview text="f14" /></cell>
+				<cell><textview text="f15" /></cell>
+				<cell><textview text="f16" /></cell>
+				<cell><textview text="f17" /></cell>
+				<cell><textview text="f18" /></cell>
+				<cell><textview text="f19" /></cell>
+				<cell><textview text="f20" /></cell>
+				<cell><textview text="f21" /></cell>
+				<cell><textview text="f22" /></cell>
+				<cell><textview text="f23" /></cell>
+				<cell><textview text="f24" /></cell>
+				<cell><textview text="f25" /></cell>
+				<cell><textview text="f26" /></cell>
+				<cell><textview text="f27" /></cell>
+				<cell><textview text="f28" /></cell>
+				<cell><textview text="f29" /></cell>
+				<cell><textview text="f30" /></cell>
+				<cell><textview text="f31" /></cell>
+				<cell><textview text="f32" /></cell>
+				<cell><textview text="f33" /></cell>
+				<cell><textview text="f34" /></cell>
+				<cell><textview text="f35" /></cell>
+				<cell><textview text="f36" /></cell>
+				<cell><textview text="f37" /></cell>
+				<cell><textview text="f38" /></cell>
+				<cell><textview text="f39" /></cell>
+				<cell><textview text="f40" /></cell>
+				<cell><textview text="f41" /></cell>
+				<cell><textview text="f42" /></cell>
+				<cell><textview text="f43" /></cell>
+				<cell><textview text="f44" /></cell>
+				<cell><textview text="f45" /></cell>
+				<cell><textview text="f46" /></cell>
+				<cell><textview text="f47" /></cell>
+				<cell><textview text="f48" /></cell>
+				<cell><textview text="f49" /></cell>
+				<cell><textview text="f50" /></cell>
+				<cell><textview text="f51" /></cell>
+				<cell><textview text="f52" /></cell>
+				<cell><textview text="f53" /></cell>
+				<cell><textview text="f54" /></cell>
+				<cell><textview text="f55" /></cell>
+				<cell><textview text="f56" /></cell>
+				<cell><textview text="f57" /></cell>
+				<cell><textview text="f58" /></cell>
+				<cell><textview text="f59" /></cell>
+				<cell><textview text="f60" /></cell>
+			</row>
+		</footer>
+	</table>
+</form>
