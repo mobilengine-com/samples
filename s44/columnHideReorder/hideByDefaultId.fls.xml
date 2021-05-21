@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="hide_by_default_columnId" menuName="hide_by_default_columnId" platforms="ios web">
+	<declarations>
+		<let id="defaultColumnIds" shape="table" value='{
+			TABLE v (
+				"c0";
+				"c1";
+				"c2";
+				"c3";
+				"c4";
+				"c5";
+				"c6";
+				"c7";
+				"c8";
+				"c9"
+			)
+		}' />
+		<let id="selectedColumns" shape="table" value='{
+			SELECT ac.v 
+			FROM defaultColumnIds ac 
+			WHERE
+				CASE showSelect.selectedKey 
+				WHEN "Odd" THEN TOINT(SUBSTR(ac.v, 2)) % 2 != 0
+				WHEN "Even" THEN TOINT(SUBSTR(ac.v, 2)) % 2 = 0
+				WHEN "Up to 5" THEN TOINT(SUBSTR(ac.v, 2)) &lt;= 5
+				ELSE true
+				END
+		}' />
+	</declarations>
+
+	<segmentedbutton id="showSelect" label="Show columns:" choices='{TABLE v (
+		"All";
+		"Odd";
+		"Even";
+		"Up to 5";
+		"Up to 10"
+	)}' keyMap='{v}' textMap='{v}' selectedKey='{"All"}' />
+
+	<table id="table1" 
+			record="r" 
+			recordset='{SELECT 1}' 
+			visibleColumns='{SELECT cn.v FROM selectedColumns cn}' >
+		<header>
+			<row>
+				<cell><textview text="h0" /></cell>
+				<cell><textview text="h1" /></cell>
+				<cell><textview text="h2" /></cell>
+				<cell><textview text="h3" /></cell>
+				<cell><textview text="h4" /></cell>
+				<cell><textview text="h5" /></cell>
+				<cell><textview text="h6" /></cell>
+				<cell><textview text="h7" /></cell>
+				<cell><textview text="h8" /></cell>
+				<cell><textview text="h9" /></cell>
+			</row>
+		</header>
+		<row>
+			<cell><textview text="c0" /></cell>
+			<cell><textview text="c1" /></cell>
+			<cell><textview text="c2" /></cell>
+			<cell><textview text="c3" /></cell>
+			<cell><textview text="c4" /></cell>
+			<cell><textview text="c5" /></cell>
+			<cell><textview text="c6" /></cell>
+			<cell><textview text="c7" /></cell>
+			<cell><textview text="c8" /></cell>
+			<cell><textview text="c9" /></cell>
+		</row>
+		<footer>
+			<row>
+				<cell><textview text="f0" /></cell>
+				<cell><textview text="f1" /></cell>
+				<cell><textview text="f2" /></cell>
+				<cell><textview text="f3" /></cell>
+				<cell><textview text="f4" /></cell>
+				<cell><textview text="f5" /></cell>
+				<cell><textview text="f6" /></cell>
+				<cell><textview text="f7" /></cell>
+				<cell><textview text="f8" /></cell>
+				<cell><textview text="f9" /></cell>
+			</row>
+		</footer>
+	</table>
+</form>
