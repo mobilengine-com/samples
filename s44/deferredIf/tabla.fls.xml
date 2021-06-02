@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="tabla" menuName="tabla" platforms="ios web">
+	<checkbox id='chb'/>
+	<if id='ifdef' cond='{chb.checked}'>
+		<table id="t" record="r" recordset='{SELECT e.name v from event e}'>
+			<header>
+				<row>
+					<cell>
+						<textview text="H1"/>
+					</cell>
+					<cell>
+						<textview text="H2"/>
+					</cell>
+				</row>
+			</header>
+			<row>
+				<cell><textview text='{r.v}'/></cell>
+			</row>
+		</table>
+	</if>
+</form>
