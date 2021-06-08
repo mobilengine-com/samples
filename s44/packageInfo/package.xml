@@ -1,0 +1,6 @@
+<package  xmlns="http://schemas.mobilengine.com/package/v1"
+    name="samplesol"
+    displayName="Sample Solution"
+	version="0.1"
+	mobilengineVersion="44"
+/>

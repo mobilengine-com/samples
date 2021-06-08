@@ -1,0 +1,5 @@
+<form id='dash' menuName='dash' title='Dashboard' platforms='web' dashboard="true" xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<textview label='User: ' text='{sysp.user}'/>
+	<textview label='ME ver: ' text='{sysp.clientVersion}'/>
+	<textview label='Solution: ' text='{sysp.packageName||" v"||sysp.packageVersion}'/>
+</form>
