@@ -1,0 +1,9 @@
+<Form name='photo_camera'>
+	<Control name='root' type='panel'>
+		<Control type="label" name="l1" text="Using mobilengine cmaera" />
+		<Control type="photo" name="p1" source="all" />
+
+		<Control type="label" name="l2" text="Using external camera app" />
+		<Control type="photo" name="p2" externalcameraapp="true" />
+	</Control>
+</Form>
