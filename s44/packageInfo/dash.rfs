@@ -2,11 +2,14 @@ server program dashRfs for form dash
 {
 	trace systemInfo;
 	/*
+result:
 {
-    packageId: "samplesol",
-    packageName: "Sample Solution",
-    packageVersion: "0.1",
-    systemVersion: "45.0.0.0"
+    package: {
+        displayName: "Sample Solution", 
+        name: "samplesol", 
+        version: "0.1"
+    },
+    systemVersion: "44.0.0.0"
 }
 	*/
 }
