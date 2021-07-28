@@ -1,0 +1,7 @@
+server program rfsDoWnWoY for schedule * * * * * 
+	first run at 2200-01-01 10:00
+
+{
+	trace dtl.Now(), dtl.Now().DayOfWeek(), dtl.Now().WeekOfYear();
+	trace dtu.Now(), dtu.Now().DayOfWeek(), dtu.Now().WeekOfYear();
+}
