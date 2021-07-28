@@ -1,19 +1,7 @@
 <Form name='photo_camera'>
 	<Control name='root' type='panel'>
-		<Control type="label" name="l1" text="Using mobilengine cmaera" />
-		<Control type="photo" name="PhotoControl2" label="photo" source="all" shareable="true" editable="true" camera="back front" />
-
-		<Control type="label" text="Using external camera app" />
-		<Control type="photo" externalcameraapp="true" />
-		
-		<Control type="label" text="Using external camera app" />
-		<Control type="photo" externalcameraapp="true" />
-		
-		<Control type="label" text="Using external camera app" />
-		<Control type="photo" externalcameraapp="true" />
-		
-		<Control type="label" text="Using external camera app" />
-		<Control type="photo" externalcameraapp="true" />
+		<Control type="label" text="Using mobilengine camera" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
 
 		<Control type="label" text="Using external camera app" />
 		<Control type="photo" externalcameraapp="true" />
