@@ -1,0 +1,20 @@
+<Form name='internal_camera'>
+	<Control name='root' type='panel'>
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+		<Control type="photo" label="photo" source="all" shareable="true" editable="true" camera="back front" />
+	</Control>
+</Form>

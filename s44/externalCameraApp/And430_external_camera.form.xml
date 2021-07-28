@@ -1,0 +1,12 @@
+﻿<Form name="And430_external_camera" description="And430_external_camera">
+  <Control name="root" type="panel">
+    <Control type="label" name="l2" text="Using external camera app true" />
+    <Control type="photo" name="p2" externalcameraapp="true" />
+    <Control type="label" name="l4" text="Using external camera app true + proposedquality=10 + proposed resolution=2240x2240 + consistentquality=true" />
+    <Control type="photo" name="p4" externalcameraapp="true" consistentquality="true" proposedquality="10" proposedresolution="2240x2240" />
+    <Control type="label" name="l5" text="Using external camera app true + proposed resolution=2240x2240" />
+    <Control type="photo" name="p5" externalcameraapp="true" proposedresolution="2240x2240" />
+    <Control type="label" name="l6" text="Using external camera app true + proposed resolution=2240x2240 + consistentquality=false" />
+    <Control type="photo" name="p6" externalcameraapp="true" consistentquality="false" proposedresolution="2240x2240" />
+  </Control>
+</Form>
