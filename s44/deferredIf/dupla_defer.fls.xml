@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="dupla_defer" menuName="dupla defer" platforms="ios web">
+	<textbox id='tb'/>
+	<checkbox id='chb'/>
+	<checkbox id='chb2'/>
+	<if id='ifdef' cond='{chb.checked}' deferred='true'>
+		<if cond='{chb2.checked}' deferred='true'>
+			<textview text="{SELECT tb.text WHERE sleep(2000) is null}" />
+		</if>
+		<table id="t" record="r" recordset='{SELECT e.name || tb.text v from event e WHERE tb.text IS NOT NULL LIMIT 1}'>
+		<header>
+			<row>
+				<cell>
+					<textview text="H1"/>
+				</cell>
+				<cell>
+					<textview text="H2"/>
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell>		
+				<if cond='{chb2.checked}' deferred='true'>
+					<textview text="{SELECT tb.text FROM event e WHERE sleep(1000) is null LIMIT 1}" />
+				</if>
+			</cell>
+		</row>
+	</table>
+	</if>
+	<table id="t2" record="r" recordset='{SELECT e.name || tb.text v from agent e WHERE tb.text IS NOT NULL}'>
+		<header>
+			<row>
+				<cell>
+					<textview text="H1"/>
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell><textview text='{r.v}'/></cell>
+		</row>
+	</table>
+</form>

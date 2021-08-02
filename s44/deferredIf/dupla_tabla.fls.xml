@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://schemas.mobilengine.com/fls/v2" id="dupla_tabla" menuName="dupla tabla" platforms="ios web">
 	<textbox id='tb'/>
-	<textview text="{SELECT toString(count(1)) from event e1, event e2, event e3, event e4, event e5, event e6 WHERE tb.text IS NOT NULL }" />
-	<table id="t" record="r" recordset='{SELECT e.name v from event e WHERE tb.text IS NOT NULL}'>
+	<checkbox id='chb'/>
+	<if id='ifdef' cond='{chb.checked}' deferred='true'>
+		<textview text="{SELECT toString(count(1)) from event e1, event e2, event e3, event e4, event e5, event e6 WHERE tb.text IS NOT NULL }" />
+		<table id="t" record="r" recordset='{SELECT e.name v from event e WHERE tb.text IS NOT NULL}'>
 		<header>
 			<row>
 				<cell>
@@ -17,6 +19,7 @@
 			<cell><textview text='{r.v}'/></cell>
 		</row>
 	</table>
+	</if>
 	<table id="t2" record="r" recordset='{SELECT e.name v from agent e WHERE tb.text IS NOT NULL}'>
 		<header>
 			<row>
