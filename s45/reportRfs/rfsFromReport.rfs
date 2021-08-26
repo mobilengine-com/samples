@@ -1,0 +1,4 @@
+server program 'rfsFromReport' for report 'report_started_from_rfs'
+{
+	trace report;
+}

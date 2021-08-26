@@ -1,0 +1,14 @@
+﻿<form id="formToRunReportFromRfs" 
+      menuName="formToRunReportFromRfs" 
+      title='formToRunReportFromRfs' 
+      platforms="ios web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	  <textbox id="name" label="Name"/>
+	  <textbox id="email" label="Email address"/>
+	  <textbox id="subject" label="Subject"/>
+	  <textbox id="attachment" label="Attachment"/>
+	  <textbox id="filtertext" label="Text setting in report"/>
+	  <numberbox id="filterint" label="Int setting in report" numberFormat='{decimalSeparator: "."}'/>
+	  <numberbox id="filterfloat" float="true" label="Float setting in report" numberFormat='{decimalSeparator: "."}'/>
+	  <datepicker id="filterdate" label="Date setting in report" dateFormat='(dtf yyyy "-" MM "-" dd)'/>
+</form>
