@@ -1,0 +1,5 @@
+<Form name='allow_form_switch' ksubmit='nobutton' allow_form_switch='true'>
+	<Control name='root' type='panel'>
+		<Control type='label' text='You can switch to another form, even though there`s no discard button' />
+	</Control>
+</Form>

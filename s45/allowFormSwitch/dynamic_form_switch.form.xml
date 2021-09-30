@@ -1,0 +1,5 @@
+<Form name='dynamic_form_switch' ksubmit='nobutton' inlineReference='true' allow_form_switch='{SELECT @[//root/cbAllow]}'>
+	<Control name='root' type='panel'>
+		<Control name='cbAllow' type='checkbox' text='Check to allow form switch' />
+	</Control>
+</Form>

@@ -1,0 +1,5 @@
+<Form name='disallow_form_switch' ksubmit='always' allow_form_switch='false'>
+	<Control name='root' type='panel'>
+		<Control type='label' text='You can`t switch to another from on the form menu' />
+	</Control>
+</Form>
