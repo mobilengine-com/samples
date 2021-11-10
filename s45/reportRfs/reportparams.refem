@@ -1,5 +1,6 @@
 <Reftab Name="reportparams" xmlns="http://schemas.mobilengine.com/reftab/v1">
   <Columns>
+    <Column Name="guidReport" Type="Text" />
     <Column Name="name" Type="Text" />
     <Column Name="email" Type="Text" />
 	<Column Name="subject" Type="Text" />
