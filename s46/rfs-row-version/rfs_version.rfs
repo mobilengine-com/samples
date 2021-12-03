@@ -1,0 +1,21 @@
+server program rfs_version
+	for schedule * * * * * 
+	first run at 2100-01-01 10:00
+
+using reftab normal;
+using reftab selective;
+using reftab multiselective;
+using eventtab eventtab;
+
+{
+	db.normal.DeleteMany(map.New());
+	db.normal.Insert({t: "Apple"});
+
+	db.selective.DeleteMany(map.New());
+	db.selective.Insert({t: "Apple", agent: "gandalf"});
+
+	db.multiselective.DeleteMany(map.New());
+	db.multiselective.Insert({t: "Apple", agent: "gandalf,palpatine"});
+
+	events.eventtab.Create({t: guid.Generate().ToStringN(), agent: "gandalf"});
+}

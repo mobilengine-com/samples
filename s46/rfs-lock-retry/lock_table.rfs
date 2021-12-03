@@ -1,0 +1,13 @@
+server program lock_table 
+	for schedule * * * * * 
+	first run at 2100-01-01 10:00
+
+using reftab Fruit;
+
+{
+	// lock all rows
+	db.Fruit.Lock(map.New());
+
+	// keep them locked
+	Sleep(60000);
+}

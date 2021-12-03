@@ -1,0 +1,7 @@
+client server program a_new_apis for form a_run_rfs
+{
+	trace "Alma", 1, 42.42;
+	Log(["Alma", 1, 42.42]);
+
+	Log(dtf.Parse("yyyy\"-\"MM\"-\"dd"));
+}

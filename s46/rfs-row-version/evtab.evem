@@ -1,0 +1,6 @@
+<Event Name="eventtab" xmlns='http://schemas.mobilengine.com/event/v1'>
+	<Columns>
+		<Column Name="t" Type="Text" />
+		<Column Name="agent" Type="Text" AgentName="true" />
+	</Columns>
+</Event>

@@ -1,0 +1,6 @@
+<Reftab Name="selective" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="t" Type="Text" />
+    <Column Name="agent" Type="Text" AgentName="Single" />
+  </Columns>
+</Reftab>

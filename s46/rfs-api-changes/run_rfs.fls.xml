@@ -1,0 +1,6 @@
+﻿<form id="run_rfs" 
+      menuName="run_rfs" 
+      title='run_rfs' 
+      platforms="ios web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+</form>
