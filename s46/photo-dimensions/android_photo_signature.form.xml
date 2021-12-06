@@ -1,0 +1,27 @@
+<Form name="android_photo_signature" description="android_photo_signature"  typed="true" inlineReference="true"
+dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' xmlns:print="http://schemas.mobilengine.com/client_plugins/printing" >
+
+  <Control type="panel" name="Root">
+	<Control type="textbox" name="tbWhere" label="Where to go" size="large"/>
+	<Control type="textbox" name="barco" ptype="barcode" label="Where to go" size="large"/>
+    <Control type="photo" name="photo_camera" label="Photo camera" allowmultishoot="true" proposedresolution="4032x3024"/>
+    <Control type="photo" name="photo_galery" label="Photo galery" allowmultishoot="true" proposedresolution="4032x3024" 
+      source="photolibrary"/>
+    <Control type="photo" name="phot_external" label="Photo external camera" allowmultishoot="true" proposedresolution="4032x3024" 
+      externalcameraapp="true" />
+    <Control type="photo" name="signatureDef" meta_type="signature" text="default" />
+    <Control type="photo" name="signatureDeft" meta_type="signature" text="default thumb" showThumbnail="true" />
+    <Control type="photo" name="signature5" meta_type="signature" strokeWidth="5" text="stroke 5" />
+    <Control type="photo" name="signature10" meta_type="signature" strokeWidth="10" text="stroke 10" />
+    <Control type="photo" name="signature20" meta_type="signature" strokeWidth="20" text="stroke 20" />
+    <Control type="photo" name="signature20t" meta_type="signature" strokeWidth="20" text="stroke 20 thumb" showThumbnail="true"/>
+    <Control type="photo" name="signature20tn" meta_type="signature" strokeWidth="20" text="stroke 20 thumb big" showThumbnail="true"
+		proposedresolution="4032x3024"/>
+		
+	<Control type="photo" name="signature20tnW" meta_type="signature" strokeWidth="20" text="stroke 20 thumb h 50" showThumbnail="true"
+		proposedresolution="2000x50"/>
+	<Control type="photo" name="signature20tnH" meta_type="signature" strokeWidth="20" text="stroke 20 thumb w 100" showThumbnail="true"
+		proposedresolution="100x2000"/>
+
+  </Control>
+</Form>

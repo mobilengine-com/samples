@@ -1,0 +1,4 @@
+server client program android_photo_signature for form android_photo_signature
+{
+  trace form;
+}

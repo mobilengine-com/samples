@@ -1,0 +1,33 @@
+<form id="ios_photo_signature" 
+      menuName="ios_photo_signature" 
+      title='ios_photo_signature' 
+      platforms="ios web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	  
+	<photo id="photo" label="photo camera"/>
+	<photo id="photo_large" jpegResolution="{SELECT 10000 width, 10000 height}" label="photo camera large"/>
+	<photo id="photo_source" shareable="true" source="photolibrary" label="gallery"/>
+	<table record="r" recordset="{SELECT p.photoId, p.datetime, p.fileSize, p.height, p.width 
+		FROM photo.photos p}">
+		<header><row>
+			<cell><textview text="photoId"></textview></cell>
+			<cell><textview text="datetime"></textview></cell>
+			<cell><textview text="fileSize"></textview></cell>
+			<cell><textview text="height"></textview></cell>
+			<cell><textview text="width"></textview></cell>
+		</row></header>
+		<row>
+			<cell><textview text="{r.photoId}"></textview></cell>
+			<cell><textview text='{formatDtl(r.datetime, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss) )}'></textview></cell>
+			<cell><textview text="{toString(r.fileSize)}"></textview></cell>
+			<cell><textview text="{toString(r.height)}"></textview></cell>
+			<cell><textview text="{toString(r.width)}"></textview></cell>
+		</row>
+	</table>
+
+	<signature id='signature' label="label of signature" hint="Hint def"/>
+	<signature id='signature1' label="label of signature" hint="Hint 1" strokeWidth="{1}"/>
+	<signature id='signature5' label="label of signature" hint="Hint 5" strokeWidth="{5}"/>
+	<signature id='signature10' label="label of signature" hint="Hint 10" strokeWidth="{10}"/>
+	<signature id='signature20' label="label of signature" hint="Hint 20" strokeWidth="{20}"/>
+</form>

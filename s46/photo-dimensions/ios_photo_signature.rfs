@@ -1,0 +1,4 @@
+server client program ios_photo_signature for form ios_photo_signature
+{
+  trace form;
+}
