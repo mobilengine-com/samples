@@ -1,0 +1,50 @@
+<form id="text_wrap" 
+      menuName="text wrap test" 
+      title='text wrap test' 
+      platforms="ios web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+      <declarations>
+            <let id="text1" shape="scalar" value='{"almafa"}' />
+            <let id="text2" shape="scalar" value='{"abcdefghijklmnopqrstuvwxyz01234567890abcdefghijklmnopqrstuvwxyz01234567890abcdefghijklmnopqrstuvwxyz01234567890"}' />
+            <let id="text3" shape="scalar" value='{"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}' />
+      </declarations>
+	<dropdown id='ddSyl' keyMap="{k}" textMap="{v}" 
+	choices='{TABLE v, k ("default", null; "wrap", styles.textWrap; "clip", styles.textClip; "...start", styles.textEllipsStart; "mid...dle", styles.textEllipsMiddle; "end...", styles.textEllipsEnd)}'/>
+      <dropdown id="ddText" keyMap="{k}" textMap="{v}" 
+      choices='{TABLE v, k ("short", text1; "long one word", text2; "long many word", text3)}'
+      />
+      <textview text="label"/>
+      <textview label="{ddText.selectedKey}" text="label" style="{ddSyl.selectedKey}"/>
+      <textview text="{ddText.selectedKey}" label="textview.text" style="{ddSyl.selectedKey}"/>
+      <chapter title="{ddText.selectedKey}" label="chapter.title" style="{ddSyl.selectedKey}"/>
+      <checkbox text="{ddText.selectedKey}" label="checkbox.text" style="{ddSyl.selectedKey}"/>
+      <textview label="buttons" />
+      <actionbutton text="{ddText.selectedKey}" label="actionbutton.text" style="{ddSyl.selectedKey}">
+            <set value='{"alma"}' target="text" />
+      </actionbutton>
+      <addbutton text="{ddText.selectedKey}" label="addbutton.text" style="{ddSyl.selectedKey}"
+            records="{SELECT 1 v}" table="t"/>
+      <annotator text="{ddText.selectedKey}" label="annot.text" style="{ddSyl.selectedKey}"/>
+      <barcodereader text="{ddText.selectedKey}" label="barcodereader.text" style="{ddSyl.selectedKey}"/>
+      <!--  ???
+      <datepicker  text="{ddText.selectedKey}" label="checkbox.text" style="{ddSyl.selectedKey}"/>
+      -->
+      <dropdown id="ddTextTest" label="dropdown.text" style="{ddSyl.selectedKey}"
+      keyMap="{k}" textMap="{k}" selectedKey="{ddText.selectedKey}"
+      choices='{TABLE v, k ("short", text1; "long one word", text2; "long many word", text3)}'
+      />
+      <filedownload text="{ddText.selectedKey}" label="filedownload.text" style="{ddSyl.selectedKey}"/>
+      <linkview url='{"https://telex.hu"}' text="{ddText.selectedKey}" label="linkview.text" style="{ddSyl.selectedKey}"/>
+      <mailto address='{"alma@fa.hu"}' text="{ddText.selectedKey}" label="mailto.text" style="{ddSyl.selectedKey}"/>
+      <submitbutton text="{ddText.selectedKey}" label="submitb.text" style="{ddSyl.selectedKey}"/>
+      <discardbutton text="{ddText.selectedKey}" label="discardb.text" style="{ddSyl.selectedKey}"/>
+      <nfcreader text="{ddText.selectedKey}" label="nfcreader.text" style="{ddSyl.selectedKey}"/>
+      <popup title="{ddText.selectedKey}" label="popup.text" style="{ddSyl.selectedKey}"/>
+      <table id="t" record="r" recordset="{[1]}" style="{styles.sylTbl}">
+            <row><cell>
+                  <removebutton text="{ddText.selectedKey}" label="removeb.text" style="{ddSyl.selectedKey}"/>
+            </cell></row>
+      </table>
+      <reportview reportviewId="alma" text="{ddText.selectedKey}" label="reporview.text" style="{ddSyl.selectedKey}"/>
+
+</form>

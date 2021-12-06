@@ -1,0 +1,34 @@
+styles {
+    style sylTbl {
+        table {
+            columnWidth = 1swt
+        }
+    }
+
+    style textWrap {
+        all {
+            wrap = wrap
+        }
+    }
+    style textEllipsStart {
+        all {
+            wrap = ellipsisStart
+        }
+    }
+    style textEllipsMiddle {
+        all {
+            wrap = ellipsisMiddle
+        }
+    }
+    style textEllipsEnd {
+        all {
+            wrap = ellipsisEnd
+        }
+    }
+    style textClip {
+        all {
+            wrap = clip
+        }
+    }
+
+}
