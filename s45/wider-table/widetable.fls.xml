@@ -1,0 +1,44 @@
+﻿<form id='widetable' platforms='web' menuName='widetable' xmlns='http://schemas.mobilengine.com/fls/v2' >
+	<checkbox id='chbWider' text="wider than screen" />
+	<checkbox id='chbWiderNot' text="not wider than screen" />
+	<table recordset='{1}' record='r' style='{SELECT styles.wideTable v 
+		UNION ALL SELECT styles.widerTable v WHERE chbWider.checked
+		UNION ALL SELECT styles.notWiderTable v WHERE chbWiderNot.checked
+	}' >
+		<row>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+			<cell><textview text="My wide table" /></cell>
+		</row>
+	</table>
+
+	<table recordset='{1}' record='r' style='{SELECT styles.wideTable v 
+		UNION ALL SELECT styles.widerTable v WHERE chbWider.checked
+		UNION ALL SELECT styles.notWiderTable v WHERE chbWiderNot.checked
+	}' >
+		<row>
+			<cell><textview text="My narrow table" /></cell>
+			<cell><textview text="My narrow table" /></cell>
+		</row>
+	</table>
+</form>

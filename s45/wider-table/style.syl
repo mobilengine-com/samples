@@ -1,0 +1,29 @@
+styles {
+	style wideTable {
+		table {
+			columnWidth = 100px
+		}
+	}
+	style notWiderTable {
+		table {
+			widerThanScreen = false
+		}
+	}
+
+	style widerTable {
+		table {
+			widerThanScreen = true
+		}
+		all {
+			bold = true
+		}
+	}
+
+    style h800px {
+        all {
+            control {
+                height = 800px
+            }
+        }
+    }
+}
