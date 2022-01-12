@@ -1,0 +1,19 @@
+<Form name="unsent_photos"  dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' typed="true" sillyNulls="false" inlineReference="true">
+	<Control name='root' type='panel'>
+		<Control type="label" label="Unsent Photos Exist:" text='{SELECT CASE WHEN @unsentPhotos THEN "Yes" ELSE "No" END}' />
+		<Control type="textbox" name="sum" label="Summary (for the photo you create below):" text="My Summary" />
+
+		<Control type="panel" name="generator_inline" navigation="inline" generator='SELECT "x"'>
+			<Control type="photo" name="photo" summary="{SELECT @[//root/sum]}" showunsentphotos="true" camera="back front" source="all" />
+			<Control type="removebutton" text="Remove" />
+		</Control>
+		<Control type='button' name='gen_generator_inline' size="large" text='Add'>
+			<Actions>
+				<Action type='generator' target='../generator_inline' createremovebutton="false" />
+			</Actions>
+		</Control>
+
+		<Control type="photo" meta_type="signature" name="signature" summary="{SELECT @[//root/sum]}" />
+		<Control type="location" name="loc" />
+	</Control>
+</Form>
