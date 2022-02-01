@@ -1,0 +1,23 @@
+<Reftab Name='employees' xmlns='http://schemas.mobilengine.com/reftab/v1'>
+  <Columns>
+    <Column Name='firstName' Type='Text' />
+    <Column Name='lastName' Type='Text' />
+    <Column Name='age' Type='Integer' />
+    <Column Name='eyeColor' Type='Text' />
+    <Column Name='hairColor' Type='Text' />
+    <Column Name='department' Type='Text' />
+  </Columns>
+  <Indexes>
+    <!-- Make sure we don't hire people with the same name for the same department -->
+    <Index Name='NoConfusingNames' Unique='true'>
+      <Column Name='firstName' Length='40' />
+      <Column Name='lastName' Length='40' />
+      <Column Name='department' Length='40' />
+    </Index>
+    <!-- Speed up queries by firstName, or by firstName+lastName -->
+    <Index Name='SpeedUpNameLookup'>
+      <Column Name='firstName' Length='40' />
+      <Column Name='lastName' Length='40' />
+    </Index>
+  </Indexes>
+</Reftab>
