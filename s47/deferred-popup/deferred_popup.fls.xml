@@ -1,0 +1,18 @@
+﻿<form id='deferred_popup' menuName='deferred_popup' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<textview text='All of these dialogs are deferred. They will open slowly, because they do a slow (3s) calculation after opening.' />
+
+	<popup deferred='true' title='Fullscreen'>
+		<textview text='{COALESCE(SLEEP(3000), "Calculation done.")}' />
+		<backbutton />
+	</popup>
+
+	<popup deferred='true' title='Dialog' openMode='dialog'>
+		<textview text='{COALESCE(SLEEP(3000), "Calculation done.")}' />
+		<backbutton />
+	</popup>
+
+	<popup deferred='true' title='Bubble' openMode='bubble'>
+		<textview text='{COALESCE(SLEEP(3000), "Calculation done.")}' />
+		<backbutton />
+	</popup>
+</form>
