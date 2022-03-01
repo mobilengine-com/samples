@@ -1,0 +1,13 @@
+server program RfsStackoverflowOp
+	for schedule * * * * * 
+	first run at 2099-01-01 10:00
+{
+  var concat = function(var a, var b) {
+    return a+b;
+  };
+  var greeterBot2 = function(var firstname, var lastname)
+  {
+  		var alma = "aaa"+greeterBot2("Petar", "Hoyt");
+  };
+  greeterBot2("Petar", "Hoyt");
+}
