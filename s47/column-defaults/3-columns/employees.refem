@@ -1,0 +1,7 @@
+<Reftab Name='employees' xmlns='http://schemas.mobilengine.com/reftab/v1'>
+  <Columns>
+    <Column Name='firstName' Type='Text' />
+    <Column Name='lastName' Type='Text' />
+    <Column Name='salary' Type='Integer' Nullable='false' Default='0' />
+  </Columns>
+</Reftab>
