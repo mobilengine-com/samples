@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="bi_bo" menuName="bi/bo" platforms="ios web">
+	<textview label='Dashboard url: ' text='{sysp.biUrl}'/>
+	<linkview url='{sysp.biUrl}' text='Shiny shiny page with charts and stuff'/>
+	<textview label='BO url: ' text='{sysp.boUrl}'/>
+	<linkview url='{sysp.boUrl}' text='Dont click, dragons live there'/>
+</form>
