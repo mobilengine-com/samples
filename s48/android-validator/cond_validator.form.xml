@@ -1,0 +1,11 @@
+﻿<Form name='cond_validator' sillyNulls='false' description='cond_validator' typed='true' dateformat='(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)' numberformat='{decimalSeparator:&quot;.&quot;}'>
+  <Control type='panel' name='root'>
+    <Control type='label' text='This form demonstrates validating a custom databinding expression.' />
+    <Control type='checkbox' name='cb1' label='Must be checked:' />
+    <Control type='textbox' name='tb1' label='Length must be > 3:'>
+      <Validators>
+        <CondValidator cond='{SELECT @[../cb1] AND LENGTH(@[SELF]) > 3}' />
+      </Validators>
+    </Control>
+  </Control>
+</Form>

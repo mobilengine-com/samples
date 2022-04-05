@@ -1,0 +1,10 @@
+﻿<Form name='validator_msg_bind' sillyNulls='false' description='validator_msg_bind' typed='true' dateformat='(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)' numberformat='{decimalSeparator:&quot;.&quot;}'>
+  <Control type='panel' name='root'>
+    <Control type='label' text='The validation message uses databinding, it will contain the validated value.' />
+    <Control type='textbox' name='tb2' label='Email required:' text=''>
+      <Validators>
+        <Validator type='EmailValidator' message='{SELECT @[SELF] || " is not a valid email address"}' />
+      </Validators>
+    </Control>
+  </Control>
+</Form>

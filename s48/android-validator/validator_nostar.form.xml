@@ -1,0 +1,10 @@
+﻿<Form name='validator_nostar' sillyNulls='false' description='validator_nostar' typed='true' dateformat='(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)' numberformat='{decimalSeparator:&quot;.&quot;}'>
+  <Control type='panel' name='root'>
+    <Control type='label' text='The validation message won&quot;t start with "*" here:' />
+    <Control type='textbox' name='tb2' label='Required:' text=''>
+      <Validators>
+        <Validator type='RequiredValidator' star='false' />
+      </Validators>
+    </Control>
+  </Control>
+</Form>
