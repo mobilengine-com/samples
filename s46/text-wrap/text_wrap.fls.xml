@@ -7,11 +7,12 @@
             <let id="text1" shape="scalar" value='{"almafa"}' />
             <let id="text2" shape="scalar" value='{"abcdefghijklmnopqrstuvwxyz01234567890abcdefghijklmnopqrstuvwxyz01234567890abcdefghijklmnopqrstuvwxyz01234567890"}' />
             <let id="text3" shape="scalar" value='{"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}' />
+            <let id="text4" shape="scalar" value='{"Multiline text&#10;Second line&#10;Third line"}' />
       </declarations>
 	<dropdown id='ddSyl' keyMap="{k}" textMap="{v}" 
 	choices='{TABLE v, k ("default", null; "wrap", styles.textWrap; "clip", styles.textClip; "...start", styles.textEllipsStart; "mid...dle", styles.textEllipsMiddle; "end...", styles.textEllipsEnd)}'/>
       <dropdown id="ddText" keyMap="{k}" textMap="{v}" 
-      choices='{TABLE v, k ("short", text1; "long one word", text2; "long many word", text3)}'
+            choices='{TABLE v, k ("short", text1; "long one word", text2; "long many word", text3; "multiline", text4)}'
       />
       <textview text="label"/>
       <textview label="{ddText.selectedKey}" text="label" style="{ddSyl.selectedKey}"/>
@@ -31,7 +32,7 @@
       -->
       <dropdown id="ddTextTest" label="dropdown.text" style="{ddSyl.selectedKey}"
       keyMap="{k}" textMap="{k}" selectedKey="{ddText.selectedKey}"
-      choices='{TABLE v, k ("short", text1; "long one word", text2; "long many word", text3)}'
+      choices='{TABLE v, k ("short", text1; "long one word", text2; "long many word", text3; "multiline", text4)}'
       />
       <filedownload text="{ddText.selectedKey}" label="filedownload.text" style="{ddSyl.selectedKey}"/>
       <linkview url='{"https://telex.hu"}' text="{ddText.selectedKey}" label="linkview.text" style="{ddSyl.selectedKey}"/>
