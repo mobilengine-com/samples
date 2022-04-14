@@ -1,0 +1,26 @@
+<form id='wef_monitoring' menuName='wef_monitoring' title='wef_monitoring' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+      <declarations>
+            <let id='slow_calc' shape='scalar' value='{SELECT COALESCE(SLEEP(500), numbox.number)}' />
+            <let id='slow_query' shape='scalar' value='{SELECT COALESCE(SLEEP(750), numbox.number) FROM Fruit r}' />
+      </declarations>
+      <numberbox id="numbox" label="Type for slow recalcuation: " />
+
+      <combinedbutton text='Set a few values'>
+            <actionbutton>
+                  <set target='numbox.number' value='{SELECT COALESCE(SLEEP(500), 1)}' />
+            </actionbutton>
+            <actionbutton>
+                  <set target='numbox.number' value='{SELECT COALESCE(SLEEP(500), 2)}' />
+            </actionbutton>
+            <actionbutton>
+                  <set target='numbox.number' value='{SELECT COALESCE(SLEEP(500), 3)}' />
+            </actionbutton>
+      </combinedbutton>
+
+      <combinedbutton text='Open next form'>
+            <actionbutton>
+                  <set target='slow_calc' value='{SELECT 42}' />
+            </actionbutton>
+            <submitbutton nextForm="{forms.wef_monitoring}" />
+      </combinedbutton>
+</form>

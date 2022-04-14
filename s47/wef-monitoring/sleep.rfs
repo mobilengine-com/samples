@@ -1,0 +1,4 @@
+server program sleep for form wef_monitoring
+{
+	Sleep(2000);
+}
