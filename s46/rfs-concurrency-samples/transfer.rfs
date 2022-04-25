@@ -1,0 +1,90 @@
+﻿server program transfer for form transferForm
+using reftab counter;
+using reftab account;
+using reftab transfer;
+{
+  trace form;
+  Sleep(form.nWait.number);
+  /*
+form: {
+    cb_transfer: {parentControl: <<ref: transferForm>>, submitter: true}, 
+    dd_acc_from:
+        {
+            parentControl: <<ref: transferForm>>, 
+                        selectedKey: <<null>>, 
+                        selectedText: <<null>>, 
+                        selectedValue: <<null>>
+                    }, 
+            dd_acc_to:
+            {
+                      parentControl: <<ref: transferForm>>, 
+                        selectedKey: <<null>>, 
+                        selectedText: <<null>>, 
+                        selectedValue: <<null>>
+                    }, 
+            info:
+            {
+                      dtlSubmit: 2022.04.25. 13:08:55 (Dtl), 
+                        dtuSubmit: 2022.04.25. 11:08:55 (Dtu), 
+                        formn: "transferForm", 
+                        platform: "web", 
+                        resultId: 198, 
+                        user: {companyId: 112, id: 29, name: "u112"}
+                    }, 
+            nb_amount: {number: <<null>>, parentControl: <<ref: transferForm>>}, 
+        nWait: {number: 1000, parentControl: <<ref: transferForm>>}, 
+        nWaitLocked: {number: 1000, parentControl: <<ref: transferForm>>}, 
+        parentControl: <<null>>, 
+        submissionTitle: <<null>>, 
+        submitButton: <<ref: transferForm.cb_transfer>>, 
+        t: {parentControl: <<ref: transferForm>>, rows: []}, 
+        tv_guid:
+            {
+                      parentControl: <<ref: transferForm>>, 
+                        text: "4dcaf69cffaf084fc4c277b78c08d7ca"
+                    }
+        }
+d
+ownload
+  */
+  var guidTf = form.tv_guid.text;
+  var existingTransations = db.transfer.Read({guid: guidTf});
+  if (existingTransations.Count()>0) {
+    // error0
+    // return;
+  }
+  else {
+    var tf = {guid: guidTf, 
+      acc_num_from: form.dd_acc_from.selectedKey, acc_num_to: form.dd_acc_to.selectedKey, 
+      amount: form.nb_amount.number, status: 1, status_message: null, ver: 0};
+    trace "new transfer: ", tf;
+    db.transfer.Insert(tf);
+
+    var accFrom = db.account.Lock({acc_num: tf.acc_num_from}).SingleOrDefault();
+    Sleep(form.nWaitLocked.number);
+    var accTo = db.account.Lock({acc_num: tf.acc_num_to}).SingleOrDefault();
+    Sleep(form.nWaitLocked2.number);
+  
+    if (accFrom == null || accFrom.valid != 1) {
+      tf.status=2; tf.status_message="account from is not valid";
+      db.transfer.Update({guid: guidTf}, tf);
+  // error1
+    }
+    else if (accTo == null || accTo.valid != 1) {
+      tf.status=3; tf.status_message="account to is not valid";
+      db.transfer.Update({guid: guidTf}, tf);
+  // error2
+    }
+    else if (accFrom.balance<tf.amount) {
+      tf.status=4; tf.status_message="account from has not enough money";
+      db.transfer.Update({guid: guidTf}, tf);
+  // error3
+    } else {
+      accFrom.balance = accFrom.balance - tf.amount; accFrom.ver = accFrom.ver+1;
+      accTo.balance = accTo.balance + tf.amount; accTo.ver = accTo.ver+1;
+      db.account.Update({acc_num: accFrom.acc_num}, accFrom);
+      db.account.Update({acc_num: accTo.acc_num}, accTo);
+
+    }
+  }
+}

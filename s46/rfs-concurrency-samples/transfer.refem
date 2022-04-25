@@ -1,0 +1,11 @@
+<Reftab Name="transfer" Push='true' xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true"/>
+        <Column Name="acc_num_from" Type="Text" NotNull="true" />
+        <Column Name="acc_num_to" Type="Text" NotNull="true" />
+        <Column Name="amount" Type="Integer" NotNull="true" />
+        <Column Name="status" Type="Integer" NotNull="true" />
+        <Column Name="status_message" Type="Text" NotNull="false" />
+        <Column Name="ver" Type="Integer" NotNull="true" />
+    </Columns>
+</Reftab>

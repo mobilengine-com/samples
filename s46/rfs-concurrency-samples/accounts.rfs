@@ -1,0 +1,49 @@
+﻿server program accounts for form accounts
+using reftab counter;
+using reftab account;
+{
+  trace form;
+  Sleep(form.nWait.number);
+
+  foreach (var row in form.t.rows) 
+  {
+    var rgth = db.account.Read({acc_num: row.recUpd.acc_num});
+    //trace row.rec, rgth;  
+    if (rgth.Count() == 0) {
+        var acc = {acc_num: row.recUpd.acc_num, holder_name: row.recUpd.holder_name, balance: row.recUpd.balance, 
+          valid: row.recUpd.valid, ver: 0};
+        trace "new account", acc;
+
+        db.account.Insert(acc);
+    }
+  }
+
+
+  foreach (var row in form.t.rows)
+  {
+    db.account.Lock({acc_num: row.recUpd.acc_num});
+  }
+
+  Sleep(form.nWaitLocked.number);
+  
+  foreach (var row in form.t.rows)
+  {
+    var rgth = db.account.Lock({acc_num: row.recUpd.acc_num});
+    
+    var accOld = rgth[0];
+    var accUpd = {acc_num: row.recUpd.acc_num, holder_name: row.recUpd.holder_name, balance: row.recUpd.balance, 
+          valid: row.recUpd.valid, ver: accOld.ver+1};
+
+    if (accOld.holder_name != accUpd.holder_name || accOld.balance != accUpd.balance 
+     || accOld.valid != accUpd.valid ) {
+      if (row.rec.ver != accOld.ver) {
+        // prevent overwrite
+        report_error("update conflict");
+      } else {
+        trace "update: ", accUpd.acc_num, " to ", accUpd;
+        db.account.Update({acc_num: accUpd.acc_num}, accUpd);
+      }
+    }
+  }
+
+}

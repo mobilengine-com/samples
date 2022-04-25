@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="transferForm" menuName="transfer money" platforms="web">
+	<submitbutton text='save' waitForRfs='{false}' closeForm='{false}'/>
+	<numberbox id='nWait' label='wait before lock' number='{1000}'/>
+	<numberbox id='nWaitLocked' label='wait locked between' number='{1000}'/>
+	<numberbox id='nWaitLocked2' label='wait locked after' number='{1000}'/>
+
+	<chapter title='New transfer'>
+		<declarations>
+			<let id='letBalanceA' shape='scalar' value='{loadnewerfromserver:select a.balance from account a where a.acc_num = dd_acc_from.selectedKey}' />
+		</declarations>
+		
+		<textview id='tv_guid' label='guid' text='{toStringN(newGuid())}'/>
+		<dropdown id='dd_acc_from' label='from'
+			keyMap='{acc_num}' textMap='{acc_num||": "||holder_name||" "||(case when valid=1 then "+" else "-" end)}' choices='{SELECT a.acc_num, a.holder_name, a.valid FROM account a}'>
+			<validation><validator cond='{selectedKey is not null}' message='Required'></validator></validation>
+		</dropdown>
+		<textview label='balance: ' text='{toString(letBalanceA)}'/>
+		<dropdown id='dd_acc_to' label='to'
+			keyMap='{acc_num}' textMap='{acc_num||": "||holder_name||" "||(case when valid=1 then "+" else "-" end)}' choices='{SELECT a.acc_num, a.holder_name, a.valid FROM account a}'>
+			<validation><validator cond='{selectedKey is not null}' message='Required'></validator></validation>
+		</dropdown>
+		<textview label='balance: ' text='{loadnewerfromserver:select toString(a.balance) from account a where a.acc_num = dd_acc_to.selectedKey}'/>
+		<numberbox id='nb_amount' label='amount' float='false'>
+			<validation>
+				<validator cond='{number is not null}' message='Required'></validator>
+				<validator cond='{number&gt;0}' message='Should be positive'></validator>
+				<validator cond='{number&lt;=letBalanceA}' message='Should be less or equal than balance of account from'></validator>
+			</validation>
+		</numberbox>
+	<combinedbutton id='cb_transfer' text='transfer'>
+			<submitbutton closeForm='{false}' waitForRfs='{false}'/>
+			<actionbutton>
+				<set value='{SELECT toStringN(newGuid()) WHERE tv_guid.text is not null}' target='tv_guid.text' />
+				<set value='{null}' target='dd_acc_from.selectedKey' />
+				<set value='{null}' target='dd_acc_to.selectedKey' />
+				<set value='{null}' target='nb_amount.number' />
+			</actionbutton>
+		</combinedbutton>
+	</chapter>
+	<!--
+		recordLocal='{SELECT r.guid, tbName.text name, n1.number, r.counter, r.ver}'
+		recordLocal='{SELECT rec.guid, tbName.text name, n1.number, rec.counter, rec.ver}'
+	-->
+	<table id='t' record='r' 
+		recordset='{loadnewerfromserver:select t.guid, t.acc_num_from, t.acc_num_to, t.amount, t.status, t.status_message, t.ver from transfer t}'>
+		<row>
+			<declarations>
+				<let id='rec' shape='record' value='{select r.guid, r.acc_num_from, r.acc_num_to, r.amount, r.status, r.status_message, r.ver}' />
+			</declarations>
+			<cell><textview text='{r.guid}'/></cell>
+			<cell><textview text='{r.acc_num_from}'/></cell>
+			<cell><textview text='{r.acc_num_to}'/></cell>
+			<cell><textview text='{toString(r.amount)}'/></cell>
+			<cell><textview text='{toString(r.status)||" "||r.status_message}'/></cell>
+			<cell>	<textview text='{" v"||toString(r.ver) }' />
+			</cell>
+		</row>
+	</table>
+
+</form>
