@@ -1,0 +1,24 @@
+<!--
+	This is to test that a photo control with showunsentphotos=true gets all unsent photos on submit.
+-->
+<Form name="unsent_photos_2"  dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' typed="true" sillyNulls="false" inlineReference="true">
+	<Control name='root' type='panel'>
+		<Control type="textbox" name="sum" label="Summary (for the photo you create below):" text="My Summary" />
+
+		<Control type="panel" name="generator_inline" navigation="inline" generator='SELECT "x"'>
+			<Control type="photo" name="photo" summary="{SELECT @[//root/sum]}" camera="back front" source="all" />
+			<Control type="removebutton" text="Remove" />
+		</Control>
+		<Control type='button' name='gen_generator_inline' size="large" text='Add'>
+			<Actions>
+				<Action type='generator' target='../generator_inline' createremovebutton="false" />
+			</Actions>
+		</Control>
+
+		<Control type="photo" meta_type="signature" name="signature" summary="{SELECT @[//root/sum]}" />
+		<Control type="location" name="loc" />
+
+		<!-- you can add visible="false" to hide the unsent photos from the screen -->
+		<Control showunsentphotos="true" name="unsents" type="photo" />
+	</Control>
+</Form>
