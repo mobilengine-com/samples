@@ -1,0 +1,9 @@
+<form id="ios_free_disk" 
+      menuName="free disk" 
+      platforms="ios web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	  
+	  <textview label='user' text='{sysp.user}' />
+	  <textview label='freeDisk' text='{toString(sysp.freeDisk) || " MB"}' />
+
+</form>

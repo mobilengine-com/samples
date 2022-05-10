@@ -1,0 +1,8 @@
+<Form name="android_free_disk" description="free disk"  typed="true" inlineReference="true"
+dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:"."}' xmlns:print="http://schemas.mobilengine.com/client_plugins/printing" >
+
+  <Control type="panel" name="Root">
+    <Control type='label' label="user" text='{SELECT @user}'/>
+    <Control type='label' label="freeDisk" text='{SELECT case when @freeDisk > 1024 then cast(@freeDisk/1024 as text)||" GB" else cast(@freeDisk as text)||" MB" end}'/>
+  </Control>
+</Form>
