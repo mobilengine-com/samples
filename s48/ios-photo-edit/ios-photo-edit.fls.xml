@@ -1,0 +1,8 @@
+﻿<form id="ios-photo-edit" 
+      menuName="ios-photo-edit" 
+      title='ios-photo-edit' 
+      platforms="web ios" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	<photo id="photoCtl" source="all" editable="true" />
+      <photoview photos="{SELECT t.photoId FROM photoCtl.photos t}" />
+</form>

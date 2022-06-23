@@ -1,0 +1,15 @@
+<form id='map_tooltip_demo' menuName="Map Tooltip Demo" platforms='web' dashboard="true" xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <declarations>
+        <let id="placesTable" shape="table" access="private" value='{TABLE id, lat, lng, tooltip (
+            "Miskolc",    48.079444, 20.867122, "Tooltip for Miskolc";
+            "Debrecen",   47.545007, 21.631358, "Tooltip for Debrecen";
+            "Hatvan",     47.666764, 19.705318, "Tooltip for Hatvan";
+            "Budapest",   47.49539,  19.050258, "Tooltip for Budapest";
+            "Jászberény", 47.497709, 19.918521, "Tooltip for Jászberény"
+        )}' />
+    </declarations>
+    
+    <map 
+        points='{SELECT pa.id, NULL lineId, pa.lat, pa.lng, icons.marker icon, icons.marker_selected selectedIcon, pa.tooltip FROM placesTable pa}' 
+        center="{TABLE lat, lng, zoom (47.7, 20.25, 8)}" />
+</form>
