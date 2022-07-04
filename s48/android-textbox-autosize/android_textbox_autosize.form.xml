@@ -1,0 +1,33 @@
+﻿<Form name='android_textbox_autosize' sillyNulls='false' description='android_textbox_autosize' typed='true' dateformat='(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)' numberformat='{decimalSeparator:&quot;.&quot;}'>
+  <Control type='panel' name='root'>
+    <Control type='separator' text='One line, no text' color='RGB(100,100,100)' />
+    <Control type='textbox' label='Small' text='' size='small' />
+    <Control type='textbox' label='Medium' text='' size='medium' />
+    <Control type='textbox' label='Large' text='' size='large' />
+
+    <Control type='separator' text='One line, long text' color='RGB(100,100,100)' />
+    <Control type='textbox' label='Small' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='small' />
+    <Control type='textbox' label='Medium' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='medium' />
+    <Control type='textbox' label='Medium' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='large' />
+
+    <Control type='separator' text='3 lines, no text' color='RGB(100,100,100)' />
+    <Control type='textbox' label='Small' text='' size='small' lines='3' />
+    <Control type='textbox' label='Medium' text='' size='medium' lines='3' />
+    <Control type='textbox' label='Large' text='' size='large' lines='3' />
+
+    <Control type='separator' text='3 lines, long text' color='RGB(100,100,100)' />
+    <Control type='textbox' label='Small' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='small' lines='3' />
+    <Control type='textbox' label='Medium' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='medium' lines='3' />
+    <Control type='textbox' label='Large' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='large' lines='3' />
+
+    <Control type='separator' text='Autosize lines, no text' color='RGB(100,100,100)' />
+    <Control type='textbox' label='Small' text='' size='small' lines='auto' />
+    <Control type='textbox' label='Medium' text='' size='medium' lines='auto' />
+    <Control type='textbox' label='Large' text='' size='large' lines='auto' />
+
+    <Control type='separator' text='Autosize lines, long text' color='RGB(100,100,100)' />
+    <Control type='textbox' label='Small' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='small' lines='auto' />
+    <Control type='textbox' label='Medium' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='medium' lines='auto' />
+    <Control type='textbox' label='Large' text='Vel dicta soluta est rem. Odit nobis eius dolores distinctio quia. Et expedita aliquam ea ut cumque nobis ut asperiores.' size='large' lines='auto' />
+  </Control>
+</Form>
