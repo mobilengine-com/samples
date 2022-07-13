@@ -1,0 +1,22 @@
+﻿<form id='deferred_vs_nondeferred' menuName='deferred_vs_nondeferred' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<textview text='The text in the textboxes below are databound to textviews inside the popups.' />
+	<textview text='The databinding expression is written so that it runs on the server, and takes at least 0.5 seconds.' />
+	<textview text='If you change the textbox in the non-deferred section, a server-side daq will execute.' />
+	<textview text='In the deferred section, the daq will only execute if you enter the popup.' />
+	<textview text='The text there will take a moment to appear; the daq needs to finish first.' />
+	<textview text='Check the browser&apos;s DevTools/Network window to see the executing daqs; filter on `ExecuteDaq`.' />
+
+	<chapter id='def' title='Deferred'>
+		<textbox id='tb' label='Change text in popup:' text='Hello' />
+		<popup title='Open' deferred='true'>
+			<textview text='{SELECT t.txt FROM (SELECT dtlNow() x, tb.text txt, SLEEP(500) wait) t}' />
+		</popup>
+	</chapter>
+
+	<chapter id='nondef' title='Non-Deferred'>
+		<textbox id='tb' label='Change text in popup:' text='Hello' />
+		<popup title='Open' deferred='false'>
+			<textview text='{SELECT t.txt FROM (SELECT dtlNow() x, tb.text txt, SLEEP(500) wait) t}' />
+		</popup>
+	</chapter>
+</form>
