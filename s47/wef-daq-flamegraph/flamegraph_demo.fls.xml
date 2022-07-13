@@ -1,0 +1,17 @@
+﻿<form id='flamegraph_demo' menuName='flamegraph_demo' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+  <!-- changing this starts chains of computations -->
+  <!-- the indentation indicates the dependencies -->
+  <textbox id='tb' />
+    <textview id='t12' text='{SELECT t.txt FROM (SELECT tb.text txt, SLEEP(500) wait) t}' />
+      <textview id='t13' text='{SELECT t.txt FROM (SELECT t12.text txt, SLEEP(500) wait) t}' />
+        <textview id='t14' text='{SELECT t.txt FROM (SELECT t13.text txt, SLEEP(500) wait) t}' />
+          <textview id='t15' text='{SELECT t.txt FROM (SELECT t14.text txt, SLEEP(500) wait) t}' />
+    <textview id='t22' text='{SELECT t.txt FROM (SELECT tb.text txt, SLEEP(500) wait) t}' />
+      <textview id='t23' text='{SELECT t.txt FROM (SELECT t22.text txt, SLEEP(500) wait) t}' />
+        <textview id='t24' text='{SELECT t.txt FROM (SELECT t23.text txt, SLEEP(500) wait) t}' />
+          <textview id='t25' text='{SELECT t.txt FROM (SELECT t24.text txt, SLEEP(500) wait) t}' />
+    <textview id='t32' text='{SELECT t.txt FROM (SELECT dtlNow() x, tb.text txt, SLEEP(500) wait) t}' />
+      <textview id='t33' text='{SELECT t.txt FROM (SELECT dtlNow() x, t32.text txt, SLEEP(500) wait) t}' />
+        <textview id='t34' text='{SELECT t.txt FROM (SELECT dtlNow() x, t33.text txt, SLEEP(500) wait) t}' />
+          <textview id='t35' text='{SELECT t.txt FROM (SELECT dtlNow() x, t34.text txt, SLEEP(500) wait) t}' />
+</form>
