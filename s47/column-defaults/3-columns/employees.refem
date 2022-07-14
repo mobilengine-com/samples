@@ -2,6 +2,6 @@
   <Columns>
     <Column Name='firstName' Type='Text' />
     <Column Name='lastName' Type='Text' />
-    <Column Name='salary' Type='Integer' Nullable='false' InitialValue='0' />
+    <Column Name='salary' Type='Integer' NotNull='true' InitialValue='123' />
   </Columns>
 </Reftab>
