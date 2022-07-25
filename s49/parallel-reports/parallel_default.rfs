@@ -1,0 +1,10 @@
+server program 'parallel_default' 
+for schedule * * * * * first run at 2100-01-01 00:00
+using report 'report_eachtime_pdf';
+{
+	var rep = reports.report_eachtime_pdf.New();
+	// AllowParallel is not set, this has the same effect as "rep.AllowParallel = null;"
+	rep.Run();
+	rep.Run();
+	rep.Run();
+}

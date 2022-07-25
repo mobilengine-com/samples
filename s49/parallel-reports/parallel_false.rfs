@@ -1,0 +1,11 @@
+server program 'parallel_false' 
+for schedule * * * * * first run at 2100-01-01 00:00
+using report 'report_eachtime_pdf';
+{
+	var rep = reports.report_eachtime_pdf.New();
+	// disable parallel report runs, regardless of what's set in the repmet
+	rep.AllowParallel = false;
+	rep.Run();
+	rep.Run();
+	rep.Run();
+}

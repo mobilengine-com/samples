@@ -1,0 +1,25 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>report_eachtime_pdf</Name>
+	<Format>PDF</Format>
+	<Frequency>EachTimeANewDataRowArrives</Frequency>	
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>true</IncludeTrackData>
+	<UseLongtextForStringInMdb>true</UseLongtextForStringInMdb>
+	<!-- 
+		Allow parallel generation of this report. 
+		This is also the default setting if the element is omitted. 
+	-->
+	<AllowParallel>true</AllowParallel>
+	<Email>
+		<Recipients>
+			<To>nobody@mobilengine.com</To>
+		</Recipients>
+		<Attachment>file.pdf</Attachment>
+		<Subject>Your report</Subject>
+	</Email>
+	<Filter>
+		<Form>report_form</Form>
+	</Filter>
+</ReportDefinition>
