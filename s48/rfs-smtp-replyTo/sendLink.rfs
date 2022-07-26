@@ -1,0 +1,55 @@
+server program sendLink for form sendLink
+using form linkedForm;
+{
+    var rgTo = list.New();
+    foreach (var row in form.repTo.rows) {
+        var tbRecipient = row.tbRecipient.text;
+        if(tbRecipient != ""){
+            rgTo.Add(tbRecipient);
+        }
+    }
+    var rgcc = list.New();
+    foreach (var row in form.repCC.rows) {
+        var tbCC = row.tbCC.text;
+        if(tbCC != ""){
+            rgcc.Add(tbCC);
+        }
+		
+    }
+    var rgbcc = list.New();
+    foreach (var row in form.repBcc.rows) {
+        var tbBcc = row.tbBcc.text;
+        if(tbBcc != ""){
+            rgbcc.Add(tbBcc);
+        }
+    }
+
+    var email = {
+        bcc: rgbcc,
+        cc: rgcc,
+        recipients: rgTo,
+        subject: form.tbSubject.text,
+        body: "<html><body>link to form with data: <a href='{0}?data={1}'>here</a></body></html>"
+            .Replace("{0}", forms.linkedForm.webformUrl)
+            .Replace("{1}", form.tbParam.text.UrlEncode()),
+        html: true
+    };
+    var from = form.tbFrom.text;
+    if(from != ""){
+        email.from = from;
+    }
+    var sender = form.tbSender.text;
+    if(sender != ""){
+        email.sender = sender;
+    }
+    var replyTo = form.tbReplyTo.text;
+    if(replyTo != ""){
+        email.replyTo = replyTo;
+    }
+    var inReplyTo = form.tbInReplyTo.text;
+    if(inReplyTo != ""){
+        email.inReplyTo = inReplyTo;
+    }
+
+    smtp.SendEmail(email);
+}

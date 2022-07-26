@@ -1,0 +1,60 @@
+server program sendMail for form sendMail 
+{
+    var rgTo = list.New();
+    foreach (var row in form.repTo.rows) {
+        var tbRecipient = row.tbRecipient.text;
+        if(tbRecipient != ""){
+            rgTo.Add(tbRecipient);
+        }
+    }
+    var rgAttach = list.New();
+    for (var i = 0; i<form.filupl.files.Count(); i=i+1) {
+        var file = form.filupl.files[i]; 
+        var fileref = form.filupl.filerefs[i]; 
+        rgAttach.Add({fileref: fileref.fileref, filename: file.name});
+    }
+    var rgcc = list.New();
+    foreach (var row in form.repCC.rows) {
+        var tbCC = row.tbCC.text;
+        if(tbCC != ""){
+            rgcc.Add(tbCC);
+        }
+		
+    }
+    var rgbcc = list.New();
+    foreach (var row in form.repBcc.rows) {
+        var tbBcc = row.tbBcc.text;
+        if(tbBcc != ""){
+            rgbcc.Add(tbBcc);
+        }
+    }
+
+    var email = {
+        bcc: rgbcc,
+        cc: rgcc,
+        recipients: rgTo,
+        subject: form.tbSubject.text,
+        body: form.taBody.text,
+        html: false,
+        attachments: rgAttach
+    };
+
+    var from = form.tbFrom.text;
+    if(from != ""){
+        email.from = from;
+    }
+    var sender = form.tbSender.text;
+    if(sender != ""){
+        email.sender = sender;
+    }
+    var replyTo = form.tbReplyTo.text;
+    if(replyTo != ""){
+        email.replyTo = replyTo;
+    }
+    var inReplyTo = form.tbInReplyTo.text;
+    if(inReplyTo != ""){
+        email.inReplyTo = inReplyTo;
+    }
+
+    smtp.SendEmail(email);
+}

@@ -1,0 +1,20 @@
+<form id='sendLink' platforms='web' menuName='send link' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <repeater id='repTo' record='recTo' recordset='{[1]}'>
+        <textbox label="To" id="tbRecipient" text="@mobilengine.com"/>
+    </repeater>
+    <addbutton records='{SELECT 1 v}' table='repTo' text='Add recipient'/>
+    <repeater id='repCC' record='recCC' recordset='{[0]}'>
+        <textbox label="CC" id="tbCC"/>
+    </repeater>
+    <addbutton records='{SELECT 1 v}' table='repCC' text='Add Cc'/>
+    <repeater id='repBcc' record='recBcc' recordset='{[0]}'>
+        <textbox label="Bcc" id="tbBcc"/>
+    </repeater>
+    <addbutton records='{SELECT 1 v}' table='repBcc' text='Add Bcc'/>
+    <textbox id="tbFrom" label="From" />
+    <textbox id="tbSender" label="Sender" text="@mobilengine.com"/>
+    <textbox id="tbReplyTo" label="ReplyTo"/>
+    <textbox id="tbInReplyTo" label="InReplyTo"/>
+    <textbox id="tbSubject" label="Subject"/>
+    <textbox id="tbParam" label="show this data in form"/>
+</form>
