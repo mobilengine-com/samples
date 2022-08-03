@@ -26,6 +26,24 @@ styles {
         }
     }
 
+    style asideContent {
+        hbox {
+            sizes = 20%, 1
+        }
+    }
+
+    style contentOnly {
+        hbox {
+            sizes = 0px, 1
+        }
+    }
+
+    style navbarBody {
+        vbox {
+            sizes = 0, 0, 1
+        }
+    }
+
     style bgYellow {
         all {
             backgroundColor = F9FBE7 // lime
@@ -41,6 +59,18 @@ styles {
     style bgPink {
         all {
             backgroundColor = FCE4EC // pink
+        }
+    }
+
+    style fontLarge {
+        all {
+            fontSize = 2em
+        }
+    }
+
+    style fontMedium {
+        all {
+            fontSize = 1.5em
         }
     }
 
