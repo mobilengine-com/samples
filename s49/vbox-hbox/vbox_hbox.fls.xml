@@ -50,6 +50,18 @@
         </vbox>
     </popup>
 
+    <popup title="Scrolling content">
+        <chapter title="Content too wide for hbox column" />
+        <hbox style="{styles.smallWidthHeight}">
+            <textview text="longUnbreakableTextlongUnbreakableTextlongUnbreakableText" />
+        </hbox>
+
+        <chapter title="Content too high for vbox row" />
+        <vbox style="{styles.smallWidthHeight}">
+            <map />
+        </vbox>
+    </popup>
+
     <popup title='Dialog with Header' openMode='dialog' style='{styles.popup300h}'>
         <vbox style='{styles.headerBodyFooter}'>
             <backbutton text='Back' style='{styles.bgYellow}' />

@@ -38,6 +38,15 @@ styles {
         }
     }
 
+    style smallWidthHeight {
+        hbox {
+            sizes = 100px
+        }
+        vbox {
+            sizes = 100px
+        }
+    }
+
     style navbarBody {
         vbox {
             sizes = 0, 0, 1
