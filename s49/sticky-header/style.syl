@@ -1,0 +1,64 @@
+styles {
+    style headerBodyFooter {
+        vbox {
+            height = 100%
+            sizes = 0, 1, 0
+        }
+    }
+
+    style equalSplit {
+        vbox {
+            height = 100%
+        }
+    }
+
+    style split25 {
+        vbox {
+            height = 100%
+            sizes = 25%
+        }
+    }
+
+    style sizesExample {
+        vbox {
+            height = 100%
+            sizes = 0, 1, 50px, 4 > 200px
+        }
+    }
+
+    style bgYellow {
+        all {
+            backgroundColor = F9FBE7 // lime
+        }
+    }
+
+    style bgBlue {
+        all {
+            backgroundColor = E1F5FE // light blue
+        }
+    }
+
+    style bgPink {
+        all {
+            backgroundColor = FCE4EC // pink
+        }
+    }
+
+    style popup300h {
+        popup {
+            content = popup300h
+        }
+        frame {
+            frameHeight = 300px
+            frameWidth = 300px
+        }
+        canvas {
+            margin {
+                top = 0px
+                bottom = 0px
+                left = 0px
+                right = 0px
+            }
+        }
+    }
+}

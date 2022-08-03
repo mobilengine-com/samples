@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='sticky_header' menuName='sticky_header' platforms='web'>
+    <declarations>
+        <let id='repeaterInput' shape='table' value='{TABLE v (1;2;3;4;5;6;7;8;9;10;11;12;13;14;15)}' />
+    </declarations>
+
+    <popup title='Header-Body-Footer Split'>
+        <vbox style='{styles.headerBodyFooter}'>
+            <block>
+                <textview text='Header' style='{styles.bgYellow}' />
+                <textview text='Stays in place' style='{styles.bgYellow}' />
+            </block>
+            <block>
+                <textview text='Scrollable Body' style='{styles.bgBlue}' />
+                <map style='{styles.bgBlue}' />
+                <map style='{styles.bgBlue}' />
+                <map style='{styles.bgBlue}' />
+            </block>
+            <block>
+                <textview text='Footer' style='{styles.bgPink}' />
+                <textview text='Stays in place' style='{styles.bgPink}' />
+            </block>
+        </vbox>
+    </popup>
+
+    <popup title='Block vs Control'>
+        <vbox style='{[styles.equalSplit, styles.bgPink]}'>
+            <textview text='Textview Below Vbox' style='{styles.bgYellow}' />
+            <block>
+                <textview text='Textview in Block Below Vbox' style='{styles.bgBlue}' />
+            </block>
+        </vbox>
+    </popup>
+
+    <popup title='Split to 25% Parts'>
+        <vbox style='{styles.split25}'>
+            <textview text='Textview 1' style='{styles.bgYellow}' />
+            <textview text='Textview 2' style='{styles.bgBlue}' />
+            <textview text='Textview 3' style='{styles.bgYellow}' />
+            <textview text='Textview 4' style='{styles.bgBlue}' />
+        </vbox>
+    </popup>
+
+    <popup title='Size Examples'>
+        <vbox style='{styles.sizesExample}'>
+            <textview text='Size: 0 (don`t grow, don`t shrink)' style='{styles.bgYellow}' />
+            <textview text='Size: 1 (no minimum size, get 1/5 of remaining space)' style='{styles.bgBlue}' />
+            <textview text='Size: 50px (50px, don`t grow)' style='{styles.bgYellow}' />
+            <textview text='Size: 4 > 200px (200px minimum size, get 4/5 of remaining space)' style='{styles.bgBlue}' />
+        </vbox>
+    </popup>
+
+    <popup title='Dialog with Header' openMode='dialog' style='{styles.popup300h}'>
+        <vbox style='{styles.headerBodyFooter}'>
+            <backbutton text='Back' style='{styles.bgYellow}' />
+            <repeater record='r' recordset='{SELECT t.v FROM repeaterInput t}'>
+                <textview text='{SELECT "Textview " || TOSTRING(r.v)}' style='{styles.bgBlue}' />
+            </repeater>
+        </vbox>
+    </popup>
+
+    <popup title='Bubble with Header' openMode='bubble' style='{styles.popup300h}'>
+        <vbox style='{styles.headerBodyFooter}'>
+            <backbutton text='Back' style='{styles.bgYellow}' />
+            <repeater record='r' recordset='{SELECT t.v FROM repeaterInput t}'>
+                <textview text='{SELECT "Textview " || TOSTRING(r.v)}' style='{styles.bgBlue}' />
+            </repeater>
+        </vbox>
+    </popup>
+</form>
