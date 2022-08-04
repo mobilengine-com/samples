@@ -50,14 +50,14 @@
         </vbox>
     </popup>
 
-    <popup title="Scrolling content">
-        <chapter title="Content too wide for hbox column" />
-        <hbox style="{styles.smallWidthHeight}">
-            <textview text="longUnbreakableTextlongUnbreakableTextlongUnbreakableText" />
+    <popup title='Scrolling content'>
+        <chapter title='Content too wide for hbox column' />
+        <hbox style='{styles.smallWidthHeight}'>
+            <textview text='longUnbreakableTextlongUnbreakableTextlongUnbreakableText' />
         </hbox>
 
-        <chapter title="Content too high for vbox row" />
-        <vbox style="{styles.smallWidthHeight}">
+        <chapter title='Content too high for vbox row' />
+        <vbox style='{styles.smallWidthHeight}'>
             <map />
         </vbox>
     </popup>
@@ -111,5 +111,57 @@ deserunt mollit anim id est laborum.' style='{styles.bgBlue}' />
             </hbox>
             <textview text='Footer' style='{styles.bgYellow}' />
         </vbox>
+    </popup>
+
+    <popup title='Table-like layout'>
+        <textview text='Note that the text in the rows isn`t baseline-aligned' />
+
+        <hbox style="{styles.hboxAuto}">
+            <block>
+                <!-- header -->
+                <hbox style='{styles.hbox100w}'>
+                    <textview text='{SELECT "Header Textview"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                    <textview text='{SELECT "Header Textview"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                    <textview text='{SELECT "Header Textview With Long Text"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                    <textview text='{SELECT "Header Textview"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                    <textview text='{SELECT "Header Textview"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                </hbox>
+
+                <!-- body -->
+                <repeater record='r' recordset='{SELECT t.v FROM repeaterInput t UNION ALL SELECT t2.v FROM repeaterInput t2 UNION ALL SELECT t3.v FROM repeaterInput t3}'>
+                    <hbox style='{styles.hbox100w}'>
+                        <backbutton text='Back' style='{styles.bgYellow}' />
+                        <textview text='Textview ' style='{styles.bgYellow}' />
+                        <textview text='Textview With Long Text' style='{styles.bgYellow}' />
+                        <dropdown choices='{SELECT "Choice " || TOSTRING(t.v) FROM repeaterInput t}' keyMap='{v}' textMap='{v}' style='{styles.bgYellow}' />
+                        <textview text='Another Textview' style='{styles.bgYellow}' />
+                    </hbox>
+                </repeater>
+            </block>
+            <block>
+                <!-- spacing -->
+            </block>
+            <block>
+                <!-- header -->
+                <hbox style='{styles.hbox100w}'>
+                    <textview text='{SELECT "Header Textview"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                    <textview text='{SELECT "Header Textview"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                    <textview text='{SELECT "Header Textview With Long Text"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                    <textview text='{SELECT "Header Textview"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                    <textview text='{SELECT "Header Textview"}' style='{[styles.bgBlue, styles.fontMedium, styles.bottomBorder]}' />
+                </hbox>
+
+                <!-- body -->
+                <repeater record='r' recordset='{SELECT t.v FROM repeaterInput t UNION ALL SELECT t2.v FROM repeaterInput t2 UNION ALL SELECT t3.v FROM repeaterInput t3}'>
+                    <hbox style='{styles.hbox100w}'>
+                        <backbutton text='Back' style='{styles.bgYellow}' />
+                        <textview text='Textview ' style='{styles.bgYellow}' />
+                        <textview text='Textview With Long Text' style='{styles.bgYellow}' />
+                        <dropdown choices='{SELECT "Choice " || TOSTRING(t.v) FROM repeaterInput t}' keyMap='{v}' textMap='{v}' style='{styles.bgYellow}' />
+                        <textview text='Another Textview' style='{styles.bgYellow}' />
+                    </hbox>
+                </repeater>
+            </block>
+        </hbox>
     </popup>
 </form>

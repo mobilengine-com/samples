@@ -53,6 +53,18 @@ styles {
         }
     }
 
+    style hbox100w {
+        hbox {
+            sizes = 100px
+        }
+    }
+
+    style hboxAuto {
+        hbox {
+            sizes = 0, 10px, 0
+        }
+    }
+
     style bgYellow {
         all {
             backgroundColor = F9FBE7 // lime
@@ -80,6 +92,15 @@ styles {
     style fontMedium {
         all {
             fontSize = 1.5em
+        }
+    }
+
+    style bottomBorder {
+        all {
+            borderColor = aaaaaa
+            borderWidth {
+                bottom = 2px
+            }
         }
     }
 
