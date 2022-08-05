@@ -1,0 +1,7 @@
+styles {
+    style hbox100pctHeight {
+        hbox {
+            height = 100%
+        }
+    }
+}

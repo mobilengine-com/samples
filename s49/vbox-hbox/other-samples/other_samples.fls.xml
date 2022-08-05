@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='other_samples' menuName='other_samples' platforms='web'>
+    <popup title='Block vs Control'>
+        <vbox style='{[styles.equalSplit, styles.bgPink]}'>
+            <textview text='Textview Below Vbox' style='{styles.bgYellow}' />
+            <block>
+                <textview text='Textview in Block Below Vbox' style='{styles.bgBlue}' />
+            </block>
+        </vbox>
+    </popup>
+
+    <popup title='Size Examples'>
+        <vbox style='{styles.sizesExample}'>
+            <textview text='Size: 0 (don`t grow, don`t shrink)' style='{styles.bgYellow}' />
+            <textview text='Size: 1 (no minimum size, get 1/5 of remaining space)' style='{styles.bgBlue}' />
+            <textview text='Size: 50px (50px, don`t grow)' style='{styles.bgYellow}' />
+            <textview text='Size: 4 > 200px (200px minimum size, get 4/5 of remaining space)' style='{styles.bgBlue}' />
+        </vbox>
+    </popup>
+
+    <popup title='Scrolling content'>
+        <chapter title='Content too wide for hbox column' />
+        <hbox style='{styles.smallWidthHeight}'>
+            <textview text='longUnbreakableTextlongUnbreakableTextlongUnbreakableText' />
+        </hbox>
+
+        <chapter title='Content too high for vbox row' />
+        <vbox style='{styles.smallWidthHeight}'>
+            <map />
+        </vbox>
+    </popup>
+
+    <popup title='Styling with `content`'>
+        <chapter title="vbox" />
+        <vbox style='{styles.boldContent}'>
+            <textview text='Bold beacause the enclosing vbox&apos;s style' />
+        </vbox>
+
+        <chapter title="hbox" />
+        <hbox style='{styles.boldContent}'>
+            <textview text='Bold beacause the enclosing hbox&apos;s style' />
+        </hbox>
+    </popup>
+
+    <popup title='Default styles'>
+        <chapter title="vbox" />
+        <vbox>
+            <textarea />
+            <textarea />
+            <textarea />
+        </vbox>
+
+        <chapter title="hbox" />
+        <hbox>
+            <textarea />
+            <textarea />
+            <textarea />
+        </hbox>
+    </popup>
+</form>

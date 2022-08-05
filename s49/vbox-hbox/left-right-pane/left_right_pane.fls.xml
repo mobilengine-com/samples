@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='left_right_pane' menuName='left_right_pane' platforms='web'>
+    <hbox style="{styles.hbox100pctHeight}">
+        <block>
+            <textview text='Left Pane' />
+            <map />
+            <map />
+            <map />
+        </block>
+        <block>
+            <textview text='Right Pane' />
+            <map />
+            <map />
+            <map />
+        </block>
+    </hbox>
+</form>

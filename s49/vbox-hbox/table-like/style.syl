@@ -1,0 +1,16 @@
+styles {
+    style hbox100w {
+        hbox {
+            sizes = 100px
+        }
+    }
+
+    style header {
+        hbox {
+            borderColor = aaaaaa
+            borderWidth {
+                bottom = 2px
+            }
+        }
+    }
+}

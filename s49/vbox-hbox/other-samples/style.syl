@@ -1,0 +1,53 @@
+styles {
+    style equalSplit {
+        vbox {
+            height = 100%
+        }
+    }
+
+    style sizesExample {
+        vbox {
+            height = 100%
+            sizes = 0, 1, 50px, 4 > 200px
+        }
+    }
+
+    style smallWidthHeight {
+        hbox {
+            sizes = 100px
+        }
+        vbox {
+            sizes = 100px
+        }
+    }
+    
+    style boldContent {
+        all {
+            bold = true
+        }
+        hbox {
+            content = boldContent
+        }
+        vbox {
+            content = boldContent
+        }
+    }
+
+    style bgYellow {
+        all {
+            backgroundColor = F9FBE7 // lime
+        }
+    }
+
+    style bgBlue {
+        all {
+            backgroundColor = E1F5FE // light blue
+        }
+    }
+
+    style bgPink {
+        all {
+            backgroundColor = FCE4EC // pink
+        }
+    }
+}

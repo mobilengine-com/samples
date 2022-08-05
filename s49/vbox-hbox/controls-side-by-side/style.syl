@@ -1,0 +1,7 @@
+styles {
+    style sizeChildrenToFit {
+        hbox {
+            sizes = 0
+        }
+    }
+}

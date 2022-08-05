@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='header_body_footer' menuName='header_body_footer' platforms='web'>
+    <vbox style='{styles.headerBodyFooter}'>
+        <block>
+            <textview text='Header' />
+            <textview text='Stays in place' />
+        </block>
+        <block>
+            <textview text='Scrollable Body' />
+            <map />
+            <map />
+            <map />
+        </block>
+        <block>
+            <textview text='Footer' />
+            <textview text='Stays in place' />
+        </block>
+    </vbox>
+</form>

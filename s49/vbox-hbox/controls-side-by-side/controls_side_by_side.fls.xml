@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='controls_side_by_side' menuName='controls_side_by_side' platforms='web'>
+    <hbox style="{styles.sizeChildrenToFit}">
+        <textview text='Button ->' />
+        <discardbutton text='Button' />
+        <textview text='&lt;- Button' />
+    </hbox>
+</form>

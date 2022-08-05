@@ -6,26 +6,6 @@ styles {
         }
     }
 
-    style equalSplit {
-        vbox {
-            height = 100%
-        }
-    }
-
-    style split25 {
-        vbox {
-            height = 100%
-            sizes = 25%
-        }
-    }
-
-    style sizesExample {
-        vbox {
-            height = 100%
-            sizes = 0, 1, 50px, 4 > 200px
-        }
-    }
-
     style asideContent {
         hbox {
             sizes = 20%, 1
@@ -53,15 +33,15 @@ styles {
         }
     }
 
-    style hbox100w {
-        hbox {
-            sizes = 100px
+    style boldContent {
+        all {
+            bold = true
         }
-    }
-
-    style hboxAuto {
         hbox {
-            sizes = 0, 10px, 0
+            content = boldContent
+        }
+        vbox {
+            content = boldContent
         }
     }
 
@@ -100,24 +80,6 @@ styles {
             borderColor = aaaaaa
             borderWidth {
                 bottom = 2px
-            }
-        }
-    }
-
-    style popup300h {
-        popup {
-            content = popup300h
-        }
-        frame {
-            frameHeight = 300px
-            frameWidth = 300px
-        }
-        canvas {
-            margin {
-                top = 0px
-                bottom = 0px
-                left = 0px
-                right = 0px
             }
         }
     }

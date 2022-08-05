@@ -1,0 +1,18 @@
+styles {
+    style headerBody {
+        vbox {
+            height = 100%
+            sizes = 0, 1
+        }
+    }
+
+    style popup300x300 {
+        popup {
+            content = popup300x300
+        }
+        frame {
+            frameHeight = 300px
+            frameWidth = 300px
+        }
+    }
+}

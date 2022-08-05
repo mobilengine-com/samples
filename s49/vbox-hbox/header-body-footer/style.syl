@@ -1,0 +1,8 @@
+styles {
+    style headerBodyFooter {
+        vbox {
+            height = 100%
+            sizes = 0, 1, 0
+        }
+    }
+}

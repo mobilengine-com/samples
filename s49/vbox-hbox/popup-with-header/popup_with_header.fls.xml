@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='popup_with_header' menuName='popup_with_header' platforms='web'>
+    <declarations>
+        <let id='repeaterInput' shape='table' value='{TABLE v (1;2;3;4;5;6;7;8;9;10;11;12;13;14;15)}' />
+    </declarations>
+
+    <popup title='Dialog with Header' openMode='dialog' style='{styles.popup300x300}'>
+        <vbox style='{styles.headerBody}'>
+            <backbutton text='Back' />
+            <repeater record='r' recordset='{SELECT t.v FROM repeaterInput t}'>
+                <textview text='Textview' />
+            </repeater>
+        </vbox>
+    </popup>
+
+    <popup title='Bubble with Header' openMode='bubble' style='{styles.popup300x300}'>
+        <vbox style='{styles.headerBody}'>
+            <backbutton text='Back' />
+            <repeater record='r' recordset='{SELECT t.v FROM repeaterInput t}'>
+                <textview text='Textview' />
+            </repeater>
+        </vbox>
+    </popup>
+</form>
