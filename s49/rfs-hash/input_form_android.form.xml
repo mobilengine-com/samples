@@ -1,0 +1,7 @@
+<Form name='input_form_android' description='input_form_android' typed='true' numberformat='{decimalSeparator: ".", maxFraction: 2}' dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)'>
+  <Control type='panel' name='root'>
+    <Control type='label' text='Type some text here, and submit the form.' />
+    <Control type='label' text='You can check the calculated hash in the backoffice dev log' />
+    <Control size='large' type='textbox' data_type='string' lines='10' name='textarea' />
+  </Control>
+</Form>

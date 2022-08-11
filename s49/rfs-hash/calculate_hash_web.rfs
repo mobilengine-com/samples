@@ -1,0 +1,6 @@
+client server program 'calculate_hash_web' 
+for form 'input_form_web'
+{
+	trace "Input text: " + form.textarea.text;
+	trace "SHA-1 hash: " + form.textarea.text.Sha1();
+}

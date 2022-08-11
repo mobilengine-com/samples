@@ -1,0 +1,6 @@
+client server program 'calculate_hash_android' 
+for form 'input_form_android'
+{
+	trace "Input text: " + form.root.textarea.value;
+	trace "SHA-1 hash: " + form.root.textarea.value.Sha1();
+}

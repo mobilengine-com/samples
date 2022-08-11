@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='input_form_web' menuName='input_form_web' platforms='web ios'>
+    <textview text='Type some text here, and submit the form.' />
+    <textview text='You can check the calculated hash in the backoffice dev log' />
+    <textarea id='textarea' />
+</form>
