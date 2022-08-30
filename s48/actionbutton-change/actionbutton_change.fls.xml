@@ -1,0 +1,13 @@
+<form id='actionbutton_change' menuName='actionbutton_change' title='actionbutton_change' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <declarations>
+        <let id='v1' shape='scalar' value='{0}' />
+        <let id='v2' shape='scalar' value='{v1 + 1}' />
+    </declarations>
+    <actionbutton text='set'>
+        <set target='v1' value='{1}' />
+        <set target='tv1.text' value='{TOSTRING(v1)}' />
+        <set target='tv2.text' value='{TOSTRING(v2)}' />
+    </actionbutton>
+    <textview id='tv1' />
+    <textview id='tv2' />
+</form>
