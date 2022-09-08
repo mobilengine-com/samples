@@ -1,0 +1,8 @@
+styles {
+    style yellowDropColor {
+        fileupload {
+            dropColor = FF0000
+            dropBackgroundColor = FFFF00
+        }
+    }
+}

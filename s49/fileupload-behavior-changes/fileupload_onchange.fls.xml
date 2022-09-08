@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='fileupload_onchange' menuName='fileupload_onchange' platforms='web ios'>
+    <chapter title='File upload: Add files on change'>
+        <fileupload acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .*' />
+    </chapter>
+
+    <chapter title='File upload: Replace files on change'>
+        <fileupload acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .*' onChange='replace' />
+    </chapter>
+</form>

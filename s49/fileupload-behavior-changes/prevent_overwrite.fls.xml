@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='prevent_overwrite' menuName='prevent_overwrite' platforms='web ios'>
+    <fileupload id="filupl" acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .*' />
+    <table record='r' 
+            recordset='{SELECT f.mediaId, f.name FROM filupl.files f}'
+            recordLocal="{SELECT r.mediaId, r.name}">
+        <header>
+            <row>
+                <cell>
+                    <textview text='Name' />
+                </cell>
+            </row>
+        </header>
+        <row>
+            <cell>
+                <textbox id="tbName" text='{r.name}' />
+            </cell>
+        </row>
+    </table>
+</form>
