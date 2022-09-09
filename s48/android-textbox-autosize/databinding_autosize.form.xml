@@ -1,0 +1,26 @@
+<Form name="databinding_autosize" description="databinding_autosize">
+	<Control type="panel" name="root">
+		<Control type="textbox" name="tbs1" label="small input" size="small" lines="auto" />
+		<Control type="textbox" name="tbs2" label="small output" size="small" lines="auto" reference="=@1" ref_arg="../tbs1" />
+
+		<Control type="textbox" name="tbm1" label="medium input" size="medium" lines="auto" />
+		<Control type="textbox" name="tbm2" label="medium output" size="medium" lines="auto" reference="=@1" ref_arg="../tbm1" />
+
+		<Control type="textbox" name="tbl1" label="large input" size="large" lines="auto" />
+		<Control type="textbox" name="tbl2" label="large output" size="large" lines="auto" reference="=@1" ref_arg="../tbl1" />
+
+		<!-- some padding so you can scroll the above to the top of the screen, to see both textboxes changing -->
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+		<Control type="label" />
+	</Control>
+</Form>
