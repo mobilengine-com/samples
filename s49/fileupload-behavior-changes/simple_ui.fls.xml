@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<form xmlns='http://schemas.mobilengine.com/fls/v2' id='simple_ui' menuName='simple_ui' platforms='web ios'>
-    <fileupload label='Old UI' acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .*' />
-    <fileupload label='Simple UI' acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .*' simpleUi='true' />
-    <actionbutton label='Button for comparison' text='Act'>
-        <set target='text' value='{"123"}' />
-    </actionbutton>
-</form>

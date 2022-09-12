@@ -1,4 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<form xmlns='http://schemas.mobilengine.com/fls/v2' id='drop_color' menuName='drop_color' platforms='web ios'>
-    <fileupload acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .*' style='{styles.yellowDropColor}' />
-</form>
