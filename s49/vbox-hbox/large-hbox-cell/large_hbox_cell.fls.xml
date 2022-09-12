@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='controls_side_by_side' menuName='controls_side_by_side' platforms='web'>
+    <checkbox id='long' label='Long text in the center?' />
+
+    <chapter title="" />
+
+    <textview text='If a column has a non-zero weight, it can grow &amp; shrink' />
+    <hbox style='{styles.growCenter}'>
+        <discardbutton text='Button1' style='{styles.red}' />
+        <discardbutton text='{CASE WHEN long.checked THEN "Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2" ELSE "Button2" END}' style='{styles.yellow}' />
+        <discardbutton text='Button3' style='{styles.red}' />
+    </hbox>
+
+    <chapter title="" />
+
+    <textview text='The hbox is always at least 100% wide, even if the child controls don&apos;t fill the available space. ' />
+    <textview text='The hbox background is shown in blue.' />
+    <textview text='You currently cannot make Button2 shrink when it has a long text here.' />
+    <hbox style='{styles.sizeChildrenToFit}'>
+        <discardbutton text='Button1' style='{styles.red}' />
+        <discardbutton text='{CASE WHEN long.checked THEN "Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2Button2" ELSE "Button2" END}' style='{styles.yellow}' />
+        <discardbutton text='Button3' style='{styles.red}' />
+    </hbox>
+</form>

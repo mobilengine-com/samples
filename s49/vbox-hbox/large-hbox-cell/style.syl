@@ -1,0 +1,27 @@
+styles {
+    style sizeChildrenToFit {
+        hbox {
+            backgroundColor = B3E5FC
+            sizes = 0
+        }
+    }
+
+    style growCenter {
+        hbox {
+            backgroundColor = B3E5FC
+            sizes = 0, 1 > 100px, 0
+        }
+    }
+
+    style red {
+        all {
+            backgroundColor = FF0000
+        }
+    }
+
+    style yellow {
+        all {
+            backgroundColor = FFFF00
+        }
+    }
+}
