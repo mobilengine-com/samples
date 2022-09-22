@@ -1,0 +1,9 @@
+<form id="LogoutUrl_sysparam" menuName="LogoutUrl_sysparam" title='LogoutUrl_sysparam' platforms="web" xmlns="http://schemas.mobilengine.com/fls/v2">
+    <chapter title='LogoutUrl text'>
+        <textview id='textview4' label='name:' text='sysp.logoutUrl'/> 
+        <textview id='textview' label='result:' text='{sysp.logoutUrl}'/> 
+    </chapter>
+    <chapter title='Logout link'>
+        <linkview url='{sysp.logoutUrl}' text='Log out' newTab='false'/>
+    </chapter>
+</form>
