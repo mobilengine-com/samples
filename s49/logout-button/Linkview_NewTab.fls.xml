@@ -1,12 +1,7 @@
-<form id="Linkview_NewTab" menuName="Linkview_NewTab" title='Linkview_NewTab' platforms="web" xmlns="http://schemas.mobilengine.com/fls/v2">
-    <chapter title='Logout links'>
-        <linkview url='{sysp.logoutUrl}' text='Log out default new tab'/>
-        <linkview url='{sysp.logoutUrl}' text='Log out new tab' newTab='true'/>
-        <linkview url='{sysp.logoutUrl}' text='Log out no new tab' newTab='false'/>
-    </chapter>
-    <chapter title='Go to bi links'>
-        <linkview url='{sysp.biUrl}' text='Bi default new tab'/>
-        <linkview url='{sysp.biUrl}' text='Bi new tab' newTab='true'/>
-        <linkview url='{sysp.biUrl}' text='Bi no new tab' newTab='false'/>
+<form id="Linkview_newTab" menuName="Linkview_newTab" title='Linkview_newTab' platforms="web" xmlns="http://schemas.mobilengine.com/fls/v2">
+    <chapter title='Google'>
+        <linkview url='http://www.google.com' text='default newTab'/>
+        <linkview url='http://www.google.com' text='newTab: true' newTab='true'/>
+        <linkview url='http://www.google.com' text='newTab: false' newTab='false'/>
     </chapter>
 </form>
