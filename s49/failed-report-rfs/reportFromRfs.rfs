@@ -1,0 +1,18 @@
+server program 'reportFromRfs' for form 'formToRunReportFromRfs'
+using report 'failing_report';
+{
+	var rep = reports.failing_report.New();
+	rep.Params.Add({
+		guidReport: form.guidReport,
+		name: form.name.text, 
+		email: form.email.text, 
+		subject: form.subject.text, 
+		body: "here goes the body of the mail, not used yet",
+		attachment: form.attachment.text,
+		filtertext: form.filtertext.text,
+		filterint: form.filterint.number,
+		filterfloat: form.filterfloat.number,
+		filterdate: form.filterdate.date.DtlToDtdb()
+	});
+	rep.Run(); 
+}

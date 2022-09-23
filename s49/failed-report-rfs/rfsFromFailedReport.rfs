@@ -1,0 +1,28 @@
+server program 'rfsFromFailedReport' for failed report 'failing_report'
+{
+    trace "Falied report: ", report;
+}
+
+/*
+{
+    AttachmentName: "file-attch.test123.pdf", 
+    DtuArchive: 2022.09.23. 8:41:43 (Dtu), 
+    DtuT0: 2022.09.23. 8:41:16 (Dtu), 
+    Name: "failing_report", 
+    Params:
+        {
+            attachment: "attch.test123", 
+            body: "here goes the body of the mail, not used yet", 
+            email: "abc@me.com", 
+            filterdate: 2022.09.23. 0:00:00 Local (Dtdb), 
+            filterfloat: 0.0, 
+            filterint: 0, 
+            filtertext: "txt: test123", 
+            guidReport: "3531ddd6a17a9966a334bbd432316d09", 
+            name: "test123", 
+            subject: "subj: test123"
+        }, 
+    ReportviewId: <<null>>, 
+    ResultIdList: [108, 107, 106]
+}
+*/

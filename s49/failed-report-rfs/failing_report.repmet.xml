@@ -1,0 +1,20 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>failing_report</Name>
+	<Format>PDF</Format>
+	<Frequency>Never</Frequency>
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>true</IncludeTrackData>
+	<UseLongtextForStringInMdb>true</UseLongtextForStringInMdb>
+	<ParameterTable>reportparams</ParameterTable>	
+	<Email>
+		<Recipients>
+			<To>{@email}</To>
+		</Recipients>
+		<Attachment>file-{@attachment}</Attachment>
+		<Subject>RSPV: {@subject}</Subject>
+	</Email>
+	<Filter>
+	</Filter>
+</ReportDefinition>
