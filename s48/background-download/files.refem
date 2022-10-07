@@ -1,0 +1,6 @@
+<Reftab Name="files" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="Id" Type="Integer" PrimaryKey="true" NotNull="true" />
+		<Column Name="Fileref" Type="Fileref" NotNull="true" />
+	</Columns>
+</Reftab>

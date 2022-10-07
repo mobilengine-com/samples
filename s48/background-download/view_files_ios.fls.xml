@@ -1,0 +1,12 @@
+<form id='view_files_ios' menuName='view_files_ios' platforms='ios web' dashboard='true' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <textview label='Background download progress:' text='{
+            CASE 
+                WHEN sysp.backgroundDownloadProgress IS NULL THEN "NULL"
+                ELSE TOSTRING(sysp.backgroundDownloadProgress) || "%"
+            END
+    }' />
+
+    <repeater record='r' recordset='{SELECT f.Fileref FROM files f}'>
+        <filedownload label='Open file' text='{MEDIAID(r.Fileref)}' fileref='{r.Fileref}' />
+    </repeater>
+</form>
