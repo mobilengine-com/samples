@@ -1,0 +1,7 @@
+<Reftab Name="agent" xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true" />
+        <Column Name="name" Type="Text" />
+        <Column Name="color" Type="Text" />
+    </Columns>
+</Reftab>

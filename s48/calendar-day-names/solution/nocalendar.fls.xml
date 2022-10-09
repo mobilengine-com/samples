@@ -1,0 +1,7 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' 
+	id='nocalendar' menuName='nocalendar' platforms='web'>
+	<textview id='xzx' text='{formatDtl(dp.date, (dtf yyyy"-"MM"-"dd))}' />
+	<textview id='abc' text='{select toString(count(1)) c from event e}' />
+	<datepicker label="date" id='dp' dateFormat='(dtf yyyy"-"MM"-"dd)'/>
+	<submitbutton text='submit and back' nextForm='{forms.nocalendar}'/>
+</form>
