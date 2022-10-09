@@ -1,0 +1,15 @@
+<Form name="dashAnd" description="dashAnd" typed="true" hidden="false" ksubmit="nobutton" autoform="true" 
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".", maxFraction:2}' xmlns:ofm="http://schemas.mobilengine.com/plugins/ofm"
+    sillyNulls='false' inlineReference='true' >
+    <Control type="panel" name="root">
+    	<Control type='label' label='User: ' text='{SELECT @user}'/>
+	    <Control type='label' label='User lang: ' text='{SELECT @userLang}'/>
+        <Control type='label' label='Locale: ' text='{SELECT @locale}'/>
+        <Control type='label' label='ME ver: ' text='{SELECT @ver}'/>
+        <Control type='label' label='Solution: ' text='{SELECT @packageName||" ("||@packageDisplayName||") "||" v"||@packageVersion}'/>
+        <Control type='label' label='packn: ' text='{SELECT @packageName}'/>
+        <Control type='label' label='pack display name: ' text='{SELECT @packageDisplayName}'/>
+        <Control type='label' label='pack ver: ' text='{SELECT @packageVersion}'/>
+    </Control>
+
+</Form>

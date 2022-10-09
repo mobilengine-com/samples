@@ -1,0 +1,10 @@
+<form id='dash' menuName='dash' title='Dashboard' platforms='web ios' dashboard="true" xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<textview label='User: ' text='{sysp.user}'/>
+	<textview label='User lang: ' text='{sysp.userLang}'/>
+	<textview label='Locale: ' text='{sysp.locale}'/>
+	<textview label='ME ver: ' text='{sysp.clientVersion}'/>
+	<textview label='Solution: ' text='{sysp.packageName||" ("||sysp.packageDisplayName||") "||" v"||sysp.packageVersion}'/>
+	<textview label='packn: ' text='{sysp.packageName}'/>
+	<textview label='pack display name: ' text='{sysp.packageDisplayName}'/>
+	<textview label='pack ver: ' text='{sysp.packageVersion}'/>
+</form>
