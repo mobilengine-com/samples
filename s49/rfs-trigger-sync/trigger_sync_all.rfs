@@ -1,0 +1,5 @@
+server program trigger_sync_all for schedule * * * * * first run at 2100-01-01 00:00
+{
+	// null == trigger sync for everyone
+	SendTriggerSync(null);
+}
