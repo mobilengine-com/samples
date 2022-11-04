@@ -1,0 +1,36 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='NotifyUsers' menuName='NotifyUsers' platforms='web' >
+    <checkbox id="notiAll" label="Notify every user in the company"/>
+    <if cond="{NOT notiAll.checked}">
+        <chapter title="Users to notify">
+            <table id="usersTable" recordset='{SELECT "alma"}' record="r">
+                <row>
+                    <cell>
+                        <textbox id="usrn"/>
+                    </cell>
+                    <cell>
+                        <removebutton text="Remove user"/>
+                    </cell>
+                </row>
+            </table>
+            <addbutton id="addUsrn" table="usersTable" records='{SELECT "alma"}' text="Add user"/>
+        </chapter>
+    </if>
+
+    <chapter title="Title">
+        <textbox id="tbTitleDef" label="Default title" width="25 em"/>
+        <textbox id="tbTitleHu" label="Hungarian title" width="25 em"/>
+        <textbox id="tbTitleEn" label="English title" width="25 em"/>
+    </chapter>
+
+    <chapter title="Body">
+        <textbox id="tbBodyDef" label="Default body" width="25 em"/>
+        <textbox id="tbBodyHu" label="Hungarian body" width="25 em"/>
+        <textbox id="tbBodyEn" label="English body" width="25 em"/>
+    </chapter>
+
+    <textbox id="tbId" label="Id" hint="Use Id to overwrite notifications" width="25 em"/>
+    <textbox id="tbBadge" label="Badge" width="25 em" hint="A number to display over the app's launcher icon"/>
+    <textbox id="tbFormToOpen" label="FormToOpen" width="25 em" hint="The name of the form to be opened"/>
+    <textbox id="tbFormArea" label="FormArea" hint='The specific part of the form to be displayed' width="25 em"/>
+
+</form>
