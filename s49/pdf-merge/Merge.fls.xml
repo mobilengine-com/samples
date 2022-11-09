@@ -1,0 +1,7 @@
+
+<form id="Merge" menuName="Merge" title='Merge' platforms="web ios" xmlns="http://schemas.mobilengine.com/fls/v2" dashboard="true">
+
+	<fileupload id="filupl" label="Upload pdf files to merge" text="PDF File Upload" acceptedMimetypes="application/pdf"/>
+	<filedownload id="filedownload" text="Download merged pdf" mediaId="{SELECT mfl.mediaId FROM MergedFiles mfl LIMIT 1}" />
+
+</form>

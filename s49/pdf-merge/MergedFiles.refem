@@ -1,0 +1,6 @@
+<Reftab Name="MergedFiles" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false">
+  <Columns>
+    <Column Name="mediaId" Type="Text" PrimaryKey="true" NotNull="true" />
+    <Column Name="filename" Type="Text"/>
+  </Columns>
+</Reftab>
