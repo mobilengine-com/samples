@@ -2,20 +2,22 @@ server program pdfData for schedule * * * * * first run at 2100-01-01 00:00
 {
     //Upload a pdf with fileref "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"!
     var mediaId = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    
     var pdfData = pdf.FromFileref(fileref.New(mediaId, 0));
+    trace pdfData;
 
     if(!pdfData.IsValid())
     {
         Error("Invalid pdf with mediaId: " + mediaId);
     }
 
-    trace pdfData;
-    trace "pdf is valid: " + pdfData.IsValid().ToString();
-    trace "pdf page count is: " + pdfData.PageCount().ToString();
+    var pageCount = pdfData.PageCount();
+    trace "pdf page count is: " + pageCount.ToString();
 
-    for(var i = 0; i < pdfData.PageCount(); i = i + 1)
+    var pageSizes = pdfData.PageSizes()
+    for (var i = 0; i < pageSizes.Count(); i = i + 1)
     {
-        trace "page[" + i.ToString() + "] width:" + pdfData.PageSizes()[i].width.ToString();
-        trace "page[" + i.ToString() + "] height:" + pdfData.PageSizes()[i].height.ToString();
+        trace "page[" + i.ToString() + "] width:" + pageSizes[i].width.ToString();
+        trace "page[" + i.ToString() + "] height:" + pageSizes[i].height.ToString();
     }
 }
