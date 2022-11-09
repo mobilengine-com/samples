@@ -14,7 +14,7 @@ server program pdfData for schedule * * * * * first run at 2100-01-01 00:00
     var pageCount = pdfData.PageCount();
     trace "pdf page count is: " + pageCount.ToString();
 
-    var pageSizes = pdfData.PageSizes()
+    var pageSizes = pdfData.PageSizes();
     for (var i = 0; i < pageSizes.Count(); i = i + 1)
     {
         trace "page[" + i.ToString() + "] width:" + pageSizes[i].width.ToString();
