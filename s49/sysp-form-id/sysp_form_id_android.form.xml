@@ -1,0 +1,5 @@
+<Form name='sysp_form_id_android' description='sysp_form_id_android' inlineReference="true" typed='true' numberformat='{decimalSeparator: ".", maxFraction: 2}' dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)'>
+  <Control type='panel' name='root'>
+    <Control type='label' label='Form name:' text='{=@formId}' />
+  </Control>
+</Form>

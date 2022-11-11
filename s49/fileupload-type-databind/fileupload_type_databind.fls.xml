@@ -1,0 +1,4 @@
+﻿<form id='fileupload_type_databind' menuName='fileupload_type_databind' title='fileupload_type_databind' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+      <textbox id="types" label="Accepted MIME Types: " text="image/png, .pdf" />
+      <fileupload id='filupl' label='files' acceptedMimetypes='{types.text}' />
+</form>

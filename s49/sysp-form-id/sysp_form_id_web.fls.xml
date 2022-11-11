@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='sysp_form_id_web' menuName='sysp_form_id_web' platforms='web ios'>
+    <textview label='Form Id:' text='{sysp.formId}' />
+</form>
