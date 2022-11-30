@@ -1,0 +1,10 @@
+server program 'RemoveAt' 
+for schedule * * * * * 
+first run at 2100-01-01 00:00
+{
+	var lst =  ["alma", "korte", "szilva"];
+
+	trace lst;
+	trace "First element removed: " + lst.RemoveAt(0);
+	trace lst;
+}
