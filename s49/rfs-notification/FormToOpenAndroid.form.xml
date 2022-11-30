@@ -1,0 +1,7 @@
+<Form name='FormToOpenAndroid'>
+	<Control name='root' type='panel'>
+		<Control label='popup' type='panel' navigation='popup'>
+			<Control type='textbox' label='textboxInPopup' formArea='inPopup'/>
+        </Control>
+	</Control>
+</Form>

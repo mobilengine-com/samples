@@ -1,0 +1,4 @@
+client server program program_info_android for form myForm
+{
+	trace programInfo;
+}

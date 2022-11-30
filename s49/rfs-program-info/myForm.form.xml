@@ -1,0 +1,4 @@
+<Form name='myForm'>
+	<Control name='root' type='panel'>
+	</Control>
+</Form>

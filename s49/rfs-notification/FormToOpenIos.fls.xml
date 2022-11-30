@@ -1,0 +1,5 @@
+<form id="FormToOpenIos" menuName="FormToOpenIos" platforms="ios" xmlns="http://schemas.mobilengine.com/fls/v2">
+	<popup title="popup">
+		<textbox label='textboxInPopup' formArea='inPopup'/>
+	</popup>
+</form>

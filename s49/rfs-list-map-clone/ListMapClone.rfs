@@ -1,0 +1,15 @@
+server program ListMapClone
+for schedule * * * * * 
+first run at 2100-01-01 10:00
+{
+    var myMap1 =  {
+        'a' : 1,
+        'b' : 2
+    };
+    var myMap2 = myMap1.Clone();
+    trace myMap2;
+
+    var myList1 = [1, 2, 3];
+    var myList2 = myList1.Clone();
+    trace myList2;
+}

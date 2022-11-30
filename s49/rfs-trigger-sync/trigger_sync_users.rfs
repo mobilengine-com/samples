@@ -1,0 +1,9 @@
+server program trigger_sync_users for schedule * * * * * first run at 2100-01-01 00:00
+{
+	// these users will sync
+	// non-existent users are ignored
+	SendTriggerSync(["joe", "jack"]);
+
+	// no error, but no user will get a trigger sync
+	SendTriggerSync([]);
+}

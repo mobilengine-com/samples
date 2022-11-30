@@ -1,0 +1,16 @@
+server program Merge 
+for form Merge
+using reftab MergedFiles;
+{
+    trace form;
+    var filename = "merged.pdf";
+    var pdfsToMerge = list.New();
+
+    foreach(var filerefMap in form.filupl.filerefs)
+    {
+        pdfsToMerge.Add(pdf.FromFileref(filerefMap.fileref));
+    }
+
+    var mergedMediaId= pdf.Merge(pdfsToMerge, filename, "file");
+    db.MergedFiles.InsertOrUpdate({filename: filename}, {mediaId: mergedMediaId, filename: filename});
+}

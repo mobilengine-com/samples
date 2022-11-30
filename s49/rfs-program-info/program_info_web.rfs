@@ -1,0 +1,4 @@
+client server program program_info_web for form myForm_web
+{
+	trace programInfo;
+}
