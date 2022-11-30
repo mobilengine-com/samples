@@ -10,6 +10,9 @@ server program sendMail for form sendMail
         var fileref = form.filupl.filerefs[i]; 
         rgAttach.Add({fileref: fileref.fileref, filename: file.name});
     }
+    if (form.ddReport.selectedKey != null) {
+        rgAttach.Add({fileref: null, filename: "report.pdf", reportviewid: form.ddReport.selectedKey});
+    }
 
     smtp.SendEmail({
         recipients: rgTo,

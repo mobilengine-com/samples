@@ -6,4 +6,6 @@
     <textbox id="tbSubject" label="Subject"/>
     <textarea id="taBody" lines='5' label='Mail'/>
     <fileupload id="filupl" acceptedMimetypes='.dpkg' label='attach dpkg'/>
+    <dropdown id="ddReport" label="report" 
+    keyMap='{reportviewid}' textMap='{reportviewid}' choices='{SELECT r.reportviewid FROM reports r}'></dropdown>
 </form>

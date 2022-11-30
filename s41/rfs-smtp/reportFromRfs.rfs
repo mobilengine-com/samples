@@ -1,0 +1,21 @@
+server program 'reportFromRfs' for form 'formToRunReportFromRfs'
+using report 'report_started_from_rfs';
+using reftab 'reports';
+{
+	db.reports.Insert({guidReport: form.guidReport, name: form.name.text, reportviewid: null});
+	var rep = reports.report_started_from_rfs.New();
+	rep.Params.Add({
+		guidReport: form.guidReport,
+		name: form.name.text, 
+		email: form.email.text, 
+		subject: form.subject.text, 
+		body: "here goes the body of the mail, not used yet",
+		attachment: form.attachment.text,
+		filtertext: form.filtertext.text,
+		filterint: form.filterint.number,
+		filterfloat: form.filterfloat.number,
+		filterdate: form.filterdate.date.DtlToDtdb()
+	});
+	rep.SetPriority("high");
+	rep.Run(); 
+}
