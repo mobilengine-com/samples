@@ -1,3 +1,5 @@
 *.mes
 *.dpkg
 .vscode
+.cache
+mobilengine.ts

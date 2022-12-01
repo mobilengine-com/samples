@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="form4rfs" menuName="form4Rfs" platforms="web">
+	<header>
+		<discardbutton text='Discard' confirm='{false}'></discardbutton>
+	</header>
+	<submitbutton text='save' testId='save' waitForRfs='{false}' closeForm='{false}'/>
+	<textview label='count events' testId='cEvent' text='{loadnewerfromserver:select toString(count(r.guid)) v from event r}'/>
+</form>
