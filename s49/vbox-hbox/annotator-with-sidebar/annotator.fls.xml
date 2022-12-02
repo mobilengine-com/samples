@@ -1,0 +1,9 @@
+<form id='annotator' menuName='annotator' title='annotator' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id='fr' shape='scalar' value='{SELECT t.fileref FROM files t LIMIT 1}' />
+	</declarations>
+	<hbox style='{styles.hbox100pctHeight}'>
+		<textview text='(something on the left side)' style='{styles.left}' />
+		<annotator style='{styles.right}' text='{"Show " || MEDIAID(fr)}' fileref='{fr}' fileName='myFileName.pdf' categories='{TABLE id, name, abbreviation, color ("x", "x", "x", "FF0000")}' points='{TABLE id, categoryId, pageIndex, xFraction, yFraction, shape ("p0", "x", 0, 0, 0, "circle"; "p1", "x", 1, 0, 0, "circle")}' />
+	</hbox>
+</form>
