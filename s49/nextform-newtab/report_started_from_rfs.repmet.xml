@@ -1,0 +1,21 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>report_started_from_rfs</Name>
+	<Format>PDF</Format>
+	<Frequency>Never</Frequency>
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>true</IncludeTrackData>
+	<UseLongtextForStringInMdb>true</UseLongtextForStringInMdb>
+	<ParameterTable>reportparams</ParameterTable>	
+	<DatabaseFormat>SQLITE</DatabaseFormat>
+	<Email>
+		<Recipients>
+			<To>{@email}</To>
+		</Recipients>
+		<Attachment>file-{@attachment}</Attachment>
+		<Subject>RSPV: {@subject}</Subject>
+	</Email>
+	<Filter>
+	</Filter>
+</ReportDefinition>

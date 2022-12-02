@@ -1,0 +1,8 @@
+<form id="reportview" menuOrder='hidden'
+      menuName="reportview" 
+      title='formToRunReportFromRfs' 
+      platforms="ios web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+    <params><param id='repid' /></params>
+    <reportview reportviewId="{params.repid}" text="view"></reportview>
+</form>
