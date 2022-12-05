@@ -3,13 +3,18 @@ for schedule * * * * *
 first run at 2100-01-01 10:00
 {
     var myMap1 =  {
-        'a' : 1,
+        'a' : [1],
         'b' : 2
-    };
+        };
     var myMap2 = myMap1.Clone();
-    trace myMap2;
+    myMap2["a"].Add(42);
+    myMap2["b"] = 3;
+    trace "myMap1: ", myMap1;
+    trace "myMap2: ", myMap2;
 
-    var myList1 = [1, 2, 3];
+    var myList1 = [[1,2]];
     var myList2 = myList1.Clone();
-    trace myList2;
+    myList1[0].Add(3);
+    trace "myList1: ", myList1;
+    trace "myList2: ", myList2;
 }
