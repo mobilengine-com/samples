@@ -1,7 +1,7 @@
 <form id="Linkview_newTab" menuName="Linkview_newTab" title='Linkview_newTab' platforms="web" xmlns="http://schemas.mobilengine.com/fls/v2">
     <chapter title='Google'>
+        <checkbox id="cbNewTab" text='Checkboxfor newTab in linkview'/>
+        <linkview url='http://www.google.com' text='binded newTab' newTab='{cbNewTab.checked}'/>
         <linkview url='http://www.google.com' text='default newTab'/>
-        <linkview url='http://www.google.com' text='newTab: true' newTab='true'/>
-        <linkview url='http://www.google.com' text='newTab: false' newTab='false'/>
     </chapter>
 </form>
