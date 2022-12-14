@@ -3,3 +3,4 @@
 .vscode
 .cache
 mobilengine.ts
+tsconfig.json
