@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='delete_with_actionbutton' menuName='delete_with_actionbutton' platforms='web'>
+    <fileupload id='filupl' acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .*' />
+    <table id='t' record='r' recordset='{SELECT f.mediaId, f.name FROM filupl.files f}' recordLocal='{SELECT r.mediaId, tbName.text name}'>
+        <header>
+            <row>
+                <cell>
+                    <textview text='MediaId' />
+                </cell>
+                <cell>
+                    <textview text='Name' />
+                </cell>
+                <cell>
+                    <textview text='LocalRecord' />
+                </cell>
+                <cell>
+                    <textview text='BaseRecord' />
+                </cell>
+                <cell>
+                    <textview text='IncomingRecord' />
+                </cell>
+            </row>
+        </header>
+        <row>
+            <cell>
+                <textview id='tbMediaId' text='{r.mediaId}' />
+            </cell>
+            <cell>
+                <textbox id='tbName' text='{r.name}' />
+            </cell>
+            <cell>
+                <textview text='{rLocal.mediaId || " | " || rLocal.name}' />
+            </cell>
+            <cell>
+                <textview text='{rBase.mediaId || " | " || rBase.name}' />
+            </cell>
+            <cell>
+                <textview text='{rIncoming.mediaId || " | " || rIncoming.name}' />
+            </cell>
+        </row>
+    </table>
+
+    <actionbutton text='Delete all files except the first'>
+        <set target='filupl.files' value='{SELECT f.mediaId, f.name name, f.type, f.size, f.directory, f.error FROM filupl.files f LIMIT 1}' />
+    </actionbutton>
+</form>
