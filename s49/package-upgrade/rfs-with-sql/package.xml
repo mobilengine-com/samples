@@ -1,0 +1,21 @@
+<package  xmlns="http://schemas.mobilengine.com/package/v1"
+	name="RunUpgrade"
+    displayName="RunUpgrade"
+	version="4"
+	mobilengineVersion="49"
+>
+	<upgrade>
+		<version name="4"> 
+			<rfs name="upgrade_trace3"/>
+		</version>
+		<version name="3"> 
+			<rfs name="upgrade_trace2"/>
+		</version>
+		<version name="2">
+			<rfs name="upgrade_trace1" />
+			<sql name="DeleteWhereMultipleColumnCond">
+				<table name="base" />
+			</sql>
+		</version>
+	</upgrade>
+</package>
