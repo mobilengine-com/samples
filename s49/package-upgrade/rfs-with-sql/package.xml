@@ -12,10 +12,10 @@
 			<rfs name="upgrade_trace2"/>
 		</version>
 		<version name="2">
-			<rfs name="upgrade_trace1" />
 			<sql name="DeleteWhereMultipleColumnCond">
 				<table name="base" />
 			</sql>
+			<rfs name="upgrade_trace1" />
 		</version>
 	</upgrade>
 </package>
