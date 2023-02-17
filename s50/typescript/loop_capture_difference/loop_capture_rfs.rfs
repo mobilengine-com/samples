@@ -1,0 +1,12 @@
+//# server program loop_capture_rfs for schedule * * * * * first run at 2100-01-01 00:00
+
+{
+    // this code prints 3, 3, 3
+    let funs = [];
+    for (let i of [1, 2, 3]) {
+        funs.Add(function () { Log(i); });
+    }
+    for (let fun of funs) {
+        fun();
+    }
+}
