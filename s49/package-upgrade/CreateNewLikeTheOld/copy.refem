@@ -1,0 +1,11 @@
+<Reftab Name='copy' xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name='data1' Type='Text' PrimaryKey='true' NotNull='true'/>
+		<Column Name='data2' Type='Text'/>
+		<Column Name='data3' Type='Text'/>
+		<Column Name='data4' Type='Text'/>
+		<Column Name='data5' Type='Text'/>
+		<Column Name='data6' Type='Text'/>
+		<Column Name='NewRow' Type='Text'/>
+	</Columns>
+</Reftab>

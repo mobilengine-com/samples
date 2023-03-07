@@ -1,0 +1,6 @@
+<Reftab Name='base' xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name='data1' Type='Text' PrimaryKey='true' NotNull='true'/>
+		<Column Name='data2' Type='Text' NotNull="true"/>
+	</Columns>
+</Reftab>

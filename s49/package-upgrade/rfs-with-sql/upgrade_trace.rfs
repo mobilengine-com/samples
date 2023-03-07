@@ -1,4 +1,0 @@
-server program upgrade_trace for schedule * * * 11 *
-{
-	trace"Helo";
-}

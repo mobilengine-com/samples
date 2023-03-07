@@ -1,0 +1,1 @@
+INSERT INTO copy (data1,data2, data3, data4, data5, data6, NewRow) SELECT data1, data2, data3, data4, data5, data6, data1 FROM base_old;

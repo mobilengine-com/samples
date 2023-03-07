@@ -1,1 +1,0 @@
-DELETE FROM base WHERE data2 IS NULL AND data4 = "apple";

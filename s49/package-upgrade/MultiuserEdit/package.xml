@@ -1,0 +1,14 @@
+<package  xmlns="http://schemas.mobilengine.com/package/v1"
+	name="MultiuserEdit"
+    displayName="MultiuserEdit"
+	version="2"
+	mobilengineVersion="49"
+>
+<upgrade>
+	<version name="2"> 
+		<sql name="Multiuser">
+			<table name="baseWithMultiuser" />
+		</sql>
+	</version>
+</upgrade>
+</package>

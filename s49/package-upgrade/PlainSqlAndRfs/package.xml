@@ -1,6 +1,6 @@
 <package  xmlns="http://schemas.mobilengine.com/package/v1"
-	name="RunUpgrade"
-    displayName="RunUpgrade"
+	name="PlainSqlAndRfs"
+    displayName="PlainSqlAndRfs"
 	version="4"
 	mobilengineVersion="49"
 >
@@ -12,7 +12,7 @@
 			<rfs name="upgrade_trace2"/>
 		</version>
 		<version name="2">
-			<sql name="DeleteWhereMultipleColumnCond">
+			<sql name="DeleteAndAdd">
 				<table name="base" />
 			</sql>
 			<rfs name="upgrade_trace1" />

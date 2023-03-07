@@ -1,0 +1,7 @@
+<package  xmlns="http://schemas.mobilengine.com/package/v1"
+	name="PlainSqlAndRfs"
+    displayName="PlainSqlAndRfs"
+	version="1"
+	mobilengineVersion="49"
+>
+</package>
