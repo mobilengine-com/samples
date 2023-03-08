@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <form xmlns='http://schemas.mobilengine.com/fls/v2' id='directory_upload' menuName='directory_upload' platforms='web ios'>
-    <fileupload id='dirupl' acceptedMimetypes='.jpg, .pdf, .xlsx, .docx' directory='true' />
+    <fileupload id='dirupl' acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .txt' directory='true' />
     <table record='r' recordset='{SELECT f.mediaId, f.name, f.type, f.size, f.directory, f.error FROM dirupl.files f}'>
         <header>
             <row>

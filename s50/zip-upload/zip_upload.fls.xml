@@ -3,10 +3,6 @@
     <textview text="Allows .jpg, .pdf, .xlsx, .docx, .txt files, or a zip containing those." />
     <fileupload id='zipupl' acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .txt' extractZip="true" />
 
-    <!--
-    <fileupload acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .txt, .zip' extractZip="false" />
-    -->
-
     <table record='r' recordset='{SELECT f.mediaId, f.name, f.type, f.size, f.directory, f.error FROM zipupl.files f}'>
         <header>
             <row>
@@ -48,6 +44,15 @@
             </cell>
             <cell>
                 <textview text='{TOSTRING(r.error)}' />
+            </cell>
+            <cell>
+                <actionbutton text="Remove">
+                    <set target="zipupl.files" value="{
+                        SELECT f.mediaId, f.name, f.type, f.size, f.directory, f.error 
+                        FROM zipupl.files f 
+                        WHERE (f.directory || f.name) != (r.directory || r.name)
+                    }" />
+                </actionbutton>
             </cell>
         </row>
     </table>
