@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='zip_upload' menuName='zip_upload' platforms='web ios'>
+    <textview text="Allows .jpg, .pdf, .xlsx, .docx, .txt files, or a zip containing those." />
+    <fileupload id='zipupl' acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .txt' extractZip="true" />
+
+    <!--
+    <fileupload acceptedMimetypes='.jpg, .pdf, .xlsx, .docx, .txt, .zip' extractZip="false" />
+    -->
+
+    <table record='r' recordset='{SELECT f.mediaId, f.name, f.type, f.size, f.directory, f.error FROM zipupl.files f}'>
+        <header>
+            <row>
+                <cell>
+                    <textview text='Directory' />
+                </cell>
+                <cell>
+                    <textview text='Name' />
+                </cell>
+                <cell>
+                    <textview text='MediaId' />
+                </cell>
+                <cell>
+                    <textview text='Type' />
+                </cell>
+                <cell>
+                    <textview text='Size' />
+                </cell>
+                <cell>
+                    <textview text='Error' />
+                </cell>
+            </row>
+        </header>
+        <row>
+            <cell>
+                <textview text='{r.directory}' />
+            </cell>
+            <cell>
+                <textview text='{r.name}' />
+            </cell>
+            <cell>
+                <textview text='{r.mediaId}' />
+            </cell>
+            <cell>
+                <textview text='{r.type}' />
+            </cell>
+            <cell>
+                <textview text='{TOSTRING(r.size)}' />
+            </cell>
+            <cell>
+                <textview text='{TOSTRING(r.error)}' />
+            </cell>
+        </row>
+    </table>
+</form>

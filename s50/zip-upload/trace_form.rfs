@@ -1,0 +1,4 @@
+server program trace_form for form zip_upload 
+{
+    trace form;
+}
