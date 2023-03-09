@@ -1,0 +1,16 @@
+server program on_submit for form qr_codes
+
+using rfs generate_qr;
+using rfs generate_qr_ts;
+
+{
+    let rfs1 = rfs.generate_qr.New();
+    let rfs2 = rfs.generate_qr_ts.New();
+    let params = {
+        text: form.text.text
+    };
+    rfs1.SetParams(params);
+    rfs2.SetParams(params);
+    rfs1.Run();
+    rfs2.Run();
+}

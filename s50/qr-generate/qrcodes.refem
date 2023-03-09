@@ -1,0 +1,7 @@
+<Reftab Name="qrcodes" xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+      <Column Name="mediaId" Type="Text" PrimaryKey='true' NotNull='true'/>
+      <Column Name="text" Type="Text" NotNull='true' />
+      <Column Name="generated" Type="Date" NotNull='true' />
+    </Columns>
+  </Reftab>

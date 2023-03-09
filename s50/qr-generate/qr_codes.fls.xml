@@ -1,0 +1,19 @@
+<form id='qr_codes' menuName='qr_codes' title='qr_codes' platforms='ios web'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+  <textview text='Submit this form to generate a QR code.' />
+
+  <textbox id='text' label='QR Code Text: ' text='http://mobilengine.com' />
+
+  <table record='r'
+    recordset='{SELECT q.mediaId, q.text, q.generated FROM qrcodes q ORDER BY 3 DESC LIMIT 100}'>
+    <row>
+      <cell>
+        <textview text='{r.text}' />
+      </cell>
+      <cell>
+        <photoview photos='{SELECT r.mediaId}' />
+      </cell>
+    </row>
+  </table>
+</form>
