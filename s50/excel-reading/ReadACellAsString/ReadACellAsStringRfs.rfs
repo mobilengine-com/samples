@@ -1,0 +1,9 @@
+server program ReadACellAsStringRfs for schedule 43 14 * * *
+{
+    var file = fileref.New("e31de3b074ad410881434cfb5bcf294c", 0);
+    var x = excel.FromFileref(file);
+    trace "GetText: ";
+    trace x.GetText("Basic", 2, 5);
+    trace "GetValue: ";
+    trace x.GetValue("Basic", 2, 5);
+}
