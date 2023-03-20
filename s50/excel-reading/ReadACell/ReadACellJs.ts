@@ -2,5 +2,5 @@
 {
     let file = fileref.New("e31de3b074ad410881434cfb5bcf294c", 0);
     let x = excel.FromFileref(file);
-    Log(x.GetValue("Basic", 2, 1));
+    Log(x.GetValue("Basic", 1, 0));
 }

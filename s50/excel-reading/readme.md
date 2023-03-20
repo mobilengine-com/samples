@@ -7,10 +7,6 @@
 Reading a single cell from the previously uploaded excel file.<br>
 <b>GetValue(\<SheetName\>, \<RowId\>, \<ColumnId\>)</b>
 
-- **ReadACellAsString**
-Reading a single cell value as string from the previously uploaded excel file.<br>
-<b>GetText(\<SheetName\>, \<RowId\>, \<ColumnId\>)</b>
-
 - **GetSheetNames**
 Reading out all the names from the existing sheets and geting back in one list of strings. <br>
 <b>SheetNames()</b>
