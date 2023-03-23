@@ -1,0 +1,41 @@
+<form id='pdf_render' menuName='Pdf_render' title='Pdf_render' platforms='ios web'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+  <textview text='Submit this form with pdf to generate image.' />
+
+  <fileupload testId='fileupl' id="up_load1" label="upload file" acceptedMimetypes="application/pdf " onChange="replace"/>
+
+  <textbox id='page' label='The selected page of the pdf: ' text="0"/>
+  <textbox id='width' label='The width of the result image' text="200"/>
+  <textbox id='height' label='The height of the result image' text="300"/>
+
+  <table record='r'
+    recordset='{SELECT q.mediaId, q.name, q.page, q.height, q.width FROM images q ORDER BY 3 DESC LIMIT 100}'>
+    <header>
+      <row>
+        <cell><textview text='Image' /></cell>
+        <cell><textview text='Page' /></cell>
+        <cell><textview text='Height' /></cell>
+        <cell><textview text='Width' /></cell>
+      </row>
+    </header>
+    <row>
+      <cell>
+        <photoview photos='{SELECT r.mediaId}' />
+      </cell>
+      <cell>
+        <textview text='{r.name}' />
+      </cell>
+      <cell>
+        <textview text='{r.page}' />
+      </cell>
+      <cell>
+        <textview text='{r.height}' />
+      </cell>
+      <cell>
+        <textview text='{r.width}' />
+      </cell>
+
+    </row>
+  </table>
+</form>
