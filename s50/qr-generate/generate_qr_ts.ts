@@ -3,9 +3,10 @@
 //# using reftab qrcodes;
 
 {
-	var myQrCode = qrcode.New();
+	let myQrCode = qrcode.New();
 	myQrCode.Text = params.text;
-	var mediaId = myQrCode.Generate();
+	let img = myQrCode.Generate();
+	let mediaId = img.Store("png");
 	Log("Generated QR code with mediaId: " + mediaId);
 	db.qrcodes.Insert({mediaId: mediaId, text: myQrCode.Text, generated: dtu.Now().DtuToDtdb()});
 }

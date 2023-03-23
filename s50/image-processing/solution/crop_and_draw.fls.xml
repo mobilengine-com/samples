@@ -1,0 +1,33 @@
+<form id='crop_and_draw' menuName='crop_and_draw' title='crop_and_draw' platforms='web'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+  <photoview label='Sample image: ' photos='{SELECT "43da973f7a3e4f5b84a8f0c432da2401"}' />
+  <textview text='Submit this form to alter the sample image with the parameters below.' />
+
+  <chapter title='1. Crop' id='crop'>
+    <numberbox id='x' label='x:' number='{100}' />
+    <numberbox id='y' label='y:' number='{100}' />
+    <numberbox id='w' label='width:' number='{568}' />
+    <numberbox id='h' label='height:' number='{376}' />
+  </chapter>
+
+  <chapter title='2. Draw an Ellipse' id='ellipse'>
+    <textbox id='color' label='color:' text='#FF7F7FAA' />
+    <numberbox id='x' label='x:' number='{100}' />
+    <numberbox id='y' label='y:' number='{100}' />
+    <numberbox id='w' label='width:' number='{368}' />
+    <numberbox id='h' label='height:' number='{176}' />
+  </chapter>
+
+  <table record='r'
+    recordset='{SELECT i.mediaId, i.description, i.generated FROM images i ORDER BY 3 DESC LIMIT 100}'>
+    <row>
+      <cell>
+        <textview text='{r.description}' />
+      </cell>
+      <cell>
+        <photoview photos='{SELECT r.mediaId}' />
+      </cell>
+    </row>
+  </table>
+</form>
