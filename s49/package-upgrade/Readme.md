@@ -25,5 +25,6 @@
 - **ChangeSingleUserToMultiUser**
 >Changing an existing Single user column to Multiuser and handling the change with sql script.
 
-
+- **MultiuserFromSimpleTable**
+>Adding a new Multiuser column to a table and filling in with users based on a table witch is contains all the users.
 

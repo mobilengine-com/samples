@@ -1,0 +1,15 @@
+<package  xmlns="http://schemas.mobilengine.com/package/v1"
+	name="MultiuserFromSimpleTable"
+    displayName="MultiuserFromSimpleTable"
+	version="2"
+	mobilengineVersion="49"
+>
+	<upgrade>
+		<version name="2">
+			<sql name="MultiuserFromSimpleTable">
+				<table name="baseWithMultiuser" />
+				<table name="userhelp" />
+			</sql>
+		</version>
+	</upgrade>
+</package>

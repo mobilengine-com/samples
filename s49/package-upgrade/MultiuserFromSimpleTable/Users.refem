@@ -1,0 +1,6 @@
+<Reftab Name='userhelp' xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name='user' Type='Text' PrimaryKey='true' NotNull='true'/>
+		<Column Name='favorit' Type='Text'/>
+	</Columns>
+</Reftab>
