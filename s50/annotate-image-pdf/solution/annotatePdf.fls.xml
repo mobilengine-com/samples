@@ -1,0 +1,29 @@
+<form id='annotatePdf' menuName='annotatePdf' title='annotatePdf' platforms='ios web'
+  dashboard='true'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+  <header>
+    <discardbutton text='Show annotated files' nextForm='{forms.showAnnotatedFiles}' />
+    <submitbutton text='Annotate' nextForm='{forms.showAnnotatedFiles}' />
+  </header>
+
+  <dropdown id='selectFile'
+    label='Select PDF to annotate:'
+    choices='{TABLE mediaId, name (
+        "73194bbb940ac694d607ee88f16dff10", "rotated_0.pdf";
+        "b4578bb4ef66f8b7102446793638e1e7", "rotated_-90.pdf";
+        "39a799c779365b4e9f4698216ef1eb4e", "rotated_90.pdf";
+        "659a8bf798c986a991f6dde87770c5a2", "rotated_180.pdf";
+        "d0f8cbd64e6fc01dbecf6eafe3ebe34a", "cropped.pdf"
+      )}'
+    keyMap='{mediaId}' textMap='{name}' selectedKey='{"73194bbb940ac694d607ee88f16dff10"}' />
+
+  <hbox style='{styles.hbox100pctHeight}'>
+    <annotator
+      id='myAnnotator'
+      fileref='{SELECT FILEREF(selectFile.selectedKey, 0)}'
+      position='{SELECT 0 pageIndex, 0.5 scale, 0.5 xFractionOfCenter, 0.5 yFractionOfCenter}'
+      style='{styles.annot}'
+      newPointColor='#FF0000' />
+  </hbox>
+</form>

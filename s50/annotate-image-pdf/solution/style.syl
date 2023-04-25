@@ -1,0 +1,19 @@
+styles {
+    style hbox100pctHeight {
+        hbox {
+            height = 90%
+        }
+    }
+
+    style annot {
+        all {
+            backgroundColor = DADADA
+        }
+        annotator {
+            control {
+                height = 100%
+                width = 100%
+            }
+        }
+    }
+}

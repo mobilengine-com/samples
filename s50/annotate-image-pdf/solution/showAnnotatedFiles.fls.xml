@@ -1,0 +1,38 @@
+<form id='showAnnotatedFiles' menuName='showAnnotatedFiles' title='showAnnotatedFiles'
+  platforms='ios web'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+  <header>
+    <discardbutton text='Back' />
+  </header>
+
+  <textview text='Newest annotated files are displayed first.' />
+
+  <table record='r'
+    recordset='{SELECT t.creationDate, t.pdfMediaId, t.fullPageImageMediaId, t.croppedImageMediaId FROM annotatedFiles t ORDER BY 1 DESC}'>
+    <header>
+      <row>
+        <cell>
+          <textview text='Annotated PDF' />
+        </cell>
+        <cell>
+          <textview text='Full-page image with annotation' />
+        </cell>
+        <cell>
+          <textview text='Cropped annotation' />
+        </cell>
+      </row>
+    </header>
+    <row>
+      <cell>
+        <filedownload fileref='{FILEREF(r.pdfMediaId, 0)}' text='Download PDF' />
+      </cell>
+      <cell>
+        <photoview photos='{SELECT r.fullPageImageMediaId}' />
+      </cell>
+      <cell>
+        <photoview photos='{SELECT r.croppedImageMediaId}' />
+      </cell>
+    </row>
+  </table>
+</form>
