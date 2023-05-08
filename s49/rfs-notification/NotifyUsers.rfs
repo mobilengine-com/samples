@@ -1,18 +1,52 @@
-server program NotifyUsers for schedule * * * * * first run at 2100-01-01 00:00
-// for form NotifyUsers
+server program NotifyUsers for form NotifyUsers
 {
-	let noti = {
-		title: {default: "Tap to crash"},
-		body: {default: "Tap to crash"},
-		formToOpen: {
-			android: "FormToOpenAndroid",
-			ios: "FormToOpenIos"
+	var users = null;
+	if(!form.notiAll.checked)
+	{
+		users = list.New();
+		foreach(var usr in form.usersTable.rows)
+		{
+			users.Add(usr.usrn.text);
 		}
-		// ,formArea: 42
-		// ,formArea: "proba"
-		,formArea: null
-		// no formArea
+	}
+
+	var title = map.New();
+	title["default"] = form.tbTitleDef.text == "" ? "Default title" : form.tbTitleDef.text;
+	if(form.tbTitleHu.text != "")
+	{
+		title["hu"] = form.tbTitleHu.text;
+	}
+	if(form.tbTitleEn.text != "")
+	{
+		title["en"] = form.tbTitleEn.text;
+	}
+
+	var body = map.New();
+	body["default"] = form.tbBodyDef.text == "" ? "Default body" : form.tbBodyDef.text;
+	if(form.tbBodyHu.text != "")
+	{
+		body["hu"] = form.tbBodyHu.text;
+	}
+	if(form.tbBodyEn.text != "")
+	{
+		body["en"] = form.tbBodyEn.text;
+	}
+
+	var id = form.tbId.text == "" ? null : form.tbId.text;
+	var badge = form.tbBadge.text == "" ? null : int.Parse(form.tbBadge.text);
+	var formToOpen = form.tbFormToOpen.text == "" ? null : form.tbFormToOpen.text;
+	var formArea = form.tbFormArea.text == "" ? null : form.tbFormArea.text;
+
+	var notiParams = {
+		title: title,
+		body: body,
+		id: id,
+		badge: badge,
+		formToOpen: formToOpen,
+		formArea: formArea
 	};
-	Log(["Sending Notification", noti]);
-	SendNotification(null, noti);
+
+	trace users, notiParams;
+
+	SendNotification(users, notiParams);
 }
