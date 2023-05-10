@@ -1,0 +1,34 @@
+<form id='dash' menuName='dash' title='Dashboard' platforms='web' dashboard="true" xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letLcomp" shape="record" value='{SELECT c.guid, c.name FROM lcomp c JOIN settings s ON s.value = c.guid WHERE s.name = "lcompGuid"}' />
+		<let id="letUser" shape="record" value='{SELECT u.guid, u.name, u.email, uc.role, u.lang FROM userLcomp uc JOIN user u ON u.guid = uc.userGuid WHERE uc.lcompGuid = letLcomp.guid AND u.email = sysp.user}' />
+	</declarations>
+
+	<textview label='ME ver: ' text='{sysp.clientVersion}'/>
+	<textview label='Solution: ' text='{sysp.packageName||" v"||sysp.packageVersion}'/>
+	<textview label='letLcomp' text='{coalesce(letLcomp.guid, "-")||" / "||coalesce(letLcomp.name, "-")}'/>
+	<textview label='letUser' text='{coalesce(letUser.guid, "-")||" / "||coalesce(letUser.name, "-")||" / "||coalesce(letUser.role, "-")}'/>
+	<textview label='user lang' text='{coalesce(letUser.lang, "-")}'/>
+	<if cond='{letUser.role = "admin"}'>
+		<discardbutton text='Projects' nextForm='{forms.projects}'/>
+	</if>	
+	<if cond='{letUser.role = "admin"}'>
+		<discardbutton text='Users' nextForm='{forms.users}'/>
+	</if>
+	<if cond='{letUser.role = "admin" OR letUser.role = "manager"}'>
+		<discardbutton text='Subcontractors' nextForm='{forms.users}' >
+			<params>
+				<param id="prole" value='{"subcontractor"}'/>
+			</params>
+		</discardbutton>
+	</if>
+	<if cond='{letUser.role = "admin" OR letUser.role = "manager" OR letUser.role = "controller"}'>
+		<discardbutton text='Document upload' nextForm='{forms.UploadFile}'/>
+	</if>
+	<if cond='{letUser.role = "admin" OR letUser.role = "manager" OR letUser.role = "controller"}'>
+		<discardbutton text='Document categorization' nextForm='{forms.floorplanmanager}'/>
+	</if>
+	<if cond='{letUser.role = "admin" OR letUser.role = "manager" OR letUser.role = "controller" OR letUser.role = "subcontractor"}'>
+		<discardbutton text='Floorplans with Tickets' nextForm='{forms.floorplansAndTickets}'/>
+	</if>
+</form>

@@ -1,0 +1,82 @@
+<form id='projectAssign' menuName='project assignments' title='project assignments' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letLcomp" shape="record" value='{SELECT c.guid, c.name FROM lcomp c JOIN settings s ON s.value = c.guid WHERE s.name = "lcompGuid"}' />
+		<let id="letProject" shape="record" value='{SELECT p.guid, p.name FROM project p WHERE p.guid = coalesce(params.projectGuid, ddProject.selectedKey)}' />
+		<let id="letUser" shape="record" value='{SELECT u.guid, u.name, u.email, uc.role FROM userLcomp uc JOIN user u ON u.guid = uc.userGuid WHERE uc.lcompGuid = letLcomp.guid AND u.email = sysp.user}' />
+		<let id="letRoles" shape="table" value='{["admin", "manager", "controller", "subcontractor"]}'/>
+		<let id="letLangs" shape="table" value='{["en", "hu", "pl", "cs", "ro"]}'/>
+	</declarations>
+	<params>
+		<param id="projectGuid"/>
+	</params>
+	<if cond="{params.projectGuid IS NULL}">
+		<dropdown id="ddProject" choices="{SELECT p.guid, p.name FROM project p}" keyMap="{guid}" textMap="{name}"/>
+	</if>
+	<chapter title='{"Users for project "||letProject.name}'>
+		<table id='t' record='r' recordset='{SELECT u.guid, u.name, u.email, u.fExternal, u.status, u.lang FROM user u JOIN userProject up ON up.userGuid = u.guid WHERE up.projectGuid = letProject.guid}'>
+			<header>
+				<row>
+					<cell>
+						<textview text='Email' />				
+					</cell>
+					<cell>
+						<textview text='Name' />				
+					</cell>
+					<cell>
+						<textview text='Role' />				
+					</cell>
+					<cell>
+						<textview text='Lang' />				
+					</cell>
+					<cell>
+						<textview text='Status of external user' />				
+					</cell>
+				</row>
+			</header>
+			<row>
+				<declarations>
+					<let id="letUser" shape="record" value="{SELECT u.guid, u.email, u.name, u.status FROM user u WHERE u.guid = coalesce(r.guid, ddUser.selectedKey)}"/>
+					<let id="letRole" shape="scalar" value="{SELECT up.role FROM userProject up WHERE up.userGuid = letUser.guid AND up.projectGuid = letProject.guid}"/>
+				</declarations>
+				<cell>
+					<block>
+						<if cond="{letUser.guid IS NOT NULL}">
+							<textview id="tvEmail" text='{r.email}' />
+						</if>				
+						<if cond="{r.email IS NULL}">
+							<textbox id="tbEmail" text='{r.email}' hint="Email address" />
+							<dropdown id="ddUser" choices='{SELECT u.name, u.email, u.guid FROM user u WHERE u.email like "%"||tbEmail.text||"%" ORDER by email}'
+							keyMap="{guid}" textMap='{email ||" ("||name||")"}' 
+							selectedKey='{SELECT ux.guid FROM (SELECT u.guid, u.email FROM user u WHERE u.email like "%"||tbEmail.text||"%" ORDER by email LIMIT 1) ux}'/>				
+						</if>				
+					</block>
+				</cell>
+				<cell>
+					<block>
+						<if cond="{letUser.guid IS NOT NULL}">
+							<textview text='{letUser.name}'/>
+						</if>				
+						<if cond="{letUser.guid IS NULL}">
+							<textbox id="name" text='' hint="Name"/>
+						</if>				
+					</block>
+				</cell>
+				<cell>
+					<dropdown id="ddRole" selectedKey='{letRole}' choices="{SELECT rx.v FROM letRoles rx}" keyMap="{v}" textMap="{v}"/>				
+				</cell>
+				<cell>
+					<dropdown id="ddLang" choices="{SELECT rx.v FROM letLangs rx}" selectedKey='{r.lang}' keyMap="{v}" textMap="{v}"/>				
+				</cell>
+				<cell>
+					<textview id="status" text='{letUser.status}' />				
+				</cell>
+				<cell>
+					<if cond="{r.guid IS NULL}">
+						<removebutton text="Remove"/>				
+					</if>
+				</cell>
+			</row>
+		</table>		
+		<addbutton id="addbtn" access="private" text="New user" table="t" records='{SELECT null guid, null name, null email, 0 fExternal, null status, null lang}'/>
+	</chapter>
+</form>

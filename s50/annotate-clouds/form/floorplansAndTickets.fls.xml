@@ -1,0 +1,213 @@
+<form id='floorplansAndTickets' menuName='floorplans with tickets' title='floorplans with tickets' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letProjGuidSelected" shape="scalar" value='{params.projectGuid}'/>
+		<let id="letFpGuidSelected" shape="scalar" value='{params.floorplanGuid}'/>
+	</declarations>
+	<params>
+		<param id="projectGuid"/>
+		<param id="floorplanGuid"/>
+		<param id="ticketGuid"/>
+	</params>
+	<chapter title='Projects'>
+		<table id='tProj' record='r' style='{styles.tcw1em8em}'
+			recordset='{SELECT p.guid, p.name FROM project p WHERE (params.projectGuid IS NULL OR params.projectGuid = p.guid) order by name}'>
+			<row>
+				<cell>
+					<actionbutton id="abSelect" text="Select">
+						<set target="letProjGuidSelected" value='{r.guid}' />
+					</actionbutton>
+				</cell>
+				<cell>
+					<textview id="x" text='{CASE WHEN letProjGuidSelected == r.guid THEN "x" ELSE "" END}' />
+				</cell>
+				<cell>
+					<textview id="name" text='{r.name}' />
+				</cell>
+			</row>
+		</table>
+	</chapter>
+	<chapter title='Floorplans'>
+		<declarations>
+			<let id="letProjGuid" shape="scalar" value="{CASE WHEN letProjGuidSelected IS NULL THEN params.projectGuid ELSE letProjGuidSelected END}"/>
+		</declarations>
+		<table id='t' style='{styles.tcw1em8em}'
+			record='r' recordset='{SELECT fp.guid, fp.lcompGuid, fp.projectGuid, fp.folderGuid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid FROM floorplan fp WHERE fp.projectGuid = letProjGuid AND (params.floorplanGuid IS NULL OR params.floorplanGuid = fp.guid) ORDER BY name}'>
+			<row>
+				<declarations>
+					<let id="guid" shape="scalar" value="{r.guid}"/>
+				</declarations>
+				<cell>
+					<actionbutton id="abSelect" text="Select">
+						<set target="letFpGuidSelected" value='{r.guid}' />
+					</actionbutton>
+				</cell>
+				<cell>
+					<textview id="x" text='{CASE WHEN letFpGuidSelected == r.guid THEN "x" ELSE "" END}' />
+				</cell>
+				<cell>
+					<textview id="name" text='{r.name}' />
+				</cell>
+				<cell>
+					<textview id="building" text='{r.building}' />
+				</cell>
+				<cell>
+					<textview id="floor" text='{r.floor}' />
+				</cell>
+				<cell>
+					<textview id="cat" text='{SELECT cat.name FROM category cat WHERE cat.guid = r.category}'/>
+				</cell>
+				<cell>
+					<filedownload id="file" text='{SELECT f.file_name FROM files f WHERE f.file_guid = r.file_guid}'
+						fileref="{SELECT f.mediaId FROM files f WHERE f.file_guid = r.file_guid}"/>
+				</cell>
+			</row>
+		</table>
+	</chapter>
+	<if cond='{letFpGuid is not null}'>
+		<declarations>
+			<let id="letFpGuid" shape="scalar" value="{CASE WHEN letFpGuidSelected IS NULL THEN params.floorplanGuid ELSE letFpGuidSelected END}"/>
+			<let id="letUser" shape="record" value="{SELECT u.guid, u.name, u.email FROM user u WHERE u.email = sysp.user }"/>
+			<let id="letUserRole" shape="scalar" value="{SELECT uc.role FROM userLcomp uc WHERE uc.userGuid = letUser.guid AND uc.lcompGuid = r.lcompGuid}"/>
+			<let id="r" shape="record" value="{SELECT fp.guid, fp.lcompGuid, fp.projectGuid, fp.folderGuid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid FROM floorplan fp WHERE fp.guid = letFpGuid}"/>
+		</declarations>
+		<chapter id="pop" title='{SELECT "Tickets on "||r.name||": "||toString(count(1)) FROM point p JOIN ticket t ON t.guidPoint = p.guid WHERE p.guidFloorplan = r.guid AND t.status>0}'>
+			<tags id="tgs" predictionMode="prefix" style='{[styles.w800]}'
+				availableTags='{SELECT c.name v FROM category c}' 
+				selectedTags='{SELECT c.name v FROM category c WHERE c.guid = r.category}' hint="tags pre"
+				readonly='{false}' allowNewTag='{false}'/>
+			<discardbutton id='dsbAnnotate' text='Annotate' nextForm='{forms.ticketsWeb}' testId='btnAnnot' confirm="{false}">
+				<params>
+					<param id='guidFloorplan' value='{r.guid}'/>
+				</params>
+			</discardbutton>
+
+			<discardbutton id='dsbCompare'	text='CompareDisc'  testId='btnCompare'
+			 nextForm='{forms.compareFloorplan}' confirm="{false}">
+				<params>
+					<param id='guidFloorplan' value='{r.guid}'/>
+				</params>
+			</discardbutton>
+							<textview id="comp" label="lcomp" text='{SELECT c.name || case c.ismaster when 0 then " (slave)" when 1 then " (master)" else "???" end from lcomp c where c.guid = r.lcompGuid}'/>
+							<textview id="proj" label="project" text='{SELECT c.name from project c where c.guid = r.projectGuid}'/>
+							<textview id="fold" label="folder" text='{SELECT c.name from folder  c where c.guid = r.folderGuid}'/>
+							<textview id="username" label="user" text='{letUser.name}'/>
+							<textview id="role" label="role" text='{letUserRole}'/>
+							<repeater id='t2' record='r2'
+								recordset='{SELECT p.guid pGuid, t.guid tGuid, p.ipage, p.pctX, p.pctY, t.category, t.section, t.description, t.guidUserCreator, t.guidUserAssignee, t.mediaidSignature, t.dueDate, t.status, t.comments FROM point p JOIN ticket t ON t.guidPoint = p.guid WHERE p.guidFloorplan = r.guid AND t.status>0 AND (params.ticketGuid IS NULL OR params.ticketGuid = t.guid) ORDER BY ipage, description}'>
+								<chapter title='{"Ticket @"||r2.section}'>
+										<declarations>
+											<let id="letTicketGuid" shape="scalar" value="{r2.tGuid}"/>
+											<let id="letLcompGuid" shape="scalar" value="{r.lcompGuid}"/>
+										</declarations>
+	<!--									<textview id="ipage" label="Page #" text='{toString(r2.ipage)}' />
+										<textview id="pctx" label="x position on page in width fraction" text='{toString(r2.pctX)}' />
+										<textview id="pcty" label="y position on page in height fraction" text='{toString(r2.pctY)}' /> -->
+										<textview id="cat" label="category" text='{SELECT c.name FROM category c WHERE c.guid = r2.category}' />
+										<textview id="section" label="section" text='{r2.section}' />
+										<textview id="creator" label="creator" text='{SELECT u.name FROM user u WHERE u.guid = r2.guidUserCreator}' />
+										<textview id="assignee" label="assignee" text='{SELECT u.name FROM user u WHERE u.guid = r2.guidUserAssignee}' />
+										<photoview id="mediaidSignature" label="signature" photos='{SELECT SUBSTR(TOSTRING(r2.mediaidSignature), 1, 32) v WHERE r2.mediaidSignature IS NOT NULL}' />
+										<textview id="dueDate" label="due date" text='{formatDtl(r2.dueDate, (dtf yyyy"-"MM"-"dd))}' />
+										<photoview id="ticketPhotoFld" label="ticket photos"  photos='{SELECT SUBSTR(TOSTRING(tp.mediaidPhoto), 1, 32) FROM ticketPhoto tp WHERE tp.guidTicket = r2.tGuid}' />
+										<textview id="status" label="status" text='{SELECT c.name FROM ticketStatus c WHERE c.status = r2.status}' />
+										<textview id="description" label="description" text='{r2.description}' />
+										<textview id="ipg" label="page #" text="{toString(r2.ipage)}"/>
+										<textview id="pctX" label="x%" text="{toString(r2.pctX)}"/>
+										<textview id="pctY" label="y%" text="{toString(r2.pctY)}"/>
+										<textview id="comments" label="comments" text='{r2.comments}' />
+										<textview label="" text='Actions' />
+										<if cond='{letUserRole IN ("controller", "manager", "subcontractor")}'>
+											<block>
+												<textbox id="comment" hint="Comment" label=""/>
+												<submitbutton id="btnComment" label="" text="Submit comment" nextForm="{forms.floorplansAndTickets}" testId="comment">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+											</block>
+										</if>
+										<if cond='{letUserRole = "admin" OR (letUserRole IN ("controller", "manager") AND r2.guidUserCreator = letUser.guid)}'>
+											<block>
+												<submitbutton id="btnEdit" label="" text="Edit ticket" nextForm="{forms.floorplansAndTickets}">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+												<submitbutton id="btnDelete" label="" text="Delete ticket" nextForm="{forms.floorplansAndTickets}">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+											</block>
+										</if>
+										<if cond='{letUserRole = "manager" AND r2.status = 1}'>
+											<block>
+												<dropdown id="ddAssignee" label="assignee" choices="{SELECT u.guid, u.name FROM user u}" 
+													keyMap = "{guid}" textMap = "{name}" selectedKey="{r2.guidUserAssignee}" style="{styles.sizeSmall}" />
+												<submitbutton id="btnAssign" label="" text="Assign" nextForm="{forms.floorplansAndTickets}">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+											</block>
+										</if>
+										<if cond='{letUserRole = "manager" AND r2.status = 2}'>
+											<block>
+												<submitbutton id="btnForwardResolved" label="" text="Forward resolved" nextForm="{forms.floorplansAndTickets}">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+												<submitbutton id="btnReject" label="" text="Reject resolved" nextForm="{forms.floorplansAndTickets}">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+											</block>
+										</if>
+										<if cond='{letUserRole = "controller" AND r2.status = 3}'>
+											<block>
+												<submitbutton id="btnAccept" label="" text="Resolved" nextForm="{forms.floorplansAndTickets}">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+												<submitbutton id="btnRejectController" label="" text="Reject" nextForm="{forms.floorplansAndTickets}">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+											</block>
+										</if>
+										<if cond='{letUserRole = "subcontractor" AND r2.status = 1 AND r2.guidUserAssignee == letUser.guid}'>
+											<block>
+												<submitbutton id="btnMarkAsResolved" label="" text="Mark as resolved" nextForm="{forms.floorplansAndTickets}">
+													<params>
+														<param id="projectGuid" value='{r.projectGuid}'/>
+														<param id="floorplanGuid" value='{r.guid}'/>
+														<param id="ticketGuid" value='{r2.tGuid}'/>
+													</params>
+												</submitbutton>
+											</block>
+										</if>
+								</chapter>
+							</repeater>						
+		</chapter>
+	</if>
+</form>

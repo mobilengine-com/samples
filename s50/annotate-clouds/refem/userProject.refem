@@ -1,0 +1,8 @@
+<Reftab Name='userProject' Access='Hidden' xmlns='http://schemas.mobilengine.com/reftab/v1'>
+  <Columns>
+	<Column Name='userGuid' Type='Text' PrimaryKey='true' NotNull='true'/>
+	<Column Name='lcompGuid' Type='Text' PrimaryKey='true' NotNull='true'/>
+	<Column Name='projectGuid' Type='Text' PrimaryKey='true' NotNull='true'/>
+	<Column Name='role' Type='Text' NotNull='false'/>
+  </Columns>
+</Reftab>

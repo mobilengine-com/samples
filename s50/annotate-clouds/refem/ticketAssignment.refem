@@ -1,0 +1,6 @@
+<Reftab Name="ticketAssignment" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="true" Access="Readonly" >
+  <Columns>
+	<Column Name="guidTicket" Type="Text" PrimaryKey="true" NotNull="true"/>
+	<Column Name="guidUser" Type="Text" PrimaryKey="true" NotNull="true" AgentName='single'/>
+  </Columns>
+</Reftab>

@@ -6,8 +6,9 @@
 	<declarations>
 		<let id="guidReport" shape="scalar" value='{""}' access="public" />
 		<let id="reportviewid" shape="scalar" value='{loadnewerfromserver:SELECT r.reportviewid FROM reports r WHERE r.guidReport=guidReport}' access="public" />
+		<let id="reportviewid1" shape="record" value='{loadnewerfromserver:SELECT filterint.number pid, (SELECT r.reportviewid FROM reports r WHERE r.guidReport=guidReport) rid}' access="public" />
 	</declarations>
-	<textbox id='x' label='x'/>
+	<textbox id='x' label='x7'/>
 	<textbox id="name" label="Name" text='{x.text}'/>
 	<textbox id="email" label="Email address" text='abc@me.com'/>
 	<textbox id="subject" label="Subject" text='{"subj: "||x.text}'/>
@@ -22,10 +23,18 @@
 		<submitbutton closeForm="{false}" waitForRfs="{false}"></submitbutton>
 	</combinedbutton>
 	<textview text="{guidReport}"/>
-	<if cond="{reportviewid IS NOT NULL}">
-		<discardbutton text='open in new tab' newTab='{true}' confirm='{false}' nextForm='{forms.reportview}'>
+	<if cond="{reportviewid IS NOT NULL or true}">
+		<discardbutton text='discard open in new tab' newTab='{true}' confirm='{false}' nextForm='{forms.reportview}'>
 			<params><param id='repid' value='{reportviewid}' /></params>
 		</discardbutton>
+		<discardbutton text='discard open in new tab confirm' newTab='{true}' nextForm='{forms.reportview}' confirm='{true}'/>
+		<discardbutton text='discard open in new tab no next form' newTab='{true}'/>
+		<submitbutton text='submit open in new tab noclose' newTab='{true}' confirm='{false}' nextForm='{forms.reportview}' closeForm='{false}'/>
+		<submitbutton text='submit open in new tab close' newTab='{true}' confirm='{false}' nextForm='{forms.reportview}' closeForm='{true}'/>
+		<submitbutton text='submit open in new tab confirm' newTab='{true}' confirm='{true}' nextForm='{forms.reportview}'  closeForm='{false}'/>
+		<submitbutton text='submit open in new tab no next form' newTab='{true}' confirm='{false}' closeForm='{false}'/>
+		<submitbutton text='submit open in new tab wait' newTab='{true}' confirm='{false}'  nextForm='{forms.reportview}' waitForRfs='{true}' closeForm='{false}'/>
+		<submitbutton text='submit open in new tab no wait' newTab='{true}' confirm='{false}'  nextForm='{forms.reportview}' waitForRfs='{false}' closeForm='{false}'/>
 	</if>
 
 </form>

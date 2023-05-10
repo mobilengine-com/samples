@@ -3,5 +3,5 @@
 {
   Log(["params", params]);
   Log(["index", params.index]);
-  db.event.Insert({guid: guid.Generate().ToStringN(), name: "alma", description: "descr"});
+  db.event.Insert({guid: guid.Generate().ToStringN(), name: "alma1", description: "descr"});
 }

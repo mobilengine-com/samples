@@ -1,0 +1,6 @@
+<Reftab Name="settings" xmlns="http://schemas.mobilengine.com/reftab/v1" Access="Readonly" >
+  <Columns>
+    <Column Name="name" Type="Text" PrimaryKey="true" NotNull="true" />
+    <Column Name="value" Type="Text" />
+  </Columns>
+</Reftab>

@@ -1,0 +1,6 @@
+<package  xmlns="http://schemas.mobilengine.com/package/v1"
+    name="xcgwsol"
+    displayName="XCGW Solution"
+	mobilengineVersion="49"
+	version="6.2"
+/>

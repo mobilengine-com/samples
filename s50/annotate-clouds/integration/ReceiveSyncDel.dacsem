@@ -1,0 +1,9 @@
+schema 'ReceiveSyncDel' meta 'ReceiveSyncDel'
+
+Packet: element {
+	guid: attribute of type string;
+	kind: attribute of type string;
+	guidLcomp: optional attribute of type string;
+	guidProject: optional attribute of type string;
+	guidFolder: optional attribute of type string;
+}

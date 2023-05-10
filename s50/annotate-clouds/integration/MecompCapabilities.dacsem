@@ -1,0 +1,4 @@
+schema 'MecompCapabilities' meta 'MecompCapabilities'
+Mecomp: element {
+	Capabilities: wrapped list of element Capability of type string without whitespace;
+}

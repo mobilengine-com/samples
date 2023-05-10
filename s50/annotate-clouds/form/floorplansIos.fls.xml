@@ -1,0 +1,41 @@
+<form id='floorplansIos' menuName='floorplansIos' title='floorplansIos' platforms='ios' dashboard="true" xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+	<chapter title='Floorplans'>
+		<table id='t' record='r'
+			recordset='{SELECT fp.guid, fp.name, fp.building, fp.floor, fp.category, fp.file_guid, (SELECT f.file_name FROM files f WHERE f.file_guid = fp.file_guid) file_name FROM floorplan fp ORDER BY name}'>
+			<row>
+				<declarations>
+					<let id="guid" shape="scalar" value="{r.guid}"/>
+				</declarations>
+				<cell>
+					<discardbutton text="View tickets" confirm="{false}" nextForm='{forms.ticketsIos}'>
+						<params>
+							<param id="guidFloorplan" value='{ToString(r.guid)}'/>
+						</params>
+					</discardbutton>
+				</cell>
+				<cell>
+					<textview id="name" text='{r.name}' />
+				</cell>
+				<cell>
+					<textview id="building" text='{r.building}' />
+				</cell>
+				<cell>
+					<textview id="floor" text='{r.floor}' />
+				</cell>
+				<cell>
+					<textview id="cat" text='{SELECT cat.name FROM category cat WHERE cat.guid = r.category}' />
+				</cell>				
+				
+				<cell>
+					<textview id="cticket" text='{SELECT toString(count(0)) v FROM point p JOIN ticket t ON t.guidPoint = p.guid WHERE p.guidFloorplan = r.guid AND t.status &gt; 0 }' />
+				</cell>
+				<cell>
+					<fileview id="fv" text='Open pdf' chunks='{SELECT "chunks TODO" c}' fileName="{r.file_name}" />
+				</cell>
+
+			</row>
+		</table>
+
+	</chapter>
+</form>

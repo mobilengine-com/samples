@@ -1,0 +1,11 @@
+schema 'SendSyncMedia' meta 'SendSyncMedia'
+
+Media: element {
+	mediaId: attribute of type string;
+	guidLcomp: optional attribute of type string;
+	guidProject: optional attribute of type string;
+	guidFolder: optional attribute of type string;
+	filename: attribute of type string;
+	checksum: optional attribute of type string;
+	size: optional attribute of type int;
+}

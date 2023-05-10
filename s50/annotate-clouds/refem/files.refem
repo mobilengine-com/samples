@@ -1,0 +1,15 @@
+<Reftab Name="files" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" >
+  <Columns>
+    <Column Name="usr" Type="Text" AgentName="true" />
+	<Column Name="lcompGuid" Type="Text" NotNull="false" />
+	<Column Name="projectGuid" Type="Text" NotNull="false" />
+	<Column Name="folderGuid" Type="Text" NotNull="false" />
+	<Column Name="file_guid" Type="Text" PrimaryKey='true' NotNull='true'/>
+	<Column Name="file_name" Type="Text" />
+    <Column Name="file_display_name" Type="Text" />
+    <Column Name="file_ext" Type="Text" />
+    <Column Name="file_size" Type="Integer" />
+    <Column Name="file_hash" Type="Text" />
+	<Column Name="mediaId" Type="Fileref" />
+  </Columns>
+</Reftab>

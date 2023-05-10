@@ -1,0 +1,11 @@
+<Reftab Name="point" xmlns="http://schemas.mobilengine.com/reftab/v1" Push="false" Access="Readonly" >
+  <Columns>
+	<Column Name="guid" Type="Text" PrimaryKey="true"  NotNull="true"/>
+	<Column Name="guidFloorplan" Type="Text" NotNull="true"/>
+	<Column Name="ipage" Type="Integer" NotNull="true"/>
+	<Column Name="pctX" Type="Float" NotNull="true"/>
+	<Column Name="pctY" Type="Float" NotNull="true"/>
+	<Column Name="shape" Type="Text" NotNull="false"/>
+	<Column Name="ptdscr" Type="Text" NotNull="false"/>
+  </Columns>
+</Reftab>

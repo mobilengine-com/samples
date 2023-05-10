@@ -1,0 +1,70 @@
+<form id='users' menuName='users' title='users' platforms='ios web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="letLcomp" shape="record" value='{SELECT c.guid, c.name FROM lcomp c JOIN settings s ON s.value = c.guid WHERE s.name = "lcompGuid"}' />
+		<let id="letUser" shape="record" value='{SELECT u.guid, u.name, u.email, uc.role FROM userLcomp uc JOIN user u ON u.guid = uc.userGuid WHERE uc.lcompGuid = letLcomp.guid AND u.email = sysp.user}' />
+		<let id="letRoles" shape="table" value='{["admin", "manager", "controller", "subcontractor"]}'/>
+		<let id="letLangs" shape="table" value='{["en", "hu", "pl", "cs", "ro"]}'/>
+	</declarations>
+	<chapter title='Users'>
+		<textview text='{"For users of "||letLcomp.name}'/>
+		<table id='t' record='r' recordset='{SELECT u.guid, u.name, u.email, u.fExternal, u.status, u.lang FROM user u}'>
+			<header>
+				<row>
+					<cell>
+						<textview text='Name' />				
+					</cell>
+					<cell>
+						<textview text='Email' />				
+					</cell>
+					<cell>
+						<textview text='Role' />				
+					</cell>
+					<cell>
+						<textview text='External?' />				
+					</cell>
+					<cell>
+						<textview text='Lang' />				
+					</cell>
+					<cell>
+						<textview text='Status of external user' />				
+					</cell>
+					<cell>
+						<block/>
+					</cell>
+				</row>
+			</header>
+			<row>
+				<declarations>
+					<let id="letUserGuid" shape="scalar" value="{r.guid}"/>
+					<let id="letRole" shape="scalar" value="{SELECT uc.role FROM userLcomp uc WHERE uc.userGuid = letUserGuid AND uc.lcompGuid = letLcomp.guid}"/>
+				</declarations>
+				<cell>
+					<textbox id="name" text='{r.name}' hint="Name"/>
+				</cell>
+				<cell>
+					<textbox id="email" text='{r.email}' hint="Email address" />				
+				</cell>
+				<cell>
+					<dropdown id="ddRole" selectedKey='{letRole}' choices="{SELECT rx.v FROM letRoles rx}" keyMap="{v}" textMap="{v}"/>				
+				</cell>
+				<cell>
+					<checkbox id="fExternal" checked='{r.fExternal == 1}'/>				
+				</cell>
+				<cell>
+					<dropdown id="ddLang" choices="{SELECT rx.v FROM letLangs rx}" selectedKey='{r.lang}' keyMap="{v}" textMap="{v}"/>				
+				</cell>
+				<cell>
+					<textview id="status" text='{r.status}' />				
+				</cell>
+				<cell>
+					<submitbutton id="remove" text="remove" waitForRfs="{true}" nextForm="{forms.users}">
+						<declarations>
+							<let id="letUserGuidToDelete" shape="scalar" value='{letUserGuid}' />
+						</declarations>							
+					</submitbutton>
+				</cell>
+			</row>
+		</table>		
+		<addbutton id="addbtn" access="private" text="New user" table="t" records='{SELECT null guid, null name, null email, 0 fExternal, null status, null lang}'/>
+	</chapter>
+</form>

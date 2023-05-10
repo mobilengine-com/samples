@@ -1,0 +1,12 @@
+schema 'SyncProgress' meta 'SyncProgress'
+
+SyncProgress: element {
+	SubscriptionGuid: attribute of type string;
+	Type: attribute of type string;
+	Progress: attribute of type int;
+	All: attribute of type int;
+	GuidLcomp: optional attribute of type string;
+	GuidProject: optional attribute of type string;
+	GuidFolder: optional attribute of type string;
+	Users: optional wrapped list of element User of type string without whitespace;
+}

@@ -1,0 +1,24 @@
+<integration xmlns="http://schemas.mobilengine.com/integration/v1">
+	<iep name="outExtUser" direction="out">
+		<dacsem name="InviteExternal"/>
+		<dacsem name="MecompCapabilities"/>
+		<dacsem name="SendOperation"/>
+		<dacsem name="SendSyncMedia"/>
+		<dacsem name="SendSyncCru"/>
+		<dacsem name="SendSyncDel"/>
+		<dacsem name="SendSync"/>
+	</iep>	
+	<iep name="inExtUser" direction="in">
+		<dacsem name="RegisterExternalUser"/>
+		<dacsem name="InviteStatus"/>
+		<dacsem name="UserDuplicate"/>
+		<dacsem name="ReceiveSyncCru"/>
+		<dacsem name="ReceiveSyncDel"/>
+		<dacsem name="ReceiveSync"/>
+		<dacsem name="ReceiveOperation"/>
+		<dacsem name="SyncProgress"/>
+		<dacsem name="SetupUser"/>
+		<dacsem name="SetupLcomp"/>
+		<dacsem name="SetupAdmin"/>
+	</iep>
+</integration>

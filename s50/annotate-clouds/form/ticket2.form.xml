@@ -1,0 +1,247 @@
+<Form name="ticket2" description="ticket" typed="true" hidden="true" ksubmit="never" autoform="false" 
+	sillyNulls='false' inlineReference='true' 
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".", maxFraction:2}' xmlns:ofm="http://schemas.mobilengine.com/plugins/ofm">
+    <Rgsyl>
+        <Syl syln="RootColor" clrBg="#FFFFFF" />
+        <Syl syln="syncStatusGreen" clrBg="#007934" clrFont="#DADADA" pctFontSizeValue="100" fBoldValue="true" halign="left" />
+        <Syl syln="documentPendingBlue" clrBg="#0098DB" clrFont="#DADADA" pctFontSizeValue="125" fBoldValue="true" halign="left" />
+        <Syl syln="syncStatusRed" clrBg="#790022" clrFont="#DADADA" pctFontSizeValue="100" fBoldValue="true" halign="left" />
+        <Syl syln="pendingDocumentsPanel" clrBg="#DDDDDD" duPaddingBottom="2px"/>
+        <Syl syln="syncedDocumentsPanel" clrBg="#DDDDDD" duPaddingBottom="2px"/>
+        <Syl syln="darkGreenBg" clrBg="#007934" />
+        <Syl syln="blueBg" clrBg="#0098DB" />
+        <Syl syln="syncedDocumentsButton" clrBg="#FFFFFF" clrFont="#000000" duPaddingTop="8px" halign="left" fUnderline="false" />
+        <Syl syln="pendingDocumentPercentage" clrBg="#FFFFFF" clrFont="#000000" duPaddingTop="12px" halign="center" fUnderline="false" />
+        <Syl syln="syncedDocumentsNameColumn" clrBg="#FFFFFF" clrFont="#000000" pctFontSizeValue="80" halign="left" fUnderline="false" />
+        <Syl syln="syncedDocumentsColumn" clrBg="#FFFFFF" clrFont="#000000" halign="left" pctFontSizeValue="80" fUnderline="false" />
+        <Syl syln="syncedDocumentsColumnRight" clrBg="#FFFFFF" clrFont="#000000" halign="right" pctFontSizeValue="80" fUnderline="false" />
+        <Syl syln="noDocumentsAvailable" clrBg="#FFFFFF" clrFont="#000000" halign="center" pctFontSizeValue="100" fBold="true" />
+        <Syl syln="thinSeparator" pctFontSize="1"/>
+    </Rgsyl>
+    <Control type="panel" name="root">
+        <Control type="label" name="pushGuid" reference="SELECT SP.guid FROM Reference_send_push SP WHERE usr = @user LIMIT 1" visible="false" />
+		<Control type='panel' navigation='popup' name="p" label='params'>
+			<Control type='combobox' name='ddSelCat' label="választott kategória" data_type='string,string'
+				choices='{SELECT cat.guid id, cat.name display_name FROM Reference_category cat}'
+			/>
+			<Control type='combobox' name='ddSelPoint' label="választott pont" data_type='string,string'
+				choices='{SELECT p.guid id, t.description descr FROM reference_ticket t INNER JOIN Reference_point p ON t.guidPoint = p.guid WHERE t.status>=0 AND p.guidFloorplan = @[//root/par/guidFloorplan]}'
+			/>
+			<Control type='combobox' name='ddNewColor' label="új pont szín" data_type='string,string'
+				choices="{Static {{#0000FF,kék}, {#00FF00,zöld}, {#FF0000, piros}}}"
+			/>
+			<Control type='combobox' name='ddMixedColor' label="új pont szín" data_type='string,string'
+				choices="{Static {{#0000FF,kék}, {#00FF00,zöld}, {#FF0000, piros}}}"
+			/>
+			<Control type='checkbox' name="cbAllowNew" label="allow new" checked='true'/>
+			<Control type='checkbox' name="cbAllowNewPoint" label="allow new point" checked='true'/>
+			<Control type='checkbox' name="cbAllowNewShape" label="allow new shape" checked='true'/>
+			<Control type='checkbox' name="cbAllowNewDashed" label="allow new dashed" checked='true'/>
+			<Control type='checkbox' name="cbAllowNewCloud" label="allow new cloud" checked='true'/>
+			<Control type='checkbox' name="cbAllowSelect" label="allow select" checked='true'/>
+			<Control type='textbox' name="tbAllCatText" text="mind e" />
+		</Control>
+		<Control type="panel" name="par">
+			<Control type="label" name="guidFloorplan" label="guidFloorplan parameter (hidden)" visible="false" reference="SELECT guidFloorplan FROM reference_ticketFormParam"/>
+		</Control>
+		<Control
+			type="annotator"
+			name="annot" label="Nyisd a" text="Tervrajzot"
+			allowNew='{SELECT @[../p/cbAllowNew]}'
+			allowNewPoint='{SELECT @[../p/cbAllowNewPoint]}'
+			allowNewShape='{SELECT @[../p/cbAllowNewShape]}'
+			allowNewDashedShape='{SELECT @[../p/cbAllowNewDashed]}' 
+			allowNewCloud='{SELECT @[../p/cbAllowNewCloud]}' 
+			allowSelection='{SELECT @[../p/cbAllowSelect]}' 
+			newPointColor='{SELECT @[../p/ddNewColor.key]}' mixedPointColor='{SELECT @[../p/ddMixedColor.key]}' 
+			categories='{SELECT cat.guid id, cat.name display_name, cat.abbr abbr, cat.rgb color FROM Reference_category cat}'
+			fileref="{SELECT f.mediaId FROM reference_ticketFormParam par JOIN reference_floorplan fp ON  fp.guid=par.guidFloorplan JOIN reference_files f ON  fp.file_guid=f.file_guid}"
+            filename="{SELECT f.file_name FROM reference_ticketFormParam par JOIN reference_floorplan fp ON  fp.guid=par.guidFloorplan JOIN reference_files f ON f.file_guid = fp.file_guid}"
+			points="{SELECT p.guid id, p.ipage, p.pctX, p.pctY, t.category category_id, case when p.shape is not null and p.shape!='point' then p.shape else st.shape end shape,
+						p.ptdscr ptdscr
+					FROM reference_ticket t 
+					INNER JOIN Reference_point p ON t.guidPoint = p.guid 
+					INNER JOIN Reference_ticketStatus st ON t.status = st.status 
+					WHERE t.status>=0 AND p.guidFloorplan = @[//root/par/guidFloorplan]}"
+			selectedPointId="{SELECT @[../p/ddSelPoint.key]}"
+
+			selectedCategoryId='{SELECT @[../p/ddSelCat.key]}'
+			allCategoryText='{SELECT @[../p/tbAllCatText]}' 
+
+			backPressedFormName="floorplans" 
+			allowNewPointFalseMsg="No new point for you" 
+			openOnSet="{SELECT 1}"
+			cancelTarget="../discard"
+		/>					
+			<!--
+				nincs most ilyen, a floorplanId-t használjuk erre
+            mediaId="{SELECT f.mediaId FROM reference_ticketFormParam par JOIN reference_floorplan fp ON  fp.guid=par.guidFloorplan JOIN reference_files f ON  fp.file_guid=f.file_guid}"
+            fileGuid="{SELECT fp.file_guid FROM reference_ticketFormParam par JOIN reference_floorplan fp ON  fp.guid=par.guidFloorplan}"
+			guidFloorplan="{SELECT guidFloorplan FROM reference_ticketFormParam}"
+
+            rawFileSize="file size (hidden)" data_type="int" visible="false"  reference="SELECT F.file_size FROM reference_ticketFormParam par JOIN reference_floorplan fp ON  fp.guid=par.guidFloorplan JOIN reference_files f ON f.file_guid = fp.file_guid"
+            fileHash="file hash (hidden)" visible="false"  reference="SELECT F.file_hash FROM reference_ticketFormParam par JOIN reference_floorplan fp ON  fp.guid=par.guidFloorplan JOIN reference_files f ON f.file_guid = fp.file_guid"
+
+			downloadErrorDiskFullMsg="downloadErrorDiskFullMsg" text="Disk full" visible="false"
+			downloadErrorOtherMsg="downloadErrorOtherMsg" text="Other error" visible="false"
+			-->
+		<Control type="label" name="sep2" text=" "/>
+		
+		<Control type="panel" navigation="inline" layout="standard" name="ticket">
+
+			<Control type="panel" navigation="inline" layout="standard" name="par">
+				<Control type="label" name="guidPoint" label="point guid (hidden)" text="{SELECT @[//root/annot.key]}" visible="true"/>
+			</Control>
+
+			<Control type="panel" navigation="inline" layout="standard" name="ticketOld" 
+				data_type="string,string,string,int,string,string,string,datetime,string,string,string"
+				recordset="{SELECT guid, category, section, status, description, guidUserCreator, guidUserAssignee, dueDate, mediaidSignature, guidUserCreator, comments 
+					FROM reference_ticket WHERE guidPoint=@[../par/guidPoint] AND status>=0}">
+				
+				<Control type="label" name="guid" label="ticket guid (hidden)" text="{REF:PARENT.col0}" visible="false"/>
+				<Control type="textbox" name="section" label="section" reference="REF" ref_arg="PARENT.col2"/>
+				<Control type="combobox" name="category" label="category"  data_type="string,string"
+					reference="SELECT guid, name FROM reference_category"
+					value_reference="SELECT name FROM reference_category WHERE guid=@1" 
+						value_ref_arg="PARENT.col1">
+					<Validators>
+						<Validator type="RequiredValidator"/>
+					</Validators>
+				</Control>
+				<Control type="label" name="creator"  label="creator"
+					reference="SELECT name FROM reference_user WHERE name=@1" ref_arg="PARENT.col5" visible="true"/>
+				<Control type="combobox" name="assignee" label="assignee" data_type="string,string" 
+					reference="SELECT guid, name FROM reference_user"
+					value_reference="SELECT name FROM reference_user WHERE guid=@1" 
+						value_ref_arg="PARENT.col6"/>
+				<Control type="label" name="assigneeKey" label="assigneeKey (hidden)"
+					reference="SELECT guid FROM reference_user WHERE name=@1" ref_arg="PARENT/assignee.value" visible="false"/>
+				<Control type="textbox" name="description" lines="3" label="description" reference="REF" ref_arg="PARENT.col4"/>
+				<Control type="label" name="comments" label="comments" reference="REF" ref_arg="PARENT.col10"/>
+				<Control type="textbox" name="dueDate" ptype="date" data_type='datetime' readonly="true" 
+					label="dueDate" reference="REF" ref_arg="PARENT.col7"/>
+				<Control type="photoview" name="ticketPhotoView" label="photos" 
+					reference="SELECT SUBSTR(mediaidPhoto, 1, 32) FROM reference_ticketPhoto WHERE @1=guidTicket" ref_arg="PARENT.col0"/>
+				<Control type="photo" name="ticketPhoto"/>
+				<Control type="photoview" name="ticketSignatureView" label="signature" 
+					reference="SELECT SUBSTR(@1, 1, 32) WHERE @1 IS NOT NULL AND @1 NOT LIKE '%null%'" ref_arg="PARENT.col8"/>
+				<Control type="photo" meta_type="signature" name="signature" label="signature"/>
+				<Control type="combobox" name="status" label="status" data_type="int,string"
+					reference="SELECT status, name FROM reference_ticketStatus" 
+					value_reference="SELECT name FROM reference_ticketStatus WHERE status=@1" value_ref_arg="PARENT.col3">
+					<Validators>
+						<Validator type="RequiredValidator"/>
+					</Validators>
+				</Control>
+				<Control type="label" name="statusKey" data_type="int"  label="statusKey (hidden)"
+					reference="SELECT status FROM reference_ticketStatus WHERE name=@1" 
+					ref_arg="PARENT/status.value" visible="false"/>
+				<Control type="label" name="sep1" text=" "/>
+			</Control>
+
+			<Control type="label" name="new_point_cat"  label="new point cat (hidden)" data_type='string' text="{REF://root/annot.col0}" visible="true"/>
+			<Control type="label" name="new_point_page"  label="new point page (hidden)" data_type='int' text="{REF://root/annot.col1}" visible="true"/>
+			<Control type="label" name="new_point_x"  label="new point x (hidden)" data_type='float' text="{REF://root/annot.col2}" visible="true"/>
+			<Control type="label" name="new_point_y"  label="new point y (hidden)" data_type='float' text="{REF://root/annot.col3}" visible="true"/>
+			<Control type="label" name="new_point_shape"  label="new point shape (hidden)" data_type='string' text="{REF://root/annot.col4}" visible="true"/>
+			<Control type="label" name="new_point_ptdscr"  label="new point ptdscr (hidden)" data_type='string' text="{REF://root/annot.col5}" visible="true"/>
+			<Control type="panel" navigation="inline" layout="standard" name="ticketNew" data_type="int" 
+				recordset="{SELECT 1 WHERE @[//root/annot.col1] IS NOT NULL}">
+				<Control type="label" name="x" text="x" visible='false'/>
+				<Control type="textbox" name="section" label="section"/>
+				<Control type="combobox" name="category" label="category"  data_type="string,string"
+					reference="SELECT guid, name FROM reference_category"
+					value_reference="SELECT name FROM reference_category WHERE guid=@[//root/annot.col0]">
+					<Validators>
+						<Validator type="RequiredValidator"/>
+					</Validators>
+				</Control>
+				<Control type="label" name="guidUserCreator" 
+					reference="SELECT guid FROM reference_user WHERE email = @user" ref_arg="" visible="false"/>
+				<Control type="label" name="creator" label="creator"
+					reference="SELECT name FROM reference_user WHERE email = @user" ref_arg="" visible="true"/>
+				<Control type="combobox" name="assignee" label="assignee" data_type="string,string" 
+					reference="SELECT guid, name FROM reference_user"/>
+				<Control type="label" name="assigneeKey" label="assigneeKey (hidden)"
+					reference="SELECT guid FROM reference_user WHERE name=@1" ref_arg="PARENT/assignee.value" visible="false"/>
+				<Control type="textbox" name="description" lines="3" label="description"/>
+				<Control type="textbox" name="dueDate" ptype="date" readonly="true" label="dueDate"/>
+	
+				<Control type="photo" name="ticketPhoto" label=""/>
+				<Control type="photo" meta_type="signature" name="signature" label="signature"/>
+				<Control type="combobox" name="status" label="status" data_type="int,string"
+					reference="SELECT status, name FROM reference_ticketStatus" 
+					value_reference="SELECT name FROM reference_ticketStatus WHERE status=1">
+					<Validators>
+						<Validator type="RequiredValidator"/>
+					</Validators>
+				</Control>
+				<Control type="label" name="statusKey" data_type="int"  label="statusKey (hidden)"
+					reference="SELECT status FROM reference_ticketStatus WHERE name=@1" 
+					ref_arg="PARENT/status.value" visible="false"/>
+				<Control type="label" name="sep1" text=" "/>
+	
+			</Control>
+	
+	
+		</Control>
+
+		<Control type='panel' generator='SELECT 1 WHERE @[../cTicketOld]>0 ' data_type='int' name='pAdd'
+			layout='standard' navigation='inline'>
+			<Control name="addbtn" text="Add another ticket here" type="button" size="large">
+				<Actions>
+					<Action type="generator" removebuttonsize="large" removebuttontext="Delete ticket" target="//root/ticket/ticketOld" />
+				</Actions>
+			</Control>
+		</Control>
+
+		<Control type='panel' generator='SELECT 1 WHERE @[../cTicketNew]>0 ' data_type='int' name='pAddNew'
+			layout='standard' navigation='inline'>
+			<Control name="addbtn" text="Add another ticket here" type="button" size="large">
+				<Actions>
+					<Action type="generator" removebuttonsize="large" removebuttontext="Delete ticket" target="//root/ticket/ticketNew" />
+				</Actions>
+			</Control>
+		</Control>
+
+		<Control type='label' name='cTicketOld' data_type='int' visible='true' reference='COUNT2' ref_arg='../ticket/ticketOld/ticketOld.*/guid'/>
+		<Control type='label' name='cTicketNew' data_type='int' visible='true' reference='COUNT2' ref_arg='../ticket/ticketNew/ticketNew.*/x'/>
+		<Control type='panel' generator='SELECT 1 WHERE @[../cTicketOld]>0 OR @[../cTicketNew]>0' data_type='int' name='pClose'
+			layout='standard' navigation='inline'>
+			<Control type="label" name="sep1" text=" "/>
+			<Control type="closebutton" name="btnSaveAndDone" text="Save" action="submit_form" next_form_name="floorplans" />
+			<Control type="closebutton" name="btnSaveAndAgain" text="Save and back to floorplan" action="submit_form" next_form_name="ticket" />
+			<Control type="label" name="sep11" text=" "/>
+			<Control type="closebutton" name="btnDiscardAndAgain" text="Discard and back to floorplan" action="discard_form" next_form_name="ticket" />
+			<Control type="label" name="sep111" text=" "/>
+		</Control>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='label'/>
+		<Control type='closebutton' name="discard" action='discard_form' text="discard" confirm='{SELECT "never"}'/>
+    </Control>
+
+</Form>
