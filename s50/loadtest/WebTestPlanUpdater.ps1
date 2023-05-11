@@ -84,7 +84,6 @@ Select-Xml -Xml $xml -XPath "//stringProp" | foreach {
 }
 
 if (![string]::IsNullOrEmpty($OutPath)) {
-    $OutPathAbsolute = Resolve-Path -Path $OutPath;
     Write-Host "Modified test plan saved to " $OutPathAbsolute;
     $xml.Save($OutPathAbsolute);
 }else {
