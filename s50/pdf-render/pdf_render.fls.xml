@@ -1,22 +1,21 @@
 <form id='pdf_render' menuName='Pdf_render' title='Pdf_render' platforms='ios web'
   xmlns='http://schemas.mobilengine.com/fls/v2'>
 
-  <textview text='Submit this form with pdf to generate image.' />
+  <textview text='Submit this form with pdf to generate an image.' />
 
   <fileupload testId='fileupl' id="up_load1" label="upload file" acceptedMimetypes="application/pdf " onChange="replace"/>
 
-  <textbox id='page' label='The selected page of the pdf: ' text="0"/>
-  <textbox id='width' label='The width of the result image' text="200"/>
-  <textbox id='height' label='The height of the result image' text="300"/>
+  <textbox id='page' label='The selected page of the pdf (0 is the first page): ' text="0"/>
+  <textbox id='scale' label='The scaling of the result image (px/pt on the pdf):' text="1"/>
 
   <table record='r'
-    recordset='{SELECT q.mediaId, q.name, q.page, q.height, q.width FROM images q ORDER BY 3 DESC LIMIT 100}'>
+    recordset='{SELECT q.mediaId, q.name, q.page, q.scale FROM images q ORDER BY 3 DESC LIMIT 100}'>
     <header>
       <row>
         <cell><textview text='Image' /></cell>
+        <cell><textview text='Filename' /></cell>
         <cell><textview text='Page' /></cell>
-        <cell><textview text='Height' /></cell>
-        <cell><textview text='Width' /></cell>
+        <cell><textview text='Scale' /></cell>
       </row>
     </header>
     <row>
@@ -30,12 +29,8 @@
         <textview text='{r.page}' />
       </cell>
       <cell>
-        <textview text='{r.height}' />
+        <textview text='{r.scale}' />
       </cell>
-      <cell>
-        <textview text='{r.width}' />
-      </cell>
-
     </row>
   </table>
 </form>

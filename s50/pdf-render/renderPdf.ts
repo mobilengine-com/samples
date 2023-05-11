@@ -5,12 +5,11 @@
 	let pdfileref = fileref.New(firstUploadedfileMediaId, 0);
 	let filename = form.up_load1.files[0].name;
 	let page = parseInt(form.page.text);
-	let width = parseInt(form.width.text);
-	let height = parseInt(form.height.text);
+	let scale = parseFloat(form.scale.text);
 
 	let validPdf = pdf.FromFileref(pdfileref);
-	let imagePdf = validPdf.Render(page, width, height);
+	let imagePdf = validPdf.Render(page, scale);
 	let mediaId = imagePdf.Store("png");
 	Log("Generate image with mediaId: " + mediaId);
-	db.images.Insert({mediaId:mediaId, name: filename.split('.')[0], page: form.page.text, width: form.width.text, height: form.height.text});
+	db.images.Insert({mediaId:mediaId, name: filename.split('.')[0], page: form.page.text, scale: form.scale.text});
 }

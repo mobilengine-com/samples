@@ -3,7 +3,6 @@
       <Column Name="mediaId" Type="Text" PrimaryKey='true' NotNull='true'/>
       <Column Name="name" Type="Text" NotNull='true'/>
       <Column Name="page" Type="Text" NotNull='true'/>
-      <Column Name="height" Type="Text" NotNull='true'/>
-      <Column Name="width" Type="Text" NotNull='true'/>
+      <Column Name="scale" Type="Text" NotNull='true'/>
     </Columns>
   </Reftab>
