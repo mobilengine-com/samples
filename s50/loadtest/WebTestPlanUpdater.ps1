@@ -1,15 +1,16 @@
 param (
-    [string]$TestPlan = "",
+    [Parameter(Mandatory = $true)]
+    [string]
+    $TestPlan = "",
     #The username of the user used under recording
-    [string]$Usern = "",
+    [string]
+    $Usern = "",
     #The password of the user used under recording
-    [string]$Password = "",
-    [string]$OutPath = ""
+    [string]
+    $Password = "",
+    [string]
+    $OutPath = ""
 )
-
-if ([string]::IsNullOrEmpty($TestPlan)) {
-    throw "Test plan path is empty"; 
-}
 
 if (-not (Test-Path $TestPlan)) {
     throw $TestPlan + " can not be found"; 
@@ -86,7 +87,8 @@ Select-Xml -Xml $xml -XPath "//stringProp" | foreach {
 if (![string]::IsNullOrEmpty($OutPath)) {
     Write-Host "Modified test plan saved to " $OutPathAbsolute;
     $xml.Save($OutPathAbsolute);
-}else {
+}
+else {
     Write-Host "Modified test plan saved to " $TestPlanAbsolute;
     $xml.Save($TestPlanAbsolute);
 }

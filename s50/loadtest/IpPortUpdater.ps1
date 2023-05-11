@@ -14,10 +14,6 @@ param (
     $OutPath = ""
 )
 
-if ([string]::IsNullOrEmpty($TestPlan)) {
-    throw "Test plan path is empty"; 
-}
-
 if (-not (Test-Path $TestPlan)) {
     throw $TestPlan + " can not be found"; 
 }
