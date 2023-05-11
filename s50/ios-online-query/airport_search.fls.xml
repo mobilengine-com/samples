@@ -1,0 +1,55 @@
+<form id='airport_search' menuName='airport_search' title='airport_search' platforms='ios web'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+  <textview
+    text='Search airport by name (try ferihegy, kennedy, la guardia, chales de gaulle, balaton, etc.)' />
+
+  <textbox id='filter' label='Name:' />
+  <textview label='Last query status: ' text='{sysp.lastOnlineQueryStatus}' />
+
+  <table record='r'
+    recordset='{
+      online:
+      SELECT t.id, t.city, t.country, t.lat_decimal lat, t.lon_decimal lon, t.name 
+      FROM airports t
+      WHERE t.name LIKE "%" || filter.text || "%" 
+      ORDER BY 1
+      LIMIT 10
+    }'>
+    <header>
+      <row>
+        <cell>
+          <textview text='Name' />
+        </cell>
+        <cell>
+          <textview text='City' />
+        </cell>
+        <cell>
+          <textview text='Country' />
+        </cell>
+        <cell>
+          <textview text='Lat' />
+        </cell>
+        <cell>
+          <textview text='Long' />
+        </cell>
+      </row>
+    </header>
+    <row>
+      <cell>
+        <textview text='{r.name}' />
+      </cell>
+      <cell>
+        <textview text='{r.city}' />
+      </cell>
+      <cell>
+        <textview text='{r.country}' />
+      </cell>
+      <cell>
+        <textview text='{TOSTRING(r.lat)}' />
+      </cell>
+      <cell>
+        <textview text='{TOSTRING(r.lon)}' />
+      </cell>
+    </row>
+  </table>
+</form>
