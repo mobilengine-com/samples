@@ -12,6 +12,8 @@ param (
     $OutPath = ""
 )
 
+$ErrorActionPreference = "Stop"
+
 if (-not (Test-Path $TestPlan)) {
     throw $TestPlan + " can not be found"; 
 }
@@ -27,7 +29,9 @@ $xml.Load($TestPlanAbsolute)
 $GuidMetadataSet = New-Object System.Collections.Generic.HashSet[string]
 
 Select-Xml -Xml $xml -XPath "//elementProp[@name='daqrkeys']" | foreach {
-    $GuidMetadataSet.Add($_.node.stringProp[1].InnerText.Substring(0, 32)) | Out-Null;
+    if($_.node.stringProp[1].InnerText.length -gt 32){
+        $GuidMetadataSet.Add($_.node.stringProp[1].InnerText.Substring(0, 32)) | Out-Null;
+    }
 }
 
 Select-Xml -Xml $xml -XPath "//elementProp[@name='__RequestVerificationToken']" | foreach {

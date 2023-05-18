@@ -241,7 +241,7 @@ SampleResult.setIgnore()</stringProp>
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223Sampler>
           <hashTree/>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="FirsSync Controller" enabled="true">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="FirstSync Controller" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
           </TransactionController>
           <hashTree>
