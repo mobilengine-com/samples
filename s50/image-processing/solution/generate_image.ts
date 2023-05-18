@@ -3,28 +3,38 @@
 //# using reftab images;
 
 {
-	let fr = fileref.New('43da973f7a3e4f5b84a8f0c432da2401', 0);
+	Log(form);
+
+	let fr = fileref.New('66f41df6efd3430d93da8664931c8a50', 0);
 	let sampleImage = image.FromFileref(fr);
-	
-	let cx = form.crop.x.number;
-	let cy = form.crop.y.number;
-	let cw = form.crop.w.number;
-	let ch = form.crop.h.number;
-	sampleImage.Crop(cx, cy, cw, ch);
 
-	let ec = form.ellipse.color.text;
-	let ex = form.ellipse.x.number;
-	let ey = form.ellipse.y.number;
-	let ew = form.ellipse.w.number;
-	let eh = form.ellipse.h.number;
-	sampleImage.FillEllipse(ec, ex, ey, ew, eh);
+	let cropX = form.crop.x.number;
+	let cropY = form.crop.y.number;
+	let cropW = form.crop.w.number;
+	let cropH = form.crop.h.number;
+	sampleImage.Crop(cropX, cropY, cropW, cropH);
 
-	let mediaId = sampleImage.Store("jpg");
+	let shapeX = form.ellipse.x.number;
+	let shapeY = form.ellipse.y.number;
+	let shapeSize = form.ellipse.size.number;
+	let shapeColor = form.ellipse.color.text;
+	let shapeLineWidth = form.ellipse.lineWidth.number;
+	let shapeShape = form.ellipse.shape.selectedKey;
+	sampleImage.DrawShape(shapeX, shapeY, shapeSize, {
+		color: shapeColor,
+		lineWidth: shapeLineWidth,
+		shape: shapeShape
+	});
+
+	let mediaId = sampleImage.Store("png");
 	Log("Stored modified image with mediaId: " + mediaId);
 
 	db.images.Insert({
-		mediaId: mediaId, 
-		description: `crop(${cx},${cy},${cw},${ch})+ellipse(${ec},${ex},${ey},${ew},${eh})`, 
+		mediaId: mediaId,
+		description:
+			`crop(${cropX},${cropY},${cropW},${cropH})+` +
+			`shape(${shapeX},${shapeY},${shapeSize}, ` +
+			`{${shapeColor},${shapeLineWidth},${shapeShape}})`,
 		generated: dtu.Now().DtuToDtdb()
 	});
 }

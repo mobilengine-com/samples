@@ -4,17 +4,22 @@
 
 import * as utils from "./utils";
 
-Log(form);
-
 const newPoint = form.myAnnotator.newPoint;
+if (newPoint == null) {
+    ThrowError("No new point on form");
+}
+
 const pctPoints = JSON.parse(newPoint.ptdscr).points;
 const pageIndex = newPoint.pageIndex;
 const isPoint = newPoint.shape == "point";
 const style = {
-    shape: newPoint.shape,
-    lineWidth: 2,
-    dotSize: 36,
-    color: "#FF0000"
+    isPoint: isPoint,
+    shape: isPoint 
+        ? form.style.shape.selectedKey 
+        : newPoint.shape,
+    lineWidth: form.style.lineWidth.number,
+    size: form.style.size.number,
+    color: form.style.color.text
 };
 
 const doc = pdf.FromFileref(form.myAnnotator.fileref);
@@ -31,14 +36,14 @@ const fullPageImageMediaId = (() => {
 // floorplan-cropper style smaller image
 const croppedImageMediaId = (() => {
     const imageSizePx = 700;
+    const polygonSizePx = 600;
 
     // render with the correct scale
     let scale = 3;
     if (!isPoint) {
         const ptPoints = doc.AnnotatorToPdfCoordinates(pageIndex, pctPoints);
         const boundingRectPt = utils.boundingRect(ptPoints);
-        const shapeSizePx = 600;
-        scale = shapeSizePx / Math.max(boundingRectPt.width, boundingRectPt.height);
+        scale = polygonSizePx / Math.max(boundingRectPt.width, boundingRectPt.height);
     }
     const image = doc.Render(pageIndex, scale);
 
@@ -61,13 +66,10 @@ const croppedImageMediaId = (() => {
 // make the annotated pdf
 const pdfMediaId = (() => {
     const ptPoints = doc.AnnotatorToPdfCoordinates(pageIndex, pctPoints);
-    const pdfStyle = { ...style, dotSize: style.dotSize / 3 };
     if (isPoint) {
-        const dot = utils.addPadding(utils.boundingRect(ptPoints), pdfStyle.dotSize, pdfStyle.dotSize);
-        Log(["pdf ellipse", dot]);
-        doc.AddEllipseAnnotation(pageIndex, pdfStyle.color, dot.x, dot.y, dot.width, dot.height);
+        doc.AddShapeAnnotation(pageIndex, ptPoints[0].x, ptPoints[0].y, style.size, style);
     } else {
-        doc.AddPolygonAnnotation(pageIndex, ptPoints, pdfStyle);
+        doc.AddPolygonAnnotation(pageIndex, ptPoints, style);
     }
     return doc.Store("document.pdf");
 })();
