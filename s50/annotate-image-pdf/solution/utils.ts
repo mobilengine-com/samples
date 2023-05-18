@@ -43,13 +43,10 @@ export function addPadding(rect: Rect, desiredWidth: number, desiredHeight: numb
 }
 
 export function drawAnnotation(image, pctPoints, style): void {
-  const isPoint = style.shape == "point";
   const pxPoints = annotatorToImageCoordinates(image, pctPoints);
-  const boundingRectPx = boundingRect(pxPoints);
-  if (!isPoint) {
+  if (!style.isPoint) {
     image.DrawPolygon(pxPoints, style);
   } else {
-    const dot = addPadding(boundingRectPx, style.dotSize, style.dotSize);
-    image.FillEllipse(style.color, dot.x, dot.y, dot.width, dot.height);
+    image.DrawShape(pxPoints[0].x, pxPoints[0].y, style.size, style);
   }
 }

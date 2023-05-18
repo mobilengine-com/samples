@@ -1,23 +1,35 @@
 <form id='crop_and_draw' menuName='crop_and_draw' title='crop_and_draw' platforms='web'
   xmlns='http://schemas.mobilengine.com/fls/v2'>
 
-  <photoview label='Sample image: ' photos='{SELECT "43da973f7a3e4f5b84a8f0c432da2401"}' />
+  <header />
+
+  <photoview label='Sample image: ' photos='{SELECT "66f41df6efd3430d93da8664931c8a50"}' />
   <textview text='Submit this form to alter the sample image with the parameters below.' />
 
   <chapter title='1. Crop' id='crop'>
-    <numberbox id='x' label='x:' number='{100}' />
-    <numberbox id='y' label='y:' number='{100}' />
-    <numberbox id='w' label='width:' number='{568}' />
-    <numberbox id='h' label='height:' number='{376}' />
+    <numberbox id='x' label='x:' number='{200}' />
+    <numberbox id='y' label='y:' number='{200}' />
+    <numberbox id='w' label='width:' number='{468}' />
+    <numberbox id='h' label='height:' number='{276}' />
   </chapter>
 
-  <chapter title='2. Draw an Ellipse' id='ellipse'>
-    <textbox id='color' label='color:' text='#FF7F7FAA' />
+  <chapter title='2. Draw a shape' id='ellipse'>
+    <textbox id='color' label='color:' text='#F0FC' />
     <numberbox id='x' label='x:' number='{100}' />
     <numberbox id='y' label='y:' number='{100}' />
-    <numberbox id='w' label='width:' number='{368}' />
-    <numberbox id='h' label='height:' number='{176}' />
+    <numberbox id='size' label='size:' number='{25}' />
+    <numberbox id='lineWidth' label='lineWidth:' number='{2}' />
+    <dropdown id='shape' label='shape:'
+      choices='{TABLE s (
+      "disk"; "disk_open"; "disk_dashed";
+      "square"; "square_open"; "square_dashed";
+      "triangle"; "triangle_open"; "triangle_dashed";
+      "rhombus"; "rhombus_open"; "rhombus_dashed";
+    )}'
+      textMap='{s}' keyMap='{s}' selectedKey='{"disk"}' noneText='{NULL}' />
   </chapter>
+
+  <submitbutton text='Crop &amp; Draw' nextForm='{forms.crop_and_draw}' />
 
   <table record='r'
     recordset='{SELECT i.mediaId, i.description, i.generated FROM images i ORDER BY 3 DESC LIMIT 100}'>
