@@ -1,4 +1,5 @@
 usage: 
 create a company + "controller" user
-upload files from "fp" dir
-upload solution + data.sqlite
+create ieps: inExtUser (in), outExtUser (out)
+files: mebt upload-files from "fp" dir
+upload solution + data: mebt run . data.sqlite
