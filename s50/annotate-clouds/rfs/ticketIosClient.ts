@@ -17,7 +17,9 @@
 			guidFloorplan:	form.letFp.guid,
 			ipage: form.ifTicketNew.letPageIndex,
 			pctX: form.ifTicketNew.letXFraction,
-			pctY: form.ifTicketNew.letYFraction
+			pctY: form.ifTicketNew.letYFraction,
+			shape: form.ifTicketNew.letShape,
+			ptdscr: form.ifTicketNew.letPtdscr
 		});
 		
 	}

@@ -173,13 +173,15 @@
 			};
 			db.ticket.Insert(ticket);
 
-			let assignee = db.user.Read({guid: ticketRow.ddAssignee.selectedKey}).Single();
+			if (ticketRow.ddAssignee.selectedKey != null) {
+				let assignee = db.user.Read({guid: ticketRow.ddAssignee.selectedKey}).Single();
 
-			if (assignee.email!=null) {
-				db.ticketAssignment.Insert({
-					guidTicket: guidTicket,
-					guidUser: assignee.email
-				});
+				if (assignee.email!=null) {
+					db.ticketAssignment.Insert({
+						guidTicket: guidTicket,
+						guidUser: assignee.email
+					});
+				}
 			}
 
 			if (ticket.mediaidSignature != null) {
