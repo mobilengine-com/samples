@@ -4,8 +4,8 @@ interface Point {
   x, y: number;
 }
 
-interface Rect extends Point {
-  width, height: number;
+interface Rect {
+  x, y, width, height: number;
 }
 
 export function annotatorToImageCoordinates(image, points: Point[]): Point[] {

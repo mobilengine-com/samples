@@ -24,7 +24,7 @@ const style = {
 
 const doc = pdf.FromFileref(form.myAnnotator.fileref);
 
-// make the annotated image
+// make an annotated image with the full page
 const fullPageImageMediaId = (() => {
     const image = doc.Render(pageIndex, 1);
     utils.drawAnnotation(image, pctPoints, style);
