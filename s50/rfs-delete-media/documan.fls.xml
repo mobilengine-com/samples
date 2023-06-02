@@ -1,0 +1,49 @@
+<form id="documan" 
+      menuName="document manager" 
+      title='Document Manager' 
+      platforms="web" 
+	  dashboard='true'
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	<repeater id="rgdir" record="d" recordset='{select fs.dirn, fs.dirid, false fNew from dirs fs order by dirn}'>
+		<chapter title = '{"Documents in " || d.dirn }'>
+			<declarations>
+				<let access="public" id='dir' shape='record' value='{SELECT d.dirn, d.dirid, d.fNew}'/>	
+			</declarations>
+			<table id="rgfile" record="f" recordset='{select fs.mediaid, fs.filn, fs.type, fs.dirid, fs.size from files fs where fs.dirid = d.dirid}'>
+				<header>
+				  <row>
+					<cell>
+						<textview text="File" />
+					</cell>
+					<cell>
+						<textview text="Type" />
+					</cell>
+					<cell>
+						<textview text="Size in Bytes" />
+					</cell>
+					<cell>
+						<textview text=''/>
+					</cell>
+				  </row>
+				</header>
+				<row> 
+				<declarations><let id='letMediaId' shape='scalar' value='{f.mediaid}'/></declarations>
+					<cell>
+						<filedownload text="{f.filn}" mediaId="{f.mediaid}" />
+					</cell>
+					<cell>
+						<textview text="{f.type}" />
+					</cell>
+					<cell>
+						<textview text="{toString(f.size)}" />
+					</cell>
+					<cell><submitbutton id="sbDel" text='delete'/></cell>
+				</row>
+			</table>
+		</chapter>
+		<fileupload id="filupl" label="Upload to directory" acceptedMimetypes="application/pdf, application/word, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+	</repeater>
+	<textbox id="dirnNew" hint="Directory name"/> 
+	<addbutton text="Add new directory" table="rgdir" records="{SELECT dirnNew.text dirn, toStringN(newguid()) dirid, true fNew}"/>
+
+</form>

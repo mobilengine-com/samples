@@ -1,0 +1,9 @@
+<Reftab Name="files" xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name="mediaid" Type="Text" PrimaryKey='true' NotNull='true' />
+		<Column Name="filn" Type="Text" />
+		<Column Name="type" Type="Text" />
+		<Column Name="dirid" Type="Text" />
+		<Column Name="size" Type="Integer" />
+	</Columns>
+</Reftab>
