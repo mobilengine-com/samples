@@ -11,7 +11,9 @@ param (
     [string]
     $NewPort = "",
     [string]
-    $OutPath = ""
+    $OutPath = "",
+    [switch]
+    $Https
 )
 
 if (-not (Test-Path $TestPlan)) {
@@ -35,6 +37,17 @@ Select-Xml -Xml $xml -XPath "//stringProp" | foreach {
     if (![string]::IsNullOrEmpty($OldPort)) {
         if ($_.node.InnerText.Equals($OldPort)) {
             $_.node.InnerText = $NewPort;
+        }
+    }
+
+    if ($Https) {
+        if ($_.node.InnerText.Equals("http")) {
+            $_.node.InnerText = "https";
+        }
+    }
+    else {
+        if ($_.node.InnerText.Equals("https")) {
+            $_.node.InnerText = "http";
         }
     }
 }
