@@ -18,7 +18,10 @@ const style = {
         ? form.style.shape.selectedKey 
         : newPoint.shape,
     lineWidth: form.style.lineWidth.number,
+    
+    // 12 is the default size used in the floorplan cropper gateway
     size: form.style.size.number,
+
     color: form.style.color.text
 };
 
