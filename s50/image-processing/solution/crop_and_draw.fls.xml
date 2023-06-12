@@ -21,10 +21,10 @@
     <numberbox id='lineWidth' label='lineWidth:' number='{2}' />
     <dropdown id='shape' label='shape:'
       choices='{TABLE s (
-      "disk"; "disk_open"; "disk_dashed";
-      "square"; "square_open"; "square_dashed";
-      "triangle"; "triangle_open"; "triangle_dashed";
-      "rhombus"; "rhombus_open"; "rhombus_dashed";
+      "disk"; "open_disk"; "dashed_disk";
+      "square"; "open_square"; "dashed_square";
+      "triangle"; "open_triangle"; "dashed_triangle";
+      "rhombus"; "open_rhombus"; "dashed_rhombus";
     )}'
       textMap='{s}' keyMap='{s}' selectedKey='{"disk"}' noneText='{NULL}' />
   </chapter>
