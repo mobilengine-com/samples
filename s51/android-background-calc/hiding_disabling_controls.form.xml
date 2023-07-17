@@ -1,0 +1,121 @@
+<Form name='hiding_disabling_conntrols' description="Hiding &amp; Disabling Controls" typed='true' autoform="true"
+    dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)'
+    numberformat='{decimalSeparator:"."}' sillyNulls='false' inlineReference='true'
+    footer_submit='{SELECT @[//root/show]}' menu_submit='{SELECT @[//root/show]}'
+    floating_submit='{SELECT @[//root/show]}'>
+    <Rgsyl>
+        <Syl syln='h1' clrBg='#E1E1E1' fBold="true" halign="center" />
+        <Syl syln='h2' clrBg='#F1F1F1' fBold="true" />
+        <Syl syln='info' pctFontSize="80" clrFont="#333333" fItalic="true" />
+    </Rgsyl>
+    <Control type='panel' name='root'>
+        <Control type="checkbox" name="show" text="Show controls" data_type="string" checked="true" />
+        <Control type="label" text="Also hides the header, footer and floating submit buttons" sylnCrown="=info" />
+        <Control type="separator" />
+
+        <Control type="checkbox" name="enable" text="Enable controls" data_type="string"
+            checked="true" />
+        <Control type="label" text="Not all controls support `enable`, those won't get disabled." sylnCrown="=info" />
+        <Control type="separator" />
+
+        <Control type="separator" text="--- Controls below can be toggled ---" sylnCrown="=h1" />
+        <Control type='panel' name='genpanel' layout='standard' navigation='inline' data_type='int' recordset="{SELECT 1 WHERE @[../show]}">
+            <Control type="separator" text="Call Button" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, the map should not open" sylnCrown="=info" />
+            <Control type="callbutton" size="large" text="Show map" call_action="android.intent.action.VIEW" reference="SELECT 'geo:49.0,17.0'" />
+
+            <Control type="separator" text="OpenOnShow Annotator" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, the annotator will open. It will not close automatically. Cancelling the annotation will click a discard button." sylnCrown="=info" />
+            <Control type="panel" layout="standard" navigation="popup" text="OpenOnSet Annotator In This Panel">
+                <Control type="annotator" openOnSet="true" text="Open Annotator"
+                    mediaid="{SELECT * FROM (VALUES('4b786ca356b14732ad79ad332657c3a2'))}"
+                    cancelTarget="//root/genpanel/genpanel&lt;0>/discard"
+                    enabled="{SELECT @[//root/enable]}" />
+            </Control>
+
+            <Control type="separator" text="OpenOnShow Photo" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, screens will open. It will not close automatically." sylnCrown="=info" />
+            <Control type="panel" layout="standard" navigation="popup" text="OpenOnSet Photo In This Panel">
+                <Control type="photo" openOnSet="true" text="Open Photo" enabled="{SELECT @[//root/enable]}" />
+            </Control>
+
+            <Control type="separator" text="Add &amp; Remove Buttons" sylnCrown="=h2" />
+            <Control type="addbutton" text="Add" size="large" target="../buttonTable" enabled="{SELECT @[//root/enable]}" />
+            <Control type="panel" name="buttonTable" layout="table" navigation="inline" count="0">
+                <Control type="removebutton" text="Remove" width="1 swt" enabled="{SELECT @[//root/enable]}" />
+            </Control>
+
+            <Control type="separator" text="Submit On Open Panel" sylnCrown="=h2" />
+            <Control type="label" text="Submits the form when opened. The form is closed when coming out of this panel." sylnCrown="=info" />
+            <Control type="panel" layout="standard" navigation="popup" text="Open panel" submit_on_show="true" back_action="discard_form" enabled="{SELECT @[//root/enable]}">
+                <Control type='label' text='Inside the panel, going back discards the form' />
+            </Control>
+
+            <Control type="separator" text="Discard Form On Back Panel" sylnCrown="=h2" />
+            <Control type="label" text="The form is closed when coming out of this panel." sylnCrown="=info" />
+            <Control type="panel" layout="standard" navigation="popup" text="Open panel" back_action="discard_form" enabled="{SELECT @[//root/enable]}">
+                <Control type='label' text='Inside the panel, going back discards the form' />
+            </Control>
+
+            <Control type="separator" text="Discard Button" sylnCrown="=h2" />
+            <Control name="discard" type="closebutton" size="large" text="Discard form" action="discard_form" enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Submit Button" sylnCrown="=h2" />
+            <Control type="closebutton" text="Submit form" action="submit_form" enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Photo Control (Editable, With Photo Library)" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, screens will open. It will not close automatically." sylnCrown="=info" />
+            <Control type='photo' source="all" editable="true" enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Various Textboxes" sylnCrown="=h2" />
+            <Control label="text" type="textbox" enabled="{SELECT @[//root/enable]}" />
+            <Control label='int' type='textbox' ptype='int' enabled="{SELECT @[//root/enable]}" />
+            <Control label='float' type='textbox' ptype='float' enabled="{SELECT @[//root/enable]}" />
+            <Control label='date' type='textbox' ptype='date' enabled="{SELECT @[//root/enable]}" />
+            <Control label='time' type='textbox' ptype='time' enabled="{SELECT @[//root/enable]}" />
+            <Control label='datetime' type='textbox' ptype='datetime' enabled="{SELECT @[//root/enable]}" />
+            <Control label='barcode' type='textbox' ptype='barcode' enabled="{SELECT @[//root/enable]}" />
+            <Control label='barcode_binary' type='textbox' ptype='barcode_binary' enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Reportview Control" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, screens will open. It will not close automatically." sylnCrown="=info" />
+            <Control type="reportview" size="large" reportviewid="{SELECT * FROM (VALUES('4b786ca356b14732ad79ad332657c3a2'))}" text="Open Report" enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Photoview Control" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, screens will open. It will not close automatically." sylnCrown="=info" />
+            <Control type="photoview" reference="SELECT * FROM (VALUES('45377a689b4f4c6eb5947d0556e5dd04'), ('11109864bfaf484fb77d45de6d23a64a'), ('03a4d1e4d6544e07b838a4ec2e535280'))" enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Filedownload Control" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, screens will open. It will not close automatically." sylnCrown="=info" />
+            <Control type="filedownload" size="large" text="Download &amp; Open File" mediaid_reference="SELECT * FROM (VALUES('45377a689b4f4c6eb5947d0556e5dd04'))" enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Signature Control" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, screens will open. It will not close automatically." sylnCrown="=info" />
+            <Control type='photo' meta_type='signature' size="large" enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Combobox Control" sylnCrown="=h2" />
+            <Control type="combobox" size="large" data_type="string,string" reference='SELECT * FROM (VALUES ("apple", "apple"), ("pear", "pear"))' enabled="{SELECT @[//root/enable]}" />
+
+            <Control type="separator" text="Popup panel" sylnCrown="=h2" />
+            <Control type="panel" layout="standard" navigation="popup" text="popup"
+                enabled="{SELECT @[//root/enable]}">
+                <Control type="label" text="In standard popup" />
+                <Control type="panel" layout="table" navigation="popup" text="Table Popup In Popup">
+                    <Control type="label" text="In table popup In popup" />
+                </Control>
+            </Control>
+
+            <Control type="separator" text="Table popup" sylnCrown="=h2" />
+            <Control type="panel" layout="table" navigation="popup" text="popup"
+                enabled="{SELECT @[//root/enable]}">
+                <Control type="label" text="In table popup" />
+            </Control>
+
+            <Control type="separator" text="Annotator" sylnCrown="=h2" />
+            <Control type="label" text="If hidden before clicking, the annotator will open. It will not close automatically. Cancelling the annotation will click a discard button." sylnCrown="=info" />
+            <Control type="annotator" text="Open Annotator" size="large" mediaid="{SELECT * FROM (VALUES('4b786ca356b14732ad79ad332657c3a2'))}"
+                cancelTarget="//root/genpanel/genpanel&lt;0>/discard"
+                enabled="{SELECT @[//root/enable]}" />
+        </Control>
+    </Control>
+</Form>
