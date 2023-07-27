@@ -1,0 +1,50 @@
+<form id="xlsxmaker" 
+      menuName="xlsx maker" 
+      title='xlsx maker' 
+      platforms="web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+
+	  <declarations>
+		<let id='letVer' shape='scalar' value='{1}' />
+		<!-- letVer is not null is only for making dependency, so changing letVer recalucaltes fileGuid on saving -->
+		<let id='letFileGuid' shape='scalar' value='{SELECT toStringN(newGuid()) WHERE letVer is not null}' />
+		<let id='letFileGuidSaved' shape='scalar' value='{SELECT "a" WHERE 1=2}' />
+	  </declarations>
+	  <textbox id="tbFilename" hint='file name (without extension)' />
+	  <textbox id="tbSheet" hint='sheet name' />
+	<table id='t' record='r' recordset='{SELECT "" text, 1 int, 1.1 float, dtlNow() date, true boolean WHERE false}'>
+		<header>
+			<row>
+				<cell><textbox id='tbHeaderText' hint='text column header'/></cell>
+				<cell><textbox id='tbHeaderInt' hint='int column header'/></cell>
+				<cell><textbox id='tbHeaderFloat' hint='float column header'/></cell>
+				<cell><textbox id='tbHeaderDate' hint='date column header'/></cell>
+				<cell><textbox id='tbHeaderBool' hint='bool column header'/></cell>
+			</row>
+		</header>
+		<row>
+			<cell><textbox id='tbText' hint='text data'/></cell>
+			<cell><numberbox id='nbInt' hint='int data' float='false'/></cell>
+			<cell><numberbox id='nbFloat' hint='float data' float="true"/></cell>
+			<cell><datepicker id='dpDate' hint='date data'/></cell>
+			<cell><checkbox id='cbBool' text='bool data'/></cell>
+		</row>
+	</table>
+	<addbutton records='{SELECT "" text, 0 int, 0.0 float, dtlNow() date, false boolean}' table='t' text='add row'/>
+	  
+	<combinedbutton text='save' >
+		<submitbutton closeForm='{false}'/>
+		<actionbutton>
+			<set value='{letVer+1}' target='letVer' />
+			<set value='{letFileGuid}' target='letFileGuidSaved' />
+		</actionbutton>
+	</combinedbutton>
+	<chapter title=''>
+		<declarations>
+			<let id='letMediaId' shape='scalar' value='{loadnewerfromserver:SELECT f.mediaid FROM rtabFiles f WHERE f.guid = letFileGuidSaved}' />
+		</declarations>
+		<if cond='{letFileGuidSaved IS NOT NULL}'>
+			<filedownload text='download' fileref='{letMediaId}'/>
+		</if>
+	</chapter>
+</form>

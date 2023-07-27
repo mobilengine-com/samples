@@ -1,0 +1,11 @@
+<Reftab Name="rtabFiles" Notify='true' Push='true'
+	xmlns="http://schemas.mobilengine.com/reftab/v1">
+	<Columns>
+		<Column Name='guid' Type='Text' PrimaryKey='true' NotNull='true'/>
+		<Column Name="mediaid" Type="Fileref" />
+		<Column Name="filn" Type="Text" />
+		<Column Name="type" Type="Text" />
+		<Column Name="dirid" Type="Text" />
+		<Column Name="size" Type="Integer" />
+	</Columns>
+</Reftab>
