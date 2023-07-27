@@ -1,0 +1,17 @@
+styles {
+    style hbox100pctHeight {
+        hbox {
+            height = 100%
+            sizes = 1
+        }
+    }
+
+    style annot {
+        annotator {
+            control {
+                height = 100%
+                width = 100%
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<form id="previewForm" 
+      menuName="preview" 
+      title='Preview' 
+      platforms="web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	<declarations>
+		<let id='letFilerefPreview' shape='scalar' value='{params.mediaid}' />
+	</declarations>
+	<params><param id='mediaid'/></params>
+	<hbox style='{styles.hbox100pctHeight}'>
+		<annotator fileref='{fileref(letFilerefPreview, 0)}' style='{styles.annot}'
+			showTogglePointsButton="{false}"
+			showExportButton="{false}"
+			allowNew='{false}' allowSelection='{false}'	/>
+	</hbox>
+
+</form>

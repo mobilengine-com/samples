@@ -1,0 +1,40 @@
+<form id="documan" 
+      menuName="document manager" 
+      title='Document Manager' 
+      platforms="web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+		<chapter title = 'Documents'>
+			<table id="rgfile" record="f" recordset='{select fs.mediaid, fs.filn, fs.type, fs.dirid, fs.size from rtabFiles fs}'>
+				<header>
+				  <row>
+					<cell>
+						<textview text="File" />
+					</cell>
+					<cell>
+						<textview text="Type" />
+					</cell>
+					<cell>
+						<textview text="Size in Bytes" />
+					</cell>
+				  </row>
+				</header>
+				<row> 
+					<cell>
+						<filedownload text="{f.filn}" fileref="{f.mediaid}" />
+					</cell>
+					<cell>
+						<textview text="{f.type}" />
+					</cell>
+					<cell>
+						<textview text="{toString(f.size)}" />
+					</cell>
+					<cell><discardbutton text='preview' nextForm='{forms.previewForm}'>
+						<params><param id='mediaid' value='{mediaId(f.mediaid)}' /></params>
+					</discardbutton></cell>
+				</row>
+			</table>
+		</chapter>
+		<multifiledownload text="Download all" zipFileName='{"files.zip"}' files='{select fs.mediaid fileref, fs.filn fileName from rtabFiles fs}' />
+		<fileupload id="filupl" label="Upload to directory" acceptedMimetypes="application/pdf"/>
+
+</form>
