@@ -1,0 +1,31 @@
+server program 'rfsFromReport' for report 'report_started_from_rfs'
+using reftab 'reports';
+{
+	db.reports.Update({guidReport: report.Params.guidReport}, {reportviewid: report.ReportviewId});
+	trace report;
+}
+
+/*
+{
+
+    AttachmentName: "file-attch.aabb.pdf", 
+    DtuArchive: 2021.11.10. 16:19:25 (Dtu), 
+    DtuT0: 2021.11.10. 16:19:23 (Dtu), 
+    Name: "report_started_from_rfs", 
+    Params:
+        {
+            attachment: "attch.aabb", 
+            body: "here goes the body of the mail, not used yet", 
+            email: "abc@me.com", 
+            filterdate: 2021.11.10. 0:00:00 Local (Dtdb), 
+            filterfloat: 0.0, 
+            filterint: 0, 
+            filtertext: "txt: aabb", 
+            guidReport: "fb5a3a89f0178377a10dd026a1144a05", 
+            name: "aabb", 
+            subject: "subj: aabb"
+        }, 
+    ReportviewId: "36059246f571483688d59a8ebbfb67da", 
+    ResultIdList: [204, 203]
+}
+*/

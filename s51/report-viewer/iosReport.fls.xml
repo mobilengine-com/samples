@@ -1,0 +1,31 @@
+﻿<form id="iosReport" 
+      menuName="reports" 
+      title='reports' 
+      platforms="ios" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	<declarations>
+		<let id="guidReport" shape="scalar" value='{""}' access="public" />
+		<let id="letReportviewid" shape="scalar" value='{loadnewerfromserver:SELECT r.reportviewid FROM reports r WHERE r.guidReport=guidReport}' access="public" />
+	</declarations>
+
+	<table id="tReport" record="r" recordset='{SELECT rep.guidReport, rep.reportviewid FROM reports rep}'>
+		<row>
+			<cell><textview text="{r.guidReport}"/></cell>
+			<cell>
+				<if cond="{r.reportviewid IS NOT NULL}">
+					<actionbutton text='preview'><set value='{r.reportviewid}' target='letReportviewid' /></actionbutton>				</if>
+			</cell>
+		</row>
+	  </table>
+
+		<if cond="{letReportviewid IS NOT NULL}">
+			<chapter title='preview'>
+				<annotator reportviewId="{letReportviewid}" text='preview'
+					showTogglePointsButton="{false}"
+					showExportButton="{false}"
+					allowNew='{false}' allowSelection='{false}'
+				/>
+		</chapter>
+	</if>
+
+</form>

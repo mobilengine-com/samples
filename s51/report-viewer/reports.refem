@@ -1,0 +1,7 @@
+<Reftab Name="reports" xmlns="http://schemas.mobilengine.com/reftab/v1" Notify="true" Push="true">
+  <Columns>
+    <Column Name="guidReport" Type="Text" PrimaryKey="true" NotNull="true" />
+    <Column Name="name" Type="Text" />
+    <Column Name="reportviewid" Type="Text" />
+  </Columns>
+</Reftab>

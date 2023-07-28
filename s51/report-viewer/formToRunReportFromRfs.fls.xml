@@ -1,0 +1,48 @@
+﻿<form id="formToRunReportFromRfs" 
+      menuName="formToRunReportFromRfs" 
+      title='formToRunReportFromRfs' 
+      platforms="web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	<declarations>
+		<let id="guidReport" shape="scalar" value='{""}' access="public" />
+		<let id="letReportviewid" shape="scalar" value='{loadnewerfromserver:SELECT r.reportviewid FROM reports r WHERE r.guidReport=guidReport}' access="public" />
+	</declarations>
+	<textbox id='x' label='x'/>
+	<textbox id="name" label="Name" text='{x.text}'/>
+	<textbox id="email" label="Email address" text='abc@me.com'/>
+	<textbox id="subject" label="Subject" text='{"subj: "||x.text}'/>
+	<textbox id="attachment" label="Attachment" text='{"attch."||x.text}'/>
+	<textbox id="filtertext" label="Text setting in report"  text='{"txt: "||x.text}'/>
+	<numberbox id="filterint" label="Int setting in report" numberFormat='{decimalSeparator: "."}' number='{toInt(x.text)}'/>
+	<numberbox id="filterfloat" float="true" label="Float setting in report" numberFormat='{decimalSeparator: "."}' number='{toFloat(x.text)}'/>
+	<datepicker id="filterdate" label="Date setting in report" dateFormat='(dtf yyyy "-" MM "-" dd)' date="{sysp.dtlFormOpen}"/>
+	<combinedbutton text="generate now">
+		<actionbutton><set value="{SELECT toStringN(newGuid()) WHERE guidReport IS NOT NULL}" target="guidReport" /></actionbutton>
+		<submitbutton closeForm="{false}" waitForRfs="{false}"></submitbutton>
+	</combinedbutton>
+	<textview text="{guidReport}"/>
+
+	<table id="tReport" record="r" recordset='{SELECT rep.guidReport, rep.reportviewid FROM reports rep}'>
+		<row>
+			<cell><textview text="{r.guidReport}"/></cell>
+			<cell>
+				<if cond="{r.reportviewid IS NOT NULL}">
+					<reportview reportviewId="{r.reportviewid}" text="view"></reportview>
+				</if>
+			</cell>
+			<cell><actionbutton text='preview'><set value='{r.reportviewid}' target='letReportviewid' /></actionbutton></cell>
+		</row>
+	  </table>
+
+		<if cond="{letReportviewid IS NOT NULL}">
+			<chapter title='preview'>
+				<reportview reportviewId="{letReportviewid}" text="view"></reportview>
+				<annotator reportviewId="{letReportviewid}"
+					showTogglePointsButton="{false}"
+					showExportButton="{false}"
+					allowNew='{false}' allowSelection='{false}'
+				/>
+		</chapter>
+	</if>
+
+</form>

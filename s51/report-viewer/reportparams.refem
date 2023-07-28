@@ -1,0 +1,14 @@
+<Reftab Name="reportparams" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="guidReport" Type="Text" PrimaryKey='true' NotNull='true' />
+    <Column Name="name" Type="Text" />
+    <Column Name="email" Type="Text" />
+	<Column Name="subject" Type="Text" />
+	<Column Name="body" Type="Text" />
+	<Column Name="attachment" Type="Text" />
+	<Column Name="filtertext" Type="Text" />
+	<Column Name="filterint" Type="Integer" />
+	<Column Name="filterfloat" Type="Float" />
+	<Column Name="filterdate" Type="Date" />
+  </Columns>
+</Reftab>
