@@ -1,0 +1,8 @@
+server parallel program 'sleep_parallel' for schedule * * * * *
+first run at 2100-01-01 10:00
+
+{
+	trace "Sleep Start";
+	Sleep(5000);
+	trace "Sleep End";
+}

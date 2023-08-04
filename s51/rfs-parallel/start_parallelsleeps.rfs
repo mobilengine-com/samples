@@ -1,0 +1,10 @@
+server program 'start_parallelsleeps' for schedule * * * * *
+first run at 2100-01-01 10:00
+
+using rfs sleep_parallel;
+
+{
+	// these may run in parallel if Allow parallel RFS runs company setting is true
+	rfs.sleep_parallel.New().Run();
+	rfs.sleep_parallel.New().Run();
+}
