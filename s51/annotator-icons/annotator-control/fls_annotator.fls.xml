@@ -1,0 +1,19 @@
+<form id='fls_annotator' menuName='fls_annotator' title='fls_annotator' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<annotator fileref='{FILEREF("2034ce65680b4245b5621162c709659a", 0)}' style="{styles.annot}" text="Open annotator"
+		categories='{TABLE id, name, abbreviation, color (
+			"cat1", "cat1", "", "BF360C"
+		)}'
+		points='{TABLE id, categoryId, pageIndex, xFraction, yFraction, shape, ptdscr, icon 
+			(	
+				"p10", "cat1", 0, 0.4, 0.4, "square", NULL, icons.closed_x; 
+				"p11", "cat1", 0, 0.5, 0.4, "circle", NULL, icons.closed_x;
+				"p12", "cat1", 0, 0.6, 0.4, "triangle", NULL, icons.closed_x;
+				"p13", "cat1", 0, 0.7, 0.4, "rhombus", NULL, icons.closed_x;
+
+				"p20", "cat1", 0, 0.4, 0.5, "square", NULL, icons.corrected; 
+				"p21", "cat1", 0, 0.5, 0.5, "circle", NULL, icons.corrected;
+				"p22", "cat1", 0, 0.6, 0.5, "triangle", NULL, icons.corrected;
+				"p23", "cat1", 0, 0.7, 0.5, "rhombus", NULL, icons.corrected
+			)
+		}' />
+</form>

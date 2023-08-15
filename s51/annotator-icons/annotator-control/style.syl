@@ -1,0 +1,10 @@
+styles {
+    style annot {
+        all {
+            control {
+                width = 100%
+                height = 500px
+            }
+        }
+    }
+}

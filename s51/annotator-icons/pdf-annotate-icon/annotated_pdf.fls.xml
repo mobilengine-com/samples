@@ -1,0 +1,5 @@
+﻿<form id="annotated_pdf" menuName="annotated_pdf" platforms="ios web" xmlns="http://schemas.mobilengine.com/fls/v2">
+	<textview text="Submit this form to (re)generate the image" />
+	<filedownload fileref='{SELECT t.pdf FROM pdfs t}' text="Download PDF" />
+	<annotator fileref='{SELECT t.pdf FROM pdfs t}' />
+</form>

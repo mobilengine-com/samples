@@ -1,0 +1,29 @@
+<Form name="and_annotator" description="and_annotator" typed="true" autoform="false"
+	sillyNulls='false' inlineReference='true'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".", maxFraction:2}' xmlns:ofm="http://schemas.mobilengine.com/plugins/ofm">
+	<Control type="panel" name="root">
+		<Control
+			type="annotator"
+			name="annot"
+			size="large"
+			text="Open the annotator"
+			openOnSet="true"
+			categories='{SELECT * FROM (VALUES 
+				("cat1", "cat1", "", "BF360C")
+			)}'
+			fileref='{SELECT "2034ce65680b4245b5621162c709659a"}'
+			filename="{SELECT 'test.pdf'}"
+			points='{SELECT * FROM (VALUES
+				("p10", 0, 0.4, 0.4, "cat1", "square", NULL, "closed_x"),
+				("p11", 0, 0.5, 0.4, "cat1", "circle", NULL, "closed_x"),
+				("p12", 0, 0.6, 0.4, "cat1", "triangle", NULL, "closed_x"),
+				("p13", 0, 0.7, 0.4, "cat1", "rhombus", NULL, "closed_x"),
+
+				("p20", 0, 0.4, 0.5, "cat1", "square", NULL, "corrected"),
+				("p21", 0, 0.5, 0.5, "cat1", "circle", NULL, "corrected"),
+				("p22", 0, 0.6, 0.5, "cat1", "triangle", NULL, "corrected"),
+				("p23", 0, 0.7, 0.5, "cat1", "rhombus", NULL, "corrected")
+			)}'
+		/>
+	</Control>
+</Form>

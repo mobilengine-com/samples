@@ -1,0 +1,4 @@
+﻿<form id="annotated_image" menuName="annotated_image" platforms="ios web" xmlns="http://schemas.mobilengine.com/fls/v2">
+	<textview text="Submit this form to (re)generate the image" />
+	<photoview photos='{SELECT MEDIAID(t.image) FROM images t}' />
+</form>
