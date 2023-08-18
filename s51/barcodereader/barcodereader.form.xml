@@ -1,0 +1,16 @@
+<Form name="barcodereader" description="barcodereader" typed="true" autoform="false"
+	sillyNulls='false'
+	inlineReference='true'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	numberformat='{decimalSeparator:".", maxFraction:2}'>
+	<Control type="panel" name="root">
+		<Control
+			name="br"
+			type="barcodereader"
+			size="large"
+			text="Read barcode..."
+			dialogTitle="{SELECT 'Scan ' || 'barcode...'}"
+			dialogCancel="{SELECT 'Cancel ' || 'scanning'}" />
+		<Control type="label" label="Last barcode:" text="{SELECT @[../br]}" />
+	</Control>
+</Form>
