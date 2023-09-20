@@ -1,0 +1,28 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='barcodeReaderNav' menuName='barcodeReaderNav' platforms='ios web'>
+    <chapter title="Annotator">
+        <checkbox id="showAnnot" label="Open annotator when opening popup:" checked="{true}" />
+        <popup title='Panel with openOnSet annotator'>
+            <if cond="{false}">
+                <annotator id="annot" openOnSet="{showAnnot.checked}" />
+            </if>
+            <textview text="The annotator above is hidden, but openOnSet should display it anyway." />
+        </popup>
+    </chapter>
+
+    <chapter title="Barcode reader openOnSet" />
+    <checkbox id="showBcr" label="Open barcodereader when opening popup:" checked="{true}" />
+    <popup title='Panel with openOnSet barcodereader'>
+        <if cond="{false}">
+            <barcodereader id="bcr" openOnSet="{showBcr.checked}" />
+        </if>
+        <textview text="The barcodereader above is hidden, but openOnSet should display it anyway." />
+    </popup>
+
+    <chapter title="Barcode reader cancelTarget" />
+    <checkbox id="showBcrct" label="Open barcodereader with a discardbutton cancelTarget:" checked="{false}" />
+    <if cond="{false}">
+        <barcodereader label='Barcodereader with closeButton cancelTarget' openOnSet="{showBcrct.checked}" cancelTarget='cancelTargetDiscard' />
+    </if>
+    <discardbutton id='cancelTargetDiscard' text='(This is pressed after you press cancel in barcodereader)' />
+</form>
