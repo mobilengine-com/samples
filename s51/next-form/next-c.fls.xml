@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="next_c" menuName="next-c" menuOrder="hidden" platforms="web ios">
+	<textview text="Note that the next-b (or next-choose) form is still selected in the form list." />
+	<textview text="The form selected in the form list is always the last non-hidden form that you visited." />
+	<submitbutton nextForm='{forms.next_a}' text="Submit and go to next-a!" />
+	<discardbutton nextForm='{forms.next_a}' text="Discard and go to next-a!" />
+</form>
+  

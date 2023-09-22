@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="next_b" menuName="next-b" platforms="web ios">
+	<submitbutton nextForm='{forms.next_c}' text="Submit and go to next-c!" />
+	<discardbutton nextForm='{forms.next_c}' text="Discard and go to next-c!" />
+</form>
+  
