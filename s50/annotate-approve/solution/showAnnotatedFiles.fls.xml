@@ -1,0 +1,32 @@
+<form id='showAnnotatedFiles' menuName='showAnnotatedFiles' title='showAnnotatedFiles'
+  platforms='ios web'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+  <declarations>
+    <let id="fr" shape="record" value="{SELECT t.creationDate, t.pdfMediaId FROM annotatedFiles t ORDER BY 1 DESC LIMIT 1}" />
+  </declarations>
+
+  <header>
+    <discardbutton text='Back' />
+  </header>
+
+  <textview text='Newest annotated file is displayed below, scroll down to dowload that and the older ones.' />
+
+  <annotator fileref="{FILEREF(fr.pdfMediaId, 1)}" />
+
+  <table record='r'
+    recordset='{SELECT t.creationDate, t.pdfMediaId FROM annotatedFiles t ORDER BY 1 DESC}'>
+    <header>
+      <row>
+        <cell>
+          <textview text='Annotated PDF' />
+        </cell>
+      </row>
+    </header>
+    <row>
+      <cell>
+        <filedownload fileref='{FILEREF(r.pdfMediaId, 0)}' text='Download PDF' />
+      </cell>
+    </row>
+  </table>
+</form>

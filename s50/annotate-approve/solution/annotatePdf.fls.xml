@@ -1,0 +1,13 @@
+<form id='annotatePdf' menuName='annotatePdf' title='annotatePdf' platforms='ios web'
+  dashboard='true'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+  <header>
+    <discardbutton text='Show annotated files' nextForm='{forms.showAnnotatedFiles}' />
+    <submitbutton text='Annotate' nextForm='{forms.showAnnotatedFiles}' />
+  </header>
+
+  <textbox id="qrcode" label="QR code text: " text="http://example.net" />
+  <textarea id="annotation" label="Annotation text: " text="Approved by:&#13;&#10;Joe Smith&#13;&#10;2022-02-22" lines="10" />
+  <checkbox id="topleft" label="Top Left (checked) or Bottom Right (unchecked)" checked="{true}" />
+</form>
