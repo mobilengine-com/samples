@@ -1,0 +1,8 @@
+<Form name='photo_disable' description="photo_disable" typed='true'
+    dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)'
+    numberformat='{decimalSeparator:"."}' sillyNulls='false' inlineReference='true'>
+    <Control type='panel' name='root'>
+        <Control type="checkbox" name="enable" text="Enable controls" data_type="string" checked="true" />
+        <Control type="photo" text="Take Photo" enabled="{SELECT @[//root/enable]}" />
+    </Control>
+</Form>
