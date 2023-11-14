@@ -1,0 +1,8 @@
+<Form name="myform" description="myform" typed="true"
+	dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)"
+	numberformat="{decimalSeparator:&quot;.&quot;}"
+	inlineReference="true" sillyNulls="false">
+	<Control type="panel" name="root">
+		<Control name="hello" type="label" text="hello!" />
+	</Control>
+</Form>
