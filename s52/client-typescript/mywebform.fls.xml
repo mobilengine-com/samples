@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="mywebform" menuName="mywebform" platforms="web ios">
+	<textview id="hello" text="hello!" />
+</form>
