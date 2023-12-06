@@ -1,0 +1,10 @@
+<Form name='save_state' description="Save Form State" typed='true' autoform="false"
+    dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)'
+    numberformat='{decimalSeparator:"."}' sillyNulls='false' inlineReference='true'>
+    <Control type='panel' name='root'>
+        <Control type="textbox" label="A textbox: " text="" />
+        <Control type="panel" layout="standard" navigation="popup" text="A popup panel">
+            <Control type="photo" label="A photo: " />
+        </Control>
+    </Control>
+</Form>
