@@ -1,0 +1,25 @@
+<Form name='slow_filter' description="Slow Filter" typed='true' autoform="false"
+    dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)'
+    numberformat='{decimalSeparator:"."}' sillyNulls='false' inlineReference='true'>
+    <Control type='panel' name='root'>
+        <Control type="label" size="large" text="Use the Debug menu > Run slower > Recalculate to slow down the filtering." />
+
+        <Control type="textbox" hint="🦌🦌🦌 Filter Reindeer 🦌🦌🦌" name="filter" size="large" text="" />
+
+        <Control type="panel" name="generatedPanel" layout="table" navigation="inline"
+            table_width="1swt" data_type="string"
+            generator="SELECT * FROM (VALUES
+            ('🦌 Blitzen'),
+            ('🦌 Comet'),
+            ('🦌 Cupid'),
+            ('🦌 Dancer'),
+            ('🦌 Dasher'),
+            ('🦌 Donner'),
+            ('🦌 Prancer'),
+            ('🦌 Rudolph'),
+            ('🦌 Vixen')
+        ) WHERE column1 LIKE '%' || @[../filter] || '%'">
+            <Control type="label" label="Name" width="1swt" text="{SELECT @[PARENT.col0]}" />
+        </Control>
+    </Control>
+</Form>

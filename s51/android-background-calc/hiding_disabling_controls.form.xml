@@ -1,4 +1,4 @@
-<Form name='hiding_disabling_conntrols' description="Hiding &amp; Disabling Controls" typed='true' autoform="true"
+<Form name='hiding_disabling_conntrols' description="Hiding &amp; Disabling Controls" typed='true' autoform="false"
     dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)'
     numberformat='{decimalSeparator:"."}' sillyNulls='false' inlineReference='true'
     footer_submit='{SELECT @[//root/show]}' menu_submit='{SELECT @[//root/show]}'
