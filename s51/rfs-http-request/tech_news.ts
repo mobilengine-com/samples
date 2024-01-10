@@ -15,6 +15,23 @@ if ('error' in response) {
 	Log(response.error);
 	throw new Error('The request failed');
 }
+
+// the response is a JSON that should look like this: 
+// {
+//   "Technology": [
+//     {
+//       "link": "https://news.google.com/...",
+//       "og": "https://lh3.googleusercontent...",
+//       "title": "CES 2024: Rabbit r1 AI Assistant Wants to Do Tasks for You"
+//     },
+//     {
+//       "link": "https://news.google.com/...",
+//       "og": "https://lh3.googleusercontent...",
+//       "title": "..."
+//     },
+//     ...
+//   ]
+// }
 const news = JSON.parse(response.text);
 const titles = news.Technology.map(article => article.title);
 Log("Some tech news:");
