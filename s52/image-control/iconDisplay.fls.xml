@@ -1,0 +1,5 @@
+﻿<form id='iconDisplay' menuName="iconDisplay" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <image
+        icon="{icons.camera}"
+        style="{[styles.autoSize]}" />
+</form>

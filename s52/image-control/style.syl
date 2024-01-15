@@ -1,0 +1,87 @@
+styles {
+    style border {
+        image {
+            borderWidth {
+                top = 2px
+                right = 2px
+                bottom = 2px
+                left = 2px
+            }
+            borderColor = 0D47A1
+            control {
+                borderWidth {
+                    top = 1px
+                    right = 1px
+                    bottom = 1px
+                    left = 1px
+                }
+                borderColor = B71C1C
+            }
+        }
+    }
+
+    style fillWidth {
+        image {
+            control {
+                width = fill
+            }
+        }
+    }
+
+    style smallWidth {
+        image {
+            control {
+                width = 200px
+            }
+        }
+    }
+
+    style autoWidth {
+        image {
+            control {
+                width = auto
+            }
+        }
+    }
+
+    style fullWidth {
+        image {
+            control {
+                width = 100%
+            }
+        }
+    }
+
+    style autoHeight {
+        image {
+            control {
+                height = auto
+            }
+        }
+    }
+
+    style fullHeight {
+        image {
+            control {
+                height = 100%
+            }
+        }
+    }
+
+    style largeHeight {
+        image {
+            control {
+                height = 1000px
+            }
+        }
+    }
+
+    style autoSize {
+        image {
+            control {
+                width = auto
+                height = auto
+            }
+        }
+    }
+}

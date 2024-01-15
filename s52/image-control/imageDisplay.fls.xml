@@ -1,0 +1,50 @@
+﻿<form id='imageDisplay' menuName="imageDisplay" platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <dropdown
+        id='iconSel' keyMap='{v}' textMap='{"camera"}' label="Icon:"
+        choices='{TABLE v (icons.camera)}'
+    />
+
+    <dropdown
+        id='filerefSel' keyMap='{fileref(v, 0)}' textMap='{v}' label="Fileref:"
+        choices='{TABLE v ("dc6435438ca7488f810ca2577cd7c3f3"; "8eb0060a85f04044b9c8598915ca4ee8")}'
+    />
+
+    <dropdown
+        id='mediaIdSel' keyMap='{v}' textMap='{v}' label="MediaId:"
+        choices='{TABLE v ("dc6435438ca7488f810ca2577cd7c3f3"; "8eb0060a85f04044b9c8598915ca4ee8")}'
+    />
+
+    <dropdown
+        id='styleSel' keyMap='{v}' textMap='{v}' label="Style:"
+        choices='{TABLE v ("fillWidth"; "autoWidth"; "fullWidth"; "smallWidth"; "fullHeight"; "autoHeight"; "fullHeight"; "largeHeight"; "autoSize")}'
+    />
+
+    <checkbox id="zoom" checked="{true}" label="Allow zoom:" />
+    <checkbox id="download" checked="{true}" label="Allow download:" />
+
+    <image
+        id="theImage"
+        icon="{iconSel.selectedKey}"
+        fileref="{select filerefSel.selectedKey}"
+        mediaId="{select mediaIdSel.selectedKey}"
+        allowZoom="{zoom.checked}"
+        allowDownload="{download.checked}"
+        tooltipZoomIn="ZOOM IN"
+        tooltipZoomOut="ZOOM OUT"
+        tooltipFit="FIT"
+        tooltipActualSize="ACTUAL SIZE"
+        tooltipDownload="DOWNLOAD"
+        style='{[
+        case styleSel.selectedKey
+        when "fillWidth" then styles.fillWidth
+        when "autoWidth" then styles.autoWidth
+        when "fullWidth" then styles.fullWidth
+        when "smallWidth" then styles.smallWidth
+        when "fullHeight" then styles.fullHeight
+        when "autoHeight" then styles.autoHeight
+        when "fullHeight" then styles.fullHeight
+        when "largeHeight" then styles.largeHeight
+        when "autoSize" then styles.autoSize
+        end
+    ]}' />
+</form>
