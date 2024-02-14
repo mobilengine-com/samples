@@ -22,6 +22,12 @@
 	xlsx.SetStyle(sheet, 0, 3, headerStyle);
 	xlsx.SetValue(sheet, 0, 4, form.t.tbHeaderBool.text);
 	xlsx.SetStyle(sheet, 0, 4, headerStyle);
+	xlsx.SetValue(sheet, 0, 5, form.t.tbHeaderBool.text);
+	xlsx.SetStyle(sheet, 0, 5, headerStyle);
+	xlsx.SetValue(sheet, 0, 6, form.t.tbHeaderBool.text);
+	xlsx.SetStyle(sheet, 0, 6, headerStyle);
+	xlsx.SetValue(sheet, 0, 7, form.t.tbHeaderBool.text);
+	xlsx.SetStyle(sheet, 0, 7, headerStyle);
 
 	let iRow=1;
 	for (let row of form.t.rows) {
@@ -31,6 +37,15 @@
 		xlsx.SetValue(sheet, iRow, 3, row.dpDate.date?.DtlToDtdb());
 		xlsx.SetStyle(sheet, iRow, 3, {format: "yyyy-mm-dd"});
 		xlsx.SetValue(sheet, iRow, 4, row.cbBool.checked);	
+		xlsx.SetValue(sheet, iRow, 5, row.dpDate.date);
+		xlsx.SetStyle(sheet, iRow, 5, {format: "yyyy-mm-dd"});
+		xlsx.SetValue(sheet, iRow, 6, dtu.Now());
+		xlsx.SetStyle(sheet, iRow, 6, {format: "yyyy-mm-dd"});
+		xlsx.SetValue(sheet, iRow, 7, timespan.New(0, 0, row.nbInt.number, row.nbFloat.number, 0));
+		xlsx.SetStyle(sheet, iRow, 7, {format: "[hh]:mm:ss.00"});
+		xlsx.SetValue(sheet, iRow, 8, timespan.New(0, 0, row.nbInt.number, row.nbFloat.number, 0));
+		xlsx.SetValue(sheet, iRow, 9, row.nbFloat.number);
+		xlsx.SetStyle(sheet, iRow, 9, {format: "[hh]:mm:ss.00"});
 		iRow = iRow+1;
 	}
 
