@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form id="ReadAllData" 
+      menuName="xlsx reader" 
+      title='xlsx reader' 
+      platforms="web" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+
+      <fileupload acceptedMimetypes='.xlsx' label='upload:' id='filupl'></fileupload>
+</form>

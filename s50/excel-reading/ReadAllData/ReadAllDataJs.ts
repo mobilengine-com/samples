@@ -1,6 +1,7 @@
-//# server typescript program ReadAllDataJs for schedule * * * * * first run at 2100-01-01 00:00
+//# server typescript program ReadAllDataJs for form ReadAllData
 {
-    let file = fileref.New("e31de3b074ad410881434cfb5bcf294c", 0);
+    Log(form);
+    let file = form.filupl.filerefs[0].fileref;
     let workbook = excel.FromFileref(file);
     let worksheets = workbook.SheetNames();
     for (let worksheet of worksheets) {
