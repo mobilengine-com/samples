@@ -1,0 +1,44 @@
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='producersWeb' menuName='Producers' platforms='web'>
+	<table id='tblProducer' record='prd' recordset='{SELECT p.guid, p.name, p.description FROM producer p}'>
+		<header>
+			<row>
+				<cell>
+					<block></block>
+				</cell>
+				<cell>
+					<textview text='Name' />
+				</cell>
+				<cell>
+					<textview text='Description' />
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell>
+				<declarations>
+					<let id='letProducer' shape='record' value='{SELECT prd.guid, prd.name, prd.description}' />
+				</declarations>
+				<if cond='{prd.guid IS NOT NULL}'>
+					<discardbutton text='Products' nextForm='{forms.productsWeb}'>
+						<params>
+							<param id='guidProducerPar' value='{prd.guid}'/>
+						</params>
+					</discardbutton>
+				</if>
+			</cell>
+			<cell>
+				<textview text='{prd.name}' />
+			</cell>
+			<cell>
+				<textview text='{prd.description}' />
+			</cell>
+		</row>
+	</table>
+
+	<chapter title='New producer'>
+		<textbox id='tbName' label='Name' />
+		<textbox id='tbDescr' label='Description' />
+		<addbutton records='{SELECT null guid, tbName.text name, tbDescr.text description}' table='tblProducer' text='Add' />
+	</chapter>
+	<submitbutton text='Save' />
+</form>

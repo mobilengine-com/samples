@@ -1,0 +1,15 @@
+<Reftab Name="product" Push='true' xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name="guid" Type="Text" PrimaryKey="true" NotNull="true"/>
+        <Column Name="name" Type="Text" NotNull="true" />
+        <Column Name="guidProducer" Type="Text" NotNull="true" />
+        <Column Name="itemNumber" Type="Text" />
+        <Column Name="dtlIntroduced" Type="Date" />
+        <Column Name="tsMinSomething" Type="Integer" />
+        <Column Name="urlDatasheet" Type="Text" />
+        <Column Name="urlDoP" Type="Text" />
+        <Column Name="urlBIMObject" Type="Text" />
+        <Column Name="urlOther" Type="Text" />
+        <Column Name="filerefVignette" Type="Fileref" />
+    </Columns>
+</Reftab>
