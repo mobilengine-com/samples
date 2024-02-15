@@ -12,7 +12,7 @@
           name: row.tbName.text, 
           guidProducer: row.ddProducer.selectedKey,
           itemNumber: row.tbItemNumber.text,
-          dtlIntroduced: row.dpDtlIntroduced.date?.DtlToDtdb(),
+          dtlIntroduced: row.dpDtlIntroduced.date === null? null : row.dpDtlIntroduced.date.DtlToDtdb(),
           urlDatasheet: row.tbUrlDatasheet.text,
           urlDoP: row.tbUrlDoP.text,
           urlBIMObject: row.tbUrlBIMObject.text,

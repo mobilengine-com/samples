@@ -2,7 +2,7 @@
 	<declarations>
 		<let id='letProducerPar' shape='record' value='{SELECT p.guid, p.name FROM producer p WHERE p.guid = params.guidProducerPar}' />		
 		<!-- producer, guid, name, itemNumber, dtlIntroduced, urlDatasheet, urlDoP, urlBIMObject, urlOther, c10 -->
-		<let id='rgcol' shape='table' value='{table v, o ("producer", 1;"guid", 2; "name", 3; "itemNumber", 4; "dtlIntroduced", 5; "urlDatasheet", 6; "urlDoP", 7; "urlBIMObject", 8; "urlOther", 9; "tsMinSomething", 10)}'/>
+		<let id='rgcol' shape='table' value='{table v, o ("producer", 1;"guid", 2; "name", 3; "itemNumber", 4; "dtlIntroduced", 5; "urlDatasheet", 6; "urlDoP", 7; "urlBIMObject", 8; "urlOther", 9; "tsDaySomething", 10)}'/>
 	</declarations>
 	<params>
 		<param id='guidProducerPar'/>
@@ -117,7 +117,7 @@
 				<cell>
 					<block>
 						<if cond='{not letFNew}'>
-							<textview text='{formatDtl(toDate(0, 0, 0, 0, prd.tsMinSomething, 0), (dtf HH":"mm":"ss))}' />
+							<textview text='{formatDtl(toDate(1999, 0, 0, 0, prd.tsMinSomething, 0), (dtf HH":"mm":"ss))}' />
 						</if>
 						<if cond='{letFNew}'>
 							<timepicker id='tpTsMinSomething'/>
@@ -126,8 +126,8 @@
 				</cell>
 				<cell>
 					<block>
-						<if cond='{not letFNew and prd.urlDatasheet is not null}'>
-							<linkview url='{prd.urlDatasheet}' text='link' />
+						<if cond='{not letFNew and coalesce(prd.urlDatasheet, "") != ""}'>
+							<linkview url='{prd.urlDatasheet}' text='{prd.urlDatasheet}' />
 						</if>
 						<if cond='{letFNew}'>
 							<textbox id='tbUrlDatasheet'/>
@@ -136,8 +136,8 @@
 				</cell>
 				<cell>
 					<block>
-						<if cond='{not letFNew and prd.urlDoP is not null}'>
-							<linkview url='{prd.urlDoP}' text='link' />
+						<if cond='{not letFNew and coalesce(prd.urlDoP, "") != ""}'>
+							<linkview url='{prd.urlDoP}' text='{prd.urlDoP}' />
 						</if>
 						<if cond='{letFNew}'>
 							<textbox id='tbUrlDoP' />
@@ -146,8 +146,8 @@
 				</cell>
 				<cell>
 					<block>
-						<if cond='{not letFNew and prd.urlBIMObject is not null}'>
-							<linkview url='{prd.urlBIMObject}' text='link' />
+						<if cond='{not letFNew and coalesce(prd.urlBIMObject, "") != ""}'>
+							<linkview url='{prd.urlBIMObject}' text='{prd.urlBIMObject}' />
 						</if>
 						<if cond='{letFNew}'>
 							<textbox id='tbUrlBIMObject' />
@@ -156,8 +156,8 @@
 				</cell>
 				<cell>
 					<block>
-						<if cond='{not letFNew and prd.urlOther is not null}'>
-							<linkview url='{prd.urlOther}' text='link' />
+						<if cond='{not letFNew and coalesce(prd.urlOther, "") != ""}'>
+							<linkview url='{prd.urlOther}' text='{prd.urlOther}' />
 						</if>
 						<if cond='{letFNew}'>
 							<textbox id='tbUrlOther'/>
@@ -201,7 +201,9 @@
 			worksheet='Products'
 			header='{SELECT "producer" c1, "productId" c2, "product name" c3, "item number" c4, "introduced" c5, "datasheet" c6, "DoP link" c7, "BIM object" c8, "other link" c9, "some time" c10}'
 			columnWidths='{SELECT 20 c1, 32 c2, 20 c3, 16 c4, 12 c5}'
-			data='{SELECT r.letProducer.name producer, r.letProduct.guid, r.letProduct.name, r.letProduct.itemNumber, r.letProduct.dtlIntroduced, r.letProduct.urlDatasheet, r.letProduct.urlDoP, r.letProduct.urlBIMObject, r.letProduct.urlOther, r.letProduct.tsMinSomething
+			data='{SELECT r.letProducer.name producer, r.letProduct.guid, r.letProduct.name, r.letProduct.itemNumber, r.letProduct.dtlIntroduced, 
+				r.letProduct.urlDatasheet, r.letProduct.urlDoP, r.letProduct.urlBIMObject, r.letProduct.urlOther, 
+				r.letProduct.tsMinSomething/60.0/24.0 tsDaySomething
 			FROM tblProduct.rows r WHERE r.chbSel.checked}' 
 				columnFormats='{SELECT null c1, null c2, null c3, null c4, "dd-mm-yyyy" c5, null c6, null c7, null c8, null c9, "[hh]:mm:ss" c10}'
 				visibleColumns='{clientorderby:SELECT x.col FROM (
