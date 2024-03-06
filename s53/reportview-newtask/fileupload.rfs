@@ -1,0 +1,48 @@
+﻿client server program fileuploadRfs for form fileuploadForm
+using reftab 'dirs';
+using reftab 'files';
+{
+	trace form;
+/*
+2017-10-10 17:14:47,233 [17] INFO  AuditProvider             | AUDIT[FAIL]: UserID = 3, Target UserID = 0, CompanyID = 100, Target CompanyID = 100, Activity InfoID = 125, activity: 69, client
+ , timestamp: 2017.10.10. 15:14:47, result: False, extended information: Running rfs
+{
+    filupl:
+        {
+            files:
+                [
+                    {
+                        mediaId: "93865544cb994985c05ca145289e040d",
+                        name: "723a5fbebc1629778112f44feb373f34.pdf",
+                        size: 8526,
+                        type: "application/pdf"
+                    },
+                    {
+                        mediaId: "6f2d1a9970225165bc841121edbccf60",
+                        name: "1_GASPAR_ZOLTAN_8407011274_3772075680.pdf",
+                        size: 8526,
+                        type: "application/pdf"
+                    }
+                ],
+            parentControl: <<ref: fileuploadForm>>
+        },
+    info:
+        {
+            dtlSubmit: 2017.10.10. 17:14:45 (Dtl),
+            dtuSubmit: 2017.10.10. 15:14:45 (Dtu),
+            resultId: 125,
+            user: {companyId: 100, id: 3, name: "dev"}
+        },
+    parentControl: <<null>>,
+    submissionTitle: "fileupload",
+    submitButton: <<null>>
+}
+
+
+*/	
+	foreach (var file in form.filupl.files) {
+		db.files.Insert({filn: file.name, mediaid: file.mediaId, dirid: "root", type: file.type});
+	}
+	
+}
+

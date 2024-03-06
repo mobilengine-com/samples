@@ -1,0 +1,73 @@
+﻿client server program documanRfs for form documanForm
+using reftab 'dirs';
+using reftab 'files';
+{
+	trace form;
+/*
+2017-10-16 17:09:59,965 [25] INFO  AuditProvider             | AUDIT[FAIL]: UserID = 2, Target UserID = 0, CompanyID = 100, Target CompanyID = 100, Activity InfoID = 129, activity: 69, client address:
+ , timestamp: 2017.10.16. 15:09:59, result: False, extended information: Running rfs
+{
+    info:
+        {
+            dtlSubmit: 2017.10.16. 17:09:35 (Dtl),
+            dtuSubmit: 2017.10.16. 15:09:35 (Dtu),
+            resultId: 129,
+            user: {companyId: 100, id: 2, name: "gandalf"}
+        },
+    parentControl: <<null>>,
+    rgdir:
+        {
+            parentControl: <<ref: documanForm>>,
+            rows:
+                [
+                    {
+                        filupl:
+                            {
+                                files:
+                                    [
+                                        {
+                                            mediaId:
+                                                "a428ebe2aff4641f3175605508f1afd3",
+                                            name:
+                                                "723a5fbebc1629778112f44feb373f34.pdf",
+                                            size: 8526,
+                                            type: "application/pdf"
+                                        },
+                                        {
+                                            mediaId:
+                                                "ef0de2a188d5679c8e1251596d080a9c",
+                                            name:
+                                                "1_GASPAR_ZOLTAN_8407011274_3772075680.pdf",
+                                            size: 8526,
+                                            type: "application/pdf"
+                                        },
+                                        {
+                                            mediaId:
+                                                "f70d2d4f395e59dd3063d33c4b9a52cb",
+                                            name: "Users to import.xlsx",
+                                            size: 9290,
+                                            type:
+                                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                        }
+                                    ],
+                                parentControl:
+                                    <<ref: documanForm.rgdir.rows[0]>>
+                            },
+                        parentControl: <<ref: documanForm.rgdir>>
+                    }
+                ]
+        },
+    submissionTitle: "document manager",
+    submitButton: <<null>>
+}
+*/	
+	foreach (var dir in form.rgdir.rows) {
+		if (dir.dir.fNew) {
+			db.dirs.Insert({dirid: dir.dir.dirid, dirn: dir.dir.dirn});
+		}
+		foreach (var file in dir.filupl.files) {
+			db.files.Insert({filn: file.name, mediaid: file.mediaId, dirid: dir.dir.dirid, type: file.type, size: file.size});
+		}
+	}
+}
+

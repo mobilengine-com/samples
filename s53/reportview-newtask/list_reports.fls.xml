@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="list_reports" menuName="List Reports" platforms="web ios">
+	<header />
+	<chapter title="Filters" />
+	<textbox id="repname" label="Report name:" />
+	<datepicker id="repdate" label="Report date:" dateFormat='(dtf yyyy"-"MM"-"dd)' />
+	<textbox id="username" label="Submitter username:" />
+	<chapter title="Reports" />
+	<table record="r" recordset='{
+			SELECT rl.Id, rl.ReportviewId, rl.DtlT0, rl.DtlArchive, rl.ReportName, rl.AttachmentName 
+			FROM 
+				RtabLog rl 
+				JOIN RtabResults rr ON rl.Id=rr.ReportLogId
+				JOIN RtabUser ru ON rr.ResultId=ru.ResultId
+			WHERE 
+				INSTR(rl.ReportName, repname.text)>0 AND
+				(repdate.date IS NULL OR rl.DtlArchive BETWEEN STARTOFDAY(repdate.date) AND ADDDAY(STARTOFDAY(repdate.date), 1)) AND
+				INSTR(ru.UserName, username.text)>0
+	 		LIMIT 10}'>
+		<header>
+			<row>
+			<cell><textview text="Id" /></cell>
+			<cell><textview text="ReportviewId" /></cell>
+			<cell><textview text='DtlT0' /></cell>
+			<cell><textview text='DtlArchive' /></cell>
+			<cell><textview text="ReportName" /></cell>
+			<cell><textview text="AttachmentName" /></cell>
+			<cell><textview text="Download" /></cell>
+			</row>
+		</header>
+		<row>
+			<cell><textview text="{TOSTRING(r.Id)}" /></cell>
+			<cell><textview text="{r.ReportviewId}" /></cell>
+			<cell><textview text='{FORMATDTL(r.DtlT0, (dtf yyyy"-"MM"-"dd" "HH":"MM":"ss))}' /></cell>
+			<cell><textview text='{FORMATDTL(r.DtlArchive, (dtf yyyy"-"MM"-"dd" "HH":"MM":"ss))}' /></cell>
+			<cell><textview text="{TOSTRING(r.ReportName)}" /></cell>
+			<cell><textview text="{TOSTRING(r.AttachmentName)}" /></cell>
+			<cell><reportview text="Download" reportviewId="{r.ReportviewId}" /></cell>
+		</row>
+	</table>
+</form>
+
+
+
+
+
+

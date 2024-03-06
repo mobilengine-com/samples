@@ -1,0 +1,24 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>report_daily_pdf</Name>
+	<Format>PDF</Format>
+	<Frequency>Daily</Frequency>
+	<FirstRunAt>2016-10-01T00:00:00</FirstRunAt>
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>true</IncludeTrackData>
+	<UseLongtextForStringInMdb>true</UseLongtextForStringInMdb>
+	<DatabaseFormat>SQLITE</DatabaseFormat>
+	<Email>
+		<Recipients>
+			<To>nobody@mobilengine.com</To>
+		</Recipients>
+		<Attachment>report</Attachment>
+		<Subject>Your daily report</Subject>
+	</Email>
+	<Filter>
+		<Form>generate_report</Form>
+	</Filter>
+	<LogTable>RtabLog</LogTable>
+	<ResultsTable>RtabResults</ResultsTable>
+</ReportDefinition>

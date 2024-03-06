@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="generate_report" menuName="Generate a Report" platforms="web ios">
+	<chapter title="Send this form to generate a report" />
+</form>

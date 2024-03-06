@@ -1,0 +1,14 @@
+<Form name='reportviewsample' 
+	sillyNulls='false' inlineReference='true' typed='true' 
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	numberformat='{decimalSeparator:".", maxFraction:2}'>
+	<Control name='root' type='panel'>
+		<Control type="panel" name="reportsTable" color="neutral" layout="table" navigation="inline" data_type='string,datetime,string'
+			generator="SELECT reportname, dtlarchive, reportviewid FROM Reference_RtabLog">
+			<Control type="label" label="Name" text="{REF:PARENT.col0}"/>
+			<Control type="label" label="Date" text="{REF:PARENT.col1}" data_type='datetime'/>
+			<Control type="reportview" reportviewid="{REF:PARENT.col2}" text="Open here"/>
+			<Control type="reportview" reportviewid="{REF:PARENT.col2}" text="In new window" openNewTask="true"/>
+		</Control>
+	</Control>
+</Form>

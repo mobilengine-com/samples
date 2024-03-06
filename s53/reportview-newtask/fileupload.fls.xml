@@ -1,0 +1,49 @@
+<form id="fileuploadForm" 
+      menuName="fileupload" 
+      title='fileupload' 
+      platforms="web ios" 
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+	<chapter title = "files">
+		<repeater id="rgfile" record="f" recordset='{select fs.mediaid, fs.filn, fs.type, fs.dirid from files fs}'>
+			<filedownload text='{"xxx-"||f.filn}' mediaId="{f.mediaid}" fileName='{"xxx-"||f.filn}' />
+			<filedownload label="wo filename" text="{f.filn}" mediaId="{f.mediaid}" />
+		</repeater>
+	</chapter>
+	<fileupload id="filupl" label="upload v33" acceptedMimetypes="application/pdf, application/word, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+	
+	<!--table id="tblPhotoGuid" label="File data:" record="filedata" recordset='{select p.mediaId, p.name, p.type, p.size from filupl.files p}'>
+	<header>
+	  <row>
+		  <cell>
+			<textview text='mediaId'/>
+		  </cell>          
+		  <cell>
+			<textview text='name'/>
+		  </cell>
+		  <cell>
+			<textview text='type'/>
+		  </cell>		  
+		  <cell>
+			<textview text='size'/>
+		  </cell>
+		</row>
+	</header>
+	<row>
+	  <cell width='17 em'>
+		<textview text='{filedata.mediaId}' />
+	  </cell>
+	  <cell width='17 em'>
+		<textview text='{filedata.name}'   />
+	  </cell>
+	  <cell width='17 em'>
+		<textview text='{filedata.type}' />
+	  </cell>	  
+	  <cell width='17 em'>
+		<textview text='{toString(filedata.size)}' />
+	  </cell>
+	</row>
+	</table>	
+	
+	<fileupload id="filuplSingle" label="singe upload" singleFile="true" acceptedMimetypes="application/pdf, application/word, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document"/-->
+
+</form>
