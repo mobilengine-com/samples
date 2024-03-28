@@ -1,0 +1,10 @@
+﻿<Form name="and_dashboard" typed="true" sillyNulls="false" autoform="true" dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)" numberformat="{decimalSeparator:&quot;,&quot;, maxFraction: 3, groupSize: 3, groupSeparator: &quot; &quot;}">
+    <Control type="panel" name="root">
+        <Control
+            type="closebutton"
+            action="discard_form"
+            next_form_name="and_readbarcode"
+            text="Read barcode..."
+            width="1swt" size="large" />
+    </Control>
+</Form>
