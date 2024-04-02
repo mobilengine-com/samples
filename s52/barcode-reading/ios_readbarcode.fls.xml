@@ -10,7 +10,7 @@
 		<textview label="Read barcode: " text='{params.pBarcode}' />
 	</if>
 
-	<!-- these must be visible to be pressed??? -->
+	<!-- these must be visible to be pressed -->
 	<if cond='{false}'>
 		<discardbutton id='dbtnDashboard' text='Back to dashboard' nextForm='{forms.ios_dashboard}' confirm='{false}' />
 		<submitbutton id='subbtnReopenWithBarcode' text='Reopen with barcode param' nextForm='{forms.ios_readbarcode}' confirm='{false}'>
