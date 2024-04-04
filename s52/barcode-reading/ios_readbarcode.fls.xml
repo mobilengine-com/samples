@@ -6,17 +6,17 @@
 	<if cond='{false}'>
 		<barcodereader id='bcrScanner' openOnSet='{COALESCE(params.pBarcode, "") = ""}' cancelTarget='dbtnDashboard' changeTarget='subbtnReopenWithBarcode' />
 	</if>
-	<if cond='{COALESCE(params.pBarcode, "") != ""}'>
-		<textview label="Read barcode: " text='{params.pBarcode}' />
-	</if>
-
 	<!-- these must be visible to be pressed -->
-	<if cond='{false}'>
+	<if cond='{COALESCE(params.pBarcode, "") = ""}'>
 		<discardbutton id='dbtnDashboard' text='Back to dashboard' nextForm='{forms.ios_dashboard}' confirm='{false}' />
 		<submitbutton id='subbtnReopenWithBarcode' text='Reopen with barcode param' nextForm='{forms.ios_readbarcode}' confirm='{false}'>
 			<params>
 				<param id='pBarcode' value='{bcrScanner.barcode}' />
 			</params>
 		</submitbutton>
+	</if>
+
+	<if cond='{COALESCE(params.pBarcode, "") != ""}'>
+		<textview label="Read barcode: " text='{params.pBarcode}' />
 	</if>
 </form>
