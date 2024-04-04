@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="removeaccents" menuName="removeaccents" platforms="web ios">
+	<textbox id="in" label="Type some text:" text="árvíztűrő" />
+	<textview label="Accents removed:" text="{SELECT REMOVEACCENTS(in.text)}" />
+</form>
