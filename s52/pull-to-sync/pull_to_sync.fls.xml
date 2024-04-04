@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="pull_to_sync" menuName="pull_to_sync" dashboard="true" platforms="ios">
+	<textview text="Pull this form down to sync!" />
+</form>
