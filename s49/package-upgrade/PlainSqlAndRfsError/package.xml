@@ -1,0 +1,26 @@
+<package xmlns="http://schemas.mobilengine.com/package/v1"
+	name="PlainSqlAndRfs"
+	displayName="PlainSqlAndRfs"
+	version="5"
+	mobilengineVersion="49"
+>
+	<upgrade>
+		<version name="5">
+			<sql name="Error">
+				<table name="base" />
+			</sql>
+		</version>
+		<version name="4">
+			<rfs name="upgrade_trace3" />
+		</version>
+		<version name="3">
+			<rfs name="upgrade_trace2" />
+		</version>
+		<version name="2">
+			<sql name="DeleteAndAdd">
+				<table name="base" />
+			</sql>
+			<rfs name="upgrade_trace1" />
+		</version>
+	</upgrade>
+</package>

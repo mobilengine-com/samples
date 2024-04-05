@@ -1,0 +1,4 @@
+server program upgrade_trace1 for schedule * * * 11 *
+{
+	trace"Helo";
+}
