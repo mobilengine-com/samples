@@ -15,12 +15,23 @@
 	textMap='{name}'
 	/>
 <chapter title='{SELECT "Products for "||letProducerPar.name}'>
-		<table id='tblProduct' record='prd' recordset='{SELECT p.guid, p.name, p.guidProducer, p.itemNumber, p.dtlIntroduced, p.urlDatasheet, p.urlDoP, p.urlBIMObject, p.urlOther, p.filerefVignette, p.tsMinSomething FROM product p WHERE ddProducerPar.selectedKey IS NULL or p.guidProducer = ddProducerPar.selectedKey LIMIT 100}'>
+		<table id='tblProduct' record='prd' 
+			recordset='{SELECT p.guid, p.name, p.guidProducer, p.itemNumber, p.dtlIntroduced, p.urlDatasheet, p.urlDoP, 
+								p.urlBIMObject, p.urlOther, p.filerefVignette, p.tsMinSomething 
+				FROM product p 
+				WHERE ddProducerPar.selectedKey IS NULL 
+				or p.guidProducer = ddProducerPar.selectedKey 
+				LIMIT 100}'
+			visibleColumns='{clientorderby:
+				SELECT "chb" col UNION ALL
+				SELECT x.col FROM (
+				SELECT r.col, r.nbOrder.number nbOrder 
+				FROM tableCol.rows r 
+				WHERE r.chbVisible.checked 
+				ORDER BY nbOrder ) x}'
+				>
 			<header>
 				<row>
-					<cell>
-						<block></block>
-					</cell>
 					<cell>
 						<block></block>
 					</cell>
@@ -54,21 +65,16 @@
 				</row>
 			</header>
 			<row>
-				<cell>
-					<declarations>
-						<let id='letProduct' shape='record' value='{SELECT prd.guid, prd.name, prd.guidProducer, prd.itemNumber, prd.dtlIntroduced, prd.tsMinSomething, prd.urlDatasheet, prd.urlDoP, prd.urlBIMObject, prd.urlOther, prd.filerefVignette}' />
-						<let id='letProducer' shape='record' value='{SELECT pr.guid, pr.name FROM producer pr WHERE pr.guid = letProduct.guidProducer}' />
-						<let id='letFNew' shape='scalar' value='{prd.guid IS NULL}' />
-						<let id='letFEdit' shape='scalar' value='{false}'/>
-					</declarations>
-					<if cond='{prd.filerefVignette IS NOT NULL}'>
-						<photoview photos='{MEDIAID(prd.filerefVignette)}'/>
-					</if>
-				</cell>
-				<cell>
+				<declarations>
+					<let id='letProduct' shape='record' value='{SELECT prd.guid, prd.name, prd.guidProducer, prd.itemNumber, prd.dtlIntroduced, prd.tsMinSomething, prd.urlDatasheet, prd.urlDoP, prd.urlBIMObject, prd.urlOther, prd.filerefVignette}' />
+					<let id='letProducer' shape='record' value='{SELECT pr.guid, pr.name FROM producer pr WHERE pr.guid = letProduct.guidProducer}' />
+					<let id='letFNew' shape='scalar' value='{prd.guid IS NULL}' />
+					<let id='letFEdit' shape='scalar' value='{false}'/>
+				</declarations>
+				<cell columnId='chb'>
 					<checkbox id="chbSel" checked='{false}'/>
 				</cell>
-				<cell>
+				<cell columnId='producer'>
 					<block>
 						<if cond='{not letFNew}'>
 							<textview text='{SELECT p.name FROM producer p WHERE p.guid = prd.guidProducer}' />
@@ -84,7 +90,7 @@
 						</if>
 					</block>
 				</cell>
-				<cell>
+				<cell columnId='name'>
 					<block>
 						<if cond='{not letFNew}'>
 							<textview text='{prd.name}' />
@@ -94,7 +100,7 @@
 						</if>
 					</block>
 				</cell>
-				<cell>
+				<cell columnId='itemNumber'>
 					<block>
 						<if cond='{not letFNew}'>
 							<textview text='{prd.itemNumber}' />
@@ -104,7 +110,7 @@
 						</if>
 					</block>
 				</cell>
-				<cell>
+				<cell columnId='dtlIntroduced'>
 					<block>
 						<if cond='{not letFNew}'>
 							<textview text='{formatDtl(prd.dtlIntroduced, (dtf yyyy"-"MM"-"dd" "HH":"mm":"ss))}' />
@@ -114,7 +120,7 @@
 						</if>
 					</block>
 				</cell>
-				<cell>
+				<cell columnId='tsDaySomething'>
 					<block>
 						<if cond='{not letFNew}'>
 							<textview text='{formatDtl(toDate(1999, 0, 0, 0, prd.tsMinSomething, 0), (dtf HH":"mm":"ss))}' />
@@ -124,7 +130,7 @@
 						</if>
 					</block>
 				</cell>
-				<cell>
+				<cell columnId='urlDatasheet'>
 					<block>
 						<if cond='{not letFNew and coalesce(prd.urlDatasheet, "") != ""}'>
 							<linkview url='{prd.urlDatasheet}' text='{prd.urlDatasheet}' />
@@ -134,7 +140,7 @@
 						</if>
 					</block>
 				</cell>
-				<cell>
+				<cell columnId='urlDoP'>
 					<block>
 						<if cond='{not letFNew and coalesce(prd.urlDoP, "") != ""}'>
 							<linkview url='{prd.urlDoP}' text='{prd.urlDoP}' />
@@ -144,7 +150,7 @@
 						</if>
 					</block>
 				</cell>
-				<cell>
+				<cell columnId='urlBIMObject'>
 					<block>
 						<if cond='{not letFNew and coalesce(prd.urlBIMObject, "") != ""}'>
 							<linkview url='{prd.urlBIMObject}' text='{prd.urlBIMObject}' />
@@ -154,7 +160,7 @@
 						</if>
 					</block>
 				</cell>
-				<cell>
+				<cell columnId='urlOther'>
 					<block>
 						<if cond='{not letFNew and coalesce(prd.urlOther, "") != ""}'>
 							<linkview url='{prd.urlOther}' text='{prd.urlOther}' />
@@ -167,8 +173,7 @@
 			</row>
 		</table>
 		<addbutton records='{SELECT null guid, null name, null guidProducer, null itemNumber, null dtlIntroduced, null urlDatasheet, null urlDoP, null urlBIMObject, null urlOther, null filerefVignette, null tsMinSomething}' table='tblProduct' text='Add' />
-		<popup openMode='dialog' title='columns'>
-			<backbutton text='x'/>
+		<chapter title='columns'>
 			<table id='tableCol' recordset='{SELECT rg.v, rg.o FROM rgcol rg}' record='r'> 
 				<header>
 					<row>
@@ -196,7 +201,7 @@
 					</cell>
 			</row>
 			</table>
-		</popup>
+		</chapter>
 		<spreadsheet text="Xlsx from selected products" 
 			worksheet='Products'
 			header='{SELECT "producer" c1, "productId" c2, "product name" c3, "item number" c4, "introduced" c5, "datasheet" c6, "DoP link" c7, "BIM object" c8, "other link" c9, "some time" c10}'
@@ -205,17 +210,13 @@
 				r.letProduct.urlDatasheet, r.letProduct.urlDoP, r.letProduct.urlBIMObject, r.letProduct.urlOther, 
 				r.letProduct.tsMinSomething/60.0/24.0 tsDaySomething
 			FROM tblProduct.rows r WHERE r.chbSel.checked}' 
-				columnFormats='{SELECT null c1, null c2, null c3, null c4, "dd-mm-yyyy" c5, null c6, null c7, null c8, null c9, "[hh]:mm:ss" c10}'
-				visibleColumns='{clientorderby:SELECT x.col FROM (
-					SELECT r.col, r.nbOrder.number nbOrder 
-					FROM tableCol.rows r 
-					WHERE r.chbVisible.checked 
-					ORDER BY nbOrder ) x}'
+			columnFormats='{SELECT null c1, null c2, null c3, null c4, "dd-mm-yyyy" c5, null c6, null c7, null c8, null c9, "[hh]:mm:ss" c10}'
+			visibleColumns='{clientorderby:SELECT x.col FROM (
+				SELECT r.col, r.nbOrder.number nbOrder 
+				FROM tableCol.rows r 
+				WHERE r.chbVisible.checked 
+				ORDER BY nbOrder ) x}'
 			/>
-		<multifiledownload text='Download selected vignettes' 
-			files='{SELECT r.letProduct.filerefVignette fileref, r.letProduct.guid||".png" fileName 
-			FROM tblProduct.rows r WHERE r.chbSel.checked}' />
 	</chapter>
 	<submitbutton id="btnSave" text='Save' nextForm="{forms.productsWeb}" />
-	<submitbutton id="btnGen" text='Generate vignettes' closeForm="{false}" />
 </form>
