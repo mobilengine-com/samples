@@ -1,0 +1,17 @@
+﻿<Form name="android_if" typed="true" autoform="false"
+  dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)"
+  numberformat="{decimalSeparator:&quot;.&quot;}"
+  inlineReference="true"
+  sillyNulls="false">
+  <Control type="panel" name="root">
+    <Control type="checkbox" name="show" size="large" text="Show panel?" checked="true" />
+
+    <Control type="panel" name="ifPanel" navigation="inline"
+      generator="SELECT 'row'"
+      visibleRows="SELECT 'row' WHERE @[../show]">
+      <Control type="label" text="Controls here will keep their data when you hide &amp; restore them." />
+      <Control type="textbox" label="Some text input:" />
+      <Control type="checkbox" label="Some checkbox input:" />
+    </Control>
+  </Control>
+</Form>
