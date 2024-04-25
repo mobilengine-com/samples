@@ -1,0 +1,13 @@
+<form id='filedownload_open' platforms='web' menuName='filedownload_open' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<filedownload text='Download PDF' mediaId='73194bbb940ac694d607ee88f16dff10' />
+	<filedownload text='Download PDF (w/ fileName)' mediaId='73194bbb940ac694d607ee88f16dff10' fileName="my-pdf.pdf" />
+
+	<filedownload text='Show PDF' download='{false}' mediaId='73194bbb940ac694d607ee88f16dff10' />
+	<filedownload text='Show PDF (w/ fileName)' download='{false}' mediaId='73194bbb940ac694d607ee88f16dff10' fileName="my-pdf.pdf" />
+
+	<filedownload text='Download Image' mediaId='0e4505d0927e47bb9cf0431b2af4a684' />
+	<filedownload text='Download Image (w/ fileName)' fileName="my-image.png" mediaId='0e4505d0927e47bb9cf0431b2af4a684' />
+
+	<filedownload text='Show Image' download='{false}' mediaId='0e4505d0927e47bb9cf0431b2af4a684' />
+	<filedownload text='Show Image (w/ fileName)' fileName="my-image.png" download='{false}' mediaId='0e4505d0927e47bb9cf0431b2af4a684' />
+</form>
