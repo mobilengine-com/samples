@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="send_sms" menuName="send_sms" platforms="web ios">
+	<textbox id="number" label="Number:" text="+36301231234" />
+	<textbox id="message" label="Message:" text="Hello!" />
+</form>
