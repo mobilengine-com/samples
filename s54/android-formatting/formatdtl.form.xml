@@ -1,0 +1,29 @@
+<Form name='formatdtl'
+	sillyNulls='false' inlineReference='true' typed='true'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	numberformat='{decimalSeparator:".", maxFraction:2}'>
+	<Control name='root' type='panel'>
+		<Control name="dt" type="textbox" ptype="datetime" size="large" label="Input: " text="{SELECT @dtlNow}" />
+		<Control size="large" type='textbox' readonly='true'
+			label='Output: yyyy'
+			text='{SELECT FORMATDTL(@[../dt], "yyyy")}' />
+		<Control size="large" type='textbox' readonly='true'
+			label='Output: MMM'
+			text='{SELECT FORMATDTL(@[../dt], "MMM")}' />
+		<Control size="large" type='textbox' readonly='true'
+			label='Output: MMMM'
+			text='{SELECT FORMATDTL(@[../dt], "MMMM")}' />
+		<Control size="large" type='textbox' readonly='true'
+			label='Output: ddd'
+			text='{SELECT FORMATDTL(@[../dt], "ddd")}' />
+		<Control size="large" type='textbox' readonly='true'
+			label='Output: dddd'
+			text='{SELECT FORMATDTL(@[../dt], "dddd")}' />
+		<Control size="large" type='textbox' readonly='true'
+			label='Output: o (not supported, always Z)'
+			text='{SELECT FORMATDTL(@[../dt], "o")}' />
+		<Control size="large" type='textbox' readonly='true'
+			label='Output: yyyy ". " MM ". " dd " @ " HH ":" mm'
+			text='{SELECT FORMATDTL(@[../dt], "yyyy "". "" MM "". "" dd "" @ "" HH "":"" mm")}' />
+	</Control>
+</Form>

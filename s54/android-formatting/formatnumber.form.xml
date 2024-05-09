@@ -1,0 +1,13 @@
+<Form name='formatnumber'
+	sillyNulls='false' inlineReference='true' typed='true'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	numberformat='{decimalSeparator:".", maxFraction:2}'>
+	<Control name='root' type='panel'>
+		<Control name="num"  size="large" type="textbox" ptype="float" label="Input" text="12345.67890" />
+		<Control size="large" type='textbox' readonly='true' label='Output: {}' text='{SELECT FORMATNUMBER(@[../num], "{}")}' />
+		<Control size="large" type='textbox' readonly='true' label='Output: {decimalSeparator: ","}' text='{SELECT FORMATNUMBER(@[../num], "{decimalSeparator: "",""}")}' />
+		<Control size="large" type='textbox' readonly='true' label='Output: {groupSeparator: " ", groupSize: 3}' text='{SELECT FORMATNUMBER(@[../num], "{groupSeparator: "" "", groupSize: 3}")}' />
+		<Control size="large" type='textbox' readonly='true' label='Output: {prefix: "$ "}' text='{SELECT FORMATNUMBER(@[../num], "{prefix: ""$ ""}")}' />
+		<Control size="large" type='textbox' readonly='true' label='Output: {postfix: " $"}' text='{SELECT FORMATNUMBER(@[../num], "{postfix: "" $""}")}' />
+	</Control>
+</Form>
