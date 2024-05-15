@@ -1,0 +1,58 @@
+<Form name="a_jump_to_error" description="a_jump_to_error" typed="true" dateformat='(dtf yyyy"."MM"."dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".", maxFraction: 2}' sillyNulls="false" inlineReference="true">
+  <Control type="panel" name="Root">
+    <Control type="separator" text="Validated checkbox" color="lightgray" />
+    <Control type="checkbox" label="Must be checked" name="err">
+      <Validators>
+        <CondValidator cond='{SELECT @[//Root/err]}' changeindicator='both' submitindicator='both' />
+      </Validators>
+    </Control>
+
+    <Control type="separator" text="Validation in popup" color="lightgray" />
+    <Control type="checkbox" label="Must be checked" name="popupErr" />
+    <Control type="panel" text="Error inside" navigation="popup">
+      <Control type="textbox" size='large' enabled='false' text='The checkbox outside must be checked'>
+        <Validators>
+          <CondValidator cond='{SELECT @[//Root/popupErr]}' />
+        </Validators>
+      </Control>
+    </Control>
+
+    <Control type="separator" text="Validation in another popup" color="lightgray" />
+    <Control type="checkbox" label="Must be checked" name="popupErr2" />
+    <Control type="panel" text="Error inside" navigation="popup">
+      <Control type="textbox" size='large' enabled='false' text='The checkbox outside must be checked (for the another popup part)'>
+        <Validators>
+          <CondValidator cond='{SELECT @[//Root/popupErr2]}' changeindicator='both' submitindicator='both' />
+        </Validators>
+      </Control>
+    </Control>
+
+    <Control type="separator" text="Filler to fill the screen" color="lightgray" />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+    <Control type="label" text='just some filler' />
+  </Control>
+</Form>

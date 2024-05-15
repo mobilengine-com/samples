@@ -1,0 +1,117 @@
+<form id='jump_to_error' platforms='web ios' menuName='jump_to_error' title='jump_to_error' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<chapter title="Validated checkbox" />
+	<checkbox label="Must be checked">
+		<validation>
+			<validator cond='{checked}' message='Must be checked' />
+		</validation>
+	</checkbox>
+
+	<chapter title="Validation in popup" />
+	<checkbox label="Must be checked" id="popupErr" />
+	<popup title="Error inside">
+		<textview text='The checkbox outside must be checked'>
+			<validation>
+				<validator cond='{popupErr.checked}' message='Must be checked' />
+			</validation>
+		</textview>
+		<textview text='Another error for the checkbox outside must be checked'>
+			<validation>
+				<validator cond='{popupErr.checked}' message='Must be checked' />
+			</validation>
+		</textview>
+	</popup>
+
+	<chapter title="Validation in dialog" />
+	<checkbox label="Must be checked" id="popupErrDialog" />
+	<popup title="Error inside" openMode="dialog">
+		<textview text='The checkbox outside must be checked'>
+			<validation>
+				<validator cond='{popupErrDialog.checked}' message='Must be checked' />
+			</validation>
+		</textview>
+		<backbutton text="Close" />
+	</popup>
+
+	<chapter title="Validation in bubble" />
+	<checkbox label="Must be checked" id="popupErrBubble" />
+	<popup title="Error inside" openMode="bubble">
+		<textview text='The checkbox outside must be checked'>
+			<validation>
+				<validator cond='{popupErrBubble.checked}' message='Must be checked' />
+			</validation>
+		</textview>
+		<backbutton text="Close" />
+	</popup>
+
+	<chapter title="Filler to fill the screen" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+	<textview text="just some filler" />
+
+	<chapter title="Submit buttons" />
+	<submitbutton text="Submit" />
+	<submitbutton text="Submit (Jump to Error)" jumpToError="true" />
+	<combinedbutton text="Submit (Combined)" validatorGroup="default">
+		<submitbutton />
+	</combinedbutton>
+	<combinedbutton text="Submit (Combined, Jump to Error)" jumpToError="true" validatorGroup="default">
+		<submitbutton />
+	</combinedbutton>
+</form>
