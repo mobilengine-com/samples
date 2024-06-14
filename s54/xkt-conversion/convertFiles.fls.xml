@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="convertFiles" menuName="Convert Files" platforms="web">
+	<header />
+
+	<chapter title="Upload for conversion" />
+	<fileupload id="uploads" acceptedMimetypes="application/octet-stream, .ifc" />
+	<if cond="{SELECT COUNT(*) > 0 FROM uploads.files f}">
+		<submitbutton text="Start conversion" />
+	</if>
+
+	<chapter title="Previous Conversions" />
+	<table record="r" recordset='{SELECT c.input, c.output FROM conversions c}'>
+		<header>
+			<row>
+				<cell>
+					<textview text="Input" />
+				</cell>
+				<cell>
+					<textview text="Output" />
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell>
+				<filedownload text="Download" mediaId="{r.input}" />
+			</cell>
+			<cell>
+				<if cond="{r.output IS NOT NULL}">
+					<filedownload text="Download" mediaId="{r.output}" />
+				</if>
+				<if cond="{r.output IS NULL}">
+					<textview text="In progress..." />
+				</if>
+			</cell>
+		</row>
+	</table>
+</form>

@@ -1,0 +1,6 @@
+<Reftab Name="conversions" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="input" Type="Text" NotNull="true" PrimaryKey="true" />
+    <Column Name="output" Type="Text" />
+  </Columns>
+</Reftab>
