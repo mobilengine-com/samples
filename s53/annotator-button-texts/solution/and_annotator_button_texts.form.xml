@@ -1,0 +1,19 @@
+<Form name='and_annotator_button_texts' description='and_annotator_button_texts' typed='true' numberformat='{decimalSeparator: ".", maxFraction: 2}' dateformat='(dtf yyyy "-" MM "-" dd " "HH":"mm)'>
+	<Control type='panel' name='root'>
+		<Control type='annotator'
+			size="large"
+			allowNew='true'
+			allowNewPoint='true'
+			allowNewShape='true'
+			allowNewDashedShape='true'
+			allowNewCloud='true'
+			labelAddPoint='labelNewPoint'
+			labelAddShape='labelNewShape'
+			labelAddDashedShape='labelNewDashedShape'
+			labelAddCloudShape='labelNewCloudShape'
+			labelAcceptAdd='labelAcceptAdd'
+			labelCancelAdd='labelCancelAdd'
+			fileref='73194bbb940ac694d607ee88f16dff10'
+			text="Open annotator..." />
+	</Control>
+</Form>
