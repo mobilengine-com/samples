@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="sub-elements" name="sub-elements" startLine="2">
+    <Xel rfsname="Foo" startLine="3" unordered="true">
+        <Xel optional="true" rfsname="Bar" startLine="4">
+            <TypeDef startLine="4" trim="false" type="string"/>
+        </Xel>
+        <Xel optional="true" rfsname="Baz" startLine="5">
+            <TypeDef startLine="5" type="int"/>
+        </Xel>
+    </Xel>
+    <Source>//example-7&#13;
+schema 'sub-elements' meta 'sub-elements'&#13;
+Foo: unordered element {&#13;
+  Bar: optional element of type string with whitespace;&#13;
+  Baz: optional element of type int;&#13;
+}</Source>
+</Dacsem>

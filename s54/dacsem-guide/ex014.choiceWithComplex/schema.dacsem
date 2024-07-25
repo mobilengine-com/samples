@@ -1,0 +1,12 @@
+//example-14
+schema 'dacsem' meta 'dacsem'
+Foo: element {
+  BarBaz: list of choice {
+    Bar: element {
+      Qux: attribute of type int;
+    }
+    Baz: element {
+      Quux: attribute of type string;
+    }
+  }
+}

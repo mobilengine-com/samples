@@ -1,0 +1,3 @@
+//example-4
+schema 'meta42' meta 'meta42'
+Foo: element of type int;

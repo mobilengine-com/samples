@@ -1,0 +1,16 @@
+//example-2
+schema 'dacsem' meta 'dacsem'
+Foo : element {
+   a : attribute of type int;
+   b : attribute of type float;
+   c : attribute of type dtl(dtf MM "/" dd "/" yyyy " " HH ":" mm ":" ss "." S o);
+   d : attribute of type dtu(dtf MM "/" dd "/" yyyy " " HH ":" mm ":" ss "." S o);
+   e : attribute of type string;
+   
+   f : element of type int;
+   g : element of type float;
+   h : element of type dtl(dtf MM "/" dd "/" yyyy " " HH ":" mm ":" ss "." S o);
+   i : element of type dtu(dtf MM "/" dd "/" yyyy " " HH ":" mm ":" ss "." S o);
+   j : element of type string with whitespace;
+   k : element of type string without whitespace;
+}

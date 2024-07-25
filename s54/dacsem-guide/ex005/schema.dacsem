@@ -1,0 +1,5 @@
+//example-5
+schema 'dacsem' meta 'dacsem'
+Foo: element {
+  Bar: optional attribute of type string;
+}

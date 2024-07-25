@@ -1,0 +1,10 @@
+//example-12
+schema 'dacsem' meta 'dacsem'
+Foo: element {
+  Bars: list of seq {
+    Baz: element of type int;
+    Qux: element {
+      Quux: attribute of type string;
+    } 
+  }
+}

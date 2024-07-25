@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="list-of-complex" name="list-of-complex" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <List rfsname="Bars" startLine="4">
+            <Xel startLine="4" xmlname="Bar">
+                <Xat rfsname="Baz" startLine="5">
+                    <TypeDef startLine="5" type="string"/>
+                </Xat>
+            </Xel>
+        </List>
+    </Xel>
+    <Source>//example-11&#13;
+schema 'list-of-complex' meta 'list-of-complex'&#13;
+Foo: element {&#13;
+  Bars: list of element Bar {&#13;
+    Baz: attribute of type string;&#13;
+  }&#13;
+}</Source>
+</Dacsem>

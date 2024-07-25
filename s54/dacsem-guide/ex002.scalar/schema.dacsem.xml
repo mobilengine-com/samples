@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="scalars" name="scalars" startLine="1">
+    <Xel rfsname="Foo" startLine="2">
+        <Xat rfsname="a" startLine="3">
+            <TypeDef startLine="3" type="int"/>
+        </Xat>
+        <Xat rfsname="b" startLine="4">
+            <TypeDef startLine="4" type="float"/>
+        </Xat>
+        <Xat rfsname="c" startLine="5">
+            <TypeDef startLine="5" type="dtl">
+                <Value startLine="5">MM</Value>
+                <Value startLine="5">"/"</Value>
+                <Value startLine="5">dd</Value>
+                <Value startLine="5">"/"</Value>
+                <Value startLine="5">yyyy</Value>
+                <Value startLine="5">" "</Value>
+                <Value startLine="5">HH</Value>
+                <Value startLine="5">":"</Value>
+                <Value startLine="5">mm</Value>
+                <Value startLine="5">":"</Value>
+                <Value startLine="5">ss</Value>
+                <Value startLine="5">"."</Value>
+                <Value startLine="5">S</Value>
+                <Value startLine="5">o</Value>
+            </TypeDef>
+        </Xat>
+        <Xat rfsname="d" startLine="6">
+            <TypeDef startLine="6" type="dtu">
+                <Value startLine="6">MM</Value>
+                <Value startLine="6">"/"</Value>
+                <Value startLine="6">dd</Value>
+                <Value startLine="6">"/"</Value>
+                <Value startLine="6">yyyy</Value>
+                <Value startLine="6">" "</Value>
+                <Value startLine="6">HH</Value>
+                <Value startLine="6">":"</Value>
+                <Value startLine="6">mm</Value>
+                <Value startLine="6">":"</Value>
+                <Value startLine="6">ss</Value>
+                <Value startLine="6">"."</Value>
+                <Value startLine="6">S</Value>
+                <Value startLine="6">o</Value>
+            </TypeDef>
+        </Xat>
+        <Xat rfsname="e" startLine="7">
+            <TypeDef startLine="7" type="string"/>
+        </Xat>
+        <Xel rfsname="f" startLine="9">
+            <TypeDef startLine="9" type="int"/>
+        </Xel>
+        <Xel rfsname="g" startLine="10">
+            <TypeDef startLine="10" type="float"/>
+        </Xel>
+        <Xel rfsname="h" startLine="11">
+            <TypeDef startLine="11" type="dtl">
+                <Value startLine="11">MM</Value>
+                <Value startLine="11">"/"</Value>
+                <Value startLine="11">dd</Value>
+                <Value startLine="11">"/"</Value>
+                <Value startLine="11">yyyy</Value>
+                <Value startLine="11">" "</Value>
+                <Value startLine="11">HH</Value>
+                <Value startLine="11">":"</Value>
+                <Value startLine="11">mm</Value>
+                <Value startLine="11">":"</Value>
+                <Value startLine="11">ss</Value>
+                <Value startLine="11">"."</Value>
+                <Value startLine="11">S</Value>
+                <Value startLine="11">o</Value>
+            </TypeDef>
+        </Xel>
+        <Xel rfsname="i" startLine="12">
+            <TypeDef startLine="12" type="dtu">
+                <Value startLine="12">MM</Value>
+                <Value startLine="12">"/"</Value>
+                <Value startLine="12">dd</Value>
+                <Value startLine="12">"/"</Value>
+                <Value startLine="12">yyyy</Value>
+                <Value startLine="12">" "</Value>
+                <Value startLine="12">HH</Value>
+                <Value startLine="12">":"</Value>
+                <Value startLine="12">mm</Value>
+                <Value startLine="12">":"</Value>
+                <Value startLine="12">ss</Value>
+                <Value startLine="12">"."</Value>
+                <Value startLine="12">S</Value>
+                <Value startLine="12">o</Value>
+            </TypeDef>
+        </Xel>
+        <Xel rfsname="j" startLine="13">
+            <TypeDef startLine="13" trim="false" type="string"/>
+        </Xel>
+        <Xel rfsname="k" startLine="14">
+            <TypeDef startLine="14" trim="true" type="string"/>
+        </Xel>
+    </Xel>
+    <Source>schema scalars meta scalars&#13;
+Foo: element {&#13;
+	a:attribute of type int;&#13;
+	b:attribute of type float;&#13;
+	c:attribute of type dtl(dtf MM "/" dd "/" yyyy " " HH ":" mm ":" ss "." S o);&#13;
+    d:attribute of type dtu(dtf MM "/" dd "/" yyyy " " HH ":" mm ":" ss "." S o);&#13;
+    e:attribute of type string;&#13;
+    &#13;
+    f:element of type int;&#13;
+	g:element of type float;&#13;
+	h:element of type dtl(dtf MM "/" dd "/" yyyy " " HH ":" mm ":" ss "." S o);&#13;
+    i:element of type dtu(dtf MM "/" dd "/" yyyy " " HH ":" mm ":" ss "." S o);&#13;
+    j:element of type string with whitespace;&#13;
+    k:element of type string without whitespace;&#13;
+}</Source>
+</Dacsem>

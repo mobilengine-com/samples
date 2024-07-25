@@ -1,0 +1,12 @@
+//# server typescript program builder
+//# using dacs dacsem;
+{
+    var msg = messages.dacsem.New();
+	var f0 = msg.Foo.Bars.AddNew();
+	f0.Baz = 42;
+	f0.Qux.Quux = "something";
+	var f1 = msg.Foo.Bars.AddNew();
+	f1.Baz = 43;
+	f1.Qux.Quux = "some other thing";
+    msg.Send();
+}

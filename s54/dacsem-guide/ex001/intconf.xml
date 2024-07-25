@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<integration xmlns="http://schemas.mobilengine.com/integration/v1">
+    <iep name='out' direction='out'>
+        <dacsem name='Foo'/>
+    </iep>
+</integration>

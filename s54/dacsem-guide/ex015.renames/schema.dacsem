@@ -1,0 +1,8 @@
+//example-15
+schema renames meta renames
+Foo: element QQQ {
+	 Bar: attribute YYY of type string;
+	 Baz: element ZZZ of type int;
+	 Qux: list of element YYY of type int;
+	 Buz: wrapped list WWW of element XXX of type int; 
+}

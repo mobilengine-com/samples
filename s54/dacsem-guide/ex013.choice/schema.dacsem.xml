@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Dacsem meta="choice-example" name="choice-example" startLine="2">
+    <Xel rfsname="Foo" startLine="3">
+        <List complex="choice" rfsname="BarBaz" startLine="4">
+            <Xel rfsname="Bar" startLine="5">
+                <TypeDef startLine="5" type="int"/>
+            </Xel>
+            <Xel rfsname="Baz" startLine="6">
+                <TypeDef startLine="6" trim="true" type="string"/>
+            </Xel>
+        </List>
+    </Xel>
+    <Source>//example-13&#13;
+schema 'choice-example' meta 'choice-example'&#13;
+Foo: element {&#13;
+  BarBaz: list of choice {&#13;
+    Bar: element of type int;&#13;
+    Baz: element of type string without whitespace;&#13;
+  }&#13;
+}</Source>
+</Dacsem>
