@@ -1,0 +1,17 @@
+<form id='bim_viewer' platforms='web ios' menuName='View Models' xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<declarations>
+		<let id="models" shape="table" value='{select c.output mediaId, c.outputFilename name from conversions c where c.output is not null}' />
+	</declarations>
+	<chapter title="Select models to load..." />
+	<repeater id="modRep" record="rec" recordset="{SELECT m.mediaId mediaId, m.name FROM models m}">
+		<block>
+			<declarations>
+				<let id="mediaId" shape="scalar" value='{rec.mediaId}' />
+			</declarations>
+			<checkbox id="show" label="{rec.name}" checked="{false}" />
+		</block>
+	</repeater>
+	<chapter title="BIM Viewer" />
+	<bimViewer models="{SELECT fileref(r.mediaId, 0) fileref, r.show.label name FROM modRep.rows r WHERE r.show.checked}" 
+		text="Show Models..." title="BIM models" style="{styles.bimViewer}" />
+</form>

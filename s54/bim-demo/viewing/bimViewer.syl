@@ -1,0 +1,10 @@
+styles {
+    style bimViewer {
+        bimViewer {
+            control {
+                width = fill
+                height = 600px
+            }
+        }
+    }
+}

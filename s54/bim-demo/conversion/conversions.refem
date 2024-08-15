@@ -1,0 +1,12 @@
+<Reftab Name="conversions" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name='start' Type='Date' NotNull='true' />
+    <Column Name="end" Type="Date" />
+
+    <Column Name="input" Type="Text" NotNull="true" PrimaryKey="true" />
+    <Column Name="inputFilename" Type="Text" />
+    
+    <Column Name="output" Type="Text" />
+    <Column Name="outputFilename" Type="Text" />
+  </Columns>
+</Reftab>

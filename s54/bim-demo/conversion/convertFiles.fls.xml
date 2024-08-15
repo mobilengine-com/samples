@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="convertFiles" menuName="Upload &amp; Convert Files" platforms="web">
+	<header />
+
+	<chapter title="Uploads" />
+	<fileupload id="uploads" text="Upload IFC files, for conversion" acceptedMimetypes=".ifc, .glb, .ifc, .laz, .las, .pcd, .ply, .stl, .cityjson" />
+	<fileupload id="rawUploads" text="Upload XKT files (already converted)" acceptedMimetypes=".xkt" />
+
+	<if cond="{anyUpload1 OR anyUpload2}">
+		<declarations>
+			<let id='anyUpload1' shape='scalar' value='{SELECT COUNT(*) > 0 FROM uploads.files f}' />
+			<let id='anyUpload2' shape='scalar' value='{SELECT COUNT(*) > 0 FROM rawUploads.files f}' />
+		</declarations>
+		<submitbutton text="Start processing" nextForm='{forms.previousConversions}' />
+	</if>
+</form>

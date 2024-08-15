@@ -1,0 +1,10 @@
+<Form name='and_bim_viewer' description='View Models' typed="true" sillyNulls="false" inlineReference="true" ksubmit="never" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'>
+	<Control name='root' type='panel'>
+		<Control type='separator' text='Select models to load...' color='blue' />
+		<Control name='filter' type='panel' generator='select output, outputFileName from Reference_conversions where output is not null' navigation='inline'>
+			<Control name="mediaId" visible='false' type="label" label='MediaId:' text='{select @[PARENT.col0]}' />
+			<Control name="filename" visible='true' type="label" label='Filename:' text='{select @[PARENT.col1]}' />
+			<Control type="bimviewer" text="Show Model..." size="large" models='{select @[../mediaId], @[../filename]}' />
+		</Control>
+	</Control>
+</Form>
