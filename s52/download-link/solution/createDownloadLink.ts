@@ -1,14 +1,17 @@
 //# server typescript program 'createDownloadLink' for report 'report_eachtime_pdf'
 
-const reportDownload = new DownloadItem();
-reportDownload.fileref = report.ReportviewId;
+const reportDownload = {
+    fileref: report.ReportviewId,
+}
 
-const otherFile = new DownloadItem();
-otherFile.fileref = '2034ce65680b4245b5621162c709659a';
+const otherFile = {
+    fileref: '2034ce65680b4245b5621162c709659a'
+}
 
-const namedFile = new DownloadItem();
-namedFile.fileref = fileref.New('73194bbb940ac694d607ee88f16dff10', 1);
-namedFile.name = "very_important_report.pdf";
+const namedFile = {
+    fileref: fileref.New('73194bbb940ac694d607ee88f16dff10', 1),
+    name: "very_important_report.pdf"
+}
 
 const reportLink = CreateDownloadLink([reportDownload], 'forever', 'unlimited');
 Log(['Report link: ', reportLink]);
