@@ -1,0 +1,22 @@
+<form id="matching"
+      menuName="Blueprint-model matching"
+      title="Blueprint-model matching"
+      platforms="web"
+      xmlns="http://schemas.mobilengine.com/fls/v2">
+
+    <header/>
+
+    <dropdown id='blueprintDropdown' keyMap='{key}' textMap='{text}' selectedKey='{null}' label='Select blueprint:'
+              choices='{select c.output key, c.outputFilename text from conversions c where lower(c.outputFilename) like "%.png"}'/>
+
+    <dropdown id='modelDropdown' keyMap='{key}' textMap='{text}' selectedKey='{null}' label='Select model:'
+              choices='{select c.output key, c.outputFilename text from conversions c where lower(c.outputFilename) like "%.xkt"}'/>
+
+    <submitbutton id="saveMatching" text="Save Matching" nextForm="{forms.matching}"/>
+
+    <bimMatcher
+            id='matcher'
+            model='{fileref(modelDropdown.selectedKey, 0)}'
+            blueprint='{fileref(blueprintDropdown
+           .selectedKey, 0)}'/>
+</form>

@@ -1,0 +1,8 @@
+<Reftab Name="matchings" xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name='id' Type='Text' NotNull='true' PrimaryKey='true'/>
+        <Column Name='blueprintId' Type='Text' NotNull='true'/>
+        <Column Name="modelId" Type="Text" NotNull='true'/>
+        <Column Name="matchData" Type="Text" NotNull='true'/>
+    </Columns>
+</Reftab>
