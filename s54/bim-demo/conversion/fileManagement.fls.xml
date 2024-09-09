@@ -50,5 +50,5 @@
         </row>
     </table>
 
-    <submitbutton id="removeSelected" text='Remove selected conversions' nextForm='{forms.fileManagement}'/>
+    <submitbutton id="removeSelected" text='Remove selected uploads' nextForm='{forms.fileManagement}'/>
 </form>
