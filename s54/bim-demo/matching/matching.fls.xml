@@ -17,6 +17,33 @@
     <bimMatcher
             id='matcher'
             model='{fileref(modelDropdown.selectedKey, 0)}'
-            blueprint='{fileref(blueprintDropdown
-           .selectedKey, 0)}'/>
+            blueprint='{fileref(blueprintDropdown.selectedKey, 0)}'/>
+
+    <chapter title="Previous matchings"/>
+    <table id='matchTable' record="r"
+           recordset='{select m.id, m.displayName from matchings m order by 1 desc}'>
+        <header>
+            <row>
+                <cell>
+                    <textview text="Name"/>
+                </cell>
+                <cell>
+                    <textview text="Remove?"/>
+                </cell>
+            </row>
+        </header>
+        <row>
+            <declarations>
+                <let id='id' shape='scalar' value='{r.id}'/>
+            </declarations>
+            <cell>
+                <textview text="{r.displayName}"/>
+            </cell>
+            <cell>
+                <checkbox id="remove"/>
+            </cell>
+        </row>
+    </table>
+
+    <submitbutton id="removeSelected" text='Remove selected matchings' nextForm='{forms.matching}'/>
 </form>

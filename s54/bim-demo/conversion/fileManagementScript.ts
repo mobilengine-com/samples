@@ -21,10 +21,10 @@ if (form.submitButton === form.processUploads) {
             const doc = pdf.FromFileref(fileref.New(file.mediaId, 0));
             const pageSize = doc.PageSizes()[0];
             const maxDim = Math.max(pageSize.ptWidth, pageSize.ptHeight);
-            const scale = Math.floor(16000 / maxDim); 
+            const scale = Math.floor(16000 / maxDim);
             const image = doc.Render(0, scale);
             const outputMediaId = image.Store('png');
-            const outputFileName = name.substring(0, name.length - 4)  + '_page0.png';
+            const outputFileName = name.substring(0, name.length - 4) + '_page0.png';
             db.conversions.Insert({
                 start: now,
                 end: now,
@@ -44,6 +44,7 @@ if (form.submitButton === form.removeSelected) {
     for (const row of form.convTable.rows) {
         if (row.remove.checked) {
             db.conversions.Delete({input: row.input});
+            db.matchings.DeleteMany({blueprintId: row.input});
         }
     }
 }
