@@ -17,7 +17,10 @@
     <bimMatcher
             id='matcher'
             model='{fileref(modelDropdown.selectedKey, 0)}'
-            blueprint='{fileref(blueprintDropdown.selectedKey, 0)}'/>
+            blueprintId='{fileref(blueprintDropdown.selectedKey, 0)}'
+            blueprintName='{REPLACE(blueprintDropdown.selectedText, ".png", "")}'/>
+    
+    <textview label="Match data:" text="{matcher.matchData}" />
 
     <chapter title="Previous matchings"/>
     <table id='matchTable' record="r"
