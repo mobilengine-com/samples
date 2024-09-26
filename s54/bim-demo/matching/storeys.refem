@@ -1,0 +1,9 @@
+<Reftab Name="storeys" xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name='id' Type='Text' NotNull='true' PrimaryKey='true'/>
+        <Column Name='displayName' Type='Text' NotNull='true'/>
+        <Column Name='modelId' Type='Text' NotNull='true'/>
+        <Column Name="storeyId" Type="Text" NotNull='true'/>
+        <Column Name="modelOrder" Type="Integer" NotNull='true'/>
+    </Columns>
+</Reftab>

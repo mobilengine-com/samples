@@ -4,6 +4,7 @@
         <Column Name='displayName' Type='Text' NotNull='true'/>
         <Column Name='blueprintId' Type='Text' NotNull='true'/>
         <Column Name="modelId" Type="Text" NotNull='true'/>
-        <Column Name="matchData" Type="Text" NotNull='true'/>
+        <Column Name="storeyId" Type="Text" NotNull='true'/>
+        <Column Name="matching" Type="Text" NotNull='true'/>
     </Columns>
 </Reftab>

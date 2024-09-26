@@ -1,6 +1,8 @@
 //# server typescript program fileManagementScript for form fileManagement
 
 //# using reftab conversions;
+//# using reftab matchings;
+//# using reftab storeys;
 
 if (form.submitButton === form.processUploads) {
     const now = dtl.Now().DtlToDtdb();
@@ -45,6 +47,7 @@ if (form.submitButton === form.removeSelected) {
         if (row.remove.checked) {
             db.conversions.Delete({input: row.input});
             db.matchings.DeleteMany({blueprintId: row.input});
+            db.storeys.DeleteMany({modelId: row.input});
         }
     }
 }

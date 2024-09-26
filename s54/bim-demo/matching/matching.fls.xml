@@ -12,23 +12,35 @@
     <dropdown id='modelDropdown' keyMap='{key}' textMap='{text}' selectedKey='{null}' label='Select model:'
               choices='{select c.output key, c.outputFilename text from conversions c where lower(c.outputFilename) like "%.xkt"}'/>
 
+    <dropdown id='storeyDropdown' keyMap='{storeyId}' textMap='{displayName}' selectedKey='{null}'
+              label='Select storey:'
+              choices='{select s.modelOrder, s.displayName, s.storeyId from storeys s where s.modelId = modelDropdown.selectedKey order by 1}'/>
+
     <submitbutton id="saveMatching" text="Save Matching" nextForm="{forms.matching}"/>
 
     <bimMatcher
             id='matcher'
             model='{fileref(modelDropdown.selectedKey, 0)}'
+            storeyId='{storeyDropdown.selectedKey}'
             blueprintId='{fileref(blueprintDropdown.selectedKey, 0)}'
-            blueprintName='{REPLACE(blueprintDropdown.selectedText, ".png", "")}'/>
-    
-    <textview label="Match data:" text="{matcher.matchData}" />
+            blueprintName='{REPLACE(blueprintDropdown.selectedText, ".png", "")}'>
+        <validation>
+            <validator cond="{matcher.matching IS NOT NULL}" message="The matching isn't complete"/>
+        </validation>
+    </bimMatcher>
+
+    <textview label="Matching: " text="{matcher.matching}"/>
 
     <chapter title="Previous matchings"/>
     <table id='matchTable' record="r"
-           recordset='{select m.id, m.displayName from matchings m order by 1 desc}'>
+           recordset='{select m.id, m.displayName, m.matching from matchings m order by 1 desc}'>
         <header>
             <row>
                 <cell>
                     <textview text="Name"/>
+                </cell>
+                <cell>
+                    <textview text="Show"/>
                 </cell>
                 <cell>
                     <textview text="Remove?"/>
@@ -41,6 +53,11 @@
             </declarations>
             <cell>
                 <textview text="{r.displayName}"/>
+            </cell>
+            <cell>
+                <actionbutton text="Show">
+                    <set value="{r.matching}" target="matcher.matching"/>
+                </actionbutton>
             </cell>
             <cell>
                 <checkbox id="remove"/>

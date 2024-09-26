@@ -17,7 +17,7 @@ interface Matching {
 }
 
 if (form.submitButton === form.saveMatching) {
-    const matching = JSON.parse(form.matcher.matchData) as Matching;
+    const matching = JSON.parse(form.matcher.matching) as Matching;
     const ts = new Date().toISOString();
     const id = `${ts}-${matching.blueprintId}-${matching.modelId}-${matching.storeyId}`;
     const displayName =
@@ -35,7 +35,8 @@ if (form.submitButton === form.saveMatching) {
         displayName: displayName,
         modelId: form.modelDropdown.selectedKey,
         blueprintId: form.blueprintDropdown.selectedKey,
-        matchData: form.matcher.matchData
+        storeyId: form.storeyDropdown.selectedKey,
+        matching: form.matcher.matching
     });
 }
 
