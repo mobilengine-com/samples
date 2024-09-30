@@ -16,18 +16,18 @@
               label='Select storey:'
               choices='{select s.modelOrder, s.displayName, s.storeyId from storeys s where s.modelId = modelDropdown.selectedKey order by 1}'/>
 
-    <submitbutton id="saveMatching" text="Save Matching" nextForm="{forms.matching}"/>
+    <submitbutton id="saveMatching" text="Save Matching" nextForm="{forms.matching}">
+        <validation>
+            <validator cond="{matcher.matching IS NOT NULL}" message="The matching isn't complete"/>
+        </validation>
+    </submitbutton>
 
     <bimMatcher
             id='matcher'
             model='{fileref(modelDropdown.selectedKey, 0)}'
             storeyId='{storeyDropdown.selectedKey}'
             blueprintId='{fileref(blueprintDropdown.selectedKey, 0)}'
-            blueprintName='{REPLACE(blueprintDropdown.selectedText, ".png", "")}'>
-        <validation>
-            <validator cond="{matcher.matching IS NOT NULL}" message="The matching isn't complete"/>
-        </validation>
-    </bimMatcher>
+            blueprintName='{REPLACE(blueprintDropdown.selectedText, ".png", "")}'/>
 
     <textview label="Matching: " text="{matcher.matching}"/>
 
