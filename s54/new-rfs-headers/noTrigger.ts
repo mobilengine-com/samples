@@ -1,4 +1,4 @@
-//# client typescript program noTrigger
+//# server typescript program noTrigger
 
 //# using rfs noHeader;
 
