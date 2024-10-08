@@ -16,11 +16,7 @@
               label='Select storey:'
               choices='{select s.modelOrder, s.displayName, s.storeyId from storeys s where s.modelId = modelDropdown.selectedKey order by 1}'/>
 
-    <submitbutton id="saveMatching" text="Save Matching" nextForm="{forms.matching}">
-        <validation>
-            <validator cond="{matcher.matching IS NOT NULL}" message="The matching isn't complete"/>
-        </validation>
-    </submitbutton>
+    <submitbutton id="saveMatching" text="Save Matching" nextForm="{forms.matching}" />
 
     <bimMatcher
             id='matcher'
