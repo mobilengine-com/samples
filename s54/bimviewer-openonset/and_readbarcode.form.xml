@@ -1,0 +1,20 @@
+﻿<Form name="bimViewerNavAndroid" typed="true" sillyNulls="false" inlineReference="true"
+      dateformat="(dtf yyyy&quot;-&quot;MM&quot;-&quot;dd&quot; &quot;HH&quot;:&quot;mm&quot;:&quot;ss&quot;.&quot;S)"
+      numberformat="{decimalSeparator:&quot;,&quot;, maxFraction: 3, groupSize: 3, groupSeparator: &quot; &quot;}">
+    <Control type="panel" name="root">
+        <Control type="separator" text="BIM Viewer openOnSet"/>
+        <Control type='checkbox' name="show" label="Open BIM viewer when opening popup:" checked='true'/>
+        <Control type="panel" name="bvpanel" count="1" layout="standard" navigation="popup">
+            <Control type='bimviewer' openOnSet='{=@[//root/show]}' text="Open BIM viewer"/>
+        </Control>
+
+        <Control type="separator" text="BIM Viewer cancelTarget"/>
+        <Control type='checkbox' name="show2" label="Open BIM viewer with a discardbutton cancelTarget:"
+                 checked='true'/>
+        <Control type="panel" name="bvpanel2" count="1" layout="standard" navigation="popup">
+            <Control type='bimviewer' openOnSet='{=@[//root/show]}' cancelTarget='../discard' text="Open BIM viewer"/>
+            <Control name="discard" type="closebutton" action="discard_form" confirm="{=never}"
+                     text="Back to dashboard"/>
+        </Control>
+    </Control>
+</Form>

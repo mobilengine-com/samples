@@ -1,0 +1,19 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='bimViewerNav' menuName='bimViewerNav' platforms='ios web'>
+    <chapter title="BIM Viewer openOnSet">
+        <checkbox id="show" label="Open BIM viewer when opening popup:" checked="{true}" />
+        <popup title='Panel with openOnSet BIM Viewer'>
+            <if cond="{false}">
+                <bimViewer openOnSet="{show.checked}" />
+            </if>
+            <textview text="The BIM Viewer above is hidden, but openOnSet should display it anyway." />
+        </popup>
+    </chapter>
+
+    <chapter title="BIM Viewer cancelTarget" />
+    <checkbox id="show2" label="Open BIM viewer with a discardbutton cancelTarget:" checked="{false}" />
+    <if cond="{false}">
+        <bimViewer label='BIM viewer with closeButton cancelTarget' openOnSet="{show2.checked}" cancelTarget='cancelTargetDiscard' />
+    </if>
+    <discardbutton id='cancelTargetDiscard' text='(This is pressed after you press cancel in BIM viewer)' confirm="{false}" />
+</form>
