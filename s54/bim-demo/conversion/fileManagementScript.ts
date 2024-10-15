@@ -1,53 +1,60 @@
 //# server typescript program fileManagementScript for form fileManagement
 
-//# using reftab conversions;
+//# using reftab pdfs;
+//# using reftab models;
+//# using reftab blueprints;
 //# using reftab matchings;
 //# using reftab storeys;
 
 if (form.submitButton === form.processUploads) {
-    const now = dtl.Now().DtlToDtdb();
-
     for (const file of form.uploads.files) {
-        const nonConverted = ['.png', '.jpg', '.xkt'];
-        const name = file.name.toLowerCase();
-        if (nonConverted.find(ext => name.endsWith(ext))) {
-            db.conversions.Insert({
-                start: now,
-                end: now,
-                input: file.mediaId,
-                output: file.mediaId,
-                inputFilename: file.name,
-                outputFilename: file.name
+        if (file.name.toLowerCase().endsWith('.pdf')) {
+            const now = dtl.Now().DtlToDtdb();
+
+            db.pdfs.Insert({
+                createDate: now,
+                mediaId: file.mediaId,
+                filename: file.name
             });
-        } else if (name.endsWith('.pdf')) {
+
             const doc = pdf.FromFileref(fileref.New(file.mediaId, 0));
-            const pageSize = doc.PageSizes()[0];
-            const maxDim = Math.max(pageSize.ptWidth, pageSize.ptHeight);
-            const scale = Math.floor(16000 / maxDim);
-            const image = doc.Render(0, scale);
-            const outputMediaId = image.Store('png');
-            const outputFileName = name.substring(0, name.length - 4) + '_page0.png';
-            db.conversions.Insert({
-                start: now,
-                end: now,
-                input: file.mediaId,
-                output: outputMediaId,
-                inputFilename: file.name,
-                outputFilename: outputFileName
-            });
-        } else {
-            db.conversions.Insert({start: now, input: file.mediaId, inputFilename: file.name});
+            for (let page = 0; page < doc.PageCount(); page++) {
+                const pageSize = doc.PageSizes()[page];
+                const maxDim = Math.max(pageSize.ptWidth, pageSize.ptHeight);
+                const scale = Math.floor(16000 / maxDim); // the max size for the blueprint is 16k*16k
+                const image = doc.Render(page, scale);
+                const outputMediaId = image.Store('png');
+                db.blueprints.Insert({
+                    createDate: now,
+                    pdfMediaId: file.mediaId,
+                    pdfPageIndex: page,
+                    imageMediaId: outputMediaId
+                });
+            }
+        } else if (file.name.toLowerCase().endsWith('.ifc')) {
             StartTask(new XktConversion(file.mediaId));
+        } else {
+            ThrowError("Unexpected file name: " + file.name.toLowerCase());
         }
     }
 }
 
 if (form.submitButton === form.removeSelected) {
-    for (const row of form.convTable.rows) {
+    for (const row of form.modelsTable.rows) {
         if (row.remove.checked) {
-            db.conversions.Delete({input: row.input});
             db.matchings.DeleteMany({blueprintId: row.input});
             db.storeys.DeleteMany({modelId: row.input});
+        }
+    }
+    for (const row of form.pdfsTable.rows) {
+        if (row.remove.checked) {
+            db.pdfs.DeleteMany({mediaId: row.input});
+            db.blueprints.DeleteMany({pdfMediaId: row.input});
+        }
+    }
+    for (const row of form.blueprintsTable.rows) {
+        if (row.remove.checked) {
+            db.blueprints.DeleteMany({imageMediaId: row.input});
         }
     }
 }

@@ -1,0 +1,6 @@
+﻿<package xmlns="http://schemas.mobilengine.com/package/v1"
+         name="bim-demo"
+         displayName="bim-demo"
+         mobilengineVersion="54"
+         version="1.0"
+/>

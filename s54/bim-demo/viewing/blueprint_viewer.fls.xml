@@ -1,0 +1,49 @@
+<form id='blueprint_viewer' platforms='web ios' menuName='View Blueprints'
+      xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <params>
+        <param id="blueprintId"/>
+        <param id="pageIndex"/>
+        <param id="scale"/>
+        <param id="xFraction"/>
+        <param id="yFraction"/>
+    </params>
+    <dropdown id='blueprintDropdown' keyMap='{key}' textMap='{text}'
+              selectedKey='{params.blueprintId}'
+              label='Select blueprint:'
+              choices='{select c.mediaId key, c.filename text from pdfs c}'/>
+
+    <annotator id='annot' fileref="{fileref(blueprintDropdown.selectedKey, 0)}" style="{styles.largeControl}"
+               labelOpen3d='{case when matchId is not null then "Open 3D!" end}'
+               open3dTarget="open3d"
+               position="{select toInt(params.pageIndex) pageIndex, toFloat(params.scale) scale, toFloat(params.xFraction) xFractionOfCenter, toFloat(params.yFraction) yFractionOfCenter}">
+        <declarations>
+            <let id="matchId" shape="scalar" value='{
+                    select m.id from matchings m join blueprints b on m.blueprintId = b.imageMediaId 
+                    where b.pdfMediaId=blueprintDropdown.selectedKey 
+                    and b.pdfPageIndex = annot.position.pageIndex}'/>
+        </declarations>
+    </annotator>
+
+    <submitbutton id="open3d" text="Open 3D Model" nextForm="{forms.bim_viewer}">
+        <params>
+            <param id="matchId" value="{annot.matchId}"/>
+            <param id="xFraction" value='{formatnumber(annot.newPoint.xFraction, {decimalSeparator: "."})}'/>
+            <param id="yFraction" value='{formatnumber(annot.newPoint.yFraction, {decimalSeparator: "."})}'/>
+            <param id="blueprintId" value='{blueprintDropdown.selectedKey}'/>
+            <param id="pageIndex" value='{formatnumber(annot.newPoint.pageIndex, {decimalSeparator: "."})}'/>
+            <param id="scale" value='{formatnumber(annot.position.scale, {decimalSeparator: "."})}'/>
+        </params>
+    </submitbutton>
+
+    <!--    <textview label="labelOpen3d" text="{annot.labelOpen3d}"/>-->
+    <!--    <textview label="categoryId" text="{tostring(annot.newPoint.categoryId)}"/>-->
+    <!--    <textview label="pageIndex" text="{tostring(annot.newPoint.pageIndex)}"/>-->
+    <!--    <textview label="xFraction" text="{tostring(annot.newPoint.xFraction)}"/>-->
+    <!--    <textview label="yFraction" text="{tostring(annot.newPoint.yFraction)}"/>-->
+    <!--    <textview label="shape" text="{tostring(annot.newPoint.shape)}"/>-->
+    <!--    <textview label="ptdscr" text="{tostring(annot.newPoint.ptdscr)}"/>-->
+    <!--    <textview label="pageIndex" text="{tostring(coalesce(annot.position.pageIndex, -1))}"/>-->
+    <!--    <textview label="scale" text="{tostring(coalesce(annot.position.scale, -1))}"/>-->
+    <!--    <textview label="xFractionOfCenter" text="{tostring(coalesce(annot.position.xFractionOfCenter, -1))}"/>-->
+    <!--    <textview label="yFractionOfCenter" text="{tostring(coalesce(annot.position.yFractionOfCenter, -1))}"/>-->
+</form>

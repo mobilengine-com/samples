@@ -1,0 +1,7 @@
+<Reftab Name="pdfs" xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name="mediaId" Type="Text" NotNull="true" PrimaryKey="true"/>
+        <Column Name="filename" Type="Text" NotNull="true"/>
+        <Column Name="createDate" Type="Date" NotNull="true"/>
+    </Columns>
+</Reftab>
