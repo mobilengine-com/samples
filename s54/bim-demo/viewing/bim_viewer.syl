@@ -1,6 +1,6 @@
 styles {
-    style bimViewer {
-        bimViewer {
+    style largeControl {
+        all {
             control {
                 width = fill
                 height = 600px

@@ -3,33 +3,40 @@
       title="Blueprint-model matching"
       platforms="web"
       xmlns="http://schemas.mobilengine.com/fls/v2">
-
+    <declarations>
+        <let id="blueprint" shape="record" value="{select b.pdfMediaId, b.pdfPageIndex from blueprints b where b.imageMediaId = blueprintDropdown.selectedKey}"/>
+    </declarations>
+    
     <header/>
 
     <dropdown id='blueprintDropdown' keyMap='{key}' textMap='{text}' selectedKey='{null}' label='Select blueprint:'
-              choices='{select c.output key, c.outputFilename text from conversions c where lower(c.outputFilename) like "%.png"}'/>
+              choices='{select c.imageMediaId key, p.filename || " - Page " || tostring(c.pdfPageIndex + 1) text, c.pdfPageIndex 
+              from blueprints c join pdfs p on c.pdfMediaId=p.mediaId}'/>
 
     <dropdown id='modelDropdown' keyMap='{key}' textMap='{text}' selectedKey='{null}' label='Select model:'
-              choices='{select c.output key, c.outputFilename text from conversions c where lower(c.outputFilename) like "%.xkt"}'/>
+              choices='{select c.xktMediaId key, c.ifcFilename text from models c}'/>
 
     <dropdown id='storeyDropdown' keyMap='{storeyId}' textMap='{displayName}' selectedKey='{null}'
               label='Select storey:'
               choices='{select s.modelOrder, s.displayName, s.storeyId from storeys s where s.modelId = modelDropdown.selectedKey order by 1}'/>
 
-    <submitbutton id="saveMatching" text="Save Matching" nextForm="{forms.matching}" />
+    <submitbutton id="saveMatching" text="Save Matching" nextForm="{forms.matching}"/>
 
     <bimMatcher
             id='matcher'
+            pdfId='{fileref(blueprint.pdfMediaId, 0)}'
+            pdfPageIndex='{blueprint.pdfPageIndex}'
+            blueprintId='{fileref(blueprintDropdown.selectedKey, 0)}'
+            blueprintName='{replace(blueprintDropdown.selectedText, ".png", "")}'
             model='{fileref(modelDropdown.selectedKey, 0)}'
             storeyId='{storeyDropdown.selectedKey}'
-            blueprintId='{fileref(blueprintDropdown.selectedKey, 0)}'
-            blueprintName='{REPLACE(blueprintDropdown.selectedText, ".png", "")}'/>
+    />
 
     <textview label="Matching: " text="{matcher.matching}"/>
 
     <chapter title="Previous matchings"/>
     <table id='matchTable' record="r"
-           recordset='{select m.id, m.displayName, m.matching from matchings m order by 1 desc}'>
+           recordset='{select m.createDate, m.id, m.displayName, m.matching from matchings m order by 1 desc}'>
         <header>
             <row>
                 <cell>

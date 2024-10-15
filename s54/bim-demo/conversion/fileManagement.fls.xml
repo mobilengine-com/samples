@@ -2,53 +2,105 @@
 <form xmlns="http://schemas.mobilengine.com/fls/v2" id="fileManagement" menuName="File Management" platforms="web">
     <header/>
 
-    <chapter title="Upload new models &amp; blueprints"/>
-    <fileupload id="uploads" text="Upload"
-                acceptedMimetypes=".pdf, .png, .jpg, .xkt, .ifc, .glb, .ifc, .laz, .las, .pcd, .ply, .stl, .cityjson"/>
+    <segmentedbutton id="modeSelect" keyMap="{key}" textMap="{text}"
+                     choices='{TABLE key, text ("new", "Upload New Files"; "prev", "Manage Existing Files")}'
+                     selectedKey='{"new"}' style="{styles.modeSelect}"/>
 
-    <if cond="{SELECT COUNT(*) > 0 FROM uploads.files f}">
-        <submitbutton id="processUploads" text="Process uploads" nextForm='{forms.fileManagement}'/>
+    <if cond='{modeSelect.selectedKey = "new"}'>
+        <fileupload id="uploads" text="Upload (PDF blueprint or an IFC model)"
+                    acceptedMimetypes=".pdf, .ifc"/>
+
+        <if cond="{SELECT COUNT(*) > 0 FROM uploads.files f}">
+            <submitbutton id="processUploads" text="Process uploads" nextForm='{forms.fileManagement}'/>
+        </if>
     </if>
 
-    <chapter title="Previous uploads"/>
-    <table id='convTable' record="r"
-           recordset='{select c.start, c.input, c.inputFilename, c.output, c.outputFilename, c.end from conversions c order by 1 desc}'>
-        <header>
+    <if cond='{modeSelect.selectedKey = "prev"}'>
+        <chapter title="Models"/>
+        <table id='modelsTable' record="r"
+               recordset='{select m.createDate, m.ifcMediaId, m.ifcFilename from models m order by 1 desc}'>
+            <header>
+                <row>
+                    <cell>
+                        <textview text="Filename"/>
+                    </cell>
+                    <cell>
+                        <textview text="Remove?"/>
+                    </cell>
+                </row>
+            </header>
             <row>
+                <declarations>
+                    <let id='ifcMediaId' shape='scalar' value='{r.ifcMediaId}'/>
+                </declarations>
                 <cell>
-                    <textview text="Input"/>
+                    <filedownload text="{r.ifcFilename}" mediaId="{r.ifcMediaId}"/>
                 </cell>
                 <cell>
-                    <textview text="Converted"/>
-                </cell>
-                <cell>
-                    <textview text="Remove?"/>
+                    <checkbox id="remove"/>
                 </cell>
             </row>
-        </header>
-        <row>
-            <declarations>
-                <let id='input' shape='scalar' value='{r.input}'/>
-            </declarations>
-            <cell>
-                <filedownload text="{r.inputFilename}" mediaId="{r.input}"/>
-            </cell>
-            <cell>
-                <if cond="{(r.end is not null) and (r.output is not null)}">
-                    <filedownload text="{r.outputFilename}" mediaId="{r.output}"/>
-                </if>
-                <if cond="{(r.end is not null) and (r.output is null)}">
-                    <textview text="Conversion Failed"/>
-                </if>
-                <if cond="{r.end is null}">
-                    <textview text="In progress..."/>
-                </if>
-            </cell>
-            <cell>
-                <checkbox id="remove"/>
-            </cell>
-        </row>
-    </table>
+        </table>
 
-    <submitbutton id="removeSelected" text='Remove selected uploads' nextForm='{forms.fileManagement}'/>
+        <chapter title="PDFs"/>
+        <table id='pdfsTable' record="r"
+               recordset='{select b.createDate, b.mediaId, b.filename from pdfs b order by 1}'>
+            <header>
+                <row>
+                    <cell>
+                        <textview text="Filename"/>
+                    </cell>
+                    <cell>
+                        <textview text="Remove?"/>
+                    </cell>
+                </row>
+            </header>
+            <row>
+                <declarations>
+                    <let id='mediaId' shape='scalar' value='{r.mediaId}'/>
+                </declarations>
+                <cell>
+                    <filedownload text="{r.filename}" mediaId="{r.mediaId}" download="{false}"/>
+                </cell>
+                <cell>
+                    <checkbox id="remove"/>
+                </cell>
+            </row>
+        </table>
+
+        <chapter title="Blueprints (Rendered PDF pages)"/>
+        <table id='blueprintsTable' record="r"
+               recordset='{select b.createDate, b.imageMediaId, b.pdfPageIndex, b.pdfMediaId, p.filename from blueprints b join pdfs p on b.pdfMediaId=p.mediaId order by 1 desc}'>
+            <header>
+                <row>
+                    <cell>
+                        <textview text="PDF"/>
+                    </cell>
+                    <cell>
+                        <textview text="Page"/>
+                    </cell>
+                    <cell>
+                        <textview text="Remove?"/>
+                    </cell>
+                </row>
+            </header>
+            <row>
+                <declarations>
+                    <let id='pdfMediaId' shape='scalar' value='{r.pdfMediaId}'/>
+                </declarations>
+                <cell>
+                    <filedownload text="{r.filename}" mediaId="{r.pdfMediaId}" download="{false}"/>
+                </cell>
+                <cell>
+                    <filedownload text='{"Page " || tostring(r.pdfPageIndex + 1)}' mediaId="{r.imageMediaId}"
+                                  download="{false}"/>
+                </cell>
+                <cell>
+                    <checkbox id="remove"/>
+                </cell>
+            </row>
+        </table>
+
+        <submitbutton id="removeSelected" text='Remove selected uploads' nextForm='{forms.fileManagement}'/>
+    </if>
 </form>

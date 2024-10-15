@@ -1,0 +1,11 @@
+﻿styles {
+    style modeSelect {
+        all {
+            fontSize = 18px
+            bold = true
+            selectedSegment {
+                underline = true
+            }
+        }
+    }
+}

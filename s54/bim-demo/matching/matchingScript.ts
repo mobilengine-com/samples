@@ -3,6 +3,8 @@
 //# using reftab matchings;
 
 interface Matching {
+    pdfId: string,
+    pdfPageIndex: number,
     blueprintId: string,
     modelId: string,
     storeyId: string,
@@ -18,8 +20,7 @@ interface Matching {
 
 if (form.submitButton === form.saveMatching) {
     const matching = JSON.parse(form.matcher.matching) as Matching;
-    const ts = new Date().toISOString();
-    const id = `${ts}-${matching.blueprintId}-${matching.modelId}-${matching.storeyId}`;
+    const id = guid.Generate().ToStringN();
     const displayName =
         'Model: "' + form.modelDropdown.selectedText +
         '" Storey: "' + matching.storeyName +
@@ -28,15 +29,14 @@ if (form.submitButton === form.saveMatching) {
 
     db.matchings.DeleteMany({
         id: id
-    });
-
+    })
     db.matchings.Insert({
         id: id,
         displayName: displayName,
         modelId: form.modelDropdown.selectedKey,
         blueprintId: form.blueprintDropdown.selectedKey,
-        storeyId: form.storeyDropdown.selectedKey,
-        matching: form.matcher.matching
+        matching: form.matcher.matching,
+        createDate: dtl.Now().DtlToDtdb()
     });
 }
 

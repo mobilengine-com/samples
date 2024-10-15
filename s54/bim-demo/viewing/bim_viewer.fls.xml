@@ -1,20 +1,61 @@
 <form id='bim_viewer' platforms='web ios' menuName='View Models' xmlns='http://schemas.mobilengine.com/fls/v2'>
-	<declarations>
-		<let id="models" shape="table" value='{select c.output mediaId, c.outputFilename name from conversions c where lower(c.outputFilename) like "%.xkt"}' />
-		<let id="matchingsC" shape="table" value='{select m.modelId, m.matching from matchings m}' />
-	</declarations>
-	<chapter title="Select models to load..." />
-	<repeater id="modRep" record="rec" recordset="{SELECT m.mediaId mediaId, m.name FROM models m}">
-		<block>
-			<declarations>
-				<let id="mediaId" shape="scalar" value='{rec.mediaId}' />
-			</declarations>
-			<checkbox id="show" label="{rec.name}" checked="{false}" />
-		</block>
-	</repeater>
-	<chapter title="BIM Viewer" />
-	<bimViewer 
-			models="{SELECT fileref(r.mediaId, 0) fileref FROM modRep.rows r WHERE r.show.checked}"
-			matchings="{SELECT m.matching FROM matchingsC m WHERE m.modelId IN (SELECT r.mediaId FROM modRep.rows r WHERE r.show.checked)}"
-			text="Show Models..." title="BIM models" style="{styles.bimViewer}" />
+    <declarations>
+        <let id="matchingsC" shape="table" value='{select m.id, m.modelId, m.matching from matchings m}'/>
+    </declarations>
+    <params>
+        <param id="matchId"/>
+        <param id="blueprintId"/>
+        <param id="pageIndex"/>
+        <param id="scale"/>
+        <param id="xFraction"/>
+        <param id="yFraction"/>
+    </params>
+    <if cond="{params.matchId is not null}">
+        <submitbutton id="backToBlueprint" text="Back to the Blueprint" nextForm="{forms.blueprint_viewer}">
+            <params>
+                <param id="blueprintId" value="{params.blueprintId}"/>
+                <param id="pageIndex" value="{params.pageIndex}"/>
+                <param id="scale" value="{params.scale}"/>
+                <param id="xFraction" value="{params.xFraction}"/>
+                <param id="yFraction" value="{params.yFraction}"/>
+            </params>
+        </submitbutton>
+    </if>
+    <if cond="{params.matchId is null}">
+        <chapter title="Select models to load..."/>
+        <repeater id="modRep" record="rec" recordset="{SELECT m.xktMediaId, m.ifcFilename FROM models m}">
+            <block>
+                <declarations>
+                    <let id="xktMediaId" shape="scalar" value='{rec.xktMediaId}'/>
+                </declarations>
+                <checkbox id="show" label="{rec.ifcFilename}" checked="{
+                    select true from matchings m where m.modelId = xktMediaId and m.id = params.matchId
+                }"/>
+            </block>
+        </repeater>
+    </if>
+    <chapter title="BIM Viewer"/>
+    <bimViewer
+            id="viewer"
+            openOnSet="{params.matchId is not null}"
+            models="{SELECT fileref(r.xktMediaId, 0) fileref FROM modRep.rows r WHERE r.show.checked}"
+            matchings="{SELECT m.matching FROM matchingsC m WHERE m.modelId IN (SELECT r.xktMediaId FROM modRep.rows r WHERE r.show.checked)}"
+            position="{select (select m.matching from matchingsC m where m.id = params.matchId) matching, toFloat(params.xFraction) x, toFloat(params.yFraction) y}"
+            text="Show Models..."
+            title="BIM model"
+            style="{styles.largeControl}"
+            cancelTarget="backToBlueprint"
+            open2dLabel="Open 2D!"
+            open2dTarget="open2d"/>
+    <if cond="{false}">
+        <submitbutton id="open2d" text="Open 2D Blueprint" nextForm="{forms.blueprint_viewer}">
+            <params>
+                <param id="xFraction" value='{formatnumber(viewer.position2d.x, {decimalSeparator: "."})}'/>
+                <param id="yFraction" value='{formatnumber(viewer.position2d.y, {decimalSeparator: "."})}'/>
+                <param id="blueprintId" value='{viewer.position2d.pdfMediaId}'/>
+                <param id="pageIndex" value='{formatnumber(viewer.position2d.pdfPageIndex, {decimalSeparator: "."})}'/>
+                <param id="scale" value='{"3"}'/>
+            </params>
+        </submitbutton>
+    </if>
 </form>

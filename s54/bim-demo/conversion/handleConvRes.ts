@@ -1,24 +1,15 @@
 //# server typescript program handleConvRes for conversion
 
-//# using reftab conversions;
+//# using reftab models;
 //# using reftab storeys;
 
-let filename = null;
-if (conversionResult.outputMediaId) {
-    let fr = fileref.New(conversionResult.outputMediaId, 0);
-    filename = fr.Filename();
-}
-
-db.conversions.Update(
+db.models.Insert(
     {
-        input: conversionResult.inputMediaId
-    },
-    {
-        output: conversionResult.outputMediaId,
-        outputFilename: filename,
-        end: dtl.Now().DtlToDtdb()
-    }
-);
+        xktMediaId: conversionResult.outputMediaId,
+        ifcMediaId: conversionResult.inputMediaId,
+        ifcFilename: fileref.New(conversionResult.inputMediaId, 0).Filename(),
+        createDate: dtl.Now().DtlToDtdb()
+    });
 
 const buildingStoreys = conversionResult.metadata.buildings.flatMap(
     builiding =>

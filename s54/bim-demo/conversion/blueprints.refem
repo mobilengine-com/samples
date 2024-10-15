@@ -1,0 +1,8 @@
+<Reftab Name="blueprints" xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name="imageMediaId" Type="Text" NotNull="true" PrimaryKey="true"/>
+        <Column Name="pdfMediaId" Type="Text" NotNull="true"/>
+        <Column Name="pdfPageIndex" Type="Integer" NotNull="true"/>
+        <Column Name="createDate" Type="Date" NotNull="true"/>
+    </Columns>
+</Reftab>
