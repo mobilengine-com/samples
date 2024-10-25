@@ -1,0 +1,53 @@
+<Form name='and_blueprint_viewer' description='View Blueprints' typed="true" sillyNulls="false" inlineReference="true"
+      ksubmit="never" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'>
+    <Control name='root' type='panel'>
+        <!-- 
+            form params:
+            param0: blueprintId
+            param1: pageIndex
+            param2: scale
+            param3: xFraction
+            param4: yFraction
+        -->
+
+        <Control type="combobox"
+                 data_type="string,string"
+                 name='blueprintDropdown'
+                 label='Select blueprint:'
+                 choices="{select c.mediaId, c.filename from Reference_pdfs c}"
+                 selectedKey="{select @param0}"/>
+        <Control
+                type="annotator"
+                name="annot"
+                text="Show Blueprint"
+                size="large"
+                fileref="{select @[../blueprintDropdown.key]}"
+                filename="{select @[../blueprintDropdown.value]}"
+                openOnSet="{select @param0 is not null}"
+                allowOpen3d="{select 1}"
+                enableOpen3d="{select 1}"
+                labelOpen3d="Open 3D!"
+                open3dTarget="//root/open3d"
+                page="{select cast(coalesce(@param1, '0') as integer)}"
+                x="{select cast(coalesce(@param3, '0') as real)}"
+                y="{select cast(coalesce(@param4, '0') as real)}"
+                zoom="{select cast(coalesce(@param2, '1') as real)}"
+        />
+
+        <Control type="label" label="matchingId:" name="matchingId" text='{
+            select m.id from Reference_matchings m join Reference_blueprints b on m.blueprintId = b.imageMediaId 
+            where b.pdfMediaId=@[../blueprintDropdown.key] 
+            and b.pdfPageIndex = @[../annot.col1] 
+        }' visible="false"/>
+
+        <Control name="open3d" type="closebutton" action="discard_form" text="Open 3D!" visible="false"
+                 next_form_name="and_bim_viewer" confirm="never" parameter="{select
+            cast(@[../matchingId] as text) matchingId,
+            cast(@[../blueprintDropdown.key] as text) blueprintId,
+            cast(@[../annot.col1] as text) pageIndex,
+            cast(1 as text) scale,
+            cast(@[../annot.col2] as text) x,
+            cast(@[../annot.col3] as text) y
+        }"/>
+    </Control>
+</Form>

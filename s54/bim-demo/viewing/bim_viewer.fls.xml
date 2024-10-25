@@ -3,14 +3,14 @@
         <let id="matchingsC" shape="table" value='{select m.id, m.modelId, m.matching from matchings m}'/>
     </declarations>
     <params>
-        <param id="matchId"/>
+        <param id="matchingId"/>
         <param id="blueprintId"/>
         <param id="pageIndex"/>
         <param id="scale"/>
         <param id="xFraction"/>
         <param id="yFraction"/>
     </params>
-    <if cond="{params.matchId is not null}">
+    <if cond="{params.matchingId is not null}">
         <submitbutton id="backToBlueprint" text="Back to the Blueprint" nextForm="{forms.blueprint_viewer}">
             <params>
                 <param id="blueprintId" value="{params.blueprintId}"/>
@@ -21,7 +21,7 @@
             </params>
         </submitbutton>
     </if>
-    <if cond="{params.matchId is null}">
+    <if cond="{params.matchingId is null}">
         <chapter title="Select models to load..."/>
         <repeater id="modRep" record="rec" recordset="{SELECT m.xktMediaId, m.ifcFilename FROM models m}">
             <block>
@@ -29,7 +29,7 @@
                     <let id="xktMediaId" shape="scalar" value='{rec.xktMediaId}'/>
                 </declarations>
                 <checkbox id="show" label="{rec.ifcFilename}" checked="{
-                    select true from matchings m where m.modelId = xktMediaId and m.id = params.matchId
+                    select true from matchings m where m.modelId = xktMediaId and m.id = params.matchingId
                 }"/>
             </block>
         </repeater>
@@ -37,10 +37,10 @@
     <chapter title="BIM Viewer"/>
     <bimViewer
             id="viewer"
-            openOnSet="{params.matchId is not null}"
+            openOnSet="{params.matchingId is not null}"
             models="{SELECT fileref(r.xktMediaId, 0) fileref FROM modRep.rows r WHERE r.show.checked}"
             matchings="{SELECT m.matching FROM matchingsC m WHERE m.modelId IN (SELECT r.xktMediaId FROM modRep.rows r WHERE r.show.checked)}"
-            position="{select (select m.matching from matchingsC m where m.id = params.matchId) matching, toFloat(params.xFraction) x, toFloat(params.yFraction) y}"
+            position="{select (select m.matching from matchingsC m where m.id = params.matchingId) matching, toFloat(params.xFraction) x, toFloat(params.yFraction) y}"
             text="Show Models..."
             title="BIM model"
             style="{styles.largeControl}"
@@ -48,7 +48,7 @@
             open2dLabel="Open 2D!"
             open2dTarget="open2d"/>
     <if cond="{false}">
-        <submitbutton id="open2d" text="Open 2D Blueprint" nextForm="{forms.blueprint_viewer}">
+        <discardbutton id="open2d" text="Open 2D Blueprint" nextForm="{forms.blueprint_viewer}">
             <params>
                 <param id="xFraction" value='{formatnumber(viewer.position2d.x, {decimalSeparator: "."})}'/>
                 <param id="yFraction" value='{formatnumber(viewer.position2d.y, {decimalSeparator: "."})}'/>
@@ -56,6 +56,6 @@
                 <param id="pageIndex" value='{formatnumber(viewer.position2d.pdfPageIndex, {decimalSeparator: "."})}'/>
                 <param id="scale" value='{"3"}'/>
             </params>
-        </submitbutton>
+        </discardbutton>
     </if>
 </form>

@@ -21,7 +21,7 @@
                open3dTarget="open3d"
                position="{select toInt(params.pageIndex) pageIndex, toFloat(params.scale) scale, toFloat(params.xFraction) xFractionOfCenter, toFloat(params.yFraction) yFractionOfCenter}">
         <declarations>
-            <let id="matchId" shape="scalar" value='{
+            <let id="matchingId" shape="scalar" value='{
                     select m.id from matchings m join blueprints b on m.blueprintId = b.imageMediaId 
                     where b.pdfMediaId=blueprintDropdown.selectedKey 
                     and b.pdfPageIndex = annot.position.pageIndex}'/>
@@ -29,15 +29,15 @@
     </annotator>
     
     <if cond="{false}">
-        <submitbutton id="open3d" text="Open 3D Model" nextForm="{forms.bim_viewer}">
+        <discardbutton id="open3d" text="Open 3D Model" nextForm="{forms.bim_viewer}">
             <params>
-                <param id="matchId" value="{annot.matchId}"/>
+                <param id="matchingId" value="{annot.matchingId}"/>
                 <param id="xFraction" value='{formatnumber(annot.newPoint.xFraction, {decimalSeparator: "."})}'/>
                 <param id="yFraction" value='{formatnumber(annot.newPoint.yFraction, {decimalSeparator: "."})}'/>
                 <param id="blueprintId" value='{blueprintDropdown.selectedKey}'/>
                 <param id="pageIndex" value='{formatnumber(annot.newPoint.pageIndex, {decimalSeparator: "."})}'/>
                 <param id="scale" value='{formatnumber(annot.position.scale, {decimalSeparator: "."})}'/>
             </params>
-        </submitbutton>
+        </discardbutton>
     </if>
 </form>

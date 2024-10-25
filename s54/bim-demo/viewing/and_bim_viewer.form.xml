@@ -1,14 +1,51 @@
 <Form name='and_bim_viewer' description='View Models' typed="true" sillyNulls="false" inlineReference="true"
       ksubmit="never" dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'>
     <Control name='root' type='panel'>
-        <Control name='filter' type='panel'
-                 generator='select xktMediaId, ifcFilename from Reference_models where output is not null and lower(ifcFilename) like "%.xkt"'
-                 navigation='inline'>
-            <Control name="mediaId" visible='false' type="label" label='MediaId:' text='{select @[PARENT.col0]}'/>
-            <Control name="filename" visible='true' type="label" label='Filename:' text='{select @[PARENT.col1]}'/>
-            <Control type="bimviewer" text="Show Model..." size="large"
-                     models='{select @[../mediaId]}'
-                     matchings="{SELECT matching FROM Reference_matchings m WHERE m.modelId = @[../mediaId]}"/>
+        <!--
+            form params:
+            param0: matchingId
+            param1: blueprintId
+            param2: pageIndex
+            param3: scale
+            param4: xFraction
+            param5: yFraction
+        -->
+
+        <Control type="panel" navigation="inline" generator="select 'show' where @param0 is not null" name="backToBlueprintPanel">
+            <Control text="Back to the Blueprint" name="backToBlueprint" type="closebutton" action="discard_form"
+                     next_form_name="and_blueprint_viewer" parameter="{select
+                cast(@param1 as text) blueprintId,
+                cast(@param2 as text) pageIndex,
+                cast(1 as text) scale,
+                cast(@param4 as text) x,
+                cast(@param5 as text) y
+            }"/>
         </Control>
+        <Control type="panel" navigation="inline" generator="select 'show' where @param0 is null"
+                 name="modelSelectPanel">
+            <Control type="combobox"
+                     data_type="string,string"
+                     name='modelDropdown'
+                     label='Select model to load:'
+                     choices="{select c.xktMediaId, c.ifcFilename from Reference_models c}"/>
+        </Control>
+
+        <Control type="bimviewer" name="bimviewer" text="Show Model..." size="large"
+                 models='{select @[../modelSelectPanel/modelSelectPanel&lt;0>/modelDropdown.key] union all select m.modelId from Reference_matchings m where m.id = @param0}'
+                 matchings="{select matching from Reference_matchings m where m.modelId = @[../modelSelectPanel/modelSelectPanel&lt;0>/modelDropdown.key] or m.id = @param0}"
+                 position="{select (select m.matching from Reference_matchings m where m.id = @param0) matching, cast(@param4 as float) x, cast(@param5 as float) y}"
+                 openOnSet="{select @param0 is not null}"
+                 cancelTarget="//root/backToBlueprintPanel/backToBlueprint"
+                 open2dTarget="//root/open2d"
+        />
+
+        <Control text="Open 2D" name="open2d" type="closebutton" action="discard_form"
+                 next_form_name="and_blueprint_viewer" confirm="never" visible="false" parameter="{select
+                cast(@param1 as text) blueprintId,
+                cast(@param2 as text) pageIndex,
+                cast(3 as text) scale,
+                cast(@[../bimviewer.x] as text) x,
+                cast(@[../bimviewer.y] as text) y
+            }"/>
     </Control>
 </Form>
