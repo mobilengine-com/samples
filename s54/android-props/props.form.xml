@@ -1,0 +1,10 @@
+<Form name='props'
+	sillyNulls='false' inlineReference='true' typed='true'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	numberformat='{decimalSeparator:".", maxFraction:2}'>
+	<Control name='root' type='panel'>
+		<Control name="t1" label="Enter text here, it will be copied to below:" hint="Some text here" type="textbox" />
+		<Control label="@[../t1.text]" text="{select @[../t1.text]}" type='label' />
+		<Control label="@[../t1.hint]" text="{select @[../t1.hint]}" type='label' />
+	</Control>
+</Form>
