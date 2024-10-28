@@ -6,7 +6,7 @@
     <!-- these are filled when we're coming from the blueprint_viewer form -->
     <params>
         <param id="matchingId"/>
-        <param id="blueprintId"/>
+        <param id="pdfId"/>
         <param id="pageIndex"/>
         <param id="scale"/>
         <param id="xFraction"/>
@@ -60,7 +60,7 @@
     <if cond="{false}">
         <submitbutton id="backToBlueprint" text="Back to the Blueprint" nextForm="{forms.blueprint_viewer}">
             <params>
-                <param id="blueprintId" value="{params.blueprintId}"/>
+                <param id="pdfId" value="{params.pdfId}"/>
                 <param id="pageIndex" value="{params.pageIndex}"/>
                 <param id="scale" value="{params.scale}"/>
                 <param id="xFraction" value="{params.xFraction}"/>
@@ -69,11 +69,11 @@
         </submitbutton>
         <discardbutton id="open2d" text="Open 2D Blueprint" nextForm="{forms.blueprint_viewer}" confirm="{false}">
             <params>
-                <param id="xFraction" value='{formatnumber(viewer.position2d.x, {decimalSeparator: "."})}'/>
-                <param id="yFraction" value='{formatnumber(viewer.position2d.y, {decimalSeparator: "."})}'/>
-                <param id="blueprintId" value='{viewer.position2d.pdfMediaId}'/>
+                <param id="pdfId" value='{viewer.position2d.pdfMediaId}'/>
                 <param id="pageIndex" value='{formatnumber(viewer.position2d.pdfPageIndex, {decimalSeparator: "."})}'/>
                 <param id="scale" value='{"3"}'/>
+                <param id="xFraction" value='{formatnumber(viewer.position2d.x, {decimalSeparator: "."})}'/>
+                <param id="yFraction" value='{formatnumber(viewer.position2d.y, {decimalSeparator: "."})}'/>
             </params>
         </discardbutton>
     </if>

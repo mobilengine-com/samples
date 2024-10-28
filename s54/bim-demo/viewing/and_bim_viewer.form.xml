@@ -4,7 +4,7 @@
         <!--
             form params:
             param0: matchingId
-            param1: blueprintId
+            param1: pdfId
             param2: pageIndex
             param3: scale
             param4: xFraction

@@ -3,7 +3,7 @@
     <Control name='root' type='panel'>
         <!-- 
             form params:
-            param0: blueprintId
+            param0: pdfId
             param1: pageIndex
             param2: scale
             param3: xFraction

@@ -3,15 +3,15 @@
 
     <!-- these are filled when we're coming from the bim_viewer form -->
     <params>
-        <param id="blueprintId"/>
+        <param id="pdfId"/>
         <param id="pageIndex"/>
         <param id="scale"/>
         <param id="xFraction"/>
         <param id="yFraction"/>
     </params>
 
-    <dropdown id='blueprintDropdown' keyMap='{key}' textMap='{text}'
-              selectedKey='{params.blueprintId}'
+    <dropdown id='pdfDropdown' keyMap='{key}' textMap='{text}'
+              selectedKey='{params.pdfId}'
               label='Select blueprint:'
               choices='{select c.mediaId key, c.filename text from pdfs c}'/>
 
@@ -23,10 +23,10 @@
         - position is set so that we open the pdf on the correct page and the correct place on the page (where you
           were on the 3d model)
     -->
-    <annotator id='annot' fileref="{fileref(blueprintDropdown.selectedKey, 0)}" style="{styles.largeControl}"
+    <annotator id='annot' fileref="{fileref(pdfDropdown.selectedKey, 0)}" style="{styles.largeControl}"
                text="Show Blueprint"
                title="Blueprint"
-               openOnSet="{params.blueprintId is not null}"
+               openOnSet="{params.pdfId is not null}"
                allowOpen3d='{true}'
                enableOpen3d='{true}'
                labelOpen3d='{"Open 3D!"}'
@@ -41,7 +41,7 @@
             <let id="matchingId" shape="scalar" value='{
                     select m.id 
                     from matchings m join blueprints b on m.blueprintId = b.imageMediaId 
-                    where b.pdfMediaId=blueprintDropdown.selectedKey 
+                    where b.pdfMediaId=pdfDropdown.selectedKey 
                     and b.pdfPageIndex = annot.position.pageIndex}'/>
         </declarations>
     </annotator>
@@ -52,11 +52,11 @@
         <discardbutton id="open3d" text="Open 3D Model" nextForm="{forms.bim_viewer}" confirm='{false}'>
             <params>
                 <param id="matchingId" value="{annot.matchingId}"/>
-                <param id="xFraction" value='{formatnumber(annot.newPoint.xFraction, {decimalSeparator: "."})}'/>
-                <param id="yFraction" value='{formatnumber(annot.newPoint.yFraction, {decimalSeparator: "."})}'/>
-                <param id="blueprintId" value='{blueprintDropdown.selectedKey}'/>
+                <param id="pdfId" value='{pdfDropdown.selectedKey}'/>
                 <param id="pageIndex" value='{formatnumber(annot.newPoint.pageIndex, {decimalSeparator: "."})}'/>
                 <param id="scale" value='{formatnumber(annot.position.scale, {decimalSeparator: "."})}'/>
+                <param id="xFraction" value='{formatnumber(annot.newPoint.xFraction, {decimalSeparator: "."})}'/>
+                <param id="yFraction" value='{formatnumber(annot.newPoint.yFraction, {decimalSeparator: "."})}'/>
             </params>
         </discardbutton>
     </if>
