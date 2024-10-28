@@ -1,3 +1,4 @@
+<!-- contains the uploaded IFC files and the XKT files they were converted into -->
 <Reftab Name="models" xmlns="http://schemas.mobilengine.com/reftab/v1">
     <Columns>
         <Column Name="xktMediaId" Type="Text" NotNull="true" PrimaryKey="true"/>

@@ -1,9 +1,10 @@
+<!-- contains matchings that connect a blueprint to a storey in a model -->
 <Reftab Name="matchings" xmlns="http://schemas.mobilengine.com/reftab/v1">
     <Columns>
         <Column Name='id' Type='Text' NotNull='true' PrimaryKey='true'/>
         <Column Name='displayName' Type='Text' NotNull='true'/>
-        <Column Name='blueprintId' Type='Text' NotNull='true'/>
-        <Column Name="modelId" Type="Text" NotNull='true'/>
+        <Column Name='blueprintId' Type='Text' NotNull='true'/> <!-- references `blueprints` -->
+        <Column Name="modelId" Type="Text" NotNull='true'/> <!-- references `models` -->
         <Column Name="matching" Type="Text" NotNull='true'/>
         <Column Name="createDate" Type="Date" NotNull="true"/>
     </Columns>

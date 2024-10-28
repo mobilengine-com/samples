@@ -1,5 +1,7 @@
 <form id='blueprint_viewer' platforms='web ios' menuName='View Blueprints'
       xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+    <!-- these are filled when we're coming from the bim_viewer form -->
     <params>
         <param id="blueprintId"/>
         <param id="pageIndex"/>
@@ -7,29 +9,47 @@
         <param id="xFraction"/>
         <param id="yFraction"/>
     </params>
+
     <dropdown id='blueprintDropdown' keyMap='{key}' textMap='{text}'
               selectedKey='{params.blueprintId}'
               label='Select blueprint:'
               choices='{select c.mediaId key, c.filename text from pdfs c}'/>
-    
+
+    <!--
+        the annotator showing the blueprint
+        - allowOpen3d: show the open3d button
+        - enableOpen3d: enable the open3d button
+        - open3dTarget: the button clicked when the user presses the open3d button
+        - position is set so that we open the pdf on the correct page and the correct place on the page (where you
+          were on the 3d model)
+    -->
     <annotator id='annot' fileref="{fileref(blueprintDropdown.selectedKey, 0)}" style="{styles.largeControl}"
                text="Show Blueprint"
                title="Blueprint"
                openOnSet="{params.blueprintId is not null}"
                allowOpen3d='{true}'
+               enableOpen3d='{true}'
                labelOpen3d='{"Open 3D!"}'
                open3dTarget="open3d"
-               position="{select toInt(params.pageIndex) pageIndex, toFloat(params.scale) scale, toFloat(params.xFraction) xFractionOfCenter, toFloat(params.yFraction) yFractionOfCenter}">
+               position="{select 
+                    toInt(params.pageIndex) pageIndex,
+                    toFloat(params.scale) scale,
+                    toFloat(params.xFraction) xFractionOfCenter,
+                    toFloat(params.yFraction) yFractionOfCenter
+                }">
         <declarations>
             <let id="matchingId" shape="scalar" value='{
-                    select m.id from matchings m join blueprints b on m.blueprintId = b.imageMediaId 
+                    select m.id 
+                    from matchings m join blueprints b on m.blueprintId = b.imageMediaId 
                     where b.pdfMediaId=blueprintDropdown.selectedKey 
                     and b.pdfPageIndex = annot.position.pageIndex}'/>
         </declarations>
     </annotator>
-    
+
     <if cond="{false}">
-        <discardbutton id="open3d" text="Open 3D Model" nextForm="{forms.bim_viewer}">
+        <!-- note that annot.newPoint contains the point where the user clicked -->
+        <!-- also annot.position is updated now -->
+        <discardbutton id="open3d" text="Open 3D Model" nextForm="{forms.bim_viewer}" confirm='{false}'>
             <params>
                 <param id="matchingId" value="{annot.matchingId}"/>
                 <param id="xFraction" value='{formatnumber(annot.newPoint.xFraction, {decimalSeparator: "."})}'/>

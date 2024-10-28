@@ -2,6 +2,8 @@
     <declarations>
         <let id="matchingsC" shape="table" value='{select m.id, m.modelId, m.matching from matchings m}'/>
     </declarations>
+    
+    <!-- these are filled when we're coming from the blueprint_viewer form -->
     <params>
         <param id="matchingId"/>
         <param id="blueprintId"/>
@@ -10,17 +12,8 @@
         <param id="xFraction"/>
         <param id="yFraction"/>
     </params>
-    <if cond="{params.matchingId is not null}">
-        <submitbutton id="backToBlueprint" text="Back to the Blueprint" nextForm="{forms.blueprint_viewer}">
-            <params>
-                <param id="blueprintId" value="{params.blueprintId}"/>
-                <param id="pageIndex" value="{params.pageIndex}"/>
-                <param id="scale" value="{params.scale}"/>
-                <param id="xFraction" value="{params.xFraction}"/>
-                <param id="yFraction" value="{params.yFraction}"/>
-            </params>
-        </submitbutton>
-    </if>
+
+    <!-- if not coming from a blueprint, allow selecting models, otherwise select one by the form params -->
     <if cond="{params.matchingId is null}">
         <chapter title="Select models to load..."/>
         <repeater id="modRep" record="rec" recordset="{SELECT m.xktMediaId, m.ifcFilename FROM models m}">
@@ -34,21 +27,47 @@
             </block>
         </repeater>
     </if>
+    
+    <!-- 
+        the bim viewer
+        - openOnSet is true if we're coming from a blueprint, cancelTarget 
+        - models are selected by the checkboxes above
+        - position makes the model open where the user cliced on the blueprint
+        - cancelTarget takes us back to the blueprint
+        - open2d also takes us back to the blueprint, but shows the blueprint where you were in the 3d model 
+    -->
     <chapter title="BIM Viewer"/>
     <bimViewer
             id="viewer"
             openOnSet="{params.matchingId is not null}"
-            models="{SELECT fileref(r.xktMediaId, 0) fileref FROM modRep.rows r WHERE r.show.checked}"
-            matchings="{SELECT m.matching FROM matchingsC m WHERE m.modelId IN (SELECT r.xktMediaId FROM modRep.rows r WHERE r.show.checked)}"
-            position="{select (select m.matching from matchingsC m where m.id = params.matchingId) matching, toFloat(params.xFraction) x, toFloat(params.yFraction) y}"
+            models="{select fileref(r.xktMediaId, 0) fileref 
+                from modRep.rows r 
+                where r.show.checked}"
+            matchings="{select m.matching 
+                from matchingsC m 
+                where m.modelId in (select r.xktMediaId from modRep.rows r where r.show.checked)}"
+            position="{select 
+                (select m.matching from matchingsC m where m.id = params.matchingId) matching, 
+                toFloat(params.xFraction) x, 
+                toFloat(params.yFraction) y}"
             text="Show Models..."
             title="BIM model"
             style="{styles.largeControl}"
             cancelTarget="backToBlueprint"
             open2dLabel="Open 2D!"
             open2dTarget="open2d"/>
+    
     <if cond="{false}">
-        <discardbutton id="open2d" text="Open 2D Blueprint" nextForm="{forms.blueprint_viewer}">
+        <submitbutton id="backToBlueprint" text="Back to the Blueprint" nextForm="{forms.blueprint_viewer}">
+            <params>
+                <param id="blueprintId" value="{params.blueprintId}"/>
+                <param id="pageIndex" value="{params.pageIndex}"/>
+                <param id="scale" value="{params.scale}"/>
+                <param id="xFraction" value="{params.xFraction}"/>
+                <param id="yFraction" value="{params.yFraction}"/>
+            </params>
+        </submitbutton>
+        <discardbutton id="open2d" text="Open 2D Blueprint" nextForm="{forms.blueprint_viewer}" confirm="{false}">
             <params>
                 <param id="xFraction" value='{formatnumber(viewer.position2d.x, {decimalSeparator: "."})}'/>
                 <param id="yFraction" value='{formatnumber(viewer.position2d.y, {decimalSeparator: "."})}'/>
