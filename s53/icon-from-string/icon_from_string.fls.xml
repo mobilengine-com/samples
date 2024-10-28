@@ -1,0 +1,4 @@
+<form id='icon_from_string' platforms='web ios' menuName='icon_from_string' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <textbox id="tv" label="Type an icon name to show it:" text="camera" labelIcon="{parseIcon(text)}" />
+    <textview text="Valid icon names: addbutton, camera, popup, removebutton, barcode, marker, marker_selected" />
+</form>
