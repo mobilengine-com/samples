@@ -1,0 +1,9 @@
+styles {
+    style largeMap {
+        map {
+            control {
+                height = 300px
+            }
+        }
+    }
+}

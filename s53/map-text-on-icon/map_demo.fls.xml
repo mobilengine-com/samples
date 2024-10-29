@@ -1,0 +1,27 @@
+<form id='map_demo' menuName="Map Demo" platforms='web' dashboard="true" xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <declarations>
+        <let id="placesTable" shape="table" access="private" value='{TABLE id, textOverIcon,  lineId, lat, lng, icon, selectedIcon (
+                "ME HQ 2", "2", NULL, 48.079444, 20.867122, icons.marker, icons.marker_selected;
+                NULL,      "?", NULL, 47.545007, 21.631358, icons.marker, icons.marker_selected;
+                NULL,      "?", NULL, 47.666764, 19.705318, icons.marker, icons.marker_selected;
+                "ME HQ 1", "1", NULL, 47.49539, 19.050258, icons.marker, icons.marker_selected;
+                NULL,      "?", NULL, 47.497709, 19.918521, icons.marker, icons.marker_selected;
+            )}' />
+    </declarations>
+
+    <map
+        points='{SELECT pa.id, pa.lineId, pa.lat, pa.lng, pa.icon, pa.selectedIcon, "tooltip" tooltip, 
+            pa.textOverIcon text, 
+            "color: red; width: 100%; text-align: center; top: 2px" textstyle 
+        FROM placesTable pa}'
+        center="{TABLE lat, lng, zoom (47.7, 20.25, 8)}"
+        style="{styles.largeMap}" />
+
+    <map
+        points='{SELECT pa.id, pa.lineId, pa.lat, pa.lng, pa.icon, pa.selectedIcon, "tooltip" tooltip, 
+            pa.id text, 
+            "color: darkblue; top: 40px; left: 50%; transform: translateX(-50%); width: max-content" textstyle 
+            FROM placesTable pa}'
+        center="{TABLE lat, lng, zoom (47.7, 20.25, 8)}"
+        style="{styles.largeMap}" />
+</form>
