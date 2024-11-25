@@ -47,16 +47,16 @@
     </annotator>
 
     <if cond="{false}">
-        <!-- note that annot.newPoint contains the point where the user clicked -->
+        <!-- note that annot.open3d contains the point where the user clicked -->
         <!-- also annot.position is updated now -->
         <discardbutton id="open3d" text="Open 3D Model" nextForm="{forms.bim_viewer}" confirm='{false}'>
             <params>
                 <param id="matchingId" value="{annot.matchingId}"/>
                 <param id="pdfId" value='{pdfDropdown.selectedKey}'/>
-                <param id="pageIndex" value='{formatnumber(annot.newPoint.pageIndex, {decimalSeparator: "."})}'/>
+                <param id="pageIndex" value='{formatnumber(annot.open3dPoint.pageIndex, {decimalSeparator: "."})}'/>
                 <param id="scale" value='{formatnumber(annot.position.scale, {decimalSeparator: "."})}'/>
-                <param id="xFraction" value='{formatnumber(annot.newPoint.xFraction, {decimalSeparator: "."})}'/>
-                <param id="yFraction" value='{formatnumber(annot.newPoint.yFraction, {decimalSeparator: "."})}'/>
+                <param id="xFraction" value='{formatnumber(annot.open3dPoint.xFraction, {decimalSeparator: "."})}'/>
+                <param id="yFraction" value='{formatnumber(annot.open3dPoint.yFraction, {decimalSeparator: "."})}'/>
             </params>
         </discardbutton>
     </if>
