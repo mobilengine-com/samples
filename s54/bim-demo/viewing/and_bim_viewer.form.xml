@@ -34,8 +34,7 @@
                  models='{select @[../modelSelectPanel/modelSelectPanel&lt;0>/modelDropdown.key] union all select m.modelId from Reference_matchings m where m.id = @param0}'
                  matchings="{select matching from Reference_matchings m where m.modelId = @[../modelSelectPanel/modelSelectPanel&lt;0>/modelDropdown.key] or m.id = @param0}"
                  position="{select (select m.matching from Reference_matchings m where m.id = @param0) matching, cast(@param4 as float) x, cast(@param5 as float) y}"
-                 openOnSet="{select @param0 is not null}"
-                 cancelTarget="//root/backToBlueprintPanel/backToBlueprint"
+                 openOnSet="{select @param1 is not null}"
                  open2dTarget="//root/open2d"
         />
 

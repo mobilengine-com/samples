@@ -37,17 +37,17 @@
         <Control type="label" label="matchingId:" name="matchingId" text='{
             select m.id from Reference_matchings m join Reference_blueprints b on m.blueprintId = b.imageMediaId 
             where b.pdfMediaId=@[../blueprintDropdown.key] 
-            and b.pdfPageIndex = @[../annot.col1] 
-        }' visible="false"/>
+            and b.pdfPageIndex = @[../annot.open3dPage] 
+        }' />
 
         <Control name="open3d" type="closebutton" action="discard_form" text="Open 3D!" visible="false"
                  next_form_name="and_bim_viewer" confirm="never" parameter="{select
             cast(@[../matchingId] as text) matchingId,
             cast(@[../blueprintDropdown.key] as text) blueprintId,
-            cast(@[../annot.col1] as text) pageIndex,
+            cast(@[../annot.open3dPage] as text) pageIndex,
             cast(1 as text) scale,
-            cast(@[../annot.col2] as text) x,
-            cast(@[../annot.col3] as text) y
+            cast(@[../annot.open3dX] as text) x,
+            cast(@[../annot.open3dY] as text) y
         }"/>
     </Control>
 </Form>
