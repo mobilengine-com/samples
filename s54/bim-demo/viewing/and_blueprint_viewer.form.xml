@@ -26,7 +26,19 @@
                 openOnSet="{select @param0 is not null}"
                 allowOpen3d="{select 1}"
                 enableOpen3d="{select 1}"
-                labelOpen3d="Open 3D!"
+                labelAddPoint="{select 'labelAddPoint!'}"
+                labelAddShape="{select 'labelAddShape!'}"
+                labelAddDashedShape="{select 'labelAddDashedShape!'}"
+                labelAddCloudShape="{select 'labelAddCloudShape!'}"
+                labelAcceptAdd="{select 'labelAcceptAdd!'}"
+                labelCancelAdd="{select 'labelCancelAdd!'}"
+                labelOpen3d="{select 'labelOpen3d!'}"
+                allowNew="true"
+                allowNewPoint="true"
+                allowNewShape="true"
+                allowNewDashedShape="true"
+                allowNewCloud="true"
+                allowSelection="true"
                 open3dTarget="//root/open3d"
                 page="{select cast(coalesce(@param1, '0') as integer)}"
                 x="{select cast(coalesce(@param3, '0') as real)}"
@@ -38,7 +50,7 @@
             select m.id from Reference_matchings m join Reference_blueprints b on m.blueprintId = b.imageMediaId 
             where b.pdfMediaId=@[../blueprintDropdown.key] 
             and b.pdfPageIndex = @[../annot.open3dPage] 
-        }' />
+        }'/>
 
         <Control name="open3d" type="closebutton" action="discard_form" text="Open 3D!" visible="false"
                  next_form_name="and_bim_viewer" confirm="never" parameter="{select

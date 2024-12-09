@@ -18,7 +18,7 @@
     <if cond='{modeSelect.selectedKey = "prev"}'>
         <chapter title="Models"/>
         <table id='modelsTable' record="r"
-               recordset='{select m.createDate, m.ifcMediaId, m.ifcFilename from models m order by 1 desc}'>
+               recordset='{select m.createDate, m.ifcMediaId, m.ifcFilename, m.xktMediaId from models m order by 1 desc}'>
             <header>
                 <row>
                     <cell>
@@ -32,6 +32,7 @@
             <row>
                 <declarations>
                     <let id='ifcMediaId' shape='scalar' value='{r.ifcMediaId}'/>
+                    <let id='xktMediaId' shape='scalar' value='{r.xktMediaId}'/>
                 </declarations>
                 <cell>
                     <filedownload text="{r.ifcFilename}" mediaId="{r.ifcMediaId}"/>
@@ -57,7 +58,7 @@
             </header>
             <row>
                 <declarations>
-                    <let id='mediaId' shape='scalar' value='{r.mediaId}'/>
+                    <let id='pdfMediaId' shape='scalar' value='{r.mediaId}'/>
                 </declarations>
                 <cell>
                     <filedownload text="{r.filename}" mediaId="{r.mediaId}" download="{false}"/>
@@ -86,7 +87,7 @@
             </header>
             <row>
                 <declarations>
-                    <let id='pdfMediaId' shape='scalar' value='{r.pdfMediaId}'/>
+                    <let id='imageMediaId' shape='scalar' value='{r.imageMediaId}'/>
                 </declarations>
                 <cell>
                     <filedownload text="{r.filename}" mediaId="{r.pdfMediaId}" download="{false}"/>

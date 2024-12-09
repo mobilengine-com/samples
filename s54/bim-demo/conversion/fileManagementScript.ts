@@ -42,19 +42,21 @@ if (form.submitButton === form.processUploads) {
 if (form.submitButton === form.removeSelected) {
     for (const row of form.modelsTable.rows) {
         if (row.remove.checked) {
-            db.matchings.DeleteMany({blueprintId: row.input});
-            db.storeys.DeleteMany({modelId: row.input});
+            db.matchings.DeleteMany({modelId: row.ifcMediaId});
+            db.storeys.DeleteMany({modelId: row.xktMediaId});
+            db.models.DeleteMany({ifcMediaId: row.ifcMediaId});
         }
     }
     for (const row of form.pdfsTable.rows) {
         if (row.remove.checked) {
-            db.pdfs.DeleteMany({mediaId: row.input});
-            db.blueprints.DeleteMany({pdfMediaId: row.input});
+            db.pdfs.DeleteMany({mediaId: row.pdfMediaId});
+            db.blueprints.DeleteMany({pdfMediaId: row.pdfMediaId});
         }
     }
     for (const row of form.blueprintsTable.rows) {
         if (row.remove.checked) {
-            db.blueprints.DeleteMany({imageMediaId: row.input});
+            db.blueprints.DeleteMany({imageMediaId: row.imageMediaId});
+            db.matchings.DeleteMany({blueprintId: row.imageMediaId});
         }
     }
 }
