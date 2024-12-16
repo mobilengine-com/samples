@@ -1,0 +1,9 @@
+styles {
+    style smallerViewer {
+        bimViewer {
+            control {
+                height = 600px
+            }
+        }
+    }
+}

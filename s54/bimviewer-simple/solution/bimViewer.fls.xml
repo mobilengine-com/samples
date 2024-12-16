@@ -1,0 +1,44 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns='http://schemas.mobilengine.com/fls/v2' id='bimViewer' menuName='BIM Viewer' platforms='ios web'>
+    <declarations>
+        <let id='matchings1' shape='table' value='{select "{
+                \"blueprintId\": \"7dffa65295d44d24bac6509c79110a83\",
+                \"blueprintName\": \"demo_ground\",
+                \"modelId\": \"07db09a10c9648f999eaa0c8f87d0f02\",
+                \"storeyId\": \"298uW9PODAmgWwAQB0IyQ0\",
+                \"storeyName\": \"01 - Entry Level\",
+                \"imagePicks\": [[-346.51057349538814, 0, -202.4741264662979], [90.20693654778697, 0, 150.92237193001785]],
+                \"modelPicks\": [[-0.48785735928910157, 11.410551423128696, -53.163681770672085], [65.615544509574, 11.400567744966553, 0.5915523962112594]],
+                \"matrix\": [318.4847995965579, 0, 0.7661217443423982, 0, 0, 1, 0, 0, -0.365184698136543, 0, 151.81108780769253, 0, -107.06993589096906, -3.8287999629974365, -98.61876231997223, 1],
+                \"eyeLevel\": 1.6,
+                \"eyeLevelSource\": \"door\"
+            }" v union all select "{
+                \"blueprintId\": \"896d59378fb7435581449c87620fa497\",
+                \"blueprintName\": \"demo_floor2\",
+                \"modelId\": \"07db09a10c9648f999eaa0c8f87d0f02\",
+                \"storeyId\": \"298uW9PODAmgWwAQB0ITCX\",
+                \"storeyName\": \"03 - Floor\",
+                \"imagePicks\": [[-259.4664272797475, 0, -233.89771224963158], [344.15491895043834, 0, 276.41725802492823]],
+                \"modelPicks\": [[-0.4734779616380962, 10.4050330889081, -53.196563034705264], [62.64822027909584, 10.4050330889081, 0.5283643903341826]],
+                \"matrix\": [95.84759626777881, 0, 0.3182797086391141, 0, 0, 1, 0, 0, -0.20893635140423247, 0, 62.919647440555025, 0, -21.165030598987244, -4.8287999629974365, -60.19723734175746, 1],
+                \"eyeLevel\": 9.2,
+                \"eyeLevelSource\": \"door\"
+            }" v union all select "{
+                \"blueprintId\": \"c5e81b680c8345fcbe954075230ea860\",
+                \"blueprintName\": \"demo_roof\",
+                \"modelId\": \"07db09a10c9648f999eaa0c8f87d0f02\",
+                \"storeyId\": \"298uW9PODAmgWwAQB0IT7r\",
+                \"storeyName\": \"Roof\",
+                \"imagePicks\": [[-317.93849151291863, 0, -259.92651966155347], [322.0189269575904, 0, 259.40365953356047]],
+                \"modelPicks\": [[-0.6991642805942178, 12.198501897866196, -53.16454426147579], [65.70424421541088, 12.20654611616145, 0.8405094587350419]],
+                \"matrix\": [94.9212748910036, 0, 0.10178239960841196, 0, 0, 1, 0, 0, -0.06681557961164898, 0, 62.311559009411546, 0, -15.136600712618701, -2.8287999629974365, -57.341765111663854, 1],
+                \"eyeLevel\": 13.3618762259259,
+                \"eyeLevelSource\": \"aabb\"
+            }" v}' />
+    </declarations>
+    <chapter title='BIM Viewer' />
+    <bimViewer 
+        models='{select fileref("07db09a10c9648f999eaa0c8f87d0f02", 0) fileref}'
+        matchings='{select m1.v matching from matchings1 m1}' 
+        style='{styles.smallerViewer}'/>
+</form>
