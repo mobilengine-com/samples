@@ -1,0 +1,26 @@
+<ReportDefinition xmlns="http://schemas.mobilengine.com/repmet/v1">
+	<Name>filtered_report</Name>
+	<Format>XLS</Format>
+	<Frequency>Never</Frequency>
+	<FirstRunAt>2100-01-01T12:23:00</FirstRunAt>
+	<GenerateIfEmpty>true</GenerateIfEmpty>
+	<ColumnNameFrom>ControlName</ColumnNameFrom>
+	<ExcludeStaticLabels>true</ExcludeStaticLabels>
+	<IncludeTrackData>true</IncludeTrackData>
+	<UseLongtextForStringInMdb>true</UseLongtextForStringInMdb>
+	<DatabaseFormat>SQLITE</DatabaseFormat>
+	<ParameterTable>reportparams</ParameterTable>
+	<Email>
+		<Recipients>
+			<To>nobody@mobilengine.com</To>
+		</Recipients>
+		<Attachment>filtered_report</Attachment>
+		<Subject>filtered_report</Subject>
+	</Email>
+	<Filter>
+		<Form>report_form</Form>
+	</Filter>
+	<ReftabDependencies>
+		<Reftab name="myTable" />
+	</ReftabDependencies>
+</ReportDefinition>

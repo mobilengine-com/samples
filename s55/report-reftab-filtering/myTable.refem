@@ -1,0 +1,9 @@
+<Reftab Name="myTable" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+    <Column Name="intCol" Type="Integer" NotNull="true" PrimaryKey="true" />
+    <Column Name="textCol" Type="Text" NotNull="true" />
+    <Column Name="floatCol" Type="Float" />
+    <Column Name="dateCol" Type="Date" />
+    <Column Name="filerefCol" Type="Fileref" />
+  </Columns>
+</Reftab>
