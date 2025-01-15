@@ -6,10 +6,10 @@ const filteredReport = reports.filtered_report;
 // ---------------------------------------------------------------------------
 let reportRun = filteredReport.New()
 reportRun.filters.myTable = {
-    textCol: { within: ["alma", "korte"] },
+    textCol: { within: ["apple", "banana"] },
 }
 reportRun.Params.Add({
-    comment: "Filter: textCol=alma or textCol=korte"
+    comment: "Filter: textCol=apple or textCol=banana"
 })
 reportRun.Run();
 
