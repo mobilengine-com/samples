@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="report_form" menuName="report_form" platforms="web ios">
+	<header />
+
+	<submitbutton text="Generate Report" closeForm="{false}" />
+
+	<chapter title="Reports" />
+	<table record="r" recordset='{loadNewerFromServer:
+			SELECT rep.id, rep.date
+			FROM reports rep
+			ORDER BY 2 DESC}'>
+		<header>
+			<row>
+				<cell>
+					<textview text="Id" />
+				</cell>
+				<cell>
+					<textview text='Generated at' />
+				</cell>
+			</row>
+		</header>
+		<row>
+			<cell>
+				<reportview text="Download" reportviewId="{r.id}" />
+			</cell>
+			<cell>
+				<textview text="{TOSTRING(r.date)}" />
+			</cell>
+		</row>
+	</table>
+</form>

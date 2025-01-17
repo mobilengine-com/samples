@@ -1,0 +1,6 @@
+<Reftab Name="reports" xmlns="http://schemas.mobilengine.com/reftab/v1" Push='true'>
+  <Columns>
+    <Column Name="id" Type="Text" NotNull="true" PrimaryKey="true" />
+    <Column Name="date" Type="Date" NotNull="true" />
+  </Columns>
+</Reftab>
