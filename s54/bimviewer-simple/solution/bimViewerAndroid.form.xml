@@ -37,6 +37,23 @@
                     ""eyeLevel"": 13.3618762259259,
                     ""eyeLevelSource"": ""aabb""
                 }"}'
+                messages='{
+                    select * from (values
+                        ("floatingMenu.resetView", "floatingMenu.resetView"),
+                        ("floatingMenu.filter", "floatingMenu.filter"),
+                        ("floatingMenu.showBlueprint", "floatingMenu.showBlueprint"),
+                        ("menu.resetCamera", "menu.resetCamera"),
+                        ("menu.fullScreen", "menu.fullScreen"),
+                        ("treeView.objects", "treeView.objects"),
+                        ("treeView.storeys", "treeView.storeys"),
+                        ("treeView.types", "treeView.types"),
+                        ("treeView.filterHint", "treeView.filterHint"),
+                        ("infoBox.name", "infoBox.name"),
+                        ("infoBox.type", "infoBox.type"),
+                        ("blueprintDialog.open2d", "blueprintDialog.open2d"),
+                        ("modelLoadError", "modelLoadError")
+                    )
+                }'
         />
     </Control>
 </Form>

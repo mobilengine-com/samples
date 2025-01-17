@@ -37,8 +37,25 @@
             }" v}' />
     </declarations>
     <chapter title='BIM Viewer' />
-    <bimViewer 
+    <bimViewer
         models='{select fileref("07db09a10c9648f999eaa0c8f87d0f02", 0) fileref}'
-        matchings='{select m1.v matching from matchings1 m1}' 
-        style='{styles.smallerViewer}'/>
+        matchings='{select m1.v matching from matchings1 m1}'
+        style='{styles.smallerViewer}'
+        messages='{
+            TABLE id, value (
+                "floatingMenu.resetView", "floatingMenu.resetView";
+                "floatingMenu.filter", "floatingMenu.filter";
+                "floatingMenu.showBlueprint", "floatingMenu.showBlueprint";
+                "menu.resetCamera", "menu.resetCamera";
+                "menu.fullScreen", "menu.fullScreen";
+                "treeView.objects", "treeView.objects";
+                "treeView.storeys", "treeView.storeys";
+                "treeView.types", "treeView.types";
+                "treeView.filterHint", "treeView.filterHint";
+                "infoBox.name", "infoBox.name";
+                "infoBox.type", "infoBox.type";
+                "blueprintDialog.open2d", "blueprintDialog.open2d";
+                "modelLoadError", "modelLoadError"
+            )
+        }' />
 </form>
