@@ -54,7 +54,6 @@
             title="BIM model"
             style="{styles.largeControl}"
             cancelTarget="backToBlueprint"
-            open2dLabel="Open 2D!"
             open2dTarget="open2d"/>
     
     <if cond="{false}">

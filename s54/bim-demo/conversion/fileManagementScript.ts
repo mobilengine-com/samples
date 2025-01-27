@@ -1,5 +1,7 @@
 //# server typescript program fileManagementScript for form fileManagement
 
+//# using rfs handleConvRes;
+
 //# using reftab pdfs;
 //# using reftab models;
 //# using reftab blueprints;
@@ -32,7 +34,7 @@ if (form.submitButton === form.processUploads) {
                 });
             }
         } else if (file.name.toLowerCase().endsWith('.ifc')) {
-            StartTask(new XktConversion(file.mediaId));
+            StartTask(new XktConversion(file.mediaId), rfs.handleConvRes);
         } else {
             ThrowError("Unexpected file name: " + file.name.toLowerCase());
         }

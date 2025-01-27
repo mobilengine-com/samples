@@ -1,7 +1,9 @@
-//# server typescript program handleConvRes for conversion
+//# server typescript program handleConvRes
 
 //# using reftab models;
 //# using reftab storeys;
+
+const conversionResult = params as XktConversionResult
 
 db.models.Insert(
     {
@@ -11,14 +13,14 @@ db.models.Insert(
         createDate: dtl.Now().DtlToDtdb()
     });
 
-const buildingStoreys = conversionResult.metadata.buildings.flatMap(
+const buildingStoreys = conversionResult.buildings.flatMap(
     builiding =>
         builiding.storeys.map(storey => ({
             builiding,
             storey
         })));
 
-const multipleBuldings = conversionResult.metadata.buildings.length > 1;
+const multipleBuldings = conversionResult.buildings.length > 1;
 let i = 0;
 for (const buildingStorey of buildingStoreys) {
     db.storeys.Insert({
