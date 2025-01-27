@@ -3,7 +3,9 @@
 	<header />
 
 	<chapter title="Upload for conversion" />
-	<fileupload id="uploads" acceptedMimetypes="application/octet-stream, .ifc" />
+	<textview text='* IFC files will be converted to XKT files' />
+	<textview text='* PDF files will rendered to a JPG (the first page only)' />
+	<fileupload id="uploads" acceptedMimetypes=".ifc, .pdf" />
 	<if cond="{SELECT COUNT(*) > 0 FROM uploads.files f}">
 		<submitbutton text="Start conversion" />
 	</if>
