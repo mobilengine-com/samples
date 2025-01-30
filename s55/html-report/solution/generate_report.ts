@@ -51,7 +51,7 @@ const reportHtml = generateReport({
 
 // run this file with `deno --unstable-sloppy-imports generate_report.ts >output.html` to get the html
 if (globalThis.Log === undefined) {
-    globalThis.console.log(reportHtml);
+    globalThis.console.log(reportHtml.value);
 } else {
     let reportDocument = pdf.PrintHtml(reportHtml)
     let reportId = reportDocument.Store('report.pdf')

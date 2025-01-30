@@ -2,7 +2,7 @@
 // Code to build the report HTML from the report input.
 // ------------------------------------------------------------------------------------------------
 
-import { html, raw } from './html_templating'
+import { html } from './html_templating'
 import { libreBaskervilleFont } from './resources'
 
 export interface Photo {
@@ -20,7 +20,7 @@ const htmlFromPhoto = (photo: Photo) => html`
     <table class=photo>
         <td><img src=/media/${photo.mediaId}></td>
         <td class=description>${photo.description}</td>
-    </div>
+    </table>
 `
 
 export const generateReport = (input: ReportInput) => html`
@@ -61,7 +61,7 @@ export const generateReport = (input: ReportInput) => html`
         <body>
             <h1>${input.title}</h1>
             <p>${input.intro}</p>
-            ${raw(input.photos.map(htmlFromPhoto).join(''))}
+            ${input.photos.map(htmlFromPhoto)}
         </body>
     </html>
 `

@@ -4,11 +4,15 @@
 // an example.
 // ------------------------------------------------------------------------------------------------
 
-class Raw {
+class SafeHtml implements ISafeHtml {
     value;
 
     constructor(value) {
         this.value = value;
+    }
+
+    toString() {
+        return `SafeHtml(${this.value})`;
     }
 }
 
@@ -24,15 +28,20 @@ function escape(s) {
     return s.replace(/[&"'<>]/g, c => lookup[c]);
 }
 
-export function html(parts: TemplateStringsArray, ...params: any[]) {
+type HtmlTemplateParam = string | SafeHtml | SafeHtml[]
+
+export function html(parts: TemplateStringsArray, ...params: HtmlTemplateParam[]): ISafeHtml {
     let st = '';
     for (let i = 0; i < parts.length - 1; i++) {
         st += parts[i];
-        const param = params[i];
-        st += param instanceof Raw ? param.value : escape(String(param));
+        let paramScalarOrArray = params[i];
+        let paramArray = Array.isArray(paramScalarOrArray) ? paramScalarOrArray : [paramScalarOrArray];
+        for (var param of paramArray) {
+            st += param instanceof SafeHtml ? param.value : escape(String(param));
+        }
     }
     st += parts[parts.length - 1];
-    return st;
+    return new SafeHtml(st);
 }
 
-export const raw = (v: any) => new Raw(v);
+export const safe = (v: any) => new SafeHtml(v);
