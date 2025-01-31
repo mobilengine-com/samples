@@ -2,9 +2,18 @@
 <form xmlns="http://schemas.mobilengine.com/fls/v2" id="report_form" menuName="report_form" platforms="web ios">
 	<header />
 
+	<chapter title='Report contents'></chapter>
+	<repeater id="photos" record='r' recordset='{SELECT 1}'>
+		<hbox>
+			<photo id="photo" singlePhoto='true' />
+			<textarea id="description" hint='Description' lines='4' />
+		</hbox>
+	</repeater>
+	<addbutton records='{SELECT 1}' table='photos' text='Add new photo' />
+
 	<submitbutton text="Generate Report" closeForm="{false}" />
 
-	<chapter title="Reports" />
+	<chapter title="Previous Reports" />
 	<table record="r" recordset='{loadNewerFromServer:
 			SELECT rep.id, rep.date
 			FROM reports rep
