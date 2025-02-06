@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="autosubmit_form" menuName="autosubmit_form" title="autosubmit_form" platforms="web ios"
+	location='fine'
+	autoSubmitInterval="{interval.number}"
+	autoSubmitValidatorGroup="default group1"
+	autoSubmitPriority="low"
+>
+
+	<chapter title='AutoSubmit' />
+	<numberbox id='interval' float='false' label="Autosubmit interval: " number='{1}' />
+	<textview id='lastSubTxt' label="Last auto submit:" text="{TOSTRING(sysp.lastAutoSubmit)}" />
+
+	<chapter title='Form Changes' />
+	<textbox id="tb" label="Change this to trigger a form change:" />
+	<checkbox id="cb" label="Change this to trigger a form change:" />
+	<fileupload id='upload1' acceptedMimetypes='.pdf,.zip,.doc,.xls' label="Upload to trigger a form change:" />
+	<photo id='photo1' label="Upload to trigger a form change:" />
+
+	<chapter title='Validation' />
+	<textbox text="test" label='Must be `test` (default validatorGroup, prevents autosubmit &amp; manual submit)'>
+		<validation>
+			<validator cond='{text == "test"}' message='Must be `test`' />
+		</validation>
+	</textbox>
+	<textbox text="test" label='Must be `test` (group1 validatorGroup, prevents autosubmit)'>
+		<validation>
+			<validator cond='{text == "test"}' group='group1' message='Must be `test`' />
+		</validation>
+	</textbox>
+	<textbox text="test" label='Must be `test` (group2 validatorGroup, doesn&apos;t prevent submit)'>
+		<validation>
+			<validator cond='{text == "test"}' group='group2' message='Must be `test`' />
+		</validation>
+	</textbox>
+
+	<chapter title='Location Status' />
+	<textview label='Latitude:' text='{tostring(sysp.location.latitude)}' />
+	<textview label='Longitude:' text='{tostring(sysp.location.longitude)}' />
+	<textview label='Location Time:' text='{tostring(sysp.location.dtlAcquired)}' />
+</form>
