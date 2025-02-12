@@ -2,7 +2,6 @@
 // Code to build the report HTML from the report input.
 // ------------------------------------------------------------------------------------------------
 
-import { html } from './mobilengine'
 import { libreBaskervilleFont } from './resources'
 
 export interface Photo {
