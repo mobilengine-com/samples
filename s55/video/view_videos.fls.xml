@@ -1,0 +1,48 @@
+﻿<form id='view_videos' menuName='view_videos' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+      <header />
+
+      <table recordset='{SELECT f.mediaid, f.date, f.link FROM files f ORDER BY 2 DESC}' record='r'>
+            <header>
+                  <row>
+                        <cell>
+                              <textview text='MediaId' />
+                        </cell>
+                        <cell>
+                              <textview text='Record Date' />
+                        </cell>
+                        <cell>
+                              <textview text='Download' />
+                        </cell>
+                        <cell>
+                              <textview text='Show' />
+                        </cell>
+                        <cell>
+                              <textview text='Show (iOS only)' />
+                        </cell>
+                        <cell>
+                              <textview text='Public Link' />
+                        </cell>
+                  </row>
+            </header>
+            <row>
+                  <cell>
+                        <textview text='{r.mediaid}' />
+                  </cell>
+                  <cell>
+                        <textview text='{TOSTRING(r.date)}' />
+                  </cell>
+                  <cell>
+                        <filedownload mediaId='{r.mediaid}' text='Download' />
+                  </cell>
+                  <cell>
+                        <filedownload mediaId='{r.mediaid}' text='Show' download='{false}' />
+                  </cell>
+                  <cell>
+                        <fileview fileref='{FILEREF(r.mediaid, 0)}' text='View' />
+                  </cell>
+                  <cell>
+                        <linkview url='{r.link}' text='Open Public Link' />
+                  </cell>
+            </row>
+      </table>
+</form>

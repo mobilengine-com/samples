@@ -1,0 +1,14 @@
+<Form name='view_videos_android' typed='true' inlineReference='true'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'
+>
+	<Control name='root' type='panel'>
+		<Control type="panel" navigation="inline" layout='table' name="rgdir"
+			generator="SELECT mediaid, date FROM Reference_files ORDER BY date desc"
+			data_type='string,string'>
+			<Control type='label' label='MediaId' text='{select @[PARENT.col0]}' />
+			<Control type='label' label='Date' text='{select @[PARENT.col1]}' />
+			<Control type='photoview' label='Photoview' photos='{select @[PARENT.col0]}' />
+			<Control type='filedownload' label='Filedownload' fileref='{select @[PARENT.col0]}' text='download' />
+		</Control>
+	</Control>
+</Form>

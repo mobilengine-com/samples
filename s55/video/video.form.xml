@@ -1,0 +1,33 @@
+<Form name='video' typed='true' inlineReference='true' sillyNulls='false'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'
+>
+	<Control name='root' type='panel'>
+		<Control type="photo" name="photo1"
+			editable='true'
+			shareable='true'
+			cameraApi="{select @[../cameraApi]}"
+			allowVideo="{select @[../allowVideo]}"
+			videoRecordsSound="{select @[../videoRecordsSound]}"
+			videoQuality="{select @[../videoQuality.key]}"
+			videoLengthLimit="{select @[../videoLengthLimit]}"
+			videoSizeLimit="{select @[../videoSizeLimit]}" />
+
+		<Control type='separator' text='--- Photo control settings ---' />
+		<Control type="combobox"
+			data_type="string"
+			name='cameraApi'
+			label='cameraApi:'
+			choices="{select * from (values ('new'), ('old'))}"
+			selectedKey='{select "new"}' />
+		<Control name="allowVideo" type='checkbox' label='allowVideo:' checked='true' />
+		<Control name="videoRecordsSound" type='checkbox' label='videoRecordsSound:' checked='true' />
+		<Control type="combobox"
+			data_type="string"
+			name='videoQuality'
+			label='videoQuality:'
+			choices="{select * from (values ('sd'), ('hd'), ('fhd'), ('uhd'))}"
+			selectedKey='{select "hd"}' />
+		<Control type='textbox' ptype='int' data_type='int' readonly="true" name='videoLengthLimit' label='videoLengthLimit (sec):' text='0' />
+		<Control type='textbox' ptype='int' data_type='int' readonly="true" name='videoSizeLimit' label='videoSizeLimit (MiB):' text='0' />
+	</Control>
+</Form>
