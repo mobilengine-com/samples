@@ -55,7 +55,8 @@
                 "infoBox.name", "infoBox.name";
                 "infoBox.type", "infoBox.type";
                 "blueprintDialog.open2d", "blueprintDialog.open2d";
-                "modelLoadError", "modelLoadError"
+                "modelLoadError", "modelLoadError";
+                "tooManyModelsError", "tooManyModelsError"
             )
         }' />
 </form>
