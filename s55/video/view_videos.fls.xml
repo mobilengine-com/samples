@@ -22,6 +22,9 @@
                         <cell>
                               <textview text='Public Link' />
                         </cell>
+                        <cell>
+                              <textview text='Photoview (testing only)' />
+                        </cell>
                   </row>
             </header>
             <row>
@@ -42,6 +45,9 @@
                   </cell>
                   <cell>
                         <linkview url='{r.link}' text='Open Public Link' />
+                  </cell>
+                  <cell>
+                        <photoview photos='{r.mediaid}' />
                   </cell>
             </row>
       </table>

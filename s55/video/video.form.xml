@@ -5,10 +5,11 @@
 		<Control type="photo" name="photo1"
 			editable='true'
 			shareable='true'
+			source='all'
 			cameraApi="{select @[../cameraApi]}"
-			allowVideo="{select @[../allowVideo]}"
+			capture="{select @[../capture.key]}"
 			videoRecordsSound="{select @[../videoRecordsSound]}"
-			videoQuality="{select @[../videoQuality.key]}"
+			videoResolution="{select @[../videoResolution.key]}"
 			videoLengthLimit="{select @[../videoLengthLimit]}"
 			videoSizeLimit="{select @[../videoSizeLimit]}" />
 
@@ -19,12 +20,17 @@
 			label='cameraApi:'
 			choices="{select * from (values ('new'), ('old'))}"
 			selectedKey='{select "new"}' />
-		<Control name="allowVideo" type='checkbox' label='allowVideo:' checked='true' />
+		<Control type="combobox"
+			data_type="string"
+			name='capture'
+			label='capture:'
+			choices="{select * from (values ('photo,video'), ('video,photo'), ('photo'), ('video'))}"
+			selectedKey='{select "photo,video"}' />
 		<Control name="videoRecordsSound" type='checkbox' label='videoRecordsSound:' checked='true' />
 		<Control type="combobox"
 			data_type="string"
-			name='videoQuality'
-			label='videoQuality:'
+			name='videoResolution'
+			label='videoResolution:'
 			choices="{select * from (values ('sd'), ('hd'), ('fhd'), ('uhd'))}"
 			selectedKey='{select "hd"}' />
 		<Control type='textbox' ptype='int' data_type='int' readonly="true" name='videoLengthLimit' label='videoLengthLimit (sec):' text='0' />
