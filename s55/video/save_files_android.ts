@@ -1,4 +1,4 @@
-//# server typescript program save_files for form video
+//# client server typescript program save_files_android for form video_android
 //# using reftab files;
 
 import { saveFile } from "./lib";
@@ -7,9 +7,9 @@ Log(form);
 
 const isBackoffice = (db.tracking !== undefined)
 if (isBackoffice) {
-    for (const photo of form.photo1.photos) {
-        let mediaid = photo.photoId;
-        let date = photo.datetime.DtlToDtdb()
+    for (const photo of form.root.photo1.map(p => p.value)) {
+        let mediaid = photo.mediaid.ToStringN();
+        let date = photo.dtlShoot.DtlToDtdb()
         let isPhoto = photo.type === "photo"
         saveFile(db.files, mediaid, date, isPhoto)
     }

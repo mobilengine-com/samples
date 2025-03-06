@@ -1,0 +1,27 @@
+﻿<form id='video' menuName='video' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <photo id="photo1"
+        editable='true'
+        shareable='true'
+        source='all'
+        capture="{capture.selectedKey}"
+        videoRecordsSound="{videoRecordsSound.checked}"
+        videoResolution="{videoResolution.selectedKey}"
+        videoLengthLimit="{videoLengthLimit.number}"
+        videoSizeLimit="{videoSizeLimit.number}" />
+
+    <chapter title='--- Photo control settings ---' />
+    <dropdown id='capture'
+        label='capture:'
+        keyMap='{v}' textMap='{v}'
+        choices='{TABLE v ("photo,video"; "video,photo"; "photo"; "video")}'
+        selectedKey='{"photo,video"}' />
+    <checkbox id="videoRecordsSound" label='videoRecordsSound:' checked='{true}' />
+    <dropdown
+        id='videoResolution'
+        label='videoResolution:'
+        keyMap='{v}' textMap='{v}'
+        choices='{TABLE v ("sd"; "hd"; "fhd"; "uhd")}'
+        selectedKey='{"hd"}' />
+    <numberbox id='videoLengthLimit' float='false' label='videoLengthLimit (sec):' number='{0}' />
+    <numberbox id='videoSizeLimit' float='false' label='videoSizeLimit (MiB):' number='{0}' />
+</form>

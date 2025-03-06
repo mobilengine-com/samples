@@ -1,5 +1,5 @@
 ﻿<form id='view_videos' menuName='view_videos' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
-      <header />
+      <photoview label="All photos/videos:" photos='{SELECT f.mediaid FROM files f}' />
 
       <table recordset='{SELECT f.mediaid, f.date, f.link FROM files f ORDER BY 2 DESC}' record='r'>
             <header>

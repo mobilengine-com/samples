@@ -1,4 +1,4 @@
-<Form name='video' typed='true' inlineReference='true' sillyNulls='false'
+<Form name='video_android' typed='true' inlineReference='true' sillyNulls='false'
 	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'
 >
 	<Control name='root' type='panel'>
