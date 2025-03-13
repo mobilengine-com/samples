@@ -1,0 +1,17 @@
+styles {
+    style checkbox30px {
+        checkbox {
+            control {
+                height = 30px
+                iconHeight = 30px
+                iconWidth = 30px
+            }
+        }
+        actionbutton {
+            control {
+                iconHeight = 30px
+                iconWidth = 30px
+            }
+        }
+    }
+}

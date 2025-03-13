@@ -1,0 +1,18 @@
+<form id='checkboxicons' platforms='web ios' menuName='checkboxicons' title='checkbox icons' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <declarations>
+        <let id='x' shape='scalar' value='{00025}' />
+    </declarations>
+    <checkbox id="chbMaster" text='master' />
+    <checkbox id="chbAlma" text='alma' checked='{chbMaster.checked}' testId='chbIcon'
+        checkedIcon='{icons.chb_green_checked}' uncheckedIcon='{icons.chb_green_unchecked}'/>
+    <textview text='{"checked: "||toString(chbAlma.checked)}' />
+    <checkbox id="chbCitrom" text='citrom citrom citrom citrom' checked='{chbMaster.checked}' style='{styles.checkbox30px}'
+        checkedIcon='{icons.chb_green_checked}' uncheckedIcon='{icons.chb_green_unchecked}'/>
+    <actionbutton text='action' linkIcon='{icons.chb_green_checked}'>
+        <set value='{true}' target='chbMaster.checked' />
+    </actionbutton>
+    <textview text='{"checked: "||toString(chbCitrom.checked)}' />
+    <checkbox id="chbKorte" text='körte'  testId='chbNormal'
+        checked='{chbMaster.checked}'/>
+    <textview text='{"checked: "||toString(chbKorte.checked)}' />
+</form>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="disabledControl" menuName="disabledControl" platforms="web ios">
+	<declarations>
+		<let id="data1" shape="table" value='{table key, text (1, "one";2, "twenty-two";3, "three hundred and thirty-three 33")}' />
+		<let id='data' shape='table' value='{select r.nbKey.number key, r.tbText.text text from tbl.rows r where r.chbChecked.checked}' />
+		<let id='x' shape='scalar' value='{1}' />
+	</declarations>
+
+	<checkbox label='disabled' id='chbDisabled' checked='{false}'></checkbox>
+
+	<table record='r' recordset='{select d.key, d.text from data1 d}' id='tbl'>
+		<row>
+			<cell><checkbox checked='{true}' id='chbChecked'/></cell>
+			<cell><numberbox number='{r.key}' id='nbKey'/></cell>
+			<cell><textbox text='{r.text}' id='tbText'/></cell>
+			<cell>
+				<removebutton text='remove button' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+			</cell>
+		</row>
+	</table>
+
+	<addbutton records='{SELECT null key, null text}' table='tbl' text='add button' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+
+	<actionbutton text='{"action button "||toString(x)}' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}">
+		<set value='{x+1}' target='x' />
+	</actionbutton>
+
+	<backbutton text='back button' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+
+	<submitbutton text='submit button' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+	<discardbutton text='discard button' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+	<combinedbutton text='combined button' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}">
+		<backbutton />
+	</combinedbutton>
+
+	<segmentedbutton id="segmentedbutton" label="segmentedbutton" disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}" choices='{select d.key, d.text from data d}' keyMap='{key}' textMap='{text}' />
+	<radiogroup id="radio" disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}" label="radio" choices='{select d.key, d.text from data d}' keyMap='{key}' textMap='{text}' />
+
+	<dropdown label="dropdown" disabled='{chbDisabled.checked}' style="{[styles.selectedSegment, case when disabled then styles.disabled end]}" choices='{select d.key, d.text from data d}' keyMap='{key}' textMap='{text}'/>
+
+	<checkbox text='checkbox' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+	<textbox hint='hint' label='textbox' id='tbNone' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+	<textarea hint='hint' label='textarea' lines='2' id='taNone' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}" />
+	<numberbox hint='hint' label='numberbox' id='nbNone' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}" />
+	<datepicker hint='hint' label='datepicker' id='dpNone' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}" />
+	<timepicker hint='hint' label='timepicker' id='tpNone' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}" />
+
+	<photo label='photo' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+
+	<chapter title='wef only'>
+		<fileupload label='fileupload' acceptedMimetypes='.pdf' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+	</chapter>
+
+	<chapter title='ios only'>
+		<signature label='signature' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+		<barcodereader label='barcode' acceptedTypes='QR' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/>
+		<!-- nfcreader label='nfc' disabled='{chbDisabled.checked}' style="{case when disabled then styles.disabled end}"/-->
+	</chapter>
+</form>
+  

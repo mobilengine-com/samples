@@ -1,0 +1,51 @@
+styles {
+	style disabled {
+		all {
+			button {
+				fontColor = 88aa88
+			}
+			control {
+				fontColor = 88aa88
+			}
+			tintColor = 8888aa
+		}
+	}
+    style proportional {
+		segmentedbutton {
+			segmentWidth = proportional
+		}
+	}
+    style equal {
+		segmentedbutton {
+			segmentWidth = equal
+		}
+	}
+	
+	style tintColor {
+		segmentedbutton {
+			tintColor = FF0000
+		}
+	}
+	
+	style selectedSegment {
+		segmentedbutton {
+			selectedSegment {
+				fontSize = 20px
+				bold = true
+				italic = true
+			}
+		}
+	}
+
+	style styleT {
+		table {
+			columnWidth = 200 px, 800 px
+		}
+	}
+
+	style fill {
+		all {
+			width = fill
+		}
+	}
+}

@@ -1,0 +1,8 @@
+﻿<form id='UploadFile' menuName="Upload File" xmlns='http://schemas.mobilengine.com/fls/v2' location='coarse' platforms="web">
+	<signature id='sig'/>
+	<photo id='photo'/>
+	<fileupload id="fileupload" label="Upload file:" acceptedMimetypes="application/pdf" />
+	<table id='t' record='r' recordset='{SELECT 1 n}'>
+	<row><cell><textbox id='t'></textbox></cell></row>
+	</table>
+</form>

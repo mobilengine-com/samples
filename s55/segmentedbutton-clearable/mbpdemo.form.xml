@@ -1,0 +1,213 @@
+<Form name="mbpdemo" autoform='false' typed='true' inlineReference='true' sillyNulls='false'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	numberformat='{decimalSeparator:".", maxFraction:2}'>
+	<Rgsyl>
+		<Syl syln="demo">
+			<!-- whole control, blue -->
+			<Background color="#42A5F5" />
+			<Margin top="5px" width="0px" /> <!-- width=0 removes the default margin for all sides -->
+			<Border color="#1565C0" width="5px" />
+			<Padding width="5px" />
+
+			<!-- the label part, yellow -->
+			<Label>
+				<Background color="#FFCA28" />
+				<Margin right="5px" width="0px" />
+				<Border color="#FF8F00" width="5px" />
+				<Padding width="5px" />
+			</Label>
+
+			<!-- the value part, green -->
+			<Value>
+				<Background color="#F1F1F1" />
+				<Border color="#2E7D32" width="5px" />
+				<Padding width="5px" />
+			</Value>
+
+			<Validator>
+				<Background color="#B0BEC5" />
+				<Margin bottom="5px" />
+				<Border color="#546E7A" width="5px" />
+				<Padding width="5px" />
+				<Font color="#FFFFFF" />
+			</Validator>
+		</Syl>
+		<Syl syln="cell">
+			<Background color="#00000000" /> <!-- transparent -->
+			<Margin right="5px" />
+			<Padding left="10px" right="10px" />
+		</Syl>
+		<Syl syln="cellbc">
+			<Background color="#00000000" /> <!-- transparent -->
+			<Padding left="10px" right="10px" />
+			<Border color="#000000" width="5px" />
+		</Syl>
+		<Syl syln='duThumbnail' clrBg='#F1F1F1'/>
+		<Syl syln="headerbc">
+			<Label>
+				<Background color="#00000000" /> <!-- transparent -->
+				<Padding left="10px" right="10px" />
+				<Border color="#000000" width="5px" />
+			</Label>
+		</Syl>
+		<Syl syln="title">
+			<Background color="#00000000" /> <!-- transparent -->
+			<Font size="150" bold="true" />
+			<Align horizontal="center" />
+		</Syl>
+		<Syl syln="root">
+			<Background color="#BCAAA4" />
+		</Syl>
+	</Rgsyl>
+	<Control name='root' type='panel' sylnChild="=root">
+
+		<Control type="label" text="Margin-Border-Padding Demo" sylnCrown="=title" />
+		<Control type="label" text="This form demos all the controls, with their Control, Label, Value and Validator boxes colored with different colors." />
+		<Control type="label" text="BLUE: The whole control part" />
+		<Control type="label" text="YELLOW: The label part" />
+		<Control type="label" text="GREEN: The value part" />
+		<Control type="label" text="GRAY: The validaor part" />
+		<Control type="label" text="WHITE: The validaor part" />
+		<Control type="label" text="BROWN: The color of the form, visible through the controls margins, and transparent areas" />
+
+		<Control type="combobox" label="Label" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="dropdown" label="Default" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="select" label="Default" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="switch" label="Default" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="button" label="Default" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="button" ptype="dotted" label="Default" text="Text" sylnCrown="=demo" reference="{Query={Static {A,B,C,D}}}">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="dropdown" label="AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" allowUnselect='true'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="select" label="AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" allowUnselect='true'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="switch" label="AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" allowUnselect='true'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="button" label="AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" allowUnselect='true'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="button" ptype="dotted" label="AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {A,B,C,D}}}" allowUnselect='true'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="dropdown" label="Not AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" allowUnselect='false'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="select" label="Not AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" allowUnselect='false'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="switch" label="Not AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" allowUnselect='false'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="button" label="Not AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" allowUnselect='false'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="combobox" choice="button" ptype="dotted" label="Not AllowUnselect" text="Text" sylnCrown="=demo" reference="{Query={Static {A,B,C,D}}}" allowUnselect='false'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="panel" navigation="popup" label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="link" label="Link Label" text="Text" sylnCrown="=demo" link_target="http://example.net" link_type='address'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="filedownload" label="Filedownload Label" text="Text" sylnCrown="=demo" mediaid_reference="=alma" filename_reference="=korte">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="reportview" label="Reportview Label" text="Text" sylnCrown="=demo" reference='=254d17d5362c41ad90f1ae9676d90b1f'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="photoview" label="Label" text="Text" sylnCrown="=demo" reference='=254d17d5362c41ad90f1ae9676d90b1f'>
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="photo" meta_type="signature" label="Signature Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="photo" label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="validator" label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="button" label="Button Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="checkbox" label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type='radiobutton' reference="{Query={Static {Alma,Korte,Barack,Narancs}}}" label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type='separator' label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type='textbox' ptype="barcode" label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type='textbox' label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type='label' label="Label" text="Text" sylnCrown="=demo">
+			<Validators><Validator type="RegExpValidator" regexp="X" /><Validator type="RequiredValidator" /></Validators>
+		</Control>
+
+		<Control type="panel" layout="table" label="Simple Table Label" navigation="inline" generator="{Query={Static {Alma,Korte,Barack}}}" sylnCrown="=demo" sylnHeader="=demo" sylnChild="=cell">
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+		</Control>
+
+		<Control type="panel" layout="table" label="Border Collapse" navigation="inline" generator="{Query={Static {Alma,Korte,Barack}}}" sylnCrown="=demo" sylnHeader="=headerbc" sylnChild="=cellbc">
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+			<Control type="label" label="Column Header" reference="REF" ref_arg="PARENT.col0" />
+		</Control>
+	</Control>
+</Form>
