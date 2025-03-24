@@ -1,0 +1,15 @@
+<form id='annot_fullscreen' platforms='web ios' menuName='Annotator Full Screen'
+  xmlns='http://schemas.mobilengine.com/fls/v2'>
+
+  <checkbox id="showFs" label='Show fullscreen button:' checked='{true}' />
+  <textbox id="tbFsTt" label="Full screen tooltip:" text='Full Screen' />
+  <textbox id="tbExitFsTt" label="Exit full screen tooltip:" text='Exit Full Screen' />
+  <annotator id='annot' fileref='{fileref("73194bbb940ac694d607ee88f16dff10", 0)}'
+    text="Show Blueprint"
+    title="Blueprint"
+    allowFullScreen='{showFs.checked}'
+    tooltipFullScreen='{tbFsTt.text}'
+    tooltipExitFullScreen='{tbExitFsTt.text}'
+    style='{styles.smallAnnot}'>
+  </annotator>
+</form>

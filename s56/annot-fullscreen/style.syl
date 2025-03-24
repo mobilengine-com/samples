@@ -1,0 +1,9 @@
+styles {
+    style smallAnnot {
+        annotator {
+            control {
+                height = 400px
+            }
+        }
+    }
+}
