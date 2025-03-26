@@ -1,15 +1,140 @@
 styles {
     style dirTree {
         tree {
-            treeControl {
-                entry {
-                    iconWidth = 48px
+            entry {
+                iconWidth = 48px
+            }
+            hoverEntry {
+                iconWidth = 48px
+            }
+            selectedEntry {
+                iconWidth = 48px
+            }
+        }
+    }
+
+    // complete tree style
+    style completeTree {
+        tree {
+            control {
+                align = center
+                backgroundColor = ffffff
+                borderColor = 5f5f5f
+                height = 200px
+                width = 300px
+                margin {
+                    top = 2px
+                    right = 2px
+                    bottom = 2px
+                    left = 2px
                 }
-                hoverEntry {
-                    iconWidth = 48px
+                padding {
+                    top = 4px
+                    right = 4px
+                    bottom = 4px
+                    left = 4px
                 }
-                selectedEntry {
-                    iconWidth = 48px
+                borderWidth {
+                    top = 1px
+                    right = 1px
+                    bottom = 1px
+                    left = 1px
+                }
+            }
+            entry {
+                backgroundColor = ffffff
+                bold = false
+                borderColor = 5f5f5f
+                fontColor = 000000
+                fontSize = 14px
+                iconHeight = 24px
+                iconWidth = 24px
+                italic = false
+                strikethrough = false
+                textAlign = center
+                underline = false
+                wrap = clip // wrap is not supported on web
+                margin {
+                    top = 2px
+                    right = 2px
+                    bottom = 2px
+                    left = 2px
+                }
+                padding {
+                    top = 4px
+                    right = 4px
+                    bottom = 4px
+                    left = 4px
+                }
+                borderWidth {
+                    top = 1px
+                    right = 1px
+                    bottom = 1px
+                    left = 1px
+                }
+            }
+            hoverEntry {
+                backgroundColor = ffffff
+                bold = false
+                borderColor = ff5f5f
+                fontColor = 000000
+                fontSize = 14px
+                iconHeight = 24px
+                iconWidth = 24px
+                italic = false
+                strikethrough = false
+                textAlign = center
+                underline = false
+                wrap = clip // wrap is not supported on web
+                margin {
+                    top = 2px
+                    right = 2px
+                    bottom = 2px
+                    left = 2px
+                }
+                padding {
+                    top = 4px
+                    right = 4px
+                    bottom = 4px
+                    left = 4px
+                }
+                borderWidth {
+                    top = 1px
+                    right = 1px
+                    bottom = 1px
+                    left = 1px
+                }
+            }
+            selectedEntry {
+                backgroundColor = eeeeee
+                bold = true
+                borderColor = 5fff5f
+                fontColor = 000000
+                fontSize = 14px
+                iconHeight = 24px
+                iconWidth = 24px
+                italic = false
+                strikethrough = false
+                textAlign = center
+                underline = false
+                wrap = clip // wrap is not supported on web
+                margin {
+                    top = 2px
+                    right = 2px
+                    bottom = 2px
+                    left = 2px
+                }
+                padding {
+                    top = 4px
+                    right = 4px
+                    bottom = 4px
+                    left = 4px
+                }
+                borderWidth {
+                    top = 1px
+                    right = 1px
+                    bottom = 1px
+                    left = 1px
                 }
             }
         }
