@@ -1,0 +1,37 @@
+<form id='tree' menuName='tree' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <tree id="theTree"
+          label='The tree:'
+          entries='{
+            TABLE id, parentId, text (
+                    "1", null, "Root 1";
+                    "1/1", "1", "Subfolder 1";
+                    "1/1/1", "1/1", "Sub-subfolder";
+                    "1/2", "1", "Subfolder 2";
+                    "1/2/1", "1/2", "Sub-subfolder 1";
+                    "1/2/2", "1/2", "Sub-subfolder 2";
+                    "1/2/3", "1/2", "Sub-subfolder 3";
+                    "3", null, "Root 3";
+                    "2", null, "Root 2";
+                    "2/1", "2", "Subfolder 1";
+                    "2", null, "2 (duplicate id)";
+                    "selfparent", "selfparent", "self parent";
+                    "missingparent", "missingparent", "no parent";
+                    null, null, "null id";
+                )
+            }'
+          selectedId='1/2'
+          openedIcon="{icons.down_folder}"
+          closedIcon="{icons.right_folder}"
+          leafIcon="{icons.leaf_folder}"
+          style="{styles.dirTree}"
+    />
+    <textview label="Selected ID:" text='{theTree.selectedId}'/>
+
+    <actionbutton text="Select `Sub-subfolder 3`">
+        <set value='{"1/2/3"}' target="theTree.selectedId"/>
+    </actionbutton>
+    <actionbutton text="Unselect">
+        <set value="{null}" target="theTree.selectedId"/>
+    </actionbutton>
+    <!-- todo: styles, select/unselect acion button, selectedId bind -->
+</form>

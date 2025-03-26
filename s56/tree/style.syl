@@ -1,0 +1,17 @@
+styles {
+    style dirTree {
+        tree {
+            treeControl {
+                entry {
+                    iconWidth = 48px
+                }
+                hoverEntry {
+                    iconWidth = 48px
+                }
+                selectedEntry {
+                    iconWidth = 48px
+                }
+            }
+        }
+    }
+}
