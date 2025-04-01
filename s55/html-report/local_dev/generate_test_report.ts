@@ -1,10 +1,58 @@
 // ------------------------------------------------------------------------------------------------
 // This file contains the input data for the report, and the code to start the report generation.
+// 
 // You can run this on your computer after installing deno, with this command:
 // $ deno --unstable-sloppy-imports .\generate_test_report.ts
 // ------------------------------------------------------------------------------------------------
 
-import { generateReport } from "./html_report";
+import { generateReport } from "../solution/html_report";
+
+// ------------------------------------------------------------------------------------------------
+// This defines the html templating that's also in mobilengine
+// ------------------------------------------------------------------------------------------------
+class SafeHtmlImpl {
+    value;
+
+    constructor(value: string) {
+        this.value = value;
+    }
+
+    toString() {
+        return `SafeHtml(${this.value})`;
+    }
+}
+
+// @ts-ignore
+function html(parts: TemplateStringsArray, ...params: HtmlTemplateParam[]): SafeHtml {
+    const lookup: { [key: string]: string } = {
+        '&': "&amp;",
+        '"': "&quot;",
+        '\'': "&apos;",
+        '<': "&lt;",
+        '>': "&gt;"
+    };
+
+    let st = '';
+    for (let i = 0; i < parts.length - 1; i++) {
+        st += parts[i];
+        let paramScalarOrArray = params[i];
+        let paramArray = Array.isArray(paramScalarOrArray) ? paramScalarOrArray : [paramScalarOrArray];
+        for (var param of paramArray) {
+            if (param instanceof SafeHtmlImpl) {
+                st += param.value;
+            } else {
+                // @ts-ignore
+                st += param.replace(/[&"'<>]/g, c => lookup[c]);
+            }
+        }
+    }
+    st += parts[parts.length - 1];
+    return new SafeHtmlImpl(st);
+}
+
+html.SafeHtml = SafeHtmlImpl;
+globalThis.html = html;
+// ------------------------------------------------------------------------------------------------
 
 const reportHtml = generateReport({
     title: 'HTML Report',
@@ -48,12 +96,4 @@ const reportHtml = generateReport({
     ]
 })
 
-// check if we're in the BO
-if (globalThis.Log === undefined) {
-    globalThis.console.log(reportHtml.value);
-} else {
-    let reportDocument = reportHtml.print();
-    let reportId = reportDocument.Store('report.pdf')
-    Log(`Report saved with id ${reportId}`)
-    db.reports.Insert({ id: reportId, date: dtl.Now().DtlToDtdb() })
-}
+globalThis.console.log(reportHtml.value);
