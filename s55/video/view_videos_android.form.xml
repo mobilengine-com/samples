@@ -3,12 +3,13 @@
 >
 	<Control name='root' type='panel'>
 		<Control type="panel" navigation="inline" layout='table' name="rgdir"
-			generator="SELECT mediaid, date FROM Reference_files ORDER BY date desc"
-			data_type='string,string'>
+			generator="SELECT mediaid, link, date FROM Reference_files ORDER BY date desc"
+			data_type='string,string,string'>
 			<Control type='label' label='MediaId' text='{select @[PARENT.col0]}' />
-			<Control type='label' label='Date' text='{select @[PARENT.col1]}' />
+			<Control type='label' label='Date' text='{select @[PARENT.col2]}' />
 			<Control type='photoview' label='Photoview' photos='{select @[PARENT.col0]}' />
 			<Control type='filedownload' label='Filedownload' fileref='{select @[PARENT.col0]}' text='download' />
+			<Control type="callbutton" label="Link" text="Open Public Link" call_action="android.intent.action.VIEW" call_data="{select @[PARENT.col1]}" />
 		</Control>
 	</Control>
 </Form>

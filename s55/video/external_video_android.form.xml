@@ -1,0 +1,12 @@
+<Form name='external_video_android' typed='true' inlineReference='true' sillyNulls='false'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'
+>
+	<Control name='root' type='panel'>
+		<Control type="photo" name="photo1"
+			editable='true'
+			shareable='true'
+			source='all'
+			capture="video"
+			externalcameraapp='true' />
+	</Control>
+</Form>
