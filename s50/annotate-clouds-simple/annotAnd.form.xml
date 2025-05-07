@@ -1,0 +1,31 @@
+<Form name="annotAnd" description="annotAnd" typed="true" ksubmit="never" autoform="false"
+	sillyNulls='false' inlineReference='true'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)' numberformat='{decimalSeparator:".", maxFraction:2}'>
+	<Control type="panel" name="root">
+		<Control
+			type="annotator"
+			name="annot" label="Nyisd a" text="Tervrajzot"
+			allowNew='{SELECT 1}'
+			allowNewPoint='{SELECT 1}'
+			allowNewShape='{SELECT 1}'
+			allowNewDashedShape='{SELECT 1}'
+			allowNewCloud='{SELECT 1}'
+			allowSelection='{SELECT 1}'
+			newPointColor='FF0000'
+			mixedPointColor='FFFF00'
+			categories='{
+				select "crid", "category red", "cR", "#FF0000" union all
+				select "cgid", "category green", "cG", "#00FF00"
+			}'
+			points='{select * from (values
+				("pt1", 0, 0.4, 0.5, "crid", null, null),
+				("pt2", 0, 0.5, 0.4, "cgid", null, null),
+				("clo1", 0, 0.5, 0.5, "crid", "cloud", "{""points"":[{""x"":0.3,""y"":0.7},{""x"":0.6,""y"":0.5},{""x"":0.4,""y"":0.4},{""x"":0.3,""y"":0.55}]}"),
+				("das1", 0, 0.5, 0.5, "cgid", "dashed-shape", "{""points"":[{""x"":0.1,""y"":0.5},{""x"":0.4,""y"":0.3},{""x"":0.2,""y"":0.2},{""x"":0.1,""y"":0.25}]}"),
+				("das2", 0, 0.5, 0.5, "cgid", "dashed-shape", "{""points"":[{""x"":0.6,""y"":0.6},{""x"":0.8,""y"":0.6},{""x"":0.8,""y"":0.8},{""x"":0.6,""y"":0.8}]}")
+			)}'
+			fileref="73194bbb940ac694d607ee88f16dff10"
+			filename="simpsons_gray.pdf"
+		/>
+	</Control>
+</Form>

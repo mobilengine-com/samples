@@ -1,0 +1,27 @@
+<form id='annot' menuName='annot' title='annot' platforms='web ios'
+	xmlns='http://schemas.mobilengine.com/fls/v2'>
+	<annotator
+		id="annotator"
+		text='Show Annotator'
+		fileref='{FILEREF("73194bbb940ac694d607ee88f16dff10", 0)}'
+		fileName="simpsons_gray.pdf"
+		categories='{table id, name, abbreviation, color (
+			"crid", "category red", "cR", "FF0000";
+			"cgid", "category green", "cG", "2E7D32"
+		)}'
+		points='{table id, categoryId, pageIndex, xFraction, yFraction, shape, ptdscr (
+			"pt1", "crid", 0, 0.4, 0.5, null, null;
+			"pt2", "cgid", 0, 0.5, 0.4, null, null;
+			"clo1", "crid", 0, 0.5, 0.5, "cloud", "{\"points\":[{\"x\":0.3,\"y\":0.7},{\"x\":0.6,\"y\":0.5},{\"x\":0.4,\"y\":0.4},{\"x\":0.3,\"y\":0.55}]}";
+			"das1", "cgid", 0, 0.5, 0.5, "dashed-shape", "{\"points\":[{\"x\":0.1,\"y\":0.5},{\"x\":0.4,\"y\":0.3},{\"x\":0.2,\"y\":0.2},{\"x\":0.1,\"y\":0.25}]}";
+			"das2", "cgid", 0, 0.5, 0.5, "dashed-shape", "{\"points\":[{\"x\":0.6,\"y\":0.6},{\"x\":0.8,\"y\":0.6},{\"x\":0.8,\"y\":0.8},{\"x\":0.6,\"y\":0.8}]}"
+		)}'
+		pointSize="{1.5}"
+		allowNew="{true}"
+		allowNewPoint="{true}"
+		allowNewShape="{true}"
+		allowNewDashedShape="{true}"
+		allowNewCloud="{true}"
+		allowSelection="{true}"
+	/>
+</form>
