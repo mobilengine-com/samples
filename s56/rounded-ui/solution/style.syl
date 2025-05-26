@@ -1,0 +1,158 @@
+styles {
+    style coloredCanvas {
+        canvas {
+            backgroundColor = EFEBE9
+        }
+    }
+
+    style roundedFrame {
+        frame {
+            padding {
+                top = 25px
+                right = 25px
+                left = 25px
+                bottom = 25px
+            }
+            borderRadius = 10px
+        }
+        popup {
+            content = roundedFrame
+        }
+    }
+
+    style coloredFrame {
+        frame {
+            margin {
+                top = 25px
+                right = 25px
+                left = 25px
+                bottom = 25px
+            }
+            backgroundColor = FFF8E1
+            borderColor = FFB74D
+            borderWidth {
+                top = 1px
+                right = 1px
+                left = 1px
+                bottom = 1px
+            }
+        }
+    }
+
+    style smallFrame {
+        frame {
+            frameWidth = 200px
+            frameHeight = 300px
+        }
+        popup {
+            content = smallFrame
+        }
+    }
+
+    style roundedCanvas {
+        canvas {
+            margin {
+                top = 25px
+                right = 25px
+                left = 25px
+                bottom = 25px
+            }
+            padding {
+                top = 25px
+                right = 25px
+                left = 25px
+                bottom = 25px
+            }
+            borderRadius = 10px
+            backgroundColor = EFEBE9
+        }
+        popup {
+            content = roundedCanvas
+        }
+    }
+
+    style roundedButton {
+        all {
+            button {
+                borderRadius = 10px
+            }
+        }
+    }
+
+    style roundedAll {
+        all {
+            backgroundColor = 90CAF9
+            borderRadius = 10px
+            padding {
+                top = 25px
+                right = 25px
+                left = 25px
+                bottom = 25px
+            }
+            label {
+                borderRadius = 10px
+                backgroundColor = B39DDB
+                padding {
+                    top = 25px
+                    right = 25px
+                    left = 25px
+                    bottom = 25px
+                }
+            }
+            control {
+                borderRadius = 10px
+                backgroundColor = 80CBC4
+                margin {
+                    left = 25px
+                }
+                padding {
+                    top = 25px
+                    right = 25px
+                    left = 25px
+                    bottom = 25px
+                }
+                borderWidth {
+                    top = 1px
+                    right = 1px
+                    left = 1px
+                    bottom = 1px
+                }
+                borderColor = e6e6e6
+            }
+        }
+    }
+
+    style roundThumb {
+        all {
+            thumbnail {
+                borderRadius = 25px
+            }
+        }
+    }
+
+    style roundTitle {
+        chapter {
+            title {
+                borderRadius = 10px
+                backgroundColor = 80CBC4
+                padding {
+                    top = 25px
+                    right = 25px
+                    left = 25px
+                    bottom = 25px
+                }
+            }
+        }
+    }
+
+    style roundSmallControl {
+        all {
+            control {
+                borderRadius = 100px
+                width = 200px
+                height = 200px
+                backgroundColor = cccccc
+            }
+        }
+    }
+}

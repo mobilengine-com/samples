@@ -1,0 +1,23 @@
+<form id='roundedui' menuName='Rounded UI' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2' style='{styles.coloredCanvas}'>
+    <popup title='Open Bubble' openMode='bubble' closable='true' style='{styles.roundedFrame}'>
+        <textview text=' ↙️↖️ Nice round corners ↗️↘️' />
+        <textview text='Click outside the bubble to close it.' />
+    </popup>
+    <popup title='Open Dialog' openMode='dialog' closable='true' style='{styles.roundedFrame}'>
+        <textview text=' ↙️↖️ Nice round corners ↗️↘️' />
+        <textview text='Click outside the dialog to close it.' />
+    </popup>
+    <popup title='Open Scrollable' openMode='dialog' closable='true' style='{[styles.smallFrame, styles.roundedCanvas]}'>
+        <textview text='The canvas is rounded in this dialog' />
+        <textview text='Click outside the dialog to close it.' />
+        <repeater record='r' recordset='{table t (0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19)}'>
+            <textview text='Here is some filler for scrolling' />
+        </repeater>
+    </popup>
+    <photo label='Rounded Thumbnails' style='{styles.roundThumb}' />
+    <photoview label='Rounded Thumbnails' style='{styles.roundThumb}' photos='{"66f41df6efd3430d93da8664931c8a50"}' />
+    <submitbutton text='Rounded Submit Button' style='{styles.roundedButton}' />
+    <textview label='Rounded Label' text='Rounded Text' style='{styles.roundedAll}' />
+    <chapter title='Rounded Chapter Title' style='{styles.roundTitle}' />
+    <map style='{styles.roundSmallControl}' />
+</form>
