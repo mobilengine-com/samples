@@ -1,0 +1,9 @@
+<form id='popupenh' menuName='Popup enhancements' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <popup title='Open Bubble' openMode='bubble' bubbleArrow='false' closable='true'>
+        <textview text='Note that the bubble has no arrow pointing to the `Open Menu` button.' />
+        <textview text='Click outside the bubble to close it.' />
+    </popup>
+    <popup title='Open Dialog' openMode='dialog' closable='true'>
+        <textview text='Click outside the dialog to close it.' />
+    </popup>
+</form>
