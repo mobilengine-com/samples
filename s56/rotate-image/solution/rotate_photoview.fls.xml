@@ -1,13 +1,10 @@
-<form id='rotate' menuName='rotate' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+<form id='rotate_photoview' menuName='rotate_photoview' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <declarations>
+        <let id='thePhotos' shape='table' value='{table theId ("66f41df6efd3430d93da8664931c8a50"; "8eb0060a85f04044b9c8598915ca4ee8"; "dc6435438ca7488f810ca2577cd7c3f3")}' />
+    </declarations>
     <header />
-    <numberbox id="numboxRot" label="Set rotation:" float='false' number='{0}' />
     <checkbox id="cbAllowRot" label='Allow rotation: ' checked='{true}' />
-    <textbox id="tbRotTooltip" label="Rotation tooltip: " text="[[rotate]]" />
-    <textview label="Current rotation: " text="{tostring(image.rotation)}" />
-    <image id="image"
-        mediaId='66f41df6efd3430d93da8664931c8a50'
-        allowZoom='{true}' allowDownload='{true}'
-        allowRotate="{cbAllowRot.checked}" rotation='{numboxRot.number}' tooltipRotate='{tbRotTooltip.text}' />
+    <photoview id="photoview" photos='{select p.theId, 0 theRotation from thePhotos p}' allowRotate="{cbAllowRot.checked}" />
     <submitbutton text='Submit Rotation' closeForm='{false}' />
 
     <chapter title="Previous Rotations" />

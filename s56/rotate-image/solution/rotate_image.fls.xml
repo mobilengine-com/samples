@@ -1,0 +1,37 @@
+<form id='rotate_image' menuName='rotate_image' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <header />
+    <numberbox id="numboxRot" label="Set rotation:" float='false' number='{0}' />
+    <checkbox id="cbAllowRot" label='Allow rotation: ' checked='{true}' />
+    <textbox id="tbRotTooltip" label="Rotation tooltip: " text="[[rotate]]" />
+    <textview label="Current rotation: " text="{tostring(image.rotation)}" />
+    <image id="image"
+        mediaId='66f41df6efd3430d93da8664931c8a50'
+        allowZoom='{true}' allowDownload='{true}'
+        allowRotate="{cbAllowRot.checked}" rotation='{numboxRot.number}' tooltipRotate='{tbRotTooltip.text}' />
+    <submitbutton text='Submit Rotation' closeForm='{false}' />
+
+    <chapter title="Previous Rotations" />
+    <table record="r" recordset='{loadNewerFromServer:
+                SELECT rot.id, rot.date
+                FROM rotations rot
+                ORDER BY 2 DESC}'>
+        <header>
+            <row>
+                <cell>
+                    <textview text="Photo" />
+                </cell>
+                <cell>
+                    <textview text='Generated at' />
+                </cell>
+            </row>
+        </header>
+        <row>
+            <cell>
+                <photoview photos="{SELECT r.id}" />
+            </cell>
+            <cell>
+                <textview text="{TOSTRING(r.date)}" />
+            </cell>
+        </row>
+    </table>
+</form>
