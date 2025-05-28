@@ -1,0 +1,9 @@
+<form id='photoview_filename' menuName='photoview_filename' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <checkbox id="cbAllowDload" label='Allow download:' checked='{true}' />
+    <textview text="The download filename for the first image is 'singapore.jpg', the others are the defaults" />
+    <photoview id="photoview" photos='{table theId, theName (
+            "66f41df6efd3430d93da8664931c8a50", "singapore.jpg"; 
+            "8eb0060a85f04044b9c8598915ca4ee8", null; 
+            "dc6435438ca7488f810ca2577cd7c3f3", null
+        )}' allowDownload="{cbAllowDload.checked}" />
+</form>

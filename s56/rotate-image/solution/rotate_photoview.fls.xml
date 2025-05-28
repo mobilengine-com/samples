@@ -4,7 +4,7 @@
     </declarations>
     <header />
     <checkbox id="cbAllowRot" label='Allow rotation: ' checked='{true}' />
-    <photoview id="photoview" photos='{select p.theId, 0 theRotation from thePhotos p}' allowRotate="{cbAllowRot.checked}" />
+    <photoview id="photoview" photos='{select p.theId, null theFileName, 0 theRotation from thePhotos p}' allowRotate="{cbAllowRot.checked}" />
     <submitbutton text='Submit Rotation' closeForm='{false}' />
 
     <chapter title="Previous Rotations" />
