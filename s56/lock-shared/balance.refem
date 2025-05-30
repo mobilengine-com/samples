@@ -1,0 +1,7 @@
+<Reftab Name="balance" Push='true' xmlns="http://schemas.mobilengine.com/reftab/v1">
+    <Columns>
+        <Column Name="acc_num" Type="Text" PrimaryKey="true" NotNull="true"/>
+        <Column Name="balance" Type="Integer" NotNull="true" />
+        <Column Name="ver" Type="Integer" NotNull="true" />
+    </Columns>
+</Reftab>

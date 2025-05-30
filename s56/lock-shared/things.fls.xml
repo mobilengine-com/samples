@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://schemas.mobilengine.com/fls/v2" id="things" menuName="things" platforms="web">
+	<submitbutton text='save' waitForRfs='{false}' closeForm='{false}'/>
+	<numberbox id='nWait' label='wait' number='{1000}'/>
+	<numberbox id='nWaitLocked' label='wait locked' number='{1000}'/>
+	<!--
+		recordLocal='{SELECT r.guid, tbName.text name, n1.number, r.counter, r.ver}'
+		recordLocal='{SELECT rec.guid, tbName.text name, n1.number, rec.counter, rec.ver}'
+	-->
+	<table id='t' record='r' 
+		recordset='{loadnewerfromserver:select t.guid, t.name, t.number, t.counter, t.ver from thing t}'>
+		<row>
+			<declarations>
+				<let id='rec' shape='record' value='{select r.guid, r.name, r.number, r.counter, r.ver}' />
+			</declarations>
+			<cell><textbox id='tbName' hint='name' text='{r.name}'/></cell>
+			<cell><numberbox id='n1' hint='num' number='{r.number}'/></cell>
+			<cell>	<textview text='{toString(r.number)||" #"||toString(r.counter)||" v"||toString(r.ver) }' />
+			</cell>
+		</row>
+	</table>
+	<addbutton records='{select toStringN(newGuid()) guid, "n" name, 0 number, 0 counter, 0 ver}' table='t' text='+'/>
+	
+</form>

@@ -1,0 +1,8 @@
+<Form name="accountsAndroid" autoform='false' typed='true' inlineReference='true' sillyNulls='false'
+	dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss)'
+	numberformat='{decimalSeparator:".", maxFraction:2}'>
+
+	<Control name='root' type='panel'>
+		<Control type="label" text="Accounts (non-working)" />
+	</Control>
+</Form>
