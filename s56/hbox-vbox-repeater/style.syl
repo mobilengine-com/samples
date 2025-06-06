@@ -1,0 +1,37 @@
+styles {
+    style hbox100px {
+        hbox {
+            sizes = 100px
+        }
+    }
+
+    style vbox20px {
+        hbox {
+            sizes = 20px
+        }
+    }
+
+    style blueBorder {
+        all {
+            borderWidth {
+                left = 2px
+                right = 2px
+                top = 2px
+                bottom = 2px
+            }
+            borderColor = 81D4FA
+        }
+    }
+
+    style greenBorder {
+        all {
+            borderWidth {
+                left = 2px
+                right = 2px
+                top = 2px
+                bottom = 2px
+            }
+            borderColor = DCEDC8
+        }
+    }
+}

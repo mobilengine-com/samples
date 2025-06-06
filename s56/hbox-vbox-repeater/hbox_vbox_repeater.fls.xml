@@ -1,0 +1,43 @@
+<form id='hbox_vbox_repeater' menuName='hbox_vbox_repeater' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <chapter title="Input data" />
+    <addbutton records='{select "(type something)"}' table='input' text='Add' />
+    <table id="input" record='r' recordset='{table v ("Apple"; "Pear"; "Peach")}'>
+        <row>
+            <cell>
+                <textbox id="tb" text="{r.v}" />
+            </cell>
+            <cell>
+                <removebutton text='Remove' />
+            </cell>
+        </row>
+    </table>
+
+    <chapter title="Repeater in Hbox (every item is 100px wide)" />
+    <hbox style='{[styles.hbox100px, styles.blueBorder]}'>
+        <repeater record="r" recordset="{select r.tb.text from input.rows r}">
+            <textview text="{r.text}" style='{styles.greenBorder}' />
+        </repeater>
+    </hbox>
+
+    <chapter title="Repeater in Hbox, with 2 textviews (every item is 100px wide)" />
+    <hbox style='{[styles.hbox100px, styles.blueBorder]}'>
+        <repeater record="r" recordset="{select r.tb.text from input.rows r}">
+            <textview text='{r.text || " (row 1)"}' style='{styles.greenBorder}' />
+            <textview text='Another textview in the repeater' style='{styles.greenBorder}' />
+        </repeater>
+    </hbox>
+
+    <chapter title="Repeater in Hbox (spece is distributed between items)" />
+    <hbox style='{[styles.blueBorder]}'>
+        <repeater record="r" recordset="{select r.tb.text from input.rows r}">
+            <textview text="{r.text}" style='{styles.greenBorder}' />
+        </repeater>
+    </hbox>
+
+    <chapter title="Repeater in Vbox" />
+    <vbox style='{[styles.vbox20px, styles.blueBorder]}'>
+        <repeater record="r" recordset="{select r.tb.text from input.rows r}">
+            <textview text="{r.text}" style='{styles.greenBorder}' />
+        </repeater>
+    </vbox>
+</form>
