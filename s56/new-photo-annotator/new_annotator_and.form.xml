@@ -1,0 +1,6 @@
+<Form name='new_annotator_and' description='new_annotator_and' typed='true' sillyNulls='false' inlineReference='true' dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'>
+    <Control name='root' type='panel'>
+        <Control type='label' text="Create a photo and edit it with the control below" />
+        <Control type='photo' editable='true' />
+    </Control>
+</Form>

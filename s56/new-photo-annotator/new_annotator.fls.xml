@@ -1,0 +1,4 @@
+<form id='new_annotator' menuName='new_annotator' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <textview text='Create a photo and edit it with the control below' />
+    <photo editable='true'/>
+</form>
