@@ -19,7 +19,7 @@
         </repeater>
     </hbox>
 
-    <chapter title="Repeater in Hbox, with 2 textviews (every item is 100px wide)" />
+    <chapter title="Repeater in Hbox, with another textview (every item is 100px wide)" />
     <hbox style='{[styles.hbox100px, styles.blueBorder]}'>
         <repeater record="r" recordset="{select r.tb.text from input.rows r}">
             <textview text='{r.text || " (row 1)"}' style='{styles.greenBorder}' />
@@ -27,7 +27,7 @@
         </repeater>
     </hbox>
 
-    <chapter title="Repeater in Hbox (spece is distributed between items)" />
+    <chapter title="Repeater in Hbox (space is distributed between items)" />
     <hbox style='{[styles.blueBorder]}'>
         <repeater record="r" recordset="{select r.tb.text from input.rows r}">
             <textview text="{r.text}" style='{styles.greenBorder}' />
