@@ -1,0 +1,11 @@
+styles {
+    // the 305px default label width is too wide for mobile screens
+    style narrowLabel {
+        all {
+            label {
+                width = 100px
+            }
+            content = narrowLabel
+        }
+    }
+}

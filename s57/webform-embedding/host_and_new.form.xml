@@ -1,0 +1,8 @@
+<Form name='host_and_new' description='host_and_new' typed='true' sillyNulls='false' inlineReference='true' dateformat='(dtf yyyy"-"MM"-"dd" "HH":"mm":"ss"."S)' numberformat='{decimalSeparator:"."}'>
+    <panel name='root'>
+        <webform label="Embedded form ->" text="Open" form="embedded" parameter="{
+            SELECT 'p1', 'alma'
+            UNION ALL SELECT 'p2', 'korte'
+        }" />
+    </panel>
+</Form>

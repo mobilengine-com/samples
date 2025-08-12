@@ -1,0 +1,8 @@
+<form id='host_ios' menuName='host_ios' platforms='web ios' xmlns='http://schemas.mobilengine.com/fls/v2'>
+    <webform label="Embedded form ->" text="Open" title="Embedded Form" form="{forms.embedded}">
+        <params>
+            <param id="p1" value='{"alma"}' />
+            <param id="p2" value='{"korte"}' />
+        </params>
+    </webform>
+</form>

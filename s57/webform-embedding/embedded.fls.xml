@@ -1,0 +1,13 @@
+<form id='embedded' menuName='embedded' platforms='web' xmlns='http://schemas.mobilengine.com/fls/v2' style='{styles.narrowLabel}'>
+    <header />
+    <params>
+        <param id="p1" />
+        <param id="p2" />
+    </params>
+    <textview text='embedded form' />
+    <textview label='sysp.embedded:' text="{tostring(sysp.embedded)}" />
+    <textview label='params.p1:' text="{tostring(params.p1)}" />
+    <textview label='params.p2:' text="{tostring(params.p2)}" />
+    <submitbutton text='Submit &amp; Close' closeEmbedded='{true}' />
+    <discardbutton text='Discard &amp; Close' closeEmbedded='{true}' />
+</form>
