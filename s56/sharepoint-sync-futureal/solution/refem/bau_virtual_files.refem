@@ -1,0 +1,16 @@
+<Reftab Name="bau_virtual_files" Access="Hidden" xmlns="http://schemas.mobilengine.com/reftab/v1" Push='true'>
+  <Columns>
+	<Column Name="v_file_guid" Type="Text" PrimaryKey="true" NotNull="true" />
+	<Column Name="file_guid" Type="Text" NotNull="true" Indexed="true" /> <!-- bau_tervrajzok.tervrajz_file_guid, bau_hibajegyek.tervrajz_file_guid -->
+	<Column Name="projekt_id" Type="Text" NotNull="true" Indexed="true" />
+	<Column Name="name" Type="Text" NotNull="true" />
+	<Column Name="folder_id" Type="Text" NotNull="true" Indexed="true" />
+	<Column Name="mime_type" Type="Text" NotNull="true" />
+	<Column Name="extension" Type="Text" NotNull="true" Indexed="true" />
+	<Column Name="size" Type="Float" NotNull="true" />
+	<Column Name="foegyseg_id" Type="Text" Indexed="true"/>
+	<Column Name="alegyseg_id" Type="Text" Indexed="true"/>
+	<Column Name="conditionally_approved" Type="Integer" NotNull="true" InitialValue="0"/> <!-- 0: Approved, 1: Conditionally approved -->
+	<Column Name="large_file" Type="Integer" NotNull="true" InitialValue="0"/>
+  </Columns>
+</Reftab>

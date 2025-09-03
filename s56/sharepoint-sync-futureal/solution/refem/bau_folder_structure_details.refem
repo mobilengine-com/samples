@@ -1,0 +1,24 @@
+<!-- Author:	rlevai		-->
+<!-- Date:		2018-12-05	-->
+<!-- Version:	1			-->
+
+<!-- Author:	dcsanyi		-->
+<!-- Date:		2020-09-21	-->
+<!-- Version:	2			-->
+<Reftab Name="bau_folder_structure_details" Access="Hidden" xmlns="http://schemas.mobilengine.com/reftab/v1">
+  <Columns>
+	<Column Name="folder_structure_id" Type="Text" NotNull="true" Indexed="true" />
+	<Column Name="parent_id" Type="Text" NotNull="true" />
+	<!--Column Name="folder_id" PrimaryKey="true" Type="Text" NotNull="true" /-->
+	<Column Name="folder_id"  Type="Text" NotNull="true" Indexed="true"/>
+	<Column Name="level" Type="Integer" NotNull="true" />
+	<Column Name="folder_name" Type="Text" NotNull="true" />
+	<Column Name="folder_code" Type="Text" NotNull="true" />
+	<Column Name="real_path" Type="Text" NotNull="true" />
+	<Column Name="path" Type="Text" NotNull="true" />
+	<Column Name="order_number" Type="Integer" NotNull="true" /> 
+	<Column Name="access_mode" Type="Text" NotNull="true" /> <!-- offline, online -->
+	<Column Name="refresh_state" Type="Integer" NotNull="false" /> <!-- 1: Külsős, vagy belsős projekt - frissül az adott mappa; 0: Külsős projekt - nem frissül az adott mappa; NULL: Belsős projekt, nincs jelentősége, hogy töltsük-e, a mappa mindig frissül a belős projekteknél-->
+	<Column Name="lcompguid" Type="Text" NotNull="true" Indexed="true" />
+  </Columns>
+</Reftab>
