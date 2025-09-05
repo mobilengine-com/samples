@@ -23,9 +23,13 @@
           openedIcon="{icons.down_folder}"
           closedIcon="{icons.right_folder}"
           leafIcon="{icons.leaf_folder}"
-          style="{styles.dirTree}"
-    />
+          style="{styles.dirTree}">
+        <onUserSelect>
+            <set value='{theTree.selectedId}' target="selId2.text"/>
+        </onUserSelect>
+    </tree>
     <textview label="Selected ID:" text='{theTree.selectedId}'/>
+    <textview id="selId2" label="Selected ID (set with onUserSelect):" text='[[not set]]'/>
 
     <actionbutton text="Select `Sub-subfolder 3`">
         <set value='{"1/2/3"}' target="theTree.selectedId"/>
