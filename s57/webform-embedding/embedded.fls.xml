@@ -10,4 +10,11 @@
     <textview label='params.p2:' text="{tostring(params.p2)}" />
     <submitbutton text='Submit &amp; Close' closeEmbedded='{true}' />
     <discardbutton text='Discard &amp; Close' closeEmbedded='{true}' />
+
+    <photo id="photo1" label='Upload photos' capture='photo' />
+    <photo id="video1" label='Upload videos' capture='video' />
+    <photo id="photovideo1" label='Upload photos or videos' capture='photo video' />
+    <textview text='* Only photos are supported on webforms, these are just for testing' />
+
+    <fileupload id="fileupload1" label='Upload PDF files' acceptedMimetypes='.pdf' />
 </form>
